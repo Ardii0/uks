@@ -44,15 +44,15 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="<?php echo base_url('Perpustakaan/rak_buku')?>" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
-              <p>
+                <p>
                 Data Rak Buku
-              </p>
+                </p> 
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Data Buku
@@ -61,7 +61,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="<?php echo base_url('Perpustakaan/data_buku')?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Daftar Buku</p>
                 </a>
@@ -93,7 +93,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<?php echo base_url('Perpustakaan/kategori_buku')?>" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>
                 Kategori Buku
@@ -101,7 +101,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a  class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
                Data Anggota
@@ -111,7 +111,7 @@
             <ul class="nav nav-treeview">
               
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="<?php echo base_url('Perpustakaan/data_anggota')?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Daftar Anggota</p>
                 </a>
@@ -131,10 +131,18 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<?php echo base_url('Perpustakaan/peminjaman')?>" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Peminjaman
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo base_url('Perpustakaan/pengembalian')?>" class="nav-link">
+              <i class="nav-icon fas fa-inbox"></i>
+              <p>
+                Pengembalian
               </p>
             </a>
           </li>
