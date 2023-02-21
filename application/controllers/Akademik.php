@@ -29,7 +29,7 @@ class Akademik extends CI_Controller {
     {
         $this->load->view('akademik/kelas/kelas');
     }
-
+    
     public function jenjang()
     {
         $this->load->view('akademik/jenjang/jenjang');
@@ -43,6 +43,11 @@ class Akademik extends CI_Controller {
     public function siswa_pendaftaran()
     {
         $this->load->view('akademik/siswa/pendaftaran');
+    }
+
+    public function form_pendaftaran()
+    {
+        $this->load->view('akademik/siswa/form_pendaftaran');
     }
 
     public function siswa_pembagian_kelas()

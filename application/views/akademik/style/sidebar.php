@@ -77,25 +77,25 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo base_url('Akademik/pendaftaran') ;?>" class="nav-link">
+                <a href="<?php echo base_url('Akademik/siswa_pendaftaran') ;?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Pendaftaran Siswa</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo base_url('Akademik/pembagian_kelas') ;?>" class="nav-link">
+                <a href="<?php echo base_url('Akademik/siswa_pembagian_kelas') ;?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Pembagian Kelas</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo base_url('Akademik/data_siswa') ;?>" class="nav-link">
+                <a href="<?php echo base_url('Akademik/siswa_data') ;?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Siswa</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo base_url('Akademik/mutasi_siswa') ;?>" class="nav-link">
+                <a href="<?php echo base_url('Akademik/siswa_mutasi') ;?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Mutasi Siswa</p>
                 </a>
@@ -112,13 +112,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo base_url('Akademik/mata_pelajaran') ;?>" class="nav-link">
+                <a href="<?php echo base_url('Akademik/pelajaran') ;?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Mata Pelajaran</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo base_url('Akademik/jenis_mata_pelajaran') ;?>" class="nav-link">
+                <a href="<?php echo base_url('Akademik/jenis_pelajaran') ;?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Jenis Mata Pelajaran</p>
                 </a>
