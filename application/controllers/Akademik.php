@@ -19,4 +19,55 @@ class Akademik extends CI_Controller {
         $this->load->view('akademik/dashboard');
 
     }
+
+    public function tahun_ajaran()
+    {
+        $this->load->view('akademik/tahun_ajaran/tahun_ajaran');
+    }
+    
+    public function kelas()
+    {
+        $this->load->view('akademik/kelas/kelas');
+    }
+
+    public function jenjang()
+    {
+        $this->load->view('akademik/jenjang/jenjang');
+    }
+    
+    public function guru()
+    {
+        $this->load->view('akademik/guru/guru');
+    }
+    
+    public function siswa_pendaftaran()
+    {
+        $this->load->view('akademik/siswa/pendaftaran');
+    }
+
+    public function siswa_pembagian_kelas()
+    {
+        $this->load->view('akademik/siswa/pembagian_kelas');
+    }
+
+    public function siswa_data()
+    {
+        $this->load->view('akademik/siswa/data');
+    }
+
+    public function siswa_mutasi()
+    {
+        $this->load->view('akademik/siswa/mutasi');
+    }
+
+    public function pelajaran()
+    {
+        $this->load->view('akademik/pelajaran/mata_pelajaran');
+    }
+
+    public function jenis_pelajaran()
+    {
+        $this->load->view('akademik/pelajaran/jenis_pelajaran');
+    }
+
 }
