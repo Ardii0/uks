@@ -67,7 +67,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="<?php echo base_url('Perpustakaan/tambah_buku');?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Form Input Buku</p>
                 </a>
