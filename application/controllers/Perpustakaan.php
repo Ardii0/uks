@@ -94,9 +94,83 @@ class Perpustakaan extends CI_Controller {
             $this->session->set_flashdata('error', 'gagal..');
             redirect(base_url('Perpustakaan/rak_buku/rak_buku'));
         }
-
     }
     // Akhir Rak Buku
+
+    public function data_anggota()
+    {
+        $this->load->model('M_perpustakaan');
+        $data['data_anggota'] = $this->m_perpustakaan->get_all_data_anggota('data_anggota');
+        $this->load->view('perpustakaan/data_anggota/data_anggota', $data);
+    }
+
+    public function aksi_tambah_anggota()
+    {
+        $data = array
+        (
+            'nama_anggota' => $this->input->post('nama_anggota'),
+            'nisn' => $this->input->post('nisn'),
+            'keterangan' => $this->input->post('keterangan'),
+            'del_flag' => '1',
+        );
+        $masuk=$this->m_perpustakaan->aksi_tambah_anggota('table_anggota', $data);
+        if($masuk)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('Perpustakaan/data_anggota'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Perpustakaan/tambah_anggota'));
+        }
+    }
+
+    public function edit_anggota($id_anggota)
+    {
+        $data['data_anggota']=$this->m_perpustakaan->edit_anggota('table_anggota', $id_anggota)->result();
+        $this->load->view('perpustakaan/data_anggota/edit_anggota', $data);
+    }
+
+    public function update_anggota()
+    {
+        $data = array
+        (
+            'nama_anggota' => $this->input->post('nama_anggota'),
+            'nisn' => $this->input->post('nisn'),
+            'keterangan' => $this->input->post('keterangan'),
+            'del_flag' => '1',
+        );
+        $masuk=$this->m_perpustakaan->ubah_anggota('table_anggota', $data, array('id_anggota'=>$this->input->post('id_anggota')));
+        if($masuk)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('Perpustakaan/data_anggota'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Perpustakaan/edit_anggoota/'.$this->input->post('id_anggota')));
+        }
+    }
+
+    public function hapus_anggota($id_anggota)
+    {
+        $hapus=$this->m_perpustakaan->hapus_kategori('table_anggota', 'id_anggota', $id_anggota);
+        if($hapus)
+        {
+            $this->session->set_flashdata('sukses', 'Berhasil..');
+            redirect(base_url('Perpustakaan/data_anggota'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Perpustakaan/data_anggota'));
+        }
+
+    }
+
+    
 
     // Kategori
     public function kategori_buku()
@@ -266,10 +340,7 @@ class Perpustakaan extends CI_Controller {
     }
     // Akhir Buku
 
-    public function data_anggota()
-    {
-        $this->load->view('perpustakaan/data_anggota/data_anggota');
-    }
+   
     public function peminjaman()
     {
         $this->load->view('perpustakaan/peminjaman/peminjaman');

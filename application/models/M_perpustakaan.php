@@ -94,4 +94,33 @@ class M_perpustakaan extends CI_Model{
 		return $data;
 	}
 //==============================================DAFTAR BUKU===========================================================
+//============================================ANGGOTA================================================================
+public function get_all_data_anggota()
+{
+	return $this->db->where('del_flag','1')->get('table_anggota')->result();
+}
+
+public function aksi_tambah_anggota($tabel, $data)
+	{
+		$this->db->insert($tabel, $data);
+		return $this->db->insert_id();
+	}
+
+	public function edit_anggota($tabel, $id_anggota)
+	{
+		$data=$this->db->where('id_anggota', $id_anggota)->get($tabel);
+		return $data;
+	}
+
+	public function ubah_anggota($tabel, $data, $where)
+	{
+		$data=$this->db->update($tabel, $data, $where);
+		return $this->db->affected_rows();
+	}
+
+	public function hapus_anggota($tabel, $field, $id_pasien)
+	{
+		$data=$this->db->delete($tabel, array($field => $id_pasien));
+		return $data;
+	}
 }
