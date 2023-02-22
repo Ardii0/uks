@@ -8,50 +8,23 @@
   <!-- Tell the browser to be responsive to screen width -->
 <?php $this->load->view('petugas/style/head'); ?>
 </head>
-<body class="bg-img" style="background-image: url('<?= base_url('frontend/img/background1.jpg') ?>');">
+<body class="body-login">
 
-<div class="login-box">
-  <div class="register-logo">
-    <a href="<?php echo base_url ('Frontend/index')?>"><img height="150" width="150" src="<?php echo base_url('uploads/logoo.png')?>"></a>
-  </div>
-  <!-- /.login-logo -->
+<div class="main">  	
+		<input type="checkbox" id="chk" aria-hidden="true">
 
-  <div class="login-box-body" style="background:bisque;">
-    <?php if ($this->session->flashdata('pesan')) {
-      echo $this->session->flashdata('pesan');
-    } ?>
-    <p class="login-box-msg">Sign in </p>
-
-    <form action="<?php echo base_url(); ?>login/aksi_login" method="post">
-      <div class="form-group has-feedback">
-        <input type="full name" name="username" class="form-control" placeholder="Username" required oninvalid="this.setCustomValidity('Tidak boleh kosong')" oninput="setCustomValidity('')">
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="password" name="password" class="form-control" placeholder="Password" required oninvalid="this.setCustomValidity('Tidak boleh kosong')" oninput="setCustomValidity('')">
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-      </div>
-        <!-- /.col -->
-        <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
-        </div>
-        <!-- /.col -->
-
-    </form>
-    </div>
-
-    <div class="social-auth-links text-center">
-
-    <!--a href="#">I forgot my password</a><br>
-    <a href="register.html" class="text-center">Register a new membership</a-->
-
-  </div>
-  <!-- /.login-box-body -->
-</div>
+		<div class="signup">
+				<form action="<?php echo base_url(); ?>login/aksi_login" method="post">
+					<label for="chk" aria-hidden="true">Login</label>
+					<input type="full name" name="username" class="form-control" placeholder="Username" required oninvalid="this.setCustomValidity('Tidak boleh kosong')" oninput="setCustomValidity('')">
+					<input type="password" name="password" class="form-control" placeholder="Password" required oninvalid="this.setCustomValidity('Tidak boleh kosong')" oninput="setCustomValidity('')">
+					<button type="submit">Login</button>
+				</form>
+			</div>
+	</div>
 <!-- /.login-box -->
 
 <!-- jQuery 3 -->
-<?php $this->load->view('petugas/style/js'); ?>
 <script>
   $(function () {
     $('input').iCheck({
