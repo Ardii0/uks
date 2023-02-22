@@ -33,6 +33,15 @@
 
             <section class="content">
                 <div class="container-fluid bg-white">
+                    <div class="row mx-2 pt-3 d-flex justify-content-end">
+                        <div class="col-md-3 d-flex justify-content-end align-self-start">
+                            <a href="<?php echo base_url('Akademik/kelas_form');?>">
+                                <button type="button" class="btn btn-success">
+                                    <i class="fa fa-plus pr-2"></i>Tambah
+                                </button>
+                            </a>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-12">
                             <div class="card-body">
@@ -40,20 +49,29 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Rombongan Belajar</th>
+                                            <th>Nama Kelas</th>
                                             <th>Jenjang</th>
+                                            <th>Keterangan</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php $id=0; foreach($kelas as $data ): $id++;?>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Internet
-                                                Explorer 4.0
+                                            <td><?php echo $id?></td>
+                                            <td><?php echo $data->nama_kelas?></td>
+                                            <td><?php echo $data->id_jenjang?></td>
+                                            <td><?php echo $data->keterangan?></td>
+                                            <td class="text-center">
+                                                <a href="<?php echo base_url('Akademik/edit_kelas/'.$data->id_kelas)?>"
+                                                    class="btn btn-primary btn-sm">
+                                                    <i class="fa fa-edit"></i></a>
+                                                <button onclick="hapus(<?php echo $data->id_kelas ;?>)"
+                                                    class="btn btn-danger btn-sm">
+                                                    <i class="fa fa-trash"></i></button>
                                             </td>
-                                            <td>Win 95+</td>
-                                            <td>Win 95+</td>
                                         </tr>
+                                        <?php endforeach;?>
                                     </tbody>
                                 </table>
                             </div>
@@ -64,8 +82,15 @@
         </section>
     </div>
     </div>
-
     <?php $this->load->view('akademik/style/js')?>
+        <script>
+        function hapus(id) {
+            var yes = confirm('Yakin Di Hapus?');
+            if (yes == true) {
+                window.location.href = "<?php echo base_url('Akademik/hapus_kelas/')?>" + id;
+            }
+        }
+        </script>
 </body>
 
 </html>

@@ -20,14 +20,15 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Tahun Ajaran</h1>
+                            <h1>Form Tahun Ajaran</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a
                                         href="<?php echo base_url('Akademik/') ?>"><?php echo $this->session->userdata('level') ?></a>
                                 </li>
-                                <li class="breadcrumb-item active">Tahun Ajaran</li>
+                                <li class="breadcrumb-item active"><a href="<?php echo base_url('Akademik/tahun_ajaran') ?>">Tahun Ajaran</a></li>
+                                <li class="breadcrumb-item active">Form Tahun Ajaran</li>
                             </ol>
                         </div>
                     </div>
@@ -59,7 +60,7 @@
                                 <div class="form-group">
                                     <label class="control-label">KD Angkatan</label>
                                     <div class="">
-                                        <input type="number" name="kd_angkatan" class="form-control"
+                                        <input type="text" name="kd_angkatan" class="form-control"
                                             placeholder="Masukan KD Angkatan">
                                     </div>
                                 </div>

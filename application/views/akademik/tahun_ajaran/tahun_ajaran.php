@@ -91,14 +91,14 @@
     </div>
 </div>
 <?php $this->load->view('akademik/style/js')?>
-        <script>
-        function hapus(id) {
-            var yes = confirm('Yakin Di Hapus?');
-            if (yes == true) {
-                window.location.href = "<?php echo base_url('Akademik/hapus_ta/')?>" + id;
-            }
-        }
-        </script>
+<script>
+function hapus(id) {
+    var yes = confirm('Yakin Di Hapus?');
+    if (yes == true) {
+        window.location.href = "<?php echo base_url('Akademik/hapus_ta/')?>" + id;
+    }
+}
+</script>
 </body>
 
 </html>

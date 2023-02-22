@@ -10,7 +10,7 @@ class Akademik extends CI_Controller {
         // $this->load->helpers('my_helper');
         // $this->load->library('excel');
         if ($this->session->userdata('status_akademik')!='login') {
-            redirect(base_url('Login'));
+            redirect(base_url());
         }
     }
     
@@ -19,7 +19,7 @@ class Akademik extends CI_Controller {
         $this->load->view('akademik/dashboard');
 
     }
-
+// Tahun Ajar
     public function tahun_ajaran()
     {
         $this->load->model('M_akademik');
@@ -33,11 +33,9 @@ class Akademik extends CI_Controller {
         $this->load->view('akademik/tahun_ajaran/form_tahun_ajaran');
     }
 
-
     public function tambah_ta()
     {
-        $data = 
-        [
+        $data = [
             'nama_angkatan' => $this->input->post('nama_angkatan'),
             'kd_angkatan' => $this->input->post('kd_angkatan'),
             'tgl_a' => $this->input->post('tgl_a'),
@@ -51,7 +49,7 @@ class Akademik extends CI_Controller {
 
     public function edit_ta($id_angkatan)
     {
-        $data['tahunajar']=$this->m_akademik->edit_ta('tabel_tahunajaran', $id_angkatan)->result();
+        $data['tahunajar']=$this->m_akademik->get_taById('tabel_tahunajaran', $id_angkatan)->result();
         $this->load->view('akademik/tahun_ajaran/edit_tahunajaran', $data);
     }
 
@@ -72,11 +70,11 @@ class Akademik extends CI_Controller {
             $this->session->set_flashdata('sukses', 'berhasil');
             redirect(base_url('Akademik/tahun_ajaran'));
         }
-        // else
-        // {
-        //     $this->session->set_flashdata('error', 'gagal..');
-        //     redirect(base_url('Akademik/tahun_ajaran/edit_ta/'.$this->input->post('id_angkatan')));
-        // }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Akademik/tahun_ajaran/edit_ta/'.$this->input->post('id_angkatan')));
+        }
     }
     
     public function hapus_ta($id_angkatan)
@@ -84,22 +82,186 @@ class Akademik extends CI_Controller {
         $this->m_akademik->hapus_ta('tabel_tahunajaran', 'id_angkatan', $id_angkatan);
         redirect(base_url('Akademik/tahun_ajaran'));
     }
-    
-    public function kelas()
-    {
-        $this->load->view('akademik/kelas/kelas');
-    }
-    
+
+// Jenjang
     public function jenjang()
     {
-        $this->load->view('akademik/jenjang/jenjang');
+        $this->load->model('M_akademik');
+        $data['jenjang'] = $this->m_akademik->get_jenjang('jenjang');
+        $this->load->view('akademik/jenjang/jenjang', $data);
+    }
+
+    public function jenjang_form()
+    {
+        $this->load->model('M_akademik');
+        $this->load->view('akademik/jenjang/form_jenjang');
+    }
+
+    public function tambah_jenjang()
+    {
+        $data = [
+            'nama_jenjang' => $this->input->post('nama_jenjang'),
+            'kd_jenjang' => $this->input->post('kd_jenjang'),
+            'paket' => $this->input->post('paket'),
+            'keterangan' => $this->input->post('keterangan'),
+        ];
+        $this->m_akademik->tambah_jenjang('tabel_jenjang', $data);
+        redirect(base_url('Akademik/jenjang'));
+    }
+
+    public function edit_jenjang($id_jenjang)
+    {
+        $data['jenjang']=$this->m_akademik->get_jenjangById('tabel_jenjang', $id_jenjang)->result();
+        $this->load->view('akademik/jenjang/edit_jenjang', $data);
+    }
+
+    public function update_jenjang()
+    {
+        $data =  [
+            'nama_jenjang' => $this->input->post('nama_jenjang'),
+            'kd_jenjang' => $this->input->post('kd_jenjang'),
+            'paket' => $this->input->post('paket'),
+            'keterangan' => $this->input->post('keterangan'),
+        ];
+        $logged=$this->m_akademik->ubah_jenjang('tabel_jenjang', $data, array('id_jenjang'=>$this->input->post('id_jenjang')));
+        if($logged)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('Akademik/jenjang'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Akademik/jenjang/edit_ta/'.$this->input->post('id_jenjang')));
+        }
     }
     
+    public function hapus_jenjang($id_jenjang)
+    {
+        $this->m_akademik->hapus_jenjang('tabel_jenjang', 'id_jenjang', $id_jenjang);
+        redirect(base_url('Akademik/jenjang'));
+    }
+    
+// Kelas
+    public function kelas()
+    {
+        $this->load->model('M_akademik');
+        $data['kelas'] = $this->m_akademik->get_kelas('kelas');
+        $this->load->view('akademik/kelas/kelas', $data);
+    }
+
+    public function kelas_form()
+    {
+        $this->load->model('M_akademik');
+        $this->load->view('akademik/kelas/form_kelas');
+    }
+
+    public function tambah_kelas()
+    {
+        $data = [
+            'nama_kelas' => $this->input->post('nama_kelas'),
+            'id_jenjang' => $this->input->post('id_jenjang'),
+            'keterangan' => $this->input->post('keterangan'),
+        ];
+        $this->m_akademik->tambah_kelas('tabel_kelas', $data);
+        redirect(base_url('Akademik/kelas'));
+    }
+
+    public function edit_kelas($id_kelas)
+    {
+        $data['kelas']=$this->m_akademik->get_kelasById('tabel_kelas', $id_kelas)->result();
+        $this->load->view('akademik/kelas/edit_kelas', $data);
+    }
+
+    public function update_kelas()
+    {
+        $data =  [
+            'nama_kelas' => $this->input->post('nama_kelas'),
+            'id_jenjang' => $this->input->post('id_jenjang'),
+            'keterangan' => $this->input->post('keterangan'),
+        ];
+        $logged=$this->m_akademik->ubah_kelas('tabel_kelas', $data, array('id_kelas'=>$this->input->post('id_kelas')));
+        if($logged)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('Akademik/kelas'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Akademik/kelas/edit_ta/'.$this->input->post('id_kelas')));
+        }
+    }
+    
+    public function hapus_kelas($id_kelas)
+    {
+        $this->m_akademik->hapus_kelas('tabel_kelas', 'id_kelas', $id_kelas);
+        redirect(base_url('Akademik/kelas'));
+    }
+    
+// Guru
     public function guru()
     {
-        $this->load->view('akademik/guru/guru');
+        $this->load->model('M_akademik');
+        $data['guru'] = $this->m_akademik->get_guru('guru');
+        $this->load->view('akademik/guru/guru', $data);
+    }
+
+    public function guru_form()
+    {
+        $this->load->model('M_akademik');
+        $this->load->view('akademik/guru/form_guru');
+    }
+
+    public function tambah_guru()
+    {
+        $data = [
+            'nama_guru' => $this->input->post('nama_guru'),
+            'nip' => $this->input->post('nip'),
+            'jekel' => $this->input->post('jekel'),
+            'no_hp' => $this->input->post('no_hp'),
+            'alamat' => $this->input->post('alamat'),
+        ];
+        $this->m_akademik->tambah_guru('tabel_guru', $data);
+        redirect(base_url('Akademik/guru'));
+    }
+
+    public function edit_guru($kode_guru)
+    {
+        $data['guru']=$this->m_akademik->get_guruById('tabel_guru', $kode_guru)->result();
+        $this->load->view('akademik/guru/edit_guru', $data);
+    }
+
+    public function update_guru()
+    {
+        $data =  [
+            'nama_guru' => $this->input->post('nama_guru'),
+            'nip' => $this->input->post('nip'),
+            'nip' => $this->input->post('nip'),
+            'jekel' => $this->input->post('jekel'),
+            'no_hp' => $this->input->post('no_hp'),
+            'alamat' => $this->input->post('alamat'),
+        ];
+        $logged=$this->m_akademik->ubah_guru('tabel_guru', $data, array('kode_guru'=>$this->input->post('kode_guru')));
+        if($logged)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('Akademik/guru'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Akademik/guru/edit_ta/'.$this->input->post('kode_guru')));
+        }
     }
     
+    public function hapus_guru($id_guru)
+    {
+        $this->m_akademik->hapus_guru('tabel_guru', 'kode_guru', $id_guru);
+        redirect(base_url('Akademik/guru'));
+    }
+    
+// Siswa
     public function siswa_pendaftaran()
     {
         $this->load->view('akademik/siswa/pendaftaran');
