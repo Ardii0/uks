@@ -125,6 +125,13 @@
               </li>
             </ul>
           </li>
+          <li class="nav-header">Keluar</li>
+          <li class="nav-item">
+            <a href="<?php echo base_url('Login/logout');?>" class="nav-link">
+              <i class="nav-icon far fa-circle text-danger"></i>
+              <p class="text">Keluar</p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

@@ -33,6 +33,15 @@
 
             <section class="content">
                 <div class="container-fluid bg-white">
+                    <div class="row mx-2 pt-3 d-flex justify-content-end">
+                        <div class="col-md-3 d-flex justify-content-end align-self-start">
+                            <a href="<?php echo base_url('Akademik/tahun_ajaran_form');?>">
+                                <button type="button" class="btn btn-success">
+                                    <i class="fa fa-plus pr-2"></i>Tambah
+                                </button>
+                            </a>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-12">
                             <div class="card-body">
@@ -41,23 +50,36 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Nama Angkatan</th>
+                                            <th>KD Angkatan</th>
                                             <th>Tahun Awal</th>
                                             <th>Tahun Akhir</th>
                                             <th>Keterangan</th>
+                                            <th>aktif</th>
+                                            <th>status</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php $id=0; foreach($tahunajar as $data ): $id++;?>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Internet
-                                                Explorer 4.0
+                                            <td><?php echo $id?></td>
+                                            <td><?php echo $data->nama_angkatan?></td>
+                                            <td><?php echo $data->kd_angkatan?></td>
+                                            <td><?php echo $data->tgl_a?></td>
+                                            <td><?php echo $data->tgl_b?></td>
+                                            <td><?php echo $data->keterangan?></td>
+                                            <td><?php echo $data->aktif?></td>
+                                            <td><?php echo $data->status?></td>
+                                            <td class="text-center">
+                                                <a href="<?php echo base_url('Akademik/edit_ta/'.$data->id_angkatan)?>"
+                                                    class="btn btn-primary btn-sm">
+                                                    <i class="fa fa-edit"></i></a>
+                                                <button onclick="hapus(<?php echo $data->id_angkatan ;?>)"
+                                                    class="btn btn-danger btn-sm">
+                                                    <i class="fa fa-trash"></i></button>
                                             </td>
-                                            <td>Win 95+</td>
-                                            <td>Win 95+</td>
-                                            <td>Win 95+</td>
-                                            <td>Win 95+</td>
                                         </tr>
+                                        <?php endforeach;?>
                                     </tbody>
                                 </table>
                             </div>
@@ -67,9 +89,16 @@
             </div>
         </section>
     </div>
-    </div>
-
-    <?php $this->load->view('akademik/style/js')?>
+</div>
+<?php $this->load->view('akademik/style/js')?>
+        <script>
+        function hapus(id) {
+            var yes = confirm('Yakin Di Hapus?');
+            if (yes == true) {
+                window.location.href = "<?php echo base_url('Akademik/hapus_ta/')?>" + id;
+            }
+        }
+        </script>
 </body>
 
 </html>
