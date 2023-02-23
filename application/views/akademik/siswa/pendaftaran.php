@@ -65,22 +65,34 @@
                                             <th>Jenjang</th>
                                             <th>Gender</th>
                                             <th>Tempat Lahir</th>
+                                            <th>Tanggal Lahir</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <?php $id=0; foreach($data_siswa_daftar as $row ): $id++;?>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Internet
-                                                Explorer 4.0
+                                            <td><?php echo $id ?></td>
+                                            <td><?php echo $row->nama ?></td>
+                                            <td><?php echo $row->no_reg ?></td>
+                                            <td><?php echo tampil_tahunangkatan_byid($row->id_angkatan) ?></td>
+                                            <td><?php echo tampil_namajenjang_byid($row->id_jenjang) ?></td>
+                                            <td><?php echo $row->jekel ?></td>
+                                            <td><?php echo $row->tempat_lahir ?></td>
+                                            <td><?php echo $row->tgl_lahir ?></td>
+                                            <td class="text-center">
+                                                <a class="btn btn-primary btn-sm">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <a class="btn btn-warning btn-sm">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                                <button class="btn btn-danger btn-sm">
+                                                    <i class="fa fa-trash"></i> 
+                                                </button>
                                             </td>
-                                            <td>Win 95+</td>
-                                            <td>Win 95+</td>
-                                            <td>Win 95+</td>
-                                            <td>Win 95+</td>
-                                            <td>Win 95+</td>
-                                            <td>Win 95+</td>
                                         </tr>
+                                        <?php endforeach;?>
                                     </tbody>
                                 </table>
                             </div>

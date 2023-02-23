@@ -7,7 +7,7 @@ class Akademik extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('m_akademik');
-        // $this->load->helpers('my_helper');
+        $this->load->helpers('my_helper');
         // $this->load->library('excel');
         if ($this->session->userdata('status_akademik')!='login') {
             redirect(base_url());
@@ -264,12 +264,58 @@ class Akademik extends CI_Controller {
 // Siswa
     public function siswa_pendaftaran()
     {
-        $this->load->view('akademik/siswa/pendaftaran');
+        $this->load->model('M_akademik');
+        $data['data_siswa_daftar'] = $this->m_akademik->get_siswa_pendaftaran('data_siswa_daftar');
+        $this->load->view('akademik/siswa/pendaftaran', $data);
     }
 
     public function form_pendaftaran()
     {
-        $this->load->view('akademik/siswa/form_pendaftaran');
+        $pilih_jenjang['data_jenjang'] = $this->m_akademik->get_jenjang('data_jenjang');
+        $data['data_pendaftaran_siswa'] = $this->m_akademik->get_siswa_pendaftaran('data_pendaftaran_siswa');
+        $this->load->view('akademik/siswa/form_pendaftaran', $pilih_jenjang + $data);
+    }
+
+    public function aksi_tambah_paket_wedding()
+    {
+        $foto = $this->upload_img_pendaftaran_siswa('foto');
+        if($foto[0]==false)
+        {
+            //$this->upload->display_errors();
+            $this->session->set_flashdata('error', 'gagal upload foto.');
+            redirect(base_url('Admin/form_pendaftaran'));
+        }
+        else
+        {
+            $data = array
+            (
+                'foto' => $foto[1],
+                'no_reg' => $this->input->post('no_reg'),
+                'id_angkatan' => $this->input->post('id_angkatan'),
+                'id_jenjang' => $this->input->post('id_jenjang'),
+                'tgl_daftar' => $this->input->post('tgl_daftar'),
+                'nisn' => $this->input->post('nisn'),
+                'nama' => $this->input->post('nama'),
+                'jekel' => $this->input->post('jekel'),
+                'tempat_lahir' => $this->input->post('tempat_lahir'),
+                'tgl_lahir' => $this->input->post('tgl_lahir'),
+                'agama' => $this->input->post('agama'),
+                'alamat' => $this->input->post('alamat'),
+                'telepon' => $this->input->post('telepon'),
+                'diterima' => 'P',
+            );
+            $masuk=$this->M_admin->tambah('tabel_paket_wedding', $data);
+            if($masuk)
+            {
+                $this->session->set_flashdata('sukses', 'berhasil');
+                redirect(base_url('Admin/paket_wedding'));
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'gagal..');
+                redirect(base_url('Admin/tambah_paket_wedding'));
+            }
+        }
     }
 
     public function siswa_pembagian_kelas()

@@ -7,6 +7,11 @@ class M_akademik extends CI_Model{
 		return $this->db->get('tabel_tahunajaran')->result();
 	}
 
+    public function get_tahun_ajaran_aktif()
+	{
+		return $this->db->where('aktif','1')->get('tabel_tahunajaran')->result();
+	}
+
     public function get_taById($tabel, $id_angkatan)
     {
         $data=$this->db->where('id_angkatan', $id_angkatan)->get($tabel);
@@ -120,4 +125,10 @@ class M_akademik extends CI_Model{
         $data=$this->db->delete($tabel, array($field => $id_guru));
         return $data;
     }
+
+// Siswa
+    public function get_siswa_pendaftaran()
+	{
+		return $this->db->get('tabel_daftar')->result();
+	}
 }
