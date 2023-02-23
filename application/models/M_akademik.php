@@ -141,4 +141,65 @@ class M_akademik extends CI_Model{
 		$data=$this->db->delete($tabel, array($field => $id_daftar));
 		return $data;
 	}
+
+// Pelajaran
+ // Mapel
+    public function get_mapel()
+	{
+		return $this->db->get('tabel_mapel')->result();
+	}
+
+    public function get_mapelById($tabel, $id_mapel)
+    {
+        $data=$this->db->where('id_mapel', $id_mapel)->get($tabel);
+        return $data;
+    }
+
+    public function tambah_mapel($tabel, $data)
+    {
+        $this->db->insert($tabel, $data);
+        return $this->db->insert_id();
+    }
+
+    public function ubah_mapel($tabel, $data, $where)
+    {
+        $data=$this->db->update($tabel, $data, $where);
+        return $this->db->affected_rows();
+    }
+
+    public function hapus_mapel($tabel, $field, $id_mapel)
+    {
+        $data=$this->db->delete($tabel, array($field => $id_mapel));
+        return $data;
+    }
+
+ // Jenis Mapel
+    public function get_jenismapel()
+	{
+		return $this->db->get('tabel_jenismapel')->result();
+	}
+
+    public function get_jenismapelById($tabel, $id_jenismapel)
+    {
+        $data=$this->db->where('id_jenismapel', $id_jenismapel)->get($tabel);
+        return $data;
+    }
+
+    public function tambah_jenismapel($tabel, $data)
+    {
+        $this->db->insert($tabel, $data);
+        return $this->db->insert_id();
+    }
+
+    public function ubah_jenismapel($tabel, $data, $where)
+    {
+        $data=$this->db->update($tabel, $data, $where);
+        return $this->db->affected_rows();
+    }
+
+    public function hapus_jenismapel($tabel, $field, $id_jenismapel)
+    {
+        $data=$this->db->delete($tabel, array($field => $id_jenismapel));
+        return $data;
+    }
 }

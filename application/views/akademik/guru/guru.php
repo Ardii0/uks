@@ -85,14 +85,14 @@
     </div>
     </div>
     <?php $this->load->view('akademik/style/js')?>
-        <script>
-        function hapus(id) {
-            var yes = confirm('Yakin Di Hapus?');
-            if (yes == true) {
-                window.location.href = "<?php echo base_url('Akademik/hapus_guru/')?>" + id;
-            }
+    <script>
+    function hapus(id) {
+        var yes = confirm('Yakin Di Hapus?');
+        if (yes == true) {
+            window.location.href = "<?php echo base_url('Akademik/hapus_guru/')?>" + id;
         }
-        </script>
+    }
+    </script>
 </body>
 
 </html>

@@ -19,12 +19,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Mata Pelajaran</h1>
+                    <h1> Mata Pelajaran</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="<?php echo base_url('Akademik/') ?>"><?php echo $this->session->userdata('level') ?></a></li>
-                    <li class="breadcrumb-item active">Mata Pelajaran</li>
+                    <li class="breadcrumb-item active"> Mata Pelajaran</li>
                     </ol>
                 </div>
                 </div>
@@ -35,9 +35,9 @@
                 <div class="container-fluid bg-white">
                     <div class="row mx-2 pt-3 d-flex justify-content-end align-self-end">
                         <div class="col-md-3 d-flex justify-content-end align-self-end">
-                            <!-- <a href="<?php echo base_url('Akademik/form_pendaftaran'); ?>"> -->
+                            <a href="<?php echo base_url('Akademik/mapel_form'); ?>">
                                 <button type="button" class="btn btn-success"><i class="fa fa-plus pr-2"></i>Tambah</button>
-                            <!-- </a> -->
+                            </a>
                         </div>
                     </div>
                     <div class="row">
@@ -47,22 +47,29 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama Mata Pelajaran</th>
-                                            <th>Jenis Mapel</th>
+                                            <th>Nama  Mata Pelajaran</th>
+                                            <th>Keterangan</th>
                                             <th>Keterangan</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php $id=0; foreach($mapel as $data ): $id++;?>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Internet
-                                                Explorer 4.0
+                                            <td><?php echo $id?></td>
+                                            <td><?php echo $data->nama_mapel?></td>
+                                            <td><?php echo $data->id_jenismapel?></td>
+                                            <td><?php echo $data->keterangan?></td>
+                                            <td class="text-center">
+                                                <a href="<?php echo base_url('Akademik/edit_mapel/'.$data->id_mapel)?>"
+                                                    class="btn btn-primary btn-sm">
+                                                    <i class="fa fa-edit"></i></a>
+                                                <button onclick="hapus(<?php echo $data->id_mapel ;?>)"
+                                                    class="btn btn-danger btn-sm">
+                                                    <i class="fa fa-trash"></i></button>
                                             </td>
-                                            <td>Win 95+</td>
-                                            <td>Win 95+</td>
-                                            <td>Win 95+</td>
                                         </tr>
+                                        <?php endforeach;?>
                                     </tbody>
                                 </table>
                             </div>
@@ -73,8 +80,15 @@
         </section>
     </div>
     </div>
-
     <?php $this->load->view('akademik/style/js')?>
+    <script>
+    function hapus(id) {
+        var yes = confirm('Yakin Di Hapus?');
+        if (yes == true) {
+            window.location.href = "<?php echo base_url('Akademik/hapus_mapel/')?>" + id;
+        }
+    }
+    </script>
 </body>
 
 </html>

@@ -237,7 +237,6 @@ class Akademik extends CI_Controller {
         $data =  [
             'nama_guru' => $this->input->post('nama_guru'),
             'nip' => $this->input->post('nip'),
-            'nip' => $this->input->post('nip'),
             'jekel' => $this->input->post('jekel'),
             'no_hp' => $this->input->post('no_hp'),
             'alamat' => $this->input->post('alamat'),
@@ -261,6 +260,7 @@ class Akademik extends CI_Controller {
         redirect(base_url('Akademik/guru'));
     }
     
+// Siswa  
     public function siswa_pendaftaran()
     {
         $this->load->model('M_akademik');
@@ -354,7 +354,6 @@ class Akademik extends CI_Controller {
 
     }
 
-// Siswa
     public function siswa_pembagian_kelas()
     {
         $this->load->view('akademik/siswa/pembagian_kelas');
@@ -370,14 +369,116 @@ class Akademik extends CI_Controller {
         $this->load->view('akademik/siswa/mutasi');
     }
 
+// Pelajaran
+ // Mapel
     public function pelajaran()
     {
-        $this->load->view('akademik/pelajaran/mata_pelajaran');
+        $this->load->model('M_akademik');
+        $data['mapel'] = $this->m_akademik->get_mapel('mapel');
+        $this->load->view('akademik/pelajaran/mata_pelajaran', $data);
     }
 
+    public function mapel_form()
+    {
+        $this->load->model('M_akademik');
+        $this->load->view('akademik/pelajaran/form_mapel');
+    }
+
+    public function tambah_mapel()
+    {
+        $data = [
+            'nama_mapel' => $this->input->post('nama_mapel'),
+            'id_jenismapel' => $this->input->post('id_jenismapel'),
+            'keterangan' => $this->input->post('keterangan'),
+        ];
+        $this->m_akademik->tambah_mapel('tabel_mapel', $data);
+        redirect(base_url('Akademik/pelajaran'));
+    }
+
+    public function edit_mapel($id_mapel)
+    {
+        $data['mapel']=$this->m_akademik->get_mapelById('tabel_mapel', $id_mapel)->result();
+        $this->load->view('akademik/pelajaran/edit_mapel', $data);
+    }
+
+    public function update_mapel()
+    {
+        $data =  [
+            'nama_mapel' => $this->input->post('nama_mapel'),
+            'id_jenismapel' => $this->input->post('id_jenismapel'),
+            'keterangan' => $this->input->post('keterangan'),
+        ];
+        $logged=$this->m_akademik->ubah_mapel('tabel_mapel', $data, array('id_mapel'=>$this->input->post('id_mapel')));
+        if($logged)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('Akademik/pelajaran'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Akademik/pelajaran/edit_mapel/'.$this->input->post('id_mapel')));
+        }
+    }
+    
+    public function hapus_mapel($id_mapel)
+    {
+        $this->m_akademik->hapus_mapel('tabel_mapel', 'id_mapel', $id_mapel);
+        redirect(base_url('Akademik/pelajaran'));
+    }
+ // Jenis
     public function jenis_pelajaran()
     {
-        $this->load->view('akademik/pelajaran/jenis_pelajaran');
+        $this->load->model('M_akademik');
+        $data['jenismapel'] = $this->m_akademik->get_jenismapel('jenismapel');
+        $this->load->view('akademik/pelajaran/jenis_pelajaran', $data);
+    }
+
+    public function jenismapel_form()
+    {
+        $this->load->model('M_akademik');
+        $this->load->view('akademik/pelajaran/form_jenismapel');
+    }
+
+    public function tambah_jenismapel()
+    {
+        $data = [
+            'nama_jenismapel' => $this->input->post('nama_jenismapel'),
+            'keterangan' => $this->input->post('keterangan'),
+        ];
+        $this->m_akademik->tambah_jenismapel('tabel_jenismapel', $data);
+        redirect(base_url('Akademik/jenis_pelajaran'));
+    }
+
+    public function edit_jenismapel($id_jenismapel)
+    {
+        $data['jenismapel']=$this->m_akademik->get_jenismapelById('tabel_jenismapel', $id_jenismapel)->result();
+        $this->load->view('akademik/pelajaran/edit_jenismapel', $data);
+    }
+
+    public function update_jenismapel()
+    {
+        $data =  [
+            'nama_jenismapel' => $this->input->post('nama_jenismapel'),
+            'keterangan' => $this->input->post('keterangan'),
+        ];
+        $logged=$this->m_akademik->ubah_jenismapel('tabel_jenismapel', $data, array('id_jenismapel'=>$this->input->post('id_jenismapel')));
+        if($logged)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('Akademik/jenis_pelajaran'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Akademik/jenismapel/edit_jenismapel/'.$this->input->post('id_jenismapel')));
+        }
+    }
+    
+    public function hapus_jenismapel($id_jenismapel)
+    {
+        $this->m_akademik->hapus_jenismapel('tabel_jenismapel', 'id_jenismapel', $id_jenismapel);
+        redirect(base_url('Akademik/jenis_pelajaran'));
     }
 
 }
