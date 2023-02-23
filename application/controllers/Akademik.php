@@ -261,7 +261,6 @@ class Akademik extends CI_Controller {
         redirect(base_url('Akademik/guru'));
     }
     
-// Siswa
     public function siswa_pendaftaran()
     {
         $this->load->model('M_akademik');
@@ -276,7 +275,28 @@ class Akademik extends CI_Controller {
         $this->load->view('akademik/siswa/form_pendaftaran', $pilih_jenjang + $data);
     }
 
-    public function aksi_tambah_paket_wedding()
+    public function upload_img_pendaftaran_siswa($value)
+    {
+        $kode = round(microtime(true) * 1000);
+        $config['upload_path'] = './uploads/akademik/pendaftaran_siswa/';
+        $config['allowed_types'] = 'jpg|png|jpeg';
+        $config['max_size'] = '30000';
+        $config['file_name'] = $kode;
+        $this->upload->initialize($config);
+        if (!$this->upload->do_upload($value))
+        {
+            return array( false, '' );
+        }
+        else
+        {
+            $fn = $this->upload->data();
+            $nama = $fn['file_name'];
+            return array( true, $nama );
+        }
+    }
+    
+// Pendaftaran Siswa
+    public function aksi_tambah_pendaftaran_siswa()
     {
         $foto = $this->upload_img_pendaftaran_siswa('foto');
         if($foto[0]==false)
@@ -291,7 +311,7 @@ class Akademik extends CI_Controller {
             (
                 'foto' => $foto[1],
                 'no_reg' => $this->input->post('no_reg'),
-                'id_angkatan' => $this->input->post('id_angkatan'),
+                'id_angkatan' => '1',
                 'id_jenjang' => $this->input->post('id_jenjang'),
                 'tgl_daftar' => $this->input->post('tgl_daftar'),
                 'nisn' => $this->input->post('nisn'),
@@ -304,20 +324,37 @@ class Akademik extends CI_Controller {
                 'telepon' => $this->input->post('telepon'),
                 'diterima' => 'P',
             );
-            $masuk=$this->M_admin->tambah('tabel_paket_wedding', $data);
+            $masuk=$this->m_akademik->tambah_pendaftaran('tabel_daftar', $data);
             if($masuk)
             {
                 $this->session->set_flashdata('sukses', 'berhasil');
-                redirect(base_url('Admin/paket_wedding'));
+                redirect(base_url('Akademik/siswa_pendaftaran'));
             }
             else
             {
                 $this->session->set_flashdata('error', 'gagal..');
-                redirect(base_url('Admin/tambah_paket_wedding'));
+                redirect(base_url('Akademik/form_pendaftaran'));
             }
         }
     }
 
+    public function hapus_pendaftaran($id_daftar)
+    {
+        $hapus=$this->m_akademik->hapus_pendaftaran('tabel_daftar', 'id_daftar', $id_daftar);
+        if($hapus)
+        {
+            $this->session->set_flashdata('sukses', 'Berhasil..');
+            redirect(base_url('Akademik/siswa_pendaftaran'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Akademik/siswa_pendaftaran'));
+        }
+
+    }
+
+// Siswa
     public function siswa_pembagian_kelas()
     {
         $this->load->view('akademik/siswa/pembagian_kelas');

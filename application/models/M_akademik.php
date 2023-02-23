@@ -131,4 +131,14 @@ class M_akademik extends CI_Model{
 	{
 		return $this->db->get('tabel_daftar')->result();
 	}
+    public function tambah_pendaftaran($tabel, $data)
+	{
+		$this->db->insert($tabel, $data);
+		return $this->db->insert_id();
+	}
+    public function hapus_pendaftaran($tabel, $field, $id_daftar)
+	{
+		$data=$this->db->delete($tabel, array($field => $id_daftar));
+		return $data;
+	}
 }

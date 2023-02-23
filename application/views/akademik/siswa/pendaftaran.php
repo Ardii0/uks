@@ -87,7 +87,7 @@
                                                 <a class="btn btn-warning btn-sm">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
-                                                <button class="btn btn-danger btn-sm">
+                                                <button onClick="hapus(<?php echo $row->id_daftar ?>)" class="btn btn-danger btn-sm">
                                                     <i class="fa fa-trash"></i> 
                                                 </button>
                                             </td>
@@ -105,6 +105,14 @@
     </div>
 
     <?php $this->load->view('akademik/style/js')?>
+    <script>
+        function hapus(id) {
+            var yes = confirm('Yakin Di Hapus?');
+            if (yes == true) {
+                window.location.href = "<?php echo base_url('Akademik/hapus_pendaftaran/')?>" + "/" + id;
+            }
+        }
+        </script>
 </body>
 
 </html>
