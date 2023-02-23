@@ -133,7 +133,7 @@
                                 <div class="card-header bg-transparent text-center fw-bold h3 border-white"> Tahun
                                     Ajaran</div>
                                 <div class="card-body text-success">
-                                    <div class="box-body  example-1 scrollbar-ripe-malinka">
+                                    <div class="box-body example-1 scrollbar-ripe-malinka">
                                         <table id="table_1" class="table table-bordered">
                                             <thead>
                                                 <tr class="fixed bg-secondary">

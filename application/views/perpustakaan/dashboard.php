@@ -35,7 +35,7 @@
                             <div class="row">
                                 <div class="col-6 col-md-4 col-sm-8">
                                     <div>
-                                        <div class="small-box bg-info">
+                                        <div class="small-box bg-warning">
                                             <div class="inner">
                                                 <p>Jumlah Buku</p>
                                                 <h3>150</h3>
@@ -50,7 +50,7 @@
                                 </div>
                                 <div class="col-6 col-md-4 col-sm-8">
                                     <div>
-                                        <div class="small-box bg-secondary">
+                                        <div class="small-box bg-warning">
                                             <div class="inner">
                                                 <p>Jumlah Rak</p>
                                                 <h3>-</h3>
@@ -68,9 +68,9 @@
                                 </div>
                                 <div class="col-6 col-md-4 col-sm-8">
                                     <div>
-                                        <div class="small-box bg-green">
+                                        <div class="small-box bg-warning">
                                             <div class="inner">
-                                                <p>Jumal Kategori</p>
+                                                <p>Jumlah Kategori</p>
                                                 <h3>9</h3>
                                                 <!-- <h3><?php echo $total_guru ?></h3> -->
                                             </div>
@@ -87,8 +87,8 @@
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <div class="small-box bg-gradient-info text-white mb-3" style="max-width: 100%;">
-                                        <div class="card-header bg-transparent text-center fw-bold h3 border-white">
+                                    <div class="small-box  bg-gradient-warning text-white mb-3" style="max-width: 100%;">
+                                        <div class="card-header bg-transparenttext-center fw-bold h3 border-white">
                                             Peminjaman</div>
                                         <div class="card-body text-white">
                                             <h5 class="card-title">Success card title</h5>
@@ -105,8 +105,8 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="small-box border-success mb-3" style="max-width: 100%;">
-                                        <div class="card-header bg-transparent text-center fw-bold h3 border-white">
+                                    <div class="small-box  bg-gradient-warning border-success mb-3" style="max-width: 100%;">
+                                        <div class="card-header  text-center fw-bold h3 border-white">
                                             Peminjaman</div>
                                         <div class="card-body text-success">
                                             <h5 class="card-title">Success card title</h5>
@@ -124,10 +124,10 @@
                             </div>
                         </div>
                         <div class="col-6 col-md-4">
-                            <div class="bg-primary">
-                                <div class="inner" style="width: 100%;">
+                            <div class="bg-warning">
+                                <div class="" style="width: 100%; ">
                                     <div class="">
-                                        <div class="small-box bg-primary">
+                                        <div class="small-box bg-warning" style="height:75vh">
                                             <div class="inner">
                                                 <p>Jumlah Anggota</p>
                                                 <h3>78</h3>
@@ -135,24 +135,8 @@
                                             <div class="icon">
                                                 <i class="far fa-user"></i>
                                             </div>
-                                            <a href="<?php echo base_url('Akademik/tahun_ajaran')?>"
-                                                class="small-box-footer">More
-                                                info
-                                                <i class="fa fa-arrow-circle-right"></i></a>
                                         </div>
                                     </div>
-                                    <div class="">
-                                        jajas
-                                    </div>
-                                    <div class="card-body">
-                                        <a href="#" class="card-link">Card link</a>
-                                        <a href="#" class="card-link">Another link</a>
-                                    </div>
-                                    <a href="<?php echo base_url('Akademik/tahun_ajaran')?>"
-                                        class="small-box-footer">More
-                                        info
-                                        <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
                             </div>
                         </div>
                     </div>
