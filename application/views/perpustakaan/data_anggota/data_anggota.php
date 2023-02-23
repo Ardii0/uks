@@ -17,15 +17,12 @@
   <!-- Sidebar -->
 
   <div class="content-wrapper">
-  <?php if ($this->session->flashdata('pesan')) {
-                echo $this->session->flashdata('pesan');
-            } ?>
             <div class="container-fluid">
                 <section class="content">
                     <div class="row px-3 py-2">
                         <div class="col-sm-12">
                             <div class="box">
-                                <div class="d-flex justify-content-between">
+                                <div class="d-flex justify-content-between ">
                                     <div>
                                         <p style="font-size: 2.5rem">Data Anggota</p>
                                     </div>
@@ -35,13 +32,11 @@
                                                 data-target="#modal_tambah_anggota">
                                                 Tambah Anggota
                                             </button>
-
-                                            <a href=""
-                                                class="btn btn-success">Tambah Anggota</a>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- /.box-header -->
+                                
                                 <div class="box-body">
                                     <table id="table_1" class="table table-bordered">
                                         <thead>
@@ -54,9 +49,9 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <?php $no=0; foreach($data_anggota as $row ): $no++;?>
+                                        <?php  $no=0; foreach($data_anggota as $row ): $no++;?>
                                             <tr >
-                                            <td class="text-center" style="width: 80px"><?php echo $row->id_anggota ?></td>
+                                            <td class="text-center" style="width: 80px"><?php echo $no ?></td>
                                                 <td ><?php echo $row->nisn ?></td>
                                                 <td ><?php echo $row->nama_anggota ?></td>
                                                 <td><?php echo $row->keterangan ?></td>

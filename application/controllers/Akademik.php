@@ -261,6 +261,11 @@ class Akademik extends CI_Controller {
     }
     
 // Siswa  
+
+public function edit_pendaftaran()
+{
+    $this->load->view('akademik/siswa/edit_pendaftaran');
+}
     public function siswa_pendaftaran()
     {
         $this->load->model('M_akademik');

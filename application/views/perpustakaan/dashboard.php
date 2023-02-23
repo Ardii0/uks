@@ -19,92 +19,143 @@
 
         <div class="content-wrapper">
             <div class="container-fluid">
-                <div class="px-3 py-4">
-                    <div class="pb-3 d-flex justify-content-end ">
+                <div class="px-3 py-1">
+                    <div class="pb-1 d-flex justify-content-between align-items-center text-center">
+                        <div>
+                            <p style="font-size: 2rem">Dashboard Perpustakaan</p>
+                        </div>
                         <div class="w-25">
-                            
-                        </div>
-                    </div>
-                <div class="row ">
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                        <div>
-                            <div class="card border-success mb-3" style="max-width: 18rem;">
-                                <div class="card-header bg-transparent border-success">Header</div>
-                                <div class="card-body text-success">
-                                    <h5 class="card-title">Success card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up
-                                        the bulk of the card's content.</p>
-                                </div>
-                                <div class="card-footer bg-transparent border-success">Footer</div>
+                            <div class="input-group rounded-4">
+                                <input type="text" class="form-control " placeholder="cari">
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <div>
-                            <div class="card border-success mb-3" style="max-width: 18rem;">
-                                <div class="card-header bg-transparent border-success">Header</div>
-                                <div class="card-body text-success">
-                                    <h5 class="card-title">Success card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up
-                                        the bulk of the card's content.</p>
+                    <div class="row ">
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-6 col-md-4 col-sm-8">
+                                    <div>
+                                        <div class="small-box bg-info">
+                                            <div class="inner">
+                                                <p>Jumlah Buku</p>
+                                                <h3>150</h3>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="nav-icon fas fa-book"></i>
+                                            </div>
+                                            <a href="#" class="small-box-footer">More info <i
+                                                    class="fas fa-arrow-circle-right"></i></a>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="card-footer bg-transparent border-success">Footer</div>
+                                <div class="col-6 col-md-4 col-sm-8">
+                                    <div>
+                                        <div class="small-box bg-secondary">
+                                            <div class="inner">
+                                                <p>Jumlah Rak</p>
+                                                <h3>-</h3>
+                                                <!-- <h3><?php echo $total_guru ?></h3> -->
+                                            </div>
+                                            <div class="icon">
+                                                <i class="far fa-chart-bar"></i>
+                                            </div>
+                                            <a href="<?php echo base_url('Akademik/tahun_ajaran')?>"
+                                                class="small-box-footer">More
+                                                info
+                                                <i class="fa fa-arrow-circle-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-4 col-sm-8">
+                                    <div>
+                                        <div class="small-box bg-green">
+                                            <div class="inner">
+                                                <p>Jumal Kategori</p>
+                                                <h3>9</h3>
+                                                <!-- <h3><?php echo $total_guru ?></h3> -->
+                                            </div>
+                                            <div class="icon">
+                                                <i class="far fa-chart-bar"></i>
+                                            </div>
+                                            <a href="<?php echo base_url('Akademik/tahun_ajaran')?>"
+                                                class="small-box-footer">More
+                                                info
+                                                <i class="fa fa-arrow-circle-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="small-box bg-gradient-info text-white mb-3" style="max-width: 100%;">
+                                        <div class="card-header bg-transparent text-center fw-bold h3 border-white">
+                                            Peminjaman</div>
+                                        <div class="card-body text-white">
+                                            <h5 class="card-title">Success card title</h5>
+                                            <p class="card-text">Some quick example text to build on the card title and
+                                                make
+                                                up
+                                                the bulk of the card's content.</p>
+                                        </div>
+                                        <a href="<?php echo base_url('Akademik/tahun_ajaran')?>"
+                                            class="small-box-footer">More
+                                            info
+                                            <i class="fa fa-arrow-circle-right"></i></a>
+
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="small-box border-success mb-3" style="max-width: 100%;">
+                                        <div class="card-header bg-transparent text-center fw-bold h3 border-white">
+                                            Peminjaman</div>
+                                        <div class="card-body text-success">
+                                            <h5 class="card-title">Success card title</h5>
+                                            <p class="card-text">Some quick example text to build on the card title and
+                                                make
+                                                up
+                                                the bulk of the card's content.</p>
+                                        </div>
+                                        <a href="<?php echo base_url('Akademik/tahun_ajaran')?>"
+                                            class="small-box-footer">More
+                                            info
+                                            <i class="fa fa-arrow-circle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="bg-primary">
+                                <div class="inner" style="width: 100%;">
+                                    <div class="">
+                                        <div class="small-box bg-primary">
+                                            <div class="inner">
+                                                <p>Jumlah Anggota</p>
+                                                <h3>78</h3>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="far fa-user"></i>
+                                            </div>
+                                            <a href="<?php echo base_url('Akademik/tahun_ajaran')?>"
+                                                class="small-box-footer">More
+                                                info
+                                                <i class="fa fa-arrow-circle-right"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        jajas
+                                    </div>
+                                    <div class="card-body">
+                                        <a href="#" class="card-link">Card link</a>
+                                        <a href="#" class="card-link">Another link</a>
+                                    </div>
+                                    <a href="<?php echo base_url('Akademik/tahun_ajaran')?>"
+                                        class="small-box-footer">More
+                                        info
+                                        <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                        <div>
-                            <div class="card border-success mb-3" style="max-width: 18rem;">
-                                <div class="card-header bg-transparent border-success">Header</div>
-                                <div class="card-body text-success">
-                                    <h5 class="card-title">Success card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up
-                                        the bulk of the card's content.</p>
-                                </div>
-                                <div class="card-footer bg-transparent border-success">Footer</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                        <div>
-                            <div class="card border-success mb-3" style="max-width: 18rem;">
-                                <div class="card-header bg-transparent border-success">Header</div>
-                                <div class="card-body text-success">
-                                    <h5 class="card-title">Success card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up
-                                        the bulk of the card's content.</p>
-                                </div>
-                                <div class="card-footer bg-transparent border-success">Footer</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                        <div>
-                            <div class="card border-success mb-3" style="max-width: 18rem;">
-                                <div class="card-header bg-transparent border-success">Header</div>
-                                <div class="card-body text-success">
-                                    <h5 class="card-title">Success card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up
-                                        the bulk of the card's content.</p>
-                                </div>
-                                <div class="card-footer bg-transparent border-success">Footer</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                        <div>
-                            <div class="card border-success mb-3" style="max-width: 18rem;">
-                                <div class="card-header bg-transparent border-success">Header</div>
-                                <div class="card-body text-success">
-                                    <h5 class="card-title">Success card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up
-                                        the bulk of the card's content.</p>
-                                </div>
-                                <div class="card-footer bg-transparent border-success">Footer</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 </div>
             </div>
         </div>

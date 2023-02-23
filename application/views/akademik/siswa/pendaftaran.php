@@ -57,7 +57,7 @@
                             <div class="card-body">
                                 <table id="akademik-table" class="table table-bordered table-striped">
                                     <thead>
-                                        <tr>
+                                        <tr class="bg-secondary">
                                             <th>No</th>
                                             <th>Nama</th>
                                             <th>No Reg</th>
@@ -70,29 +70,74 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php $id=0; foreach($data_siswa_daftar as $row ): $id++;?>
+                                    <?php 
+                                    // $id=0; foreach($data_siswa_daftar as $row ): $id++;
+                                    ?>
                                         <tr>
-                                            <td><?php echo $id ?></td>
-                                            <td><?php echo $row->nama ?></td>
-                                            <td><?php echo $row->no_reg ?></td>
-                                            <td><?php echo tampil_tahunangkatan_byid($row->id_angkatan) ?></td>
-                                            <td><?php echo tampil_namajenjang_byid($row->id_jenjang) ?></td>
-                                            <td><?php echo $row->jekel ?></td>
-                                            <td><?php echo $row->tempat_lahir ?></td>
-                                            <td><?php echo $row->tgl_lahir ?></td>
+                                            <td><?php
+                                                //  echo $id 
+                                                 ?></td>
+                                            <td><?php
+                                            //  echo $row->nama 
+                                             ?></td>
+                                            <td><?php
+                                            //  echo $row->no_reg 
+                                             ?></td>
+                                            <td><?php
+                                            //  echo tampil_tahunangkatan_byid($row->id_angkatan) 
+                                             ?></td>
+                                            <td><?php
+                                            //  echo tampil_namajenjang_byid($row->id_jenjang) 
+                                             ?></td>
+                                            <td><?php
+                                            //  echo $row->jekel 
+                                             ?></td>
+                                            <td><?php
+                                            //  echo $row->tempat_lahir 
+                                             ?></td>
+                                            <td><?php
+                                            //  echo $row->tgl_lahir 
+                                             ?></td>
                                             <td class="text-center">
-                                                <a class="btn btn-primary btn-sm">
+                                                <a href="<?php echo base_url('Akademik/edit_pendaftaran') ?>" class="btn btn-primary btn-sm">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                                 <a class="btn btn-warning btn-sm">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
-                                                <button onClick="hapus(<?php echo $row->id_daftar ?>)" class="btn btn-danger btn-sm">
+                                                <button onClick="hapus(<?php
+                                                //  echo $row->id_daftar 
+                                                 ?>)" class="btn btn-danger btn-sm">
                                                     <i class="fa fa-trash"></i> 
                                                 </button>
                                             </td>
                                         </tr>
-                                        <?php endforeach;?>
+                                        <?
+                                        //  endforeach;
+                                         ?>
+                                    </tbody>
+                                    <tbody>
+                                        <tr>
+                                        <td>coba</td>
+                                            <td>coba</td>
+                                            <td>coba</td>
+                                            <td>coba</td>
+                                            <td>coba</td>
+                                            <td>coba</td>
+                                            <td>coba</td>
+                                            <td>coba</td>
+                                            <td class="text-center">
+                                                <a  href="<?php echo base_url('Akademik/edit_pendaftaran') ?>" class="btn btn-primary btn-sm">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <a class="btn btn-warning btn-sm">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                                <button class="btn btn-danger btn-sm">
+                                                    <i class="fa fa-trash"></i> 
+                                                </button>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

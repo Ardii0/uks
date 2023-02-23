@@ -14,3 +14,11 @@
 <script src="<?php echo base_url('builder/dist/js/adminlte.js'); ?>"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url('builder/dist/js/demo.js'); ?>"></script>
+<script src="<?php echo base_url('builder/plugins/moment/moment.min.js'); ?>"></script>
+<script src="<?php echo base_url('builder/plugins/daterangepicker/daterangepicker.js'); ?>"></script>
+
+<script src="<?php echo base_url('builer/dist/js/adminlte.js'); ?>"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="<?php echo base_url('builer/dist/js/demo.js'); ?>"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="<?php echo base_url('builer/dist/js/pages/dashboard.js'); ?>"></script>

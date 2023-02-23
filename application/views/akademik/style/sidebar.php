@@ -29,7 +29,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
             <a href="<?php echo base_url('Akademik/') ;?>" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard Akademik
               </p>
@@ -37,7 +37,7 @@
           </li>
           <li class="nav-item">
             <a href="<?php echo base_url('Akademik/tahun_ajaran') ;?>" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon far fa-calendar"></i>
               <p>
                 Tahun Ajaran
               </p>
@@ -45,7 +45,7 @@
           </li>
           <li class="nav-item">
             <a href="<?php echo base_url('Akademik/jenjang'); ?>" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-graduation-cap"></i>
               <p>
                 Jenjang
               </p>
@@ -53,7 +53,7 @@
           </li>
           <li class="nav-item">
             <a href="<?php echo base_url('Akademik/kelas'); ?>" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-door-closed"></i>
               <p>
                 Kelas
               </p>
@@ -61,7 +61,7 @@
           </li>
           <li class="nav-item">
             <a href="<?php echo base_url('Akademik/guru'); ?>" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-user-tie"></i>
               <p>
                 Guru
               </p>
@@ -69,7 +69,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-user"></i>
               <p>
                 Siswa
                 <i class="right fas fa-angle-left"></i>
@@ -104,7 +104,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-book"></i>
               <p>
                 Pelajaran
                 <i class="right fas fa-angle-left"></i>
