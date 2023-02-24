@@ -40,12 +40,13 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama</th>
-                                            <th>NISN</th>
                                             <th>Rombel</th>
-                                            <th>Gender</th>
+                                            <th>NISN</th>
+                                            <th>Nama</th>
+                                            <th>Jekel</th>
                                             <th>Tempat Lahir</th>
                                             <th>Tanggal Lahir</th>
+                                            <th>Alamat</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
