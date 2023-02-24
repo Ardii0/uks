@@ -200,6 +200,70 @@ class Akademik extends CI_Controller {
         $this->m_akademik->hapus_kelas('tabel_kelas', 'id_kelas', $id_kelas);
         redirect(base_url('Akademik/kelas'));
     }
+
+    //Rombongan Belajar
+    public function rombongan_belajar()
+    {
+        $this->load->model('M_akademik');
+        $data['rombongan_belajar'] = $this->m_akademik->get_rombel('rombongan_belajar');
+        $this->load->view('akademik/kelas/rombongan_belajar', $data);
+    }
+
+    public function rombel_form()
+    {
+        $this->load->model('M_akademik');
+        $data['kelas'] = $this->m_akademik->get_kelas('kelas');
+        $data['jenjang'] = $this->m_akademik->get_jenjang('jenjang');
+        $data['guru'] = $this->m_akademik->get_guru('guru');
+        $this->load->view('akademik/kelas/form_rombel', $data);
+    }
+    
+    public function tambah_rombel()
+    {
+        $data = [
+            'nama_rombel' => $this->input->post('nama_rombel'),
+            'id_kelas' => $this->input->post('id_kelas'),
+            'id_jenjang' => $this->input->post('id_jenjang'),
+            'kuota' => $this->input->post('kuota'),
+            'id_guru' => $this->input->post('id_guru'),
+        ];
+        $this->m_akademik->tambah_rombel('tabel_rombel', $data);
+        redirect(base_url('Akademik/rombongan_belajar'));
+    }
+
+    public function edit_rombel($id_rombel)
+    {
+        $data['rombel']=$this->m_akademik->get_rombelById('tabel_rombel', $id_rombel)->result();
+        $this->load->view('akademik/rombel/edit_rombel', $data);
+    }
+
+    public function update_rombel()
+    {
+        $data = [
+            'nama_rombel' => $this->input->post('nama_rombel'),
+            'id_kelas' => $this->input->post('id_kelas'),
+            'id_jenjang' => $this->input->post('id_jenjang'),
+            'kuota' => $this->input->post('kuota'),
+            'id_guru' => $this->input->post('id_guru'),
+        ];
+        $logged=$this->m_akademik->ubah_rombel('tabel_rombel', $data, array('id_rombel'=>$this->input->post('id_rombel')));
+        if($logged)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('Akademik/rombongan_belajar'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Akademik/rombongan_belajar/edit_rombel/'.$this->input->post('id_rombel')));
+        }
+    }
+    
+    public function hapus_rombel($id_rombel)
+    {
+        $this->m_akademik->hapus_rombel('tabel_rombel', 'id_rombel', $id_rombel);
+        redirect(base_url('Akademik/rombongan_belajar'));
+    }
     
 // Guru
     public function guru()
@@ -399,11 +463,15 @@ class Akademik extends CI_Controller {
         $this->load->view('akademik/siswa/pembagian_kelas');
     }
 
+
+    //Siswa 
     public function siswa_data()
     {
-        $this->load->view('akademik/siswa/data');
+        $this->load->model('M_akademik');
+        $data['siswa'] = $this->m_akademik->get_siswa('siswa');
+        $this->load->view('akademik/siswa/data', $data);
     }
-
+    
     public function siswa_mutasi()
     {
         $this->load->view('akademik/siswa/mutasi');

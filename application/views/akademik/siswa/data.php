@@ -48,7 +48,7 @@
                             </div>
                             <a href="#">
                                 <button type="button" class="btn btn-success">
-                                    <i class="fa fa-plus pr-2"></i>Tampilkan Data
+                                    <i class="fa fa-eye pr-2"></i>Tampilkan Data
                                 </button>
                             </a>
                         </div>
@@ -71,17 +71,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <?php $id=0; foreach($siswa as $data ): $id++;?>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Internet
-                                                Explorer 4.0
-                                            </td>
-                                            <td>Win 95+</td>
-                                            <td>Win 95+</td>
-                                            <td>Win 95+</td>
-                                            <td>Win 95+</td>
-                                            <td>Win 95+</td>
-                                            <td>Win 95+</td>
+                                            <td><?php echo $id?></td>
+                                            <td><?php echo tampil_rombel_byid($data->id_rombel)?></td>
+                                            <td><?php echo $data->nis?></td>
+                                            <td><?php echo tampil_siswa_byid($data->id_daftar)?></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
                                             <td class="text-center">
                                                     <a href="#"
                                                         class="btn btn-primary btn-sm">
@@ -94,6 +93,7 @@
                                                         <i class="fa fa-trash"></i></button>
                                                 </td>
                                         </tr>
+                                        <?php endforeach;?>
                                     </tbody>
                                 </table>
                             </div>

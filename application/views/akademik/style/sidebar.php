@@ -52,13 +52,29 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?php echo base_url('Akademik/kelas'); ?>" class="nav-link">
-              <i class="nav-icon fas fa-door-closed"></i>
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
               <p>
                 Kelas
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url('Akademik/kelas'); ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Kelas Utama</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url('Akademik/rombongan_belajar') ;?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Rombongan Belajar</p>
+                </a>
+              </li>
+            </ul>
           </li>
+          
           <li class="nav-item">
             <a href="<?php echo base_url('Akademik/guru'); ?>" class="nav-link">
               <i class="nav-icon fas fa-user-tie"></i>

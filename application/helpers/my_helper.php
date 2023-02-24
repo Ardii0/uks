@@ -33,4 +33,48 @@ function tampil_jenismapelById($id)
   }
 }
 
+function tampil_kelas_byid($id)
+{
+ $ci =& get_instance();
+ $ci->load->database();
+ $result = $ci->db->where('id_kelas',$id)->get('tabel_kelas');
+  foreach ($result->result() as $c) {
+  $stmt= $c->nama_kelas;
+  return $stmt;
+  }
+}
+
+function tampil_guru_byid($id)
+{
+ $ci =& get_instance();
+ $ci->load->database();
+ $result = $ci->db->where('kode_guru',$id)->get('tabel_guru');
+  foreach ($result->result() as $c) {
+  $stmt= $c->nama_guru;
+  return $stmt;
+  }
+}
+
+function tampil_rombel_byid($id)
+{
+ $ci =& get_instance();
+ $ci->load->database();
+ $result = $ci->db->where('id_rombel',$id)->get('tabel_rombel');
+  foreach ($result->result() as $c) {
+  $stmt= $c->nama_rombel;
+  return $stmt;
+  }
+}
+
+function tampil_siswa_byid($id)
+{
+ $ci =& get_instance();
+ $ci->load->database();
+ $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
+  foreach ($result->result() as $c) {
+  $stmt= $c->nama;
+  return $stmt;
+  }
+}
+
 ?>
