@@ -59,10 +59,16 @@
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <label class="control-label">ID JENIS MAPEL</label>
+                                    <label class="control-label">JENIS MAPEL</label>
                                     <div class="">
-                                        <input type="text" name="id_jenismapel" class="form-control"
-                                            placeholder="Masukan ID JENIS MAPEL" value="<?php echo $data->id_jenismapel ?>">
+                                    <select name="id_jenismapel" class="form-control form-select px-2 py-1" aria-label="jenismapel">
+                                    <option style="display: none;" value="<?php echo tampil_jenismapelById($data->id_jenismapel)?>">
+                                    <?php echo tampil_jenismapelById($data->id_jenismapel)?>
+                                    </option>
+                                    <?php foreach($jenismapel as $jenis): ?>
+	                                    <option value="<?php echo $jenis->id_jenismapel ?>"><?php echo $jenis->nama_jenismapel ?></option>
+	                                    <?php endforeach;?>
+                                    </select>
                                     </div>
                                 </div>
                             </div>

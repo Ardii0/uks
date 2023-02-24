@@ -198,7 +198,7 @@
                                     <input type="file" name="foto" onchange="readURL(this);" />
                                 </div>
                                 <div>
-                                    <img id="blah" src="#" alt="Image Preview" width="300" class="mt-3" />
+                                    <img id="blah" width="300" class="mt-3" />
                                 </div>
                             </div>
                         </div>

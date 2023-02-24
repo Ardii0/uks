@@ -47,8 +47,8 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama  Mata Pelajaran</th>
-                                            <th>Keterangan</th>
+                                            <th>Nama Mata Pelajaran</th>
+                                            <th>Jenis Mapel</th>
                                             <th>Keterangan</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -58,7 +58,7 @@
                                         <tr>
                                             <td><?php echo $id?></td>
                                             <td><?php echo $data->nama_mapel?></td>
-                                            <td><?php echo $data->id_jenismapel?></td>
+                                            <td><?php echo tampil_jenismapelById($data->id_jenismapel)?></td>
                                             <td><?php echo $data->keterangan?></td>
                                             <td class="text-center">
                                                 <a href="<?php echo base_url('Akademik/edit_mapel/'.$data->id_mapel)?>"

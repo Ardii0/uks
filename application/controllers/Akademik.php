@@ -260,12 +260,8 @@ class Akademik extends CI_Controller {
         redirect(base_url('Akademik/guru'));
     }
     
-// Siswa  
-
-public function edit_pendaftaran()
-{
-    $this->load->view('akademik/siswa/edit_pendaftaran');
-}
+// Siswa
+ // Pendaftaran Siswa
     public function siswa_pendaftaran()
     {
         $this->load->model('M_akademik');
@@ -300,7 +296,6 @@ public function edit_pendaftaran()
         }
     }
     
-// Pendaftaran Siswa
     public function aksi_tambah_pendaftaran_siswa()
     {
         $foto = $this->upload_img_pendaftaran_siswa('foto');
@@ -341,6 +336,11 @@ public function edit_pendaftaran()
                 redirect(base_url('Akademik/form_pendaftaran'));
             }
         }
+    }
+
+    public function edit_pendaftaran()
+    {
+        $this->load->view('akademik/siswa/edit_pendaftaran');
     }
 
     public function hapus_pendaftaran($id_daftar)
@@ -403,7 +403,8 @@ public function edit_pendaftaran()
     public function edit_mapel($id_mapel)
     {
         $data['mapel']=$this->m_akademik->get_mapelById('tabel_mapel', $id_mapel)->result();
-        $this->load->view('akademik/pelajaran/edit_mapel', $data);
+        $jenis['jenismapel'] = $this->m_akademik->get_jenismapel('jenismapel');
+        $this->load->view('akademik/pelajaran/edit_mapel', $data + $jenis);
     }
 
     public function update_mapel()
