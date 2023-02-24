@@ -33,4 +33,15 @@ function tampil_jenismapelById($id)
   }
 }
 
+function tampil_kelasById($id)
+{
+ $ci =& get_instance();
+ $ci->load->database();
+ $result = $ci->db->where('id_kelas',$id)->get('tabel_kelas');
+  foreach ($result->result() as $c) {
+  $stmt= $c->nama_kelas;
+  return $stmt;
+  }
+}
+
 ?>

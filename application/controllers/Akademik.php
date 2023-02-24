@@ -201,6 +201,67 @@ class Akademik extends CI_Controller {
         redirect(base_url('Akademik/kelas'));
     }
     
+// Rombel
+    public function rombel()
+    {
+        $this->load->model('M_akademik');
+        $data['rombel'] = $this->m_akademik->get_rombel('rombel');
+        $this->load->view('akademik/rombel/rombel', $data);
+    }
+
+    public function rombel_form()
+    {
+        $this->load->model('M_akademik');
+        $data['kelas'] = $this->m_akademik->get_kelas('kelas');
+        $this->load->view('akademik/rombel/form_rombel', $data);
+    }
+
+    public function tambah_rombel()
+    {
+        $data = [
+            'nama_rombel' => $this->input->post('nama_rombel'),
+            'id_kelas' => $this->input->post('id_kelas'),
+            'kuota' => $this->input->post('kuota'),
+            'nip' => $this->input->post('nip'),
+        ];
+        $this->m_akademik->tambah_rombel('tabel_rombel', $data);
+        redirect(base_url('Akademik/rombel'));
+    }
+
+    public function edit_rombel($id_rombel)
+    {
+        $data['rombel']=$this->m_akademik->get_rombelById('tabel_rombel', $id_rombel)->result();
+        $kelas['kelas'] = $this->m_akademik->get_kelas('kelas');
+        $this->load->view('akademik/rombel/edit_rombel', $data + $kelas);
+    }
+
+    public function update_rombel()
+    {
+        $data =  [
+            'nama_rombel' => $this->input->post('nama_rombel'),
+            'id_kelas' => $this->input->post('id_kelas'),
+            'kuota' => $this->input->post('kuota'),
+            'nip' => $this->input->post('nip'),
+        ];
+        $logged=$this->m_akademik->ubah_rombel('tabel_rombel', $data, array('id_rombel'=>$this->input->post('id_rombel')));
+        if($logged)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('Akademik/rombel'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Akademik/rombel/edit_ta/'.$this->input->post('id_rombel')));
+        }
+    }
+    
+    public function hapus_rombel($id_rombel)
+    {
+        $this->m_akademik->hapus_rombel('tabel_rombel', 'id_rombel', $id_rombel);
+        redirect(base_url('Akademik/rombel'));
+    }
+
 // Guru
     public function guru()
     {

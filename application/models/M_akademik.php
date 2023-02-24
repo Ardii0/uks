@@ -96,6 +96,36 @@ class M_akademik extends CI_Model{
         return $data;
     }
 
+// Rombel
+    public function get_rombel()
+	{
+		return $this->db->get('tabel_rombel')->result();
+	}
+
+    public function get_rombelById($tabel, $id_rombel)
+    {
+        $data=$this->db->where('id_rombel', $id_rombel)->get($tabel);
+        return $data;
+    }
+
+    public function tambah_rombel($tabel, $data)
+    {
+        $this->db->insert($tabel, $data);
+        return $this->db->insert_id();
+    }
+
+    public function ubah_rombel($tabel, $data, $where)
+    {
+        $data=$this->db->update($tabel, $data, $where);
+        return $this->db->affected_rows();
+    }
+
+    public function hapus_rombel($tabel, $field, $id_rombel)
+    {
+        $data=$this->db->delete($tabel, array($field => $id_rombel));
+        return $data;
+    }
+
 // Guru
     public function get_guru()
 	{
