@@ -58,26 +58,16 @@
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <div>
-                                        <label style="font-weight: bold">Paket Jenjang</label>
-                                        <div>
-                                            <select class="custom-select rounded " id="exampleSelectRounded0">
-                                                <option>Pilih</option>
-                                                <option>SD</option>
-                                                <option>SMP</option>
-                                                <option>SMA</option>
-                                                <option>SMK</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div>
-                                        <label class="control-label">ID Jenjang</label>
-                                        <div class="">
-                                            <input type="text" name="id_jenjang" class="form-control"
-                                                placeholder="Masukan ID Jenjang">
-                                        </div>
+                                    <label class="control-label">Jenjang</label>
+                                    <div class="">
+                                        <select name="id_jenjang" class="form-control form-select px-2 py-1" aria-label="jenjang">
+                                        <option style="display: none;">
+                                        Pilih Jenjang
+                                        </option>
+                                        <?php foreach($jenjang as $jenis): ?>
+                                            <option value="<?php echo $jenis->id_jenjang ?>"><?php echo $jenis->nama_jenjang ?></option>
+                                            <?php endforeach;?>
+                                        </select>
                                     </div>
                                 </div>
                             </div>

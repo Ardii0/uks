@@ -59,6 +59,7 @@
                                     <thead>
                                         <tr class="bg-secondary">
                                             <th>No</th>
+                                            <th>Foto</th>
                                             <th>Nama</th>
                                             <th>No Reg</th>
                                             <th>Tahun Ajaran</th>
@@ -77,6 +78,7 @@
                                             <td><?php
                                                  echo $id 
                                                  ?></td>
+                                            <td><img style="width: 80px; height:90px; " src="<?php echo base_url('uploads/akademik/pendaftaran_siswa')."/".$row->foto;?>"></td>
                                             <td><?php
                                              echo $row->nama 
                                              ?></td>

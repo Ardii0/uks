@@ -89,7 +89,7 @@
                     </div>
                     <hr />
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-4">
                             <div>
                                 <label for="nama-lengkap" class="mr-3">
                                     Nama Lengkap
@@ -99,7 +99,7 @@
                                 <input id="nama-lengkap" type="text" name="nama" class="form-control" placeholder="Nama Lengkap">
                                 </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-4">
                             <div>
                                 <label for="jenjang" class="mr-3">
                                     Agama
@@ -111,10 +111,14 @@
                                     <option selected>Pilih Agama</option>
                                     <option value="Islam">Islam</option>
                                     <option value="Kristen">Kristen</option>
+                                    <option value="Katolik">Katolik</option>
+                                    <option value="Konghucu">Konghucu</option>
+                                    <option value="Hindu">Hindu</option>
+                                    <option value="Budha">Budha</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-6 mt-2">
+                        <div class="col-4">
                             <div>
                                 <label for="nisn" class="mr-3">
                                     NISN
@@ -124,7 +128,7 @@
                                 <input id="nisn" type="number" name="nisn" class="form-control" placeholder="NISN">
                             </div>
                         </div>
-                        <div class="col-6 mt-2">
+                        <div class="col-4 mt-2">
                             <div>
                                 <label for="tlpn" class="mr-3">
                                     No Telepon
@@ -134,7 +138,67 @@
                                 <input id="tlpn" type="number" name="telepon" class="form-control" placeholder="No Telepon">
                             </div>
                         </div>
-                        <div class="col-6 mt-2">
+                        <div class="col-4 mt-2">
+                            <div>
+                                <label for="alamat" class="mr-3">
+                                    Alamat
+                                </label>
+                            </div>
+                            <div>
+                                <input id="alamat" type="text" name="alamat" class="form-control" placeholder="Alamat">
+                            </div>
+                        </div>
+                        <div class="col-4 mt-2">
+                            <div>
+                                <label for="tempat-lahir" class="mr-3">
+                                    Tempat Lahir
+                                </label>
+                            </div>
+                            <div>
+                                <input id="tempat-lahir" type="text" name="tempat_lahir" class="form-control" placeholder="Tempat Lahir">
+                            </div>
+                        </div>
+                        <div class="col-4 mt-2">
+                            <div>
+                                <label for="anak" class="mr-3">
+                                    Anak Ke
+                                </label>
+                            </div>
+                            <div>
+                                <input id="anak" type="number" name="anak_ke" class="form-control" placeholder="Anak Ke">
+                            </div>
+                        </div>
+                        <div class="col-4 mt-2">
+                            <div>
+                                <label for="saudara-kandung" class="mr-3">
+                                    Saudara Kandung
+                                </label>
+                            </div>
+                            <div>
+                                <input id="saudara-kandung" type="text" name="saudara_kandung" class="form-control" placeholder="Saudara Kandung">
+                            </div>
+                        </div>
+                        <div class="col-4 mt-2">
+                            <div>
+                                <label for="saudara-angkat" class="mr-3">
+                                    Saudara Angkat
+                                </label>
+                            </div>
+                            <div>
+                                <input id="saudara-angkat" type="text" name="saudara_angkat" class="form-control" placeholder="Saudara Angkat">
+                                </div>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <div>
+                                <label for="tanggal-lahir" class="mr-3">
+                                    Tanggal Lahir
+                                </label>
+                            </div>
+                            <div>
+                                <input id="tanggal-lahir" name="tgl_lahir" type="date" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-4 mt-2">
                             <div>
                                 <label class="mr-3">
                                     Jenis Kelamin
@@ -157,37 +221,30 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-6 mt-2">
+                        <div class="col-4 mt-2">
                             <div>
-                                <label for="alamat" class="mr-3">
-                                    Alamat
+                                <label class="mr-3">
+                                    Warga Negara
                                 </label>
                             </div>
-                            <div>
-                                <input id="alamat" type="text" name="alamat" class="form-control" placeholder="Alamat">
-                            </div>
-                        </div>
-                        <div class="col-6 mt-2">
-                            <div>
-                                <label for="tempat-lahir" class="mr-3">
-                                    Tempat Lahir
-                                </label>
-                            </div>
-                            <div>
-                                <input id="tempat-lahir" type="text" name="tempat_lahir" class="form-control" placeholder="Tempat Lahir">
+                            <div class="d-flex items-center">
+                                <div class="form-check mr-3">
+                                    <input class="form-check-input" name="warga_negara" value="WNI" type="radio" name="warganegara"
+                                        id="warganegara">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        WNI
+                                    </label>
                                 </div>
-                        </div>
-                        <div class="col-6 mt-2">
-                            <div>
-                                <label for="tanggal-lahir" class="mr-3">
-                                    Tanggal Lahir
-                                </label>
-                            </div>
-                            <div>
-                                <input id="tanggal-lahir" name="tgl_lahir" type="date" class="form-control">
+                                <div class="form-check">
+                                    <input class="form-check-input" name="warga_negara" value="WNA" type="radio" name="warganegara"
+                                        id="warganegara1">
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        WNA
+                                    </label>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-6 mt-3">
+                        <div class="col-12 mt-3">
                             <div>
                                 <div>
                                     <label class="mr-3">

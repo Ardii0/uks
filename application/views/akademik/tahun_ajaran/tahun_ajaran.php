@@ -74,7 +74,6 @@
                                             <td><?php echo $data->tgl_a?></td>
                                             <td><?php echo $data->tgl_b?></td>
                                             <td><?php echo $data->keterangan?></td>
-                                            <!-- <td><?php echo $data->aktif?></td> -->
                                             <td><?php echo $data->status?></td>
                                             <td class="text-center">
                                                 <a href="<?php echo base_url('Akademik/edit_ta/'.$data->id_angkatan)?>"

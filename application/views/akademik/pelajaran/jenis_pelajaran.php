@@ -33,8 +33,15 @@
 
             <section class="content">
                 <div class="container-fluid bg-white">
-                    <div class="row mx-2 pt-3 d-flex justify-content-end align-self-end">
-                        <div class="col-md-3 d-flex justify-content-end align-self-end">
+                    <div class="row mx-2 pt-3 d-flex justify-content-between">
+                    <div class="col-2 col-sm-6 ">
+                            <div class="form-group d-flex flex-row " style="width: fit-content;">
+                                <div class="mt-2 mx-1">
+                                    <h4>Data Jenis Pelajaran</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 d-flex justify-content-end align-self-start">
                             <a href="<?php echo base_url('Akademik/jenismapel_form'); ?>">
                                 <button type="button" class="btn btn-success"><i class="fa fa-plus pr-2"></i>Tambah</button>
                             </a>

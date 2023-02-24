@@ -12,7 +12,7 @@
 
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-        <?php $this->load->view('akademik/style/navbar') ?>
+        <?php $this->load->view('akademik/style/navbar') ?> 
         <?php $this->load->view('akademik/style/sidebar') ?>
 
         <div class="content-wrapper">
@@ -34,8 +34,15 @@
 
             <section class="content">
                 <div class="container-fluid bg-white">
-                    <div class="row mx-2 pt-3 d-flex justify-content-end align-self-end">
-                        <div class="col-md-3 d-flex justify-content-end align-self-end">
+                    <div class="row mx-2 pt-3 d-flex justify-content-between">
+                    <div class="col-2 col-sm-6 ">
+                            <div class="form-group d-flex flex-row " style="width: fit-content;">
+                                <div class="mt-2 mx-1">
+                                    <h4>Data Mata Pelajaran</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 d-flex justify-content-end align-self-start">
                             <a href="<?php echo base_url('Akademik/mapel_form'); ?>">
                                 <button type="button" class="btn btn-success"><i
                                         class="fa fa-plus pr-2"></i>Tambah</button>
@@ -73,6 +80,9 @@
                                                     <?php echo $data->keterangan ?>
                                                 </td>
                                                 <td class="text-center">
+                                                <a href="#"
+                                                        class="btn btn-success btn-sm">
+                                                        <i class="fa fa-share"></i></a>
                                                     <a href="<?php echo base_url('Akademik/edit_mapel/' . $data->id_mapel) ?>"
                                                         class="btn btn-primary btn-sm">
                                                         <i class="fa fa-edit"></i></a>

@@ -153,7 +153,8 @@ class Akademik extends CI_Controller {
     public function kelas_form()
     {
         $this->load->model('M_akademik');
-        $this->load->view('akademik/kelas/form_kelas');
+        $data['jenjang'] = $this->m_akademik->get_jenjang('jenjang');
+        $this->load->view('akademik/kelas/form_kelas', $data);
     }
 
     public function tambah_kelas()
@@ -170,7 +171,8 @@ class Akademik extends CI_Controller {
     public function edit_kelas($id_kelas)
     {
         $data['kelas']=$this->m_akademik->get_kelasById('tabel_kelas', $id_kelas)->result();
-        $this->load->view('akademik/kelas/edit_kelas', $data);
+        $jenjang['jenjang'] = $this->m_akademik->get_jenjang('jenjang');
+        $this->load->view('akademik/kelas/edit_kelas', $data + $jenjang);
     }
 
     public function update_kelas()
@@ -318,10 +320,14 @@ class Akademik extends CI_Controller {
                 'nama' => $this->input->post('nama'),
                 'jekel' => $this->input->post('jekel'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
+                'anak_ke' => $this->input->post('anak_ke'),
+                'saudara_kandung' => $this->input->post('saudara_kandung'),
+                'saudara_angkat' => $this->input->post('saudara_angkat'),
                 'tgl_lahir' => $this->input->post('tgl_lahir'),
                 'agama' => $this->input->post('agama'),
                 'alamat' => $this->input->post('alamat'),
                 'telepon' => $this->input->post('telepon'),
+                'warga_negara' => $this->input->post('warga_negara'),
                 'diterima' => 'P',
             );
             $masuk=$this->m_akademik->tambah_pendaftaran('tabel_daftar', $data);
@@ -354,6 +360,9 @@ class Akademik extends CI_Controller {
             "agama" => $this->input->post("agama"),
             "alamat" => $this->input->post("alamat"),
             "telepon" => $this->input->post("telepon"),
+            'anak_ke' => $this->input->post('anak_ke'),
+            'saudara_kandung' => $this->input->post('saudara_kandung'),
+            'saudara_angkat' => $this->input->post('saudara_angkat'),
             "diterima" => "P",
         );
         $masuk = $this->m_akademik->ubah_pendaftaran("tabel_daftar", $data, array("id_daftar" => $this->input->post("id_daftar")));
@@ -412,7 +421,8 @@ class Akademik extends CI_Controller {
     public function mapel_form()
     {
         $this->load->model('M_akademik');
-        $this->load->view('akademik/pelajaran/form_mapel');
+        $data['jenismapel'] = $this->m_akademik->get_jenismapel('jenismapel');
+        $this->load->view('akademik/pelajaran/form_mapel', $data);
     }
 
     public function tambah_mapel()

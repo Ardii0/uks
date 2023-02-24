@@ -64,32 +64,22 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $id = 0;
-                                        foreach ($kelas as $data):
-                                            $id++; ?>
-                                            <tr>
-                                                <td>
-                                                    <?php echo $id ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $data->nama_kelas ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $data->id_jenjang ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $data->keterangan ?>
-                                                </td>
-                                                <td class="text-center">
-                                                    <a href="<?php echo base_url('Akademik/edit_kelas/' . $data->id_kelas) ?>"
-                                                        class="btn btn-primary btn-sm">
-                                                        <i class="fa fa-edit"></i></a>
-                                                    <button onclick="hapus(<?php echo $data->id_kelas; ?>)"
-                                                        class="btn btn-danger btn-sm">
-                                                        <i class="fa fa-trash"></i></button>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
+                                        <?php $id=0; foreach($kelas as $data ): $id++;?>
+                                        <tr>
+                                            <td><?php echo $id?></td>
+                                            <td><?php echo $data->nama_kelas?></td>
+                                            <td><?php echo tampil_namajenjang_byid($data->id_jenjang)?></td>
+                                            <td><?php echo $data->keterangan?></td>
+                                            <td class="text-center">
+                                                <a href="<?php echo base_url('Akademik/edit_kelas/'.$data->id_kelas)?>"
+                                                    class="btn btn-primary btn-sm">
+                                                    <i class="fa fa-edit"></i></a>
+                                                <button onclick="hapus(<?php echo $data->id_kelas ;?>)"
+                                                    class="btn btn-danger btn-sm">
+                                                    <i class="fa fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                        <?php endforeach;?>
                                     </tbody>
                                 </table>
                             </div>

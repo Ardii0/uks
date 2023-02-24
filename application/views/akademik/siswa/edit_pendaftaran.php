@@ -59,7 +59,7 @@
                                 </label>
                             </div>
                             <div>
-                                <input type="number" value="<?php echo $row->id_jenjang?>" placeholder="ID Registrasi" class="form-control" disabled>
+                                <input type="text" value="<?php echo tampil_namajenjang_byid($row->id_jenjang)?>" placeholder="ID Registrasi" class="form-control" disabled>
                             </div>
                         </div>
                         <div class="col-3">
@@ -127,6 +127,36 @@
                             </div>
                             <div>
                                 <input id="tlpn" type="number" value="<?php echo $row->telepon?>" name="telepon" class="form-control" placeholder="No Telepon">
+                            </div>
+                        </div>
+                        <div class="col-4 mt-2">
+                            <div>
+                                <label for="angkat" class="mr-3">
+                                    Anak Ke
+                                </label>
+                            </div>
+                            <div>
+                                <input id="tlpn" type="number" value="<?php echo $row->anak_ke?>" name="anak_ke" class="form-control" placeholder="Anak Ke">
+                            </div>
+                        </div>
+                        <div class="col-4 mt-2">
+                            <div>
+                                <label for="kandung" class="mr-3">
+                                    Saudara Kandung
+                                </label>
+                            </div>
+                            <div>
+                                <input id="tlpn" type="text" value="<?php echo $row->saudara_kandung?>" name="saudara_kandung" class="form-control" placeholder="Saudara Kandung">
+                            </div>
+                        </div>
+                        <div class="col-4 mt-2">
+                            <div>
+                                <label for="angkat" class="mr-3">
+                                    Saudara Angkat
+                                </label>
+                            </div>
+                            <div>
+                                <input id="tlpn" type="text" value="<?php echo $row->saudara_angkat?>" name="saudara_angkat" class="form-control" placeholder="Saudara Angkat">
                             </div>
                         </div>
                         <!-- <div class="col-6 mt-2">

@@ -33,6 +33,26 @@
 
             <section class="content">
                 <div class="container-fluid bg-white">
+                <div class="row mx-2 pt-3 d-flex justify-content-between">
+                        <div class="col-2 col-sm-6 ">
+                            <div class="form-group d-flex flex-row " style="width: fit-content;">
+                                <div class="mt-2 mx-1">
+                                    <h4>Data Siswa</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 d-flex justify-content-end align-self-start">
+                            <div class="mx-1">
+                                <button type="button" class="btn btn-success">
+                                    <i class="fa fa-download pr-2"></i>Export Data</button>
+                            </div>
+                            <a href="#">
+                                <button type="button" class="btn btn-success">
+                                    <i class="fa fa-plus pr-2"></i>Tampilkan Data
+                                </button>
+                            </a>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-12">
                             <div class="card-body">
@@ -41,7 +61,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Rombel</th>
-                                            <th>NISN</th>
+                                            <th>NIS</th>
                                             <th>Nama</th>
                                             <th>Jekel</th>
                                             <th>Tempat Lahir</th>
@@ -62,6 +82,17 @@
                                             <td>Win 95+</td>
                                             <td>Win 95+</td>
                                             <td>Win 95+</td>
+                                            <td class="text-center">
+                                                    <a href="#"
+                                                        class="btn btn-primary btn-sm">
+                                                        <i class="fa fa-edit"></i></a>
+                                                        <a href="#"
+                                                        class="btn btn-warning btn-sm">
+                                                        <i class="fa fa-eye"></i></a>
+                                                    <button 
+                                                        class="btn btn-danger btn-sm">
+                                                        <i class="fa fa-trash"></i></button>
+                                                </td>
                                         </tr>
                                     </tbody>
                                 </table>

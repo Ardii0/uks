@@ -58,10 +58,16 @@
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <label class="control-label">ID JenisMapel</label>
+                                    <label class="control-label">JENIS MAPEL</label>
                                     <div class="">
-                                        <textarea name="id_jenismapel" class="form-control"
-                                        rows="3" placeholder="Masukan ID JenisMapel"></textarea>
+                                        <select name="id_jenismapel" class="form-control form-select px-2 py-1" aria-label="jenismapel">
+                                            <option style="display: none;">
+                                            Pilih Jenis Mapel
+                                            </option>
+                                            <?php foreach($jenismapel as $data): ?>
+                                                <option value="<?php echo $data->id_jenismapel ?>"><?php echo $data->nama_jenismapel ?></option>
+                                            <?php endforeach;?>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
