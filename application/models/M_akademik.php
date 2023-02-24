@@ -183,7 +183,7 @@ class M_akademik extends CI_Model{
 		return $data;
 	}
 
-    
+
     public function get_siswa()
 {
     return $this->db->get('tabel_siswa')->result();

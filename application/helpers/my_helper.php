@@ -76,5 +76,4 @@ function tampil_siswa_byid($id)
   return $stmt;
   }
 }
-
 ?>

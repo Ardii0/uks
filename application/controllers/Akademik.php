@@ -264,7 +264,7 @@ class Akademik extends CI_Controller {
         $this->m_akademik->hapus_rombel('tabel_rombel', 'id_rombel', $id_rombel);
         redirect(base_url('Akademik/rombongan_belajar'));
     }
-    
+
 // Guru
     public function guru()
     {
@@ -471,7 +471,7 @@ class Akademik extends CI_Controller {
         $data['siswa'] = $this->m_akademik->get_siswa('siswa');
         $this->load->view('akademik/siswa/data', $data);
     }
-    
+
     public function siswa_mutasi()
     {
         $this->load->view('akademik/siswa/mutasi');
