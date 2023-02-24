@@ -165,7 +165,7 @@
                                 </label>
                             </div>
                             <div>
-                                <input id="anak" type="number" name="anak" class="form-control" placeholder="Anak Ke">
+                                <input id="anak" type="number" name="anak_ke" class="form-control" placeholder="Anak Ke">
                             </div>
                         </div>
                         <div class="col-4 mt-2">
@@ -176,7 +176,7 @@
                             </div>
                             <div>
                                 <input id="saudara-kandung" type="text" name="saudara_kandung" class="form-control" placeholder="Saudara Kandung">
-                                </div>
+                            </div>
                         </div>
                         <div class="col-4 mt-2">
                             <div>
@@ -229,14 +229,14 @@
                             </div>
                             <div class="d-flex items-center">
                                 <div class="form-check mr-3">
-                                    <input class="form-check-input" value="L" type="radio" name="warganegara"
+                                    <input class="form-check-input" name="warga_negara" value="WNI" type="radio" name="warganegara"
                                         id="warganegara">
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         WNI
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" value="P" type="radio" name="warganegara"
+                                    <input class="form-check-input" name="warga_negara" value="WNA" type="radio" name="warganegara"
                                         id="warganegara1">
                                     <label class="form-check-label" for="flexRadioDefault2">
                                         WNA

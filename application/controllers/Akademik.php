@@ -320,10 +320,14 @@ class Akademik extends CI_Controller {
                 'nama' => $this->input->post('nama'),
                 'jekel' => $this->input->post('jekel'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
+                'anak_ke' => $this->input->post('anak_ke'),
+                'saudara_kandung' => $this->input->post('saudara_kandung'),
+                'saudara_angkat' => $this->input->post('saudara_angkat'),
                 'tgl_lahir' => $this->input->post('tgl_lahir'),
                 'agama' => $this->input->post('agama'),
                 'alamat' => $this->input->post('alamat'),
                 'telepon' => $this->input->post('telepon'),
+                'warga_negara' => $this->input->post('warga_negara'),
                 'diterima' => 'P',
             );
             $masuk=$this->m_akademik->tambah_pendaftaran('tabel_daftar', $data);
@@ -356,6 +360,9 @@ class Akademik extends CI_Controller {
             "agama" => $this->input->post("agama"),
             "alamat" => $this->input->post("alamat"),
             "telepon" => $this->input->post("telepon"),
+            'anak_ke' => $this->input->post('anak_ke'),
+            'saudara_kandung' => $this->input->post('saudara_kandung'),
+            'saudara_angkat' => $this->input->post('saudara_angkat'),
             "diterima" => "P",
         );
         $masuk = $this->m_akademik->ubah_pendaftaran("tabel_daftar", $data, array("id_daftar" => $this->input->post("id_daftar")));
