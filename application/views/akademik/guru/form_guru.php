@@ -50,9 +50,21 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label">Jekel</label>
-                                    <div class="">
-                                        <input type="text" name="alamat" class="form-control"
-                                            placeholder="Masukan Jekel">
+                                    <div class="d-flex">
+                                        <div class="form-check mr-3">
+                                            <input class="form-check-input" value="L" type="radio" name="jekel"
+                                                id="laki">
+                                            <label class="form-check-label" for="laki">
+                                                Laki-Laki
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" value="P" type="radio" name="jekel"
+                                                id="perempuan">
+                                            <label class="form-check-label" for="perempuan">
+                                                Perempuan
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">

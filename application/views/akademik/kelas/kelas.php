@@ -60,7 +60,7 @@
                                         <tr>
                                             <td><?php echo $id?></td>
                                             <td><?php echo $data->nama_kelas?></td>
-                                            <td><?php echo $data->id_jenjang?></td>
+                                            <td><?php echo tampil_namajenjang_byid($data->id_jenjang)?></td>
                                             <td><?php echo $data->keterangan?></td>
                                             <td class="text-center">
                                                 <a href="<?php echo base_url('Akademik/edit_kelas/'.$data->id_kelas)?>"
