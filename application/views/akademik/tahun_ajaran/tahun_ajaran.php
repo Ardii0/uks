@@ -32,8 +32,15 @@
             </section>
 
             <section class="content">
-                <div class="container-fluid bg-white">
-                    <div class="row mx-2 pt-3 d-flex justify-content-end">
+                <div class="container-fluid bg-white shadow">
+                <div class="row mx-2 pt-3 d-flex justify-content-between">
+                        <div class="col-2 col-sm-6 ">
+                        <div class="form-group d-flex flex-row " style="width: fit-content;">
+                        <div class="mt-2 mx-1">
+                        <h4 >Data Tahun Ajaran</h4>
+                        </div>
+                        </div>
+                        </div>
                         <div class="col-md-3 d-flex justify-content-end align-self-start">
                             <a href="<?php echo base_url('Akademik/tahun_ajaran_form');?>">
                                 <button type="button" class="btn btn-success">
@@ -45,17 +52,16 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card-body">
-                                <table id="akademik-table" class="table table-bordered table-striped">
+                                <table id="datasiswa-table" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama Angkatan</th>
-                                            <th>KD Angkatan</th>
-                                            <th>Tahun Awal</th>
-                                            <th>Tahun Akhir</th>
+                                            <th>Kode Tahun Ajaran</th>
+                                            <th>Nama</th>
+                                            <th>Awal Periode</th>
+                                            <th>Akhir Periode</th>
                                             <th>Keterangan</th>
-                                            <th>aktif</th>
-                                            <th>status</th>
+                                            <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -68,7 +74,7 @@
                                             <td><?php echo $data->tgl_a?></td>
                                             <td><?php echo $data->tgl_b?></td>
                                             <td><?php echo $data->keterangan?></td>
-                                            <td><?php echo $data->aktif?></td>
+                                            <!-- <td><?php echo $data->aktif?></td> -->
                                             <td><?php echo $data->status?></td>
                                             <td class="text-center">
                                                 <a href="<?php echo base_url('Akademik/edit_ta/'.$data->id_angkatan)?>"

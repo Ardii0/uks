@@ -60,10 +60,10 @@
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <label class="control-label">KD Kelas</label>
+                                    <label class="control-label">Paket Jenjang</label>
                                     <div class="">
                                         <input type="text" name="kd_kelas" class="form-control"
-                                            placeholder="Masukan KD Kelas" value="<?php echo $data->kd_kelas ?>">
+                                            placeholder="Masukan KD Kelas" value="<?php echo $data->id_jenjang ?>">
                                     </div>
                                 </div>
                             </div>

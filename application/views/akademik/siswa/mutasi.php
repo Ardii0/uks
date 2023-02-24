@@ -35,19 +35,26 @@
             <section class="content">
                 <div class="container-fluid bg-white">
                     <div class="row mx-2 pt-3 d-flex justify-content-between">
-                        <div class="col-2 col-sm-6">
-                        <div class="form-group d-flex" style="width: fit-content;">
-                        <p>PilihKelas</p>
-                        <select class="custom-select rounded-0" id="exampleSelectRounded0">
-                            <option>X1 TKJ</option>
-                            <option>Value 2</option>
-                            <option>Value 3</option>
+                        <div class="col-2 col-sm-6 ">
+                        <div class="form-group d-flex flex-row " style="width: fit-content;">
+                        <div class="mt-2 mx-1">
+                        <p style="font-weight: bold" >Pilih Kelas</p>
+                        </div>
+                        <div class="mx-1">
+                        <select class="custom-select rounded" id="exampleSelectRounded0">
+                            <option>X TKJ 1 / X TKJ 2</option>
+                            <option>XI TKJ 1 / XI TKJ 2</option>
+                            <option>XII TKJ 1 / XII TKJ 2</option>
                         </select>
+                        </div>
+                        <div  class="mx-1">
+                        <button type="button" class="btn btn-primary">Tampilkan</button>
+                        </div>
                         </div>
                         </div>
                         <div class="col-md-3 d-flex justify-content-end align-self-start">
                         <div class="form-group">
-                        <select class="custom-select rounded-0" id="exampleSelectRounded0">
+                        <select class="custom-select rounded bg-success shadow" id="exampleSelectRounded0">
                             <option>Lihat Data</option>
                             <option>Value 2</option>
                             <option>Value 3</option>
@@ -61,41 +68,49 @@
                                 <table id="datasiswa-table" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Nama</th>
-                                            <th>NISN</th>
+                                            <th>
+                                                <input type="checkbox" name="" id="">
+                                            </th>
                                             <th>Rombel</th>
-                                            <th>Gender</th>
+                                            <th>NISN</th>
+                                            <th>Nama</th>
+                                            <th>Jekel</th>
                                             <th>TTL</th>
+                                            <th>Alamat</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Internet
-                                                Explorer 4.0
+                                            <td>
+                                                <input type="checkbox" name="" id="">
                                             </td>
-                                            <td>Win 95+</td>
-                                            <td>Win 95+</td>
-                                            <td>Win 95+</td>
-                                            <td>Win 95+</td>
+                                            <td>X TKJ 1</td>
+                                            <td>123456789</td>
+                                            <td>Sigit Nugroho</td>
+                                            <td>Laki-laki</td>
+                                            <td>Semarang, 1999-01-05</td>
+                                            <td>Jl. Semarang</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                         <div class="col-4">
-                            <div class="border-bottom">Mutasi Siswa</div>
-                            <div class="d-flex">
-                                Jenis
-                                <div class="form-group">
-                                <select class="custom-select rounded-0" id="exampleSelectRounded0">
-                                    <option>Lihat Data</option>
-                                    <option>Value 2</option>
-                                    <option>Value 3</option>
+                            <div class="border-bottom h3">Mutasi Siswa</div>
+                            <div class="form-group d-flex flex-row " style="width: fit-content;">
+                        <div class="mt-2 mx-1">
+                        <p  style="font-weight: bold" >Jenis</p>
+                        </div>
+                        <div class="mx-1">
+                        <select class="custom-select rounded " id="exampleSelectRounded0">
+                                    <option>Pilih</option>
+                                    <option>Naik Kelas</option>
+                                    <option>Pindah Kelas</option>
+                                    <option>Pindah Sekolah</option>
+                                    <option>Lulus</option>
                                 </select>
-                                </div>
-                            </div>
+                        </div>
+                        </div>
                         </div>
                     </div>
                 </div>

@@ -33,7 +33,14 @@
 
             <section class="content">
                 <div class="container-fluid bg-white">
-                    <div class="row mx-2 pt-3 d-flex justify-content-end">
+                    <div class="row mx-2 pt-3 d-flex justify-content-between">
+                    <div class="col-2 col-sm-6 ">
+                            <div class="form-group d-flex flex-row " style="width: fit-content;">
+                                <div class="mt-2 mx-1">
+                                    <h4>Data Kelas</h4>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-3 d-flex justify-content-end align-self-start">
                             <a href="<?php echo base_url('Akademik/kelas_form');?>">
                                 <button type="button" class="btn btn-success">
@@ -45,7 +52,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card-body">
-                                <table id="akademik-table" class="table table-bordered table-striped">
+                                <table id="datasiswa-table" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>No</th>

@@ -42,7 +42,7 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <label class="control-label">Nama Jenjang</label>
+                                    <label class="control-label">Kode Jenjang</label>
                                     <div class="">
                                         <input type="text" name="nama_jenjang" class="form-control"
                                             placeholder="Masukan Nama Jenjang">
@@ -58,10 +58,10 @@
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <label class="control-label">KD Jenjang</label>
+                                    <label class="control-label">Nama</label>
                                     <div class="">
                                         <input type="text" name="kd_jenjang" class="form-control"
-                                            placeholder="Masukan KD Jenjang">
+                                            placeholder="Masukan Nama">
                                     </div>
                                 </div>
                                 <div class="form-group">

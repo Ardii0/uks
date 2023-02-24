@@ -44,7 +44,7 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <label class="control-label">Nama Angkatan</label>
+                                    <label class="control-label">Kode Tahun Ajaran</label>
                                     <div class="">
                                         <input type="text" name="nama_angkatan" class="form-control"
                                             placeholder="Masukan Nama Angkatan" value="<?php echo $data->nama_angkatan ?>">
@@ -60,7 +60,7 @@
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <label class="control-label">KD Angkatan</label>
+                                    <label class="control-label">Nama</label>
                                     <div class="">
                                         <input type="text" name="kd_angkatan" class="form-control"
                                             placeholder="Masukan KD Angkatan" value="<?php echo $data->kd_angkatan ?>">
@@ -68,13 +68,13 @@
                                 </div>
                                 <div class="form-group d-flex">
                                     <div class="col-6">
-                                        <label class="control-label">Tanggal Awal</label>
+                                        <label class="control-label">Awal Periode</label>
                                         <div class="">
                                             <input type="date" name="tgl_a" style="width: 100%;" value="<?php echo $data->tgl_a ?>">
                                         </div>
                                     </div>
                                     <div class="col-6">
-                                        <label class="control-label">Tanggal Akhir</label>
+                                        <label class="control-label">Akhir Periode</label>
                                         <div class="">
                                             <input type="date" name="tgl_b" style="width: 100%;" value="<?php echo $data->tgl_b ?>">
                                         </div>
