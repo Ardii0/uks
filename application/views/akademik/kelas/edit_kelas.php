@@ -38,7 +38,6 @@
             <section class="content bg-white py-4">
                 <div class="container-fluid">
               <?php foreach ($kelas as $data): ?>
-
                     <form action="<?php echo base_url('Akademik/update_kelas') ?>" enctype="multipart/form-data"
                         method="post">
                         <div class="row">
@@ -60,10 +59,15 @@
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <label class="control-label">KD Kelas</label>
+                                    <label class="control-label">Jenjang</label>
                                     <div class="">
-                                        <input type="text" name="kd_kelas" class="form-control"
-                                            placeholder="Masukan KD Kelas" value="<?php echo $data->kd_kelas ?>">
+                                        <select class="form-control form-select px-2 py-1" name="id_jenjang" aria-label="idjenjang">
+                                            <option name="id_jenjang" value="<?php echo tampil_namajenjang_byid($data->id_jenjang)?>" style="display: none;">
+                                            <?php echo tampil_namajenjang_byid($data->id_jenjang)?></option>
+                                            <?php $id = 0;foreach ($jenjang as $datajenjang): $id++;?>
+                                                <option name="id_jenjang" value="<?php echo $datajenjang->id_jenjang ?>"><?php echo $datajenjang->nama_jenjang ?></option>
+                                            <?php endforeach;?>
+                                        </select>
                                     </div>
                                 </div>
                             </div>

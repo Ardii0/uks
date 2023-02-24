@@ -58,10 +58,16 @@
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <label class="control-label">ID Jenjang</label>
+                                    <label class="control-label">Jenjang</label>
                                     <div class="">
-                                        <input type="text" name="id_jenjang" class="form-control"
-                                            placeholder="Masukan ID Jenjang">
+                                        <select name="id_jenjang" class="form-control form-select px-2 py-1" aria-label="jenjang">
+                                        <option style="display: none;">
+                                        Pilih Jenjang
+                                        </option>
+                                        <?php foreach($jenjang as $jenis): ?>
+                                            <option value="<?php echo $jenis->id_jenjang ?>"><?php echo $jenis->nama_jenjang ?></option>
+                                            <?php endforeach;?>
+                                        </select>
                                     </div>
                                 </div>
                             </div>

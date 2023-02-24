@@ -153,7 +153,8 @@ class Akademik extends CI_Controller {
     public function kelas_form()
     {
         $this->load->model('M_akademik');
-        $this->load->view('akademik/kelas/form_kelas');
+        $data['jenjang'] = $this->m_akademik->get_jenjang('jenjang');
+        $this->load->view('akademik/kelas/form_kelas', $data);
     }
 
     public function tambah_kelas()
@@ -170,7 +171,8 @@ class Akademik extends CI_Controller {
     public function edit_kelas($id_kelas)
     {
         $data['kelas']=$this->m_akademik->get_kelasById('tabel_kelas', $id_kelas)->result();
-        $this->load->view('akademik/kelas/edit_kelas', $data);
+        $jenjang['jenjang'] = $this->m_akademik->get_jenjang('jenjang');
+        $this->load->view('akademik/kelas/edit_kelas', $data + $jenjang);
     }
 
     public function update_kelas()
@@ -412,7 +414,8 @@ class Akademik extends CI_Controller {
     public function mapel_form()
     {
         $this->load->model('M_akademik');
-        $this->load->view('akademik/pelajaran/form_mapel');
+        $data['jenismapel'] = $this->m_akademik->get_jenismapel('jenismapel');
+        $this->load->view('akademik/pelajaran/form_mapel', $data);
     }
 
     public function tambah_mapel()
