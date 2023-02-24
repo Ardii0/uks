@@ -38,7 +38,8 @@
             </section>
 
             <section class="content px-3 pb-5">
-            <form action="<?php echo base_url('Akademik/aksi_update_pendaftaran_siswa') ?>" enctype="multipart/form-data" method="post">
+            <?php foreach($data_siswa_daftar as $row ):?>
+            <form action="<?php echo base_url('Akademik/update_pendaftaran') ?>" enctype="multipart/form-data" method="post">
                 <div class="container-fluid">
                     <div class="row p-1">
                         <div class="col-3">
@@ -53,27 +54,12 @@
                         </div>
                         <div class="col-3">
                             <div>
-                                <label for="id-daftar" class="mr-3">
-                                    Tanggal Daftar
-                                </label>
-                            </div>
-                            <div>
-                                <input type="date" name="tgl_daftar" class="form-control" placeholder="Tahun Ajaran">
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div>
                                 <label for="jenjang" class="mr-3">
                                     Jenjang
                                 </label>
                             </div>
                             <div>
-                                <select class="form-control form-select px-2 py-1" name="id_jenjang" aria-label="Default select example">
-                                    <option selected>Pilih Jenjang</option>
-                                    <?php $id = 0;foreach ($data_jenjang as $row): $id++;?>
-	                                    <option value="<?php echo $row->id_jenjang ?>"><?php echo $row->nama_jenjang ?></option>
-	                                    <?php endforeach;?>
-                                </select>
+                                <input type="number" value="<?php echo $row->id_jenjang?>" placeholder="ID Registrasi" class="form-control" disabled>
                             </div>
                         </div>
                         <div class="col-3">
@@ -83,7 +69,17 @@
                                 </label>
                             </div>
                             <div>
-                                <input type="number" name="no_reg" placeholder="ID Registrasi" class="form-control">
+                                <input type="number" value="<?php echo $row->no_reg?>" placeholder="ID Registrasi" class="form-control" disabled>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div>
+                                <label for="id-daftar" class="mr-3">
+                                    Tanggal Daftar
+                                </label>
+                            </div>
+                            <div>
+                                <input type="date" value="<?php echo $row->tgl_daftar?>" name="tgl_daftar" class="form-control" placeholder="Tahun Ajaran">
                             </div>
                         </div>
                     </div>
@@ -96,7 +92,7 @@
                                 </label>
                             </div>
                             <div>
-                                <input id="nama-lengkap" type="text" name="nama" class="form-control" placeholder="Nama Lengkap">
+                                <input id="nama-lengkap" value="<?php echo $row->nama?>" type="text" name="nama" class="form-control" placeholder="Nama Lengkap">
                                 </div>
                         </div>
                         <div class="col-6">
@@ -106,9 +102,8 @@
                                 </label>
                             </div>
                             <div>
-                                <select id="agama" name="agama" class="form-control form-select px-2 py-1"
+                                <select id="agama" value="<?php echo $row->agama?>" name="agama" class="form-control form-select px-2 py-1"
                                     aria-label="Default select example">
-                                    <option selected>Pilih Agama</option>
                                     <option value="Islam">Islam</option>
                                     <option value="Kristen">Kristen</option>
                                 </select>
@@ -121,7 +116,7 @@
                                 </label>
                             </div>
                             <div>
-                                <input id="nisn" type="number" name="nisn" class="form-control" placeholder="NISN">
+                                <input id="nisn" value="<?php echo $row->nisn?>" type="number" name="nisn" class="form-control" placeholder="NISN">
                             </div>
                         </div>
                         <div class="col-6 mt-2">
@@ -131,10 +126,10 @@
                                 </label>
                             </div>
                             <div>
-                                <input id="tlpn" type="number" name="telepon" class="form-control" placeholder="No Telepon">
+                                <input id="tlpn" type="number" value="<?php echo $row->telepon?>" name="telepon" class="form-control" placeholder="No Telepon">
                             </div>
                         </div>
-                        <div class="col-6 mt-2">
+                        <!-- <div class="col-6 mt-2">
                             <div>
                                 <label class="mr-3">
                                     Jenis Kelamin
@@ -156,7 +151,7 @@
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-6 mt-2">
                             <div>
                                 <label for="alamat" class="mr-3">
@@ -164,7 +159,7 @@
                                 </label>
                             </div>
                             <div>
-                                <input id="alamat" type="text" name="alamat" class="form-control" placeholder="Alamat">
+                                <input id="alamat" type="text" value="<?php echo $row->alamat?>" name="alamat" class="form-control" placeholder="Alamat">
                             </div>
                         </div>
                         <div class="col-6 mt-2">
@@ -174,7 +169,7 @@
                                 </label>
                             </div>
                             <div>
-                                <input id="tempat-lahir" type="text" name="tempat_lahir" class="form-control" placeholder="Tempat Lahir">
+                                <input id="tempat-lahir" type="text" value="<?php echo $row->tempat_lahir?>" name="tempat_lahir" class="form-control" placeholder="Tempat Lahir">
                                 </div>
                         </div>
                         <div class="col-6 mt-2">
@@ -184,38 +179,28 @@
                                 </label>
                             </div>
                             <div>
-                                <input id="tanggal-lahir" name="tgl_lahir" type="date" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-6 mt-3">
-                            <div>
-                                <div>
-                                    <label class="mr-3">
-                                        Foto Siswa
-                                    </label>
-                                </div>
-                                <div>
-                                    <input type="file" name="foto" onchange="readURL(this);" />
-                                </div>
-                                <div>
-                                    <img id="blah" width="300" class="mt-3" />
-                                </div>
+                                <input id="tanggal-lahir" value="<?php echo $row->tgl_lahir?>" name="tgl_lahir" type="date" class="form-control">
                             </div>
                         </div>
                     </div>
                         <div class="mt-3 pb-4 box-footer d-flex justify-content-between">
-                            <button type="button" class="w-25 btn btn-secondary">Kembali</button>
+                            <input type="hidden" value="<?php echo $row->id_daftar?>" name="id_daftar">
+                            <button type="button" onClick="kembali()" class="w-25 btn btn-secondary">Kembali</button>
                             <button type="submit" class="w-25 btn btn-primary">Simpan</button>
                         </div>
                 </div>
                 </form>
+                <?php endforeach ?>
             </section>
         </div>
     </div>
 
     <?php $this->load->view('akademik/style/js')?>
     <script type="text/javascript">
-    
+        function kembali()
+    {
+      window.history.go(-1);
+    }
     </script>
 </body>
 

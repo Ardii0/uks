@@ -204,7 +204,7 @@
                         </div>
                     </div>
                         <div class="mt-3 box-footer d-flex justify-content-between">
-                            <button type="button" class="w-25 btn btn-secondary">Kembali</button>
+                            <button type="button" onClick="kembali()" class="w-25 btn btn-secondary">Kembali</button>
                             <button type="submit" class="w-25 btn btn-primary">Simpan</button>
                         </div>
                 </div>
@@ -225,6 +225,10 @@
 
             reader.readAsDataURL(input.files[0]);
         }
+    }
+    function kembali()
+    {
+      window.history.go(-1);
     }
     </script>
 </body>

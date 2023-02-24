@@ -136,6 +136,16 @@ class M_akademik extends CI_Model{
 		$this->db->insert($tabel, $data);
 		return $this->db->insert_id();
 	}
+    public function edit_pendaftaran($tabel, $id_daftar)
+	{
+		$data=$this->db->where('id_daftar', $id_daftar)->get($tabel);
+		return $data;
+	}
+    public function ubah_pendaftaran($tabel, $data, $where)
+	{
+		$data=$this->db->update($tabel, $data, $where);
+		return $this->db->affected_rows();
+	}
     public function hapus_pendaftaran($tabel, $field, $id_daftar)
 	{
 		$data=$this->db->delete($tabel, array($field => $id_daftar));

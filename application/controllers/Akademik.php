@@ -264,18 +264,11 @@ class Akademik extends CI_Controller {
  // Pendaftaran Siswa
     public function siswa_pendaftaran()
     {
-        $this->load->model('M_akademik');
-        $data['data_siswa_daftar'] = $this->m_akademik->get_siswa_pendaftaran('data_siswa_daftar');
-        $this->load->view('akademik/siswa/pendaftaran', $data);
+     $this->load->model('M_akademik');
+     $data['data_siswa_daftar'] = $this->m_akademik->get_siswa_pendaftaran('data_siswa_daftar');
+     $this->load->view('akademik/siswa/pendaftaran', $data);
     }
-
-    public function form_pendaftaran()
-    {
-        $pilih_jenjang['data_jenjang'] = $this->m_akademik->get_jenjang('data_jenjang');
-        $data['data_pendaftaran_siswa'] = $this->m_akademik->get_siswa_pendaftaran('data_pendaftaran_siswa');
-        $this->load->view('akademik/siswa/form_pendaftaran', $pilih_jenjang + $data);
-    }
-
+    
     public function upload_img_pendaftaran_siswa($value)
     {
         $kode = round(microtime(true) * 1000);
@@ -294,6 +287,13 @@ class Akademik extends CI_Controller {
             $nama = $fn['file_name'];
             return array( true, $nama );
         }
+    }
+
+    public function form_pendaftaran()
+    {
+        $pilih_jenjang['data_jenjang'] = $this->m_akademik->get_jenjang('data_jenjang');
+        $data['data_pendaftaran_siswa'] = $this->m_akademik->get_siswa_pendaftaran('data_pendaftaran_siswa');
+        $this->load->view('akademik/siswa/form_pendaftaran', $pilih_jenjang + $data);
     }
     
     public function aksi_tambah_pendaftaran_siswa()
@@ -338,9 +338,35 @@ class Akademik extends CI_Controller {
         }
     }
 
-    public function edit_pendaftaran()
+    public function edit_pendaftaran($id_daftar)
     {
-        $this->load->view('akademik/siswa/edit_pendaftaran');
+        $data['data_siswa_daftar']=$this->m_akademik->edit_pendaftaran('tabel_daftar', $id_daftar)->result();
+        $this->load->view('akademik/siswa/edit_pendaftaran', $data);
+    }
+
+    public function update_pendaftaran()
+    {
+        $data = array (
+            "nisn" => $this->input->post("nisn"),
+            "nama" => $this->input->post("nama"),
+            "tempat_lahir" => $this->input->post("tempat_lahir"),
+            "tgl_lahir" => $this->input->post("tgl_lahir"),
+            "agama" => $this->input->post("agama"),
+            "alamat" => $this->input->post("alamat"),
+            "telepon" => $this->input->post("telepon"),
+            "diterima" => "P",
+        );
+        $masuk = $this->m_akademik->ubah_pendaftaran("tabel_daftar", $data, array("id_daftar" => $this->input->post("id_daftar")));
+        if ($masuk)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('Akademik/siswa_pendaftaran'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Akademik/edit_pendaftaran/'.$this->input->post('id_daftar')));
+        }
     }
 
     public function hapus_pendaftaran($id_daftar)

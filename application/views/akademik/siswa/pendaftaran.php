@@ -71,52 +71,52 @@
                                     </thead>
                                     <tbody>
                                     <?php 
-                                    // $id=0; foreach($data_siswa_daftar as $row ): $id++;
+                                    $id=0; foreach($data_siswa_daftar as $row ): $id++;
                                     ?>
                                         <tr>
                                             <td><?php
-                                                //  echo $id 
+                                                 echo $id 
                                                  ?></td>
                                             <td><?php
-                                            //  echo $row->nama 
+                                             echo $row->nama 
                                              ?></td>
                                             <td><?php
-                                            //  echo $row->no_reg 
+                                             echo $row->no_reg 
                                              ?></td>
                                             <td><?php
-                                            //  echo tampil_tahunangkatan_byid($row->id_angkatan) 
+                                             echo tampil_tahunangkatan_byid($row->id_angkatan) 
                                              ?></td>
                                             <td><?php
-                                            //  echo tampil_namajenjang_byid($row->id_jenjang) 
+                                             echo tampil_namajenjang_byid($row->id_jenjang) 
                                              ?></td>
                                             <td><?php
-                                            //  echo $row->jekel 
+                                             echo $row->jekel 
                                              ?></td>
                                             <td><?php
-                                            //  echo $row->tempat_lahir 
+                                             echo $row->tempat_lahir 
                                              ?></td>
                                             <td><?php
-                                            //  echo $row->tgl_lahir 
+                                             echo $row->tgl_lahir 
                                              ?></td>
                                             <td class="text-center">
-                                                <a href="<?php echo base_url('Akademik/edit_pendaftaran') ?>" class="btn btn-primary btn-sm">
+                                                <a href="<?php echo base_url('Akademik/edit_pendaftaran/'.$row->id_daftar)?>" class="btn btn-primary btn-sm">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                                 <a class="btn btn-warning btn-sm">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
                                                 <button onClick="hapus(<?php
-                                                //  echo $row->id_daftar 
+                                                 echo $row->id_daftar 
                                                  ?>)" class="btn btn-danger btn-sm">
                                                     <i class="fa fa-trash"></i> 
                                                 </button>
                                             </td>
                                         </tr>
-                                        <?
-                                        //  endforeach;
+                                        <?php
+                                         endforeach;
                                          ?>
                                     </tbody>
-                                    <tbody>
+                                    <!-- <tbody>
                                         <tr>
                                         <td>coba</td>
                                             <td>coba</td>
@@ -138,7 +138,7 @@
                                                 </button>
                                             </td>
                                         </tr>
-                                    </tbody>
+                                    </tbody> -->
                                 </table>
                             </div>
                         </div>
