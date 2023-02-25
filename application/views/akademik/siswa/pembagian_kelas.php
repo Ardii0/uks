@@ -24,6 +24,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="<?php echo base_url('Akademik/') ?>"><?php echo $this->session->userdata('level') ?></a></li>
+                    <li class="breadcrumb-item"><a href="<?php echo base_url('Akademik/siswa_seleksi_siswa') ?>">Seleksi Siswa</a> </li>
                     <li class="breadcrumb-item active">Pembagian Kelas</li>
                     </ol>
                 </div>
@@ -34,7 +35,7 @@
             <section class="content">
                 <div class="container-fluid bg-white">
                     <div class="row mx-2 pt-3 d-flex justify-content-between">
-                        <div class="col-12 col-sm-6">
+                        <div class="col">
                             <div class="form-group">
                             <select class="form-control select2 select2-info" data-dropdown-css-class="select2-info" style="width: 100%;">
                                 <option selected="selected">Pilih Rombel</option>
@@ -42,7 +43,8 @@
                             </select>
                             </div>
                         </div>
-                        <div class="col-md-3 d-flex justify-content-end align-self-start">
+                        <div class="btn bg-info" style="height: 38px">SIMPAN</div>
+                        <div class="col d-flex justify-content-end align-self-start">
                         <div class="form-group">
                         <select class="custom-select rounded-0" id="exampleSelectRounded0">
                             <option>Jenjang</option>
@@ -58,28 +60,28 @@
                                 <table id="akademik-table" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Nama</th>
+                                            <th>Pilih</th>
                                             <th>No Reg</th>
                                             <th>Tahun Ajaran</th>
                                             <th>Jenjang</th>
-                                            <th>Gender</th>
+                                            <th>Nama</th>
+                                            <th>Jekel</th>
                                             <th>Tempat Lahir</th>
-                                            <th>Tanggal Lahir</th>
+                                            <th>Tanggal Lahir</th>  
+                                            <th>Alamat Tinggal</th>  
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Internet
-                                                Explorer 4.0
-                                            </td>
-                                            <td>Win 95+</td>
-                                            <td>Win 95+</td>
-                                            <td>Win 95+</td>
-                                            <td>Win 95+</td>
-                                            <td>Win 95+</td>
-                                            <td>Win 95+</td>
+                                            <td><input type="checkbox" value="" id="flexCheckDefault"></td>
+                                            <td>93293723</td>
+                                            <td>TA2017/2019</td>
+                                            <td>SMK</td>
+                                            <td>Dandy</td>
+                                            <td>L</td>
+                                            <td>Depok</td>
+                                            <td>18-19-2002</td>
+                                            <td>Jl Buah Batu</td>
                                         </tr>
                                     </tbody>
                                 </table>

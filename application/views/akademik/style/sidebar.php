@@ -99,9 +99,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo base_url('Akademik/siswa_pembagian_kelas') ;?>" class="nav-link">
+                <a href="<?php echo base_url('Akademik/siswa_seleksi_siswa') ;?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Pembagian Kelas</p>
+                  <p>Pembagian Siswa</p>
                 </a>
               </li>
               <li class="nav-item">

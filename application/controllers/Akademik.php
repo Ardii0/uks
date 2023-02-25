@@ -468,8 +468,13 @@ class Akademik extends CI_Controller {
         $this->load->view('akademik/siswa/pembagian_kelas');
     }
 
-
-    //Siswa 
+ //Seleksi Siswa
+ public function siswa_seleksi_siswa()
+ {
+     $this->load->view('akademik/siswa/seleksi_siswa');
+ }
+ 
+ //Data Siswa 
     public function siswa_data()
     {
         $this->load->model('M_akademik');
