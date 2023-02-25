@@ -36,10 +36,7 @@
 
             <section class="content">
                 <div class="container-fluid bg-white">
-                    <div class="d-flex p-3 justify-content-between">
-                        <div>
-                            <h5>seleksi siswa</h5>
-                        </div>
+                    <div class="d-flex p-3 justify-content-end">
                         <div style="width: 175px; height: 40px" class="">
                             <a href="<?php echo base_url('Akademik/siswa_pembagian_kelas') ;?>" class="btn w-100 h-100 p-2 btn-success btn-sm">
                                 <i class="fa fa- fa-arrow-right">
@@ -52,26 +49,6 @@
                         <div class="col">
                             <div class="text-center" style="border-bottom: solid 2px; border-color: #">
                                 <h3 class="">DATA PENDAFTAR</h3>
-                            </div>
-                            <div class="row mx-2 pt-3 d-flex justify-content-between">
-                                <div class="col-12 col-sm-6">
-                                    <div class="form-group">
-                                        <select class="form-control select2 select2-info"
-                                            data-dropdown-css-class="select2-info" style="width: 100%;">
-                                            <option selected="selected">Pilih Rombel</option>
-                                            <option>XI TKJ</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 d-flex justify-content-end align-self-start">
-                                    <div class="form-group">
-                                        <select class="custom-select rounded-0" id="exampleSelectRounded0">
-                                            <option>Jenjang</option>
-                                            <option>Value 2</option>
-                                            <option>Value 3</option>
-                                        </select>
-                                    </div>
-                                </div>
                             </div>
                             <div class="card-body">
                                 <table id="akademik-table" class="table table-bordered table-striped">
@@ -86,21 +63,26 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>230202221</td>
-                                            <td>Ridwan Lewandowski</td>
-                                            <td>SMK</td>
-                                            <td>
-                                                <button class="btn btn-info btn-sm">
-                                                    <i class="fas fa- fa-eye"></i> <i
-                                                        class="fa-solid fa-magnifying-glass-plus"></i>
-                                                </button>
-                                                <button class="btn btn-success btn-sm">
-                                                    <i class="fa fa- fa-arrow-right"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
+                                        <?php $id=0; foreach($data_siswa_daftar as $data ): $id++; ?>
+                                            <tr>
+                                                <td><?php echo $id ?></td>
+                                                <td><?php echo $data->no_reg ?></td>
+                                                <td><?php echo $data->nama ?></td>
+                                                <td><?php echo tampil_namajenjang_byid($data->id_jenjang) ?></td>
+                                                <td class="d-flex">
+                                                    <button class="btn btn-info btn-sm">
+                                                        <i class="fas fa- fa-eye"></i> <i
+                                                            class="fa-solid fa-magnifying-glass-plus"></i>
+                                                    </button>
+                                                    <form action="<?php echo base_url('Akademik/terima_siswa') ?>" method="post" class="ml-1">
+                                                        <input type="hidden" value="<?php echo $data->id_daftar ?>" name="id_daftar">
+                                                        <button type="submit" class="btn btn-success btn-sm">
+                                                            <i class="fa fa- fa-arrow-right"></i>
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -108,26 +90,6 @@
                         <div class="col">
                             <div class="text-center" style="border-bottom: solid 2px; border-color: #">
                                 <h3 class="">DATA SELEKSI</h3>
-                            </div>
-                            <div class="row mx-2 pt-3 d-flex justify-content-between">
-                                <div class="col-12 col-sm-6">
-                                    <div class="form-group">
-                                        <select class="form-control select2 select2-info"
-                                            data-dropdown-css-class="select2-info" style="width: 100%;">
-                                            <option selected="selected">Pilih Rombel</option>
-                                            <option>XI TKJ</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 d-flex justify-content-end align-self-start">
-                                    <div class="form-group">
-                                        <select class="custom-select rounded-0" id="exampleSelectRounded0">
-                                            <option>Jenjang</option>
-                                            <option>Value 2</option>
-                                            <option>Value 3</option>
-                                        </select>
-                                    </div>
-                                </div>
                             </div>
                             <div class="card-body">
                                 <table id="akademik-table2" class="table table-bordered table-striped">
@@ -142,21 +104,26 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <?php $id=0; foreach($data_siswa as $row ): $id++; ?>
                                         <tr>
-                                            <td>1</td>
-                                            <td>230202221</td>
-                                            <td>Ridwan Lewandowski</td>
-                                            <td>SMK</td>
-                                            <td>
+                                            <td><?php echo $id ?></td>
+                                            <td><?php echo tampil_noReg_byIdDaftar($row->id_daftar) ?></td>
+                                            <td><?php echo tampil_nama_byIdDaftar($row->id_daftar) ?></td>
+                                            <td><?php echo tampil_namaJenjang_byIdDaftar($row->id_daftar) ?></td>
+                                            <td class="d-flex">
                                                 <button class="btn btn-info btn-sm">
                                                     <i class="fas fa- fa-eye"></i> <i
-                                                        class="fa-solid fa-magnifying-glass-plus"></i>
+                                                    class="fa-solid fa-magnifying-glass-plus"></i>
                                                 </button>
-                                                <button class="btn btn-success btn-sm">
-                                                    <i class="fa fa- fa-arrow-left"></i>
-                                                </button>
+                                                <form action="<?php echo base_url('Akademik/hapus_seleksi/') .$row->id_siswa ;?>" method="post" class="ml-1">
+                                                    <input type="hidden" value="<?php echo $row->id_daftar ?>" name="id_daftar">
+                                                    <button class="btn btn-success btn-sm">
+                                                        <i class="fa fa- fa-arrow-left"></i>
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
+                                    <?php endforeach ?>
                                     </tbody>
                                 </table>
                             </div>

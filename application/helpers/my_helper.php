@@ -76,4 +76,86 @@ function tampil_siswa_byid($id)
   return $stmt;
   }
 }
+
+// Seleksi Pendaftaran Siswa & Pembagian Kelas
+  function tampil_noReg_byIdDaftar($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
+    foreach ($result->result() as $c) {
+    $stmt= $c->no_reg;
+    return $stmt;
+    }
+  }
+  function tampil_nama_byIdDaftar($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
+    foreach ($result->result() as $c) {
+    $stmt= $c->nama;
+    return $stmt;
+    }
+  }
+  function tampil_namaJenjang_byIdDaftar($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_jenjang',$id)->get('tabel_jenjang');
+    foreach ($result->result() as $c) {
+    $stmt= $c->id_jenjang;
+    return $stmt;
+    }
+  }
+  function tampil_tahunajaran_byIdDaftar($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
+    foreach ($result->result() as $c) {
+    $stmt= $c->id_angkatan;
+    return $stmt;
+    }
+  }
+  function tampil_jekel_byIdDaftar($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
+    foreach ($result->result() as $c) {
+    $stmt= $c->jekel;
+    return $stmt;
+    }
+  }
+  function tampil_tempatlahir_byIdDaftar($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
+    foreach ($result->result() as $c) {
+    $stmt= $c->tempat_lahir;
+    return $stmt;
+    }
+  }
+  function tampil_tanggallahir_byIdDaftar($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
+    foreach ($result->result() as $c) {
+    $stmt= $c->tgl_lahir;
+    return $stmt;
+    }
+  }
+  function tampil_alamattinggal_byIdDaftar($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
+    foreach ($result->result() as $c) {
+    $stmt= $c->alamat;
+    return $stmt;
+    }
+  }
 ?>

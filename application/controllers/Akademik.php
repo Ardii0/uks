@@ -463,16 +463,92 @@ class Akademik extends CI_Controller {
 
     }
 
+ // Pembagian Kelas
     public function siswa_pembagian_kelas()
     {
-        $this->load->view('akademik/siswa/pembagian_kelas');
+        $this->load->model('M_akademik');
+        $data['data_siswa_diterima'] = $this->m_akademik->get_siswa_kelas('data_siswa_diterima');
+        $jenjang['jenjang'] = $this->m_akademik->get_jenjang('jenjang');
+        $rombel['rombel'] = $this->m_akademik->get_rombel('rombel');
+        $this->load->view('akademik/siswa/pembagian_kelas', $data + $jenjang + $rombel);
+    }
+
+    public function terapkan_kelas()
+    {
+        $terapkan = array
+        (
+            "id_rombel" => $this->input->post('id_rombel'),
+        );
+
+        $masuk=$this->m_akademik->ubah_siswa('tabel_siswa', $terapkan, array('id_siswa'=>$this->input->post('id_siswa')));
+        if($masuk)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('Akademik/siswa_pembagian_kelas'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Akademik/siswa_pembagian_kelas'));
+        }
     }
 
  //Seleksi Siswa
- public function siswa_seleksi_siswa()
- {
-     $this->load->view('akademik/siswa/seleksi_siswa');
- }
+    public function siswa_seleksi_siswa()
+    {
+        $this->load->model('M_akademik');
+        $siswa_daftar['data_siswa_daftar'] = $this->m_akademik->get_siswa_pendaftaran('data_siswa_daftar');
+        $siswa['data_siswa'] = $this->m_akademik->get_siswa_kelas('data_siswa');
+        $this->load->view('akademik/siswa/seleksi_siswa', $siswa_daftar + $siswa);
+    }
+
+    public function terima_siswa()
+    {
+        $dataa = array
+        (
+            'id_daftar' => $this->input->post('id_daftar'),
+        );
+
+        $approve = array
+        (
+            "diterima" => "Y",
+        );
+
+        $approve_siswa=$this->m_akademik->ubah_seleksi('tabel_daftar', $approve, array('id_daftar'=>$this->input->post('id_daftar')));
+        $masuk=$this->m_akademik->terima_siswa('tabel_siswa', $dataa, $approve_siswa);
+        if($masuk)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('Akademik/siswa_seleksi_siswa'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Akademik/siswa_seleksi_siswa'));
+        }
+    }
+
+    public function hapus_seleksi($id_siswa)
+    {
+        $approve = array
+        (
+            "diterima" => "P",
+        );
+
+        $approve_siswa=$this->m_akademik->ubah_seleksi('tabel_daftar', $approve, array('id_daftar'=>$this->input->post('id_daftar')));
+        $hapus= $this->m_akademik->hapus_seleksi_siswa('tabel_siswa', 'id_siswa', $id_siswa);
+        if($approve_siswa)
+        {
+            $this->session->set_flashdata('sukses', 'Berhasil..');
+            redirect(base_url('Akademik/siswa_seleksi_siswa'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Akademik/siswa_seleksi_siswa'));
+        }
+
+    }
  
  //Data Siswa 
     public function siswa_data()

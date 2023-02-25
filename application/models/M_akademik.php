@@ -158,9 +158,38 @@ class M_akademik extends CI_Model{
     }
 
 // Siswa
+    public function get_siswa()
+    {
+        return $this->db->get('tabel_siswa')->result();
+    }
+
+    public function get_siswa_kelas()
+    {
+        return $this->db->where('id_rombel', 0)->get('tabel_siswa')->result();
+    }
+
+    public function get_siswaById($tabel, $id_siswa)
+    {
+        $data=$this->db->where('id_siswa', $id_siswa)->get($tabel);
+        return $data;
+    }
+
+    public function ubah_siswa($tabel, $data, $where)
+    {
+        $data=$this->db->update($tabel, $data, $where);
+        return $this->db->affected_rows();
+    }
+
+    public function hapus_siswa($tabel, $field, $id_siswa)
+    {
+        $data=$this->db->delete($tabel, array($field => $id_siswa));
+        return $data;
+    }
+
+// Pendaftaran Siswa
     public function get_siswa_pendaftaran()
 	{
-		return $this->db->get('tabel_daftar')->result();
+		return $this->db->where('diterima','P')->get('tabel_daftar')->result();
 	}
     public function tambah_pendaftaran($tabel, $data)
 	{
@@ -183,31 +212,30 @@ class M_akademik extends CI_Model{
 		return $data;
 	}
 
+// Seleksi Pendaftaran Siswa
+    public function terima_siswa($tabel, $data)
+	{
+		$this->db->insert($tabel, $data);
+		return $this->db->insert_id();
+	}
 
-    public function get_siswa()
+    public function ubah_seleksi($tabel, $data, $where)
+	{
+		$data=$this->db->update($tabel, $data, $where);
+		return $this->db->affected_rows();
+	}
+
+    public function hapus_seleksi_siswa($tabel, $field, $id_siswa)
+	{
+		$data=$this->db->delete($tabel, array($field => $id_siswa));
+		return $data;
+	}
+// Pembagian Kelas
+    public function get_siswa_diterima()
     {
-        return $this->db->get('tabel_siswa')->result();
+        return $this->db->where('diterima','Y')->get('tabel_daftar')->result();
     }
-
-    public function get_siswaById($tabel, $id_siswa)
-    {
-        $data=$this->db->where('id_siswa', $id_siswa)->get($tabel);
-        return $data;
-    }
-
-
-    public function ubah_siswa($tabel, $data, $where)
-    {
-        $data=$this->db->update($tabel, $data, $where);
-        return $this->db->affected_rows();
-    }
-
-    public function hapus_siswa($tabel, $field, $id_siswa)
-    {
-        $data=$this->db->delete($tabel, array($field => $id_siswa));
-        return $data;
-    }
-
+    
 // Pelajaran
  // Mapel
     public function get_mapel()
