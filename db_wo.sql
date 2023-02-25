@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 25, 2023 at 02:56 AM
+-- Generation Time: Feb 25, 2023 at 04:27 AM
 -- Server version: 8.0.29
 -- PHP Version: 8.0.25
 
@@ -139,7 +139,7 @@ INSERT INTO `tabel_admin` (`id_admin`, `id_pesanan`, `id_pembayaran`, `id_paket_
 --
 
 CREATE TABLE `tabel_alokasiguru` (
-  `id` int NOT NULL,
+  `id_alokasiguru` int NOT NULL,
   `kode_guru` int NOT NULL,
   `id_mapel` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -232,7 +232,7 @@ CREATE TABLE `tabel_guru` (
 --
 
 INSERT INTO `tabel_guru` (`kode_guru`, `nip`, `nama_guru`, `jekel`, `no_hp`, `alamat`, `status`) VALUES
-(444, '22222', 'Saburo', NULL, '0990998', 'Atlantis Njir', 'AKTIF');
+(444, '22222', 'Saburo', 'L', '0990998', 'Atlantis', 'AKTIF');
 
 -- --------------------------------------------------------
 
@@ -589,6 +589,13 @@ CREATE TABLE `tabel_siswa` (
   `saldo_tabungan` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `tabel_siswa`
+--
+
+INSERT INTO `tabel_siswa` (`id_siswa`, `nis`, `id_daftar`, `id_rombel`, `saldo_tabungan`) VALUES
+(1, '21312', 1, 1, 123123123);
+
 -- --------------------------------------------------------
 
 --
@@ -738,7 +745,7 @@ ALTER TABLE `tabel_admin`
 -- Indexes for table `tabel_alokasiguru`
 --
 ALTER TABLE `tabel_alokasiguru`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_alokasiguru`);
 
 --
 -- Indexes for table `tabel_alokasimapel`
@@ -822,7 +829,10 @@ ALTER TABLE `tabel_pesanan`
 -- Indexes for table `tabel_rombel`
 --
 ALTER TABLE `tabel_rombel`
-  ADD PRIMARY KEY (`id_rombel`);
+  ADD PRIMARY KEY (`id_rombel`),
+  ADD KEY `tabel_kelas_1` (`id_kelas`),
+  ADD KEY `tabel_jenjang_ibfk_1` (`id_jenjang`),
+  ADD KEY `tabel_guru_ibfk_1` (`kode_guru`);
 
 --
 -- Indexes for table `tabel_siswa`
@@ -882,7 +892,7 @@ ALTER TABLE `tabel_admin`
 -- AUTO_INCREMENT for table `tabel_alokasiguru`
 --
 ALTER TABLE `tabel_alokasiguru`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_alokasiguru` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tabel_alokasimapel`
@@ -966,7 +976,7 @@ ALTER TABLE `tabel_rombel`
 -- AUTO_INCREMENT for table `tabel_siswa`
 --
 ALTER TABLE `tabel_siswa`
-  MODIFY `id_siswa` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_siswa` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tabel_tahunajaran`
@@ -1003,6 +1013,13 @@ ALTER TABLE `tabel_alokasimapel`
   ADD CONSTRAINT `tabel_alokasimapel_ibfk_1` FOREIGN KEY (`id_kelas`) REFERENCES `tabel_kelas` (`id_kelas`);
 
 --
+-- Constraints for table `tabel_daftar`
+--
+ALTER TABLE `tabel_daftar`
+  ADD CONSTRAINT `tabel_angkatan_ibfk_1` FOREIGN KEY (`id_angkatan`) REFERENCES `tabel_tahunajaran` (`id_angkatan`),
+  ADD CONSTRAINT `tabel_daftar_to_jenjang_1` FOREIGN KEY (`id_jenjang`) REFERENCES `tabel_jenjang` (`id_jenjang`);
+
+--
 -- Constraints for table `tabel_kelas`
 --
 ALTER TABLE `tabel_kelas`
@@ -1013,6 +1030,21 @@ ALTER TABLE `tabel_kelas`
 --
 ALTER TABLE `tabel_mapel`
   ADD CONSTRAINT `tabel_mapel_ibfk_1` FOREIGN KEY (`id_jenismapel`) REFERENCES `tabel_jenismapel` (`id_jenismapel`);
+
+--
+-- Constraints for table `tabel_rombel`
+--
+ALTER TABLE `tabel_rombel`
+  ADD CONSTRAINT `tabel_guru_ibfk_1` FOREIGN KEY (`kode_guru`) REFERENCES `tabel_guru` (`kode_guru`),
+  ADD CONSTRAINT `tabel_jenjang_ibfk_1` FOREIGN KEY (`id_jenjang`) REFERENCES `tabel_jenjang` (`id_jenjang`),
+  ADD CONSTRAINT `tabel_kelas_1` FOREIGN KEY (`id_kelas`) REFERENCES `tabel_kelas` (`id_kelas`);
+
+--
+-- Constraints for table `tabel_siswa`
+--
+ALTER TABLE `tabel_siswa`
+  ADD CONSTRAINT `tabel_siswa_to_daftar_ibfk_1` FOREIGN KEY (`id_daftar`) REFERENCES `tabel_daftar` (`id_daftar`),
+  ADD CONSTRAINT `tabel_siswa_to_rombel_ibfk_1` FOREIGN KEY (`id_rombel`) REFERENCES `tabel_rombel` (`id_rombel`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
