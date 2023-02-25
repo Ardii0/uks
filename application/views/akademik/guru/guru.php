@@ -89,7 +89,7 @@
                                                     <?php echo $data->alamat ?>
                                                 </td>
                                                 <td class="text-center">
-                                                    <a href="#" class="btn btn-success btn-sm">
+                                                    <a href="<?php echo base_url('Akademik/alokasi_guru/' .$data->kode_guru) ?>" class="btn btn-success btn-sm">
                                                         <i class="fa fa-share"></i></a>
                                                     <a href="<?php echo base_url('Akademik/edit_guru/' . $data->kode_guru) ?>"
                                                         class="btn btn-primary btn-sm">

@@ -56,5 +56,11 @@ $(function() {
         "lengthChange": true,
         "autoWidth": false,
     }).buttons().container().appendTo('#datasiswa-table_wrapper .col-md-6:eq(0)');
+
+    $("#datasiswa-table2").DataTable({
+        "responsive": true,
+        "lengthChange": true,
+        "autoWidth": false,
+    }).buttons().container().appendTo('#datasiswa-table2_wrapper .col-md-6:eq(0)');
 });
 </script>

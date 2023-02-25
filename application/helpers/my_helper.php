@@ -22,6 +22,17 @@ function tampil_tahunangkatan_byid($id)
   }
 }
 
+function tampil_mapelById($id)
+{
+ $ci =& get_instance();
+ $ci->load->database();
+ $result = $ci->db->where('id_mapel',$id)->get('tabel_mapel');
+  foreach ($result->result() as $c) {
+  $stmt= $c->nama_mapel;
+  return $stmt;
+  }
+}
+
 function tampil_jenismapelById($id)
 {
  $ci =& get_instance();

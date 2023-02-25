@@ -622,7 +622,7 @@ class Akademik extends CI_Controller {
         $this->m_akademik->hapus_mapel('tabel_mapel', 'id_mapel', $id_mapel);
         redirect(base_url('Akademik/pelajaran'));
     }
- // Jenis
+ // Jenis Mapel
     public function jenis_pelajaran()
     {
         $this->load->model('M_akademik');
@@ -676,5 +676,33 @@ class Akademik extends CI_Controller {
         $this->m_akademik->hapus_jenismapel('tabel_jenismapel', 'id_jenismapel', $id_jenismapel);
         redirect(base_url('Akademik/jenis_pelajaran'));
     }
+
+// Alokasi
+ // Alok Guru
+    public function alokasi_guru($kode_guru)
+    {
+        $this->load->model('M_akademik');
+        $data['guru']=$this->m_akademik->get_guruById('tabel_guru', $kode_guru)->result();
+        $data['mapel'] = $this->m_akademik->get_mapel('mapel');
+        $data['alokasiguru'] = $this->m_akademik->get_alokasiguruByIdGuru('tabel_alokasiguru', $kode_guru);
+        $this->load->view('akademik/alokasi/alokasi_guru/alokasi_guru', $data);
+    }
+
+    public function tambah_alokasiguru()
+    {
+        $data = [
+            'kode_guru' => $this->input->post('kode_guru'),
+            'id_mapel' => $this->input->post('id_mapel'),
+        ];
+        $this->m_akademik->tambah_alokasiguru('tabel_alokasiguru', $data, array('id_alokasiguru'=>$this->input->post('id_alokasiguru')));
+        redirect(base_url('Akademik/alokasi_guru/'.$this->input->post('kode_guru')));
+    }
+    
+    public function hapus_alokasiguru($id_alokasiguru)
+    {
+        $this->m_akademik->hapus_alokasiguru('tabel_alokasiguru', 'id_alokasiguru', $id_alokasiguru);
+        redirect(base_url('Akademik/alokasi_guru/'. $kode_guru));
+    }
+
 
 }
