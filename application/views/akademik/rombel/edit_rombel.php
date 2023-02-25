@@ -50,15 +50,6 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">Kuota</label>
-                                    <div class="">
-                                        <textarea class="form-control" name="kuota"
-                                            placeholder="Masukan Kuota"><?php echo $data->kuota ?></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-group">
                                     <label class="control-label">Kelas</label>
                                     <div class="">
                                         <select name="id_kelas" class="form-control form-select px-2 py-1" aria-label="kelas">
@@ -72,9 +63,44 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="control-label">Kuota</label>
+                                    <div class="">
+                                        <input type="text" name="kuota" class="form-control"
+                                               value="<?php echo $data->kuota ?>">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label">Guru</label>
+                                    <div class="">
+                                        <select name="kode_guru" class="form-control form-select px-2 py-1" aria-label="guru">
+                                            <option style="display: none;" value="<?php echo tampil_guruById($data->kode_guru)?>">
+                                            <?php echo tampil_guruById($data->kode_guru)?>
+                                            </option>
+                                            <?php foreach($guru as $guru): ?>
+                                                <option value="<?php echo $guru->kode_guru ?>"><?php echo $guru->nama_guru ?></option>
+                                            <?php endforeach;?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Jenjang</label>
+                                    <div class="">
+                                        <select name="id_jenjang" class="form-control form-select px-2 py-1" aria-label="jenjang">
+                                            <option style="display: none;" value="<?php echo tampil_namajenjang_byid($data->id_jenjang)?>">
+                                            <?php echo tampil_namajenjang_byid($data->id_jenjang)?>
+                                            </option>
+                                            <?php foreach($jenjang as $jenjang): ?>
+                                                <option value="<?php echo $jenjang->id_jenjang ?>"><?php echo $jenjang->nama_jenjang ?></option>
+                                            <?php endforeach;?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="control-label">Nip</label>
                                     <div class="">
-                                        <input type="number" name="nip" class="form-control"
+                                        <input type="number" value="<?php echo $data->nip ?>" name="nip" class="form-control"
                                             placeholder="Masukan nip">
                                     </div>
                                 </div>

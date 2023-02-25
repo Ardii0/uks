@@ -51,6 +51,8 @@
                                             <th>No</th>
                                             <th>Nama rombel</th>
                                             <th>Kelas</th>
+                                            <th>Jenjang</th>
+                                            <th>Wali Kelas</th>
                                             <th>Kouta</th>
                                             <th>Nip</th>
                                             <th>Aksi</th>
@@ -62,7 +64,8 @@
                                             <td><?php echo $id?></td>
                                             <td><?php echo $data->nama_rombel?></td>
                                             <td><?php echo tampil_kelasById($data->id_kelas)?></td>
-                                            <!-- <td><?php echo tampil_namajenjang_byid($data->id_jenjang)?></td> -->
+                                            <td><?php echo tampil_namajenjang_byid($data->id_jenjang)?></td>
+                                            <td><?php echo tampil_guruById($data->kode_guru)?></td>
                                             <td><?php echo $data->kuota?></td>
                                             <td><?php echo $data->nip?></td>
                                             <td class="text-center">

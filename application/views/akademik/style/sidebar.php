@@ -67,7 +67,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo base_url('Akademik/rombongan_belajar') ;?>" class="nav-link">
+                <a href="<?php echo base_url('Akademik/rombel') ;?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Rombongan Belajar</p>
                 </a>

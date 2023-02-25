@@ -96,8 +96,7 @@ class M_akademik extends CI_Model{
         return $data;
     }
 
-    
-    //Rombongan Belajar
+// Rombel
     public function get_rombel()
 	{
 		return $this->db->get('tabel_rombel')->result();
@@ -126,6 +125,7 @@ class M_akademik extends CI_Model{
         $data=$this->db->delete($tabel, array($field => $id_rombel));
         return $data;
     }
+
 
 // Guru
     public function get_guru()
@@ -185,28 +185,28 @@ class M_akademik extends CI_Model{
 
 
     public function get_siswa()
-{
-    return $this->db->get('tabel_siswa')->result();
-}
+    {
+        return $this->db->get('tabel_siswa')->result();
+    }
 
-public function get_siswaById($tabel, $id_siswa)
-{
-    $data=$this->db->where('id_siswa', $id_siswa)->get($tabel);
-    return $data;
-}
+    public function get_siswaById($tabel, $id_siswa)
+    {
+        $data=$this->db->where('id_siswa', $id_siswa)->get($tabel);
+        return $data;
+    }
 
 
-public function ubah_siswa($tabel, $data, $where)
-{
-    $data=$this->db->update($tabel, $data, $where);
-    return $this->db->affected_rows();
-}
+    public function ubah_siswa($tabel, $data, $where)
+    {
+        $data=$this->db->update($tabel, $data, $where);
+        return $this->db->affected_rows();
+    }
 
-public function hapus_siswa($tabel, $field, $id_siswa)
-{
-    $data=$this->db->delete($tabel, array($field => $id_siswa));
-    return $data;
-}
+    public function hapus_siswa($tabel, $field, $id_siswa)
+    {
+        $data=$this->db->delete($tabel, array($field => $id_siswa));
+        return $data;
+    }
 
 // Pelajaran
  // Mapel

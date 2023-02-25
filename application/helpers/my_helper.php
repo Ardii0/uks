@@ -33,7 +33,7 @@ function tampil_jenismapelById($id)
   }
 }
 
-function tampil_kelas_byid($id)
+function tampil_kelasById($id)
 {
  $ci =& get_instance();
  $ci->load->database();
@@ -44,7 +44,7 @@ function tampil_kelas_byid($id)
   }
 }
 
-function tampil_guru_byid($id)
+function tampil_guruById($id)
 {
  $ci =& get_instance();
  $ci->load->database();

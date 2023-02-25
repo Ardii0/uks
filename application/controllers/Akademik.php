@@ -201,68 +201,73 @@ class Akademik extends CI_Controller {
         redirect(base_url('Akademik/kelas'));
     }
 
-    //Rombongan Belajar
-    public function rombongan_belajar()
+// Rombel
+    public function rombel()
     {
         $this->load->model('M_akademik');
-        $data['rombongan_belajar'] = $this->m_akademik->get_rombel('rombongan_belajar');
-        $this->load->view('akademik/kelas/rombongan_belajar', $data);
+        $data['rombel'] = $this->m_akademik->get_rombel('rombel');
+        $this->load->view('akademik/rombel/rombel', $data);
     }
 
     public function rombel_form()
     {
         $this->load->model('M_akademik');
         $data['kelas'] = $this->m_akademik->get_kelas('kelas');
-        $data['jenjang'] = $this->m_akademik->get_jenjang('jenjang');
         $data['guru'] = $this->m_akademik->get_guru('guru');
-        $this->load->view('akademik/kelas/form_rombel', $data);
+        $data['jenjang'] = $this->m_akademik->get_jenjang('jenjang');
+        $this->load->view('akademik/rombel/form_rombel', $data);
     }
-    
+
     public function tambah_rombel()
     {
         $data = [
             'nama_rombel' => $this->input->post('nama_rombel'),
+            'kode_guru' => $this->input->post('kode_guru'),
             'id_kelas' => $this->input->post('id_kelas'),
             'id_jenjang' => $this->input->post('id_jenjang'),
             'kuota' => $this->input->post('kuota'),
-            'id_guru' => $this->input->post('id_guru'),
+            'nip' => $this->input->post('nip'),
         ];
         $this->m_akademik->tambah_rombel('tabel_rombel', $data);
-        redirect(base_url('Akademik/rombongan_belajar'));
+        redirect(base_url('Akademik/rombel'));
     }
 
     public function edit_rombel($id_rombel)
     {
         $data['rombel']=$this->m_akademik->get_rombelById('tabel_rombel', $id_rombel)->result();
-        $this->load->view('akademik/rombel/edit_rombel', $data);
+        $kelas['kelas'] = $this->m_akademik->get_kelas('kelas');
+        $guru['guru'] = $this->m_akademik->get_guru('guru');
+        $jenjang['jenjang'] = $this->m_akademik->get_jenjang('jenjang');
+        $this->load->view('akademik/rombel/edit_rombel', $data + $kelas + $guru + $jenjang);
     }
 
     public function update_rombel()
     {
-        $data = [
+        $data =  [
             'nama_rombel' => $this->input->post('nama_rombel'),
+            'kode_guru' => $this->input->post('kode_guru'),
             'id_kelas' => $this->input->post('id_kelas'),
             'id_jenjang' => $this->input->post('id_jenjang'),
             'kuota' => $this->input->post('kuota'),
-            'id_guru' => $this->input->post('id_guru'),
+            'nip' => $this->input->post('nip'),
         ];
         $logged=$this->m_akademik->ubah_rombel('tabel_rombel', $data, array('id_rombel'=>$this->input->post('id_rombel')));
         if($logged)
         {
             $this->session->set_flashdata('sukses', 'berhasil');
-            redirect(base_url('Akademik/rombongan_belajar'));
+            redirect(base_url('Akademik/rombel'));
         }
         else
         {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Akademik/rombongan_belajar/edit_rombel/'.$this->input->post('id_rombel')));
+            redirect(base_url('Akademik/rombel/edit_ta/'.$this->input->post('id_rombel')));
         }
     }
-    
+
     public function hapus_rombel($id_rombel)
     {
         $this->m_akademik->hapus_rombel('tabel_rombel', 'id_rombel', $id_rombel);
-        redirect(base_url('Akademik/rombongan_belajar'));
+        redirect(base_url('Akademik/rombel'));
     }
 
 // Guru
