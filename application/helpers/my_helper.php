@@ -113,7 +113,7 @@ function tampil_nama_siswa_byid($id)
   {
   $ci =& get_instance();
   $ci->load->database();
-  $result = $ci->db->where('id_jenjang',$id)->get('tabel_jenjang');
+  $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
     foreach ($result->result() as $c) {
     $stmt= $c->id_jenjang;
     return $stmt;

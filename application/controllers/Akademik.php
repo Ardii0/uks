@@ -374,7 +374,7 @@ class Akademik extends CI_Controller {
         {
             //$this->upload->display_errors();
             $this->session->set_flashdata('error', 'gagal upload foto.');
-            redirect(base_url('Admin/form_pendaftaran'));
+            redirect(base_url('Akademik/form_pendaftaran'));
         }
         else
         {

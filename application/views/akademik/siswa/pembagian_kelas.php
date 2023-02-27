@@ -80,8 +80,8 @@
                                             <tr>
                                                 <td><input type="checkbox" name="id_siswa" value="<?php echo $row->id_siswa ?>" id="flexCheckDefault"></td>
                                                 <td><?php echo tampil_noReg_byIdDaftar($row->id_daftar) ?></td>
-                                                <td><?php echo tampil_namaJenjang_byIdDaftar($row->id_daftar) ?></td>
                                                 <td><?php echo tampil_tahunajaran_byIdDaftar($row->id_daftar) ?></td>
+                                                <td><?php echo tampil_namaJenjang_byIdDaftar($row->id_daftar) ?></td>
                                                 <td><?php echo tampil_nama_byIdDaftar($row->id_daftar) ?></td>
                                                 <td><?php echo tampil_jekel_byIdDaftar($row->id_daftar) ?></td>
                                                 <td><?php echo tampil_tempatlahir_byIdDaftar($row->id_daftar) ?></td>
