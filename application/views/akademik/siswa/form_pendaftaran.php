@@ -145,7 +145,7 @@
                                 </label>
                             </div>
                             <div>
-                                <input id="alamat_tinggal" type="text" name="alamat_tinggal" class="form-control" placeholder="Alamat">
+                                <input id="alamat" type="text" name="alamat" class="form-control" placeholder="Alamat">
                             </div>
                         </div>
                         <div class="col-4 mt-2">

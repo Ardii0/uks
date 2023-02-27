@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Akademik</title>
+    <?php $this->load->view('akademik/style/head')?>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+        <?php $this->load->view('akademik/style/navbar')?>
+        <?php $this->load->view('akademik/style/sidebar')?>
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Pindah Sekolah</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a
+                                        href="<?php echo base_url('Akademik/') ?>"><?php echo $this->session->userdata('level') ?></a>
+                                </li>
+                                <li class="breadcrumb-item active"><a href="<?php echo base_url('Akademik/siswa') ?>">Siswa</a></li>
+                                <li class="breadcrumb-item active">Pindah Sekolah</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content bg-white py-4">
+            <div class="container-fluid">
+              <?php foreach ($siswa as $data): ?>
+                <form action="<?php echo base_url('Akademik/tambah_pindah_sekolah') ?>" enctype="multipart/form-data"
+                    method="post">
+                    <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label">Nama Sekolah</label>
+                                    <div class="">
+                                        <input type="hidden" name="nama_sekolah" class="form-control" autocomplete="off"
+                                            placeholder="Masukan Nama Sekolah" >
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                    <div class="row d-flex justify-content-end">
+                        <div class="">
+                            <input type="text" value="<?php echo $data->id_daftar?>" name="id_daftar">
+                            <input type="text" value="<?php echo $data->id_rombel?>" name="id_rombel">
+                            <button type="submit" class="btn btn-success" style="width: 150px; margin-right: 12px;">Ubah</button>
+                        </div>
+                    </div>
+                </form>
+            <?php endforeach;?>
+            </div>
+            </section>
+        </div>
+    </div>
+    </div>
+    </div>
+    <?php $this->load->view('akademik/style/js')?>
+</body>
+
+</html>

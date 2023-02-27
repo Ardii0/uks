@@ -62,8 +62,8 @@
                         </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-8">
+                    <div class="row"> 
+                        <div >
                             <div class="card-body">
                                 <table id="datasiswa-table" class="table table-bordered table-striped">
                                     <thead>
@@ -72,30 +72,44 @@
                                                 <input type="checkbox" name="" id="">
                                             </th>
                                             <th>Rombel</th>
-                                            <th>NISN</th>
+                                            <th>NIS</th>
                                             <th>Nama</th>
                                             <th>Jekel</th>
                                             <th>TTL</th>
                                             <th>Alamat</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <?php $id=0; foreach($siswa as $data ): $id++;?>
                                         <tr>
                                             <td>
-                                                <input type="checkbox" name="" id="">
+                                                <input type="checkbox" name="select" id="">
                                             </td>
-                                            <td>X TKJ 1</td>
-                                            <td>123456789</td>
-                                            <td>Sigit Nugroho</td>
-                                            <td>Laki-laki</td>
-                                            <td>Semarang, 1999-01-05</td>
-                                            <td>Jl. Semarang</td>
+                                            <td><?php echo tampil_rombel_byid($data->id_rombel)?></td>
+                                            <td><?php echo tampil_nisn_siswa_byid($data->id_daftar)?></td>
+                                            <td><?php echo tampil_nama_siswa_byid($data->id_daftar)?></td>
+                                            <td><?php echo tampil_jekel_siswa_byid($data->id_daftar)?></td>
+                                            <td><?php echo tampil_tempat_lahir_siswa_byid($data->id_daftar)?>, <?php echo tampil_tanggal_lahir_siswa_byid($data->id_daftar)?></td>
+                                            <td><?php echo tampil_alamat_siswa_byid($data->id_daftar)?></td>
+                                            <td>
+                                                <a href="<?php echo base_url('Akademik/pindah_sekolah/' . $data->id_daftar) ?>"
+                                                        class="btn btn-success btn-sm">
+                                                        pindah sekolah</a>
+                                                    <a href="<?php echo base_url('Akademik/pindah_kelas/' . $data->id_daftar) ?>"
+                                                        class="btn btn-primary btn-sm">
+                                                        pindah kelas</a>
+                                                        <button onclick="hapus(<?php echo $data->id_daftar ;?>)"
+                                                    class="btn btn-danger btn-sm">
+                                                    naik kelas</button>
+                                            </td>
                                         </tr>
+                                        <?php endforeach;?>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                        <div class="col-4">
+                        <!-- <div class="col-4">
                             <div class="border-bottom h3">Mutasi Siswa</div>
                             <div class="form-group d-flex flex-row " style="width: fit-content;">
                         <div class="mt-2 mx-1">
@@ -111,7 +125,7 @@
                                 </select>
                         </div>
                         </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -120,6 +134,11 @@
     </div>
 
     <?php $this->load->view('akademik/style/js')?>
+    <script>
+        function hapus(id) {
+                window.location.href = "<?php echo base_url('Akademik/naik_kelas/')?>" + id;
+        }
+        </script>
 </body>
 
 </html>

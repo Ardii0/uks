@@ -186,6 +186,12 @@ class M_akademik extends CI_Model{
         return $data;
     }
 
+    public function tambah_pindah_sekolah($tabel, $data)
+    {
+        $this->db->insert($tabel, $data);
+        return $this->db->insert_id();
+    }
+
 // Pendaftaran Siswa
     public function get_siswa_pendaftaran()
 	{
