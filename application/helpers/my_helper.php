@@ -77,7 +77,7 @@ function tampil_rombel_byid($id)
   }
 }
 
-function tampil_siswa_byid($id)
+function tampil_nama_siswa_byid($id)
 {
  $ci =& get_instance();
  $ci->load->database();
@@ -166,6 +166,118 @@ function tampil_siswa_byid($id)
   $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
     foreach ($result->result() as $c) {
     $stmt= $c->alamat;
+    return $stmt;
+    }
+  }
+
+// Data Siswa
+  function tampil_jekel_siswa_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
+    foreach ($result->result() as $c) {
+    $stmt= $c->jekel;
+    return $stmt;
+    }
+  }
+  function tampil_tempat_lahir_siswa_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
+    foreach ($result->result() as $c) {
+    $stmt= $c->tempat_lahir;
+    return $stmt;
+    }
+  }
+  function tampil_tanggal_lahir_siswa_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
+    foreach ($result->result() as $c) {
+    $stmt= $c->tgl_lahir;
+    return $stmt;
+    }
+  }
+  function tampil_alamat_siswa_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
+    foreach ($result->result() as $c) {
+    $stmt= $c->alamat_tinggal;
+    return $stmt;
+    }
+  }
+  function tampil_agama_siswa_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
+    foreach ($result->result() as $c) {
+    $stmt= $c->agama;
+    return $stmt;
+    }
+  }
+  function tampil_wn_siswa_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
+    foreach ($result->result() as $c) {
+    $stmt= $c->wn;
+    return $stmt;
+    }
+  }
+  function tampil_nisn_siswa_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
+    foreach ($result->result() as $c) {
+    $stmt= $c->nisn;
+    return $stmt;
+    }
+  }
+  function tampil_telepon_siswa_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
+    foreach ($result->result() as $c) {
+    $stmt= $c->telepon;
+    return $stmt;
+    }
+  }
+  function tampil_anak_ke_siswa_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
+    foreach ($result->result() as $c) {
+    $stmt= $c->anak_ke;
+    return $stmt;
+    }
+  }
+  function tampil_sdr_kandung_siswa_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
+    foreach ($result->result() as $c) {
+    $stmt= $c->sdr_kandung;
+    return $stmt;
+    }
+  }
+  function tampil_sdr_angkat_siswa_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
+    foreach ($result->result() as $c) {
+    $stmt= $c->sdr_angkat;
     return $stmt;
     }
   }

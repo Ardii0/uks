@@ -493,7 +493,7 @@ class Akademik extends CI_Controller {
         }
     }
 
- //Seleksi Siswa
+ // Seleksi Siswa
     public function siswa_seleksi_siswa()
     {
         $this->load->model('M_akademik');
@@ -550,7 +550,7 @@ class Akademik extends CI_Controller {
 
     }
  
- //Data Siswa 
+ // Data Siswa 
     public function siswa_data()
     {
         $this->load->model('M_akademik');
@@ -561,6 +561,23 @@ class Akademik extends CI_Controller {
     public function siswa_mutasi()
     {
         $this->load->view('akademik/siswa/mutasi');
+    }
+    
+    public function hapus_siswa($id_siswa)
+    {
+        $this->m_akademik->hapus_siswa('tabel_siswa', 'id_siswa', $id_siswa);
+        redirect(base_url('Akademik/siswa_data'));
+    }
+    
+    public function detail_siswa($id_siswa)
+    {
+        $data['siswa']=$this->m_akademik->get_siswaById('tabel_siswa', $id_siswa)->result();
+        $this->load->view('akademik/siswa/detail_siswa', $data);
+    }
+
+    public function edit_siswa()
+    {
+        $this->load->view('akademik/siswa/edit_siswa');
     }
 
 // Pelajaran

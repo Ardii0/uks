@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 25, 2023 at 04:27 AM
+-- Generation Time: Feb 27, 2023 at 03:07 AM
 -- Server version: 8.0.29
 -- PHP Version: 8.0.25
 
@@ -29,10 +29,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `foto` (
   `id_foto` int NOT NULL,
-  `foto1` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `foto2` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `foto3` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `foto4` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `foto1` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `foto2` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `foto3` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `foto4` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `date_created` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -166,50 +166,23 @@ CREATE TABLE `tabel_daftar` (
   `id_daftar` int NOT NULL,
   `no_reg` varchar(100) NOT NULL,
   `id_angkatan` int DEFAULT NULL,
-  `id_jenjang` int DEFAULT NULL,
-  `tgl_daftar` date DEFAULT NULL,
+  `id_jenjang` int NOT NULL,
+  `tgl_daftar` date NOT NULL,
   `nisn` varchar(10) NOT NULL,
-  `nama` varchar(255) DEFAULT NULL,
-  `jekel` enum('L','P') DEFAULT NULL,
-  `tempat_lahir` varchar(255) DEFAULT NULL,
-  `tgl_lahir` date DEFAULT NULL,
-  `agama` varchar(50) DEFAULT NULL,
-  `alamat_tinggal` text,
-  `wn` varchar(255) DEFAULT NULL,
+  `nama` varchar(255) NOT NULL,
+  `jekel` varchar(255) NOT NULL,
+  `tempat_lahir` varchar(255) NOT NULL,
   `anak_ke` int DEFAULT NULL,
-  `sdr_kandung` int DEFAULT NULL,
-  `sdr_angkat` int DEFAULT NULL,
-  `alamat_domisili` text,
-  `telepon` varchar(255) DEFAULT NULL,
-  `tinggal_dengan` varchar(255) DEFAULT NULL,
-  `gol_darah` varchar(5) DEFAULT NULL,
-  `penyakit` varchar(255) DEFAULT NULL,
-  `tinggi` int DEFAULT NULL,
-  `berat` int DEFAULT NULL,
-  `foto` text,
-  `ayah` varchar(100) NOT NULL,
-  `ibu` varchar(100) NOT NULL,
-  `wali` varchar(100) NOT NULL,
-  `alamat_orangtua` text NOT NULL,
-  `alamat_wali` text NOT NULL,
-  `pendapatan` varchar(100) NOT NULL,
-  `diterima` varchar(1) NOT NULL DEFAULT 'N'
+  `saudara_kandung` varchar(255) DEFAULT NULL,
+  `saudara_angkat` varchar(255) DEFAULT NULL,
+  `tgl_lahir` date NOT NULL,
+  `agama` varchar(50) NOT NULL,
+  `alamat` text NOT NULL,
+  `telepon` varchar(255) NOT NULL,
+  `foto` varchar(255) DEFAULT NULL,
+  `warga_negara` varchar(255) DEFAULT NULL,
+  `diterima` varchar(1) NOT NULL DEFAULT 'P'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tabel_daftar`
---
-
-INSERT INTO `tabel_daftar` (`id_daftar`, `no_reg`, `id_angkatan`, `id_jenjang`, `tgl_daftar`, `nisn`, `nama`, `jekel`, `tempat_lahir`, `tgl_lahir`, `agama`, `alamat_tinggal`, `wn`, `anak_ke`, `sdr_kandung`, `sdr_angkat`, `alamat_domisili`, `telepon`, `tinggal_dengan`, `gol_darah`, `penyakit`, `tinggi`, `berat`, `foto`, `ayah`, `ibu`, `wali`, `alamat_orangtua`, `alamat_wali`, `pendapatan`, `diterima`) VALUES
-(1, '0110180001', 1, 1, '2018-10-01', '', 'Andi Firmansyah', 'L', 'Kudus', '1996-08-16', '', '', 'WNI', 1, 0, 0, '', '', NULL, '', '', 0, 0, '', '', '', '', '', '', '', 'C'),
-(2, '0110180002', 1, 1, '2018-10-01', '', 'Mail', 'L', 'Kudus', '2000-12-29', '', '', 'WNI', 1, 0, 0, '', '', NULL, '', '', 0, 0, '', '', '', '', '', '', '', 'C'),
-(5, '2510180001', 1, 1, '2018-10-25', '', 'Andir', 'L', 'a', '2000-09-09', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '', '', '', 'C'),
-(6, '2510180001', 1, 1, '2018-10-25', '', 'Indra', 'P', 's', '2000-09-10', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '', '', '', 'C'),
-(7, '2910180001', 1, 1, '2018-10-29', '', 'Andira', 'L', 'Kudus', '2000-09-09', '', '', NULL, 0, 0, 0, '', '', NULL, '', '', 0, 0, NULL, '', '', '', '', '', '', 'C'),
-(8, '2910180001', 1, 1, '2018-10-29', '', 'Indra', 'P', 'Semarang', '2000-09-10', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '', '', '', 'C'),
-(9, '2910180001', 1, 1, '2018-10-29', '', 'Ali', 'L', 'Semarang', '2000-09-11', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '', '', '', 'C'),
-(10, '2910180001', 1, 1, '2018-10-29', '', 'Isna', 'P', 'Semarang', '2000-09-12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '', '', '', 'C'),
-(11, '2910180001', 1, 1, '2018-10-29', '', 'Fuad', 'L', 'Semarang', '2000-09-13', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '', '', '', 'C');
 
 -- --------------------------------------------------------
 
@@ -352,19 +325,19 @@ INSERT INTO `tabel_paketjenjang` (`id_paket`, `kode_paket`, `nama_paket`) VALUES
 
 CREATE TABLE `tabel_paket_wedding` (
   `id_paket_wedding` int NOT NULL,
-  `judul_pw` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `gambar_pw` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `harga_pw` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `dp_pw` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `pelunasan_pw` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `deskripsi_pw` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `decoration_pw` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `makeup_artist_pw` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `documentation_pw` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `catering_pw` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `entertainment_pw` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `efek_flashmob_pw` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `exclusive_pw` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `judul_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `gambar_pw` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `harga_pw` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `dp_pw` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `pelunasan_pw` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `deskripsi_pw` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `decoration_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `makeup_artist_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `documentation_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `catering_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `entertainment_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `efek_flashmob_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `exclusive_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `del_flag` int NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -500,27 +473,27 @@ INSERT INTO `tabel_pembayaran_pelunasan` (`id_pembayaran_pelunasan`, `id_admin`,
 CREATE TABLE `tabel_pesanan` (
   `id_pesanan` int NOT NULL,
   `id_admin` int DEFAULT NULL,
-  `id_pembayaran` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `id_paket_wedding` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `nama_pemesan` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `username` varchar(40) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `no_telp_pemesan` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `email_pemesan` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `jenis_kelamin_pemesan` varchar(15) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `alamat_pemesan` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `judul_pw` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `gambar_pw` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `harga_pw` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `dp_pw` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `pelunasan_pw` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `deskripsi_pw` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `decoration_pw` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `makeup_artist_pw` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `documentation_pw` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `catering_pw` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `entertainment_pw` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `efek_flashmob_pw` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `exclusive_pw` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `id_pembayaran` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `id_paket_wedding` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nama_pemesan` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `username` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `no_telp_pemesan` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email_pemesan` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `jenis_kelamin_pemesan` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `alamat_pemesan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `judul_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `gambar_pw` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `harga_pw` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `dp_pw` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `pelunasan_pw` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `deskripsi_pw` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `decoration_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `makeup_artist_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `documentation_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `catering_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `entertainment_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `efek_flashmob_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `exclusive_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `tanggal_acara` date DEFAULT NULL,
   `tanggal_pesanan` datetime DEFAULT NULL,
   `status` int NOT NULL,
@@ -583,7 +556,6 @@ INSERT INTO `tabel_rombel` (`id_rombel`, `id_kelas`, `nama_rombel`, `kode_guru`,
 
 CREATE TABLE `tabel_siswa` (
   `id_siswa` int NOT NULL,
-  `nis` varchar(20) NOT NULL,
   `id_daftar` int NOT NULL,
   `id_rombel` int NOT NULL,
   `saldo_tabungan` int NOT NULL
@@ -593,8 +565,8 @@ CREATE TABLE `tabel_siswa` (
 -- Dumping data for table `tabel_siswa`
 --
 
-INSERT INTO `tabel_siswa` (`id_siswa`, `nis`, `id_daftar`, `id_rombel`, `saldo_tabungan`) VALUES
-(1, '21312', 1, 1, 123123123);
+INSERT INTO `tabel_siswa` (`id_siswa`, `id_daftar`, `id_rombel`, `saldo_tabungan`) VALUES
+(1, 1, 1, 123123123);
 
 -- --------------------------------------------------------
 
@@ -630,8 +602,8 @@ INSERT INTO `tabel_tahunajaran` (`id_angkatan`, `kd_angkatan`, `nama_angkatan`, 
 CREATE TABLE `table_anggota` (
   `id_anggota` int DEFAULT NULL,
   `nisn` int DEFAULT NULL,
-  `nama_anggota` varchar(765) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `keterangan` varchar(765) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nama_anggota` varchar(765) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `keterangan` varchar(765) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `del_flag` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -659,15 +631,15 @@ INSERT INTO `table_anggota` (`id_anggota`, `nisn`, `nama_anggota`, `keterangan`,
 
 CREATE TABLE `table_buku` (
   `id_buku` int NOT NULL,
-  `judul_buku` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `penerbit_buku` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `penulis_buku` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `judul_buku` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `penerbit_buku` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `penulis_buku` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `tahun_terbit` int DEFAULT NULL,
-  `keterangan` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `sumber` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `keterangan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `sumber` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `del_flag` int NOT NULL DEFAULT '1',
-  `kategori_id` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `rak_buku_id` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
+  `kategori_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `rak_buku_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -685,8 +657,8 @@ INSERT INTO `table_buku` (`id_buku`, `judul_buku`, `penerbit_buku`, `penulis_buk
 
 CREATE TABLE `table_kategori_buku` (
   `id_kategori_buku` int NOT NULL,
-  `nama_kategori_buku` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `keterangan_kategori_buku` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nama_kategori_buku` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `keterangan_kategori_buku` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `del_flag` int NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -706,8 +678,8 @@ INSERT INTO `table_kategori_buku` (`id_kategori_buku`, `nama_kategori_buku`, `ke
 
 CREATE TABLE `table_rak_buku` (
   `id_rak_buku` int NOT NULL,
-  `nama_rak_buku` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `keterangan_rak_buku` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nama_rak_buku` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `keterangan_rak_buku` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `del_flag` int NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -904,7 +876,7 @@ ALTER TABLE `tabel_alokasimapel`
 -- AUTO_INCREMENT for table `tabel_daftar`
 --
 ALTER TABLE `tabel_daftar`
-  MODIFY `id_daftar` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_daftar` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tabel_guru`
@@ -1043,7 +1015,7 @@ ALTER TABLE `tabel_rombel`
 -- Constraints for table `tabel_siswa`
 --
 ALTER TABLE `tabel_siswa`
-  ADD CONSTRAINT `tabel_siswa_to_daftar_ibfk_1` FOREIGN KEY (`id_daftar`) REFERENCES `tabel_daftar` (`id_daftar`),
+  ADD CONSTRAINT `SET tabel_siswa_to_daftar_ibfk_1` FOREIGN KEY (`id_daftar`) REFERENCES `tabel_daftar` (`id_daftar`),
   ADD CONSTRAINT `tabel_siswa_to_rombel_ibfk_1` FOREIGN KEY (`id_rombel`) REFERENCES `tabel_rombel` (`id_rombel`);
 COMMIT;
 
