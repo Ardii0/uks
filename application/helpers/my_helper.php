@@ -165,7 +165,7 @@ function tampil_nama_siswa_byid($id)
   $ci->load->database();
   $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
     foreach ($result->result() as $c) {
-    $stmt= $c->alamat;
+    $stmt= $c->alamat_tinggal;
     return $stmt;
     }
   }

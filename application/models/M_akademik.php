@@ -235,6 +235,12 @@ class M_akademik extends CI_Model{
     {
         return $this->db->where('diterima','Y')->get('tabel_daftar')->result();
     }
+
+    public function ubah_siswa_diterima($tabel, $data, $where)
+    {
+        $data=$this->db->update($tabel, $data, $where);
+        return $this->db->affected_rows();
+    }
     
 // Pelajaran
  // Mapel

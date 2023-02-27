@@ -159,29 +159,6 @@
                                 <input id="tlpn" type="text" value="<?php echo $row->saudara_angkat?>" name="saudara_angkat" class="form-control" placeholder="Saudara Angkat">
                             </div>
                         </div>
-                        <!-- <div class="col-6 mt-2">
-                            <div>
-                                <label class="mr-3">
-                                    Jenis Kelamin
-                                </label>
-                            </div>
-                            <div class="d-flex items-center">
-                                <div class="form-check mr-3">
-                                    <input class="form-check-input" value="L" type="radio" name="jekel"
-                                        id="jekel">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        Laki-Laki
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" value="P" type="radio" name="jekel"
-                                        id="jekel1">
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                        Perempuan
-                                    </label>
-                                </div>
-                            </div>
-                        </div> -->
                         <div class="col-6 mt-2">
                             <div>
                                 <label for="alamat" class="mr-3">
@@ -189,7 +166,7 @@
                                 </label>
                             </div>
                             <div>
-                                <input id="alamat" type="text" value="<?php echo $row->alamat?>" name="alamat" class="form-control" placeholder="Alamat">
+                                <input id="alamat_tinggal" type="text" value="<?php echo $row->alamat_tinggal?>" name="alamat_tinggal" class="form-control" placeholder="Alamat">
                             </div>
                         </div>
                         <div class="col-6 mt-2">
