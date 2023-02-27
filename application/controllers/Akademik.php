@@ -480,20 +480,7 @@ class Akademik extends CI_Controller {
             "id_rombel" => $this->input->post('id_rombel'),
         );
         
-        // $checkbox =
-        // [
-        //     "id_siswa" => $this->input->post('id_siswa'),
-        // ];
-
-		// for($i=0;$i<count($checkbox);$i++){
-		// 	$id_siswa = $checkbox[$i];
-        //     if ($i < 0) {
-                $masuk=$this->m_akademik->ubah_siswa('tabel_siswa', $terapkan, array('id_siswa'=>$this->input->post('id_siswa')));
-        //     } else {
-        //         $masuk=$this->m_akademik->ubah_siswa_diterima("tabel_siswa", $terapkan, $id_siswa);
-        //     }
-		// }
-
+        $masuk=$this->m_akademik->ubah_siswa('tabel_siswa', $terapkan, array('id_siswa'=>$this->input->post('id_siswa')));
         if($masuk)
         {
             $this->session->set_flashdata('sukses', 'berhasil');
