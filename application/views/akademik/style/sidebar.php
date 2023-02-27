@@ -3,18 +3,7 @@
     <a href="<?php echo base_url('Akademik/'); ?>" class="brand-link">
       <span class="brand-text font-weight-light">SISTEM INFORMASI SEKOLAH</span>
     </a>
-
-    <div class="sidebar">
-      <!-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-
-        </div>
-        <div class="info">
-          <a href="#" class="d-block">ISI SENDIRI SENDIRI</a>
-        </div>
-      </div> -->
-
-      <div class="form-inline">
+      <div class="form-inline p-2">
         <div class="input-group" data-widget="sidebar-search">
           <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
           <div class="input-group-append">
@@ -25,6 +14,7 @@
         </div>
       </div>
 
+    <div class="sidebar">
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">

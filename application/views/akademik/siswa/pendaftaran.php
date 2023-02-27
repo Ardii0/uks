@@ -9,7 +9,7 @@
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini layout-fixed">
     <div class="wrapper">
         <?php $this->load->view('akademik/style/navbar')?>
         <?php $this->load->view('akademik/style/sidebar')?>
@@ -64,9 +64,6 @@
                                             <th>No Reg</th>
                                             <th>Tahun Ajaran</th>
                                             <th>Jenjang</th>
-                                            <th>Gender</th>
-                                            <th>Tempat Lahir</th>
-                                            <th>Tanggal Lahir</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -79,7 +76,7 @@
                                                  echo $id 
                                                  ?></td>
                                             <td><img style="width: 80px; height:90px; " src="<?php echo base_url('uploads/akademik/pendaftaran_siswa')."/".$row->foto;?>"></td>
-                                            <td><?php
+                                            <td class="text-truncate" style="max-width: 150px;"><?php
                                              echo $row->nama 
                                              ?></td>
                                             <td><?php
@@ -90,15 +87,6 @@
                                              ?></td>
                                             <td><?php
                                              echo tampil_namajenjang_byid($row->id_jenjang) 
-                                             ?></td>
-                                            <td><?php
-                                             echo $row->jekel 
-                                             ?></td>
-                                            <td><?php
-                                             echo $row->tempat_lahir 
-                                             ?></td>
-                                            <td><?php
-                                             echo $row->tgl_lahir 
                                              ?></td>
                                             <td class="text-center">
                                                 <a href="<?php echo base_url('Akademik/edit_pendaftaran/'.$row->id_daftar)?>" class="btn btn-primary btn-sm">
