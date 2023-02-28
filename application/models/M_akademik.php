@@ -333,5 +333,27 @@ class M_akademik extends CI_Model{
         $data=$this->db->delete($tabel, array($field => $id_alokasiguru));
         return $data;
     }
+
+  //Alok Mapel
+  public function get_alokasimapel()
+    {
+        return $this->db->get('tabel_alokasimapel')->result();
+    }
+    public function get_alokasimapelByIdMapel($tabel, $id_mapel)
+    {
+        $data = $this->db->where('id_mapel', $id_mapel)->get($tabel)->result();
+        return $data;
+    }
+    public function tambah_alokasimapel($tabel, $data, $where)
+    {
+        $this->db->insert($tabel, $data, $where);
+        return $this->db->insert_id();
+    }
+    public function hapus_alokasimapel($tabel, $field, $id_alokasimapel)
+    {
+        $data=$this->db->delete($tabel, array($field => $id_alokasimapel));
+        return $data;
+    }
+
  
 }
