@@ -20,7 +20,7 @@ class Perpustakaan extends CI_Controller {
 
     }
 
-    // Rak Buku
+// Rak Buku
     public function rak_buku()
     {
         $this->load->model('M_perpustakaan');
@@ -95,13 +95,13 @@ class Perpustakaan extends CI_Controller {
             redirect(base_url('Perpustakaan/rak_buku/rak_buku'));
         }
     }
-    // Akhir Rak Buku
 
+// Anggota
     public function data_anggota()
     {
         $this->load->model('M_perpustakaan');
-        $data['data_anggota'] = $this->m_perpustakaan->get_all_data_anggota('data_anggota');
-        $this->load->view('perpustakaan/data_anggota/data_anggota', $data);
+        $data['data_anggota'] = $this->m_perpustakaan->get_anggota('data_anggota');
+        $this->load->view('perpustakaan/anggota/data_anggota', $data);
     }
 
     public function aksi_tambah_anggota()
@@ -172,7 +172,7 @@ class Perpustakaan extends CI_Controller {
 
     
 
-    // Kategori
+// Kategori
     public function kategori_buku()
     {
         $this->load->model('M_perpustakaan');
@@ -250,7 +250,7 @@ class Perpustakaan extends CI_Controller {
     }
     // Akhir Kategori
 
-    // Buku
+// Buku
     public function data_buku()
     {
         $this->load->model('M_perpustakaan');
