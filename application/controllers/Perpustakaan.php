@@ -97,6 +97,16 @@ class Perpustakaan extends CI_Controller {
     }
 
 // Anggota
+
+    public function tambah_anggota()
+    {
+        $this->load->view('perpustakaan/anggota/tambah_anggota');
+    }
+    public function kartu_anggota()
+    {
+        $this->load->view('perpustakaan/anggota/kartu_anggota');
+    }
+
     public function data_anggota()
     {
         $this->load->model('M_perpustakaan');
