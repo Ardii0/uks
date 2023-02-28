@@ -44,18 +44,6 @@
                     <div class="p-5">
                         <div class="row p-1">
                             <div class="col-2 text-right d-flex justify-content-end align-items-center">
-                                Tanggal
-                            </div>
-                            <div class="col-6 align-items-center">
-                                <div class="input-group date">
-                                    <input type="date" class="form-control"
-                                        />
-                                </div>
-                            </div>
-                            <div class="col-2 align-items-center"></div>
-                        </div>
-                        <div class="row p-1">
-                            <div class="col-2 text-right d-flex justify-content-end align-items-center">
                                 Nama Siswa
                             </div>
                             <div class="col-6 align-items-center">
@@ -74,6 +62,18 @@
                             <div class="col-2 align-items-center"></div>
                         </div>
                         <div class="row p-1">
+                            <div class="col-2 text-right d-flex justify-content-end align-items-center">
+                                Tanggal
+                            </div>
+                            <div class="col-6 align-items-center">
+                                <div class="input-group date">
+                                    <input type="date" class="form-control"
+                                        />
+                                </div>
+                            </div>
+                            <div class="col-2 align-items-center"></div>
+                        </div>
+                        <div class="row pl-1 pt-5">
                             <div class="col-2 text-right d-flex justify-content-end align-items-center"></div>
                             <div class="col-6 align-items-center">
                                 <div class="btn btn-info">Tambah</div>
