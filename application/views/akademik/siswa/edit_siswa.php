@@ -184,8 +184,8 @@
                                     </label>
                                 </div>
                                 <div>
-                                    <input id="alamat_tinggal" type="text" value="<?php echo $row->alamat_tinggal?>"
-                                        name="alamat_tinggal" class="form-control" placeholder="Alamat">
+                                    <input id="alamat" type="text" value="<?php echo $row->alamat?>"
+                                        name="alamat" class="form-control" placeholder="Alamat">
                                 </div>
                             </div>
                             <div class="col-6 mt-2">

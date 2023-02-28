@@ -617,7 +617,7 @@ class Akademik extends CI_Controller {
             "tempat_lahir" => $this->input->post("tempat_lahir"),
             "tgl_lahir" => $this->input->post("tgl_lahir"),
             "agama" => $this->input->post("agama"),
-            "alamat_tinggal" => $this->input->post("alamat_tinggal"),
+            "alamat" => $this->input->post("alamat"),
             "telepon" => $this->input->post("telepon"),
             'anak_ke' => $this->input->post('anak_ke'),
             'saudara_kandung' => $this->input->post('saudara_kandung'),
