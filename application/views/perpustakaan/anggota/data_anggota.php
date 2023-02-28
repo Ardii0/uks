@@ -18,7 +18,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Data Anggota</h1>
+                        <h1>Data Anggota Perpustakaan</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -34,7 +34,7 @@
             <div class="container-fluid bg-white">
                 <div class="row mx-2 pt-3 d-flex justify-content-end">
                     <div class="col-md-3 d-flex justify-content-end align-self-start">
-                        <a href="<?php echo base_url('Perpustakaan/rombel_form');?>">
+                        <a href="<?php echo base_url('Perpustakaan/form_anggota');?>">
                             <button type="button" class="btn btn-success">
                                 <i class="fa fa-plus pr-2"></i>Tambah
                             </button>
@@ -48,27 +48,27 @@
                                 <thead class="bg-info">
                                     <tr>
                                         <th>No</th>
-                                        <th>ID_ANGGOTA</th>
+                                        <th>ID ANGGOTA</th>
                                         <th>Nama</th>
-                                        <!-- <th>Kelas</th>
+                                        <th>Kelas</th>
                                         <th>Rombel</th>
-                                        <th>Tgl Daftar</th> -->
+                                        <th>Tgl Daftar</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $id=0; foreach($data_anggota as $data ): $id++;?>
                                     <tr>
-                                        <td><?php echo $id?></td>
-                                        <td><?php echo $data->id_anggota?></td>
-                                        <td><?php echo $data->nama_rombel?></td>    
-                                        <!-- <td><?php echo $data->nama_rombel?></td>
-                                        <td><?php echo $data->nama_rombel?></td>
-                                        <td><?php echo $data->tgl_daftar?></td> -->
+                                        <td style="width: 4%;"><?php echo $id?></td>
+                                        <td style="width: 15%;"><?php echo $data->id_anggota?></td>
+                                        <td><?php echo tampil_namadaftar_ByIdSiswa($data->id_siswa)?></td>
+                                        <td><?php echo tampil_kelasdaftar_ByIdSiswa($data->id_siswa)?></td>
+                                        <td><?php echo tampil_rombeldaftar_ByIdSiswa($data->id_siswa)?></td>
+                                        <td><?php echo $data->tgl_daftar?></td>
                                         <td class="text-center">
-                                            <a href="<?php echo base_url('Perpustakaan/edit_rombel/'.$data->id_anggota)?>"
-                                                class="btn btn-primary btn-sm">
-                                                <i class="fa fa-edit"></i></a>
+                                            <div class="btn btn-success btn-sm">
+                                                <i class="fa fa-credit-card"></i>
+                                            </div>
                                             <button onclick="hapus(<?php echo $data->id_anggota ;?>)"
                                                 class="btn btn-danger btn-sm">
                                                 <i class="fa fa-trash"></i></button>

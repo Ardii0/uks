@@ -117,7 +117,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo base_url('Perpustakaan/tambah_anggota')?>" class="nav-link">
+                <a href="<?php echo base_url('Perpustakaan/form_anggota')?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Form Input Anggota</p>
                 </a>
