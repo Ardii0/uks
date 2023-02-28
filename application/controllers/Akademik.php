@@ -374,7 +374,7 @@ class Akademik extends CI_Controller {
         {
             //$this->upload->display_errors();
             $this->session->set_flashdata('error', 'gagal upload foto.');
-            redirect(base_url('Admin/form_pendaftaran'));
+            redirect(base_url('Akademik/form_pendaftaran'));
         }
         else
         {
@@ -394,7 +394,7 @@ class Akademik extends CI_Controller {
                 'saudara_angkat' => $this->input->post('saudara_angkat'),
                 'tgl_lahir' => $this->input->post('tgl_lahir'),
                 'agama' => $this->input->post('agama'),
-                'alamat' => $this->input->post('alamat'),
+                'alamat_tinggal' => $this->input->post('alamat_tinggal'),
                 'telepon' => $this->input->post('telepon'),
                 'warga_negara' => $this->input->post('warga_negara'),
                 'diterima' => 'P',
@@ -427,7 +427,7 @@ class Akademik extends CI_Controller {
             "tempat_lahir" => $this->input->post("tempat_lahir"),
             "tgl_lahir" => $this->input->post("tgl_lahir"),
             "agama" => $this->input->post("agama"),
-            "alamat" => $this->input->post("alamat"),
+            "alamat_tinggal" => $this->input->post("alamat_tinggal"),
             "telepon" => $this->input->post("telepon"),
             'anak_ke' => $this->input->post('anak_ke'),
             'saudara_kandung' => $this->input->post('saudara_kandung'),
@@ -479,7 +479,7 @@ class Akademik extends CI_Controller {
         (
             "id_rombel" => $this->input->post('id_rombel'),
         );
-
+        
         $masuk=$this->m_akademik->ubah_siswa('tabel_siswa', $terapkan, array('id_siswa'=>$this->input->post('id_siswa')));
         if($masuk)
         {
@@ -557,11 +557,6 @@ class Akademik extends CI_Controller {
         $data['siswa'] = $this->m_akademik->get_siswa('siswa');
         $this->load->view('akademik/siswa/data', $data);
     }
-
-    public function siswa_mutasi()
-    {
-        $this->load->view('akademik/siswa/mutasi');
-    }
     
     public function hapus_siswa($id_siswa)
     {
@@ -579,6 +574,67 @@ class Akademik extends CI_Controller {
     {
         $this->load->view('akademik/siswa/edit_siswa');
     }
+
+//Mutasi
+public function siswa_mutasi()
+{
+    $this->load->model('M_akademik');
+    $siswa['siswa'] = $this->m_akademik->get_siswa('siswa');
+    $this->load->view('akademik/siswa/mutasi', $siswa);
+}
+
+public function pindah_sekolah($id_daftar)
+{
+    $data['siswa']=$this->m_akademik->get_siswaById('tabel_siswa', $id_daftar)->result();
+    $this->load->view('akademik/siswa/pindah_sekolah', $data);
+}
+
+public function tambah_pindah_sekolah()
+{
+    $data = [
+        'id_daftar' => $this->input->post('id_daftar'),
+        'id_rombel' => $this->input->post('id_rombel'),
+        'nama_sekolah' => $this->input->post('nama_sekolah'),
+    ];
+    $this->m_akademik->tambah_pindah_sekolah('tabel_pindah', $data);
+    redirect(base_url('Akademik/siswa_mutasi'));
+}
+
+public function pindah_kelas($id_siswa)
+    {
+        $data['siswa']=$this->m_akademik->get_siswaById('tabel_siswa', $id_siswa)->result();
+        $data['rombel'] = $this->m_akademik->get_rombel('rombel');
+        $this->load->view('akademik/siswa/pindah_kelas', $data);
+    }
+
+    public function update_pindah_kelas()
+    {
+        $data = array (
+            "id_daftar" => $this->input->post("id_daftar"),
+            "id_rombel" => $this->input->post("id_rombel"),
+            "saldo_tabungan" => $this->input->post("saldo_tabungan"),
+        );
+        $masuk = $this->m_akademik->ubah_siswa("tabel_siswa", $data, array("id_siswa" => $this->input->post("id_siswa")));
+        if ($masuk)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('Akademik/siswa_mutasi'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Akademik/pindah_kelas/'.$this->input->post('id_siswa')));
+        }
+    }
+
+function naik_kelas($id){
+    $this->db->set('id_kelas', 'id_kelas+1', FALSE);
+    $this->db->where('id_siswa', $id);
+    $this->db->update('tabel_siswa');
+    $siswa['siswa'] = $this->m_akademik->get_siswa('siswa');
+    $this->load->view('akademik/siswa/mutasi', $siswa);
+}
+
 
 // Pelajaran
  // Mapel
@@ -718,7 +774,7 @@ class Akademik extends CI_Controller {
     public function hapus_alokasiguru($id_alokasiguru)
     {
         $this->m_akademik->hapus_alokasiguru('tabel_alokasiguru', 'id_alokasiguru', $id_alokasiguru);
-        redirect(base_url('Akademik/alokasi_guru/'. $kode_guru));
+        redirect(base_url('Akademik/alokasi_guru/'. $id_alokasiguru));
     }
 
 

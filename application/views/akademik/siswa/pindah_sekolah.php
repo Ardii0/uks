@@ -20,7 +20,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Edit Mapel</h1>
+                            <h1>Pindah Sekolah</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -53,8 +53,8 @@
                             </div>
                     <div class="row d-flex justify-content-end">
                         <div class="">
-                            <input type="text" value="<?php echo $data->id_daftar?>" name="id_daftar">
-                            <input type="text" value="<?php echo $data->id_rombel?>" name="id_rombel">
+                            <input type="hidden" value="<?php echo $data->id_daftar?>" name="id_daftar">
+                            <input type="hidden" value="<?php echo $data->id_rombel?>" name="id_rombel">
                             <button type="submit" class="btn btn-success" style="width: 150px; margin-right: 12px;">Ubah</button>
                         </div>
                     </div>

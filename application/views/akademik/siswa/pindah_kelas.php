@@ -20,7 +20,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Pindah Sekolah</h1>
+                            <h1>Pindah Kelas</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -28,7 +28,7 @@
                                         href="<?php echo base_url('Akademik/') ?>"><?php echo $this->session->userdata('level') ?></a>
                                 </li>
                                 <li class="breadcrumb-item active"><a href="<?php echo base_url('Akademik/siswa') ?>">Siswa</a></li>
-                                <li class="breadcrumb-item active">Pindah Sekolah</li>
+                                <li class="breadcrumb-item active">Pindah Kelas</li>
                             </ol>
                         </div>
                     </div>
@@ -38,27 +38,21 @@
             <section class="content bg-white py-4">
             <div class="container-fluid">
               <?php foreach ($siswa as $data): ?>
-                <form action="<?php echo base_url('Akademik/tambah_pindah_sekolah') ?>" enctype="multipart/form-data"
-                    method="post">
-                    <div class="row">
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-group">
-                                    <label class="control-label">Nama Sekolah</label>
-                                    <div class="">
-                                        <input type="hidden" name="nama_sekolah" class="form-control" autocomplete="off"
-                                            placeholder="Masukan Nama Sekolah" >
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                    <div class="row d-flex justify-content-end">
-                        <div class="">
-                            <input type="text" value="<?php echo $data->id_daftar?>" name="id_daftar">
-                            <input type="text" value="<?php echo $data->id_rombel?>" name="id_rombel">
-                            <button type="submit" class="btn btn-success" style="width: 150px; margin-right: 12px;">Ubah</button>
-                        </div>
-                    </div>
-                </form>
+                <form action="<?php echo base_url('Akademik/update_pindah_kelas') ?>"
+                            enctype="multipart/form-data" method="post">
+                            <!-- <select class="form-control form-select px-2 py-1" name="id_rombel"
+                                aria-label="Default select example">
+                                <option selected>Pilih Rombel</option>
+                                <?php $id = 0;foreach ($rombel as $row): $id++;?>
+                                <option value="<?php echo $row->id_rombel ?>"><?php echo $row->nama_rombel ?></option>
+                                <?php endforeach;?>
+                            </select> -->
+                            <input type="hidden" name="id_siswa" value="<?php echo $data->id_siswa?>">
+                            <input type="text" name="id_daftar" value="<?php echo $data->id_daftar?>">
+                            <input type="text" name="id_rombel" value="<?php echo $data->id_rombel?>">
+                            <input type="number" name="saldo_tabungan" value="<?php echo $data->saldo_tabungan?>">
+                            <button type="submit" class="w-25 btn btn-primary">Simpan</button>
+                        </form>
             <?php endforeach;?>
             </div>
             </section>

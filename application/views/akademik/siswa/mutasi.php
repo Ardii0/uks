@@ -92,11 +92,11 @@
                                             <td><?php echo tampil_jekel_siswa_byid($data->id_daftar)?></td>
                                             <td><?php echo tampil_tempat_lahir_siswa_byid($data->id_daftar)?>, <?php echo tampil_tanggal_lahir_siswa_byid($data->id_daftar)?></td>
                                             <td><?php echo tampil_alamat_siswa_byid($data->id_daftar)?></td>
-                                            <td>
+                                            <td> 
                                                 <a href="<?php echo base_url('Akademik/pindah_sekolah/' . $data->id_daftar) ?>"
                                                         class="btn btn-success btn-sm">
                                                         pindah sekolah</a>
-                                                    <a href="<?php echo base_url('Akademik/pindah_kelas/' . $data->id_daftar) ?>"
+                                                    <a href="<?php echo base_url('Akademik/pindah_kelas/' . $data->id_siswa) ?>"
                                                         class="btn btn-primary btn-sm">
                                                         pindah kelas</a>
                                                         <button onclick="hapus(<?php echo $data->id_daftar ;?>)"

@@ -18,7 +18,7 @@
             <div class="row g-0">
               <div class="col-md-6 col-lg-5 d-none d-md-block">
                 <img
-                  src="https://cdnb.artstation.com/p/assets/images/images/007/719/403/large/wang-xiao-.jpg?1508075545"
+                  src="<?php echo base_url('assets/dist/img/head-login.jpg'); ?>"
                   alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
               </div>
               <div class="col-md-6 col-lg-7 d-flex align-items-center">
@@ -27,7 +27,7 @@
                   <form action="<?php echo base_url(); ?>login/aksi_login" method="post">
                     <div class="d-flex align-items-center mb-3 pb-1">
                       <img
-                        src="https://banner2.cleanpng.com/20180325/rgq/kisspng-education-school-computer-icons-clip-art-coin-5ab83c5be030d4.7184362115220235159183.jpg"
+                        src="<?php echo base_url('assets/dist/img/logo-login.jpg'); ?>"
                         width="50" height="50" class="d-inline-block align-text-top me-3">
                       <span class="h2 fw-bold mb-0 mx-2">Sistem Informasi Sekolah</span>
                     </div>

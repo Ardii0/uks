@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+// use Picqer as Picqer;
 
 class Perpustakaan extends CI_Controller {
 
@@ -353,4 +354,41 @@ class Perpustakaan extends CI_Controller {
     {
         $this->load->view('perpustakaan/laporan/laporan');
     }
+
+    //BWarQoude
+    public function barcode()
+    {
+        require 'vendor/autoload.php';
+
+        // This will output the barcode as HTML output to display in the browser
+        $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
+        echo $generator->getBarcode('081231723897', $generator::TYPE_CODE_128);
+    }
+
+    private function generateBarcode( $string, $tipe ="HTML" )
+    {
+        
+        switch($tipe)
+        {
+            case "HTML":
+                $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
+                break;
+            case "JPG":
+                header('Content-type: image/jpeg');
+                $generator = new Picqer\Barcode\BarcodeGeneratorJPG();
+                break;
+            case "PNG":
+                $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
+                break;
+            case "SVG":
+                $generator = new Picqer\Barcode\BarcodeGeneratorSVG();
+                break;
+            default:
+                $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
+        }
+        
+        $barcode   = $generator->getBarcode($string, $generator::TYPE_CODE_128);
+        echo view("barcode", ["barcode" => $barcode, "text" => $string, "tipe" => $tipe]);
+    }
+
 }
