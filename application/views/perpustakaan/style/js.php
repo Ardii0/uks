@@ -32,7 +32,14 @@
 <script src="<?php echo base_url('builder/plugins/datatables-buttons/js/buttons.colVis.min.js'); ?>"></script>
 <script src="<?php echo base_url('builer/dist/js/pages/dashboard.js'); ?>"></script>
 <script>
-$(function() {    
+$(function() {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
     $("#perpustakaan-table").DataTable({
         "responsive": true,
         "lengthChange": false,
@@ -58,3 +65,5 @@ $(function() {
     }).buttons().container().appendTo('#data-table_wrapper .col-md-6:eq(0)');
 });
 </script>
+<!-- Select2 -->
+<script src="<?php echo base_url('builder/plugins/select2/js/select2.full.min.js'); ?>"></script>

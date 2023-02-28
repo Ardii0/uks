@@ -124,4 +124,34 @@ class M_perpustakaan extends CI_Model{
 		$data=$this->db->delete($tabel, array($field => $id_pasien));
 		return $data;
 	}
+
+// Peminjaman Buku
+	public function get_peminjaman()
+	{
+		return $this->db->get('tabel_pinjaman')->result();
+	}
+
+	public function tambah_pinjaman($tabel, $data)
+	{
+		$this->db->insert($tabel, $data);
+		return $this->db->insert_id();
+	}
+
+	public function edit_pinjaman($tabel, $id_pinjaman)
+	{
+		$data=$this->db->where('id_pinjaman', $id_pinjaman)->get($tabel);
+		return $data;
+	}
+
+	public function ubah_pinjaman($tabel, $data, $where)
+	{
+		$data=$this->db->update($tabel, $data, $where);
+		return $this->db->affected_rows();
+	}
+
+	public function hapus_pinjaman($tabel, $field, $id_pasien)
+	{
+		$data=$this->db->delete($tabel, array($field => $id_pasien));
+		return $data;
+	}
 }
