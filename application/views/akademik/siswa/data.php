@@ -10,7 +10,7 @@
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini layout-fixed">
     <div class="wrapper">
         <?php $this->load->view('akademik/style/navbar')?>
         <?php $this->load->view('akademik/style/sidebar')?>
@@ -77,15 +77,14 @@
                                         <tr>
                                             <td><?php echo $id?></td>
                                             <td><?php echo tampil_rombel_byid($data->id_rombel)?></td>
-                                            <td><?php echo tampil_nama_siswa_byid($data->id_daftar)?></td>
+                                            <td class="text-truncate" style="max-width: 150px;">
+                                                <?php echo tampil_nama_siswa_byid($data->id_daftar)?></td>
                                             <td><?php echo tampil_jekel_siswa_byid($data->id_daftar)?></td>
                                             <td><?php echo tampil_tempat_lahir_siswa_byid($data->id_daftar)?></td>
                                             <td><?php echo tampil_tanggal_lahir_siswa_byid($data->id_daftar)?></td>
-                                            <td><?php echo tampil_alamat_siswa_byid($data->id_daftar)?></td>
+                                            <td class="text-truncate" style="max-width: 150px;">
+                                                <?php echo tampil_alamattinggal_byIdDaftar($data->id_daftar)?></td>
                                             <td class="text-center">
-                                                <a href="<?php echo base_url('Akademik/edit_siswa/'.$data->id_siswa)?>"
-                                                    class="btn btn-primary btn-sm">
-                                                    <i class="fa fa-edit"></i></a>
                                                 <a href="<?php echo base_url('Akademik/detail_siswa/'.$data->id_siswa)?>"
                                                     class="btn btn-warning btn-sm">
                                                     <i class="fa fa-eye"></i></a>
@@ -101,8 +100,8 @@
                         </div>
                     </div>
                 </div>
+            </section>
         </div>
-        </section>
     </div>
     </div>
     <script>

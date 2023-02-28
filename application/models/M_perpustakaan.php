@@ -70,6 +70,12 @@ class M_perpustakaan extends CI_Model{
 		return $this->db->where('del_flag','1')->get('table_buku')->result();
 	}
 
+	public function get_bukuById($tabel, $id_buku)
+	{
+		$data=$this->db->where('id_buku', $id_buku)->get($tabel);
+		return $data;
+	}
+
 	public function tambah_buku($tabel, $data)
 	{
 		$this->db->insert($tabel, $data);

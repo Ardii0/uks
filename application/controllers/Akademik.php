@@ -575,9 +575,66 @@ class Akademik extends CI_Controller {
         $this->load->view('akademik/siswa/detail_siswa', $data);
     }
 
-    public function edit_siswa()
+    public function edit_siswa_rombel($id_siswa)
     {
-        $this->load->view('akademik/siswa/edit_siswa');
+        $data['siswa']=$this->m_akademik->get_siswaById('tabel_siswa', $id_siswa)->result();
+        $data['rombel'] = $this->m_akademik->get_rombel('rombel');
+        $this->load->view('akademik/siswa/edit_siswa_rombel', $data);
+    }
+
+    public function update_siswa_rombel()
+    {
+        $data = array (
+            "id_daftar" => $this->input->post("id_daftar"),
+            "id_rombel" => $this->input->post("id_rombel"),
+            "saldo_tabungan" => $this->input->post("saldo_tabungan"),
+        );
+        $masuk = $this->m_akademik->ubah_siswa("tabel_siswa", $data, array("id_siswa" => $this->input->post("id_siswa")));
+        if ($masuk)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('Akademik/siswa_data'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Akademik/edit_siswa_rombel/'.$this->input->post('id_siswa')));
+        }
+    }
+
+
+    public function edit_siswa($id_daftar)
+    {
+        $data['data_siswa_daftar']=$this->m_akademik->edit_pendaftaran('tabel_daftar', $id_daftar)->result();
+        $this->load->view('akademik/siswa/edit_siswa', $data);
+    }
+    
+    public function update_siswa()
+    {
+        $data = array (
+            "nisn" => $this->input->post("nisn"),
+            "nama" => $this->input->post("nama"),
+            "tempat_lahir" => $this->input->post("tempat_lahir"),
+            "tgl_lahir" => $this->input->post("tgl_lahir"),
+            "agama" => $this->input->post("agama"),
+            "alamat_tinggal" => $this->input->post("alamat_tinggal"),
+            "telepon" => $this->input->post("telepon"),
+            'anak_ke' => $this->input->post('anak_ke'),
+            'saudara_kandung' => $this->input->post('saudara_kandung'),
+            'saudara_angkat' => $this->input->post('saudara_angkat'),
+            "diterima" => "Y",
+        );
+        $masuk = $this->m_akademik->ubah_pendaftaran("tabel_daftar", $data, array("id_daftar" => $this->input->post("id_daftar")));
+        if ($masuk)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('Akademik/siswa_data'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Akademik/edit_siswa/'.$this->input->post('id_daftar')));
+        }
     }
 
 // Pelajaran

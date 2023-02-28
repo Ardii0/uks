@@ -432,4 +432,11 @@ class Perpustakaan extends CI_Controller {
     {
         $this->load->view('perpustakaan/laporan/laporan');
     }
+    
+    public function barcode($id_buku)
+    {
+        require 'vendor/autoload.php';
+        $data['buku']=$this->m_perpustakaan->get_bukuById('table_buku', $id_buku)->result();
+        $this->load->view('perpustakaan/barcode', $data);
+    }
 }
