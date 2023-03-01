@@ -274,6 +274,20 @@ class Perpustakaan extends CI_Controller {
         $this->load->view('perpustakaan/data_buku/tambah_buku', $data + $kategori + $rak_buku);
     }
 
+    public function detail_index_buku($id_buku)
+    {
+        require 'vendor/autoload.php';
+        $data['buku']=$this->m_perpustakaan->get_bukuById('table_buku', $id_buku)->result();
+        $detail_index_buku['stok']=$this->m_perpustakaan->get_all_detail_index_buku('table_detail_index_buku', $id_buku)->result();
+        $this->load->view('perpustakaan/data_buku/detail_index_buku', $data + $detail_index_buku );
+    }
+
+    public function delete_detail_index_buku($id_stok, $id_buku)
+    {
+        $this->m_perpustakaan->delete_detail_index_buku('table_detail_index_buku', 'id_stok', $id_stok);
+        redirect(base_url('Perpustakaan/data_buku/detail_index_buku'.$id_buku));
+    }
+
     public function aksi_tambah_buku()
     {
         $data = array

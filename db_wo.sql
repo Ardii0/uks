@@ -630,9 +630,33 @@ CREATE TABLE `table_buku` (
   `kategori_id` varchar(255) NOT NULL,
   `rak_buku_id` varchar(255) NOT NULL,
   PRIMARY KEY (`id_buku`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `table_buku` */
+
+insert  into `table_buku`(`id_buku`,`judul_buku`,`penerbit_buku`,`penulis_buku`,`tahun_terbit`,`keterangan`,`sumber`,`stok`,`del_flag`,`kategori_id`,`rak_buku_id`) values 
+(1,'Malin Kundang','PT Jaya Makmur','Jajang',2000,'Buku ini sangat menarik',NULL,2,1,'1','001');
+
+/*Table structure for table `table_detail_index_buku` */
+
+DROP TABLE IF EXISTS `table_detail_index_buku`;
+
+CREATE TABLE `table_detail_index_buku` (
+  `id_stok` int(11) NOT NULL AUTO_INCREMENT,
+  `id_detail_index_buku` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `id_buku` int(11) NOT NULL,
+  PRIMARY KEY (`id_stok`),
+  KEY `id_buku` (`id_buku`),
+  CONSTRAINT `table_detail_index_buku_ibfk_1` FOREIGN KEY (`id_buku`) REFERENCES `table_buku` (`id_buku`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+/*Data for the table `table_detail_index_buku` */
+
+insert  into `table_detail_index_buku`(`id_stok`,`id_detail_index_buku`,`status`,`id_buku`) values 
+(2,'A02','Dilemari',1),
+(5,'A03','Dipinjam',1),
+(6,'A04','Dipinjam',1);
 
 /*Table structure for table `table_kategori_buku` */
 

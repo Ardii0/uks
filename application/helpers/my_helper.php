@@ -433,7 +433,7 @@ function tampil_nama_siswa_byid($id)
     }
   }
 
-  // FOR BARCODE
+  // Detail Index Buku
   function tampil_judul_buku_byid($id)
   {
   $ci =& get_instance();
@@ -441,6 +441,73 @@ function tampil_nama_siswa_byid($id)
   $result = $ci->db->where('id_buku',$id)->get('table_buku');
     foreach ($result->result() as $c) {
     $stmt= $c->judul_buku;
+    return $stmt;
+    }
+  }
+  
+
+  function tampil_penerbit_buku_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_buku',$id)->get('table_buku');
+    foreach ($result->result() as $c) {
+    $stmt= $c->penerbit_buku;
+    return $stmt;
+    }
+  }
+
+  function tampil_tahun_terbit_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_buku',$id)->get('table_buku');
+    foreach ($result->result() as $c) {
+    $stmt= $c->tahun_terbit;
+    return $stmt;
+    }
+  }
+
+  function tampil_kategori_id_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_buku',$id)->get('table_buku');
+    foreach ($result->result() as $c) {
+    $stmt= $c->kategori_id;
+    return $stmt;
+    }
+  }
+
+  function tampil_rak_buku_id_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_buku',$id)->get('table_buku');
+    foreach ($result->result() as $c) {
+    $stmt= $c->rak_buku_id;
+    return $stmt;
+    }
+  }
+
+  function tampil_penulis_buku_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_buku',$id)->get('table_buku');
+    foreach ($result->result() as $c) {
+    $stmt= $c->penulis_buku;
+    return $stmt;
+    }
+  }
+
+  function tampil_stok_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_buku',$id)->get('table_buku');
+    foreach ($result->result() as $c) {
+    $stmt= $c->stok;
     return $stmt;
     }
   }
