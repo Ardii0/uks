@@ -303,6 +303,77 @@ function tampil_nama_siswa_byid($id)
     }
   }
 
+// Perpustakaan
+ // Anggota
+  function tampil_namadaftar_ByIdSiswa($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $namadaftar = '';
+  $result = $ci->db->select('*')
+                    ->from('tabel_siswa')
+                    ->join('tabel_daftar','tabel_siswa.id_daftar = tabel_daftar.id_daftar')
+                    ->where('tabel_siswa.id_siswa',$id)
+                    ->get();
+    foreach ($result->result() as $c) {
+    $stmt= $c->nama;
+    $namadaftar= $namadaftar.$stmt.'<br>';
+    }
+    return $namadaftar;
+  }
+
+  function tampil_jekeldaftar_ByIdSiswa($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $namadaftar = '';
+  $result = $ci->db->select('*')
+                    ->from('tabel_siswa')
+                    ->join('tabel_daftar','tabel_siswa.id_daftar = tabel_daftar.id_daftar')
+                    ->where('tabel_siswa.id_siswa',$id)
+                    ->get();
+    foreach ($result->result() as $c) {
+    $stmt= $c->jekel;
+    $namadaftar= $namadaftar.$stmt.'<br>';
+    }
+    return $namadaftar;
+  }
+
+  function tampil_rombeldaftar_ByIdSiswa($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $namadaftar = '';
+  $result = $ci->db->select('*')
+                    ->from('tabel_siswa')
+                    ->join('tabel_rombel','tabel_siswa.id_rombel = tabel_rombel.id_rombel')
+                    ->where('tabel_siswa.id_siswa',$id)
+                    ->get();
+    foreach ($result->result() as $c) {
+    $stmt= $c->nama_rombel;
+    $namadaftar= $namadaftar.$stmt.'<br>';
+    }
+    return $namadaftar;
+  }
+
+  function tampil_kelasdaftar_ByIdSiswa($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $namakelas = '';
+  $result = $ci->db->select('*')
+                    ->from('tabel_siswa')
+                    ->join('tabel_rombel','tabel_siswa.id_rombel = tabel_rombel.id_rombel')
+                    ->join('tabel_kelas','tabel_rombel.id_kelas = tabel_kelas.id_kelas')
+                    ->where('tabel_siswa.id_siswa',$id)
+                    ->get();
+    foreach ($result->result() as $c) {
+    $stmt= $c->nama_kelas;
+    $namakelas= $namakelas.$stmt.'<br>';
+    }
+    return $namakelas;
+  }
+
 // Peminjaman Buku
   function tampil_namabuku_byPeminjamanId($id)
   {

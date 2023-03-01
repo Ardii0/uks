@@ -97,11 +97,6 @@ class Perpustakaan extends CI_Controller {
     }
 
 // Anggota
-
-    public function tambah_anggota()
-    {
-        $this->load->view('perpustakaan/anggota/tambah_anggota');
-    }
     public function kartu_anggota()
     {
         $this->load->view('perpustakaan/anggota/kartu_anggota');
@@ -109,21 +104,26 @@ class Perpustakaan extends CI_Controller {
 
     public function data_anggota()
     {
-        $this->load->model('M_perpustakaan');
         $data['data_anggota'] = $this->m_perpustakaan->get_anggota('data_anggota');
         $this->load->view('perpustakaan/anggota/data_anggota', $data);
+    }
+
+    public function form_anggota()
+    {
+        $this->load->model('m_akademik');
+        $data['siswa'] = $this->m_akademik->get_siswa('siswa');
+        $this->load->view('perpustakaan/anggota/form_anggota', $data);
     }
 
     public function aksi_tambah_anggota()
     {
         $data = array
         (
-            'nama_anggota' => $this->input->post('nama_anggota'),
-            'nisn' => $this->input->post('nisn'),
-            'keterangan' => $this->input->post('keterangan'),
-            'del_flag' => '1',
+            'id_siswa' => $this->input->post('id_siswa'),
+            'tgl_daftar' => $this->input->post('tgl_daftar'),
+            'status' => '1',
         );
-        $masuk=$this->m_perpustakaan->aksi_tambah_anggota('table_anggota', $data);
+        $masuk=$this->m_perpustakaan->aksi_tambah_anggota('tabel_anggota', $data);
         if($masuk)
         {
             $this->session->set_flashdata('sukses', 'berhasil');
@@ -132,7 +132,7 @@ class Perpustakaan extends CI_Controller {
         else
         {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Perpustakaan/tambah_anggota'));
+            redirect(base_url('Perpustakaan/form_anggota'));
         }
     }
 
@@ -179,8 +179,6 @@ class Perpustakaan extends CI_Controller {
         }
 
     }
-
-    
 
 // Kategori
     public function kategori_buku()
@@ -288,6 +286,7 @@ class Perpustakaan extends CI_Controller {
             'sumber' => $this->input->post('sumber'),
             'kategori_id' => $this->input->post('kategori_id'),
             'rak_buku_id' => $this->input->post('rak_buku_id'),
+            'stok' => $this->input->post('stok'),
             'del_flag' => '1',
         );
         $masuk=$this->m_perpustakaan->tambah_buku('table_buku', $data);
