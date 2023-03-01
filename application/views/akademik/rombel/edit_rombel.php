@@ -20,15 +20,15 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Edit rombel</h1>
+                            <h1>Edit Rombel</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a
                                         href="<?php echo base_url('Akademik/') ?>"><?php echo $this->session->userdata('level') ?></a>
                                 </li>
-                                <li class="breadcrumb-item active"><a href="<?php echo base_url('Akademik/rombel') ?>">rombel</a></li>
-                                <li class="breadcrumb-item active">Edit rombel</li>
+                                <li class="breadcrumb-item active"><a href="<?php echo base_url('Akademik/rombel') ?>">Rombel</a></li>
+                                <li class="breadcrumb-item active">Edit Rombel</li>
                             </ol>
                         </div>
                     </div>
@@ -43,10 +43,10 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <label class="control-label">Nama rombel</label>
+                                    <label class="control-label">Nama Rombel</label>
                                     <div class="">
                                         <input type="text" name="nama_rombel" class="form-control"
-                                            placeholder="Masukan Nama rombel" value="<?php echo $data->nama_rombel ?>">
+                                            placeholder="Masukan Nama Rombel" value="<?php echo $data->nama_rombel ?>">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -60,13 +60,6 @@
                                                 <option value="<?php echo $kelas->id_kelas ?>"><?php echo $kelas->nama_kelas ?></option>
                                             <?php endforeach;?>
                                         </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label">Kuota</label>
-                                    <div class="">
-                                        <input type="text" name="kuota" class="form-control"
-                                               value="<?php echo $data->kuota ?>">
                                     </div>
                                 </div>
                             </div>
@@ -85,23 +78,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">Jenjang</label>
+                                    <label class="control-label">Kuota</label>
                                     <div class="">
-                                        <select name="id_jenjang" class="form-control form-select px-2 py-1" aria-label="jenjang">
-                                            <option style="display: none;" value="<?php echo tampil_namajenjang_byid($data->id_jenjang)?>">
-                                            <?php echo tampil_namajenjang_byid($data->id_jenjang)?>
-                                            </option>
-                                            <?php foreach($jenjang as $jenjang): ?>
-                                                <option value="<?php echo $jenjang->id_jenjang ?>"><?php echo $jenjang->nama_jenjang ?></option>
-                                            <?php endforeach;?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label">Nip</label>
-                                    <div class="">
-                                        <input type="number" value="<?php echo $data->nip ?>" name="nip" class="form-control"
-                                            placeholder="Masukan nip">
+                                        <input type="text" name="kuota" class="form-control"
+                                               value="<?php echo $data->kuota ?>">
                                     </div>
                                 </div>
                             </div>

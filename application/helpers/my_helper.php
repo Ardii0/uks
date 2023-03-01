@@ -11,6 +11,23 @@ function tampil_namajenjang_byid($id)
   }
 }
 
+function tampil_namajenjang_ByIdKelas($id)
+{
+$ci =& get_instance();
+$ci->load->database();
+$namadaftar = '';
+$result = $ci->db->select('*')
+                  ->from('tabel_kelas')
+                  ->join('tabel_jenjang','tabel_kelas.id_jenjang = tabel_jenjang.id_jenjang')
+                  ->where('tabel_kelas.id_kelas',$id)
+                  ->get();
+  foreach ($result->result() as $c) {
+  $stmt= $c->nama_jenjang;
+  $namadaftar= $namadaftar.$stmt.'<br>';
+  }
+  return $namadaftar;
+}
+
 function tampil_tahunangkatan_byid($id)
 {
  $ci =& get_instance();

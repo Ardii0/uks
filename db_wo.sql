@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 28, 2023 at 10:35 AM
+-- Generation Time: Mar 01, 2023 at 04:54 AM
 -- Server version: 8.0.29
 -- PHP Version: 8.0.25
 
@@ -127,8 +127,8 @@ INSERT INTO `tabel_admin` (`id_admin`, `id_pesanan`, `id_pembayaran`, `id_paket_
 (6, NULL, NULL, NULL, ' zaky ', 'fer', '202cb962ac59075b964b07152d234b70', '085786652577', 'geo@gmail.com', 'laki-laki', 'jl. Sekaran no 41 semarang', 'ada', '123123123', 'ada@ada.ada', 'ada', 'Paket 1', '2023-02-17', '2023-02-24', '2022-11-29', '100000000', '20000', '5000', '20000', '15000', '12568989', 'bca', '1676617568793.png', '2022-11-24', 'BCA', '334566', '1667914969690.jpg', 1, 2, '2023-02-17 07:06:22', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', '', 1, '2023-02-17 14:06:22', 2),
 (7, NULL, NULL, NULL, 'petugas', 'petugas', '202cb962ac59075b964b07152d234b70', '0300399403', 'petugas@gmail.com', 'laki-laku', 'semarang', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2022-11-09 08:33:53', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', '', 1, '0000-00-00 00:00:00', 2),
 (11, NULL, NULL, NULL, 'fifi listiana', 'fifi', '202cb962ac59075b964b07152d234b70', '09889928823', 'fifi@gmail.com', 'perempuan', 'Semarang', 'Udin', '089399308391', 'udin@gmail.com', 'tegal', 'Paket 1', '2022-11-17', '2022-11-24', '2022-11-17', '100000000', '20000', '5000', '20000', NULL, 'invdp568990', 'BTN', '1668672060880.jpg', NULL, NULL, NULL, NULL, 1, 0, '2022-11-17 08:01:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', '', 1, '2022-11-17 10:10:00', 2),
-(12, NULL, NULL, NULL, 'ada', 'ada', '202cb962ac59075b964b07152d234b70', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2023-02-28 08:47:32', '2023-02-20 11:26:01', '2023-02-20 11:26:01', '', '', '', 1, '2023-02-28 15:47:32', 5),
-(13, NULL, NULL, NULL, 'da', 'da', '202cb962ac59075b964b07152d234b70', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2023-02-28 08:46:19', '2023-02-20 11:26:01', '2023-02-20 11:26:01', '', '', '', 1, '2023-02-28 15:46:19', 4),
+(12, NULL, NULL, NULL, 'ada', 'ada', '202cb962ac59075b964b07152d234b70', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2023-03-01 03:31:14', '2023-02-20 11:26:01', '2023-02-20 11:26:01', '', '', '', 1, '2023-03-01 10:31:14', 5),
+(13, NULL, NULL, NULL, 'da', 'da', '202cb962ac59075b964b07152d234b70', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2023-03-01 03:45:39', '2023-02-20 11:26:01', '2023-02-20 11:26:01', '', '', '', 1, '2023-03-01 10:45:39', 4),
 (14, NULL, NULL, NULL, 'ni', 'ni', '202cb962ac59075b964b07152d234b70', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2023-02-20 11:01:40', '2023-02-20 11:26:01', '2023-02-20 11:26:01', '', '', '', 1, '2023-02-20 18:01:40', 6),
 (16, NULL, NULL, NULL, 'tu', 'tu', '202cb962ac59075b964b07152d234b70', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2023-02-20 11:01:50', '2023-02-20 11:26:01', '2023-02-20 11:26:01', '', '', '', 1, '2023-02-20 18:01:50', 7);
 
@@ -187,8 +187,7 @@ CREATE TABLE `tabel_anggota` (
 
 INSERT INTO `tabel_anggota` (`id_anggota`, `id_siswa`, `tgl_daftar`, `status`) VALUES
 (1, 1, '2023-02-21', 1),
-(3, 2, '2023-03-02', 1),
-(4, 4, '2023-02-07', 1);
+(3, 2, '2023-03-02', 1);
 
 -- --------------------------------------------------------
 
@@ -224,8 +223,7 @@ CREATE TABLE `tabel_daftar` (
 
 INSERT INTO `tabel_daftar` (`id_daftar`, `no_reg`, `id_angkatan`, `id_jenjang`, `tgl_daftar`, `nisn`, `nama`, `jekel`, `tempat_lahir`, `anak_ke`, `saudara_kandung`, `saudara_angkat`, `tgl_lahir`, `agama`, `alamat`, `telepon`, `foto`, `warga_negara`, `diterima`) VALUES
 (2, '12', 1, 3, '2023-02-18', '213', 'Ahmad Jay', 'L', 'Los Angel', 1, '1', '1', '2023-03-11', 'Islam', 'Jl.Roti Burger Ayam', '123', '1677472666712.png', 'WNI', 'P'),
-(3, '313', 1, 3, '2023-02-28', '3123', 'Irvanda', 'L', 'Taman', 1, '4', '0', '2023-03-03', 'Islam', 'Taman', '08989898', NULL, 'WNI', 'P'),
-(4, '1', 1, 3, '2023-01-29', '222', 'No 4', 'P', 'Tes', 1, '1', '1', '2023-02-07', 'Islam', 'Tes', '23213', NULL, 'WNA', 'P');
+(3, '313', 1, 3, '2023-02-28', '3123', 'Irvanda', 'L', 'Taman', 1, '4', '0', '2023-03-03', 'Islam', 'Taman', '08989898', NULL, 'WNI', 'P');
 
 -- --------------------------------------------------------
 
@@ -280,7 +278,7 @@ INSERT INTO `tabel_jenismapel` (`id_jenismapel`, `nama_jenismapel`, `keterangan`
 
 CREATE TABLE `tabel_jenjang` (
   `id_jenjang` int NOT NULL,
-  `kd_jenjang` varchar(50) NOT NULL,
+  `kd_jenjang` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `nama_jenjang` varchar(50) NOT NULL,
   `keterangan` text,
   `paket` varchar(2) NOT NULL,
@@ -293,7 +291,9 @@ CREATE TABLE `tabel_jenjang` (
 
 INSERT INTO `tabel_jenjang` (`id_jenjang`, `kd_jenjang`, `nama_jenjang`, `keterangan`, `paket`, `aktif`) VALUES
 (1, 'J001', 'SD', 'School Dasar', '2', 1),
-(3, 'J002', 'SMP', '', '1', 1);
+(3, 'J002', 'SMP', '', '1', 1),
+(4, 'J003', 'SMA', NULL, '2', 1),
+(5, 'J004', 'SMK', NULL, '4', 1);
 
 -- --------------------------------------------------------
 
@@ -315,8 +315,9 @@ CREATE TABLE `tabel_kelas` (
 
 INSERT INTO `tabel_kelas` (`id_kelas`, `id_jenjang`, `nama_kelas`, `keterangan`, `status`) VALUES
 (1, 1, 'X', 'Ok', 'AKTIF'),
-(2, 1, 'XII', 'Test', 'AKTIF'),
-(3, 1, 'XI', 'Ok', 'AKTIF');
+(2, 4, 'XII', 'Test', 'AKTIF'),
+(3, 3, 'XI', 'Ok', 'AKTIF'),
+(5, 5, 'XII', NULL, 'AKTIF');
 
 -- --------------------------------------------------------
 
@@ -602,9 +603,7 @@ CREATE TABLE `tabel_rombel` (
   `id_kelas` int NOT NULL,
   `nama_rombel` varchar(100) NOT NULL,
   `kode_guru` int NOT NULL,
-  `id_jenjang` int NOT NULL,
   `kuota` int NOT NULL,
-  `nip` varchar(50) NOT NULL,
   `status` enum('AKTIF','NONAKTIF') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'AKTIF'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -612,11 +611,12 @@ CREATE TABLE `tabel_rombel` (
 -- Dumping data for table `tabel_rombel`
 --
 
-INSERT INTO `tabel_rombel` (`id_rombel`, `id_kelas`, `nama_rombel`, `kode_guru`, `id_jenjang`, `kuota`, `nip`, `status`) VALUES
-(1, 1, 'TKJ', 444, 1, 50, '341', 'AKTIF'),
-(2, 2, 'TKJ 2', 444, 1, 123, '21312', 'AKTIF'),
-(5, 3, 'TKJ 3', 444, 1, 291, '231242', 'AKTIF'),
-(6, 1, 'TB', 444, 3, 221, '21312', 'AKTIF');
+INSERT INTO `tabel_rombel` (`id_rombel`, `id_kelas`, `nama_rombel`, `kode_guru`, `kuota`, `status`) VALUES
+(1, 1, 'TKJ', 449, 35, 'AKTIF'),
+(2, 3, 'TKJ 2', 444, 123, 'AKTIF'),
+(5, 2, 'TKJ 3', 444, 291, 'AKTIF'),
+(6, 3, 'TB', 444, 221, 'AKTIF'),
+(10, 2, 'AKL', 444, 21, 'AKTIF');
 
 -- --------------------------------------------------------
 
@@ -627,7 +627,7 @@ INSERT INTO `tabel_rombel` (`id_rombel`, `id_kelas`, `nama_rombel`, `kode_guru`,
 CREATE TABLE `tabel_siswa` (
   `id_siswa` int NOT NULL,
   `id_daftar` int NOT NULL,
-  `id_rombel` int NOT NULL,
+  `id_rombel` int DEFAULT NULL,
   `saldo_tabungan` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -637,8 +637,7 @@ CREATE TABLE `tabel_siswa` (
 
 INSERT INTO `tabel_siswa` (`id_siswa`, `id_daftar`, `id_rombel`, `saldo_tabungan`) VALUES
 (1, 2, 1, 123123123),
-(2, 3, 5, 123123123),
-(4, 4, 2, 2);
+(2, 3, 5, 123123123);
 
 -- --------------------------------------------------------
 
@@ -862,7 +861,6 @@ ALTER TABLE `tabel_pinjaman`
 ALTER TABLE `tabel_rombel`
   ADD PRIMARY KEY (`id_rombel`),
   ADD KEY `id_kelas` (`id_kelas`),
-  ADD KEY `id_jenjang` (`id_jenjang`),
   ADD KEY `kode_guru` (`kode_guru`);
 
 --
@@ -959,13 +957,13 @@ ALTER TABLE `tabel_jenismapel`
 -- AUTO_INCREMENT for table `tabel_jenjang`
 --
 ALTER TABLE `tabel_jenjang`
-  MODIFY `id_jenjang` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_jenjang` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tabel_kelas`
 --
 ALTER TABLE `tabel_kelas`
-  MODIFY `id_kelas` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_kelas` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tabel_mapel`
@@ -1013,7 +1011,7 @@ ALTER TABLE `tabel_pinjaman`
 -- AUTO_INCREMENT for table `tabel_rombel`
 --
 ALTER TABLE `tabel_rombel`
-  MODIFY `id_rombel` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_rombel` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tabel_siswa`
@@ -1071,8 +1069,8 @@ ALTER TABLE `tabel_anggota`
 -- Constraints for table `tabel_daftar`
 --
 ALTER TABLE `tabel_daftar`
-  ADD CONSTRAINT `tabel_angkatan_ibfk_1` FOREIGN KEY (`id_angkatan`) REFERENCES `tabel_tahunajaran` (`id_angkatan`),
-  ADD CONSTRAINT `tabel_daftar_to_jenjang_1` FOREIGN KEY (`id_jenjang`) REFERENCES `tabel_jenjang` (`id_jenjang`);
+  ADD CONSTRAINT `tabel_daftar_to_angkatan` FOREIGN KEY (`id_angkatan`) REFERENCES `tabel_tahunajaran` (`id_angkatan`),
+  ADD CONSTRAINT `tabel_daftar_to_jenjang` FOREIGN KEY (`id_jenjang`) REFERENCES `tabel_jenjang` (`id_jenjang`);
 
 --
 -- Constraints for table `tabel_kelas`
@@ -1098,7 +1096,6 @@ ALTER TABLE `tabel_pinjaman`
 --
 ALTER TABLE `tabel_rombel`
   ADD CONSTRAINT `tabel_guru_ibfk_1` FOREIGN KEY (`kode_guru`) REFERENCES `tabel_guru` (`kode_guru`),
-  ADD CONSTRAINT `tabel_jenjang_ibfk_1` FOREIGN KEY (`id_jenjang`) REFERENCES `tabel_jenjang` (`id_jenjang`),
   ADD CONSTRAINT `tabel_kelas_1` FOREIGN KEY (`id_kelas`) REFERENCES `tabel_kelas` (`id_kelas`);
 
 --

@@ -214,7 +214,6 @@ class Akademik extends CI_Controller {
         $this->load->model('M_akademik');
         $data['kelas'] = $this->m_akademik->get_kelas('kelas');
         $data['guru'] = $this->m_akademik->get_guru('guru');
-        $data['jenjang'] = $this->m_akademik->get_jenjang('jenjang');
         $this->load->view('akademik/rombel/form_rombel', $data);
     }
 
@@ -224,9 +223,7 @@ class Akademik extends CI_Controller {
             'nama_rombel' => $this->input->post('nama_rombel'),
             'kode_guru' => $this->input->post('kode_guru'),
             'id_kelas' => $this->input->post('id_kelas'),
-            'id_jenjang' => $this->input->post('id_jenjang'),
             'kuota' => $this->input->post('kuota'),
-            'nip' => $this->input->post('nip'),
         ];
         $this->m_akademik->tambah_rombel('tabel_rombel', $data);
         redirect(base_url('Akademik/rombel'));
@@ -247,9 +244,7 @@ class Akademik extends CI_Controller {
             'nama_rombel' => $this->input->post('nama_rombel'),
             'kode_guru' => $this->input->post('kode_guru'),
             'id_kelas' => $this->input->post('id_kelas'),
-            'id_jenjang' => $this->input->post('id_jenjang'),
             'kuota' => $this->input->post('kuota'),
-            'nip' => $this->input->post('nip'),
         ];
         $logged=$this->m_akademik->ubah_rombel('tabel_rombel', $data, array('id_rombel'=>$this->input->post('id_rombel')));
         if($logged)

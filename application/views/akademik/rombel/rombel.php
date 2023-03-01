@@ -19,12 +19,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>rombel</h1>
+                    <h1>Rombel</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="<?php echo base_url('Akademik/') ?>"><?php echo $this->session->userdata('level') ?></a></li>
-                    <li class="breadcrumb-item active">rombel</li>
+                    <li class="breadcrumb-item active">Rombel</li>
                     </ol>
                 </div>
                 </div>
@@ -54,7 +54,6 @@
                                             <th>Jenjang</th>
                                             <th>Wali Kelas</th>
                                             <th>Kouta</th>
-                                            <th>Nip</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -64,10 +63,9 @@
                                             <td><?php echo $id?></td>
                                             <td><?php echo $data->nama_rombel?></td>
                                             <td><?php echo tampil_kelasById($data->id_kelas)?></td>
-                                            <td><?php echo tampil_namajenjang_byid($data->id_jenjang)?></td>
+                                            <td><?php echo tampil_namajenjang_ByIdKelas($data->id_kelas)?></td>
                                             <td><?php echo tampil_guruById($data->kode_guru)?></td>
                                             <td><?php echo $data->kuota?></td>
-                                            <td><?php echo $data->nip?></td>
                                             <td class="text-center">
                                                 <a href="<?php echo base_url('Akademik/edit_rombel/'.$data->id_rombel)?>"
                                                     class="btn btn-primary btn-sm">
