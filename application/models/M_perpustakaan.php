@@ -143,6 +143,18 @@ class M_perpustakaan extends CI_Model{
 		return $this->db->insert_id();
 	}
 
+	public function stok_keluar($tabel, $data)
+	{
+		$this->db->insert($tabel, $data);
+		return $this->db->insert_id();
+	}
+
+	public function stok_masuk($tabel, $data)
+	{
+		$this->db->insert($tabel, $data);
+		return $this->db->insert_id();
+	}
+
 	public function edit_pinjaman($tabel, $id_pinjaman)
 	{
 		$data=$this->db->where('id_pinjaman', $id_pinjaman)->get($tabel);
