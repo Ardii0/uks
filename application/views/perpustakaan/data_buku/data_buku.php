@@ -42,7 +42,7 @@
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body">
-                                    <table id="table_1" class="table table-bordered">
+                                    <table id="perpustakaan-table" class="table table-bordered">
                                         <thead>
                                             <tr class="text-center bg-secondary">
                                                 <th>No</th>
@@ -71,6 +71,10 @@
                                                     <a href="<?php echo base_url('Perpustakaan/edit_buku/'.$row->id_buku)?>"
                                                         class="btn btn-primary btn-sm">
                                                         <i class="fa fa-edit"></i></a>
+                                                    <a href="<?php echo base_url('Perpustakaan/barcode/'.$row->id_buku)?>"
+                                                        class="btn btn-success btn-sm">
+                                                        <i class="fas fa-barcode"></i>
+                                                    </a>
                                                     <button onClick="hapus(<?php echo $row->id_buku?>)"
                                                         class="btn btn-danger btn-sm">
                                                         <i class="fa fa-trash"></i> </button>

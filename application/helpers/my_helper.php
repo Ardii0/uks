@@ -33,6 +33,17 @@ function tampil_mapelById($id)
   }
 }
 
+function tampil_ket_kelasById($id)
+{
+ $ci =& get_instance();
+ $ci->load->database();
+ $result = $ci->db->where('id_kelas',$id)->get('tabel_kelas');
+  foreach ($result->result() as $c) {
+  $stmt= $c->keterangan;
+  return $stmt;
+  }
+}
+
 function tampil_jenismapelById($id)
 {
  $ci =& get_instance();
@@ -221,13 +232,13 @@ function tampil_nama_siswa_byid($id)
     return $stmt;
     }
   }
-  function tampil_wn_siswa_byid($id)
+  function tampil_warga_negara_siswa_byid($id)
   {
   $ci =& get_instance();
   $ci->load->database();
   $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
     foreach ($result->result() as $c) {
-    $stmt= $c->wn;
+    $stmt= $c->warga_negara;
     return $stmt;
     }
   }
@@ -261,24 +272,89 @@ function tampil_nama_siswa_byid($id)
     return $stmt;
     }
   }
-  function tampil_sdr_kandung_siswa_byid($id)
+  function tampil_saudara_kandung_siswa_byid($id)
   {
   $ci =& get_instance();
   $ci->load->database();
   $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
     foreach ($result->result() as $c) {
-    $stmt= $c->sdr_kandung;
+    $stmt= $c->saudara_kandung;
     return $stmt;
     }
   }
-  function tampil_sdr_angkat_siswa_byid($id)
+  function tampil_saudara_angkat_siswa_byid($id)
   {
   $ci =& get_instance();
   $ci->load->database();
   $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
     foreach ($result->result() as $c) {
-    $stmt= $c->sdr_angkat;
+    $stmt= $c->saudara_angkat;
     return $stmt;
     }
   }
+  function tampil_foto_siswa_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
+    foreach ($result->result() as $c) {
+    $stmt= $c->foto;
+    return $stmt;
+    }
+  }
+
+// Peminjaman Buku
+  function tampil_namabuku_byPeminjamanId($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_buku',$id)->get('table_buku');
+    foreach ($result->result() as $c) {
+    $stmt= $c->judul_buku;
+    return $stmt;
+    }
+  }
+  function tampil_pengarangbuku_byPeminjamanId($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_buku',$id)->get('table_buku');
+    foreach ($result->result() as $c) {
+    $stmt= $c->penulis_buku;
+    return $stmt;
+    }
+  }
+  function tampil_kategoribuku_byPeminjamanId($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_buku',$id)->get('table_buku');
+    foreach ($result->result() as $c) {
+    $stmt= $c->kategori_id;
+    return $stmt;
+    }
+  }
+  function tampil_rakbuku_byPeminjamanId($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_buku',$id)->get('table_buku');
+    foreach ($result->result() as $c) {
+    $stmt= $c->rak_buku_id;
+    return $stmt;
+    }
+  }
+
+  // FOR BARCODE
+  function tampil_judul_buku_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_buku',$id)->get('table_buku');
+    foreach ($result->result() as $c) {
+    $stmt= $c->judul_buku;
+    return $stmt;
+    }
+  }
+  
 ?>

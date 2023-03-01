@@ -36,9 +36,9 @@
                 </div>
             </section>
 
-            <form action="<?php echo base_url('Akademik/tambah_alokasiguru'); ?>" enctype="multipart/form-data"
-                method="post">
-                <section class="content">
+            <section class="content">
+                <form action="<?php echo base_url('Akademik/tambah_alokasiguru'); ?>" enctype="multipart/form-data"
+                    method="post">
                     <div class="container-fluid bg-white">
                         <div class="d-flex p-3 justify-content-between">
                             <div>
@@ -65,8 +65,8 @@
                                     <table id="datasiswa-table" class="table table-bordered table-striped">
                                         <thead class="bg-info">
                                             <tr>
-                                                <th style="width: 10%;">
-                                                    <input type="checkbox">
+                                                <th style="width: 4%;">
+                                                    <input type="checkbox" id="checkAll">
                                                 </th>
                                                 <th>Nama Mapel</th>
                                                 <th>keterangan</th>
@@ -76,8 +76,7 @@
                                             <?php foreach ($mapel as $data): ?>
                                             <tr>
                                                 <td>
-                                                    <input type="checkbox" name="id_mapel"
-                                                        value="<?php echo $data->id_mapel ?>">
+                                                    <input type="checkbox" class="mapel" name="id_mapel[<?php echo $data->id_mapel ?>]">
                                                 </td>
                                                 <td>
                                                     <?php echo $data->nama_mapel ?>
@@ -93,8 +92,8 @@
                             </div>
                         </div>
                     </div>
-                </section>
-            </form>
+                </form>
+            </section>
             <!-- <form action="<?php echo base_url('Akademik/hapus_alokasiguru'); ?>" enctype="multipart/form-data"
                 method="post"> -->
             <section class="content">
@@ -154,6 +153,23 @@
         </div>
     </div>
     <?php $this->load->view('akademik/style/js')?>
+    <script>
+        $("#checkAll").click(function () {
+            $('.mapel').prop('checked',$(this).prop('checked'))
+        });
+        $('#datasiswa-table').on('click'. '.mapel', function(){
+            var ca = true
+            $('.mapel').each(function(){
+                if(!$(this).prop('checked')){
+                    ca = false
+                }
+            })
+            $("$checkAll").prop('checked', ca)
+        })
+        $('#checkAll').click(function () {    
+            $('input:checkbox').prop('checked', this.checked);    
+        });
+    </script>
 </body>
 
 </html>

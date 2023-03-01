@@ -5,39 +5,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <?php $this->load->view('perpustakaan/style/head')?>
+    <title>Tambah anggota</title>
+    <?php $this->load->view('perpustakaan/style/head') ?>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed" data-panel-auto-height-mode="height">
     <div class="wrapper">
         <!-- navbar -->
-        <?php $this->load->view('perpustakaan/style/navbar')?>
+        <?php $this->load->view('perpustakaan/style/navbar') ?>
         <!-- navbar -->
         <!-- Sidebar -->
-        <?php $this->load->view('perpustakaan/style/sidebar')?>
+        <?php $this->load->view('perpustakaan/style/sidebar') ?>
         <!-- Sidebar -->
 
         <div class="content-wrapper">
             <section class="content-header">
                 <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1>Detail Buku</h1>
-                        </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a
-                                        href="<?php echo base_url('Perpustakaan/') ?>"><?php echo $this->session->userdata('level') ?></a>
-                                </li>
-                                <li class="breadcrumb-item active">Detail BUku</li>
-                            </ol>
-                        </div>
+                    <div class="p-5 bg-white d-flex justify-content-center">
+                        <table class="border" style="padding: 20px">
+                            <thead class="border">
+                                <td>
+                                    <img src="<?php echo base_url('') ?>" alt="">
+                                </td>
+                                <td class="p-4">
+                                    <p class="text-bold">
+                                    <h3 class=" text-center">
+                                        PERPUSTAKAAN SEKOLAH <br>
+                                        SMK BINA NUSANTARA<br>
+                                        <P>jl kemantren</P>
+                                    </h3>
+                                    </p>
+                                </td>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </section>
-
-            <section class="content">
                 <?php foreach ($buku as $data): ?>
                 <div class="container-fluid bg-white rounded">
                     <div class="row mx-2 pt-3 d-flex justify-content-between">
@@ -58,7 +63,8 @@
                 <?php endforeach;?>
             </section>
         </div>
-        <?php $this->load->view('perpustakaan/style/js')?>
+    </div>
+    <?php $this->load->view('perpustakaan/style/js') ?>
 </body>
 
 </html>

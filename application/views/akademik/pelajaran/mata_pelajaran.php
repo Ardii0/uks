@@ -80,7 +80,7 @@
                                                     <?php echo $data->keterangan ?>
                                                 </td>
                                                 <td class="text-center">
-                                                <a href="#"
+                                                <a href="<?php echo base_url('Akademik/alokasi_mapel/' . $data->id_mapel) ?>"
                                                         class="btn btn-success btn-sm">
                                                         <i class="fa fa-share"></i></a>
                                                     <a href="<?php echo base_url('Akademik/edit_mapel/' . $data->id_mapel) ?>"

@@ -17,7 +17,7 @@
     </style>
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini layout-fixed">
     <div class="wrapper">
         <?php $this->load->view('akademik/style/navbar')?>
         <?php $this->load->view('akademik/style/sidebar')?>
@@ -43,95 +43,137 @@
                     </div>
                 </div>
             </section>
+            <div class="container">
+                <?php foreach ($siswa as $data): ?>
+                <div class="main-body">
+                    <div class="row gutters-sm">
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex flex-column align-items-center text-center">
+                                        <img style="width: 150px; height:150px;"
+                                            src="<?php echo base_url('uploads/akademik/pendaftaran_siswa')."/".tampil_foto_siswa_byid($data->id_daftar);?>"
+                                            alt="Admin" class="rounded-circle" width="150">
+                                        <div class="mt-3">
+                                            <h4><?php echo tampil_nama_siswa_byid($data->id_daftar)?></h4>
+                                            <p class="text-secondary mb-1">
+                                                <?php echo tampil_rombel_byid($data->id_rombel)?></p>
+                                            <p class="text-muted font-size-sm">
+                                                <?php echo tampil_alamattinggal_byIdDaftar($data->id_daftar)?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <h6 class="mb-0">Anak Ke</h6>
+                                            </div>
+                                            <div class="col-sm-4 text-secondary">
+                                                <?php echo tampil_anak_ke_siswa_byid($data->id_daftar)?>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <h6 class="mb-0">Jumlah Saudara (Kandung)</h6>
+                                            </div>
+                                            <div class="col-sm-4 text-secondary">
+                                                <?php echo tampil_saudara_kandung_siswa_byid($data->id_daftar)?>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <h6 class="mb-0">Jumlah Saudara (Angkat)</h6>
+                                            </div>
+                                            <div class="col-sm-4 text-secondary">
+                                                <?php echo tampil_saudara_angkat_siswa_byid($data->id_daftar)?>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                </div>
 
-            <section class="content">
-                <div class="container-fluid bg-white p-3 rounded">
-                    <?php foreach ($siswa as $data): ?>
-                    <div class="row">
-                        <div class="col-5">
-                            <div class="d-flex justify-content-center">
-                                <img src="https://static.thenounproject.com/png/5034901-200.png" alt="Foto Siswa"
-                                    width="200px" height="200px">
-                            </div>
-                            <div class="text-center tes">
-                                <h3 class="font-weight-bold mt-n2"><?php echo tampil_nama_siswa_byid($data->id_daftar)?>
-                                </h3>
-                                <h5 class="font-weight-bold mt-n2"><?php echo tampil_rombel_byid($data->id_rombel)?>
-                                </h5>
                             </div>
                         </div>
-                        <div class="col-7 tes">
-                            <div class="row">
-                                <div class="col-4">
-                                    <h6>Alamat</h6>
-                                </div>
-                                <div class="col-8">
-                                    <h6>: <?php echo tampil_alamat_siswa_byid($data->id_daftar)?></h6>
-                                </div>
-                                <div class="col-4">
-                                    <h6>Tempat / Tanggal Lahir</h6>
-                                </div>
-                                <div class="col-8">
-                                    <h6>: <?php echo tampil_tempat_lahir_siswa_byid($data->id_daftar)?> /
-                                        <?php echo tampil_tanggal_lahir_siswa_byid($data->id_daftar)?></h6>
-                                </div>
-                                <div class="col-4">
-                                    <h6>Jenis Kelamin</h6>
-                                </div>
-                                <div class="col-8">
-                                    <h6>: <?php echo tampil_jekel_siswa_byid($data->id_daftar)?></h6>
-                                </div>
-                                <div class="col-4">
-                                    <h6>Agama</h6>
-                                </div>
-                                <div class="col-8">
-                                    <h6>: <?php echo tampil_agama_siswa_byid($data->id_daftar)?></h6>
-                                </div>
-                                <div class="col-4">
-                                    <h6>Kewarganegaraan</h6>
-                                </div>
-                                <div class="col-8">
-                                    <h6>: <?php echo tampil_wn_siswa_byid($data->id_daftar)?></h6>
-                                </div>
-                                <div class="col-4">
-                                    <h6>NISN</h6>
-                                </div>
-                                <div class="col-8">
-                                    <h6>: <?php echo tampil_nisn_siswa_byid($data->id_daftar)?></h6>
-                                </div>
-                                <div class="col-4">
-                                    <h6>No Telepon</h6>
-                                </div>
-                                <div class="col-8">
-                                    <h6>: <?php echo tampil_telepon_siswa_byid($data->id_daftar)?></h6>
-                                </div>
-                                <div class="col-4">
-                                    <h6>Anak Ke-</h6>
-                                </div>
-                                <div class="col-8">
-                                    <h6>: <?php echo tampil_anak_ke_siswa_byid($data->id_daftar)?></h6>
-                                </div>
-                                <div class="col-4">
-                                    <h6>Jumlah Saudara (Kandung)</h6>
-                                </div>
-                                <div class="col-8">
-                                    <h6>: <?php echo tampil_sdr_kandung_siswa_byid($data->id_daftar)?></h6>
-                                </div>
-                                <div class="col-4">
-                                    <h6>Jumlah Saudara (Angkat)</h6>
-                                </div>
-                                <div class="col-8">
-                                    <h6>: <?php echo tampil_sdr_angkat_siswa_byid($data->id_daftar)?></h6>
+                        <div class="col-md-8">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">NISN</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <?php echo tampil_nisn_siswa_byid($data->id_daftar)?>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">No Telepon</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <?php echo tampil_telepon_siswa_byid($data->id_daftar)?>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Tempat / Tanggal Lahir</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <?php echo tampil_tempat_lahir_siswa_byid($data->id_daftar)?> /
+                                            <?php echo tampil_tanggal_lahir_siswa_byid($data->id_daftar)?>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Agama</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <?php echo tampil_agama_siswa_byid($data->id_daftar)?>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Kewarganegaraan</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <?php echo tampil_warga_negara_siswa_byid($data->id_daftar)?>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Jenis Kelamin</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <?php echo tampil_jekel_siswa_byid($data->id_daftar)?>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-info"
+                                                href="<?php echo base_url('Akademik/edit_siswa/'.$data->id_daftar)?>">Edit
+                                                Data Pribadi Siswa</a>
+                                            <a class="btn btn-info"
+                                                href="<?php echo base_url('Akademik/edit_siswa_rombel/'.$data->id_siswa)?>">Edit
+                                                Rombel Siswa</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-end mt-3">
-                        <button type="button" onClick="kembali()" class="w-25 btn btn-secondary">Kembali</button>
-                    </div>
-                    <?php endforeach;?>
                 </div>
-            </section>
+                <?php endforeach;?>
+            </div>
         </div>
     </div>
     <?php $this->load->view('akademik/style/js')?>

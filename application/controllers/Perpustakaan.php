@@ -8,7 +8,7 @@ class Perpustakaan extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('m_perpustakaan');
-        // $this->load->helpers('my_helper');
+        $this->load->helpers('my_helper');
         // $this->load->library('excel');
         if ($this->session->userdata('status_perpustakaan')!='login') {
             redirect(base_url('Login'));
@@ -21,7 +21,7 @@ class Perpustakaan extends CI_Controller {
 
     }
 
-    // Rak Buku
+// Rak Buku
     public function rak_buku()
     {
         $this->load->model('M_perpustakaan');
@@ -96,13 +96,26 @@ class Perpustakaan extends CI_Controller {
             redirect(base_url('Perpustakaan/rak_buku/rak_buku'));
         }
     }
-    // Akhir Rak Buku
+
+// Anggota
+
+    public function tambah_anggota()
+    {
+        $this->load->view('perpustakaan/anggota/tambah_anggota');
+    }
+
+    public function kartu_anggota($id_anggota)
+    {
+        require 'vendor/autoload.php';
+        $data['anggota']=$this->m_perpustakaan->get_anggotaById('table_anggota', $id_anggota)->result();
+        $this->load->view('perpustakaan/anggota/kartu_anggota', $data);
+    }
 
     public function data_anggota()
     {
         $this->load->model('M_perpustakaan');
-        $data['data_anggota'] = $this->m_perpustakaan->get_all_data_anggota('data_anggota');
-        $this->load->view('perpustakaan/data_anggota/data_anggota', $data);
+        $data['data_anggota'] = $this->m_perpustakaan->get_anggota('data_anggota');
+        $this->load->view('perpustakaan/anggota/data_anggota', $data);
     }
 
     public function aksi_tambah_anggota()
@@ -173,7 +186,7 @@ class Perpustakaan extends CI_Controller {
 
     
 
-    // Kategori
+// Kategori
     public function kategori_buku()
     {
         $this->load->model('M_perpustakaan');
@@ -251,7 +264,7 @@ class Perpustakaan extends CI_Controller {
     }
     // Akhir Kategori
 
-    // Buku
+// Buku
     public function data_buku()
     {
         $this->load->model('M_perpustakaan');
@@ -342,53 +355,92 @@ class Perpustakaan extends CI_Controller {
     // Akhir Buku
 
    
+    // Peminjaman Buku
     public function peminjaman()
     {
-        $this->load->view('perpustakaan/peminjaman/peminjaman');
+        $peminjam['data_peminjam'] = $this->m_perpustakaan->get_peminjaman('data_peminjam');
+        $this->load->view('perpustakaan/peminjaman/peminjaman', $peminjam);
     }
+    
+    public function input_peminjaman()
+    {
+        $buku['data_buku'] = $this->m_perpustakaan->get_all_data_buku('data_buku');
+        $anggota['data_anggota'] = $this->m_perpustakaan->get_anggota('data_anggota');
+        $this->load->view('perpustakaan/peminjaman/input_peminjaman', $buku + $anggota);
+    }
+
+    public function aksi_input_peminjaman()
+    {
+        $data = array
+        (
+            'no_pinjaman' => $this->input->post('no_pinjaman'),
+            'id_anggota' => $this->input->post('id_anggota'),
+            'id_buku' => $this->input->post('id_buku'),
+            'tgl_pinjaman' => $this->input->post('tgl_pinjaman'),
+            'tgl_kembali' => "0000-00-00",
+            'status' => 'DIPINJAM',
+        );
+        $masuk=$this->m_perpustakaan->tambah_pinjaman('tabel_pinjaman', $data);
+        if($masuk)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('Perpustakaan/peminjaman'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Perpustakaan/input_peminjaman'));
+        }
+    }
+
+    public function peminjam_id($id_pinjaman)
+    {
+        $peminjam['data_peminjam']=$this->m_perpustakaan->edit_pinjaman('tabel_pinjaman', $id_pinjaman)->result();
+        $this->load->view('perpustakaan/peminjaman/detail_peminjaman', $peminjam);
+    }
+    
+// Pengembalian Buku
     public function pengembalian()
     {
-        $this->load->view('perpustakaan/pengembalian/pengembalian');
+        $peminjam['data_peminjam'] = $this->m_perpustakaan->get_peminjaman('data_peminjam');
+        $this->load->view('perpustakaan/pengembalian/pengembalian', $peminjam);
     }
+
+    public function proses_peminjam_id($id_pinjaman)
+    {
+        $peminjam['data_pinjaman']=$this->m_perpustakaan->edit_pinjaman('tabel_pinjaman', $id_pinjaman)->result();
+        $this->load->view('perpustakaan/pengembalian/proses_pengembalian', $peminjam);
+    }
+
+    public function proses_pengembalian_pinjaman()
+    {
+        $data = array (
+            'tgl_kembali' => $this->input->post('tgl_kembali'),
+            'status' => 'DIKEMBALIKAN',
+        );
+        $masuk=$this->m_perpustakaan->ubah_pinjaman('tabel_pinjaman', $data, array('id_pinjaman'=>$this->input->post('id_pinjaman')));
+        if($masuk)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('Perpustakaan/pengembalian'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Perpustakaan/proses_peminjam_id/'.$this->input->post('id_pinjaman')));
+        }
+    }
+
+// Laporan
     public function laporan()
     {
         $this->load->view('perpustakaan/laporan/laporan');
     }
-
-    //BWarQoude
-    public function barcode()
+    
+    public function barcode($id_buku)
     {
         require 'vendor/autoload.php';
-
-        // This will output the barcode as HTML output to display in the browser
-        $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
-        echo $generator->getBarcode('081231723897', $generator::TYPE_CODE_128);
+        $data['buku']=$this->m_perpustakaan->get_bukuById('table_buku', $id_buku)->result();
+        $this->load->view('perpustakaan/barcode', $data);
     }
-
-    private function generateBarcode( $string, $tipe ="HTML" )
-    {
-        
-        switch($tipe)
-        {
-            case "HTML":
-                $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
-                break;
-            case "JPG":
-                header('Content-type: image/jpeg');
-                $generator = new Picqer\Barcode\BarcodeGeneratorJPG();
-                break;
-            case "PNG":
-                $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
-                break;
-            case "SVG":
-                $generator = new Picqer\Barcode\BarcodeGeneratorSVG();
-                break;
-            default:
-                $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
-        }
-        
-        $barcode   = $generator->getBarcode($string, $generator::TYPE_CODE_128);
-        echo view("barcode", ["barcode" => $barcode, "text" => $string, "tipe" => $tipe]);
-    }
-
 }
