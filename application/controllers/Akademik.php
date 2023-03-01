@@ -820,41 +820,45 @@ function naik_kelas($id){
 
     public function tambah_alokasiguru()
     {
-        $data = [
-            'kode_guru' => $this->input->post('kode_guru'),
-            'id_mapel' => $this->input->post('id_mapel'),
-        ];
-        $this->m_akademik->tambah_alokasiguru('tabel_alokasiguru', $data, array('id_alokasiguru'=>$this->input->post('id_alokasiguru')));
+        $guru = $this->input->post('kode_guru');
+        $mapel = $this->input->post('id_mapel');
+        foreach( $mapel as $key => $value){
+            $this->db->insert('tabel_alokasiguru', array(
+                'kode_guru' => $guru,
+                'id_mapel' => $key,
+            ));
+        }
         redirect(base_url('Akademik/alokasi_guru/'.$this->input->post('kode_guru')));
     }
     
     public function hapus_alokasiguru($id_alokasiguru)
     {
         $this->m_akademik->hapus_alokasiguru('tabel_alokasiguru', 'id_alokasiguru', $id_alokasiguru);
-        redirect(base_url('Akademik/alokasi_guru/'. $id_alokasiguru));
+        redirect(base_url('Akademik/guru'));
     }
+    
   //Alok Mapel
-  public function alokasi_mapel($id_mapel)
-    {
-        $data['kelas'] = $this->m_akademik->get_kelas('kelas');
-        $data['mapel']=$this->m_akademik->get_mapelById('tabel_mapel', $id_mapel)->result();
-        $data['alokasimapel'] = $this->m_akademik->get_alokasimapelByIdMapel('tabel_alokasimapel', $id_mapel);
-        $this->load->view('akademik/alokasi/alokasi_mapel/alokasi_mapel', $data);
-    }
-   public function tambah_alokasimapel()
-    {
-        $data = [
-            'id_kelas' => $this->input->post('id_kelas'),
-            'id_mapel' => $this->input->post('id_mapel'),
-        ];
-        $this->m_akademik->tambah_alokasimapel('tabel_alokasimapel', $data, array('id_alokasimapel'=>$this->input->post('id_alokasimapel')));
-        redirect(base_url('Akademik/alokasi_mapel/'.$this->input->post('id_mapel')));
-    }
-    public function hapus_alokasimapel($id_alokasimapel)
-    {
-        $this->m_akademik->hapus_alokasimapel('tabel_alokasimapel', 'id_alokasimapel', $id_alokasimapel);
-        redirect(base_url('Akademik/alokasi_mapel/'. $id_alokasimapel));
-    }
+    public function alokasi_mapel($id_mapel)
+        {
+            $data['kelas'] = $this->m_akademik->get_kelas('kelas');
+            $data['mapel']=$this->m_akademik->get_mapelById('tabel_mapel', $id_mapel)->result();
+            $data['alokasimapel'] = $this->m_akademik->get_alokasimapelByIdMapel('tabel_alokasimapel', $id_mapel);
+            $this->load->view('akademik/alokasi/alokasi_mapel/alokasi_mapel', $data);
+        }
+    public function tambah_alokasimapel()
+        {
+            $data = [
+                'id_kelas' => $this->input->post('id_kelas'),
+                'id_mapel' => $this->input->post('id_mapel'),
+            ];
+            $this->m_akademik->tambah_alokasimapel('tabel_alokasimapel', $data, array('id_alokasimapel'=>$this->input->post('id_alokasimapel')));
+            redirect(base_url('Akademik/alokasi_mapel/'.$this->input->post('id_mapel')));
+        }
+        public function hapus_alokasimapel($id_alokasimapel)
+        {
+            $this->m_akademik->hapus_alokasimapel('tabel_alokasimapel', 'id_alokasimapel', $id_alokasimapel);
+            redirect(base_url('Akademik/alokasi_mapel/'. $id_alokasimapel));
+        }
     
 
 }
