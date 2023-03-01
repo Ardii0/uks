@@ -294,6 +294,7 @@ class Perpustakaan extends CI_Controller {
             'sumber' => $this->input->post('sumber'),
             'kategori_id' => $this->input->post('kategori_id'),
             'rak_buku_id' => $this->input->post('rak_buku_id'),
+            'stok' => $this->input->post('stok'),
             'del_flag' => '1',
         );
         $masuk=$this->m_perpustakaan->tambah_buku('table_buku', $data);
