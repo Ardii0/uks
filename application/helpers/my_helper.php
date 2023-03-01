@@ -137,15 +137,21 @@ function tampil_nama_siswa_byid($id)
     return $stmt;
     }
   }
-  function tampil_namaJenjang_byIdDaftar($id)
+  function tampil_namaJenjang_ByIdDaftar($id)
   {
   $ci =& get_instance();
   $ci->load->database();
-  $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
+  $namajenjang = '';
+  $result = $ci->db->select('*')
+                    ->from('tabel_daftar')
+                    ->join('tabel_jenjang','tabel_daftar.id_jenjang = tabel_jenjang.id_jenjang')
+                    ->where('tabel_daftar.id_daftar',$id)
+                    ->get();
     foreach ($result->result() as $c) {
-    $stmt= $c->id_jenjang;
-    return $stmt;
+    $stmt= $c->nama_jenjang;
+    $namajenjang= $namajenjang.$stmt.'<br>';
     }
+    return $namajenjang;
   }
   function tampil_tahunajaran_byIdDaftar($id)
   {
@@ -391,7 +397,7 @@ function tampil_nama_siswa_byid($id)
     return $namakelas;
   }
 
-// Peminjaman Buku
+ // Peminjaman Buku
   function tampil_namabuku_byPeminjamanId($id)
   {
   $ci =& get_instance();
@@ -431,6 +437,62 @@ function tampil_nama_siswa_byid($id)
     $stmt= $c->rak_buku_id;
     return $stmt;
     }
+  }
+
+ //
+  function tampil_namadaftar_ByIdAnggota($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $namasiswa = '';
+  $result = $ci->db->select('*')
+                    ->from('tabel_anggota')
+                    ->join('tabel_siswa','tabel_anggota.id_siswa = tabel_siswa.id_siswa')
+                    ->join('tabel_daftar','tabel_siswa.id_daftar = tabel_daftar.id_daftar')
+                    ->where('tabel_anggota.id_anggota',$id)
+                    ->get();
+    foreach ($result->result() as $c) {
+    $stmt= $c->nama;
+    $namasiswa= $namasiswa.$stmt.'<br>';
+    }
+    return $namasiswa;
+  }
+
+  function tampil_kelasdaftar_ByIdAnggota($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $namakelas = '';
+  $result = $ci->db->select('*')
+                    ->from('tabel_anggota')
+                    ->join('tabel_siswa','tabel_anggota.id_siswa = tabel_siswa.id_siswa')
+                    ->join('tabel_rombel','tabel_siswa.id_rombel = tabel_rombel.id_rombel')
+                    ->join('tabel_kelas','tabel_rombel.id_kelas = tabel_kelas.id_kelas')
+                    ->where('tabel_anggota.id_anggota',$id)
+                    ->get();
+    foreach ($result->result() as $c) {
+    $stmt= $c->nama_kelas;
+    $namakelas= $namakelas.$stmt.'<br>';
+    }
+    return $namakelas;
+  }
+
+  function tampil_rombeldaftar_ByIdAnggota($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $namarombel = '';
+  $result = $ci->db->select('*')
+                    ->from('tabel_anggota')
+                    ->join('tabel_siswa','tabel_anggota.id_siswa = tabel_siswa.id_siswa')
+                    ->join('tabel_rombel','tabel_siswa.id_rombel = tabel_rombel.id_rombel')
+                    ->where('tabel_anggota.id_anggota',$id)
+                    ->get();
+    foreach ($result->result() as $c) {
+    $stmt= $c->nama_rombel;
+    $namarombel= $namarombel.$stmt.'<br>';
+    }
+    return $namarombel;
   }
 
   // Detail Index Buku

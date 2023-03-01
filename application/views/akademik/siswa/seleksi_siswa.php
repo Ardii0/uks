@@ -109,7 +109,7 @@
                                             <td><?php echo $id ?></td>
                                             <td><?php echo tampil_noReg_byIdDaftar($row->id_daftar) ?></td>
                                             <td><?php echo tampil_nama_byIdDaftar($row->id_daftar) ?></td>
-                                            <td><?php echo tampil_namaJenjang_byIdDaftar($row->id_daftar) ?></td>
+                                            <td><?php echo tampil_namaJenjang_ByIdDaftar($row->id_daftar) ?></td>
                                             <td class="d-flex">
                                                 <button class="btn btn-info btn-sm">
                                                     <i class="fas fa- fa-eye"></i> <i
