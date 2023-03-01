@@ -71,6 +71,15 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label class=" control-label">Stok Buku</label>
+                                                    <div class="">
+                                                    <input type="number" name="stok" class="form-control"
+                                                        placeholder="Masukan Stok Buku"><br>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="row">
                                           <div class="col">
