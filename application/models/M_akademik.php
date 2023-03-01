@@ -165,7 +165,7 @@ class M_akademik extends CI_Model{
 
     public function get_siswa_kelas()
     {
-        return $this->db->where('id_rombel', 0)->get('tabel_siswa')->result();
+        return $this->db->where('id_rombel', null)->get('tabel_siswa')->result();
     }
 
     public function get_siswaById($tabel, $id_siswa)

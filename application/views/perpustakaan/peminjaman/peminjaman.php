@@ -79,7 +79,7 @@
                                                   <i class="fa fa-eye"></i> 
                                               </button>
                                             </a>
-                                              <button class="btn btn-danger btn-sm">
+                                              <button onClick="hapus(<?php echo $data->id_pinjaman?>)" class="btn btn-danger btn-sm">
                                                   <i class="fa fa-trash"></i> 
                                               </button>
                                           </td>
@@ -97,6 +97,12 @@
     </div>
 <?php $this->load->view('perpustakaan/style/js')?>
 <script>
+    function hapus(id) {
+            var yes = confirm('Yakin Di Hapus?');
+            if (yes == true) {
+                window.location.href = "<?php echo base_url('Perpustakaan/hapus_peminjaman_id/')?>" + id;
+            }
+        }
 </script>
 </body>
 </html>

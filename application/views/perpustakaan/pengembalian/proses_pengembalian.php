@@ -96,6 +96,7 @@
                         <label class="control-label" style="width: 300px;">Tanggal Dikembalikan</label>
                         <input type="date" value="<?php echo $data->tgl_kembali ?>" name="tgl_kembali" class="form-control" require>
                         </div>
+                        <input type="hidden" value="<?php echo $data->id_buku ?>" name="id_buku">
                       <button type="submit" class="btn <?php $btn = $data->status == "DIPINJAM" ? 'btn-danger' : 'btn-success'; echo $btn ?>">
                       <?php $statuss = $data->status == "DIPINJAM" ? 'Kembalikan' : 'Sudah Dikembalikan'; echo $statuss ?>
                       </button>
