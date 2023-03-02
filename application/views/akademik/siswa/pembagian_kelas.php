@@ -33,7 +33,7 @@
             </section>
 
             <section class="content">
-                <form action="<?php echo base_url('Akademik/terapkan_kelas') ?>" method="post">
+                <form action="<?php echo base_url('Akademik/masuk_kelas') ?>" method="post">
                     <div class="container-fluid bg-white">
                         <div class="row mx-2 pt-3 d-flex justify-content-between">
                             <div class="col">
@@ -76,17 +76,17 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <?php $id=0; foreach($data_siswa_diterima as $row ): $id++; ?>
+                                        <?php $id=0; foreach($data_siswa_diterima as $data ): $id++; ?>
                                             <tr>
-                                                <td><input type="checkbox" name="id_siswa" value="<?php echo $row->id_siswa ?>" id="flexCheckDefault"></td>
-                                                <td><?php echo tampil_noReg_byIdDaftar($row->id_daftar) ?></td>
-                                                <td><?php echo tampil_tahunajaran_byIdDaftar($row->id_daftar) ?></td>
-                                                <td><?php echo tampil_namaJenjang_ByIdDaftar($row->id_daftar) ?></td>
-                                                <td><?php echo tampil_nama_byIdDaftar($row->id_daftar) ?></td>
-                                                <td><?php echo tampil_jekel_byIdDaftar($row->id_daftar) ?></td>
-                                                <td><?php echo tampil_tempatlahir_byIdDaftar($row->id_daftar) ?></td>
-                                                <td><?php echo tampil_tanggallahir_byIdDaftar($row->id_daftar) ?></td>
-                                                <td><?php echo tampil_alamattinggal_byIdDaftar($row->id_daftar) ?></td>
+                                                <td><input type="checkbox" name="id_daftar[<?php echo $data->id_daftar ?>]"></td>
+                                                <td><?php echo $data->no_reg ?></td>
+                                                <td><?php echo tampil_tahunangkatan_byid($data->id_angkatan) ?></td>
+                                                <td><?php echo tampil_namajenjang_byid($data->id_jenjang) ?></td>
+                                                <td><?php echo $data->nama ?></td>
+                                                <td><?php echo $data->jekel ?></td>
+                                                <td><?php echo $data->tempat_lahir ?></td>
+                                                <td><?php echo $data->tgl_lahir ?></td>
+                                                <td><?php echo $data->alamat ?></td>
                                             </tr>
                                         <?php endforeach ?>
                                         </tbody>
