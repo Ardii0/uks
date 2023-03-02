@@ -1,21 +1,33 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Frontend extends CI_Controller {
+class LandingPage extends CI_Controller {
 
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('M_frontend');
+        $this->load->model('m_landingpage');
+        $this->load->model('m_perpustakaan');
         $this->load->helpers('my_helper');
         // $this->load->library('excel');
     }
 
     public function index()
     {
-        $isi['menu_paket'] = $this->db->get('menu_paket')->result();
-        $isi['foto'] = $this->db->get('foto')->result();
-        $this->load->view('frontend/style/dashboard', $isi);
+        $this->load->view('landingpage/home');
+    }
+
+    public function daftar_buku()
+    {
+        $data['data_buku'] = $this->m_perpustakaan->get_all_data_buku('data_buku');
+        $data['total_buku'] = $this->m_landingpage->total_buku();
+        $this->load->view('landingpage/buku/daftarbuku', $data);
+    }
+
+    public function buku($id_buku)
+    {
+        $data['alokasiguru'] = $this->m_akademik->get_alokasiguruByIdGuru('tabel_alokasiguru', $id_buku);
+        $this->load->view('landingpage/buku/daftarbuku', $data);
     }
 
     public function register()
