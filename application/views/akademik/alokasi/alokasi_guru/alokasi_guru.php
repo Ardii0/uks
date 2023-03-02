@@ -124,20 +124,20 @@
                                             <?php foreach ($alokasiguru as $datamapel): ?>
                                             <tr>
                                                 <td>
-                                                    <input type="checkbox" class="alokasiguru" name="id_alokasiguru[<?php echo $datamapel->id_alokasiguru ?>]"
-                                                        value="<?php echo $datamapel->id_alokasiguru ?>">
+                                                    <input type="checkbox" class="alokasiguru" name="id_alokasiguru[<?php echo $datamapel->id_alokasiguru ?>]">
                                                 </td>
                                                 <td>
                                                     <?php echo tampil_mapelById($datamapel->id_mapel) ?>
                                                 </td>
                                                 <td>
-                                                    <form action="<?php echo base_url('Akademik/hapus_alokasiguru/'.$datamapel->id_alokasiguru); ?>" 
+                                                    Ketereangan
+                                                    <!-- <form action="<?php echo base_url('Akademik/hapus_alokasiguru/'.$datamapel->id_alokasiguru); ?>" 
                                                     method="post">
                                                     <button
                                                     type="submit"
                                                         class="btn btn-danger btn-sm">
                                                         <i class="fa fa-trash"></i>
-                                                    </button>
+                                                    </button> -->
                                                 </form>
                                                 </td>
                                             </tr>
