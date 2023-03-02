@@ -106,7 +106,7 @@ class Perpustakaan extends CI_Controller {
     public function kartu_anggota($id_anggota)
     {
         require 'vendor/autoload.php';
-        $data['anggota']=$this->m_perpustakaan->get_anggotaById('table_anggota', $id_anggota)->result();
+        $data['anggota']=$this->m_perpustakaan->get_anggotaById('tabel_anggota', $id_anggota)->result();
         $this->load->view('perpustakaan/anggota/kartu_anggota', $data);
     }
 

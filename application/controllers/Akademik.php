@@ -637,7 +637,8 @@ public function siswa_mutasi()
 {
     $this->load->model('M_akademik');
     $siswa['siswa'] = $this->m_akademik->get_siswa('siswa');
-    $this->load->view('akademik/siswa/mutasi', $siswa);
+    $rombel['rombel'] = $this->m_akademik->get_rombel('rombel');
+    $this->load->view('akademik/siswa/mutasi', $siswa + $rombel);
 }
 
 public function pindah_sekolah($id_daftar)
@@ -681,6 +682,30 @@ public function pindah_kelas($id_siswa)
         {
             $this->session->set_flashdata('error', 'gagal..');
             redirect(base_url('Akademik/pindah_kelas/'.$this->input->post('id_siswa')));
+        }
+    }
+    function naik_kelas2() {
+        $id_rombel = $this->input->post('id_rombel');
+        $id_siswa = $this->input->post('id_siswa');
+
+        foreach ($id_siswa as $key => $value) {
+            $logged=$this->m_akademik->ubah_siswa('tabel_siswa', array(
+                'id_siswa' => $key,
+                'id_rombel' => $id_rombel
+            ), array(
+                'id_siswa' => $key
+            ));
+        }
+
+        if($logged)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('Akademik/siswa_mutasi'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Akademik/siswa_mutasi/'.$key));
         }
     }
 

@@ -4,7 +4,7 @@
 <script src="<?php echo base_url("builder/plugins/jquery-ui/jquery-ui.min.js"); ?>"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
-  $.widget.bridge('uibutton', $.ui.button)
+$.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo base_url('builder/plugins/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
@@ -15,6 +15,14 @@
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url('builder/plugins/moment/moment.min.js'); ?>"></script>
 <script src="<?php echo base_url('builder/plugins/daterangepicker/daterangepicker.js'); ?>"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
+</script>
 
 <script src="<?php echo base_url('builer/dist/js/adminlte.js'); ?>"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
@@ -38,7 +46,7 @@ $(function() {
 
     //Initialize Select2 Elements
     $('.select2bs4').select2({
-      theme: 'bootstrap4'
+        theme: 'bootstrap4'
     })
     $("#perpustakaan-table").DataTable({
         "responsive": true,

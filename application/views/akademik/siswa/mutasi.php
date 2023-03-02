@@ -31,8 +31,13 @@
                 </div>
             </div>
             </section>
-
             <section class="content">
+            <?php 
+                echo `<p>Hola</p>`;
+
+                ?>
+                <form action="<?php echo base_url('Akademik/naik_kelas2'); ?>" enctype="multipart/form-data"
+                    method="post">
                 <div class="container-fluid bg-white">
                     <div class="row mx-2 pt-3 d-flex justify-content-between">
                         <div class="col-2 col-sm-6 ">
@@ -63,7 +68,7 @@
                         </div>
                     </div>
                     <div class="row"> 
-                        <div >
+                        <div class="col-8">
                             <div class="card-body">
                                 <table id="datasiswa-table" class="table table-bordered table-striped">
                                     <thead>
@@ -84,7 +89,7 @@
                                     <?php $id=0; foreach($siswa as $data ): $id++;?>
                                         <tr>
                                             <td>
-                                                <input type="checkbox" name="select" id="">
+                                                <input type="checkbox"  name="id_siswa[<?php echo $data->id_siswa ?>]" id="">
                                             </td>
                                             <td><?php echo tampil_rombel_byid($data->id_rombel)?></td>
                                             <td><?php echo tampil_nisn_siswa_byid($data->id_daftar)?></td>
@@ -92,7 +97,7 @@
                                             <td><?php echo tampil_jekel_siswa_byid($data->id_daftar)?></td>
                                             <td><?php echo tampil_tempat_lahir_siswa_byid($data->id_daftar)?>, <?php echo tampil_tanggal_lahir_siswa_byid($data->id_daftar)?></td>
                                             <td><?php echo tampil_alamat_siswa_byid($data->id_daftar)?></td>
-                                            <td> 
+                                            <!-- <td> 
                                                 <a href="<?php echo base_url('Akademik/pindah_sekolah/' . $data->id_daftar) ?>"
                                                         class="btn btn-success btn-sm">
                                                         pindah sekolah</a>
@@ -102,33 +107,35 @@
                                                         <button onclick="hapus(<?php echo $data->id_daftar ;?>)"
                                                     class="btn btn-danger btn-sm">
                                                     naik kelas</button>
-                                            </td>
+                                            </td> -->
                                         </tr>
                                         <?php endforeach;?>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                        <!-- <div class="col-4">
+                        <div class="col-4">
                             <div class="border-bottom h3">Mutasi Siswa</div>
                             <div class="form-group d-flex flex-row " style="width: fit-content;">
                         <div class="mt-2 mx-1">
                         <p  style="font-weight: bold" >Jenis</p>
                         </div>
                         <div class="mx-1">
-                        <select class="custom-select rounded " id="exampleSelectRounded0">
-                                    <option>Pilih</option>
-                                    <option>Naik Kelas</option>
-                                    <option>Pindah Kelas</option>
-                                    <option>Pindah Sekolah</option>
-                                    <option>Lulus</option>
-                                </select>
+                        <select name="id_rombel" class="form-control select2 select2-info" data-dropdown-css-class="select2-info" style="width: 100%; display: none;">
+                            <option selected="selected">Pilih Rombel</option>
+                            <?php $id=0; foreach($rombel as $data ): $id++; ?>
+                                <option value="<?php echo $data->id_rombel ?>"><?php echo $data->nama_rombel ?></option>
+                            <?php endforeach ?>
+                        </select>
+
+                        <button type="submit" class="btn btn-primary mt-5">Ubah</button>
                         </div>
                         </div>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
             </div>
+            </form>
         </section>
     </div>
     </div>
