@@ -45,8 +45,6 @@
                     <div class="row shadow p-4 mb-5 bg-white rounded">
                         <div class="col-12 row justify-content-between align-content-center">
                             <div class="h4 font-weight-bold">Detail Buku</div>
-                            <div><a href="asdasd" class="btn btn-success"><i class="fas fa-plus"></i> Tambah Stok</a>
-                            </div>
                         </div>
                         <div class="col-6 row mt-1">
                             <div class="col-6 text-right font-weight-bold">Id Buku :</div>
@@ -85,6 +83,13 @@
                     </div>
                     <div class="row shadow p-4 mb-5 bg-white rounded">
                         <div class="col-12">
+                            <div class="row justify-content-between align-content-center mb-3">
+                                <div class="h4 font-weight-bold">Stok Buku</div>
+                                <div><a href="asdasd" class="btn btn-success" data-toggle="modal"
+                                        data-target="#modal_tambah_stok"><i class="fas fa-plus">&nbsp;</i>Tambah
+                                        Stok</a>
+                                </div>
+                            </div>
                             <table id="perpustakaan-table" class="table table-bordered">
                                 <thead>
                                     <tr class="text-center bg-secondary">
@@ -101,7 +106,20 @@
                                         <td><?php echo $no?></td>
                                         <td><?php echo $row->id_detail_index_buku?></td>
                                         <td class="d-flex justify-content-center">
-                                            <?php    
+                                            <div class="d-none text-center">
+                                                <span id="cetak">
+                                                    <div>
+                                                        <?php  
+                                                        $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
+                                                        echo $generator->getBarcode($row->id_detail_index_buku, $generator::TYPE_CODE_128);
+                                                    ?>
+                                                    </div>
+                                                    <div>
+                                                        <?php echo $row->id_detail_index_buku?>
+                                                    </div>
+                                                </span>
+                                            </div>
+                                            <?php  
                                                 $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
                                                 echo $generator->getBarcode($row->id_detail_index_buku, $generator::TYPE_CODE_128);
                                             ?>
@@ -110,16 +128,56 @@
                                         <td>
                                             <button onClick="hapus(<?php echo $row->id_stok?>)"
                                                 class="btn btn-danger btn-sm">
-                                                <i class="fa fa-trash"></i> </button>
-                                            <a href="asd" class="btn btn-success btn-sm">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                            <button onclick="convertHTMLtoPDF(<?php echo $row->id_stok?>)"
+                                                class="btn btn-success btn-sm">
                                                 <i class="fas fa-barcode"></i>
-                                            </a>
+                                            </button>
                                         </td>
                                     </tr>
                                     <?php endforeach;?>
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="modal_tambah_stok" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <form action="<?php echo base_url('Perpustakaan/aksi_tambah_stok_buku') ?>"
+                            enctype="multipart/form-data" method="post">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Tambah Stok Buku</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body pb-1">
+                                    <div class="box">
+                                        <!-- /.box-header -->
+                                        <div class="box-body">
+                                            <div class="form-group col-sm-12">
+                                                <label class="control-label">Id detail index buku</label>
+                                                <div>
+                                                    <input type="text" name="id_detail_index_buku" class="form-control"
+                                                        placeholder="Contoh: A01"><br>
+                                                    <input type="hidden" name="id_buku"
+                                                        value="<?php echo $data->id_buku?>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer d-flex justify-content-between">
+                                    <button type="button" class="btn btn-secondary" onclick="kembali()"
+                                        data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">simpan</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <?php endforeach;?>
@@ -137,6 +195,23 @@
             if (yes == true) {
                 window.location.href = "<?php echo base_url('Perpustakaan/delete_detail_index_buku/')?>" + id;
             }
+        }
+
+        function convertHTMLtoPDF(id) {
+            const {
+                jsPDF
+            } = window.jspdf;
+
+            var doc = new jsPDF('l', 'mm', [1500, 1300]);
+            var pdfjs = document.querySelector('#cetak');
+
+            doc.html(pdfjs, {
+                callback: function(doc) {
+                    doc.save("barcode" + id + ".pdf");
+                },
+                x: 12,
+                y: 12
+            });
         }
         </script>
 
