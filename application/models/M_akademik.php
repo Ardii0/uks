@@ -165,7 +165,7 @@ class M_akademik extends CI_Model{
 
     public function get_siswa_kelas()
     {
-        return $this->db->where('id_rombel', 0)->get('tabel_siswa')->result();
+        return $this->db->where('id_rombel', null)->get('tabel_siswa')->result();
     }
 
     public function get_siswaById($tabel, $id_siswa)
@@ -198,11 +198,11 @@ class M_akademik extends CI_Model{
         return $this->db->insert_id();
     }
 
-    public function get_siswaperkelas($tabel, $kelas)
-	{
-		$data=$this->db->where('id_daftar', $kelas)->get($tabel);
-		return $data;
-	}
+    public function get_siswaperkelas($tabel, $id_rombel)
+    {
+        $data=$this->db->where('id_rombel', $id_rombel)->get($tabel);
+        return $data;
+    }
 
 // Pendaftaran Siswa
     public function get_siswa_pendaftaran()

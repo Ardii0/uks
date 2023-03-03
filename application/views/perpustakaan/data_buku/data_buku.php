@@ -41,16 +41,13 @@
                                     </div>
                                 </div>
                                 <!-- /.box-header -->
-                                <div class="box-body">
+                                <div class="box-body shadow p-4 mb-5 bg-white rounded">
                                     <table id="perpustakaan-table" class="table table-bordered">
                                         <thead>
                                             <tr class="text-center bg-secondary">
                                                 <th>No</th>
                                                 <th>Judul Buku</th>
-                                                <th>Penerbit</th>
                                                 <th>Penulis</th>
-                                                <th>Tahun Terbit</th>
-                                                <th>ID Rak Buku</th>
                                                 <th>Kategori</th>
                                                 <th>Keterangan</th>
                                                 <th>Aksi</th>
@@ -60,21 +57,20 @@
                                             <?php $no=0; foreach($data_buku as $row ): $no++;?>
                                             <tr class="text-center">
                                                 <td><?php echo $no?></td>
-                                                <td><?php echo $row->judul_buku?></td>
-                                                <td><?php echo $row->penerbit_buku?></td>
+                                                <td class="text-truncate" style="max-width: 150px;">
+                                                    <?php echo $row->judul_buku?></td>
                                                 <td><?php echo $row->penulis_buku?></td>
-                                                <td><?php echo $row->tahun_terbit?></td>
-                                                <td><?php echo $row->rak_buku_id?></td>
                                                 <td><?php echo $row->kategori_id?></td>
-                                                <td><?php echo $row->keterangan?></td>
+                                                <td class="text-truncate" style="max-width: 150px;">
+                                                    <?php echo $row->keterangan?></td>
                                                 <td>
+                                                    <a href="<?php echo base_url('Perpustakaan/detail_index_buku/'.$row->id_buku)?>"
+                                                        class="btn btn-success btn-sm">
+                                                        <i class="fas fa-search-plus"></i>
+                                                    </a>
                                                     <a href="<?php echo base_url('Perpustakaan/edit_buku/'.$row->id_buku)?>"
                                                         class="btn btn-primary btn-sm">
                                                         <i class="fa fa-edit"></i></a>
-                                                    <a href="<?php echo base_url('Perpustakaan/barcode/'.$row->id_buku)?>"
-                                                        class="btn btn-success btn-sm">
-                                                        <i class="fas fa-barcode"></i>
-                                                    </a>
                                                     <button onClick="hapus(<?php echo $row->id_buku?>)"
                                                         class="btn btn-danger btn-sm">
                                                         <i class="fa fa-trash"></i> </button>

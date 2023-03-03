@@ -45,13 +45,14 @@
                 <div class="container-fluid bg-white">
                     <form action="<?php echo base_url('Akademik/tambah_alokasimapel'); ?>" enctype="multipart/form-data"
                         method="post">
-                        <div class="d-flex justify-content-end p-2 text-bold">
-                            <h5>
+                        <div class="d-flex justify-content-end p-3 font-weight-bold">
+                            <p>
+                               
                                 <?php foreach ($mapel as $data): ?>
                                 <input type="hidden" name="id_mapel" value="<?php echo $data->id_mapel ?>">
                                 <?php echo $data->nama_mapel ?>
                                 <?php endforeach;?>
-                            </h5>
+                            </p>
                         </div>
                         <div class="row">
                             <div class="col">
@@ -69,7 +70,7 @@
                                             </div>
                                         </div>
                                         <table id="akademik-table" class="table table-bordered table-striped">
-                                            <thead>
+                                            <thead class="bg-info">
                                                 <tr>
                                                     <th><input type="checkbox"></th>
                                                     <th>Nama Kelas</th>
@@ -80,8 +81,7 @@
                                                 <?php foreach($kelas as $data ):?>
                                                 <tr>
                                                     <td>
-                                                        <input type="checkbox" name="id_kelas"
-                                                            value="<?php echo $data->id_kelas ?>">
+                                                        <input type="checkbox" name="id_kelas[<?php echo $data->id_kelas ?>]">
                                                     </td>
                                                     <td><?php echo $data->nama_kelas?></td>
                                                     <td><?php echo $data->keterangan?></td>
@@ -110,7 +110,7 @@
                             </div>
                         </div>
                         <table id="datasiswa-table" class="table table-bordered table-striped">
-                            <thead>
+                            <thead class="bg-info">
                                 <tr>
                                     <th><input type="checkbox"></th>
                                     <th>Nama Kelas</th>
@@ -122,8 +122,7 @@
                                 <?php foreach ($alokasimapel as $data): ?>
                                 <tr>
                                     <td>
-                                        <input type="checkbox" name="id_alokasimapel"
-                                            value="<?php echo $data->id_alokasimapel?>">
+                                        <input type="checkbox" name="id[<?php echo $data->id ?>]">
                                     </td>
                                     <td>
                                         <?php echo tampil_kelasById($data->id_kelas) ?>
@@ -131,15 +130,7 @@
                                     <td>
                                         <?php echo tampil_ket_kelasById($data->id_kelas) ?>
                                     </td>
-                                    <td>
-                                        <form
-                                            action="<?php echo base_url('Akademik/hapus_alokasimapel/'.$data->id_alokasimapel); ?>"
-                                            method="post">
-                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </td>
+                                    <td>Keterangan</td>
                                 </tr>
                                 <?php endforeach;?>
                             </tbody>
@@ -148,7 +139,6 @@
                 </form>
             </section>
         </div>
-
     </div>
     </div>
     </section>

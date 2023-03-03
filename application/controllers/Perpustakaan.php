@@ -282,6 +282,20 @@ class Perpustakaan extends CI_Controller {
         $this->load->view('perpustakaan/data_buku/tambah_buku', $data + $kategori + $rak_buku);
     }
 
+    public function detail_index_buku($id_buku)
+    {
+        require 'vendor/autoload.php';
+        $data['buku']=$this->m_perpustakaan->get_bukuById('table_buku', $id_buku)->result();
+        $detail_index_buku['stok']=$this->m_perpustakaan->get_all_detail_index_buku('table_detail_index_buku', $id_buku)->result();
+        $this->load->view('perpustakaan/data_buku/detail_index_buku', $data + $detail_index_buku );
+    }
+
+    public function delete_detail_index_buku($id_stok, $id_buku)
+    {
+        $this->m_perpustakaan->delete_detail_index_buku('table_detail_index_buku', 'id_stok', $id_stok);
+        redirect(base_url('Perpustakaan/data_buku/detail_index_buku'.$id_buku));
+    }
+
     public function aksi_tambah_buku()
     {
         $data = array
@@ -383,6 +397,12 @@ class Perpustakaan extends CI_Controller {
             'tgl_kembali' => "0000-00-00",
             'status' => 'DIPINJAM',
         );
+
+        $stok_keluar = array
+        (
+            'id_buku' => $this->input->post('id_buku'),
+        );
+        $stok=$this->m_perpustakaan->stok_keluar('stok_buku_keluar', $stok_keluar);
         $masuk=$this->m_perpustakaan->tambah_pinjaman('tabel_pinjaman', $data);
         if($masuk)
         {
@@ -400,6 +420,22 @@ class Perpustakaan extends CI_Controller {
     {
         $peminjam['data_peminjam']=$this->m_perpustakaan->edit_pinjaman('tabel_pinjaman', $id_pinjaman)->result();
         $this->load->view('perpustakaan/peminjaman/detail_peminjaman', $peminjam);
+    }
+
+    public function hapus_peminjaman_id($id_pinjaman)
+    {
+        $hapus=$this->m_perpustakaan->hapus_pinjaman('tabel_pinjaman', 'id_pinjaman', $id_pinjaman);
+        if($hapus)
+        {
+            $this->session->set_flashdata('sukses', 'Berhasil..');
+            redirect(base_url('Perpustakaan/peminjaman'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Perpustakaan/peminjaman'));
+        }
+
     }
     
 // Pengembalian Buku
@@ -421,6 +457,13 @@ class Perpustakaan extends CI_Controller {
             'tgl_kembali' => $this->input->post('tgl_kembali'),
             'status' => 'DIKEMBALIKAN',
         );
+
+        $stok_masuk = array
+        (
+            'id_buku' => $this->input->post('id_buku'),
+        );
+
+        $stok=$this->m_perpustakaan->stok_masuk('stok_buku_masuk', $stok_masuk);
         $masuk=$this->m_perpustakaan->ubah_pinjaman('tabel_pinjaman', $data, array('id_pinjaman'=>$this->input->post('id_pinjaman')));
         if($masuk)
         {

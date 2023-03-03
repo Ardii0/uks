@@ -55,7 +55,7 @@
                             <select name="id_anggota" class="form-control select2 select2-info" data-dropdown-css-class="select2-info" style="width: 100%;">
                                 <option selected="selected">Pilih Anggota</option>
                                 <?php $id = 0; foreach ($data_anggota as $data): $id++ ?>
-                                    <option value="<?php echo $data->id_anggota ?>"><?php echo $data->id_siswa ?></option>
+                                <option value="<?php echo $data->id_anggota ?>"><?php echo tampil_namadaftar_ByIdSiswa($data->id_siswa) ?></option>
                                 <?php endforeach ?>
                             </select>
                         </div>

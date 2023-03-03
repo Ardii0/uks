@@ -70,6 +70,18 @@ class M_perpustakaan extends CI_Model{
 		return $this->db->where('del_flag','1')->get('table_buku')->result();
 	}
 
+	public function get_all_detail_index_buku($tabel, $id_buku)
+  	{
+    $data=$this->db->where('id_buku', $id_buku)->get($tabel);
+    return $data;
+  	}
+
+  	public function delete_detail_index_buku($tabel, $field, $id_stok)
+    {
+        $data=$this->db->delete($tabel, array($field => $id_stok));
+        return $data;
+    }
+
 	public function get_bukuById($tabel, $id_buku)
 	{
 		$data=$this->db->where('id_buku', $id_buku)->get($tabel);
@@ -144,6 +156,18 @@ class M_perpustakaan extends CI_Model{
 	}
 
 	public function tambah_pinjaman($tabel, $data)
+	{
+		$this->db->insert($tabel, $data);
+		return $this->db->insert_id();
+	}
+
+	public function stok_keluar($tabel, $data)
+	{
+		$this->db->insert($tabel, $data);
+		return $this->db->insert_id();
+	}
+
+	public function stok_masuk($tabel, $data)
 	{
 		$this->db->insert($tabel, $data);
 		return $this->db->insert_id();

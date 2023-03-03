@@ -104,26 +104,26 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php $id=0; foreach($data_siswa as $row ): $id++; ?>
-                                        <tr>
-                                            <td><?php echo $id ?></td>
-                                            <td><?php echo tampil_noReg_byIdDaftar($row->id_daftar) ?></td>
-                                            <td><?php echo tampil_nama_byIdDaftar($row->id_daftar) ?></td>
-                                            <td><?php echo tampil_namaJenjang_byIdDaftar($row->id_daftar) ?></td>
-                                            <td class="d-flex">
-                                                <button class="btn btn-info btn-sm">
-                                                    <i class="fas fa- fa-eye"></i> <i
-                                                    class="fa-solid fa-magnifying-glass-plus"></i>
-                                                </button>
-                                                <form action="<?php echo base_url('Akademik/hapus_seleksi/') .$row->id_siswa ;?>" method="post" class="ml-1">
-                                                    <input type="hidden" value="<?php echo $row->id_daftar ?>" name="id_daftar">
-                                                    <button class="btn btn-success btn-sm">
-                                                        <i class="fa fa- fa-arrow-left"></i>
+                                    <?php $id=0; foreach($siswa_diterima as $data ): $id++; ?>
+                                            <tr>
+                                                <td><?php echo $id ?></td>
+                                                <td><?php echo $data->no_reg ?></td>
+                                                <td><?php echo $data->nama ?></td>
+                                                <td><?php echo tampil_namajenjang_byid($data->id_jenjang) ?></td>
+                                                <td class="d-flex">
+                                                    <button class="btn btn-info btn-sm">
+                                                        <i class="fas fa- fa-eye"></i> <i
+                                                            class="fa-solid fa-magnifying-glass-plus"></i>
                                                     </button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach ?>
+                                                    <form action="<?php echo base_url('Akademik/kembalikan_siswa') ?>" method="post" class="ml-1">
+                                                        <input type="hidden" value="<?php echo $data->id_daftar ?>" name="id_daftar">
+                                                        <button type="submit" class="btn btn-success btn-sm">
+                                                            <i class="fa fa- fa-arrow-left"></i>
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach ?>
                                     </tbody>
                                 </table>
                             </div>

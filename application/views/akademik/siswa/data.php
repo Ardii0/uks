@@ -83,7 +83,7 @@
                                             <td><?php echo tampil_tempat_lahir_siswa_byid($data->id_daftar)?></td>
                                             <td><?php echo tampil_tanggal_lahir_siswa_byid($data->id_daftar)?></td>
                                             <td class="text-truncate" style="max-width: 150px;">
-                                                <?php echo tampil_alamattinggal_byIdDaftar($data->id_daftar)?></td>
+                                                <?php echo tampil_alamat_siswa_byid($data->id_daftar) ?></td>
                                             <td class="text-center">
                                                 <a href="<?php echo base_url('Akademik/detail_siswa/'.$data->id_siswa)?>"
                                                     class="btn btn-warning btn-sm">

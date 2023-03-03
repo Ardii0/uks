@@ -23,14 +23,14 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Detail Buku</h1>
+                            <h1>Barcode</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a
                                         href="<?php echo base_url('Perpustakaan/') ?>"><?php echo $this->session->userdata('level') ?></a>
                                 </li>
-                                <li class="breadcrumb-item active">Detail BUku</li>
+                                <li class="breadcrumb-item active">Barcode</li>
                             </ol>
                         </div>
                     </div>
@@ -45,10 +45,9 @@
                             <div class="form-group d-flex flex-row " style="width: fit-content;">
                                 <div class="mt-2 mx-1">
                                     <h4>Barcode</h4>
-                                    <h4><?php echo tampil_judul_buku_byid($data->id_buku)?></h4>
                                     <?php    
                                         $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
-                                        echo $generator->getBarcode($data->id_buku, $generator::TYPE_CODE_128);
+                                        echo $generator->getBarcode(tampil_kode_buku_byid($data->id_buku), $generator::TYPE_CODE_128);
                                     ?>
                                 </div>
                             </div>

@@ -214,7 +214,6 @@ class Akademik extends CI_Controller {
         $this->load->model('M_akademik');
         $data['kelas'] = $this->m_akademik->get_kelas('kelas');
         $data['guru'] = $this->m_akademik->get_guru('guru');
-        $data['jenjang'] = $this->m_akademik->get_jenjang('jenjang');
         $this->load->view('akademik/rombel/form_rombel', $data);
     }
 
@@ -224,9 +223,7 @@ class Akademik extends CI_Controller {
             'nama_rombel' => $this->input->post('nama_rombel'),
             'kode_guru' => $this->input->post('kode_guru'),
             'id_kelas' => $this->input->post('id_kelas'),
-            'id_jenjang' => $this->input->post('id_jenjang'),
             'kuota' => $this->input->post('kuota'),
-            'nip' => $this->input->post('nip'),
         ];
         $this->m_akademik->tambah_rombel('tabel_rombel', $data);
         redirect(base_url('Akademik/rombel'));
@@ -247,9 +244,7 @@ class Akademik extends CI_Controller {
             'nama_rombel' => $this->input->post('nama_rombel'),
             'kode_guru' => $this->input->post('kode_guru'),
             'id_kelas' => $this->input->post('id_kelas'),
-            'id_jenjang' => $this->input->post('id_jenjang'),
             'kuota' => $this->input->post('kuota'),
-            'nip' => $this->input->post('nip'),
         ];
         $logged=$this->m_akademik->ubah_rombel('tabel_rombel', $data, array('id_rombel'=>$this->input->post('id_rombel')));
         if($logged)
@@ -467,30 +462,38 @@ class Akademik extends CI_Controller {
     public function siswa_pembagian_kelas()
     {
         $this->load->model('M_akademik');
-        $data['data_siswa_diterima'] = $this->m_akademik->get_siswa_kelas('data_siswa_diterima');
+        $data['data_siswa_diterima'] = $this->m_akademik->get_siswa_diterima('data_siswa_diterima');
         $jenjang['jenjang'] = $this->m_akademik->get_jenjang('jenjang');
         $rombel['rombel'] = $this->m_akademik->get_rombel('rombel');
         $this->load->view('akademik/siswa/pembagian_kelas', $data + $jenjang + $rombel);
     }
 
-    public function terapkan_kelas()
+    public function masuk_kelas()
     {
-        $terapkan = array
-        (
-            "id_rombel" => $this->input->post('id_rombel'),
-        );
-        
-        $masuk=$this->m_akademik->ubah_siswa('tabel_siswa', $terapkan, array('id_siswa'=>$this->input->post('id_siswa')));
-        if($masuk)
-        {
-            $this->session->set_flashdata('sukses', 'berhasil');
-            redirect(base_url('Akademik/siswa_pembagian_kelas'));
+        $id_rombel = $this->input->post('id_rombel');
+        $id_daftar = $this->input->post('id_daftar');
+
+        foreach( $id_daftar as $key => $value){
+            $this->db->insert('tabel_siswa', array(
+                'id_rombel' => $id_rombel,
+                'id_daftar' => $key,
+            ));
+            $this->m_akademik->ubah_pendaftaran('tabel_siswa', array( 
+                'id_siswa' => $key, 
+                'id_rombel' => $id_rombel 
+            ), array( 
+                'id_siswa' => $key 
+            )); 
         }
-        else
-        {
-            $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Akademik/siswa_pembagian_kelas'));
+        foreach ($id_daftar as $key => $value) { 
+            $this->m_akademik->ubah_pendaftaran('tabel_daftar', array( 
+                'id_daftar' => $key, 
+                'diterima' => "A", 
+            ), array( 
+                'id_daftar' => $key 
+            )); 
         }
+        redirect(base_url('Akademik/siswa_pembagian_kelas'));
     }
 
  // Seleksi Siswa
@@ -498,25 +501,19 @@ class Akademik extends CI_Controller {
     {
         $this->load->model('M_akademik');
         $siswa_daftar['data_siswa_daftar'] = $this->m_akademik->get_siswa_pendaftaran('data_siswa_daftar');
-        $siswa['data_siswa'] = $this->m_akademik->get_siswa_kelas('data_siswa');
-        $this->load->view('akademik/siswa/seleksi_siswa', $siswa_daftar + $siswa);
+        $siswa_diterima['siswa_diterima'] = $this->m_akademik->get_siswa_diterima('siswa_diterima');
+        $this->load->view('akademik/siswa/seleksi_siswa', $siswa_daftar + $siswa_diterima);
     }
 
     public function terima_siswa()
     {
-        $dataa = array
-        (
-            'id_daftar' => $this->input->post('id_daftar'),
-        );
-
         $approve = array
         (
             "diterima" => "Y",
         );
 
         $approve_siswa=$this->m_akademik->ubah_seleksi('tabel_daftar', $approve, array('id_daftar'=>$this->input->post('id_daftar')));
-        $masuk=$this->m_akademik->terima_siswa('tabel_siswa', $dataa, $approve_siswa);
-        if($masuk)
+        if($approve_siswa)
         {
             $this->session->set_flashdata('sukses', 'berhasil');
             redirect(base_url('Akademik/siswa_seleksi_siswa'));
@@ -528,18 +525,17 @@ class Akademik extends CI_Controller {
         }
     }
 
-    public function hapus_seleksi($id_siswa)
+    public function kembalikan_siswa()
     {
-        $approve = array
+        $data = array
         (
             "diterima" => "P",
         );
 
-        $approve_siswa=$this->m_akademik->ubah_seleksi('tabel_daftar', $approve, array('id_daftar'=>$this->input->post('id_daftar')));
-        $hapus= $this->m_akademik->hapus_seleksi_siswa('tabel_siswa', 'id_siswa', $id_siswa);
-        if($approve_siswa)
+        $data_siswa=$this->m_akademik->ubah_seleksi('tabel_daftar', $data, array('id_daftar'=>$this->input->post('id_daftar')));
+        if($data_siswa)
         {
-            $this->session->set_flashdata('sukses', 'Berhasil..');
+            $this->session->set_flashdata('sukses', 'berhasil');
             redirect(base_url('Akademik/siswa_seleksi_siswa'));
         }
         else
@@ -547,7 +543,6 @@ class Akademik extends CI_Controller {
             $this->session->set_flashdata('error', 'gagal..');
             redirect(base_url('Akademik/siswa_seleksi_siswa'));
         }
-
     }
  
  // Data Siswa 
@@ -612,7 +607,7 @@ class Akademik extends CI_Controller {
             "tempat_lahir" => $this->input->post("tempat_lahir"),
             "tgl_lahir" => $this->input->post("tgl_lahir"),
             "agama" => $this->input->post("agama"),
-            "alamat_tinggal" => $this->input->post("alamat_tinggal"),
+            "alamat" => $this->input->post("alamat"),
             "telepon" => $this->input->post("telepon"),
             'anak_ke' => $this->input->post('anak_ke'),
             'saudara_kandung' => $this->input->post('saudara_kandung'),
@@ -638,53 +633,54 @@ public function siswa_mutasi()
     $this->load->model('M_akademik');
     $siswa['siswa'] = $this->m_akademik->get_siswa('siswa');
     $rombel['rombel'] = $this->m_akademik->get_rombel('rombel');
-    $this->load->view('akademik/siswa/mutasi', $siswa + $rombel);
+    $kelas['kelas'] = $this->m_akademik->get_kelas('kelas');
+    $this->load->view('akademik/siswa/mutasi', $siswa + $rombel + $kelas);
 }
 
-public function pindah_sekolah($id_daftar)
-{
-    $data['siswa']=$this->m_akademik->get_siswaById('tabel_siswa', $id_daftar)->result();
-    $this->load->view('akademik/siswa/pindah_sekolah', $data);
-}
+// public function pindah_sekolah($id_daftar)
+// {
+//     $data['siswa']=$this->m_akademik->get_siswaById('tabel_siswa', $id_daftar)->result();
+//     $this->load->view('akademik/siswa/pindah_sekolah', $data);
+// }
 
-public function tambah_pindah_sekolah()
-{
-    $data = [
-        'id_daftar' => $this->input->post('id_daftar'),
-        'id_rombel' => $this->input->post('id_rombel'),
-        'nama_sekolah' => $this->input->post('nama_sekolah'),
-    ];
-    $this->m_akademik->tambah_pindah_sekolah('tabel_pindah', $data);
-    redirect(base_url('Akademik/siswa_mutasi'));
-}
+// public function tambah_pindah_sekolah()
+// {
+//     $data = [
+//         'id_daftar' => $this->input->post('id_daftar'),
+//         'id_rombel' => $this->input->post('id_rombel'),
+//         'nama_sekolah' => $this->input->post('nama_sekolah'),
+//     ];
+//     $this->m_akademik->tambah_pindah_sekolah('tabel_pindah', $data);
+//     redirect(base_url('Akademik/siswa_mutasi'));
+// }
 
-public function pindah_kelas($id_siswa)
-    {
-        $data['siswa']=$this->m_akademik->get_siswaById('tabel_siswa', $id_siswa)->result();
-        $data['rombel'] = $this->m_akademik->get_rombel('rombel');
-        $this->load->view('akademik/siswa/pindah_kelas', $data);
-    }
+// public function pindah_kelas($id_siswa)
+//     {
+//         $data['siswa']=$this->m_akademik->get_siswaById('tabel_siswa', $id_siswa)->result();
+//         $data['rombel'] = $this->m_akademik->get_rombel('rombel');
+//         $this->load->view('akademik/siswa/pindah_kelas', $data);
+//     }
 
-    public function update_pindah_kelas()
-    {
-        $data = array (
-            "id_daftar" => $this->input->post("id_daftar"),
-            "id_rombel" => $this->input->post("id_rombel"),
-            "saldo_tabungan" => $this->input->post("saldo_tabungan"),
-        );
-        $masuk = $this->m_akademik->ubah_siswa("tabel_siswa", $data, array("id_siswa" => $this->input->post("id_siswa")));
-        if ($masuk)
-        {
-            $this->session->set_flashdata('sukses', 'berhasil');
-            redirect(base_url('Akademik/siswa_mutasi'));
-        }
-        else
-        {
-            $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Akademik/pindah_kelas/'.$this->input->post('id_siswa')));
-        }
-    }
-    function naik_kelas2() {
+//     public function update_pindah_kelas()
+//     {
+//         $data = array (
+//             "id_daftar" => $this->input->post("id_daftar"),
+//             "id_rombel" => $this->input->post("id_rombel"),
+//             "saldo_tabungan" => $this->input->post("saldo_tabungan"),
+//         );
+//         $masuk = $this->m_akademik->ubah_siswa("tabel_siswa", $data, array("id_siswa" => $this->input->post("id_siswa")));
+//         if ($masuk)
+//         {
+//             $this->session->set_flashdata('sukses', 'berhasil');
+//             redirect(base_url('Akademik/siswa_mutasi'));
+//         }
+//         else
+//         {
+//             $this->session->set_flashdata('error', 'gagal..');
+//             redirect(base_url('Akademik/pindah_kelas/'.$this->input->post('id_siswa')));
+//         }
+//     }
+    function pindah_kelas() {
         $id_rombel = $this->input->post('id_rombel');
         $id_siswa = $this->input->post('id_siswa');
 
@@ -708,6 +704,38 @@ public function pindah_kelas($id_siswa)
             redirect(base_url('Akademik/siswa_mutasi/'.$key));
         }
     }
+
+    function pindah_sekolah() {
+        $id_daftar = $this->input->post('id_daftar');
+        $id_rombel = $this->input->post('id_rombel');
+        $nama_sekolah = $this->input->post('nama_sekolah');
+
+        foreach ($id_daftar as $key => $value) {
+            $logged=$this->m_akademik->tambah_pindah_sekolah('tabel_pindah', array(
+                'id_daftar' => $key,
+                'id_rombel' => $id_rombel,
+                'nama_sekolah' => $nama_sekolah,
+            ));
+        }
+
+        if($logged)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('Akademik/siswa_mutasi'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Akademik/siswa_mutasi/'.$key));
+        }
+    }
+
+    public function filter_kelas($id_rombel)
+    {
+        $data['siswa']=$this->m_akademik->get_siswaperkelas('tabel_siswa', $id_rombel)->result();
+        $this->load->view('akademik/siswa/mutasi', $data);
+    }
+
 
 function naik_kelas($id){
     $this->db->set('id_kelas', 'id_kelas+1', FALSE);
@@ -856,10 +884,14 @@ function naik_kelas($id){
         redirect(base_url('Akademik/alokasi_guru/'.$this->input->post('kode_guru')));
     }
     
-    public function hapus_alokasiguru($id_alokasiguru)
+    public function hapus_alokasiguru()
     {
-        $this->m_akademik->hapus_alokasiguru('tabel_alokasiguru', 'id_alokasiguru', $id_alokasiguru);
-        redirect(base_url('Akademik/guru'));
+        $id_alokasiguru = $this->input->post('id_alokasiguru');
+
+        foreach ($id_alokasiguru as $key => $value) { 
+            $this->m_akademik->hapus_alokasiguru('tabel_alokasiguru', 'id_alokasiguru', $key); 
+        }
+        redirect(base_url('Akademik/guru/'));
     }
     
   //Alok Mapel
@@ -872,17 +904,25 @@ function naik_kelas($id){
         }
     public function tambah_alokasimapel()
         {
-            $data = [
-                'id_kelas' => $this->input->post('id_kelas'),
-                'id_mapel' => $this->input->post('id_mapel'),
-            ];
-            $this->m_akademik->tambah_alokasimapel('tabel_alokasimapel', $data, array('id_alokasimapel'=>$this->input->post('id_alokasimapel')));
+            $kelas = $this->input->post('id_kelas');
+            $mapel = $this->input->post('id_mapel');
+            foreach( $kelas as $key => $value){
+                $this->db->insert('tabel_alokasimapel', array(
+                    'id_kelas' => $key,
+                    'id_mapel' => $mapel,
+                ));
+            }
             redirect(base_url('Akademik/alokasi_mapel/'.$this->input->post('id_mapel')));
         }
-        public function hapus_alokasimapel($id_alokasimapel)
+    public function hapus_alokasimapel()
         {
-            $this->m_akademik->hapus_alokasimapel('tabel_alokasimapel', 'id_alokasimapel', $id_alokasimapel);
-            redirect(base_url('Akademik/alokasi_mapel/'. $id_alokasimapel));
+            $id = $this->input->post('id');
+
+            foreach ($id as $key => $value) { 
+                $this->m_akademik->hapus_alokasimapel('tabel_alokasimapel', 'id', $key); 
+            }
+            // $this->m_akademik->hapus_alokasimapel('tabel_alokasimapel', 'id_alokasimapel', $id_alokasimapel);
+            redirect(base_url('Akademik/pelajaran/'));
         }
     
 

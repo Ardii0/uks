@@ -59,7 +59,7 @@
                                             <p class="text-secondary mb-1">
                                                 <?php echo tampil_rombel_byid($data->id_rombel)?></p>
                                             <p class="text-muted font-size-sm">
-                                                <?php echo tampil_alamattinggal_byIdDaftar($data->id_daftar)?></p>
+                                                <?php echo tampil_alamat_siswa_byid($data->id_daftar)?></p>
                                         </div>
                                     </div>
                                 </div>

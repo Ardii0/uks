@@ -94,62 +94,62 @@
                     </div>
                 </form>
             </section>
-            <!-- <form action="<?php echo base_url('Akademik/hapus_alokasiguru'); ?>" enctype="multipart/form-data"
-                method="post"> -->
             <section class="content">
-                <div class="container-fluid bg-white">
-                    <div class="row px-1 pt-5">
-                        <div class="col">
-                            <div class="d-flex justify-content-between"
-                                style="border-bottom: solid 2px; border-color: #">
-                                <h3 class="text-start pl-3">DATA ALOKASI KE GURU</h3>
-                                <div class="">
-                                    <button type="submit" class="btn btn-danger">
-                                        <i class="fa fa-minus pr-2"></i>Hapus
-                                    </button>
+                <form action="<?php echo base_url('Akademik/hapus_alokasiguru'); ?>" enctype="multipart/form-data"
+                    method="post">
+                    <div class="container-fluid bg-white">
+                        <div class="row px-1 pt-5">
+                            <div class="col">
+                                <div class="d-flex justify-content-between"
+                                    style="border-bottom: solid 2px; border-color: #">
+                                    <h3 class="text-start pl-3">DATA ALOKASI KE GURU</h3>
+                                    <div class="">
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fa fa-minus pr-2"></i>Hapus
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card-body">
-                                <table id="datasiswa-table2" class="table table-bordered table-striped">
-                                    <thead class="bg-info">
-                                        <tr>
-                                            <th style="width: 4%;">
-                                                <input type="checkbox">
-                                            </th>
-                                            <th>Nama Mapel</th>
-                                            <th>keterangan</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach ($alokasiguru as $datamapel): ?>
-                                        <tr>
-                                            <td>
-                                                <input type="checkbox" name="id_alokasiguru"
-                                                    value="<?php echo $datamapel->id_alokasiguru ?>">
-                                            </td>
-                                            <td>
-                                                <?php echo tampil_mapelById($datamapel->id_mapel) ?>
-                                            </td>
-                                            <td>
-                                                <form action="<?php echo base_url('Akademik/hapus_alokasiguru/'.$datamapel->id_alokasiguru); ?>" 
-                                                method="post">
-                                                <button
-                                                type="submit"
-                                                    class="btn btn-danger btn-sm">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                            </td>
-                                        </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
+                                <div class="card-body">
+                                    <table id="datasiswa-table2" class="table table-bordered table-striped">
+                                        <thead class="bg-info">
+                                            <tr>
+                                                <th style="width: 4%;">
+                                                    <input type="checkbox">
+                                                </th>
+                                                <th>Nama Mapel</th>
+                                                <th>keterangan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($alokasiguru as $datamapel): ?>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" class="alokasiguru" name="id_alokasiguru[<?php echo $datamapel->id_alokasiguru ?>]">
+                                                </td>
+                                                <td>
+                                                    <?php echo tampil_mapelById($datamapel->id_mapel) ?>
+                                                </td>
+                                                <td>
+                                                    Ketereangan
+                                                    <!-- <form action="<?php echo base_url('Akademik/hapus_alokasiguru/'.$datamapel->id_alokasiguru); ?>" 
+                                                    method="post">
+                                                    <button
+                                                    type="submit"
+                                                        class="btn btn-danger btn-sm">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button> -->
+                                                </form>
+                                                </td>
+                                            </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </section>
-            <!-- </form> -->
         </div>
     </div>
     <?php $this->load->view('akademik/style/js')?>
@@ -160,6 +160,15 @@
         $('#datasiswa-table').on('click'. '.mapel', function(){
             var ca = true
             $('.mapel').each(function(){
+                if(!$(this).prop('checked')){
+                    ca = false
+                }
+            })
+            $("$checkAll").prop('checked', ca)
+        })
+        $('#datasiswa-table2').on('click'. '.alokasiguru', function(){
+            var ca = true
+            $('.alokasiguru').each(function(){
                 if(!$(this).prop('checked')){
                     ca = false
                 }

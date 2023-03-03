@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Perpustakaan</title>
     <?php $this->load->view('perpustakaan/style/head')?>
     <style>
       .width-modal{
@@ -14,29 +14,25 @@
 </head>
 <body class="hold-transition sidebar-mini layout-fixed" data-panel-auto-height-mode="height">
 <div class="wrapper">
- <!-- navbar -->
- <?php $this->load->view('perpustakaan/style/navbar')?>
- <!-- navbar -->
-  <!-- Sidebar -->
+  <?php $this->load->view('perpustakaan/style/navbar')?>
   <?php $this->load->view('perpustakaan/style/sidebar')?>
-  <!-- Sidebar -->
 
   <div class="content-wrapper">
-            <section class="content-header">
+        <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Peminjaman Buku</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="<?php echo base_url('Perpustakaan/') ?>"><?php echo $this->session->userdata('level') ?></a></li>
-                    <li class="breadcrumb-item active">Peminjaman Buku</li>
-                    </ol>
-                </div>
+                    <div class="col-sm-6">
+                        <h1>Peminjaman Buku</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('Perpustakaan/') ?>"><?php echo $this->session->userdata('level') ?></a></li>
+                        <li class="breadcrumb-item active">Peminjaman Buku</li>
+                        </ol>
+                    </div>
                 </div>
             </div>
-            </section>
+        </section>
 
             <section class="content">
                 <div class="container-fluid bg-white">
@@ -68,8 +64,17 @@
                                         <tr>
                                           <td><?php echo $id ?></td>
                                           <td><?php echo $data->no_pinjaman ?></td>
-                                          <td><?php echo $data->id_anggota ?></td>
-                                          <td><?php echo $data->id_anggota ?></td>
+                                          <td><?php echo tampil_namadaftar_ByIdAnggota($data->id_anggota) ?></td>
+                                          <td>
+                                            <div class="d-flex">
+                                                <div class="pr-1">
+                                                    <?php echo tampil_kelasdaftar_ByIdAnggota($data->id_anggota) ?>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <?php echo tampil_rombeldaftar_ByIdAnggota($data->id_anggota) ?>
+                                                </div>
+                                            </div>
+                                          </td>
                                           <td><?php echo $data->tgl_pinjaman ?></td>
                                           <td><?php echo $data->tgl_kembali ?></td>
                                           <td><?php echo $data->status ?></td>
@@ -79,7 +84,7 @@
                                                   <i class="fa fa-eye"></i> 
                                               </button>
                                             </a>
-                                              <button class="btn btn-danger btn-sm">
+                                              <button onClick="hapus(<?php echo $data->id_pinjaman?>)" class="btn btn-danger btn-sm">
                                                   <i class="fa fa-trash"></i> 
                                               </button>
                                           </td>
@@ -97,6 +102,12 @@
     </div>
 <?php $this->load->view('perpustakaan/style/js')?>
 <script>
+    function hapus(id) {
+            var yes = confirm('Yakin Di Hapus?');
+            if (yes == true) {
+                window.location.href = "<?php echo base_url('Perpustakaan/hapus_peminjaman_id/')?>" + id;
+            }
+        }
 </script>
 </body>
 </html>
