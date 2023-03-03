@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 01, 2023 at 10:49 AM
+-- Generation Time: Mar 03, 2023 at 03:56 AM
 -- Server version: 8.0.29
 -- PHP Version: 8.0.25
 
@@ -180,8 +180,8 @@ INSERT INTO `tabel_admin` (`id_admin`, `id_pesanan`, `id_pembayaran`, `id_paket_
 (6, NULL, NULL, NULL, ' zaky ', 'fer', '202cb962ac59075b964b07152d234b70', '085786652577', 'geo@gmail.com', 'laki-laki', 'jl. Sekaran no 41 semarang', 'ada', '123123123', 'ada@ada.ada', 'ada', 'Paket 1', '2023-02-17', '2023-02-24', '2022-11-29', '100000000', '20000', '5000', '20000', '15000', '12568989', 'bca', '1676617568793.png', '2022-11-24', 'BCA', '334566', '1667914969690.jpg', 1, 2, '2023-02-17 07:06:22', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', '', 1, '2023-02-17 14:06:22', 2),
 (7, NULL, NULL, NULL, 'petugas', 'petugas', '202cb962ac59075b964b07152d234b70', '0300399403', 'petugas@gmail.com', 'laki-laku', 'semarang', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2022-11-09 08:33:53', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', '', 1, '0000-00-00 00:00:00', 2),
 (11, NULL, NULL, NULL, 'fifi listiana', 'fifi', '202cb962ac59075b964b07152d234b70', '09889928823', 'fifi@gmail.com', 'perempuan', 'Semarang', 'Udin', '089399308391', 'udin@gmail.com', 'tegal', 'Paket 1', '2022-11-17', '2022-11-24', '2022-11-17', '100000000', '20000', '5000', '20000', NULL, 'invdp568990', 'BTN', '1668672060880.jpg', NULL, NULL, NULL, NULL, 1, 0, '2022-11-17 08:01:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', '', 1, '2022-11-17 10:10:00', 2),
-(12, NULL, NULL, NULL, 'ada', 'ada', '202cb962ac59075b964b07152d234b70', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2023-03-01 09:34:52', '2023-02-20 11:26:01', '2023-02-20 11:26:01', '', '', '', 1, '2023-03-01 16:34:52', 5),
-(13, NULL, NULL, NULL, 'da', 'da', '202cb962ac59075b964b07152d234b70', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2023-03-01 09:05:24', '2023-02-20 11:26:01', '2023-02-20 11:26:01', '', '', '', 1, '2023-03-01 16:05:24', 4),
+(12, NULL, NULL, NULL, 'ada', 'ada', '202cb962ac59075b964b07152d234b70', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2023-03-03 02:45:23', '2023-02-20 11:26:01', '2023-02-20 11:26:01', '', '', '', 1, '2023-03-03 09:45:23', 5),
+(13, NULL, NULL, NULL, 'da', 'da', '202cb962ac59075b964b07152d234b70', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2023-03-02 02:28:06', '2023-02-20 11:26:01', '2023-02-20 11:26:01', '', '', '', 1, '2023-03-02 09:28:06', 4),
 (14, NULL, NULL, NULL, 'ni', 'ni', '202cb962ac59075b964b07152d234b70', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2023-02-20 11:01:40', '2023-02-20 11:26:01', '2023-02-20 11:26:01', '', '', '', 1, '2023-02-20 18:01:40', 6),
 (16, NULL, NULL, NULL, 'tu', 'tu', '202cb962ac59075b964b07152d234b70', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2023-02-20 11:01:50', '2023-02-20 11:26:01', '2023-02-20 11:26:01', '', '', '', 1, '2023-02-20 18:01:50', 7);
 
@@ -395,6 +395,33 @@ CREATE TABLE `tabel_mapel` (
 INSERT INTO `tabel_mapel` (`id_mapel`, `id_jenismapel`, `nama_mapel`, `keterangan`, `status`) VALUES
 (9, 2, 'Menjadi Kaizooku', 'Ore wa Kaizokou ni naru', 'AKTIF'),
 (10, 1, 'Bahasa Semua nya', 'Semangat Brother', 'AKTIF');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tabel_nilai`
+--
+
+CREATE TABLE `tabel_nilai` (
+  `id` int NOT NULL,
+  `id_rombel` int NOT NULL,
+  `id_siswa` int NOT NULL,
+  `id_mapel` int NOT NULL,
+  `id_angkatan` int NOT NULL,
+  `semester` int NOT NULL,
+  `nuh1` int NOT NULL,
+  `nuh2` int NOT NULL,
+  `nuh3` int NOT NULL,
+  `nt1` int NOT NULL,
+  `nt2` int NOT NULL,
+  `nt3` int NOT NULL,
+  `mid` int NOT NULL,
+  `smt` int NOT NULL,
+  `rnuh` int NOT NULL,
+  `rnt` int NOT NULL,
+  `nh` int NOT NULL,
+  `nar` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -740,15 +767,19 @@ CREATE TABLE `table_buku` (
   `stok` int NOT NULL,
   `del_flag` int NOT NULL DEFAULT '1',
   `kategori_id` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `rak_buku_id` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
+  `rak_buku_id` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `foto` text COLLATE utf8mb4_general_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `table_buku`
 --
 
-INSERT INTO `table_buku` (`id_buku`, `judul_buku`, `penerbit_buku`, `penulis_buku`, `tahun_terbit`, `keterangan`, `sumber`, `stok`, `del_flag`, `kategori_id`, `rak_buku_id`) VALUES
-(1, 'Tokyo Ravengers', 'Jepang', 'Jepang', 2000, 'Wibu', NULL, -1, 1, 'Anime', '001');
+INSERT INTO `table_buku` (`id_buku`, `judul_buku`, `penerbit_buku`, `penulis_buku`, `tahun_terbit`, `keterangan`, `sumber`, `stok`, `del_flag`, `kategori_id`, `rak_buku_id`, `created_at`, `foto`) VALUES
+(1, 'Tokyo Ravengers', 'Jepang', 'Ahmad Subarjo', 2000, 'Wibu', NULL, -1, 1, 'Anime', '001', '2023-03-03 02:44:45', NULL),
+(2, 'Tokyo Ravengers', 'Jepang', 'Ahmad Subarjo', 2000, 'Wibu', NULL, -1, 1, 'Anime', '001', '2023-03-03 02:44:45', NULL),
+(3, 'ada', 'ada', 'da', 12312, 'Semangat Brother', NULL, 2, 1, 'Cerpen', '001', '2023-03-03 02:45:40', NULL);
 
 -- --------------------------------------------------------
 
@@ -894,6 +925,13 @@ ALTER TABLE `tabel_kelas`
 ALTER TABLE `tabel_mapel`
   ADD PRIMARY KEY (`id_mapel`),
   ADD KEY `id_jenismapel` (`id_jenismapel`);
+
+--
+-- Indexes for table `tabel_nilai`
+--
+ALTER TABLE `tabel_nilai`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_siswa` (`id_siswa`);
 
 --
 -- Indexes for table `tabel_paketjenjang`
@@ -1063,6 +1101,12 @@ ALTER TABLE `tabel_mapel`
   MODIFY `id_mapel` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
+-- AUTO_INCREMENT for table `tabel_nilai`
+--
+ALTER TABLE `tabel_nilai`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tabel_paketjenjang`
 --
 ALTER TABLE `tabel_paketjenjang`
@@ -1120,7 +1164,7 @@ ALTER TABLE `tabel_tahunajaran`
 -- AUTO_INCREMENT for table `table_buku`
 --
 ALTER TABLE `table_buku`
-  MODIFY `id_buku` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_buku` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `table_detail_index_buku`
@@ -1180,6 +1224,12 @@ ALTER TABLE `tabel_kelas`
 --
 ALTER TABLE `tabel_mapel`
   ADD CONSTRAINT `tabel_mapel_ibfk_1` FOREIGN KEY (`id_jenismapel`) REFERENCES `tabel_jenismapel` (`id_jenismapel`);
+
+--
+-- Constraints for table `tabel_nilai`
+--
+ALTER TABLE `tabel_nilai`
+  ADD CONSTRAINT `tabel_nilai_to_siswa` FOREIGN KEY (`id_siswa`) REFERENCES `tabel_siswa` (`id_siswa`);
 
 --
 -- Constraints for table `tabel_pinjaman`

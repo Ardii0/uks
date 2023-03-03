@@ -17,6 +17,27 @@ class Nilai extends CI_Controller {
     public function index()
     {
         $this->load->view('nilai/dashboard');
+    }
 
+    // Nilai
+    public function data_keselurahan_nilai_siswa()
+    {
+        $this->load->view('nilai/data_nilai/data_keselurahan_nilai_siswa');
+    }
+
+    public function modul_data_nilai_siswa()
+    {
+        $this->load->view('nilai/data_nilai/modul_data_nilai_siswa');
+    }
+    
+    // Data Nilai
+    public function entry_nilai()
+    {
+        $this->load->view('nilai/nilai/entry_nilai');
+    }
+
+    public function modul_input_nilai()
+    {
+        $this->load->view('nilai/nilai/modul_input_nilai');
     }
 }

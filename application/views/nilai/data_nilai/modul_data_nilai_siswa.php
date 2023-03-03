@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nilai</title>
+    <title>Modul Data Nilai Siswa</title>
     <?php $this->load->view('nilai/style/head')?>
 </head>
 
@@ -21,7 +21,7 @@
 
         <div class="content-wrapper">
             <div class="container-fluid">
-                <h1>Nilai</h1>
+                <h1>Modul Data Nilai Siswa</h1>
             </div>
         </div>
         <?php $this->load->view('nilai/style/js')?>

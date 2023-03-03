@@ -290,6 +290,27 @@ class Perpustakaan extends CI_Controller {
         $this->load->view('perpustakaan/data_buku/detail_index_buku', $data + $detail_index_buku );
     }
 
+    public function aksi_tambah_stok_buku()
+    {
+        $data = array
+        (
+            'id_detail_index_buku' => $this->input->post('id_detail_index_buku'),
+            'id_buku' => $this->input->post('id_buku'),
+            'status' => 'Di Rak Buku',
+        );
+        $masuk=$this->m_perpustakaan->tambah_stok_buku('table_detail_index_buku', $data);
+        if($masuk)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('Perpustakaan/detail_index_buku/'.$this->input->post('id_buku')));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Perpustakaan/detail_index_buku/'.$this->input->post('id_buku')));
+        }
+    }
+
     public function delete_detail_index_buku($id_stok, $id_buku)
     {
         $this->m_perpustakaan->delete_detail_index_buku('table_detail_index_buku', 'id_stok', $id_stok);

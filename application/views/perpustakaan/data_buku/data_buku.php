@@ -30,11 +30,6 @@
                                     </div>
                                     <div class="p-2 d-flex align-items-center gap-3">
                                         <div class="grid gap-3">
-                                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                data-target="#modal_tambah_rak">
-                                                Tambah Buku
-                                            </button>
-
                                             <a href="<?php echo base_url('Perpustakaan/tambah_buku'); ?>"
                                                 class="btn btn-success">Tambah Buku</a>
                                         </div>

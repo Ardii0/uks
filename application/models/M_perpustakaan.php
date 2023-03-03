@@ -72,9 +72,15 @@ class M_perpustakaan extends CI_Model{
 
 	public function get_all_detail_index_buku($tabel, $id_buku)
   	{
-    $data=$this->db->where('id_buku', $id_buku)->get($tabel);
-    return $data;
+    	$data=$this->db->where('id_buku', $id_buku)->get($tabel);
+    	return $data;
   	}
+
+	public function tambah_stok_buku($tabel, $data)
+	{
+	  $this->db->insert($tabel, $data);
+	  return $this->db->insert_id();
+	}
 
   	public function delete_detail_index_buku($tabel, $field, $id_stok)
     {
