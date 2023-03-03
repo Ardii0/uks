@@ -42,11 +42,11 @@
         <?php $id=0; foreach($data_buku as $data ): $id++;?>
             <div class="col-md-5 col-sm-12 book" style="">
                 <div class="img-wrap">
-                    <img src="https://perpusnas.go.id/_next/image?url=https%3A%2F%2Fbackend.perpusnas.go.id%2Fuploads%2Fbukubaru%2F211201025936D8HgL5tRVl.jpg&w=256&q=75" alt="">
+                    <img src="" alt="">
                 </div>
                 <div class="detail-wrap">
                     <div style="color: #15803D;">Tanggal Post: </div>
-                    <h1 class="text-wrap"><a href="<?php echo $data->judul_buku?>" class="text-wrap"><?php echo $data->judul_buku?></a></h1>
+                    <h1 class="text-wrap"><a href="buku/<?php echo $data->id_buku?>" class="text-wrap"><?php echo $data->judul_buku?></a></h1>
                     <p style="margin: 10px 0 0 10px;"><?php echo $data->keterangan?></p>
                     <div class="sources">
                         <div>

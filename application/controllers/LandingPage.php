@@ -26,8 +26,8 @@ class LandingPage extends CI_Controller {
 
     public function buku($id_buku)
     {
-        $data['alokasiguru'] = $this->m_akademik->get_alokasiguruByIdGuru('tabel_alokasiguru', $id_buku);
-        $this->load->view('landingpage/buku/daftarbuku', $data);
+        $data['buku'] = $this->m_landingpage->get_bukuById('table_buku', $id_buku);
+        $this->load->view('landingpage/buku/detail_buku', $data);
     }
 
     public function register()
