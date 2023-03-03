@@ -76,7 +76,7 @@
                                 <h3 class="">Alokasi Rombel</h3>
                             </div>
                             <div class="card-body">
-                                <table id="data-table" class="table table-bordered table-striped">
+                                <table id="data-table2" class="table table-bordered table-striped">
                                     <thead class="bg-dark">
                                         <tr>
                                             <th>No</th>
