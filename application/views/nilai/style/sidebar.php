@@ -46,7 +46,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="Nilai/entry_nilai" class="nav-link">
+                        <a href="entry_nilai" class="nav-link">
                             <i class="nav-icon fas fa-percent"></i>
                             <p>
                                 Nilai
@@ -54,7 +54,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="Nilai/modul_input_nilai" class="nav-link">
+                        <a href="modul_input_nilai" class="nav-link">
                             <i class="nav-icon fas fa-folder-open"></i>
                             <p>
                                 Data Nilai
