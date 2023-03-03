@@ -257,6 +257,23 @@ function tampil_nama_siswa_byid($id)
     return $namadaftar;
   }
 
+  function tampil_nisndaftar_ByIdSiswa($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $nisn = '';
+  $result = $ci->db->select('*')
+                    ->from('tabel_siswa')
+                    ->join('tabel_daftar','tabel_siswa.id_daftar = tabel_daftar.id_daftar')
+                    ->where('tabel_siswa.id_siswa',$id)
+                    ->get();
+    foreach ($result->result() as $c) {
+    $stmt= $c->nisn;
+    $nisn= $nisn.$stmt.'<br>';
+    }
+    return $nisn;
+  }
+
   function tampil_jekeldaftar_ByIdSiswa($id)
   {
   $ci =& get_instance();

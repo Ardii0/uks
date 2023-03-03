@@ -11,13 +11,8 @@
 
 <body class="hold-transition sidebar-mini layout-fixed" data-panel-auto-height-mode="height">
     <div class="wrapper">
-
-        <!-- navbar -->
         <?php $this->load->view('nilai/style/navbar')?>
-        <!-- navbar -->
-        <!-- Sidebar -->
         <?php $this->load->view('nilai/style/sidebar')?>
-        <!-- Sidebar -->
 
         <div class="content-wrapper">
             <section class="content-header">
@@ -46,7 +41,7 @@
                     <div class="row px-1 pt-5">
                         <div class="col">
                             <div class="text-center" style="border-bottom: solid 2px; border-color: #">
-                                <h3 class="">Mapel Yang Mampu</h3>
+                                <h3 class="">Mata Pelajaran Yang Diampu</h3>
                             </div>
                             <div class="card-body">
                                 <table id="data-table" class="table table-bordered table-striped">

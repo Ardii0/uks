@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 03, 2023 at 03:56 AM
+-- Generation Time: Mar 03, 2023 at 10:51 AM
 -- Server version: 8.0.29
 -- PHP Version: 8.0.25
 
@@ -180,9 +180,9 @@ INSERT INTO `tabel_admin` (`id_admin`, `id_pesanan`, `id_pembayaran`, `id_paket_
 (6, NULL, NULL, NULL, ' zaky ', 'fer', '202cb962ac59075b964b07152d234b70', '085786652577', 'geo@gmail.com', 'laki-laki', 'jl. Sekaran no 41 semarang', 'ada', '123123123', 'ada@ada.ada', 'ada', 'Paket 1', '2023-02-17', '2023-02-24', '2022-11-29', '100000000', '20000', '5000', '20000', '15000', '12568989', 'bca', '1676617568793.png', '2022-11-24', 'BCA', '334566', '1667914969690.jpg', 1, 2, '2023-02-17 07:06:22', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', '', 1, '2023-02-17 14:06:22', 2),
 (7, NULL, NULL, NULL, 'petugas', 'petugas', '202cb962ac59075b964b07152d234b70', '0300399403', 'petugas@gmail.com', 'laki-laku', 'semarang', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2022-11-09 08:33:53', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', '', 1, '0000-00-00 00:00:00', 2),
 (11, NULL, NULL, NULL, 'fifi listiana', 'fifi', '202cb962ac59075b964b07152d234b70', '09889928823', 'fifi@gmail.com', 'perempuan', 'Semarang', 'Udin', '089399308391', 'udin@gmail.com', 'tegal', 'Paket 1', '2022-11-17', '2022-11-24', '2022-11-17', '100000000', '20000', '5000', '20000', NULL, 'invdp568990', 'BTN', '1668672060880.jpg', NULL, NULL, NULL, NULL, 1, 0, '2022-11-17 08:01:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', '', 1, '2022-11-17 10:10:00', 2),
-(12, NULL, NULL, NULL, 'ada', 'ada', '202cb962ac59075b964b07152d234b70', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2023-03-03 02:45:23', '2023-02-20 11:26:01', '2023-02-20 11:26:01', '', '', '', 1, '2023-03-03 09:45:23', 5),
-(13, NULL, NULL, NULL, 'da', 'da', '202cb962ac59075b964b07152d234b70', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2023-03-02 02:28:06', '2023-02-20 11:26:01', '2023-02-20 11:26:01', '', '', '', 1, '2023-03-02 09:28:06', 4),
-(14, NULL, NULL, NULL, 'ni', 'ni', '202cb962ac59075b964b07152d234b70', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2023-02-20 11:01:40', '2023-02-20 11:26:01', '2023-02-20 11:26:01', '', '', '', 1, '2023-02-20 18:01:40', 6),
+(12, NULL, NULL, NULL, 'ada', 'ada', '202cb962ac59075b964b07152d234b70', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2023-03-03 07:11:30', '2023-02-20 11:26:01', '2023-02-20 11:26:01', '', '', '', 1, '2023-03-03 14:11:30', 5),
+(13, NULL, NULL, NULL, 'da', 'da', '202cb962ac59075b964b07152d234b70', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2023-03-03 07:17:15', '2023-02-20 11:26:01', '2023-02-20 11:26:01', '', '', '', 1, '2023-03-03 14:17:15', 4),
+(14, NULL, NULL, NULL, 'ni', 'ni', '202cb962ac59075b964b07152d234b70', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2023-03-03 07:17:10', '2023-02-20 11:26:01', '2023-02-20 11:26:01', '', '', '', 1, '2023-03-03 14:17:10', 6),
 (16, NULL, NULL, NULL, 'tu', 'tu', '202cb962ac59075b964b07152d234b70', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2023-02-20 11:01:50', '2023-02-20 11:26:01', '2023-02-20 11:26:01', '', '', '', 1, '2023-02-20 18:01:50', 7);
 
 -- --------------------------------------------------------
@@ -393,7 +393,7 @@ CREATE TABLE `tabel_mapel` (
 --
 
 INSERT INTO `tabel_mapel` (`id_mapel`, `id_jenismapel`, `nama_mapel`, `keterangan`, `status`) VALUES
-(9, 2, 'Menjadi Kaizooku', 'Ore wa Kaizokou ni naru', 'AKTIF'),
+(9, 2, 'Matematika', 'Matematika Ilmu yang MENYENANGKAN HAHAHAHA', 'AKTIF'),
 (10, 1, 'Bahasa Semua nya', 'Semangat Brother', 'AKTIF');
 
 -- --------------------------------------------------------
@@ -403,11 +403,9 @@ INSERT INTO `tabel_mapel` (`id_mapel`, `id_jenismapel`, `nama_mapel`, `keteranga
 --
 
 CREATE TABLE `tabel_nilai` (
-  `id` int NOT NULL,
-  `id_rombel` int NOT NULL,
+  `id_nilai` int NOT NULL,
   `id_siswa` int NOT NULL,
   `id_mapel` int NOT NULL,
-  `id_angkatan` int NOT NULL,
   `semester` int NOT NULL,
   `nuh1` int NOT NULL,
   `nuh2` int NOT NULL,
@@ -747,8 +745,8 @@ CREATE TABLE `tabel_tahunajaran` (
 --
 
 INSERT INTO `tabel_tahunajaran` (`id_angkatan`, `kd_angkatan`, `nama_angkatan`, `keterangan`, `tgl_a`, `tgl_b`, `aktif`, `status`) VALUES
-(1, 'OK', 'EDITORBERKELAS2029', 'OK', '2023-02-01', '2023-02-28', 0, 'AKTIF'),
-(3, 'OK', 'da', '', '0000-00-00', '0000-00-00', 0, 'AKTIF');
+(1, 'OK', 'TA 2020/2021', 'OK', '2023-02-01', '2023-02-28', 0, 'AKTIF'),
+(3, 'OK', 'TA 2022/2023', '', '0000-00-00', '0000-00-00', 0, 'AKTIF');
 
 -- --------------------------------------------------------
 
@@ -930,8 +928,9 @@ ALTER TABLE `tabel_mapel`
 -- Indexes for table `tabel_nilai`
 --
 ALTER TABLE `tabel_nilai`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_siswa` (`id_siswa`);
+  ADD PRIMARY KEY (`id_nilai`),
+  ADD KEY `id_siswa` (`id_siswa`),
+  ADD KEY `tabel_nilai_to_mapel` (`id_mapel`);
 
 --
 -- Indexes for table `tabel_paketjenjang`
@@ -1104,7 +1103,7 @@ ALTER TABLE `tabel_mapel`
 -- AUTO_INCREMENT for table `tabel_nilai`
 --
 ALTER TABLE `tabel_nilai`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_nilai` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tabel_paketjenjang`
@@ -1229,6 +1228,7 @@ ALTER TABLE `tabel_mapel`
 -- Constraints for table `tabel_nilai`
 --
 ALTER TABLE `tabel_nilai`
+  ADD CONSTRAINT `tabel_nilai_to_mapel` FOREIGN KEY (`id_mapel`) REFERENCES `tabel_mapel` (`id_mapel`),
   ADD CONSTRAINT `tabel_nilai_to_siswa` FOREIGN KEY (`id_siswa`) REFERENCES `tabel_siswa` (`id_siswa`);
 
 --
