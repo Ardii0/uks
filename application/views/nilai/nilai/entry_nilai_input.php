@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entry Nilai</title>
+    <title>Entry Nilai Input</title>
     <?php $this->load->view('nilai/style/head')?>
 </head>
 
@@ -38,8 +38,8 @@
             <section class="content">
                 <div class="container-fluid shadow p-3 mb-5 bg-white rounded">
                     <div class="p-3 h5">
-                        <?php foreach ($mapelById as $mapel): ?>
-                            <p><?php echo $mapel->nama_mapel ?></p>
+                        <?php foreach ($mapelById as $showmapel): ?>
+                            <p><?php echo $showmapel->nama_mapel ?></p>
                         <?php endforeach; ?>
                         <p class="mt-n2 d-flex">
                             <?php foreach ($rombel as $information): ?>
@@ -93,23 +93,20 @@
                         <div class="col">
                             <form class="" action="<?php echo base_url('Nilai/tambah_nilai') ?>" enctype="multipart/form-data" method="post">
                                 <div class="row card-body">
-                                    <!-- <?php foreach ($semester as $inputsmt): ?>
+                                    <?php foreach ($semester as $inputsmt): ?>
                                         <input type="hidden" name="id_semester" value="<?php echo $inputsmt->semester ?>">
                                     <?php endforeach; ?>
-                                    <?php foreach ($mapel as $inputmapel): ?>
+                                    <?php foreach ($mapelById as $inputmapel): ?>
                                         <input type="hidden" name="id_mapel" value="<?php echo $inputmapel->id_mapel ?>">
-                                    <?php endforeach; ?> -->
-                                    <!-- <?php foreach ($rombel as $inputrombel): ?>
-                                        <input type="hidden" name="id_rombel" value="<?php echo $inputrombel->id_rombel ?>">
-                                    <?php endforeach; ?> -->
-                                    <!-- <?php foreach ($siswa as $inputdata): ?>
+                                    <?php endforeach; ?>
+                                    <?php foreach ($siswa as $inputdata): ?>
                                         <div class="col-1 font-weight-bold">Nama</div>
                                         <div class="col-5 text-truncate" style="max-width: 210px;">: <?php echo tampil_namadaftar_ByIdSiswa($inputdata->id_siswa) ?></div>
                                         <input type="hidden" name="id_siswa" value="<?php echo $inputdata->id_siswa ?>">
                                         <div class="col-1 font-weight-bold">NISN</div>
                                         <div class="col-5">: <?php echo tampil_nisndaftar_ByIdSiswa($inputdata->id_siswa) ?></div>
-                                    <?php endforeach; ?> -->
-                                    <!-- <div class="col-6 mt-3">
+                                    <?php endforeach; ?>
+                                    <div class="col-6 mt-3">
                                         <div class="form-group">
                                             <label class="control-label">NUH1</label>
                                             <div>
@@ -197,7 +194,7 @@
                                                     placeholder="Masukan Nilai Ulangan Harian" disabled><br>
                                             </div>
                                         </div>
-                                    </div> -->
+                                    </div>
                                 </div>
                             </form>
                         </div>

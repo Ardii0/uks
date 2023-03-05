@@ -24,7 +24,7 @@
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a
-                                        href="<?php echo base_url('Nilai/') ?>"><?php echo $this->session->userdata('level') ?></a>
+                                    href="<?php echo base_url('Nilai/') ?>"><?php echo $this->session->userdata('level') ?></a>
                                 </li>
                                 <li class="breadcrumb-item active">Modul Input Nilai</li>
                             </ol>
@@ -53,19 +53,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Matematika</td>
-                                            <td class="d-flex">
-                                                <button type="submit" class="btn btn-success btn-sm">
-                                                    <i class="fa fa- fa-arrow-right"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
+                                        <?php $id=0; foreach ($mapel as $data): $id++?>
+                                            <tr>
+                                                <td><?php echo $id ?></td>
+                                                <td><?php echo $data->nama_mapel ?></td>
+                                                <td class="d-flex">
+                                                    <a href="<?php echo base_url('Nilai/data_input/'.$data->id_mapel) ?>" class="btn btn-success btn-sm">
+                                                        <i class="fa fa- fa-arrow-right"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
+                        </div>  
                         <div class="col">
                             <div class="text-center" style="border-bottom: solid 2px; border-color: #">
                                 <h3 class="">Alokasi Rombel</h3>
@@ -79,7 +81,7 @@
                                             <th style="width: 150px;">Aksi</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <!-- <tbody>
                                         <tr>
                                             <td>1</td>
                                             <td>X TKJ 1</td>
@@ -92,7 +94,7 @@
                                                 </button>
                                             </td>
                                         </tr>
-                                    </tbody>
+                                    </tbody> -->
                                 </table>
                             </div>
                         </div>
