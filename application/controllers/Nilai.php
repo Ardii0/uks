@@ -21,14 +21,10 @@ class Nilai extends CI_Controller {
     }
 
 // Data Nilai
-    public function data_keselurahan_nilai_siswa()
+    public function data_nilai_siswa($id_mapel, $id_semester)
     {
-        $this->load->view('nilai/data_nilai/data_keselurahan_nilai_siswa');
-    }
-
-    public function modul_data_nilai_siswa()
-    {
-        $this->load->view('nilai/data_nilai/modul_data_nilai_siswa');
+        $data['data']=$this->m_nilai->get_data_nilai($id_mapel, $id_semester)->result();
+        $this->load->view('nilai/data_nilai/data_nilai_siswa', $data);
     }
     
 // Nilai
@@ -140,4 +136,23 @@ class Nilai extends CI_Controller {
         $data['mapel'] = $this->m_akademik->get_mapel('tabel_mapel');
         $this->load->view('nilai/nilai/modul_input_nilai', $data);
     }
+
+    public function modul_data_nilai()
+    {
+        $data['mapel'] = $this->m_akademik->get_mapel('tabel_mapel');
+        $this->load->view('nilai/data_nilai/modul_data_nilai_siswa', $data);
+    }
+    
+    public function modul_data_nilai_by($id_mapel)
+    {
+        $data['mapel'] = $this->m_akademik->get_mapel('tabel_mapel');
+        $alokasimapel['alokasi']=$this->m_nilai->get_alokasimapelByIdMapel($id_mapel)->result();
+        $this->load->view('nilai/data_nilai/modul_data_nilai_siswa', $data + $alokasimapel);
+    }
+    
+    // public function get_alokasi_mapel($id_mapel)
+    // {
+    //     $this->m_nilai->get_alokasi_mapel('tabel_alokasimapel', 'id_mapel', $id_mapel);
+    //     redirect(base_url('Nilai/modul_data_nilai'));
+    // }
 }

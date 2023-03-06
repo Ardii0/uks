@@ -485,5 +485,17 @@ function tampil_nama_siswa_byid($id)
     return $stmt;
     }
   }
+
+  // Data Nilai Siswa
+  function tampil_id_daftar_siswa_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_siswa',$id)->get('tabel_siswa');
+    foreach ($result->result() as $c) {
+    $stmt= $c->id_daftar;
+    return $stmt;
+    }
+  }
   
 ?>

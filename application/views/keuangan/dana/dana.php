@@ -10,7 +10,7 @@
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini layout-fixed">
     <div class="wrapper">
         <!-- navbar -->
         <?php $this->load->view('keuangan/style/navbar') ?>
@@ -28,7 +28,9 @@
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="<?php echo base_url('Akademik/') ?>"><?php echo $this->session->userdata('level') ?></a></li>
+                                <li class="breadcrumb-item"><a
+                                        href="<?php echo base_url('Akademik/') ?>"><?php echo $this->session->userdata('level') ?></a>
+                                </li>
                                 <li class="breadcrumb-item active">Input Dana Masuk Keluar</li>
                             </ol>
                         </div>
@@ -47,7 +49,7 @@
                             </div>
                         </div>
                         <div class="col-md-3 d-flex justify-content-end align-self-start">
-                            <a
+                            <a>
                                 <button type="button" class="btn btn-primary">
                                     Lihat Data
                                 </button>
@@ -55,58 +57,118 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12">
-                            <div class="card-body">
-                            <div class="card border-success mb-3 card-primary" style="max-width: 18rem;">
-                            <div class="card-header bg-primary border-success">Data Jenis Dana Masuk</div>
-                            <div class="card-body">
-                                <div class="card-text">
-                                <div class="card" >
-                                <div class="card-header">
-                                    Featured
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">An item</li>
-                                    <li class="list-group-item">A second item</li>
-                                    <li class="list-group-item">A third item</li>
-                                </ul>
-                                </div>
+                        <div class="col-5">
+                            <div class="card-body w-full">
+                                <div class="card border-success mb-3 card-primary">
+                                    <div class="card-header bg-primary border-success">Daftar Jenis Dana Masuk</div>
+                                    <div class="card-body">
+                                        <div class="card-text">
+                                            <div class="card">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">Dana Hibah</li>
+                                                    <li class="list-group-item">Dana Bos Buku</li>
+                                                    <li class="list-group-item">Dana Bos Seragam</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-7">
+                            <div class="card-body w-100">
+                                <div class="card border-success mb-3 card-success">
+                                    <div class="card-header bg-success border-success">Detail Jenis Transaksi</div>
+                                    <div class="card-body row">
+                                        <div class="col-12 row mt-3">
+                                            <div class="col-6 text-right font-weight-bold">Jenis Transaksi :</div>
+                                            <div class="col-6">dana Hibah</div>
+                                        </div>
+                                        <div class="col-12 row mt-3">
+                                            <div class="col-6 text-right font-weight-bold">Jumlah Dana Dianggarkan :
+                                            </div>
+                                            <div class="col-6">Rp.50.000.000</div>
+                                        </div>
+                                        <div class="col-12 row mt-3">
+                                            <div class="col-6 text-right font-weight-bold">Keterangan :
+                                            </div>
+                                            <div class="col-6">Bantuan Hibah</div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                                <table id="datasiswa-table" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>ID Akun</th>
-                                            <th>Nama Akun</th>
-                                            <th>Jenis Akun</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                1
-                                            </td>
-                                            <td>
-                                                101
-                                            </td>
-                                            <td>
-                                                Kas
-                                            </td>
-                                            <td>
-                                                Aset
-                                            </td>
-                                            <td class="text-center">
-                                                <a class="btn btn-primary btn-sm">
-                                                    <i class="fa fa-edit"></i>Edit</a>
-                                                <button class="btn btn-danger btn-sm">
-                                                    <i class="fa fa-trash"></i>Hapus</button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                        </div>
+                        <div class="col-5">
+                            <div class="card-body w-full">
+                                <div class="card border-success mb-3 card-primary">
+                                    <div class="card-header bg-primary border-success">Daftar Jenis Dana Keluar</div>
+                                    <div class="card-body">
+                                        <div class="card-text">
+                                            <div class="card">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">Gaji Staf</li>
+                                                    <li class="list-group-item">Ekspansi Gedung</li>
+                                                    <li class="list-group-item">Pengeluaran Lain-Lain</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <div class="card-body w-100">
+                                <div class="card border-success mb-3 card-success">
+                                    <div class="card-header bg-success border-success">Detail Jenis Transaksi</div>
+                                    <div class="card-body row">
+                                        <div class="col-12 row mt-3">
+                                            <div class="col-4 text-right font-weight-bold mt-1 mt-1">Uraian</div>
+                                            <div class="col-8">
+                                                <input type="text" class="form-control" id="uraian"
+                                                    placeholder="Masukan Uraian">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 row mt-3">
+                                            <div class="col-4 text-right font-weight-bold mt-1">Akun Debit
+                                            </div>
+                                            <div class="col-8">
+                                                <select name="akun_debit" class="custom-select custom-select-md">
+                                                    <option value="adasdad">Kas</option>
+                                                    <option value="adasdad">asdadad</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 row mt-3">
+                                            <div class="col-4 text-right font-weight-bold mt-1">Akun Kredit
+                                            </div>
+                                            <div class="col-8">
+                                                <select name="akun_kredit" class="custom-select custom-select-md">
+                                                    <option value="adasdad">Pendapatan</option>
+                                                    <option value="adasdad">asdadad</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 row mt-3">
+                                            <div class="col-4 text-right font-weight-bold mt-1">Nominal
+                                            </div>
+                                            <div class="col-8">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="basic-addon1">Rp</span>
+                                                    </div>
+                                                    <input type="number" class="form-control" placeholder="Nominal">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 row">
+                                            <div class="col-4 text-right font-weight-bold">
+                                            </div>
+                                            <div class="col-8">
+                                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -117,12 +179,12 @@
     </div>
     <?php $this->load->view('keuangan/style/js') ?>
     <script>
-        function hapus(id) {
-            var yes = confirm('Yakin Di Hapus?');
-            if (yes == true) {
-                window.location.href = "<?php echo base_url('Akademik/hapus_guru/') ?>" + id;
-            }
+    function hapus(id) {
+        var yes = confirm('Yakin Di Hapus?');
+        if (yes == true) {
+            window.location.href = "<?php echo base_url('Akademik/hapus_guru/') ?>" + id;
         }
+    }
     </script>
 </body>
 
