@@ -47,11 +47,9 @@
                             </div>
                         </div>
                         <div class="col-md-3 d-flex justify-content-end align-self-start">
-                            <a
-                                <button type="button" class="btn btn-success">
-                                    <i class="fa fa-plus pr-2"></i>Tambah
-                                </button>
-                            </a>
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal_tambah_kategori">
+                                <i class="fa fa-plus pr-2"></i>Tambah
+                            </button>
                         </div>
                     </div>
                     <div class="row">
@@ -61,33 +59,32 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>ID Akun</th>
                                             <th>Nama Akun</th>
                                             <th>Jenis Akun</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php $id = 0; foreach ($data_akun as $data): $id++; ?>
                                         <tr>
                                             <td>
-                                                1
+                                                <?php echo $id ?>
                                             </td>
                                             <td>
-                                                101
+                                                <?php echo $data->nama_akun?>
                                             </td>
                                             <td>
-                                                Kas
-                                            </td>
-                                            <td>
-                                                Aset
+                                                <?php echo $data->jenis_akun?>
                                             </td>
                                             <td class="text-center">
-                                                <a class="btn btn-primary btn-sm">
-                                                    <i class="fa fa-edit"></i>Edit</a>
-                                                <button class="btn btn-danger btn-sm">
+                                                <a href="<?php echo base_url('keuangan/edit_akun/'.$data->id_akun) ?>" class="btn btn-primary btn-sm">
+                                                    <i class="fa fa-edit"></i>Edit
+                                                </a>
+                                                <button onClick="hapus(<?php echo $data->id_akun ?>)" class="btn btn-danger btn-sm">
                                                     <i class="fa fa-trash"></i>Hapus</button>
                                             </td>
                                         </tr>
+                                        <?php endforeach ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -97,13 +94,52 @@
         </div>
         </section>
     </div>
+
+<!-- Modal -->
+    <div class="modal fade" id="modal_tambah_kategori" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form action="<?php echo base_url('Keuangan/aksi_tambah_akun') ?>" enctype="multipart/form-data" method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Tambah Akun</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="box-body">
+                            <div class="form-group col-sm-12">
+                                <label class=" control-label">Nama Akun</label>
+                                <div class="">
+                                    <input type="text" name="nama_akun" class="form-control"
+                                        placeholder="Masukan Nama Akun"><br>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-12">
+                                <label class=" control-label">Jenis Akun</label>
+                            <div class="">
+                                <input type="text" name="jenis_akun" class="form-control"
+                                    placeholder="Masukan Jenis Akun"><br>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                        <div class="modal-footer d-flex justify-content-between">
+                            <button type="button" class="btn btn-secondary" onclick="kembali()" data-dismiss="modal">Kembali</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                     </div>
+                </div>
+            </form>
+        </div>
     </div>
     <?php $this->load->view('keuangan/style/js') ?>
     <script>
         function hapus(id) {
             var yes = confirm('Yakin Di Hapus?');
             if (yes == true) {
-                window.location.href = "<?php echo base_url('Akademik/hapus_guru/') ?>" + id;
+                window.location.href = "<?php echo base_url('Keuangan/hapus_akun/') ?>" + id;
             }
         }
     </script>
