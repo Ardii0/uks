@@ -72,7 +72,7 @@
                                                         :
                                                     </div>
                                                     <div class="col-6">
-                                                    <?php echo tampil_nisn_ByIdSiswa($data->id_siswa)?>
+                                                    <?php echo tampil_nisn_siswa_byid($data->id_siswa)?>
                                                     </div>
                                                 </div>
                                                 <div class="row text-left">
@@ -149,7 +149,7 @@
                                                         :
                                                     </div>
                                                     <div class="col-6">
-                                                    <?php echo  tampil_nisn_ByIdSiswa($data->id_siswa)?>
+                                                    <?php echo  tampil_nisn_siswa_byid($data->id_siswa)?>
                                                     </div>
                                                 </div>
                                                 <div class="row text-left">

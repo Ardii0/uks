@@ -11,13 +11,8 @@
 
 <body class="hold-transition sidebar-mini layout-fixed" data-panel-auto-height-mode="height">
     <div class="wrapper">
-
-        <!-- navbar -->
         <?php $this->load->view('nilai/style/navbar')?>
-        <!-- navbar -->
-        <!-- Sidebar -->
         <?php $this->load->view('nilai/style/sidebar')?>
-        <!-- Sidebar -->
 
         <div class="content-wrapper">
             <section class="content-header">
@@ -29,7 +24,7 @@
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a
-                                        href="<?php echo base_url('Nilai/') ?>"><?php echo $this->session->userdata('level') ?></a>
+                                    href="<?php echo base_url('Nilai/') ?>"><?php echo $this->session->userdata('level') ?></a>
                                 </li>
                                 <li class="breadcrumb-item active">Modul Input Nilai</li>
                             </ol>
@@ -46,7 +41,7 @@
                     <div class="row px-1 pt-5">
                         <div class="col">
                             <div class="text-center" style="border-bottom: solid 2px; border-color: #">
-                                <h3 class="">Mapel Yang Mampu</h3>
+                                <h3 class="">Mata Pelajaran Yang Diampu</h3>
                             </div>
                             <div class="card-body">
                                 <table id="data-table" class="table table-bordered table-striped">
@@ -58,25 +53,27 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Matematika</td>
-                                            <td class="d-flex">
-                                                <button type="submit" class="btn btn-success btn-sm">
-                                                    <i class="fa fa- fa-arrow-right"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
+                                        <?php $id=0; foreach ($mapel as $data): $id++?>
+                                            <tr>
+                                                <td><?php echo $id ?></td>
+                                                <td><?php echo $data->nama_mapel ?></td>
+                                                <td class="d-flex">
+                                                    <a href="<?php echo base_url('Nilai/data_input/'.$data->id_mapel) ?>" class="btn btn-success btn-sm">
+                                                        <i class="fa fa- fa-arrow-right"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
+                        </div>  
                         <div class="col">
                             <div class="text-center" style="border-bottom: solid 2px; border-color: #">
                                 <h3 class="">Alokasi Rombel</h3>
                             </div>
                             <div class="card-body">
-                                <table id="data-table" class="table table-bordered table-striped">
+                                <table id="data-table2" class="table table-bordered table-striped">
                                     <thead class="bg-dark">
                                         <tr>
                                             <th>No</th>
@@ -84,7 +81,7 @@
                                             <th style="width: 150px;">Aksi</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <!-- <tbody>
                                         <tr>
                                             <td>1</td>
                                             <td>X TKJ 1</td>
@@ -97,7 +94,7 @@
                                                 </button>
                                             </td>
                                         </tr>
-                                    </tbody>
+                                    </tbody> -->
                                 </table>
                             </div>
                         </div>

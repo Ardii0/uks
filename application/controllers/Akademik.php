@@ -79,8 +79,8 @@ class Akademik extends CI_Controller {
     
     public function hapus_ta($id_angkatan)
     {
-        $this->m_akademik->hapus_ta('tabel_tahunajaran', 'id_angkatan', $id_angkatan);
-        redirect(base_url('Akademik/tahun_ajaran'));
+            $this->m_akademik->hapus_ta('tabel_tahunajaran', 'id_angkatan', $id_angkatan);
+            redirect(base_url('Akademik/tahun_ajaran'));
     }
 
 // Jenjang
