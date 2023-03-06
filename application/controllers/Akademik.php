@@ -554,7 +554,7 @@ class Akademik extends CI_Controller {
     }
     
     public function hapus_siswa($id_siswa)
-    {
+    { 
         $this->m_akademik->hapus_siswa('tabel_siswa', 'id_siswa', $id_siswa);
         redirect(base_url('Akademik/siswa_data'));
     }
@@ -627,115 +627,140 @@ class Akademik extends CI_Controller {
         }
     }
 
-//Mutasi
-public function siswa_mutasi()
-{
-    $this->load->model('M_akademik');
-    $siswa['siswa'] = $this->m_akademik->get_siswa('siswa');
-    $rombel['rombel'] = $this->m_akademik->get_rombel('rombel');
-    $kelas['kelas'] = $this->m_akademik->get_kelas('kelas');
-    $this->load->view('akademik/siswa/mutasi', $siswa + $rombel + $kelas);
-}
-
-// public function pindah_sekolah($id_daftar)
-// {
-//     $data['siswa']=$this->m_akademik->get_siswaById('tabel_siswa', $id_daftar)->result();
-//     $this->load->view('akademik/siswa/pindah_sekolah', $data);
-// }
-
-// public function tambah_pindah_sekolah()
-// {
-//     $data = [
-//         'id_daftar' => $this->input->post('id_daftar'),
-//         'id_rombel' => $this->input->post('id_rombel'),
-//         'nama_sekolah' => $this->input->post('nama_sekolah'),
-//     ];
-//     $this->m_akademik->tambah_pindah_sekolah('tabel_pindah', $data);
-//     redirect(base_url('Akademik/siswa_mutasi'));
-// }
-
-// public function pindah_kelas($id_siswa)
-//     {
-//         $data['siswa']=$this->m_akademik->get_siswaById('tabel_siswa', $id_siswa)->result();
-//         $data['rombel'] = $this->m_akademik->get_rombel('rombel');
-//         $this->load->view('akademik/siswa/pindah_kelas', $data);
-//     }
-
-//     public function update_pindah_kelas()
-//     {
-//         $data = array (
-//             "id_daftar" => $this->input->post("id_daftar"),
-//             "id_rombel" => $this->input->post("id_rombel"),
-//             "saldo_tabungan" => $this->input->post("saldo_tabungan"),
-//         );
-//         $masuk = $this->m_akademik->ubah_siswa("tabel_siswa", $data, array("id_siswa" => $this->input->post("id_siswa")));
-//         if ($masuk)
-//         {
-//             $this->session->set_flashdata('sukses', 'berhasil');
-//             redirect(base_url('Akademik/siswa_mutasi'));
-//         }
-//         else
-//         {
-//             $this->session->set_flashdata('error', 'gagal..');
-//             redirect(base_url('Akademik/pindah_kelas/'.$this->input->post('id_siswa')));
-//         }
-//     }
-    function pindah_kelas() {
-        $id_rombel = $this->input->post('id_rombel');
-        $id_siswa = $this->input->post('id_siswa');
-
-        foreach ($id_siswa as $key => $value) {
-            $logged=$this->m_akademik->ubah_siswa('tabel_siswa', array(
-                'id_siswa' => $key,
-                'id_rombel' => $id_rombel
-            ), array(
-                'id_siswa' => $key
-            ));
-        }
-
-        if($logged)
-        {
-            $this->session->set_flashdata('sukses', 'berhasil');
-            redirect(base_url('Akademik/siswa_mutasi'));
-        }
-        else
-        {
-            $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Akademik/siswa_mutasi/'.$key));
-        }
+    //Mutasi
+    public function siswa_mutasi()
+    {
+        $this->load->model('M_akademik');
+        $siswa['siswa'] = $this->m_akademik->get_siswa('siswa');
+        $rombel['rombel'] = $this->m_akademik->get_rombel('rombel');
+        $kelas['kelas'] = $this->m_akademik->get_kelas('kelas');
+        $this->load->view('akademik/siswa/mutasi', $siswa + $rombel + $kelas);
     }
 
-    function pindah_sekolah() {
-        $id_daftar = $this->input->post('id_daftar');
+    public function aksi_mutasi_siswa() {
+        $option = $this->input->post('option');
         $id_rombel = $this->input->post('id_rombel');
-        $nama_sekolah = $this->input->post('nama_sekolah');
+        $id_daftar = $this->input->post('id_daftar');
 
-        foreach ($id_daftar as $key => $value) {
-            $logged=$this->m_akademik->tambah_pindah_sekolah('tabel_pindah', array(
-                'id_daftar' => $key,
-                'id_rombel' => $id_rombel,
-                'nama_sekolah' => $nama_sekolah,
-            ));
-        }
+        if ($option == 'Naik Kelas') {
+            foreach ($id_daftar as $key => $value) {
+                $logged=$this->m_akademik->ubah_siswa('tabel_siswa', array(
+                    'id_daftar' => $key,
+                    'id_rombel' => $id_rombel
+                ), array(
+                    'id_daftar' => $key
+                ));
+            }
 
-        if($logged)
-        {
-            $this->session->set_flashdata('sukses', 'berhasil');
-            redirect(base_url('Akademik/siswa_mutasi'));
-        }
-        else
-        {
-            $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Akademik/siswa_mutasi/'.$key));
+            if($logged)
+            {
+                $this->session->set_flashdata('sukses', 'berhasil');
+                redirect(base_url('Akademik/siswa_mutasi'));
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'gagal..');
+                redirect(base_url('Akademik/siswa_mutasi/'.$key));
+            }
+        } elseif ($option == 'Pindah Kelas') {
+            foreach ($id_daftar as $key => $value) {
+                $logged=$this->m_akademik->ubah_siswa('tabel_siswa', array(
+                    'id_daftar' => $key,
+                    'id_rombel' => $id_rombel
+                ), array(
+                    'id_daftar' => $key
+                ));
+            }
+    
+            if($logged)
+            {
+                $this->session->set_flashdata('sukses', 'berhasil');
+                redirect(base_url('Akademik/siswa_mutasi'));
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'gagal..');
+                redirect(base_url('Akademik/siswa_mutasi/'.$key));
+            }
+        } elseif ($option == 'Pindah Sekolah') {
+            $nama_sekolah = $this->input->post('nama_sekolah');
+
+            foreach ($id_daftar as $key => $value) {
+                $logged=$this->m_akademik->tambah_pindah_sekolah('tabel_pindah', array(
+                    'id_daftar' => $key,
+                    'id_rombel' => $id_rombel,
+                    'nama_sekolah' => $nama_sekolah,
+                ));
+                
+            foreach ($id_daftar as $key => $value) { 
+                $this->m_akademik->ubah_pendaftaran('tabel_daftar', array( 
+                    'id_daftar' => $key, 
+                    'diterima' => "M", 
+                ), array( 
+                    'id_daftar' => $key 
+                )); 
+            }
+
+            foreach ($id_daftar as $key => $value) { 
+                $this->m_akademik->hapus_siswa('tabel_siswa', 'id_daftar', $key);
+            }
+            }
+    
+            if($logged)
+            {
+                $this->session->set_flashdata('sukses', 'berhasil');
+                redirect(base_url('Akademik/siswa_mutasi'));
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'gagal..');
+                redirect(base_url('Akademik/siswa_mutasi/'.$key));
+            }
+        } elseif ($option == 'Lulus') {
+            $tanggal_lulus = $this->input->post('tanggal_lulus');
+
+            foreach ($id_daftar as $key => $value) {
+                $logged=$this->m_akademik->tambah_lulus('tabel_lulus', array(
+                    'id_daftar' => $key,
+                    'id_rombel' => $id_rombel,
+                    'tanggal_lulus' => $tanggal_lulus,
+                ));
+                
+                foreach ($id_daftar as $key => $value) { 
+                    $this->m_akademik->ubah_pendaftaran('tabel_daftar', array( 
+                        'id_daftar' => $key, 
+                        'diterima' => "L", 
+                    ), array( 
+                        'id_daftar' => $key 
+                    )); 
+                }
+                foreach ($id_daftar as $key => $value) { 
+                    $this->m_akademik->hapus_siswa('tabel_siswa', 'id_daftar', $key);
+                }
+            }
+    
+            if($logged)
+            {
+                $this->session->set_flashdata('sukses', 'berhasil');
+                redirect(base_url('Akademik/siswa_mutasi'));
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'gagal..');
+                redirect(base_url('Akademik/siswa_mutasi/'.$key));
+            }
         }
     }
 
     public function filter_kelas($id_rombel)
     {
-        $data['siswa']=$this->m_akademik->get_siswaperkelas('tabel_siswa', $id_rombel)->result();
-        $this->load->view('akademik/siswa/mutasi', $data);
+        $this->load->model('M_akademik');
+        $siswa['siswa'] = $this->m_akademik->get_siswaperkelas('tabel_siswa', $id_rombel)->result();
+        $rombel['rombel'] = $this->m_akademik->get_rombel('rombel');
+        $kelas['kelas'] = $this->m_akademik->get_kelas('kelas');
+        $this->load->view('akademik/siswa/mutasi', $siswa + $rombel + $kelas);
     }
-
+    
 
 function naik_kelas($id){
     $this->db->set('id_kelas', 'id_kelas+1', FALSE);

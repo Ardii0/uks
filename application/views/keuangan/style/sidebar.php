@@ -36,7 +36,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<?php echo base_url('keuangan/')?>" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -52,7 +52,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<?php echo base_url('keuangan/akun')?>" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
                Akun
@@ -60,23 +60,23 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<?php echo base_url('keuangan/dana')?>" class="nav-link">
               <i class="nav-icon fas fa-share"></i>
               <p>
-              Data Masuk & Keluar
+              Dana Masuk & Keluar
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<?php echo base_url('keuangan/jurnal')?>" class="nav-link">
               <i class="nav-icon fas fa-newspaper"></i>
               <p>
-              Jurnal Penyesuain
+              Jurnal Penyesuaian
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<?php echo base_url('keuangan/laporan')?>" class="nav-link">
               <i class="nav-icon fas fa-comments-dollar"></i>
               <p>
                 Laporan Keuangan
@@ -84,7 +84,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<?php echo base_url('keuangan/pembayaran')?>" class="nav-link">
               <i class="nav-icon fas fa-money-bill"></i>
               <p>
                 Pembayaran
@@ -92,7 +92,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<?php echo base_url('keuangan/setting')?>" class="nav-link">
             <i class="nav-icon fas fa-bars"></i>
               <p>
                 Setting

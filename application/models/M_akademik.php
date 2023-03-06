@@ -198,6 +198,13 @@ class M_akademik extends CI_Model{
         return $this->db->insert_id();
     }
 
+    public function tambah_lulus($tabel, $data)
+    {
+        $this->db->insert($tabel, $data);
+        return $this->db->insert_id();
+    }
+
+
     public function get_siswaperkelas($tabel, $id_rombel)
     {
         $data=$this->db->where('id_rombel', $id_rombel)->get($tabel);

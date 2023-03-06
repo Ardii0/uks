@@ -38,12 +38,13 @@
                 <div class="container-fluid bg-white">
                     <div class="row mx-2 pt-3 d-flex justify-content-between">
                         <div class="col-2 col-sm-6 ">   
+                            <form action="">
                             <div class="form-group d-flex flex-row " style="width: fit-content;">
                                 <div class="mt-2 mx-1">
                                     <p style="font-weight: bold">Pilih Kelas</p>
                                 </div>
                                 <div class="mx-1">
-                                    <select name="filter_rombel" class="form-control select2 select2-info"
+                                    <select name="id_rombel" class="form-control select2 select2-info"
                                             data-dropdown-css-class="select2-info">
                                             <?php $id = 0; foreach ($rombel as $data):
                                                 $id++; ?>
@@ -52,9 +53,10 @@
                                         </select>
                                 </div>
                                 <div class="mx-1">
-                                    <button type="button" class="btn btn-primary">Tampilkan</button>
+                                    <button type="button" class="btn btn-primary" onclick="filter(<?php echo $data->id_rombel; ?>)">Tampilkan</button>
                                 </div>
                             </div>
+                            </form>
                         </div>
                         <div class="col-md-3 d-flex justify-content-end align-self-start">
                             <div class="form-group">
@@ -66,7 +68,7 @@
                             </div>
                         </div>
                     </div>
-                    <form id="store" name="store" action="<?php echo base_url('Akademik/pindah_kelas'); ?>" enctype="multipart/form-data" method="post">
+                    <form id="store" name="store" action="<?php echo base_url('Akademik/aksi_mutasi_siswa'); ?>" enctype="multipart/form-data" method="post">
                     <div class="row">
                         <div class="col-8">
                             <div class="card-body">
@@ -91,7 +93,7 @@
                                             <tr>
                                                 <td>
                                                     <input type="checkbox"
-                                                        name="id_siswa[<?php echo $data->id_siswa ?>]" id="">
+                                                        name="id_daftar[<?php echo $data->id_daftar ?>]" id="">
                                                 </td>
                                                 <td>
                                                     <?php echo tampil_rombel_byid($data->id_rombel) ?>
@@ -112,17 +114,6 @@
                                                 <td>
                                                     <?php echo tampil_alamat_siswa_byid($data->id_daftar) ?>
                                                 </td>
-                                                <!-- <td> 
-                                                <a href="<?php echo base_url('Akademik/pindah_sekolah/' . $data->id_daftar) ?>"
-                                                        class="btn btn-success btn-sm">
-                                                        pindah sekolah</a>
-                                                    <a href="<?php echo base_url('Akademik/pindah_kelas/' . $data->id_siswa) ?>"
-                                                        class="btn btn-primary btn-sm">
-                                                        pindah kelas</a>
-                                                        <button onclick="hapus(<?php echo $data->id_daftar; ?>)"
-                                                    class="btn btn-danger btn-sm">
-                                                    naik kelas</button>
-                                            </td> -->
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
@@ -136,7 +127,7 @@
                                     <p style="font-weight: bold">Jenis</p>
                                 </div>
                                 <div class="mx-1">
-                                    <select class=" form-control select2 select2-info" id="option"
+                                    <select class="form-control select2 select2-info" id="option"
                                         onchange="findmyvalue()" name="option"
                                         data-dropdown-css-class="select2-info">
                                         <option selected="selected" selected>Pilih</option>
@@ -215,8 +206,8 @@
     </div>
     <?php $this->load->view('akademik/style/js') ?>
     <script>
-        function hapus(id) {
-            window.location.href = "<?php echo base_url('Akademik/naik_kelas/') ?>" + id;
+        function filter(id) {
+            window.location.href = "<?php echo base_url('Akademik/filter_kelas/') ?>" + id;
         }
     </script>
 </body>

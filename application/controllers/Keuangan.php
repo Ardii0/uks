@@ -8,19 +8,21 @@ class Keuangan extends CI_Controller
     {
         parent::__construct();
         $this->load->model('m_keuangan');
-        // $this->load->helpers('my_helper');
+        $this->load->helpers('my_helper');
         // $this->load->library('excel');
-        if ($this->session->userdata('status_keuangan') != 'login') {
-            redirect(base_url('Login'));
+        if ($this->session->userdata('status_keuangan')!='login') {
+            redirect(base_url());
         }
     }
 
+    //Keuangan
     public function index()
     {
         $this->load->view('keuangan/dashboard');
 
     }
 
+    //Anggaran
     public function anggaran()
     {
         $this->load->model('M_keuangan');
@@ -83,4 +85,51 @@ class Keuangan extends CI_Controller
         }
     }
 
+    //Akun
+    public function akun()
+    {
+        $this->load->model('M_keuangan');
+        // $data['data_akun'] = $this->m_keuangan->get_all_data_akun('data_akun');
+        $this->load->view('keuangan/akun/akun');
+    }
+
+    //Dana
+    public function dana()
+    {
+        $this->load->model('M_keuangan');
+        // $data['data_akun'] = $this->m_keuangan->get_all_data_akun('data_akun');
+        $this->load->view('keuangan/dana/dana');
+    }
+
+    //Jurnal
+    public function jurnal()
+    {
+        $this->load->model('M_keuangan');
+        // $data['data_akun'] = $this->m_keuangan->get_all_data_akun('data_akun');
+        $this->load->view('keuangan/jurnal/jurnal');
+    }
+
+    //Laporan
+    public function laporan()
+    {
+        $this->load->model('M_keuangan');
+        // $data['data_akun'] = $this->m_keuangan->get_all_data_akun('data_akun');
+        $this->load->view('keuangan/laporan/laporan');
+    }
+
+    //Pembayaran
+    public function pembayaran()
+    {
+        $this->load->model('M_keuangan');
+        // $data['data_akun'] = $this->m_keuangan->get_all_data_akun('data_akun');
+        $this->load->view('keuangan/pembayaran/pembayaran');
+    }
+
+    //Setting
+    public function setting()
+    {
+        $this->load->model('M_keuangan');
+        // $data['data_akun'] = $this->m_keuangan->get_all_data_akun('data_akun');
+        $this->load->view('keuangan/setting/setting');
+    }
 }
