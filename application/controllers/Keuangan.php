@@ -189,6 +189,24 @@ class Keuangan extends CI_Controller
         $this->load->view('keuangan/pembayaran/pembayaran');
     }
 
+    public function tambah_pembayaran()
+    {
+        // $this->load->model('M_keuangan');
+        $this->load->view('keuangan/pembayaran/tambah_pembayaran');
+    }
+
+    public function form_tambah_pembayaran()
+    {
+        // $this->load->model('M_keuangan');
+        $this->load->view('keuangan/pembayaran/form_tambah_pembayaran');
+    }
+
+    public function cetak_invoice()
+    {
+        // $this->load->model('M_keuangan');
+        $this->load->view('keuangan/pembayaran/cetak_invoice');
+    }
+
 //Setting
     public function setting()
     {

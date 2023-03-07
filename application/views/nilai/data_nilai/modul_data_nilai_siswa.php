@@ -63,7 +63,7 @@
                                             <td><?php echo $id ?></td>
                                             <td><?php echo $data->nama_mapel ?></td>
                                             <td class="d-flex">
-                                                <a href="<?php echo base_url('Nilai/modul_data_nilai_by/'.$data->id_mapel)?>"
+                                                <a href="<?php echo base_url('Nilai/modul_data_nilai/'.$data->id_mapel)?>"
                                                     class="btn btn-success btn-sm">
                                                     <i class="fa fa- fa-arrow-right"></i>
                                                 </a>
