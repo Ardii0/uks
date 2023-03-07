@@ -161,8 +161,59 @@ class Keuangan extends CI_Controller
     public function dana()
     {
         $this->load->model('M_keuangan');
-        // $data['data_akun'] = $this->m_keuangan->get_all_data_akun('data_akun');
-        $this->load->view('keuangan/dana/dana');
+        $pendapatan['data_pendapatan'] = $this->m_keuangan->get_pendapatan('data_pendapatan');
+        $data['data_transaksi'] = $this->m_keuangan->get_data_transaksi('data_transaksi');
+        $pengeluaran['data_pengeluaran'] = $this->m_keuangan->get_pengeluaran('data_pengeluaran');
+        $this->load->view('keuangan/dana/dana', $pendapatan + $data + $pengeluaran);
+    }
+
+    public function input_dana($id)
+    {
+        $pendapatan['data_pendapatan'] = $this->m_keuangan->get_pendapatan('data_pendapatan');
+        $pengeluaran['data_pengeluaran'] = $this->m_keuangan->get_pengeluaran('data_pengeluaran');
+        $akun['data_akun'] = $this->m_keuangan->get_all_akun('data_akun');
+        $data['dt'] = $this->m_keuangan->ambil('tabel_level',array('id_level'=>$this->session->userdata('id_level')))->row();
+        $data['data_transaksi'] = $this->m_keuangan->transaksi('test_pendapatan_pengeluaran', $id)->result();
+        $this->load->view('keuangan/dana/input_dana', $data + $pendapatan + $akun + $pengeluaran);
+    }
+
+    public function aksi_transaksi()
+    {
+        $data = array
+        (
+            'id_anggaran' => $this->input->post('id_anggaran'),
+            'uraian' => $this->input->post('uraian'),
+            'pencatat' => $this->input->post('pencatat'),
+            'akun' => $this->input->post('akun'),
+            'nominal' => $this->input->post('nominal'),
+        );
+
+        $logging=$this->m_keuangan->aksi_transaksi('tabel_transaksi', $data);
+        if($logging)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('Keuangan/dana'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Keuangan/input_dana/'.$this->input->post('id_anggaran')));
+        }
+    }
+
+    public function hapus_transaksi($id)
+    {
+        $hapus=$this->m_keuangan->hapus_transaksi('tabel_transaksi', 'id_transaksi', $id);
+        if($hapus)
+        {
+            $this->session->set_flashdata('sukses', 'Berhasil..');
+            redirect(base_url('Keuangan/dana'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Keuangan/dana'));
+        }
     }
 
 //Jurnal
