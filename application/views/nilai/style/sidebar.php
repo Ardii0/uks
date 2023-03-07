@@ -29,15 +29,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="entry_nilai" class="nav-link">
+                        <a href="<?php echo base_url('nilai/modul_input_nilai') ?>" class="nav-link">
                             <i class="nav-icon fas fa-percent"></i>
                             <p>
-                                Nilai
+                                Input Nilai
                             </p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="modul_input_nilai" class="nav-link">
+                        <a href="<?php echo base_url('nilai/modul_data_nilai') ?>" class="nav-link">
                             <i class="nav-icon fas fa-folder-open"></i>
                             <p>
                                 Data Nilai

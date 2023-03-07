@@ -137,6 +137,30 @@ class Nilai extends CI_Controller {
         $this->load->view('nilai/nilai/modul_input_nilai', $data);
     }
 
+    public function data_input($idm)
+    {
+        $array = array(
+            'id_mapel' => $idm
+        );
+        $this->session->set_userdata($array);
+        redirect('Nilai/data_mapel');
+    }
+
+    public function data_mapel()
+    {
+        if(!empty($this->session->userdata('id_mapel'))) {
+           $idm = $this->session->userdata('id_mapel');
+
+           $data['mapelAll'] = $this->m_akademik->get_mapel('tabel_mapel');
+           $data['alokasimapel'] = $this->m_nilai->data_nilai($idm)->result();
+           $data['content'] = 'nilai/entry';
+
+           $this->load->view('nilai/nilai/input_mapel', $data);
+        }else{
+            redirect('/nilai');
+        }
+    }
+
     public function modul_data_nilai()
     {
         $data['mapel'] = $this->m_akademik->get_mapel('tabel_mapel');
