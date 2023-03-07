@@ -26,13 +26,13 @@ class Keuangan extends CI_Controller
     public function anggaran()
     {
         $this->load->model('M_keuangan');
-        $data['data_keuangan'] = $this->m_keuangan->get_all_data_keuangan('data_keuangan');
+        $data['data_rencana_anggaran'] = $this->m_keuangan->get_all_data_rencana_anggaran('data_rencana_anggaran');
         $this->load->view('keuangan/anggaran/anggaran', $data);
     }
 
     public function tambah_anggaran()
     {
-        $data['data_keuangan'] = $this->m_keuangan->get_all_data_keuangan('data_keuangan');
+        $data['data_rencana_anggaran'] = $this->m_keuangan->get_all_data_rencana_anggaran('data_rencana_anggaran');
         $this->load->view('keuangan/anggaran/tambah_anggaran', $data);
     }
 
@@ -40,13 +40,14 @@ class Keuangan extends CI_Controller
     {
         $data = array
         (
-            'tanggal' => $this->input->post('tanggal'),
-            'keterangan' => $this->input->post('keterangan'),
-            'debit' => $this->input->post('debit'),
-            'kredit' => $this->input->post('kredit'),
-            'saldo' => $this->input->post('saldo'),
+            'nama_anggaran' => $this->input->post('nama_anggaran'),
+            'awal_periode' => $this->input->post('awal_periode'),
+            'akhir_periode' => $this->input->post('akhir_periode'),
+            'pencatat' => 'Admin',
+            'status' => 1,
+            'tetapkan' => 0,
         );
-        $masuk = $this->m_keuangan->tambah_anggaran('tabel_keuangan', $data);
+        $masuk = $this->m_keuangan->tambah_anggaran('tabel_rencana_anggaran', $data);
         if ($masuk) {
             $this->session->set_flashdata('sukses', 'berhasil');
             redirect(base_url('keuangan/anggaran/anggaran'));
@@ -58,7 +59,7 @@ class Keuangan extends CI_Controller
 
     public function edit_anggaran($id)
     {
-        $data['data_keuangan']=$this->m_keuangan->edit_anggaran('tabel_keuangan', $id)->result();
+        $data['data_rencana_anggaran']=$this->m_keuangan->edit_anggaran('tabel_rencana_anggaran', $id)->result();
         $this->load->view('keuangan/anggaran/edit_anggaran', $data);
     }
 
@@ -66,13 +67,14 @@ class Keuangan extends CI_Controller
     {
         $data = array
         (
-            'tanggal' => $this->input->post('tanggal'),
-            'keterangan' => $this->input->post('keterangan'),
-            'debit' => $this->input->post('debit'),
-            'kredit' => $this->input->post('kredit'),
-            'saldo' => $this->input->post('saldo'),
+            'nama_anggaran' => $this->input->post('nama_anggaran'),
+            'awal_periode' => $this->input->post('awal_periode'),
+            'akhir_periode' => $this->input->post('akhir_periode'),
+            'pencatat' => $this->input->post('pencatat'),
+            'status' => $this->input->post('status'),
+            'tetapkan' => $this->input->post('tetapkan'),
         );
-        $masuk=$this->m_keuangan->edit_anggaran('tabel_keuangan', $data, array('id'=>$this->input->post('id')));
+        $masuk=$this->m_keuangan->edit_anggaran('tabel_rencana_anggaran', $data, array('id'=>$this->input->post('id')));
         if($masuk)
         {
             $this->session->set_flashdata('sukses', 'berhasil');

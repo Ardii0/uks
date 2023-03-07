@@ -6,6 +6,11 @@ class M_keuangan extends CI_Model{
         return $this->db->get('tabel_keuangan')->result();
     }
 
+    public function get_all_data_rencana_anggaran()
+    {
+        return $this->db->get('tabel_rencana_anggaran')->result();
+    }
+
     public function tambah_anggaran($tabel, $data)
     {
         $this->db->insert($tabel, $data);

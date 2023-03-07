@@ -45,21 +45,20 @@
                                         <h5>Pilih Rencana Anggaran</h5>
                                     </div>
                                     <div class="mx-1">
-                                        <select class="form-control select2 select2-info" id="option" name="option"
-                                            data-dropdown-css-class="select2-info">
-                                            <option selected="selected" selected>Pilih</option>
-                                            <option value="Naik Kelas">Naik Kelas</option>
-                                            <option value="Pindah Kelas">Pindah Kelas</option>
-                                            <option value="Pindah Sekolah">Pindah Sekolah</option>
-                                            <option value="Lulus">Lulus</option>
-                                        </select>
+                                    <select class="form-control form-select px-2 py-1" name="id_rombel"
+                                        aria-label="Default select example">
+                                        <option selected>Pilih Rencana Anggaran</option>
+                                        <?php $id = 0;foreach ($data_rencana_anggaran as $row): $id++;?>
+                                        <option value="<?php echo $row->id_rencana_anggaran?>"><?php echo $row->nama_anggaran ?></option>
+                                        <?php endforeach;?>
+                                    </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-3 d-flex justify-content-end align-self-start">
 
                                 <button type="button" class="btn btn-success" data-toggle="modal"
-                                    data-target="#modal_tambah_rak"><i class="fa fa-plus pr-2"></i>Tambah</button>
+                                    data-target="#modal_tambah_rencana_anggaran"><i class="fa fa-plus pr-2"></i>Tambah</button>
                             </div>
                         </div>
                         <div class="row">
@@ -76,15 +75,17 @@
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <div class="mb-3">
-                                            <button class="btn btn-danger mx-1">
+                                            <button class="btn btn-danger mx-1" data-toggle="modal"
+                                    data-target="#modal_tambah_pendapatan">
                                                 <i class="fa fa-plus pr-2"></i>
                                                 Tambah Pendapatan
                                             </button>
-                                            <button class="btn btn-danger mx-1">
+                                            <button class="btn btn-danger mx-1" data-toggle="modal"
+                                    data-target="#modal_tambah_pengeluaran">
                                                 <i class="fa fa-plus pr-2"></i>
                                                 Tambah Pengeluaran
                                             </button>
-                                            <button class="btn btn-success ">
+                                            <button class="btn btn-success" onclick="tetapkan(1)">
                                                 <i class="fa fa-download pr-2"></i>
                                                 Tetapkan
                                             </button>
@@ -186,8 +187,8 @@
             </section>
 
         </div>
-        <!-- Modal -->
-        <div class="modal fade" id="modal_tambah_rak" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <!-- Modal Tambah Rencana Anggaran-->
+        <div class="modal fade" id="modal_tambah_rencana_anggaran" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <form action="<?php echo base_url('keuangan/aksi_tambah_anggaran') ?>" enctype="multipart/form-data"
@@ -206,17 +207,23 @@
                                 <div class="form-group col-sm-12">
                                         <label class="control-label">Nama Anggaran</label>
                                         <div class="">
-                                            <input type="text" name="keterangan" class="form-control"
-                                                placeholder="Masukan Keterangan"><br>
+                                            <input type="text" name="nama_anggaran" class="form-control"
+                                                placeholder="Masukan Nama Anggaran"><br>
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-12">
-                                        <label class="control-label">Periode</label>
+                                        <label class="control-label">Periode Awal</label>
                                         <div class="">
-                                            <input type="date" name="tanggal" class="form-control"
-                                                placeholder="Masukan Tanggal"><br>
+                                            <input type="date" name="awal_periode" class="form-control"><br>
                                         </div>
                                     </div>
+                                    <div class="form-group col-sm-12">
+                                        <label class="control-label">Periode Akhir</label>
+                                        <div class="">
+                                            <input type="date" name="akhir_periode" class="form-control"><br>
+                                        </div>
+                                    </div>
+                                    <!-- <input type="hidden" value="<?php echo $data->id_user?>"> -->
                                 </div>
                             </div> 
                         </div>
@@ -230,14 +237,15 @@
             </div>
         </div>
 
-        <div class="modal fade" id="modal_edit_anggaran" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <!-- Modal Tambah Pendapatan-->
+        <div class="modal fade" id="modal_tambah_pendapatan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <form action="<?php echo base_url('keuangan/aksi_edit_anggaran') ?>" enctype="multipart/form-data"
+                <form action="<?php echo base_url('keuangan/aksi_tambah_pendapatan') ?>" enctype="multipart/form-data"
                     method="post">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Edit Anggaran</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Form Input Rencana Pendapatan</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -246,46 +254,54 @@
                             <div class="box">
                                 <!-- /.box-header -->
                                 <div class="box-body">
-                                    <h6 id="modal_body"></h6>
-                                    <input type="hidden" value="<?php echo $row->id ?>" name="id">
-                                    <div class="form-group col-sm-12">
-                                        <label class="control-label">Tanggal</label>
+                                <div class="form-group col-sm-12">
+                                        <label class="control-label">Nama Pendapatan</label>
                                         <div class="">
-                                            <input type="date" name="tanggal" class="form-control"
-                                                value="<?php echo $row->tanggal ?>" placeholder="Masukan Tanggal"><br>
+                                            <input type="text" name="nama_pendapatan" class="form-control"
+                                                placeholder="Masukan Nama Pendapatan"><br>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-12">
+                                        <label class="control-label">Akun Debit</label>
+                                        <div class="">
+                                        <select class="form-control form-select px-2 py-1" name="id_rombel"
+                                        aria-label="Default select example">
+                                        <option selected>Pilih Akun Debit</option>
+                                        <?php $id = 0;foreach ($data_rencana_anggaran as $row): $id++;?>
+                                        <option value="<?php echo $row->id_rencana_anggaran?>"><?php echo $row->nama_anggaran ?></option>
+                                        <?php endforeach;?>
+                                    </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-12">
+                                        <label class="control-label">Akun Kredit</label>
+                                        <div class="">
+                                        <select class="form-control form-select px-2 py-1" name="id_rombel"
+                                        aria-label="Default select example">
+                                        <option selected>Pilih Akun Kredit</option>
+                                        <?php $id = 0;foreach ($data_rencana_anggaran as $row): $id++;?>
+                                        <option value="<?php echo $row->id_rencana_anggaran?>"><?php echo $row->nama_anggaran ?></option>
+                                        <?php endforeach;?>
+                                    </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-12">
+                                        <label class="control-label">Nominal</label>
+                                        <div class="">
+                                            <input type="number" name="nominal" class="form-control"
+                                                placeholder="Masukan Nominal"><br>
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-12">
                                         <label class="control-label">Keterangan</label>
                                         <div class="">
                                             <input type="text" name="keterangan" class="form-control"
-                                                value="<?php echo $row->keterangan ?>"
                                                 placeholder="Masukan Keterangan"><br>
                                         </div>
                                     </div>
-                                    <div class="form-group col-sm-12">
-                                        <label class="control-label">Debit</label>
-                                        <div class="">
-                                            <input type="number" name="debit" class="form-control"
-                                                value="<?php echo $row->debit ?>" placeholder="Masukan Debit"><br>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-sm-12">
-                                        <label class="control-label">Kredit</label>
-                                        <div class="">
-                                            <input type="number" name="kredit" class="form-control"
-                                                value="<?php echo $row->kredit ?>" placeholder="Masukan Kredit"><br>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-sm-12">
-                                        <label class="control-label">Saldo</label>
-                                        <div class="">
-                                            <input type="number" name="saldo" class="form-control"
-                                                value="<?php echo $row->saldo ?>" placeholder="Masukan Saldo"><br>
-                                        </div>
-                                    </div>
+                                    <!-- <input type="hidden" value="<?php echo $data->id_user?>"> -->
                                 </div>
-                            </div>
+                            </div> 
                         </div>
                         <div class="modal-footer d-flex justify-content-between">
                             <button type="button" class="btn btn-secondary" onclick="kembali()"
@@ -295,17 +311,92 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </div>        
+
+        <!-- Modal Tambah Pengeluaran-->
+        <div class="modal fade" id="modal_tambah_pengeluaran" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <form action="<?php echo base_url('keuangan/aksi_tambah_pengeluaran') ?>" enctype="multipart/form-data"
+                    method="post">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Form Input Rencana Pengeluaran</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body pb-1">
+                            <div class="box">
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                <div class="form-group col-sm-12">
+                                        <label class="control-label">Nama Pengeluaran</label>
+                                        <div class="">
+                                            <input type="text" name="nama_pengeluaran" class="form-control"
+                                                placeholder="Masukan Nama Pengeluaran"><br>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-12">
+                                        <label class="control-label">Akun Debit</label>
+                                        <div class="">
+                                        <select class="form-control form-select px-2 py-1" name="id_rombel"
+                                        aria-label="Default select example">
+                                        <option selected>Pilih Akun Debit</option>
+                                        <?php $id = 0;foreach ($data_rencana_anggaran as $row): $id++;?>
+                                        <option value="<?php echo $row->id_rencana_anggaran?>"><?php echo $row->nama_anggaran ?></option>
+                                        <?php endforeach;?>
+                                    </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-12">
+                                        <label class="control-label">Akun Kredit</label>
+                                        <div class="">
+                                        <select class="form-control form-select px-2 py-1" name="id_rombel"
+                                        aria-label="Default select example">
+                                        <option selected>Pilih Akun Kredit</option>
+                                        <?php $id = 0;foreach ($data_rencana_anggaran as $row): $id++;?>
+                                        <option value="<?php echo $row->id_rencana_anggaran?>"><?php echo $row->nama_anggaran ?></option>
+                                        <?php endforeach;?>
+                                    </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-12">
+                                        <label class="control-label">Nominal</label>
+                                        <div class="">
+                                            <input type="number" name="nominal" class="form-control"
+                                                placeholder="Masukan Nominal"><br>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-12">
+                                        <label class="control-label">Keterangan</label>
+                                        <div class="">
+                                            <input type="text" name="keterangan" class="form-control"
+                                                placeholder="Masukan Keterangan"><br>
+                                        </div>
+                                    </div>
+                                    <!-- <input type="hidden" value="<?php echo $data->id_user?>"> -->
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="modal-footer d-flex justify-content-between">
+                            <button type="button" class="btn btn-secondary" onclick="kembali()"
+                                data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>        
+   
     </div>
 
     <?php $this->load->view('keuangan/style/js') ?>
     <script>
-        $("#submit").click(function () {
-            var name = $("#tanggal").val();
-            var str = "You Have Entered "
-                + "Name: " + name
-            $("#modal_body").html(str);
-        });
+        function tetapkan(params) {
+            alert("Tetapkan id = " + params);
+        }
     </script>
 </body>
 
