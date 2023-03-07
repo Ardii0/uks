@@ -274,6 +274,23 @@ function tampil_nama_siswa_byid($id)
     return $namadaftar;
   }
 
+  function tampil_nisndaftar_ByIdSiswa($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $nisn = '';
+  $result = $ci->db->select('*')
+                    ->from('tabel_siswa')
+                    ->join('tabel_daftar','tabel_siswa.id_daftar = tabel_daftar.id_daftar')
+                    ->where('tabel_siswa.id_siswa',$id)
+                    ->get();
+    foreach ($result->result() as $c) {
+    $stmt= $c->nisn;
+    $nisn= $nisn.$stmt.'<br>';
+    }
+    return $nisn;
+  }
+
   function tampil_rombeldaftar_ByIdSiswa($id)
   {
   $ci =& get_instance();
@@ -482,6 +499,18 @@ function tampil_nama_siswa_byid($id)
   $result = $ci->db->where('id_buku',$id)->get('table_buku');
     foreach ($result->result() as $c) {
     $stmt= $c->stok;
+    return $stmt;
+    }
+  }
+
+  // Data Nilai Siswa
+  function tampil_id_daftar_siswa_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_siswa',$id)->get('tabel_siswa');
+    foreach ($result->result() as $c) {
+    $stmt= $c->id_daftar;
     return $stmt;
     }
   }

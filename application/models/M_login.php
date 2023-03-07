@@ -6,7 +6,7 @@ class M_login extends CI_Model{
 	}
 	public function last_login($data, $where)
 	{
-		$this->db->update("tabel_admin", $data, $where);
+		$this->db->update("tabel_level", $data, $where);
 		return $this->db->affected_rows();
 	}
 	// ambil data dari database yang usernamenya $username dan passwordnya p$assword

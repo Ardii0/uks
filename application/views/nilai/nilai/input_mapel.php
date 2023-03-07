@@ -53,7 +53,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $id=0; foreach ($mapel as $data): $id++?>
+                                        <?php $id=0; foreach ($mapelAll as $data): $id++?>
                                             <tr>
                                                 <td><?php echo $id ?></td>
                                                 <td><?php echo $data->nama_mapel ?></td>
@@ -81,6 +81,28 @@
                                             <th style="width: 150px;">Aksi</th>
                                         </tr>
                                     </thead>
+                                    <tbody>
+                                        <?php $id=0; foreach ($alokasimapel as $ampl): $id++?>
+                                            <tr>
+                                                <td><?php echo $id ?></td>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <span>&nbsp;<?php echo tampil_kelasdaftar_ByIdSiswa($ampl->id_rombel) ?>
+                                                        </span>
+                                                        <span>&nbsp;<?php echo $ampl->nama_rombel ?>
+                                                        </span></td>
+                                                    </div>
+                                                <td class="d-flex">
+                                                    <a href="<?php echo base_url('Nilai/session/'.$ampl->id_mapel.'/'.$ampl->id_rombel.'/1') ?>" class="btn btn-success btn-sm">
+                                                        Ganjil
+                                                    </a>
+                                                    <a href="<?php echo base_url('Nilai/session/'.$ampl->id_mapel.'/'.$ampl->id_rombel.'/2') ?>" class="btn btn-success btn-sm ml-2">
+                                                        Genap
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

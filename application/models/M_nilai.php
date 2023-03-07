@@ -59,4 +59,36 @@ class M_nilai extends CI_Model{
 		$this->db->insert($tabel, $data);
 		return $this->db->insert_id();
     }
+    
+    public function data_nilai($ampl)
+    {
+        $this->db->select('tabel_rombel.nama_rombel, tabel_alokasimapel.*');
+        $this->db->from('tabel_alokasimapel');
+        $this->db->join('tabel_rombel', 'tabel_rombel.id_rombel = tabel_alokasimapel.id_rombel');
+        $this->db->join('tabel_mapel', 'tabel_mapel.id_mapel = tabel_alokasimapel.id_mapel');
+        $this->db->where('tabel_alokasimapel.id_mapel', $ampl);
+        $db = $this->db->get();
+        return $db;
+    }
+
+    // Modul Data Siswa
+    public function get_data_nilai($id_mapel, $id_semester)
+    {
+        $multiClause = array('id_mapel' => $id_mapel, 'id_semester' => $id_semester);
+        $data = $this->db->where($multiClause)->get('tabel_nilai');
+        return $data;
+    }
+
+    public function get_alokasimapelByIdMapel($id_mapel)
+    {
+        $multiClause = array('id_mapel' => $id_mapel);
+        $data = $this->db->where($multiClause)->get('tabel_alokasimapel');
+        return $data;
+    }
+
+    // public function get_alokasi_mapel($kode_guru)
+    // {
+    //     $data = $this->db->where('id_mapel', $id_mapel)->get('tabel_alokasimapel')->result();
+    //     return $data;
+    // }
 }

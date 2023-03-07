@@ -106,29 +106,6 @@
                                          endforeach;
                                          ?>
                                     </tbody>
-                                    <!-- <tbody>
-                                        <tr>
-                                        <td>coba</td>
-                                            <td>coba</td>
-                                            <td>coba</td>
-                                            <td>coba</td>
-                                            <td>coba</td>
-                                            <td>coba</td>
-                                            <td>coba</td>
-                                            <td>coba</td>
-                                            <td class="text-center">
-                                                <a  href="<?php echo base_url('Akademik/edit_pendaftaran') ?>" class="btn btn-primary btn-sm">
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a class="btn btn-warning btn-sm">
-                                                    <i class="fa fa-eye"></i>
-                                                </a>
-                                                <button class="btn btn-danger btn-sm">
-                                                    <i class="fa fa-trash"></i> 
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </tbody> -->
                                 </table>
                             </div>
                         </div>
