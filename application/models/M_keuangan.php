@@ -87,4 +87,28 @@ class M_keuangan extends CI_Model{
 		return $data;
 	}
 
+
+// Pembayaran
+    public function get_siswaById($tabel, $id_siswa)
+    {
+        $data = $this->db->where('id_siswa', $id_siswa)->get($tabel)->result();
+        return $data;
+    }
+
+    public function get_pembayaran()
+    {
+        return $this->db->get('tabel_pembayaran')->result();
+    }
+
+    public function get_jenisbayar()
+    {
+        return $this->db->get('tabel_jenisbayar')->result();
+    }
+
+    public function tambah_pembayaran($tabel, $data)
+    {
+        $this->db->insert($tabel, $data);
+        return $this->db->insert_id();
+    }
+
 }

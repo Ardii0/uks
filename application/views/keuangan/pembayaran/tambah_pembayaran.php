@@ -12,12 +12,8 @@
 
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-        <!-- navbar -->
         <?php $this->load->view('keuangan/style/navbar') ?>
-        <!-- navbar -->
-        <!-- Sidebar -->
         <?php $this->load->view('keuangan/style/sidebar') ?>
-        <!-- Sidebar -->
 
         <div class="content-wrapper">
             <section class="content-header">
@@ -29,10 +25,10 @@
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a
-                                        href="<?php echo base_url('Keuangan/') ?>"><?php echo $this->session->userdata('level') ?></a>
+                                    href="<?php echo base_url('Keuangan/') ?>"><?php echo $this->session->userdata('level') ?></a>
                                 </li>
                                 <li class="breadcrumb-item active"><a
-                                        href="<?php echo base_url('Akademik/pembayaran') ?>">Pembayaran</a>
+                                    href="<?php echo base_url('Keuangan/pembayaran') ?>">Pembayaran</a>
                                 </li>
                                 <li class="breadcrumb-item active">Tambah Pembayaran</li>
                             </ol>

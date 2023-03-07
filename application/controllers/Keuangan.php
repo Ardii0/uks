@@ -235,26 +235,54 @@ class Keuangan extends CI_Controller
 //Pembayaran
     public function pembayaran()
     {
-        $this->load->model('M_keuangan');
         // $data['data_akun'] = $this->m_keuangan->get_all_data_akun('data_akun');
         $this->load->view('keuangan/pembayaran/pembayaran');
     }
 
     public function tambah_pembayaran()
     {
-        // $this->load->model('M_keuangan');
         $this->load->view('keuangan/pembayaran/tambah_pembayaran');
+    }
+
+    public function menambahkan_pembayaran($ids)
+    {
+        $array = array(
+            'id_siswa' => $ids
+        );
+        $this->session->set_userdata($array);
+        redirect('Keuangan/form_tambah_pembayaran');
     }
 
     public function form_tambah_pembayaran()
     {
-        // $this->load->model('M_keuangan');
-        $this->load->view('keuangan/pembayaran/form_tambah_pembayaran');
+        if(!empty($this->session->userdata('id_siswa'))) {
+           $ids = $this->session->userdata('id_siswa');
+           
+           $data['siswa'] = $this->m_keuangan->get_siswaById('tabel_siswa', $ids);
+           $data['jenisbayar'] = $this->m_keuangan->get_jenisbayar();
+           $data['pembayaran'] = $this->m_keuangan->get_pembayaran();
+           $data['content'] = 'keuangan/form_tambah_pembayaran';
+
+           $this->load->view('keuangan/pembayaran/form_tambah_pembayaran', $data);
+        }else{
+            redirect('/tambah_pembayaran');
+        }
+    }
+
+    public function aksi_tambah_pembayaran()
+    {
+        $data = [
+            'id_siswa' => $this->input->post('id_siswa'),
+            'id_jenis' => $this->input->post('id_jenis'),
+            'nominal' => $this->input->post('nominal'),
+            'keterangan' => $this->input->post('keterangan'),
+        ];
+        $this->m_keuangan->tambah_pembayaran('tabel_pembayaran', $data);
+        redirect(base_url('Keuangan/form_tambah_pembayaran'));
     }
 
     public function cetak_invoice()
     {
-        // $this->load->model('M_keuangan');
         $this->load->view('keuangan/pembayaran/cetak_invoice');
     }
 

@@ -69,7 +69,7 @@
                                                     <input type="checkbox" id="checkAll">
                                                 </th>
                                                 <th>Nama Mapel</th>
-                                                <th>keterangan</th>
+                                                <th>Keterangan</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -82,7 +82,7 @@
                                                     <?php echo $data->nama_mapel ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo tampil_jenismapelById($data->id_jenismapel) ?>
+                                                    <?php echo tampil_ket_mapelById($data->id_mapel) ?>
                                                 </td>
                                             </tr>
                                             <?php endforeach; ?>
@@ -117,7 +117,7 @@
                                                     <input type="checkbox">
                                                 </th>
                                                 <th>Nama Mapel</th>
-                                                <th>keterangan</th>
+                                                <th>Keterangan</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -130,14 +130,7 @@
                                                     <?php echo tampil_mapelById($datamapel->id_mapel) ?>
                                                 </td>
                                                 <td>
-                                                    Ketereangan
-                                                    <!-- <form action="<?php echo base_url('Akademik/hapus_alokasiguru/'.$datamapel->id_alokasiguru); ?>" 
-                                                    method="post">
-                                                    <button
-                                                    type="submit"
-                                                        class="btn btn-danger btn-sm">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button> -->
+                                                    <?php echo tampil_ket_mapelById($datamapel->id_mapel) ?>
                                                 </form>
                                                 </td>
                                             </tr>

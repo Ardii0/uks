@@ -12,12 +12,8 @@
 
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-        <!-- navbar -->
         <?php $this->load->view('keuangan/style/navbar') ?>
-        <!-- navbar -->
-        <!-- Sidebar -->
         <?php $this->load->view('keuangan/style/sidebar') ?>
-        <!-- Sidebar -->
 
         <div class="content-wrapper">
             <section class="content-header">
@@ -49,7 +45,7 @@
                             </div>
                         </div>
                         <div class="col-md-3 d-flex justify-content-end align-self-start">
-                            <a> <button type="button" class="btn btn-success">
+                            <a href="<?php echo base_url('Keuangan/tambah_pembayaran');?>"><button type="button" class="btn btn-success">
                                     <i class="fa fa-plus pr-2"></i>Tambah
                                 </button>
                             </a>
