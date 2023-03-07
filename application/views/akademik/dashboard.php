@@ -34,7 +34,6 @@
         <?php $this->load->view('akademik/style/navbar')?>
         <?php $this->load->view('akademik/style/sidebar')?>
 
-
         <div class="content-wrapper">
             <div class="container-fluid">
                 <div class="px-3 py-1">
@@ -54,7 +53,7 @@
                                 <div class="small-box bg-info">
                                     <div class="inner">
                                         <p>Jumlah Kelas</p>
-                                        <h3>150</h3>
+                                        <h3><?php echo $total_kelas;?></h3>
                                     </div>
                                     <div class="icon">
                                         <i class="nav-icon fas fa-door-closed"></i>
@@ -69,7 +68,7 @@
                                 <div class="small-box bg-info">
                                     <div class="inner">
                                         <p>Jumlah Mapel</p>
-                                        <h3>150</h3>
+                                        <h3><?php echo $total_mapel;?></h3>
                                     </div>
                                     <div class="icon">
                                         <i class="nav-icon fas fa-book"></i>
@@ -84,7 +83,7 @@
                                 <div class="small-box bg-info">
                                     <div class="inner">
                                         <p>Jumlah Siswa</p>
-                                        <h3>150</h3>
+                                        <h3><?php echo $total_siswa;?></h3>
                                     </div>
                                     <div class="icon">
                                         <i class="nav-icon fas fa-user"></i>
@@ -99,7 +98,7 @@
                                 <div class="small-box bg-info">
                                     <div class="inner">
                                         <p>Jumlah Guru</p>
-                                        <h3>150</h3>
+                                        <h3><?php echo $total_guru;?></h3>
                                     </div>
                                     <div class="icon">
                                         <i class="nav-icon fas fa-user-tie"></i>
@@ -145,66 +144,18 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>2017/2018</td>
-                                                    <td>371</td>
-                                                    <td>8</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>2019/2020</td>
-                                                    <td>361</td>
-                                                    <td>8</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>2021/2022</td>
-                                                    <td>361</td>
-                                                    <td>8</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td>2023/2024</td>
-                                                    <td>361</td>
-                                                    <td>8</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td>2023/2024</td>
-                                                    <td>361</td>
-                                                    <td>8</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td>2023/2024</td>
-                                                    <td>361</td>
-                                                    <td>8</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td>2023/2024</td>
-                                                    <td>361</td>
-                                                    <td>8</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td>2023/2024</td>
-                                                    <td>361</td>
-                                                    <td>8</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td>2023/2024</td>
-                                                    <td>361</td>
-                                                    <td>8</td>
-                                                </tr>
-
+                                                <?php $id=0; foreach($ta as $ta): $id++?>
+                                                    <tr>
+                                                        <td><?php echo $id;?></td>
+                                                        <td><?php echo $ta->nama_angkatan;?></td>
+                                                        <td><?php echo $total_siswa;?></td>
+                                                        <td><?php echo $total_kelas;?></td>
+                                                    </tr>
+                                                <?php endforeach; ?>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
-                               
                             </div>
                         </div>
                     </div>

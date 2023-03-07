@@ -53,6 +53,7 @@
                                     <div class="col-8">
                                         <?php echo tampil_namadaftar_ByIdSiswa($data->id_siswa) ;?>
                                         <input type="hidden" name="id_siswa" value="<?php echo $data->id_siswa ;?>">
+                                        <input type="hidden" name="akuntan" value="<?php echo $dt->email ;?>">
                                     </div>
                                 </div>
                                 <div class="row mt-3">
@@ -110,7 +111,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Date Time</th>
-                                        <th>Id Transaksi</th>
+                                        <th>ID Transaksi</th>
                                         <th>Jenis Bayar</th>
                                         <th>Keterangan</th>
                                         <th>Nominal</th>
@@ -126,7 +127,7 @@
                                             <td><?php echo $databayar->id_jenis?></td>
                                             <td><?php echo $databayar->keterangan?></td>
                                             <td><?php echo $databayar->nominal?></td>
-                                            <td>binusa@gmail.com</td>
+                                            <td><?php echo $databayar->akuntan?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>

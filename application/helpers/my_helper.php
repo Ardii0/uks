@@ -390,7 +390,7 @@ function tampil_nama_siswa_byid($id)
     }
   }
 
- //
+ // By Anggota
   function tampil_namadaftar_ByIdAnggota($id)
   {
   $ci =& get_instance();
@@ -446,7 +446,7 @@ function tampil_nama_siswa_byid($id)
     return $namarombel;
   }
 
-  // Detail Index Buku
+ // Detail Index Buku
   function tampil_judul_buku_byid($id)
   {
   $ci =& get_instance();
@@ -457,7 +457,6 @@ function tampil_nama_siswa_byid($id)
     return $stmt;
     }
   }
-  
 
   function tampil_penerbit_buku_byid($id)
   {
@@ -525,7 +524,7 @@ function tampil_nama_siswa_byid($id)
     }
   }
 
-  // Data Nilai Siswa
+ // Data Nilai Siswa
   function tampil_id_daftar_siswa_byid($id)
   {
   $ci =& get_instance();
@@ -537,4 +536,15 @@ function tampil_nama_siswa_byid($id)
     }
   }
   
+ // Jenis Bayar
+  function tampil_namajenisbayarById($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_jenis',$id)->get('tabel_jenisbayar');
+    foreach ($result->result() as $c) {
+    $stmt= $c->nama_jenis;
+    return $stmt;
+    }
+  }
 ?>

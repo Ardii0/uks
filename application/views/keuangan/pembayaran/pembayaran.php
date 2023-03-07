@@ -40,7 +40,7 @@
                         <div class="col-2 col-sm-6 ">
                             <div class="form-group d-flex flex-row " style="width: fit-content;">
                                 <div class="mt-2 mx-1">
-                                    <h4>Data Akun</h4>
+                                    <h4>History Pembayaran</h4>
                                 </div>
                             </div>
                         </div>
@@ -68,16 +68,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>07/07/2007</td>
-                                            <td>80765747</td>
-                                            <td>Ardi/X TKJ 2</td>
-                                            <td>SPP</td>
-                                            <td>Keterangan ini bang</td>
-                                            <td>250.000</td>
-                                            <td>binusa@gmail.com</td>
-                                        </tr>
+                                        <?php $id=0; foreach ($pembayaran as $history): $id++?>
+                                            <tr>
+                                                <td><?php echo $id?></td>
+                                                <td><?php echo $history->date?></td>
+                                                <td><?php echo $id?></td>
+                                                <td class="d-flex">
+                                                    <span>
+                                                        <?php echo tampil_namadaftar_ByIdSiswa($history->id_siswa)?>
+                                                    </span>/
+                                                    <span>
+                                                        <?php echo tampil_kelasdaftar_ByIdSiswa($history->id_siswa)?>
+                                                    </span>&nbsp;
+                                                    <span>
+                                                        <?php echo tampil_rombeldaftar_ByIdSiswa($history->id_siswa)?>
+                                                    </span>
+                                                </td>
+                                                <td><?php echo tampil_namajenisbayarById($history->id_jenis)?></td>
+                                                <td><?php echo $history->keterangan?></td>
+                                                <td><?php echo $history->nominal?></td>
+                                                <td><?php echo $history->akuntan?></td>
+                                            </tr>
+                                        <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
