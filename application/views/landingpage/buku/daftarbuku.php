@@ -13,17 +13,15 @@
 </head>
 
 <body class="hold-transition layout-fixed" style="background-color: #E5E7EB" data-panel-auto-height-mode="height">
-    <div class="container-fluid py-3 mb-2 bg-light">
+    <div class="container-fluid py-3 fixed-top mb-2 bg-light">
         <div class="container d-flex justify-content-between align-items-center">
-            <div class="text-Dark">
+            <div class="text-dark">
                 <h3>E-Perpus</h3>
             </div>
             <div class="d-flex gap-4 justify-content-between align-items-center">
-                    <div class="input-group px-2 w-100">
-                    </div>
                 <div>
                     <form action="<?php echo base_url('LandingPage/filter_ByJudulBuku') ?>" method="post">
-                        <div class="form-group d-flex" style="width: 130%;">
+                        <div class="form-group d-flex" style="width: 160%;">
                             <select name="judul_buku" class="form-control select2"
                                 data-dropdown-css-class="select2-info" name="id_siswa" style="width: 100%;">
                                 <option>
@@ -33,53 +31,46 @@
                                 <option value="<?php echo $buku->judul_buku ?>"><?php echo $buku->judul_buku ?></option>
                                 <?php endforeach;?>
                             </select>
-                            <button type="submit" style="width: " class="ml-2 w-50 btn btn-success">Tampilkan</button>
+                            <button type="submit" style="width: " class="ml-2 w-20 btn btn-success">Tampilkan</button>
                         </div>
                 </div>
             </div>
             <div>
-               
+                <!-- sengaja biar kosong -->
             </div>
         </div>
     </div>
-    <div class="container-fluid db-content">
+    <div class="container-fluid db-content" style="margin-top:110px">
         <div class="row">
             <div class="col-2">
-                <div>
-                    <div class="small-box  bg-light text-white mb-3" style="max-width: 100%;">
-                        <div class="card-header bg-transparent text-center fw-bold h3 border-white">
+                <div class="position-fixed">
+                    <div class="small-box bg-light text-white mb-3" style="max-width: 100%;">
+                        <div class="card-header bg-transparent text-center fw-bold h3 border-dark">
                             Total Buku</div>
                         <div class="card-body text-dark text-center">
                             <h1 class=""><?php echo $total_buku;?></h1>
-
                         </div>
-                        <a href="<?php echo base_url('LandingPage/filter_AllBuku') ?>" class="small-box-footer">More
-                            info
-                            <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="<?php echo base_url('LandingPage/filter_AllBuku') ?>" class="small-box-footer">Cari
+                            Lebih Lanjut</a>
                     </div>
                     <div class="small-box bg-light text-white mb-3" style="max-width: 100%;">
-                        <div class="card-header bg-transparent text-center fw-bold h3 border-white">
+                        <div class="card-header bg-transparent text-center fw-bold h3 border-dark">
                             Total Kategori</div>
                         <div class="card-body text-dark text-center">
                             <h1 class=""><?php echo $total_kategori;?></h1>
-
-                        </div>A
-                        <a href="<?php echo base_url('LandingPage/filter_KategoriBuku')?>" class="small-box-footer">More
-                            info
-                            <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                        <a href="<?php echo base_url('LandingPage/filter_KategoriBuku')?>" class="small-box-footer">Cari
+                            Lebih Lanjut</a>
                     </div>
-                    <div class="small-box  bg-light text-white mb-3" style="max-width: 100%;">
-                        <div class="card-header bg-transparent text-center fw-bold h3 border-white">
+                    <div class="small-box bg-light text-white mb-3" style="max-width: 100%;">
+                        <div class="card-header bg-transparent text-center fw-bold h3 border-dark">
                             Total Rak</div>
                         <div class="card-body text-dark text-center">
                             <h1 class=""><?php echo $total_rak;?></h1>
-
                         </div>
-                        <a href="<?php echo base_url('LandingPage/filter_RakBuku')?>" class="small-box-footer">More
-                            info
-                            <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="<?php echo base_url('LandingPage/filter_RakBuku')?>" class="small-box-footer">Cari
+                            Lebih Lanjut</a>
                     </div>
-
                 </div>
             </div>
             <div class="col-10 d-flex justify-content-center">
@@ -90,27 +81,25 @@
                             <div class="col-md-4">
                                 <div class="card card-blog">
                                     <div class="card-image">
-                                        <a href="#">
-                                            <img class="img"
-                                                src="<?php echo base_url('uploads/perpustakaan/buku')."/".$data->foto;?>"
-                                                alt="">
+                                        <a href="">
+                                            <img class="img" alt=""
+                                                src="<?php echo base_url('uploads/perpustakaan/buku')."/".$data->foto;?>">
                                         </a>
-                                        <div class="ripple-cont"></div>
                                     </div>
                                     <div class="table">
                                         <h5 class="category text-success"></i><?php echo $data->kategori_id?></h6>
                                             <h3 class="card-caption">
-                                                <a href="buku/<?php echo $data->id_buku?>"
-                                                    class="text-wrap"><?php echo $data->judul_buku?></a>
+                                                <a href="buku/<?php echo $data->id_buku?>" class="text-wrap">
+                                                    <?php echo $data->judul_buku?>
+                                                </a>
                                             </h3>
                                             <p class="card-description overflow-hidden" style="height: 100px;">
                                                 <?php echo $data->keterangan?></p>
                                             <div class="ftr">
                                                 <div class="author">
-                                                    <a href="#"><span><?php echo $data->penulis_buku?></span> </a>
+                                                    <a><span><strong><?php echo $data->penulis_buku?></strong></span></a>
                                                 </div>
-                                                <div class="stats"> <i class="fa fa-clock"></i>
-                                                    <?php echo $data->tahun_terbit?> </div>
+                                                <div class="stats"><strong><?php echo $data->tahun_terbit?></strong></div>
                                             </div>
                                     </div>
                                 </div>
