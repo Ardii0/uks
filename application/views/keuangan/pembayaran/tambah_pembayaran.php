@@ -45,8 +45,10 @@
                                 <div class="col-4 text-right font-weight-bold mt-1">Kelas</div>
                                 <div class="col-8">
                                     <select name="kelas" class="custom-select custom-select-md">
-                                        <option value="adasdad">Kelas X</option>
-                                        <option value="adasdad">Kelas XI</option>
+                                        <option value="">Pilih Kelas</option>
+                                        <?php foreach($kelas as $kelas): ?>
+                                            <option value="<?php echo $kelas->id_kelas ?>"><?php echo $kelas->nama_kelas ?></option>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
                             </div>
@@ -54,8 +56,10 @@
                                 <div class="col-4 text-right font-weight-bold mt-1">Rombel</div>
                                 <div class="col-8">
                                     <select name="rombel" class="custom-select custom-select-md">
-                                        <option value="adasdad">TKJ 1</option>
-                                        <option value="adasdad">TKJ 2</option>
+                                        <option value="">Pilih Rombel</option>
+                                        <?php foreach($rombel as $rombel): ?>
+                                            <option value="adasdad"><?php echo $rombel->nama_rombel?></option>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
                             </div>
@@ -63,8 +67,10 @@
                                 <div class="col-4 text-right font-weight-bold mt-1">Nama Siswa</div>
                                 <div class="col-8">
                                     <select name="nama_siswa" class="custom-select custom-select-md">
-                                        <option value="adasdad">Secondta</option>
-                                        <option value="adasdad">Budiono</option>
+                                        <option value="adasdad">Pilih Siswa</option>
+                                        <?php foreach($siswa as $siswa): ?>
+                                            <option value="adasdad"><?php echo $siswa->id_siswa ?></option>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
                             </div>

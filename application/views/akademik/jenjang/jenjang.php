@@ -62,8 +62,8 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Kode Jenjang</th>
                                             <th>Nama</th>
+                                            <th>Kode Jenjang</th>
                                             <th>Keterangan</th>
                                             <th>Aksi</th>
                                         </tr>

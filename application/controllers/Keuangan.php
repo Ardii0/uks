@@ -255,7 +255,11 @@ class Keuangan extends CI_Controller
 
     public function tambah_pembayaran()
     {
-        $this->load->view('keuangan/pembayaran/tambah_pembayaran');
+        $this->load->model('m_akademik');
+        $data['kelas'] = $this->m_akademik->get_kelas();
+        $data['rombel'] = $this->m_akademik->get_rombel();
+        $data['siswa'] = $this->m_akademik->get_siswa();
+        $this->load->view('keuangan/pembayaran/tambah_pembayaran', $data);
     }
 
     public function menambahkan_pembayaran($ids)
