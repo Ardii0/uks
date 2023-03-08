@@ -146,7 +146,7 @@ class Perpustakaan extends CI_Controller {
 
     public function edit_anggota($id_anggota)
     {
-        $data['data_anggota']=$this->m_perpustakaan->edit_anggota('table_anggota', $id_anggota)->result();
+        $data['data_anggota']=$this->m_perpustakaan->edit_anggota('tabel_anggota', $id_anggota)->result();
         $this->load->view('perpustakaan/data_anggota/edit_anggota', $data);
     }
 
@@ -159,7 +159,7 @@ class Perpustakaan extends CI_Controller {
             'keterangan' => $this->input->post('keterangan'),
             'del_flag' => '1',
         );
-        $masuk=$this->m_perpustakaan->ubah_anggota('table_anggota', $data, array('id_anggota'=>$this->input->post('id_anggota')));
+        $masuk=$this->m_perpustakaan->ubah_anggota('tabel_anggota', $data, array('id_anggota'=>$this->input->post('id_anggota')));
         if($masuk)
         {
             $this->session->set_flashdata('sukses', 'berhasil');
@@ -174,7 +174,7 @@ class Perpustakaan extends CI_Controller {
 
     public function hapus_anggota($id_anggota)
     {
-        $hapus=$this->m_perpustakaan->hapus_kategori('table_anggota', 'id_anggota', $id_anggota);
+        $hapus=$this->m_perpustakaan->hapus_kategori('tabel_anggota', 'id_anggota', $id_anggota);
         if($hapus)
         {
             $this->session->set_flashdata('sukses', 'Berhasil..');

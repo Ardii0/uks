@@ -61,7 +61,7 @@
                                         Pilih Siswa
                                         </option>
                                             <?php $id = 0;foreach ($siswa as $data): $id++;?>
-                                                <option value="<?php echo $data->id_siswa ?>"><?php echo tampil_nama_byIdDaftar($data->id_daftar) ?></option>
+                                                <option value="<?php echo $data->id_siswa ?>"><?php echo tampil_namadaftar_ByIdSiswa($data->id_siswa) ?></option>
                                             <?php endforeach;?>
                                         </select>
                                     </div>
