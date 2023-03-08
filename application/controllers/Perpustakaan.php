@@ -498,16 +498,38 @@ class Perpustakaan extends CI_Controller {
         }
     }
 
-// Laporan
-    public function laporan()
-    {
-        $this->load->view('perpustakaan/laporan/laporan');
-    }
+ // Laporan
+ public function laporan_peminjaman() {
+    $peminjam['peminjam'] = $this->m_perpustakaan->get_laporan_pinjam('data_peminjam');
+    $this->load->view('perpustakaan/laporan/laporan_peminjaman', $peminjam);
+  }
+  public function filter_tanggalpinjam()
+     {
+        $tanggalawal = $this->input->post('tanggalawal');
+        $tanggalakhir = $this->input->post('tanggalakhir');
+        $peminjam = $this->input->post('peminjam');
+
+        if($peminjam = 1) {
+            $data['peminjam'] = $this->m_perpustakaan->filter_bytanggalpinjam($tanggalawal,$tanggalakhir);
+            $this->load->view('perpustakaan/laporan/laporan_peminjaman', $data);
+        }
+     }
+
+  public function laporan_pengembalian() {
+    $peminjam['peminjam'] = $this->m_perpustakaan->get_laporan_kembali('data_peminjam');
+    $this->load->view('perpustakaan/laporan/laporan_pengembalian', $peminjam);
+  }
+  public function filter_tanggalkembali()
+     {
+        $tanggalawal = $this->input->post('tanggalawal');
+        $tanggalakhir = $this->input->post('tanggalakhir');
+        $peminjam = $this->input->post('peminjam');
+
+        if($peminjam = 1) {
+            $data['peminjam'] = $this->m_perpustakaan->filter_bytanggalkembali($tanggalawal,$tanggalakhir);
+            $this->load->view('perpustakaan/laporan/laporan_pengembalian', $data);
+        }
+     }
     
-    public function barcode($id_buku)
-    {
-        require 'vendor/autoload.php';
-        $data['buku']=$this->m_perpustakaan->get_bukuById('table_buku', $id_buku)->result();
-        $this->load->view('perpustakaan/barcode', $data);
-    }
+   
 }

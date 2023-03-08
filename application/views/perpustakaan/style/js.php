@@ -71,6 +71,18 @@ $(function() {
         "lengthChange": true,
         "autoWidth": false,
     }).buttons().container().appendTo('#data-table_wrapper .col-md-6:eq(0)');
+    $("#laporan").DataTable({
+        "responsive": true,
+        "lengthChange": true,
+        "autoWidth": false,
+        "ajax": {
+            "url": "<?php echo base_url("perpustakaan/laporan/laporan', $data")?>",
+            "data": {
+                status:$('#st').data(),
+            },
+        },
+        
+    }).buttons().container().appendTo('#data-table_wrapper .col-md-6:eq(0)');
 });
 </script>
 <!-- Select2 -->

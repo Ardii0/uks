@@ -224,12 +224,27 @@ class Keuangan extends CI_Controller
     }
 
 // Laporan
-    public function laporan()
-    {
-        $this->load->model('M_keuangan');
-        // $data['data_akun'] = $this->m_keuangan->get_all_data_akun('data_akun');
-        $this->load->view('keuangan/laporan/laporan');
-    }
+   //Laporan Jurnal Penyesuaian
+   public function laporan_jurnalpenyesuaian()
+   {
+       $this->load->model('M_keuangan');
+       // $data['data_akun'] = $this->m_keuangan->get_all_data_akun('data_akun');
+       $this->load->view('keuangan/laporan/laporan_jurnalpenyesuaian');
+   }
+ //Laporan Buku Besar
+   public function laporan_bukubesar()
+   {
+       $this->load->model('M_keuangan');
+       // $data['data_akun'] = $this->m_keuangan->get_all_data_akun('data_akun');
+       $this->load->view('keuangan/laporan/laporan_bukubesar');
+   }
+ //Laporan Neraca Lajur
+   public function laporan_neracalajur()
+   {
+       $this->load->model('M_keuangan');
+       // $data['data_akun'] = $this->m_keuangan->get_all_data_akun('data_akun');
+       $this->load->view('keuangan/laporan/laporan_neracalajur');
+   }
 
 // Pembayaran
     public function pembayaran()

@@ -59,13 +59,33 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?php echo base_url('keuangan/laporan')?>" class="nav-link">
+            <a  class="nav-link">
               <i class="nav-icon fas fa-comments-dollar"></i>
               <p>
-                Laporan Keuangan
+               Laporan Keuangan
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-          </li>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url('keuangan/laporan_jurnalpenyesuaian')?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Laporan Penyesuaian </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url('keuangan/laporan_bukubesar')?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Laporan Buku Besar</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url('keuangan/laporan_neracalajur')?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Laporan Neraca Lajur</p>
+                </a>
+              </li>
+            </ul>
           <li class="nav-item">
             <a href="<?php echo base_url('keuangan/pembayaran')?>" class="nav-link">
               <i class="nav-icon fas fa-money-bill"></i>

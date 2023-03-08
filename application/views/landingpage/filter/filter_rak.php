@@ -9,11 +9,10 @@
     <link rel="stylesheet" href="<?php echo base_url('builder/dist/css/daftarbuku.css'); ?>">
     <?php $this->load->view('landingpage/style/head')?>
     <?php $this->load->view('landingpage/style/card')?>
-
 </head>
 
 <body class="hold-transition layout-fixed" style="background-color: #E5E7EB" data-panel-auto-height-mode="height">
-    <div class="container-fluid py-3 mb-2 bg-light">
+<div class="container-fluid py-3 mb-2 bg-light">
         <div class="container d-flex justify-content-between align-items-center">
             <div class="text-Dark">
                 <h3>E-Perpus</h3>
@@ -22,15 +21,15 @@
                     <div class="input-group px-2 w-100">
                     </div>
                 <div>
-                    <form action="<?php echo base_url('LandingPage/filter_ByJudulBuku') ?>" method="post">
+                    <form action="<?php echo base_url('LandingPage/filter_ByRakBuku') ?>" method="post">
                         <div class="form-group d-flex" style="width: 130%;">
-                            <select name="judul_buku" class="form-control select2"
-                                data-dropdown-css-class="select2-info" name="id_siswa" style="width: 100%;">
+                            <select name="nama_rak_buku" class="form-control select2"
+                                data-dropdown-css-class="select2-info" style="width: 100%;">
                                 <option>
-                                    Pilih Buku
+                                    Pilih Kategori
                                 </option>
-                                <?php $id = 0;foreach ($data_buku as $buku): $id++;?>
-                                <option value="<?php echo $buku->judul_buku ?>"><?php echo $buku->judul_buku ?></option>
+                                <?php $id = 0;foreach ($data_rak_buku as $buku): $id++;?>
+                                <option value="<?php echo $buku->nama_rak_buku ?>"><?php echo $buku->nama_rak_buku ?></option>
                                 <?php endforeach;?>
                             </select>
                             <button type="submit" style="width: " class="ml-2 w-50 btn btn-success">Tampilkan</button>
@@ -38,55 +37,18 @@
                 </div>
             </div>
             <div>
-               
+                E-perpus BINUSA
             </div>
         </div>
     </div>
+   
+    </div>
     <div class="container-fluid db-content">
-        <div class="row">
-            <div class="col-2">
-                <div>
-                    <div class="small-box  bg-light text-white mb-3" style="max-width: 100%;">
-                        <div class="card-header bg-transparent text-center fw-bold h3 border-white">
-                            Total Buku</div>
-                        <div class="card-body text-dark text-center">
-                            <h1 class=""><?php echo $total_buku;?></h1>
-
-                        </div>
-                        <a href="<?php echo base_url('LandingPage/filter_AllBuku') ?>" class="small-box-footer">More
-                            info
-                            <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                    <div class="small-box bg-light text-white mb-3" style="max-width: 100%;">
-                        <div class="card-header bg-transparent text-center fw-bold h3 border-white">
-                            Total Kategori</div>
-                        <div class="card-body text-dark text-center">
-                            <h1 class=""><?php echo $total_kategori;?></h1>
-
-                        </div>A
-                        <a href="<?php echo base_url('LandingPage/filter_KategoriBuku')?>" class="small-box-footer">More
-                            info
-                            <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                    <div class="small-box  bg-light text-white mb-3" style="max-width: 100%;">
-                        <div class="card-header bg-transparent text-center fw-bold h3 border-white">
-                            Total Rak</div>
-                        <div class="card-body text-dark text-center">
-                            <h1 class=""><?php echo $total_rak;?></h1>
-
-                        </div>
-                        <a href="<?php echo base_url('LandingPage/filter_RakBuku')?>" class="small-box-footer">More
-                            info
-                            <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-10 d-flex justify-content-center">
-                <div class="cards-1 section-gray">
+        
+    <div class="cards-1 section-gray">
                     <div class="container">
-                        <div class="row">
-                            <?php $id=0; foreach($data_buku as $data ): $id++;?>
+                        <div class="row d-flex justify-content-center">
+                            <?php $id=0; foreach($datafilter as $data ): $id++;?>
                             <div class="col-md-4">
                                 <div class="card card-blog">
                                     <div class="card-image">
@@ -120,9 +82,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+    </div>
+    </div>
 
-            <?php $this->load->view('landingpage/style/js')?>
+    <?php $this->load->view('landingpage/style/js')?>
 </body>
 
 </html>

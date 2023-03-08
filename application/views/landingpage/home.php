@@ -65,7 +65,7 @@
                 <p class="desc">Sistem Informasi Sekolah</p>
                 <div class="col">
                     <p><a href="<?php echo base_url ('Akademik')?>"><i class="fa fa-check-circle"></i>Akademik</a></p>
-                    <p><a href="<?php echo base_url ('Perpustakaan')?>"><i class="fa fa-check-circle"></i>Perpustakaan</a></p>
+                    <p><a href="<?php echo base_url ('Landingpage/daftar_buku')?>"><i class="fa fa-check-circle"></i>Perpustakaan</a></p>
                     <p><a href="<?php echo base_url ('Akademik/guru')?>"><i class="fa fa-check-circle"></i>Manajemen Guru</a></p>
                 </div>
                 <div class="col">

@@ -21,13 +21,88 @@ class LandingPage extends CI_Controller {
     {
         $data['data_buku'] = $this->m_perpustakaan->get_all_data_buku('data_buku');
         $data['total_buku'] = $this->m_landingpage->total_buku();
+        $data['total_kategori'] = $this->m_landingpage->total_ketegori();
+        $data['total_rak'] = $this->m_landingpage->total_rak();
         $this->load->view('landingpage/buku/daftarbuku', $data);
+    }
+
+    function filter_ByJudulBuku(){
+        $data['data_buku'] = $this->m_perpustakaan->get_all_data_buku('data_buku');
+        $judul_buku = $this->input->post('judul_buku');
+        $nilaifilter = $this->input->post('nilaifilter');
+
+        if($nilaifilter = 1) {
+            $data['datafilter'] = $this->m_landingpage->filterByJudulBuku($judul_buku);
+            
+            $this->load->view('landingpage/filter/filter_by_judul', $data);
+        }
+    }
+
+    function filter_AllBuku(){
+        $data['data_buku'] = $this->m_perpustakaan->get_all_data_buku('data_buku');
+        $judul_buku = $this->input->post('judul_buku');
+        $nilaifilter = $this->input->post('nilaifilter');
+
+        if($nilaifilter = 1) {
+            $data['datafilter'] = $this->m_landingpage->filterByJudulBuku($judul_buku);
+            
+            $this->load->view('landingpage/filter/filter_all _buku', $data);
+        }
+    }
+
+    function filter_KategoriBuku(){
+        $data['data_kategori_buku'] = $this->m_perpustakaan->get_all_data_kategori_buku('data_kategori_buku');
+        $kategori_id = $this->input->post('kategori_id');
+        $nilaifilter = $this->input->post('nilaifilter');
+
+        if($nilaifilter = 1) {
+            $data['datafilter'] = $this->m_landingpage->filterByKategoriBuku($kategori_id);
+            
+            $this->load->view('landingpage/filter/filter_kategori', $data);
+        }
+    }
+
+    function filter_ByKategoriBuku(){
+        $data['data_kategori_buku'] = $this->m_perpustakaan->get_all_data_kategori_buku('data_kategori_buku');
+        $nama_kategori_buku = $this->input->post('nama_kategori_buku');
+        $nilaifilter = $this->input->post('nilaifilter');
+
+        if($nilaifilter = 1) {
+            $data['datafilter'] = $this->m_landingpage->filterByKategoriBuku($nama_kategori_buku);
+            
+            $this->load->view('landingpage/filter/filter_by_kategori', $data);
+        }
+    }
+
+    function filter_RakBuku(){
+        $data['data_rak_buku'] = $this->m_perpustakaan->get_all_data_rak_buku('data_rak_buku');
+        $rak_buku_id = $this->input->post('rak_buku_id');
+        $nilaifilter = $this->input->post('nilaifilter');
+
+        if($nilaifilter = 1) {
+            $data['datafilter'] = $this->m_landingpage->filterByRakBuku($rak_buku_id);
+            
+            $this->load->view('landingpage/filter/filter_rak', $data);
+        }
+    }
+
+    function filter_ByRakBuku(){
+        $data['data_rak_buku'] = $this->m_perpustakaan->get_all_data_rak_buku('data_rak_buku');
+        $nama_rak_buku = $this->input->post('nama_rak_buku');
+        $nilaifilter = $this->input->post('nilaifilter');
+
+        if($nilaifilter = 1) {
+            $data['datafilter'] = $this->m_landingpage->filterByRakBuku($nama_rak_buku);
+            
+            $this->load->view('landingpage/filter/filter_by_rak', $data);
+        }
     }
 
     public function buku($id_buku)
     {
+        $buku['data_buku'] = $this->m_perpustakaan->get_all_data_buku('data_buku');
         $data['buku'] = $this->m_landingpage->get_bukuById('table_buku', $id_buku);
-        $this->load->view('landingpage/buku/detail_buku', $data);
+        $this->load->view('landingpage/buku/detail_buku', $data, $buku);
     }
 
     public function register()

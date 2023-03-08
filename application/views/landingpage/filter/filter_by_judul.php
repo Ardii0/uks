@@ -9,11 +9,10 @@
     <link rel="stylesheet" href="<?php echo base_url('builder/dist/css/daftarbuku.css'); ?>">
     <?php $this->load->view('landingpage/style/head')?>
     <?php $this->load->view('landingpage/style/card')?>
-
 </head>
 
 <body class="hold-transition layout-fixed" style="background-color: #E5E7EB" data-panel-auto-height-mode="height">
-    <div class="container-fluid py-3 mb-2 bg-light">
+<div class="container-fluid py-3 mb-2 bg-light">
         <div class="container d-flex justify-content-between align-items-center">
             <div class="text-Dark">
                 <h3>E-Perpus</h3>
@@ -38,55 +37,22 @@
                 </div>
             </div>
             <div>
-               
+                E-perpus BINUSA
             </div>
         </div>
     </div>
+   
+    </div>
     <div class="container-fluid db-content">
-        <div class="row">
-            <div class="col-2">
-                <div>
-                    <div class="small-box  bg-light text-white mb-3" style="max-width: 100%;">
-                        <div class="card-header bg-transparent text-center fw-bold h3 border-white">
-                            Total Buku</div>
-                        <div class="card-body text-dark text-center">
-                            <h1 class=""><?php echo $total_buku;?></h1>
-
-                        </div>
-                        <a href="<?php echo base_url('LandingPage/filter_AllBuku') ?>" class="small-box-footer">More
-                            info
-                            <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                    <div class="small-box bg-light text-white mb-3" style="max-width: 100%;">
-                        <div class="card-header bg-transparent text-center fw-bold h3 border-white">
-                            Total Kategori</div>
-                        <div class="card-body text-dark text-center">
-                            <h1 class=""><?php echo $total_kategori;?></h1>
-
-                        </div>A
-                        <a href="<?php echo base_url('LandingPage/filter_KategoriBuku')?>" class="small-box-footer">More
-                            info
-                            <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                    <div class="small-box  bg-light text-white mb-3" style="max-width: 100%;">
-                        <div class="card-header bg-transparent text-center fw-bold h3 border-white">
-                            Total Rak</div>
-                        <div class="card-body text-dark text-center">
-                            <h1 class=""><?php echo $total_rak;?></h1>
-
-                        </div>
-                        <a href="<?php echo base_url('LandingPage/filter_RakBuku')?>" class="small-box-footer">More
-                            info
-                            <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-10 d-flex justify-content-center">
-                <div class="cards-1 section-gray">
+        <div class="row d-flex justify-content-center">
+            <?php $id=0; foreach($datafilter as $data ): $id++;?>
+            <h1>Search : " <?php echo $data->judul_buku?> "</h1>
+            <?php endforeach;?>
+        </div>
+    <div class="cards-1 section-gray">
                     <div class="container">
-                        <div class="row">
-                            <?php $id=0; foreach($data_buku as $data ): $id++;?>
+                        <div class="row d-flex justify-content-center">
+                            <?php $id=0; foreach($datafilter as $data ): $id++;?>
                             <div class="col-md-4">
                                 <div class="card card-blog">
                                     <div class="card-image">
@@ -120,9 +86,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+    </div>
+    </div>
 
-            <?php $this->load->view('landingpage/style/js')?>
+    <?php $this->load->view('landingpage/style/js')?>
 </body>
 
 </html>

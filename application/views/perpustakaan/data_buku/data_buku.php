@@ -41,6 +41,7 @@
                                         <thead>
                                             <tr class="text-center bg-secondary">
                                                 <th>No</th>
+                                                <th>Cover Buku</th>
                                                 <th>Judul Buku</th>
                                                 <th>Penulis</th>
                                                 <th>Kategori</th>
@@ -52,6 +53,7 @@
                                             <?php $no=0; foreach($data_buku as $row ): $no++;?>
                                             <tr class="text-center">
                                                 <td><?php echo $no?></td>
+                                                <td><img style="width: 70px; height:100px; " src="<?php echo base_url('uploads/perpustakaan/buku')."/".$row->foto;?>"></td>
                                                 <td class="text-truncate" style="max-width: 150px;">
                                                     <?php echo $row->judul_buku?></td>
                                                 <td><?php echo $row->penulis_buku?></td>
