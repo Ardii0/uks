@@ -547,4 +547,16 @@ function tampil_nama_siswa_byid($id)
     return $stmt;
     }
   }
+
+ // Transaksi
+  function tampil_nama_akun_transaksi($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_akun',$id)->get('tabel_akun');
+    foreach ($result->result() as $c) {
+    $stmt= $c->nama_akun;
+    return $stmt;
+    }
+  }
 ?>

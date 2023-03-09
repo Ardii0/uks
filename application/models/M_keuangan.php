@@ -51,12 +51,12 @@ class M_keuangan extends CI_Model{
 // Dana Masuk dan Keluar
     public function get_pendapatan()
     {
-        return $this->db->where("status", "1")->get('test_pendapatan_pengeluaran')->result();
+        return $this->db->where("jenis_transaksi", "m")->get('tabel_jenis_transaksi')->result();
     }
 
     public function get_pengeluaran()
     {
-        return $this->db->where("status", "2")->get('test_pendapatan_pengeluaran')->result();
+        return $this->db->where("jenis_transaksi", "k")->get('tabel_jenis_transaksi')->result();
     }
     
     public function transaksi($tabel, $id)
@@ -87,6 +87,23 @@ class M_keuangan extends CI_Model{
 		return $data;
 	}
 
+// Jurnal Penyelesaian
+    public function get_data_jurnal()
+    {
+        return $this->db->get('tabel_jurnal')->result();
+    }
+
+    public function aksi_input_jurnal($tabel, $data)
+    {
+        $this->db->insert($tabel, $data);
+        return $this->db->insert_id();
+    }
+
+    public function hapus_jurnal($tabel, $field, $id)
+	{
+		$data=$this->db->delete($tabel, array($field => $id));
+		return $data;
+	}
 
 // Pembayaran
     public function get_siswaById($tabel, $id_siswa)

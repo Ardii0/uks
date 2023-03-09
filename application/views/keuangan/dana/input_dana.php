@@ -50,7 +50,7 @@
                         </div>
                         <div class="col-md-3 d-flex justify-content-end align-self-start">
                             <a>
-                                <button type="button" class="btn btn-primary">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_lihat_data">
                                     Lihat Data
                                 </button>
                             </a>
@@ -68,7 +68,7 @@
                                                     <ul class="list-group list-group-flush">
                                                         <?php $id = 0; foreach($data_pendapatan as $data): $id++ ?>
                                                             <a href="<?php echo base_url('Keuangan/input_dana/' . $data->id) ?>">
-                                                                <li class="list-group-item" style="cursor: pointer;"><?php echo $data->nama_transaksi ?></li>
+                                                                <li class="list-group-item" style="cursor: pointer;"><?php echo $data->nama_jenis_transaksi ?></li>
                                                             </a>
                                                         <?php endforeach ?>
                                                     </ul>
@@ -83,16 +83,16 @@
                                     <div class="card border-success mb-3 card-success">
                                         <div class="card-header bg-success border-success">Detail Jenis Transaksi</div>
                                         <div class="card-body row">
-                                        <?php foreach ($data_transaksi as $data): ?>
+                                        <?php foreach ($transaksi as $data): ?>
                                             <input type="hidden" value="<?php echo $data->id ?>" name="id_anggaran">
                                             <div class="col-12 row mt-3">
                                                 <div class="col-6 text-right font-weight-bold">Jenis Transaksi :</div>
-                                                <div class="col-6"><?php echo $data->nama_transaksi ?></div>
+                                                <div class="col-6"><?php echo $data->nama_jenis_transaksi ?></div>
                                             </div>
                                             <div class="col-12 row mt-3">
                                                 <div class="col-6 text-right font-weight-bold">Jumlah Dana Dianggarkan :
                                                 </div>
-                                                <div class="col-6"><?php echo $data->jumlah_dana ?></div>
+                                                <div class="col-6"><?php echo $data->nominal ?></div>
                                             </div>
                                             <div class="col-12 row mt-3">
                                                 <div class="col-6 text-right font-weight-bold">Keterangan :
@@ -114,7 +114,7 @@
                                                     <ul class="list-group list-group-flush">
                                                         <?php $id = 0; foreach($data_pengeluaran as $data): $id++ ?>
                                                             <a href="<?php echo base_url('Keuangan/input_dana/' . $data->id) ?>">
-                                                                <li class="list-group-item" style="cursor: pointer;"><?php echo $data->nama_transaksi ?></li>
+                                                                <li class="list-group-item" style="cursor: pointer;"><?php echo $data->nama_jenis_transaksi ?></li>
                                                             </a>
                                                         <?php endforeach ?>
                                                     </ul>
@@ -132,8 +132,8 @@
                                             <div class="col-12 row mt-3">
                                                 <div class="col-4 text-right font-weight-bold mt-1 mt-1">Uraian</div>
                                                 <div class="col-8">
-                                                    <?php foreach ($data_transaksi as $data): ?>
-                                                        <input type="text" name="uraian" value="<?php echo $data->nama_transaksi ?>" class="form-control" id="uraian" placeholder="Masukan Uraian">
+                                                    <?php foreach ($transaksi as $data): ?>
+                                                        <input type="text" name="uraian" value="<?php echo $data->nama_jenis_transaksi ?>" class="form-control" id="uraian" placeholder="Masukan Uraian">
                                                     <?php endforeach ?>
                                                 </div>
                                             </div>
@@ -141,9 +141,10 @@
                                                 <div class="col-4 text-right font-weight-bold mt-1">Akun Debit
                                                 </div>
                                                 <div class="col-8">
-                                                    <select name="akun" class="custom-select custom-select-md">
+                                                    <select name="id_akun" class="custom-select custom-select-md">
+                                                        <option selected>-- Pilih Akun --</option>
                                                         <?php foreach ($data_akun as $data): ?>
-                                                            <option value="<?php echo $data->nama_akun ?>"><?php echo $data->nama_akun ?></option>
+                                                            <option value="<?php echo $data->id_akun ?>"><?php echo $data->nama_akun ?></option>
                                                         <?php endforeach ?>
                                                     </select>
                                                 </div>
@@ -175,16 +176,74 @@
                         </div>
                     </form>
                 </div>
-        </div>
+            </div>
         </section>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal_lihat_data" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Data Transaksi</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body pb-1">
+                    <div class="box">
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="data-table2" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Tanggal</th>
+                                        <th>Uraian</th>
+                                        <th>Pencatat</th>
+                                        <th>Akun</th>
+                                        <th>Nominal</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $id = 0; foreach($data_transaksi as $data): $id++ ?>
+                                        <tr>
+                                            <td><?php echo $id ?></td>
+                                            <td><?php echo $data->waktu ?></td>
+                                            <td><?php echo $data->uraian ?></td>
+                                            <td><?php echo $data->pencatat ?></td>
+                                            <td><?php echo tampil_nama_akun_transaksi($data->id_akun) ?></td>
+                                            <td><?php echo $data->nominal ?></td>
+                                            <td>
+                                                <button onClick="hapus(<?php echo $data->id_transaksi ?>)" class="btn btn-danger btn-sm">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <div></div>
+                    <button type="button" class="btn btn-secondary" onclick="kembali()"
+                        data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     </div>
     <?php $this->load->view('keuangan/style/js') ?>
     <script>
     function hapus(id) {
-        var yes = confirm('Yakin Di Hapus?');
+         var yes = confirm('Yakin Di Hapus?');
         if (yes == true) {
-            window.location.href = "<?php echo base_url('Akademik/hapus_guru/') ?>" + id;
+            window.location.href = "<?php echo base_url('Keuangan/hapus_transaksi/') ?>" + id;
         }
     }
     </script>
