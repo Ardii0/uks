@@ -1,5 +1,16 @@
 <?php
 
+function tampil_paketjenjangById($id)
+{
+ $ci =& get_instance();
+ $ci->load->database();
+ $result = $ci->db->where('id_paket',$id)->get('tabel_paketjenjang');
+  foreach ($result->result() as $c) {
+  $stmt= $c->nama_paket;
+  return $stmt;
+  }
+}
+
 function tampil_namajenjang_byid($id)
 {
  $ci =& get_instance();

@@ -104,11 +104,11 @@ class Akademik extends CI_Controller {
         $data['jenjang'] = $this->m_akademik->get_jenjang('jenjang');
         $this->load->view('akademik/jenjang/jenjang', $data);
     }
-
+    
     public function jenjang_form()
     {
-        $this->load->model('M_akademik');
-        $this->load->view('akademik/jenjang/form_jenjang');
+        $data['paket'] = $this->m_akademik->get_paketjenjang('paket');
+        $this->load->view('akademik/jenjang/form_jenjang', $data);
     }
 
     public function tambah_jenjang()
@@ -116,7 +116,7 @@ class Akademik extends CI_Controller {
         $data = [
             'nama_jenjang' => $this->input->post('nama_jenjang'),
             'kd_jenjang' => $this->input->post('kd_jenjang'),
-            'paket' => $this->input->post('paket'),
+            'id_paket' => $this->input->post('id_paket'),
             'keterangan' => $this->input->post('keterangan'),
         ];
         $this->m_akademik->tambah_jenjang('tabel_jenjang', $data);
@@ -125,6 +125,7 @@ class Akademik extends CI_Controller {
 
     public function edit_jenjang($id_jenjang)
     {
+        $data['paket'] = $this->m_akademik->get_paketjenjang('paket');
         $data['jenjang']=$this->m_akademik->get_jenjangById('tabel_jenjang', $id_jenjang)->result();
         $this->load->view('akademik/jenjang/edit_jenjang', $data);
     }
@@ -134,7 +135,7 @@ class Akademik extends CI_Controller {
         $data =  [
             'nama_jenjang' => $this->input->post('nama_jenjang'),
             'kd_jenjang' => $this->input->post('kd_jenjang'),
-            'paket' => $this->input->post('paket'),
+            'id_paket' => $this->input->post('id_paket'),
             'keterangan' => $this->input->post('keterangan'),
         ];
         $logged=$this->m_akademik->ubah_jenjang('tabel_jenjang', $data, array('id_jenjang'=>$this->input->post('id_jenjang')));

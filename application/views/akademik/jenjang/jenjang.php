@@ -82,7 +82,6 @@
                                                 <td>
                                                     <?php echo $data->kd_jenjang ?>
                                                 </td>
-                                                <!-- <td><?php echo $data->paket ?></td> -->
                                                 <td>
                                                     <?php echo $data->keterangan ?>
                                                 </td>

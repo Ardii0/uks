@@ -56,6 +56,12 @@ class M_akademik extends CI_Model{
         return $data;
     }
 
+// Paket Jenjang
+    public function get_paketjenjang()
+	{
+		return $this->db->get('tabel_paketjenjang')->result();
+	}
+
 // Jenjang
     public function get_jenjang()
 	{
