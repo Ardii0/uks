@@ -48,9 +48,9 @@
                         <div class="d-flex justify-content-end p-3 font-weight-bold">
                             <p>
                                
-                                <?php foreach ($mapel as $data): ?>
-                                <input type="hidden" name="id_mapel" value="<?php echo $data->id_mapel ?>">
-                                <?php echo $data->nama_mapel ?>
+                                <?php foreach ($mapel as $mapel): ?>
+                                <input type="hidden" name="id_mapel" value="<?php echo $mapel->id_mapel ?>">
+                                <?php echo $mapel->nama_mapel ?>
                                 <?php endforeach;?>
                             </p>
                         </div>
@@ -78,21 +78,28 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php foreach($kelas as $data ):?>
+                                                <?php foreach($rombel as $rombel ):?>
                                                 <tr>
                                                     <td>
-                                                        <input type="checkbox" name="id_kelas[<?php echo $data->id_kelas ?>]">
+                                                        <input type="checkbox" name="id_rombel[<?php echo $rombel->id_rombel ?>]">
                                                     </td>
-                                                    <td><?php echo $data->nama_kelas?></td>
-                                                    <td><?php echo $data->keterangan?></td>
+                                                    <td class="d-flex">
+                                                        <span>
+                                                        <?php echo tampil_kelasById($rombel->id_kelas)?></span>
+                                                        <span>&nbsp;
+                                                        <?php echo $rombel->nama_rombel?></span>
+                                                    </td>
+                                                    <td>
+                                                        <!-- <?php echo $rombel->id_kelas?> -->
+                                                    </td>
                                                 </tr>
                                                 <?php endforeach;?>
                                             </tbody>
                                         </table>
                                     </div>
-                    </form>
-            </section>
-        </div>
+                                    </form>
+                                </section>
+                            </div>
         <div class="col">
             <section class="content">
                 <form action="<?php echo base_url('Akademik/hapus_alokasimapel/'); ?>" enctype="multipart/form-data"
@@ -115,22 +122,23 @@
                                     <th><input type="checkbox"></th>
                                     <th>Nama Kelas</th>
                                     <th>Keterangan</th>
-                                    <th>aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($alokasimapel as $data): ?>
                                 <tr>
                                     <td>
-                                        <input type="checkbox" name="id[<?php echo $data->id ?>]">
+                                        <input type="checkbox" name="id_alokasimapel[<?php echo $data->id_alokasimapel ?>]">
+                                    </td>
+                                    <td class="d-flex">
+                                        <span>
+                                            <?php echo tampil_kelas_ByRombel($data->id_rombel) ?></span>
+                                        <span>&nbsp;
+                                            <?php echo tampil_rombel_byid($data->id_rombel) ?></span>
                                     </td>
                                     <td>
-                                        <?php echo tampil_kelasById($data->id_kelas) ?>
+                                        <?php echo tampil_ket_kelasById($data->id_rombel) ?>
                                     </td>
-                                    <td>
-                                        <?php echo tampil_ket_kelasById($data->id_kelas) ?>
-                                    </td>
-                                    <td>Keterangan</td>
                                 </tr>
                                 <?php endforeach;?>
                             </tbody>

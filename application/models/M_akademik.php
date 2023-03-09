@@ -1,6 +1,26 @@
 <?php
 
 class M_akademik extends CI_Model{
+// Home Dashboard
+    public function total_kelas()
+  {
+    return $this->db->get('tabel_kelas')->num_rows();
+  }
+
+    public function total_mapel()
+  {
+    return $this->db->get('tabel_mapel')->num_rows();
+  }
+
+    public function total_siswa()
+  {
+    return $this->db->get('tabel_siswa')->num_rows();
+  }
+
+    public function total_guru()
+  {
+    return $this->db->get('tabel_guru')->num_rows();
+  }
 // Tahun Ajar
     public function get_tahun_ajaran()
 	{
@@ -359,7 +379,7 @@ class M_akademik extends CI_Model{
         return $data;
     }
 
-  //Alok Mapel
+ //Alok Mapel
   public function get_alokasimapel()
     {
         return $this->db->get('tabel_alokasimapel')->result();

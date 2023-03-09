@@ -40,7 +40,7 @@
                 <div class="container-fluid bg-white shadow p-3">
                     <div class="row">
                         <form class="col-5" action="<?php echo base_url('Keuangan/menambahkan_pembayaran/') ?>" enctype="multipart/form-data" method="post">
-                            <!-- <div class="row mt-3">
+                            <div class="row mt-3">
                                 <div class="col-4 text-right font-weight-bold mt-1">Kelas</div>
                                 <div class="col-8">
                                     <select name="kelas" id="kelas" class="custom-select custom-select-md">
@@ -61,8 +61,8 @@
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
-                            </div> -->
-                            <div class="row mt-3">
+                            </div>
+                            <!-- <div class="row mt-3">
                                 <div class="col-4 text-right font-weight-bold mt-1">Nama Siswa</div>
                                 <div class="col-8">
                                     <select name="siswa" id="siswa" class="custom-select custom-select-md">
@@ -72,18 +72,15 @@
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
-                            </div>
-                            <!-- <div class="row mt-3">
+                            </div> -->
+                            <div class="row mt-3">
                                 <div class="col-4 text-right font-weight-bold mt-1">Nama Siswa</div>
                                 <div class="col-8">
-                                    <select name="siswa" id="siswa" class="custom-select custom-select-md">
+                                    <select name="id_siswa" id="siswa" class="custom-select custom-select-md">
                                         <option value="adasdad">No Data</option>
-                                        <?php foreach($siswa as $siswa): ?>
-                                            <option value="adasdad"><?php echo $siswa->id_siswa ?></option>
-                                        <?php endforeach; ?>
                                     </select>
                                 </div>
-                            </div> -->
+                            </div>
                             <div class="row mt-1">
                                 <div class="col-4 text-right font-weight-bold">
                                 </div>
@@ -134,7 +131,7 @@
                         var html = '';
                         var i;
                         for(i=0; i<data.length; i++){
-                            html += '<option value=''>Pilih</option>'+'<option value='+data[i].id_siswa+'>'+data[i].id_daftar+'</option>';
+                            html += '<option value='+data[i].id_siswa+'>'+data[i].id_daftar+'</option>';
                         }
                         $('#siswa').html(html);
  

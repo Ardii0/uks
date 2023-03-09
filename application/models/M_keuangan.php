@@ -112,6 +112,16 @@ class M_keuangan extends CI_Model{
         return $data;
     }
 
+    function get_rombelByIdKelas($id_kelas){
+        $query = $this->db->get_where('tabel_rombel', array('id_kelas' => $id_kelas));
+        return $query;
+      }
+    
+      function get_siswaByIdRombel($id_rombel){
+        $query = $this->db->get_where('tabel_siswa', array('id_rombel' => $id_rombel));
+        return $query;
+      }
+    
     public function get_pembayaran()
     {
         return $this->db->get('tabel_pembayaran')->result();

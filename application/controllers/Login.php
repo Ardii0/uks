@@ -56,6 +56,8 @@ class Login extends CI_Controller {
     $email = $this->input->post('email', TRUE);
     $password = $this->input->post('password', TRUE);
     echo $email.$username."-".$password;
+    // $perintah = "SELECT * FROM tabel_level WHERE (username='$email' OR email='$email') AND password='md5($password)'"; 
+    // $sql = $this->db->query($perintah);
 
       $where = array(
         // 'email' => $email,
@@ -101,6 +103,7 @@ class Login extends CI_Controller {
         // $sess_data['logged_in'] = 'Sudah Loggin';
         $data_session['id_level'] = $sess->id_level;
         $data_session['username'] = $sess->username;
+        $data_session['email'] = $sess->email;
         $data_session['password'] = $sess->password;
         // $data_session['cdate'] = $sess->cdate;
         // $data_session['lv'] = $sess->level;
@@ -140,7 +143,8 @@ class Login extends CI_Controller {
           $this->session->set_flashdata('pesan','<div class="alert alert-success">Login sukses.</div>');
           redirect(base_url()."Akademik/");//Controller/function
         }
-    }elseif ($petugasPerpus->num_rows() == 1) {
+    }
+    elseif ($petugasPerpus->num_rows() == 1) {
         foreach ($petugasPerpus->result() as $sess) {
             $data_session['id_level'] = $sess->id_level;
             $data_session['username'] = $sess->username;
@@ -195,16 +199,17 @@ class Login extends CI_Controller {
           $this->session->set_flashdata('pesan','<div class="alert alert-success">Login sukses.</div>');
           redirect(base_url()."Keuangan/");//Controller/function
         }
-  }else{
+  }
+  else{
     //$this->session->set_userdata('blank',$data_session);
     $this->session->set_flashdata('pesan','<div class="alert alert-danger">Username atau Password yang anda masukan salah!</div>');
-    redirect(base_url().'login');
+    // redirect(base_url().'login');
   }
   }
 
   function logout(){
     $this->session->sess_destroy();
-    redirect(base_url());
+    redirect(base_url('Login'));
   }
 
 }

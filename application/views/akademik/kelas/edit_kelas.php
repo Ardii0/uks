@@ -62,10 +62,10 @@
                                     <label class="control-label">Jenjang</label>
                                     <div class="">
                                         <select class="form-control form-select px-2 py-1" name="id_jenjang" aria-label="idjenjang">
-                                            <!-- <option name="id_jenjang" value="<?php echo tampil_namajenjang_byid($data->id_jenjang)?>" style="display: none;"> -->
+                                            <option name="id_jenjang" value="<?php echo tampil_namajenjang_byid($data->id_jenjang)?>" style="display: none;">
                                             <?php echo tampil_namajenjang_byid($data->id_jenjang)?></option>
                                             <?php $id = 0;foreach ($jenjang as $datajenjang): $id++;?>
-                                            <option name="id_jenjang" value="<?php echo $datajenjang->id_jenjang ?>"><?php echo $datajenjang->nama_jenjang ?></option>
+                                                <option name="id_jenjang" value="<?php echo $datajenjang->id_jenjang ?>"><?php echo $datajenjang->nama_jenjang ?></option>
                                             <?php endforeach;?>
                                         </select>
                                     </div>

@@ -107,32 +107,32 @@
         <div class="modal fade" id="modal_tambah_rak" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <form enctype="multipart/form-data" method="post">
+                <form action="<?php echo base_url('Akademik/tambah_paketjenjang') ?>" enctype="multipart/form-data" method="post">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Paket Jenjang & Kelas</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Paket Jenjang</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body pb-1">
                             <div class="box">
-                                <!-- /.box-header -->
                                 <div class="box-body">
                                     <div class="form-group col-sm-12">
-                                        <div class="form-group d-flex flex-row " style="width: fit-content;">
+                                        <div class="form-group d-flex flex-row " style="width: 100%;">
                                             <div class="mt-2 mx-1">
                                                 <p style="font-weight: bold">Paket Jenjang</p>
                                             </div>
                                             <div class="mx-1">
-                                                <select class="custom-select rounded " id="exampleSelectRounded0"
-                                                    style="width: 300px">
-                                                    <option>Pilih</option>
-                                                    <option>SD</option>
-                                                    <option>SMP</option>
-                                                    <option>SMA</option>
-                                                    <option>SMK</option>
-                                                </select>
+                                                <input type="text" name="nama_paket" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group d-flex flex-row " style="width: 100%;">
+                                            <div class="mt-2 mx-1">
+                                                <p style="font-weight: bold">Kode Jenjang</p>
+                                            </div>
+                                            <div class="mx-1">
+                                                <input type="text" name="kode_paket" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -141,12 +141,10 @@
                         </div>
                         <div class="modal-footer d-flex justify-content-between">
                             <div class="hidden">
-                                <button type="button" class="btn btn-secondary" onclick="kembali()"
-                                    data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
                             <div class="justify-content-end align-self-start">
                                 <button type="submit" class="btn btn-primary">Simpan</button>
-
                             </div>
                         </div>
                     </div>

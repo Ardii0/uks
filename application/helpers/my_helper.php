@@ -446,6 +446,23 @@ function tampil_nama_siswa_byid($id)
     return $namarombel;
   }
 
+  function tampil_kelas_ByRombel($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $namakelas = '';
+  $result = $ci->db->select('*')
+                    ->from('tabel_rombel')
+                    ->join('tabel_kelas','tabel_rombel.id_kelas = tabel_kelas.id_kelas')
+                    ->where('tabel_rombel.id_rombel',$id)
+                    ->get();
+    foreach ($result->result() as $c) {
+    $stmt= $c->nama_kelas;
+    $namakelas= $namakelas.$stmt.'<br>';
+    }
+    return $namakelas;
+  }
+
  // Detail Index Buku
   function tampil_judul_buku_byid($id)
   {

@@ -294,6 +294,18 @@ class Keuangan extends CI_Controller
         $this->load->view('keuangan/pembayaran/pembayaran', $data);
     }
 
+    public function get_rombelByIdKelas(){
+        $id_kelas = $this->input->post('id',TRUE);
+        $data = $this->m_keuangan->get_rombelByIdKelas($id_kelas)->result();
+        echo json_encode($data);
+    }
+
+    public function get_siswaByIdRombel(){
+        $id_rombel = $this->input->post('id',TRUE);
+        $data = $this->m_keuangan->get_siswaByIdRombel($id_rombel)->result();
+        echo json_encode($data);
+    }
+    
     public function tambah_pembayaran()
     {
         $this->load->model('m_akademik');
