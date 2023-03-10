@@ -295,13 +295,13 @@ class Keuangan extends CI_Controller
     }
 
     public function get_rombelByIdKelas(){
-        $id_kelas = $this->input->post('id',TRUE);
+        $id_kelas = $this->input->post('id_kelas',TRUE);
         $data = $this->m_keuangan->get_rombelByIdKelas($id_kelas)->result();
         echo json_encode($data);
     }
 
     public function get_siswaByIdRombel(){
-        $id_rombel = $this->input->post('id',TRUE);
+        $id_rombel = $this->input->post('id_rombel',TRUE);
         $data = $this->m_keuangan->get_siswaByIdRombel($id_rombel)->result();
         echo json_encode($data);
     }
@@ -324,21 +324,27 @@ class Keuangan extends CI_Controller
         redirect('Keuangan/form_tambah_pembayaran');
     }
 
+    public function direct(){
+        $enc = base64_encode($this->input->post('id_siswa'));
+        redirect('Keuangan/form_tambah_pembayaran/'.$enc);
+    }
+
     public function form_tambah_pembayaran()
     {
-        if(!empty($this->session->userdata('id_siswa'))) {
-           $ids = $this->session->userdata('id_siswa');
-           
+        // if(!empty($this->session->userdata('id_siswa'))) {
+        //    $ids = $this->session->userdata('id_siswa');
+           $ids = base64_decode($this->uri->segment(3));
+        
            $data['dt'] = $this->m_keuangan->ambil('tabel_level',array('id_level'=>$this->session->userdata('id_level')))->row();
            $data['siswa'] = $this->m_keuangan->get_siswaById('tabel_siswa', $ids);
            $data['jenisbayar'] = $this->m_keuangan->get_jenisbayar();
            $data['pembayaran'] = $this->m_keuangan->get_pembayaran();
-           $data['content'] = 'keuangan/form_tambah_pembayaran';
+           $data['content'] = 'keuangan/tambah_pembayaran';
 
            $this->load->view('keuangan/pembayaran/form_tambah_pembayaran', $data);
-        }else{
-            redirect('/tambah_pembayaran');
-        }
+        // }else{
+        //     redirect('/tambah_pembayaran');
+        // }
     }
 
     public function aksi_tambah_pembayaran()

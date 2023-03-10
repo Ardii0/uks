@@ -39,11 +39,13 @@
             <section class="content">
                 <div class="container-fluid bg-white shadow p-3">
                     <div class="row">
-                        <form class="col-5" action="<?php echo base_url('Keuangan/menambahkan_pembayaran/') ?>" enctype="multipart/form-data" method="post">
+                        <!-- <div class="col-5"> -->
+                        <!-- <form class="col-5" action="<?php echo base_url('Keuangan/form_tambah_pembayaran/') ?>" enctype="multipart/form-data" method="post"> -->
+                        <?php echo form_open('Keuangan/direct', array('class' => 'col-5', 'id' => 'form')); ?>
                             <div class="row mt-3">
                                 <div class="col-4 text-right font-weight-bold mt-1">Kelas</div>
                                 <div class="col-8">
-                                    <select name="kelas" id="kelas" class="custom-select custom-select-md">
+                                    <select id="kelas" class="custom-select custom-select-md">
                                         <option value="">Pilih Kelas</option>
                                         <?php foreach($kelas as $kelas): ?>
                                             <option value="<?php echo $kelas->id_kelas ?>"><?php echo $kelas->nama_kelas ?></option>
@@ -54,30 +56,22 @@
                             <div class="row mt-3">
                                 <div class="col-4 text-right font-weight-bold mt-1">Rombel</div>
                                 <div class="col-8">
-                                    <select name="rombel" id="rombel" class="custom-select custom-select-md">
-                                        <option value="">Pilih no</option>
+                                    <select id="rombel" class="custom-select custom-select-md">
+                                        <option value="">Pilih Rombel</option>
                                         <?php foreach($rombel as $rombel): ?>
                                             <option value="<?php echo $rombel->id_rombel ?>"><?php echo $rombel->nama_rombel ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
                             </div>
-                            <!-- <div class="row mt-3">
-                                <div class="col-4 text-right font-weight-bold mt-1">Nama Siswa</div>
-                                <div class="col-8">
-                                    <select name="siswa" id="siswa" class="custom-select custom-select-md">
-                                        <option value="">Pilih Siswa</option>
-                                        <?php foreach($siswa as $siswa): ?>
-                                            <option value="<?php echo $siswa->id_siswa ?>"><?php echo tampil_namadaftar_ByIdSiswa($siswa->id_siswa) ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                            </div> -->
                             <div class="row mt-3">
                                 <div class="col-4 text-right font-weight-bold mt-1">Nama Siswa</div>
                                 <div class="col-8">
                                     <select name="id_siswa" id="siswa" class="custom-select custom-select-md">
-                                        <option value="adasdad">No Data</option>
+                                        <option value="">Pilih Siswa</option>
+                                        <?php foreach($siswa as $siswa): ?>
+                                            <option value="<?php echo $siswa->id_siswa ?>"><?php echo tampil_namadaftar_ByIdSiswa($siswa->id_siswa) ?></option>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
                             </div>
@@ -88,6 +82,7 @@
                                     <button type="submit" class="btn btn-primary">Input</button>
                                 </div>
                             </div>
+                        <!-- </div> -->
                         </form>
                     </div>
                 </div>
@@ -98,17 +93,18 @@
     <script type="text/javascript">
         $(document).ready(function(){
             $('#kelas').change(function(){ 
-                var id=$(this).val();
+                var id_kelas=$(this).val();
                 $.ajax({
                     url : "<?php echo site_url('keuangan/get_rombelByIdKelas');?>",
                     method : "POST",
-                    data : {id: id},
+                    data : {id_kelas: id_kelas},
                     async : true,
                     dataType : 'json',
                     success: function(data){
                          
                         var html = '';
                         var i;
+                        html += '<option>Pilih Rombel</option>';
                         for(i=0; i<data.length; i++){
                             html += '<option value='+data[i].id_rombel+'>'+data[i].nama_rombel+'</option>';
                         }
@@ -120,18 +116,19 @@
             }); 
              
             $('#rombel').change(function(){ 
-                var id=$(this).val();
+                var id_rombel=$(this).val();
                 $.ajax({
                     url : "<?php echo site_url('keuangan/get_siswaByIdRombel');?>",
                     method : "POST",
-                    data : {id: id},
+                    data : {id_rombel: id_rombel},
                     async : true,
                     dataType : 'json',
                     success: function(data){
                         var html = '';
                         var i;
+                        html += '<option>Pilih Siswa</option>';
                         for(i=0; i<data.length; i++){
-                            html += '<option value='+data[i].id_siswa+'>'+data[i].id_daftar+'</option>';
+                            html += '<option value='+data[i].id_siswa+'>'+data[i].id_siswa+'</option>';
                         }
                         $('#siswa').html(html);
  

@@ -76,10 +76,7 @@
                                                 <td class="d-flex">
                                                     <span>
                                                         <?php echo tampil_namadaftar_ByIdSiswa($history->id_siswa)?>
-                                                    </span>/
-                                                    <span>
-                                                        <?php echo tampil_kelasdaftar_ByIdSiswa($history->id_siswa)?>
-                                                    </span>&nbsp;
+                                                    </span>/&nbsp;
                                                     <span>
                                                         <?php echo tampil_rombeldaftar_ByIdSiswa($history->id_siswa)?>
                                                     </span>
