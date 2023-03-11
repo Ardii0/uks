@@ -317,34 +317,66 @@ class Perpustakaan extends CI_Controller {
         redirect(base_url('Perpustakaan/data_buku/detail_index_buku'.$id_buku));
     }
 
-    public function aksi_tambah_buku()
+    public function upload_img_buku($value)
     {
-        $data = array
-        (
-            'judul_buku' => $this->input->post('judul_buku'),
-            'penerbit_buku' => $this->input->post('penerbit_buku'),
-            'penulis_buku' => $this->input->post('penulis_buku'),
-            'tahun_terbit' => $this->input->post('tahun_terbit'),
-            'keterangan' => $this->input->post('keterangan'),
-            'sumber' => $this->input->post('sumber'),
-            'kategori_id' => $this->input->post('kategori_id'),
-            'rak_buku_id' => $this->input->post('rak_buku_id'),
-            'stok' => $this->input->post('stok'),
-            'del_flag' => '1',
-        );
-        $masuk=$this->m_perpustakaan->tambah_buku('table_buku', $data);
-        if($masuk)
+        $kode = round(microtime(true) * 1000);
+        $config['upload_path'] = './uploads/perpustakaan/buku/';
+        $config['allowed_types'] = 'jpg|png|jpeg';
+        $config['max_size'] = '100000';
+        $config['file_name'] = $kode;
+        $this->upload->initialize($config);
+        if (!$this->upload->do_upload($value))
         {
-            $this->session->set_flashdata('sukses', 'berhasil');
-            redirect(base_url('Perpustakaan/data_buku'));
+            return array( false, '' );
         }
         else
         {
-            $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Perpustakaan/tambah_buku'));
+            $fn = $this->upload->data();
+            $nama = $fn['file_name'];
+            return array( true, $nama );
         }
     }
 
+    public function aksi_tambah_buku()
+    {
+        $foto = $this->upload_img_buku('foto');
+        if($foto[0]==false)
+        {
+            //$this->upload->display_errors();
+            $this->session->set_flashdata('error', 'gagal upload foto.');
+            redirect(base_url('Perpustakaan/tambah_buku'));
+        }
+        else
+        {
+            $data = array
+            (
+                'foto' => $foto[1],
+                'judul_buku' => $this->input->post('judul_buku'),
+                'penerbit_buku' => $this->input->post('penerbit_buku'),
+                'penulis_buku' => $this->input->post('penulis_buku'),
+                'tahun_terbit' => $this->input->post('tahun_terbit'),
+                'keterangan' => $this->input->post('keterangan'),
+                'sumber' => $this->input->post('sumber'),
+                'kategori_id' => $this->input->post('kategori_id'),
+                'rak_buku_id' => $this->input->post('rak_buku_id'),
+                'stok' => $this->input->post('stok'),
+                'del_flag' => '1',
+            );
+
+
+            $masuk=$this->m_perpustakaan->tambah_buku('table_buku', $data);
+            if($masuk)
+            {
+                $this->session->set_flashdata('sukses', 'berhasil');
+                redirect(base_url('Perpustakaan/data_buku'));
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'gagal..');
+                redirect(base_url('Perpustakaan/tambah_buku'));
+            }
+        }
+    }
     public function edit_buku($id_buku)
     {
         $data['data_buku']=$this->m_perpustakaan->edit_buku('table_buku', $id_buku)->result();

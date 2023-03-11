@@ -10,7 +10,7 @@
     <?php $this->load->view('landingpage/style/head')?>
 </head>
 
-<body class="hold-transition layout-fixed bg-light" data-panel-auto-height-mode="height">
+<body class="hold-transition layout-fixed" style="background-color: #ECECEC" data-panel-auto-height-mode="height">
 
     <div class="container">
         <div class="bg-white rounded">

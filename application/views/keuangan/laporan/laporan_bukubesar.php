@@ -50,14 +50,15 @@
                         </div>
                     </div>
                     <div class="mx-2 pt-2 pl-2">
+                    <form action="<?php echo base_url('keuangan/filter_namakun') ?>" method="post">
                         <div class="form-group d-flex" style="width: 30%;">
-                            <select name="judul_buku" class="form-control select2"
-                                data-dropdown-css-class="select2-info" name="id_siswa" style="width: 100%;">
+                            <select name="nama_akun" class="form-control select2"
+                                data-dropdown-css-class="select2-info" name="nama_akun" style="width: 100%;">
                                 <option>
                                     Pilih
                                 </option>
-                                <?php $id = 0;foreach ($data_buku as $buku): $id++;?>
-                                <option value="<?php echo $buku->judul_buku ?>"><?php echo $buku->judul_buku ?></option>
+                                <?php $id = 0;foreach ($data_akun as $data): $id++;?>
+                                <option value="<?php echo $data->id_akun ?>"><?php echo $data->nama_akun ?></option>
                                 <?php endforeach;?>
                             </select>
                             <button type="submit" style="width: " class="ml-2 w-50 btn btn-info">Tampilkan</button>
@@ -65,7 +66,7 @@
                     </div>
                     <div class="card mb-4">
                         <div class="card-header">
-                           Akun Kas
+                          
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -75,24 +76,11 @@
                                             <tr>
                                                 <th>Tanggal</th>
                                                 <th>Uraian</th>
-                                                <th>Kredit</th>
+                                                <th>Debet</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    2001-03-28 11:21:28 </td>
-                                                <td>
-                                                    Dana Bos Seragam
-                                                </td>
-                                                <td>
-                                                    Rp. 50.000.000
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2"> <strong> Jumlah Debet</strong></td>
-                                                <td> <strong>Rp.50.000.000</strong> </td>
-                                            </tr>
+                                       
                                         </tbody>
                                     </table>
                                 </div>
@@ -106,27 +94,14 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    2001-03-28 11:21:28 </td>
-                                                <td>
-                                                    Dana Bos Seragam
-                                                </td>
-                                                <td>
-                                                    Rp. 50.000.000
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2"> <strong> Jumlah Kredit</strong></td>
-                                                <td> <strong>Rp.50.000.000</strong> </td>
-                                            </tr>
+                                           
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer text-muted">
-                            Total Debet Rp 0
+                           
                         </div>
                     </div>
                 </div>

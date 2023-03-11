@@ -43,7 +43,8 @@
                     <div class="row">
                         <div class="col-6 h5">Input Jurnal</div>
                         <div class="col-6">
-                            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#modal_lihat_data">
+                            <button type="button" class="btn btn-primary float-right" data-toggle="modal"
+                                data-target="#modal_lihat_data">
                                 Lihat Data
                             </button>
                         </div>
@@ -56,12 +57,28 @@
                                     </div>
                                 </div>
                                 <div class="row mt-3">
+                                    <div class="col-4 text-right font-weight-bold mt-1">Jenis Anggaran</div>
+                                    <div class="col-5">
+                                        <select name="id_anggaran" class="form-control select2"
+                                            data-dropdown-css-class="select2-info">
+                                            <option>
+                                                Pilih Jenis Anggaran
+                                            </option>
+                                            <?php $id = 0;foreach ($data_anggaran as $data): $id++;?>
+                                            <option value="<?php echo $data->id ?>">
+                                                <?php echo $data->nama_jenis_transaksi ?></option>
+                                            <?php endforeach;?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
                                     <div class="col-4 text-right font-weight-bold mt-1">Akun Debit</div>
                                     <div class="col-5">
                                         <select name="id_akun" class="custom-select custom-select-md">
                                             <option selected>-- Pilih Akun --</option>
                                             <?php foreach ($data_akun as $data): ?>
-                                                <option value="<?php echo $data->id_akun ?>"><?php echo $data->nama_akun ?></option>
+                                            <option value="<?php echo $data->id_akun ?>"><?php echo $data->nama_akun ?>
+                                            </option>
                                             <?php endforeach ?>
                                         </select>
                                     </div>
@@ -73,7 +90,8 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="basic-addon1">Rp</span>
                                             </div>
-                                            <input type="number" name="nominal" class="form-control" placeholder="Nominal">
+                                            <input type="number" name="nominal" class="form-control"
+                                                placeholder="Nominal">
                                         </div>
                                     </div>
                                 </div>
@@ -120,20 +138,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $id = 0; foreach($data_jurnal as $data): $id++ ?>
-                                            <tr>
-                                                <td><?php echo $id ?></td>
-                                                <td><?php echo $data->waktu ?></td>
-                                                <td><?php echo $data->uraian ?></td>
-                                                <td><?php echo $data->pencatat ?></td>
-                                                <td><?php echo tampil_nama_akun_transaksi($data->id_akun) ?></td>
-                                                <td><?php echo $data->nominal ?></td>
-                                                <td>
-                                                    <button onClick="hapus(<?php echo $data->id_jurnal ?>)" class="btn btn-danger btn-sm">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
+                                        <?php $id = 0; foreach($data_transaksi as $data): $id++ ?>
+                                        <tr>
+                                            <td><?php echo $id ?></td>
+                                            <td><?php echo $data->waktu ?></td>
+                                            <td><?php echo $data->uraian ?></td>
+                                            <td><?php echo $data->pencatat ?></td>
+                                            <td><?php echo tampil_nama_akun_transaksi($data->id_akun) ?></td>
+                                            <td><?php echo $data->nominal ?></td>
+                                            <td>
+                                                <button onClick="hapus(<?php echo $data->id_transaksi ?>)"
+                                                    class="btn btn-danger btn-sm">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
                                         <?php endforeach ?>
                                     </tbody>
                                 </table>
@@ -153,11 +172,12 @@
     <?php $this->load->view('keuangan/style/js') ?>
     <script>
     function hapus(id) {
-         var yes = confirm('Yakin Di Hapus?');
+        var yes = confirm('Yakin Di Hapus?');
         if (yes == true) {
             window.location.href = "<?php echo base_url('Keuangan/hapus_jurnal/') ?>" + id;
         }
     }
+   
     </script>
 </body>
 

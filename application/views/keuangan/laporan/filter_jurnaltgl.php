@@ -44,13 +44,13 @@
                         <div class="col-2 col-sm-6 ">
                             <div class="form-group d-flex flex-row " style="width: fit-content;">
                                 <div class="mt-2 mx-1">
-                                    
+                                    <h6>Periode 1 Jul 2018/30 Jun 2019</h6>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="mx-2 pt-2 pl-2">
-                    <form action="<?php echo base_url('Keuangan/filter_tanggal'); ?>" method="POST">
+                    <form action="<?php echo base_url('Keuangan/filter_'); ?>" method="POST">
                         <div class="row">
                             <div class="form-group col-3">
                                 <label for="">Tanggal Awal</label>

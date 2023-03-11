@@ -587,4 +587,34 @@ function tampil_nama_siswa_byid($id)
     return $stmt;
     }
   }
+  function tampil_debet_transaksi($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id',$id)->get('tabel_jenis_transaksi');
+    foreach ($result->result() as $c) {
+    $stmt= $c->debit;
+    return $stmt;
+    }
+  }
+  function tampil_kredit_transaksi($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id',$id)->get('tabel_jenis_transaksi');
+    foreach ($result->result() as $c) {
+    $stmt= $c->kredit;
+    return $stmt;
+    }
+  }
+  function tampil_nama_jenis_transaksi($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id',$id)->get('tabel_jenis_transaksi');
+    foreach ($result->result() as $c) {
+    $stmt= $c->nama_jenis_transaksi;
+    return $stmt;
+    }
+  }
 ?>

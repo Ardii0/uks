@@ -58,6 +58,11 @@ class M_keuangan extends CI_Model{
     {
         return $this->db->where("jenis_transaksi", "k")->get('tabel_jenis_transaksi')->result();
     }
+
+    public function get_anggaran()
+    {
+        return $this->db->get('tabel_jenis_transaksi')->result();
+    }
     
     public function transaksi($tabel, $id)
     {
@@ -88,11 +93,6 @@ class M_keuangan extends CI_Model{
 	}
 
 // Jurnal Penyelesaian
-    public function get_data_jurnal()
-    {
-        return $this->db->get('tabel_jurnal')->result();
-    }
-
     public function aksi_input_jurnal($tabel, $data)
     {
         $this->db->insert($tabel, $data);
@@ -138,4 +138,29 @@ class M_keuangan extends CI_Model{
         return $this->db->insert_id();
     }
 
+  //Laporan keuangan
+  public function filter_bytanggal($tanggalawal=0,$tanggalakhir=0){
+	if ($tanggalawal != 0 && $tanggalakhir == 0) {
+	  $query = $this->db->query("SELECT * from tabel_transaksi where DATE (waktu) = '$tanggalawal' ORDER BY waktu ASC ");
+	} else if($tanggalawal != 0 && $tanggalakhir != 0) {
+	  $query = $this->db->query("SELECT * from tabel_transaksi where waktu BETWEEN '$tanggalawal' and '$tanggalakhir' ORDER BY waktu ASC ");
+	} else {
+	  $query = $this->db->query("SELECT * from tabel_transaksi");
+	}
+	return $query->result();
+}
+public function filter_namakun($nama_akun){
+    if ($nama_akun != null) {
+        $query = $this->db->where('id_akun', $nama_akun)->get('tabel_jurnal');
+      } else {
+        $query = $this->db->query("SELECT * from tabel_jurnal");
+      }
+
+    return $query->result();
+    }
+    public function akun($tabel, $id)
+    {
+        $data=$this->db->where('id_akun', $id)->get($tabel);
+        return $data;
+    }
 }

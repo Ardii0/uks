@@ -222,7 +222,8 @@ class Keuangan extends CI_Controller
         $this->load->model('M_keuangan');
         $data['dt'] = $this->m_keuangan->ambil('tabel_level',array('id_level'=>$this->session->userdata('id_level')))->row();
         $data['data_akun'] = $this->m_keuangan->get_all_akun('data_akun');
-        $data['data_jurnal'] = $this->m_keuangan->get_data_jurnal('data_jurnal');
+        $data['data_transaksi'] = $this->m_keuangan->get_data_transaksi('data_transaksi');
+        $data['data_anggaran'] = $this->m_keuangan->get_anggaran('data_anggaran');
         $this->load->view('keuangan/jurnal/jurnal', $data);
     }
 
@@ -231,12 +232,13 @@ class Keuangan extends CI_Controller
         $data = array
         (
             'id_akun' => $this->input->post('id_akun'),
+            'id_anggaran' => $this->input->post('id_anggaran'),
             'uraian' => $this->input->post('uraian'),
             'nominal' => $this->input->post('nominal'),
             'pencatat' => $this->input->post('pencatat'),
         );
 
-        $logging=$this->m_keuangan->aksi_input_jurnal('tabel_jurnal', $data);
+        $logging=$this->m_keuangan->aksi_input_jurnal('tabel_transaksi', $data);
         if($logging)
         {
             $this->session->set_flashdata('sukses', 'berhasil');
@@ -251,7 +253,7 @@ class Keuangan extends CI_Controller
 
     public function hapus_jurnal($id)
     {
-        $hapus=$this->m_keuangan->hapus_jurnal('tabel_jurnal', 'id_jurnal', $id);
+        $hapus=$this->m_keuangan->hapus_jurnal('tabel_transaksi', 'id_transaksi', $id);
         if($hapus)
         {
             $this->session->set_flashdata('sukses', 'Berhasil..');
@@ -269,22 +271,47 @@ class Keuangan extends CI_Controller
    public function laporan_jurnalpenyesuaian()
    {
        $this->load->model('M_keuangan');
-       // $data['data_akun'] = $this->m_keuangan->get_all_data_akun('data_akun');
-       $this->load->view('keuangan/laporan/laporan_jurnalpenyesuaian');
+       $data['data_akun'] = $this->m_keuangan->get_all_akun('data_akun');
+       $data['data_transaksi'] = $this->m_keuangan->get_data_transaksi('data_transaksi');
+       $this->load->view('keuangan/laporan/laporan_jurnalpenyesuaian', $data);
+   }
+   public function filter_tanggal()
+   {
+      $tanggalawal = $this->input->post('tanggalawal');
+      $tanggalakhir = $this->input->post('tanggalakhir');
+      $lapjurnal = $this->input->post('lapjurnal');
+
+      if($lapjurnal = 1) {
+          $data['data_transaksi'] = $this->m_keuangan->filter_bytanggal($tanggalawal,$tanggalakhir);
+          $this->load->view('Keuangan/laporan/laporan_jurnalpenyesuaian', $data);
+      }
    }
  //Laporan Buku Besar
    public function laporan_bukubesar()
    {
        $this->load->model('M_keuangan');
-       // $data['data_akun'] = $this->m_keuangan->get_all_data_akun('data_akun');
-       $this->load->view('keuangan/laporan/laporan_bukubesar');
+       $data['datafilter'] = $this->m_keuangan->filter_namakun("nama_akun");
+       $data['data_akun'] = $this->m_keuangan->get_all_akun('data_akun');
+       $this->load->view('keuangan/laporan/laporan_bukubesar', $data);
    }
+   function filter_namakun(){
+        $data['data_akun'] = $this->m_keuangan->get_all_akun('data_akun');
+        $nama_akun = $this->input->post('nama_akun');
+        $nilaifilter = $this->input->post('nilaifilter');
+
+        if($nilaifilter = 1) {
+            $data['datafilter'] = $this->m_keuangan->filter_namakun($nama_akun);
+            $data['nama_akun'] = $this->m_keuangan->akun('tabel_akun', $nama_akun)->result();
+            
+            $this->load->view('keuangan/laporan/filter_namakun', $data);
+        }
+    }
  //Laporan Neraca Lajur
    public function laporan_neracalajur()
    {
        $this->load->model('M_keuangan');
-       // $data['data_akun'] = $this->m_keuangan->get_all_data_akun('data_akun');
-       $this->load->view('keuangan/laporan/laporan_neracalajur');
+       $data['data_akun'] = $this->m_keuangan->get_all_akun('data_akun');
+       $this->load->view('keuangan/laporan/laporan_neracalajur', $data);
    }
 
 // Pembayaran

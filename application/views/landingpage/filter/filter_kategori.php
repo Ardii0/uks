@@ -14,9 +14,9 @@
 <body class="hold-transition layout-fixed" style="background-color: #E5E7EB" data-panel-auto-height-mode="height">
 <div class="container-fluid py-3 fixed-top mb-2 bg-light">
         <div class="container d-flex justify-content-between align-items-center">
-            <div class="text-Dark">
+             <a href="<?php echo base_url ('Landingpage/daftar_buku')?>"> <div class="text-dark">
                 <h3>E-Perpus</h3>
-            </div>
+            </div></a>
             <div class="d-flex gap-4 justify-content-between align-items-center">
                 <div class="input-group px-2 w-100">
                 </div>

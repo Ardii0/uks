@@ -54,14 +54,14 @@
                                 <table id="datasiswa-table" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Akun</th>
+                                            <th rowspan="2" class="align-top">Akun</th>
                                             <th colspan="2">Neraca Saldo</th>
                                             <th colspan="2">Penyesuaian</th>
                                             <th colspan="2">Rugi/Laba</th>
                                             <th colspan="2">Neraca</th>
                                         </tr>
                                         <tr>
-                                            <th></th>
+                                            
                                             <th>Debit</th>
                                             <th>Kredit</th>
                                             <th>Debit</th>
@@ -73,12 +73,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <?php $id = 0;foreach ($data_akun as $data): $id++;?>
                                         <tr>
                                             <td>
-                                                Beban Gaji
+                                            <?php echo $data->nama_akun ?>
                                             </td>
                                             <td>
-                                                Rp 19.000.000
+                                               
                                             </td>
                                             <td>
                                                 -
@@ -102,6 +103,7 @@
                                                 -
                                             </td>
                                         </tr>
+                                        <?php endforeach;?>
                                         <tr>
                                             <td> <strong>
                                                 Total

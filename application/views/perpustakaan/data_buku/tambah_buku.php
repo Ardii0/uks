@@ -45,7 +45,7 @@
                                                 <div class="form-group ">
                                                     <label class=" control-label">Rak Buku</label>
                                                     <div class="">
-                                                        <select name="rak_buku_id"
+                                                    <select name="rak_buku_id"
                                                             class="custom-select custom-select-md mb-3">
                                                             <option selected>-- Pilih Rak --</option>
                                                             <?php $no = 0;foreach ($data_rak_buku as $row): $no++;?>
@@ -111,7 +111,9 @@
                                         </div>
                                           </div>
                                         </div>
-                                        <div class="form-group">
+                                      
+                                        <div class="row">
+                                        <div class="col form-group">
                                             <label class="control-label">Keterangan</label>
                                             <div class="">
                                                 <input type="text" name="keterangan" class="form-control"
@@ -158,7 +160,7 @@
 
             reader.readAsDataURL(input.files[0]);
         }
-        }
+    }
         </script>
 
 </body>
