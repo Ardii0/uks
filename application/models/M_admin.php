@@ -2,6 +2,57 @@
 
 class M_admin extends CI_Model
 {
+	//Get Data User
+	public function get_user()
+	{
+		return $this->db->get('tabel_level')->result();
+	}
+
+	public function get_user_by_id($id_level)
+    {
+        $data=$this->db->where('id_level', $id_level)->get('tabel_level');
+        return $data;
+    }
+
+	public function get_userByLogin($table)
+	{
+		$data = $this->db->get_where('tabel_level', array('id_level' => $this->session->userdata('id_level')));
+		return $data;
+	}
+	
+	// Get Data Sekolah
+	public function get_sekolah($table)
+    {
+        $data=$this->db->where('id_sekolah', '1')->get($table);
+        return $data;
+    }
+
+	public function ubah_setting_sekolah($tabel, $data, $where)
+	{
+		$data=$this->db->update($tabel, $data, $where);
+		return $this->db->affected_rows();
+	}
+
+	// Get Data Setting Perpustakaan
+	public function get_setting_perpus()
+	{
+		return $this->db->get('setting_perpustakaan')->result();
+	}
+
+	public function get_setting_perpusById($table)
+    {
+        $data=$this->db->where('id_setting_perpus', '1')->get($table);
+        return $data;
+    }
+
+	public function ubah_setting_perpus($tabel, $data, $where)
+    {
+        $data=$this->db->update($tabel, $data, $where);
+        return $this->db->affected_rows();
+    }
+
+	// Naon Eta
+
 	public function tambah($tabel, $data)
 	{
 		$this->db->insert($tabel, $data);

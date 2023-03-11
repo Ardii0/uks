@@ -27,10 +27,7 @@
                 <div class="row lp-card">
                     <a href="">
                         <img src="https://perpusnas.go.id/images/www/isbn.png" alt="">
-                    </a>
-                    <a href="">
-                        Tes <br>
-                        tes
+                        Tes
                     </a>
                 </div>
                 <div class="lp-card">

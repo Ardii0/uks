@@ -87,6 +87,24 @@
                                             <th style="width: 150px;">Aksi</th>
                                         </tr>
                                     </thead>
+                                    <tbody>
+                                        <?php $id=0; foreach ($alokasi as $data): $id++?>
+                                        <tr>
+                                            <td><?php echo $id ?></td>
+                                            <td><?php echo tampil_rombel_byid($data->id_rombel)?></td>
+                                            <td class="grid gap-3">
+                                                <a href="<?php echo base_url('Nilai/data_nilai_siswa/'.$data->id_mapel.'/1')?>"
+                                                    class="btn btn-success btn-sm">
+                                                    Ganjil
+                                                </a>
+                                                <a href="<?php echo base_url('Nilai/data_nilai_siswa/'.$data->id_mapel.'/2')?>"
+                                                    class="btn btn-success btn-sm">
+                                                    Genap
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

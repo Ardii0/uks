@@ -19,7 +19,7 @@
         <?php $this->load->view('petugas/style/sidebar')?>
         <!-- Sidebar -->
 
-        <div class="content-wrapper">
+        <div class="content-wrapper p-2">
             <div class="container-fluid">
                 <section class="content">
                     <!-- <div class="container-fluid"> -->
@@ -64,7 +64,8 @@
                                     <i class="fas fa-user"></i>
                                 </div>
                                 <a href="<?php echo base_url('Akademik/siswa')?>" class="small-box-footer">More info
-                                    <i class="fa fa-arrow-circle-right"></i></a>
+                                    <i class="fa fa-arrow-circle-right"></i>
+                                </a>
                             </div>
                         </div>
                         <div class="col-lg-4 col-6">
@@ -87,202 +88,6 @@
                                 <div class="inner">
                                     <h3>Jumlah</h3>
                                     <p>Paket Jenjang</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-graduation-cap"></i>
-                                </div>
-                                <a href="<?php echo base_url('Akademik/jenjang')?>" class="small-box-footer">More info
-                                    <i class="fa fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-6">
-                            <!-- small box -->
-                            <div class="small-box btn-success">
-                                <div class="inner">
-                                    <h3>3</h3>
-                                    <p>Jumlah Paket Jenjang</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-graduation-cap"></i>
-                                </div>
-                                <a href="<?php echo base_url('Akademik/jenjang')?>" class="small-box-footer">More info
-                                    <i class="fa fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-6">
-                            <!-- small box -->
-                            <div class="small-box btn-success">
-                                <div class="inner">
-                                    <h3>3</h3>
-                                    <p>Jumlah Paket Jenjang</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-graduation-cap"></i>
-                                </div>
-                                <a href="<?php echo base_url('Akademik/jenjang')?>" class="small-box-footer">More info
-                                    <i class="fa fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-6">
-                            <!-- small box -->
-                            <div class="small-box btn-success">
-                                <div class="inner">
-                                    <h3>3</h3>
-                                    <p>Jumlah Paket Jenjang</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-graduation-cap"></i>
-                                </div>
-                                <a href="<?php echo base_url('Akademik/jenjang')?>" class="small-box-footer">More info
-                                    <i class="fa fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-6">
-                            <!-- small box -->
-                            <div class="small-box btn-success">
-                                <div class="inner">
-                                    <h3>3</h3>
-                                    <p>Jumlah Paket Jenjang</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-graduation-cap"></i>
-                                </div>
-                                <a href="<?php echo base_url('Akademik/jenjang')?>" class="small-box-footer">More info
-                                    <i class="fa fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-6">
-                            <!-- small box -->
-                            <div class="small-box btn-success">
-                                <div class="inner">
-                                    <h3>3</h3>
-                                    <p>Jumlah Paket Jenjang</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-graduation-cap"></i>
-                                </div>
-                                <a href="<?php echo base_url('Akademik/jenjang')?>" class="small-box-footer">More info
-                                    <i class="fa fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-6">
-                            <!-- small box -->
-                            <div class="small-box btn-success">
-                                <div class="inner">
-                                    <h3>3</h3>
-                                    <p>Jumlah Paket Jenjang</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-graduation-cap"></i>
-                                </div>
-                                <a href="<?php echo base_url('Akademik/jenjang')?>" class="small-box-footer">More info
-                                    <i class="fa fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-6">
-                            <!-- small box -->
-                            <div class="small-box btn-success">
-                                <div class="inner">
-                                    <h3>3</h3>
-                                    <p>Jumlah Paket Jenjang</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-graduation-cap"></i>
-                                </div>
-                                <a href="<?php echo base_url('Akademik/jenjang')?>" class="small-box-footer">More info
-                                    <i class="fa fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-6">
-                            <!-- small box -->
-                            <div class="small-box btn-success">
-                                <div class="inner">
-                                    <h3>3</h3>
-                                    <p>Jumlah Paket Jenjang</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-graduation-cap"></i>
-                                </div>
-                                <a href="<?php echo base_url('Akademik/jenjang')?>" class="small-box-footer">More info
-                                    <i class="fa fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-6">
-                            <!-- small box -->
-                            <div class="small-box btn-success">
-                                <div class="inner">
-                                    <h3>3</h3>
-                                    <p>Jumlah Paket Jenjang</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-graduation-cap"></i>
-                                </div>
-                                <a href="<?php echo base_url('Akademik/jenjang')?>" class="small-box-footer">More info
-                                    <i class="fa fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-6">
-                            <!-- small box -->
-                            <div class="small-box btn-success">
-                                <div class="inner">
-                                    <h3>3</h3>
-                                    <p>Jumlah Paket Jenjang</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-graduation-cap"></i>
-                                </div>
-                                <a href="<?php echo base_url('Akademik/jenjang')?>" class="small-box-footer">More info
-                                    <i class="fa fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-6">
-                            <!-- small box -->
-                            <div class="small-box btn-success">
-                                <div class="inner">
-                                    <h3>3</h3>
-                                    <p>Jumlah Paket Jenjang</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-graduation-cap"></i>
-                                </div>
-                                <a href="<?php echo base_url('Akademik/jenjang')?>" class="small-box-footer">More info
-                                    <i class="fa fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-6">
-                            <!-- small box -->
-                            <div class="small-box btn-success">
-                                <div class="inner">
-                                    <h3>3</h3>
-                                    <p>Jumlah Paket Jenjang</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-graduation-cap"></i>
-                                </div>
-                                <a href="<?php echo base_url('Akademik/jenjang')?>" class="small-box-footer">More info
-                                    <i class="fa fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-6">
-                            <!-- small box -->
-                            <div class="small-box btn-success">
-                                <div class="inner">
-                                    <h3>3</h3>
-                                    <p>Jumlah Paket Jenjang</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-graduation-cap"></i>
-                                </div>
-                                <a href="<?php echo base_url('Akademik/jenjang')?>" class="small-box-footer">More info
-                                    <i class="fa fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-6">
-                            <!-- small box -->
-                            <div class="small-box btn-success">
-                                <div class="inner">
-                                    <h3>3</h3>
-                                    <p>Jumlah Paket Jenjang</p>
                                 </div>
                                 <div class="icon">
                                     <i class="fa fa-graduation-cap"></i>

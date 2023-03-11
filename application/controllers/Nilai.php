@@ -161,11 +161,17 @@ class Nilai extends CI_Controller {
         }
     }
 
-    public function modul_data_nilai($id_mapel)
+    public function modul_data_nilai()
+    {
+        $data['mapel'] = $this->m_akademik->get_mapel('tabel_mapel');
+        $this->load->view('nilai/data_nilai/modul_data_nilai_siswa', $data);
+    }
+
+    public function modul_data_nilai_filter($id_mapel)
     {
         $data['mapel'] = $this->m_akademik->get_mapel('tabel_mapel');
         $alokasimapel['alokasi']=$this->m_nilai->get_alokasimapelByIdMapel($id_mapel)->result();
-        $this->load->view('nilai/data_nilai/modul_data_nilai_siswa', $data + $alokasimapel);
+        $this->load->view('nilai/data_nilai/modul_data_nilai_siswa_filter', $data + $alokasimapel);
     }
     
     // public function modul_data_nilai_by()

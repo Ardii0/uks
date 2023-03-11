@@ -1,4 +1,4 @@
-<nav class="main-header navbar navbar-expand navbar-white navbar-light mb-3">
+<nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -9,8 +9,8 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-            <a href="<?php echo base_url('Admin/profile') ;?>" class="nav-link h4">
-                <i class="far fa-user"></i>
+            <a href="<?php echo base_url('Admin/setting') ;?>" class="nav-link h4">
+                <i class="fas fa-cog"></i>
             </a>
         </li>
     </ul>
@@ -20,3 +20,13 @@
     <span class="sr-only">Toggle navigation</span>
 </a>
 </nav>
+
+<style>
+.fa-cog {
+    transition: transform .5s ease-in-out;
+}
+
+.fa-cog:hover {
+    transform: rotate(160deg);
+}
+</style>
