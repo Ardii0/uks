@@ -39,6 +39,23 @@ $result = $ci->db->select('*')
   return $namadaftar;
 }
 
+function tampil_idta_ByIdDaftar($id)
+{
+$ci =& get_instance();
+$ci->load->database();
+$idangkatan = '';
+$result = $ci->db->select('*')
+                  ->from('tabel_daftar')
+                  ->join('tabel_tahunajaran','tabel_daftar.id_angkatan = tabel_tahunajaran.id_angkatan')
+                  ->where('tabel_daftar.id_daftar',$id)
+                  ->get();
+  foreach ($result->result() as $c) {
+  $stmt= $c->id_angkatan;
+  $idangkatan= $idangkatan.$stmt;
+  }
+  return $idangkatan;
+}
+
 function tampil_tahunangkatan_byid($id)
 {
  $ci =& get_instance();
@@ -617,4 +634,15 @@ function tampil_nama_siswa_byid($id)
     return $stmt;
     }
   }
+  function tampil_jenisbayarById($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_jenis',$id)->get('tabel_jenisbayar');
+    foreach ($result->result() as $c) {
+    $stmt= $c->nama_jenis;
+    return $stmt;
+    }
+  }
+
 ?>

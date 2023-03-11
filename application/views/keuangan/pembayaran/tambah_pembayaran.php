@@ -39,7 +39,6 @@
             <section class="content">
                 <div class="container-fluid bg-white shadow p-3">
                     <div class="row">
-                        <!-- <div class="col-5"> -->
                         <!-- <form class="col-5" action="<?php echo base_url('Keuangan/form_tambah_pembayaran/') ?>" enctype="multipart/form-data" method="post"> -->
                         <?php echo form_open('Keuangan/direct', array('class' => 'col-5', 'id' => 'form')); ?>
                             <div class="row mt-3">
@@ -82,7 +81,6 @@
                                     <button type="submit" class="btn btn-primary">Input</button>
                                 </div>
                             </div>
-                        <!-- </div> -->
                         </form>
                     </div>
                 </div>
@@ -128,7 +126,7 @@
                         var i;
                         html += '<option>Pilih Siswa</option>';
                         for(i=0; i<data.length; i++){
-                            html += '<option value='+data[i].id_siswa+'>'+data[i].id_siswa+'</option>';
+                            html += '<option value='+data[i].id_siswa+'>'+data[i].nama+'</option>';
                         }
                         $('#siswa').html(html);
  

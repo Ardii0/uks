@@ -44,6 +44,9 @@
                                         <option value="<?php echo $data->id_rombel ?>"><?php echo $data->nama_rombel ?></option>
                                     <?php endforeach ?>
                                 </select>
+                                <!-- <?php $id=0; foreach($daftar as $daftar ): $id++; ?>
+                                    <input type="text" name="nama" value="<?php echo $daftar->nama ?>">
+                                <?php endforeach ?> -->
                                 </div>
                             </div>
                             <button type="submit" class="btn bg-info" style="height: 38px">SIMPAN</button>
@@ -82,7 +85,8 @@
                                                 <td><?php echo $data->no_reg ?></td>
                                                 <td><?php echo tampil_tahunangkatan_byid($data->id_angkatan) ?></td>
                                                 <td><?php echo tampil_namajenjang_byid($data->id_jenjang) ?></td>
-                                                <td><?php echo $data->nama ?></td>
+                                                <td><?php echo $data->nama ?>
+                                                    <input type="hidden" name="nama" value="<?php echo $data->nama ?>"></td>
                                                 <td><?php echo $data->jekel ?></td>
                                                 <td><?php echo $data->tempat_lahir ?></td>
                                                 <td><?php echo $data->tgl_lahir ?></td>

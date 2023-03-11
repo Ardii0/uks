@@ -106,25 +106,36 @@ class M_keuangan extends CI_Model{
 	}
 
 // Pembayaran
-    public function get_siswaById($tabel, $id_siswa)
+    public function get_jenjangByIdSiswafromDaftar($id_daftar)
     {
-        $data = $this->db->where('id_siswa', $id_siswa)->get($tabel)->result();
+        $data = $this->db->where('id_daftar', $id_daftar)->get('tabel_siswa')->result();
         return $data;
     }
 
     function get_rombelByIdKelas($id_kelas){
         $query = $this->db->get_where('tabel_rombel', array('id_kelas' => $id_kelas));
         return $query;
-      }
-    
-      function get_siswaByIdRombel($id_rombel){
+    }
+
+    function get_siswaByIdRombel($id_rombel){
+        // $this->db->select('tabel_daftar.nama, tabel_siswa.*');
+        // $this->db->from('tabel_siswa');
+        // $this->db->join('tabel_daftar', 'tabel_daftar.id_daftar = tabel_siswa.id_daftar');
+        // $this->db->where('tabel_siswa.id_rombel', $id_rombel);
         $query = $this->db->get_where('tabel_siswa', array('id_rombel' => $id_rombel));
+        // $db = $this->db->get();
         return $query;
-      }
-    
+        // return $db;
+    }
+
     public function get_pembayaran()
     {
         return $this->db->get('tabel_pembayaran')->result();
+    }
+
+    public function get_pembayaranByIdSiswa($ids)
+    {
+        return $this->db->where('id_siswa', $ids)->get('tabel_pembayaran')->result();
     }
 
     public function get_jenisbayar()

@@ -352,20 +352,32 @@ class Keuangan extends CI_Controller
     }
 
     public function direct(){
-        $enc = base64_encode($this->input->post('id_siswa'));
+        $enc = $this->input->post('id_siswa');
         redirect('Keuangan/form_tambah_pembayaran/'.$enc);
     }
 
-    public function form_tambah_pembayaran()
+	public function rig($long)
+	{
+		$char = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0987654321';
+		$string = '';
+		for ($i=0; $i < $long; $i++) { 			
+			$pos = rand(0, strlen($char)-1);
+			$string .= $char[$pos];
+		}
+		return $string;
+	}
+
+    public function form_tambah_pembayaran($ids)
     {
         // if(!empty($this->session->userdata('id_siswa'))) {
         //    $ids = $this->session->userdata('id_siswa');
-           $ids = base64_decode($this->uri->segment(3));
+		//    $ids = base64_decode($this->uri->segment(3));
         
            $data['dt'] = $this->m_keuangan->ambil('tabel_level',array('id_level'=>$this->session->userdata('id_level')))->row();
            $data['siswa'] = $this->m_keuangan->get_siswaById('tabel_siswa', $ids);
+           $data['jenjang'] = $this->m_keuangan->get_jenjangByIdSiswafromDaftar($ids);
            $data['jenisbayar'] = $this->m_keuangan->get_jenisbayar();
-           $data['pembayaran'] = $this->m_keuangan->get_pembayaran();
+           $data['pembayaran'] = $this->m_keuangan->get_pembayaranByIdSiswa($ids);
            $data['content'] = 'keuangan/tambah_pembayaran';
 
            $this->load->view('keuangan/pembayaran/form_tambah_pembayaran', $data);
@@ -376,15 +388,18 @@ class Keuangan extends CI_Controller
 
     public function aksi_tambah_pembayaran()
     {
+		$idt = 'INV'.date('md').$this->rig(3).date('is');
         $data = [
+            'id_tf' => $idt,
             'id_siswa' => $this->input->post('id_siswa'),
             'id_jenis' => $this->input->post('id_jenis'),
             'nominal' => $this->input->post('nominal'),
             'keterangan' => $this->input->post('keterangan'),
+            'id_ta' => $this->input->post('id_ta'),
             'akuntan' => $this->input->post('akuntan'),
         ];
         $this->m_keuangan->tambah_pembayaran('tabel_pembayaran', $data);
-        redirect(base_url('Keuangan/form_tambah_pembayaran'));
+        redirect(base_url('Keuangan/form_tambah_pembayaran/'.$this->input->post('id_siswa')));
     }
 
     public function cetak_invoice()

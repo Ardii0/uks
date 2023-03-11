@@ -43,28 +43,20 @@
                         <div class="col-5">
                             <?php $id=0; foreach ($siswa as $data): $id++; ?>
                                 <div class="row mt-3">
-                                    <div class="col-4 text-right font-weight-bold">ID Transaksi</div>
-                                    <div class="col-8">
-                                        Dicoba buat generate nanti hehe
-                                    </div>
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-4 text-right font-weight-bold">Nama</div>
                                     <div class="col-8">
                                         <?php echo tampil_namadaftar_ByIdSiswa($data->id_siswa) ;?>
                                         <input type="hidden" name="id_siswa" value="<?php echo $data->id_siswa ;?>">
+                                        <input type="hidden" name="id_ta" value="<?php echo tampil_idta_ByIdDaftar($data->id_daftar) ;?>">
                                         <input type="hidden" name="akuntan" value="<?php echo $dt->email ;?>">
                                     </div>
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-4 text-right font-weight-bold">Kelas/Rombel</div>
-                                    <div class="col-8 d-flex">
-                                        <span>
-                                            <?php echo tampil_kelasdaftar_ByIdSiswa($data->id_siswa) ;?>
-                                        </span>&nbsp;
-                                        <span>
-                                            <?php echo tampil_rombeldaftar_ByIdSiswa($data->id_siswa) ;?>
-                                        </span>
+                                    <div class="col-8">
+                                        <?php echo tampil_rombeldaftar_ByIdSiswa($data->id_siswa) ;?>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
@@ -123,8 +115,8 @@
                                         <tr>
                                             <td><?php echo $id?></td>
                                             <td><?php echo $databayar->date?></td>
-                                            <td><?php echo $id?></td>
-                                            <td><?php echo $databayar->id_jenis?></td>
+                                            <td><?php echo $databayar->id_tf?></td>
+                                            <td><?php echo tampil_jenisbayarById($databayar->id_jenis)?></td>
                                             <td><?php echo $databayar->keterangan?></td>
                                             <td><?php echo $databayar->nominal?></td>
                                             <td><?php echo $databayar->akuntan?></td>

@@ -72,7 +72,7 @@
                                             <tr>
                                                 <td><?php echo $id?></td>
                                                 <td><?php echo $history->date?></td>
-                                                <td><?php echo $id?></td>
+                                                <td><?php echo $history->id_pembayaran?></td>
                                                 <td class="d-flex">
                                                     <span>
                                                         <?php echo tampil_namadaftar_ByIdSiswa($history->id_siswa)?>
