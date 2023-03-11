@@ -535,7 +535,7 @@ class Admin extends CI_Controller {
     public function setting()
     {
         $data['data_user'] = $this->M_admin->get_user('data_user');
-        $data['setting_perpustakan'] = $this->M_admin->get_setting_perpus('setting_perpustakan');
+        $data['setting_perpustakan']=$this->M_admin->get_setting_perpus('setting_perpustakaan')->result();
         $data['sekolah']=$this->M_admin->get_sekolah('tabel_sekolah')->result();
         $data['user']=$this->M_admin->get_userByLogin('tabel_level')->result();
         $this->load->view('petugas/setting/setting', $data);
@@ -579,7 +579,7 @@ class Admin extends CI_Controller {
 
     public function setting_perpustakaan()
     {
-        $data['perpus']=$this->M_admin->get_setting_perpusById('setting_perpustakaan')->result();
+        $data['perpus']=$this->M_admin->get_setting_perpus('setting_perpustakaan')->result();
         $this->load->view('petugas/setting/setting_perpustakaan', $data);
     }
 

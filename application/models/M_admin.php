@@ -34,12 +34,7 @@ class M_admin extends CI_Model
 	}
 
 	// Get Data Setting Perpustakaan
-	public function get_setting_perpus()
-	{
-		return $this->db->get('setting_perpustakaan')->result();
-	}
-
-	public function get_setting_perpusById($table)
+	public function get_setting_perpus($table)
     {
         $data=$this->db->where('id_setting_perpus', '1')->get($table);
         return $data;
