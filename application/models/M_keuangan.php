@@ -117,6 +117,12 @@ class M_keuangan extends CI_Model{
         return $query;
     }
 
+    public function get_siswaById($tabel, $id_siswa)
+    {
+        $data=$this->db->where('id_siswa', $id_siswa)->get($tabel);
+        return $data;
+    }
+
     function get_siswaByIdRombel($id_rombel){
         // $this->db->select('tabel_daftar.nama, tabel_siswa.*');
         // $this->db->from('tabel_siswa');

@@ -21,7 +21,7 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="<?php echo base_url('Nilai') ;?>" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Dashboard
@@ -29,7 +29,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url('nilai/modul_input_nilai') ?>" class="nav-link">
+                        <a href="<?php echo base_url('Nilai/modul_input_nilai') ?>" class="nav-link">
                             <i class="nav-icon fas fa-percent"></i>
                             <p>
                                 Input Nilai
@@ -37,7 +37,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url('nilai/modul_data_nilai') ?>" class="nav-link">
+                        <a href="<?php echo base_url('Nilai/modul_data_nilai') ?>" class="nav-link">
                             <i class="nav-icon fas fa-folder-open"></i>
                             <p>
                                 Data Nilai
@@ -45,7 +45,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="cetakbang" class="nav-link">
+                        <a href="<?php echo base_url('Nilai/cetak_raport') ;?>" class="nav-link">
                             <i class="nav-icon fas fa-print"></i>
                             <p>
                                 Cetak Rapot

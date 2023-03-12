@@ -267,7 +267,7 @@ class Keuangan extends CI_Controller
     }
 
 // Laporan
-   //Laporan Jurnal Penyesuaian
+ //Laporan Jurnal Penyesuaian
    public function laporan_jurnalpenyesuaian()
    {
        $this->load->model('M_keuangan');
@@ -374,7 +374,7 @@ class Keuangan extends CI_Controller
 		//    $ids = base64_decode($this->uri->segment(3));
         
            $data['dt'] = $this->m_keuangan->ambil('tabel_level',array('id_level'=>$this->session->userdata('id_level')))->row();
-           $data['siswa'] = $this->m_keuangan->get_siswaById('tabel_siswa', $ids);
+           $data['siswa'] = $this->m_keuangan->get_siswaById('tabel_siswa', $ids)->result();
            $data['jenjang'] = $this->m_keuangan->get_jenjangByIdSiswafromDaftar($ids);
            $data['jenisbayar'] = $this->m_keuangan->get_jenisbayar();
            $data['pembayaran'] = $this->m_keuangan->get_pembayaranByIdSiswa($ids);

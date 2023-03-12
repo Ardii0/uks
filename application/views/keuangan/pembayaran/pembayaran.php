@@ -59,7 +59,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Tanggal</th>
-                                            <th>Id Transaksi</th>
+                                            <th>ID Transaksi</th>
                                             <th>Nama/Rombel</th>
                                             <th>Jenis Bayar</th>
                                             <th>Keterangan</th>
@@ -72,7 +72,7 @@
                                             <tr>
                                                 <td><?php echo $id?></td>
                                                 <td><?php echo $history->date?></td>
-                                                <td><?php echo $history->id_pembayaran?></td>
+                                                <td><?php echo $history->id_tf?></td>
                                                 <td class="d-flex">
                                                     <span>
                                                         <?php echo tampil_namadaftar_ByIdSiswa($history->id_siswa)?>
