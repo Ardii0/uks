@@ -167,6 +167,7 @@ class Login extends CI_Controller {
             $data_session['id_level'] = $sess->id_level;
             $data_session['username'] = $sess->username;
             $data_session['password'] = $sess->password;
+            $data_session['kode_guru'] = $sess->kode_guru;
             // $data_session['cdate'] = $sess->cdate;
             // $data_session['lv'] = $sess->level;
             $data_session['status_nilai'] = "login";
@@ -203,7 +204,7 @@ class Login extends CI_Controller {
   else{
     //$this->session->set_userdata('blank',$data_session);
     $this->session->set_flashdata('pesan','<div class="alert alert-danger">Username atau Password yang anda masukan salah!</div>');
-    // redirect(base_url().'login');
+    redirect(base_url().'login');
   }
   }
 

@@ -39,62 +39,22 @@
                         <div class="col-md-3">
                             <h4><u>Wali Kelas:</u></h4>
                             <h3><?php echo $dt->username ;?></h3>
-                            <div class="alert alert-success d-flex">
-                                    <span></span>
-                                    <span>&nbsp;/&nbsp;</span>
-                                    <span></span>
-                                    <span>&nbsp;/&nbsp;</span>
-                                    <span>Siswa</span>
-                                <!-- <?php foreach($kelas as $wakel) {?> -->
-                                <!-- <?php } ?> -->
-                            </div>
+                            <?php foreach($rombel as $key) {?>
+                                <div class="alert alert-success d-flex" onclick="show_siswa(<?php echo $key->id_rombel ?>)">
+                                    <?php echo $key->nama_kelas." / ".$key->nama_rombel." / ".$key->jml." Siswa<br/>" ?>
+                                </div>
+                            <?php } ?>
                         </div>
-                        <div class="col bg-white">
-                            <div class="card-body">
+                        <div class="col">
+                            <div class="card-body bg-white" id="box">
                                 <table id="data-table" class="table table-bordered table-striped">
                                     <thead class="bg-dark">
                                         <tr>
                                             <th style="width: 4%;">No</th>
                                             <th>Nama</th>
-                                            <th style="width: 15%;">Semester</th>
+                                            <th style="width: 30%;">Semester</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                            <tr>
-                                                <td>
-                                                    <!-- <?php echo $id ?> -->
-                                                </td>
-                                                <td>
-                                                    <!-- <?php echo $data->nama_mapel ?> -->
-                                                </td>
-                                                <td class="d-flex">
-                                                    <div class="btn-group">
-                                                        <div class="btn btn-success">Ganjil</div>
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn btn-success dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="#"><i class="fas fa-print"></i>&nbsp;Cetak PDF</a>
-                                                                <a class="dropdown-item" href="#"><i class="fas fa-print"></i>&nbsp;Cetak Excel</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>&nbsp;
-                                                    <div class="btn-group">
-                                                        <div class="btn btn-success">Genap</div>
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn btn-success dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="#"><i class="fas fa-print"></i>&nbsp;Cetak PDF</a>
-                                                                <a class="dropdown-item" href="#"><i class="fas fa-print"></i>&nbsp;Cetak Excel</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        <!-- <?php $id=0; foreach ($mapel as $data): $id++?> -->
-                                        <!-- <?php endforeach; ?> -->
-                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -104,6 +64,67 @@
         </div>
     </div>
     <?php $this->load->view('nilai/style/js')?>
+    <script>
+        
+        function show_siswa(id) {
+            $.ajax({
+            url : "<?php echo site_url('Nilai/get_siswa')?>/" + id,
+            type: "GET",
+            dataType: "JSON",
+            success: function(data)
+                {
+                    var html = '';
+                    var html2 = '';
+                    var html3 = '';
+                    var i;
+                    var no = 1;
+                    html3 += "<div class='box box-primary'>" +            	         
+                    "<div class='box-body'>" +
+                        "<div class='row'>" +
+                            "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12' id='table'>" +
+
+                            "</div>" +						
+                        "</div>" +
+                    "</div>" +
+                    "</div>";
+                
+                    html2 += "<table class='table table-bordered table-hover' id='exa'>" +
+                        "<thead class='bg-dark'>" +
+                            "<tr class='active'>" +
+                                "<th width='1%'>No</th>" +
+                                // "<th>NIS</th>" +
+                                "<th>Nama</th>" +	            			
+                                "<th width='30%'>Semester</th>" +	            			
+                            "</tr>"+
+                        "</thead>" +
+                        "<tbody id='show'>" +
+                            
+                        "</tbody>" +
+                    "</table>";
+                    for(i = 0; i < data.length; i++){
+                    html += "<tr>"+
+                    "<td>"+no+++"</td>"+
+                    // "<td>"+data[i].id_daftar+"</td>"+	              
+                    "<td>"+data[i].nama+"</td>"+	              
+                    "<td>"+
+                    "<div class='btn-group'><div class='btn btn-success'>Ganjil</div><div class='btn-group'><button type='button' class='btn btn-success dropdown-toggle dropdown-icon' data-toggle='dropdown'></button><div class='dropdown-menu'><a class='dropdown-item' href='cetaknilai/raportpdf/"+data[i].id_siswa+"/"+data[i].id_rombel+"/1/pdf'><i class='fas fa-print'></i>&nbsp;Cetak PDF</a><a class='dropdown-item' href='cetaknilai/raportpdf/"+data[i].id_siswa+"/"+data[i].id_rombel+"/1/excel'><i class='fas fa-print'></i>&nbsp;Cetak Excel</a></div></div></div>&nbsp;"+
+                    "<div class='btn-group'><div class='btn btn-success'>Genap</div><div class='btn-group'><button type='button' class='btn btn-success dropdown-toggle dropdown-icon' data-toggle='dropdown'></button><div class='dropdown-menu'><a class='dropdown-item' href='cetaknilai/raportpdf/"+data[i].id_siswa+"/"+data[i].id_rombel+"/2/pdf'><i class='fas fa-print'></i>&nbsp;Cetak PDF</a><a class='dropdown-item' href='cetaknilai/raportpdf/"+data[i].id_siswa+"/"+data[i].id_rombel+"/2/excel'><i class='fas fa-print'></i>&nbsp;Cetak Excel</a></div></div></div>"+
+                    "</td>"+ 
+                    "</tr>";
+                    }	       	                   	           
+                    $('#box').html(html3);           	                    		     				
+                    $('#table').html(html2);           	                    		     				
+                    $('#show').html(html);   
+                    $('#exa').DataTable();
+
+                },
+                error: function (jqXHR, textStatus, errorThrown){
+                    alert('Error get data from ajax');
+                }
+            });
+        }	
+
+    </script>
 
 </body>
 

@@ -190,7 +190,19 @@ class Nilai extends CI_Controller {
     public function cetak_raport()
     {
         $this->load->model('m_keuangan');
+	    $cek = $this->m_nilai->cek_wali()->num_rows();
+	    if ($cek > 0) {
+            $data['rombel'] = $this->m_nilai->get_rombel_raport()->result();    	
+	    }
+        $data['siswaPerRombel'] = $this->m_keuangan->ambil('tabel_siswa','id_rombel')->row();
+        $data['rombelPerWakel'] = $this->m_keuangan->ambil('tabel_rombel',array('kode_guru'=>$this->session->userdata('kode_guru')))->row();
         $data['dt'] = $this->m_keuangan->ambil('tabel_level',array('id_level'=>$this->session->userdata('id_level')))->row();
         $this->load->view('nilai/raport/raport', $data);
     }
+
+	public function get_siswa($id)
+	{
+		$data = $this->m_nilai->entrynew($id)->result();
+		echo json_encode($data);
+	}
 }
