@@ -20,7 +20,9 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Pembagian Kelas</h1>
+                        <?php foreach ($filter as $data): ?>
+                            <h1>Pembagian Kelas Jenjang <?php echo tampil_namajenjang_byid($data->id_jenjang) ?> </h1>
+                            <?php endforeach?>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -47,10 +49,10 @@
                                         data-dropdown-css-class="select2-info" style="width: 100%;">
                                         <option>Pilih Jenjang</option>
                                         <?php $id = 0;foreach ($jenjang as $data): $id++;?>
-                                        <option value="<?php echo $data->id_jenjang ?>">
-                                            <?php echo $data->nama_jenjang ?>
-                                        </option>
-                                        <?php endforeach?>
+	                                        <option value="<?php echo $data->id_jenjang ?>">
+	                                            <?php echo $data->nama_jenjang ?>
+	                                        </option>
+	                                        <?php endforeach?>
                                     </select>
                                 </div>
                             </div>
@@ -65,14 +67,14 @@
                                     <select name="id_rombel" class="form-control select2 select2-info"
                                         data-dropdown-css-class="select2-info" style="width: 100%;">
                                         <option selected="selected">Pilih Rombel</option>
-                                        <?php $id=0; foreach($rombel as $data ): $id++; ?>
-                                        <option value="<?php echo $data->id_rombel ?>"><?php echo $data->nama_rombel ?>
-                                        </option>
-                                        <?php endforeach ?>
+                                        <?php $id = 0;foreach ($rombel as $data): $id++;?>
+	                                        <option value="<?php echo $data->id_rombel ?>"><?php echo $data->nama_rombel ?>
+	                                        </option>
+	                                        <?php endforeach?>
                                     </select>
-                                    <!-- <?php $id=0; foreach($daftar as $daftar ): $id++; ?>
-                                    <input type="text" name="nama" value="<?php echo $daftar->nama ?>">
-                                <?php endforeach ?> -->
+                                    <!-- <?php $id = 0;foreach ($daftar as $daftar): $id++;?>
+	                                    <input type="text" name="nama" value="<?php echo $daftar->nama ?>">
+	                                <?php endforeach?> -->
                                 </div>
                             </div>
                             <button type="submit" class="btn bg-info ml-2"
@@ -97,21 +99,21 @@
                                         </thead>
                                         <tbody>
                                             <?php $id = 0;foreach ($data_siswa_diterima as $data): $id++;?>
-                                            <tr>
-                                                <td><input type="checkbox"
-                                                        name="id_daftar[<?php echo $data->id_daftar ?>]"></td>
-                                                <td><?php echo $data->no_reg ?></td>
-                                                <td><?php echo tampil_tahunangkatan_byid($data->id_angkatan) ?></td>
-                                                <td><?php echo tampil_namajenjang_byid($data->id_jenjang) ?></td>
-                                                <td><?php echo $data->nama ?>
-                                                    <input type="hidden" name="nama" value="<?php echo $data->nama ?>">
-                                                </td>
-                                                <td><?php echo $data->jekel ?></td>
-                                                <td><?php echo $data->tempat_lahir ?></td>
-                                                <td><?php echo $data->tgl_lahir ?></td>
-                                                <td><?php echo $data->alamat ?></td>
-                                            </tr>
-                                            <?php endforeach?>
+	                                            <tr>
+	                                                <td><input type="checkbox"
+	                                                        name="id_daftar[<?php echo $data->id_daftar ?>]"></td>
+	                                                <td><?php echo $data->no_reg ?></td>
+	                                                <td><?php echo tampil_tahunangkatan_byid($data->id_angkatan) ?></td>
+	                                                <td><?php echo tampil_namajenjang_byid($data->id_jenjang) ?></td>
+	                                                <td><?php echo $data->nama ?>
+	                                                    <input type="hidden" name="nama" value="<?php echo $data->nama ?>">
+	                                                </td>
+	                                                <td><?php echo $data->jekel ?></td>
+	                                                <td><?php echo $data->tempat_lahir ?></td>
+	                                                <td><?php echo $data->tgl_lahir ?></td>
+	                                                <td><?php echo $data->alamat ?></td>
+	                                            </tr>
+	                                            <?php endforeach?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -125,12 +127,6 @@
     </div>
 
     <?php $this->load->view('akademik/style/js')?>
-
-    <script>
-    function get_by_jenjang(id) {
-        window.location.href = "<?php echo base_url('Akademik/finter_by_jenjang/') ?>" + id;
-    }
-    </script>
 </body>
 
 </html>

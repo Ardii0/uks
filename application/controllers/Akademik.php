@@ -483,17 +483,30 @@ class Akademik extends CI_Controller {
         $this->load->view('akademik/siswa/pembagian_kelas', $data + $jenjang + $rombel);
     }
 
+    public function finter_by_jenjang()
+    {
+        $nama_jenjang = $this->input->post('nama_jenjang');
+        $nilaifilter = $this->input->post('nilaifilter');
+        
+        if($nilaifilter = 1) {
+            $jenjang['jenjang'] = $this->m_akademik->get_jenjang('jenjang');
+            $rombel['rombel'] = $this->m_akademik->get_rombel('rombel');
+            $data['data_siswa_diterima'] = $this->m_akademik->filterByJenjang($nama_jenjang);
+            $data['filter']=$this->m_akademik->get_filter('tabel_jenjang', $nama_jenjang)->result();
+            
+            $this->load->view('akademik/siswa/filter/filter_by_jenjang', $data + $jenjang + $rombel);
+        }
+    }
+
     public function masuk_kelas()
     {
         $id_rombel = $this->input->post('id_rombel');
         $id_daftar = $this->input->post('id_daftar');
-        $nama = $this->input->post('nama');
 
         foreach( $id_daftar as $key => $value){
             $this->db->insert('tabel_siswa', array(
                 'id_rombel' => $id_rombel,
-                'id_daftar' => $key,
-                'nama' => $nama,
+                'id_daftar' => $key
             ));
             $this->m_akademik->ubah_pendaftaran('tabel_siswa', array( 
                 'id_siswa' => $key, 

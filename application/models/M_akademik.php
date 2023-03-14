@@ -189,11 +189,6 @@ class M_akademik extends CI_Model{
         return $this->db->get('tabel_siswa')->result();
     }
 
-    public function get_siswa_kelas()
-    {
-        return $this->db->where('id_rombel', null)->get('tabel_siswa')->result();
-    }
-
     public function get_siswaById($tabel, $id_siswa)
     {
         $data=$this->db->where('id_siswa', $id_siswa)->get($tabel);
@@ -260,6 +255,20 @@ class M_akademik extends CI_Model{
     public function hapus_pendaftaran($tabel, $field, $id_daftar)
 	{
 		$data=$this->db->delete($tabel, array($field => $id_daftar));
+		return $data;
+	}
+    public function filterByJenjang($nama_jenjang){
+        if ($nama_jenjang != null) {
+          $query = $this->db->query("SELECT * from tabel_daftar where diterima = 'Y' AND id_jenjang = '$nama_jenjang' ORDER BY tgl_daftar ASC ");
+        } else {
+          $query = $this->db->query("SELECT * from tabel_daftar");
+        }
+
+        return $query->result();
+	}
+    public function get_filter($tabel, $id_daftar)
+	{
+		$data=$this->db->where('id_jenjang', $id_daftar)->get($tabel);
 		return $data;
 	}
 
