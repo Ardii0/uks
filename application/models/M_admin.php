@@ -2,7 +2,7 @@
 
 class M_admin extends CI_Model
 {
-	//Get Data User
+	//Data User
 	public function get_user()
 	{
 		return $this->db->get('tabel_level')->result();
@@ -19,8 +19,26 @@ class M_admin extends CI_Model
 		$data = $this->db->get_where('tabel_level', array('id_level' => $this->session->userdata('id_level')));
 		return $data;
 	}
-	
-	// Get Data Sekolah
+
+	public function delete_user($tabel, $field, $id_stok)
+    {
+        $data=$this->db->delete($tabel, array($field => $id_stok));
+        return $data;
+    }
+
+	// Hak Akses
+	public function get_hak_akses()
+	{
+		return $this->db->get('tabel_hak_akses')->result();
+	}
+
+	public function ubah_hak_akses($tabel, $data, $where)
+	{
+		$data=$this->db->update($tabel, $data, $where);
+		return $this->db->affected_rows();
+	}
+
+	// Data Sekolah
 	public function get_sekolah($table)
     {
         $data=$this->db->where('id_sekolah', '1')->get($table);
@@ -33,7 +51,7 @@ class M_admin extends CI_Model
 		return $this->db->affected_rows();
 	}
 
-	// Get Data Setting Perpustakaan
+	// Data Setting Perpustakaan
 	public function get_setting_perpus($table)
     {
         $data=$this->db->where('id_setting_perpus', '1')->get($table);

@@ -155,6 +155,28 @@ function tampil_rombel_byid($id)
   }
 }
 
+function tampil_id_kelas_rombel_byid($id)
+{
+ $ci =& get_instance();
+ $ci->load->database();
+ $result = $ci->db->where('id_rombel',$id)->get('tabel_rombel');
+  foreach ($result->result() as $c) {
+  $stmt= $c->id_kelas;
+  return $stmt;
+  }
+}
+
+function tampil_kelas_byid($id)
+{
+ $ci =& get_instance();
+ $ci->load->database();
+ $result = $ci->db->where('id_kelas',$id)->get('tabel_kelas');
+  foreach ($result->result() as $c) {
+  $stmt= $c->nama_kelas;
+  return $stmt;
+  }
+}
+
 function tampil_nama_siswa_byid($id)
 {
  $ci =& get_instance();
@@ -641,6 +663,18 @@ function tampil_nama_siswa_byid($id)
   $result = $ci->db->where('id_jenis',$id)->get('tabel_jenisbayar');
     foreach ($result->result() as $c) {
     $stmt= $c->nama_jenis;
+    return $stmt;
+    }
+  }
+
+  // Hak Akses
+  function tampil_hak_akses($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_hak_akses',$id)->get('tabel_hak_akses');
+    foreach ($result->result() as $c) {
+    $stmt= $c->akses;
     return $stmt;
     }
   }

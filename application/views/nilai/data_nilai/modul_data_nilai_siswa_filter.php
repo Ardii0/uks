@@ -91,7 +91,9 @@
                                         <?php $id=0; foreach ($alokasi as $data): $id++?>
                                         <tr>
                                             <td><?php echo $id ?></td>
-                                            <td><?php echo tampil_rombel_byid($data->id_rombel)?></td>
+                                            <td>
+                                                <?php echo tampil_kelas_byid(tampil_id_kelas_rombel_byid($data->id_rombel))?>
+                                                <?php echo tampil_rombel_byid($data->id_rombel)?></td>
                                             <td class="grid gap-3">
                                                 <a href="<?php echo base_url('Nilai/data_nilai_siswa/'.$data->id_mapel.'/1')?>"
                                                     class="btn btn-success btn-sm">

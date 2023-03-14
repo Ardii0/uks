@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>petugas</title>
     <?php $this->load->view('akademik/style/head') ?>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
@@ -63,28 +64,35 @@
                     <div class="tab-content p-3" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                             aria-labelledby="nav-home-tab">
-                            <table id="data-table2" class="table table-bordered table-striped">
+                            <div class="row mb-3 d-flex justify-content-end">
+                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                    data-target="#modal_tambah_user"><i class="fas fa-plus"></i>
+                                    Tambah User</button>
+                            </div>
+                            <table id="data-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Email</th>
-                                        <th>Username</th>
                                         <th>Level</th>
-                                        <th class="text-center">Hak Akses</th>
+                                        <th>Hak Akses</th>
+                                        <th class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $no = 0; foreach ($data_user as $row): $no++ ?>
                                     <tr>
                                         <td><?php echo $no?></td>
-                                        <td><?php echo $row->email ?></td>
-                                        <td><?php echo $row->username ?></td>
-                                        <td><?php echo $row->level ?></td>
+                                        <td><?php echo $row->level?></td>
+                                        <td>Page <?php echo tampil_hak_akses($row->id_hak_akses)?></td>
                                         <td class="text-center">
                                             <a href="<?php echo base_url('Admin/hak_akses/'.$row->id_level)?>"
                                                 class="btn btn-success">
-                                                <i class="fas fa-key"></i>
+                                                <i class="fas fa-search-plus"></i>
                                             </a>
+                                            <button onClick="hapus(<?php echo $row->id_level ?>)"
+                                                class="btn btn-danger">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                     <?php endforeach ?>
@@ -191,14 +199,14 @@
                             aria-labelledby="nav-ubah-password-tab">
                             <form action="<?= base_url('Admin/changepassword'); ?>" method="post">
                                 <div>
-                                    <div class="row mt-3">
+                                    <!-- <div class="row mt-3">
                                         <div class="col-3 text-right font-weight-bold mt-1">Password</div>
                                         <div class="col-5">
                                             <input required type="password" name="current_password" class="form-control"
                                                 placeholder="Password Anda">
                                             <?= form_error('current_password', '<small class="text-danger">', '</small>'); ?>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="row mt-3">
                                         <div class="col-3 text-right font-weight-bold mt-1">Password Baru</div>
                                         <div class="col-5">
@@ -219,7 +227,7 @@
                                     <div class="row mt-3">
                                         <div class="col-3"></div>
                                         <div class="col-5">
-                                            <button type="submit" class="btn btn-primary">Ubah Password</button>
+                                            <button type="submit" class="btn btn-success">Ubah Password</button>
                                         </div>
                                     </div>
                                 </div>
@@ -228,17 +236,76 @@
                     </div>
                 </div>
             </section>
+            <!-- Modal -->
+            <div class="modal fade" id="modal_tambah_user" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <form action="<?php echo base_url('Admin/update_hak_akses') ?>" enctype="multipart/form-data"
+                            method="post">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Data Transaksi</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body pb-1">
+                                <div class="box">
+                                    <div class="box-body">
+                                        <div class="row">
+                                            <div class="form-group col-6">
+                                                <label class="control-label">Username</label>
+                                                <div>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Masukan username baru">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <label class="control-label">Email</label>
+                                                <div>
+                                                    <input type="email" class="form-control"
+                                                        placeholder="Masukan email baru">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <label class="control-label">Password</label>
+                                                <div>
+                                                    <input type="password" class="form-control"
+                                                        placeholder="Masukan password baru">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <label class="control-label">Level</label>
+                                                <div>
+                                                    <input type="text" class="form-control" placeholder="Masukan level">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label class="control-label">Hak Akses</label>
+                                                <div>
+                                                    <select name="id_hak_akses"
+                                                        class="custom-select custom-select-md mb-3">
+                                                        <option value="Admin">Admin</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer d-flex">
+                                <button type="submit" class="btn btn-success">Save</button>
+                                <button type="button" class="btn btn-secondary" onclick="kembali()"
+                                    data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <?php $this->load->view('petugas/style/js') ?>
     <script>
-    function hapus(id) {
-        var yes = confirm('Yakin Di Hapus?');
-        if (yes == true) {
-            window.location.href = "<?php echo base_url('Akademik/hapus_guru/') ?>" + id;
-        }
-    }
-
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -249,6 +316,27 @@
 
             reader.readAsDataURL(input.files[0]);
         }
+    }
+
+    function hapus(id) {
+        Swal.fire({
+            title: 'Apakah Anda Yakin?',
+            text: "Apakah kamu ingin menghapus user ini?",
+            icon: 'warning',
+            showCancelButton: true,
+            cancelButtonColor: '#3085d6',
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'Hapus'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+                window.location.href = "<?php echo base_url('Admin/delete_user/')?>" + id;
+            }
+        })
     }
     </script>
 </body>

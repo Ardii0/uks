@@ -9,7 +9,7 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-            <a href="<?php echo base_url('Admin/setting') ;?>" class="nav-link h4">
+            <a href="<?php echo base_url('Admin/setting') ;?>" class="nav-link h4 hover-animation">
                 <i class="fas fa-cog"></i>
             </a>
         </li>
@@ -26,7 +26,7 @@
     transition: transform .5s ease-in-out;
 }
 
-.fa-cog:hover {
+.hover-animation:hover .fa-cog {
     transform: rotate(160deg);
 }
 </style>

@@ -64,30 +64,35 @@ class Login extends CI_Controller {
         'username' => $username,
         'password' => md5($password),
         'level' => "Admin",
+        'id_hak_akses' => "2",
         );
       $whereKesiswaan = array(
         // 'email' => $email,
         'username' => $username,
         'password' => md5($password),
         'level' => "Kesiswaan",
+        'id_hak_akses' => "3",
         );
       $wherePetugasPerpus = array(
         // 'email' => $email,
         'username' => $username,
         'password' => md5($password),
         'level' => "PetugasPerpus",
+        'id_hak_akses' => "4",
         );
       $whereGuru = array(
         // 'email' => $email,
         'username' => $username,
         'password' => md5($password),
         'level' => "Guru",
+        'id_hak_akses' => "5",
         );
       $whereTU = array(
         // 'email' => $email,
         'username' => $username,
         'password' => md5($password),
         'level' => "TU",
+        'id_hak_akses' => "6",
         );
 
     $cek = $this->M_login->cek_login("tabel_level",$where);
@@ -109,6 +114,7 @@ class Login extends CI_Controller {
         // $data_session['lv'] = $sess->level;
         $data_session['status_admin'] = "login";
         $data_session['level'] = "Admin";
+        $data_session['id_hak_akses'] = "2";
         $this->session->set_userdata($data_session);
 
         // $data_session = array('id'=>$sess->id_level,
@@ -116,7 +122,7 @@ class Login extends CI_Controller {
         //   'status_admin'=>"login");
         // $this->session->set_userdata($data_session);
       }
-      if ($this->session->userdata('level')=='Admin') {
+      if ($this->session->userdata('id_hak_akses')=='2') {
         // $last_login1 = array('last_login' =>date('Y-m-d H:i:s') );
         $where  = array('id_level'=>$this->session->userdata('id_level'));
         // // $this->M_login->last_login($last_login1,$where);
@@ -134,9 +140,10 @@ class Login extends CI_Controller {
           // $data_session['lv'] = $sess->level;
           $data_session['status_akademik'] = "login";
           $data_session['level'] = "Akademik";
+          $data_session['id_hak_akses'] = "3";
           $this->session->set_userdata($data_session);
         }
-      if ($this->session->userdata('level')=='Akademik') {
+      if ($this->session->userdata('id_hak_akses')=='3') {
           // // $last_login = array('last_login' =>date('Y-m-d H:i:s') );
           $where  = array('id_level'=>$this->session->userdata('id_level'));
           // // $this->M_login->last_login($last_login,$where);
@@ -153,9 +160,10 @@ class Login extends CI_Controller {
             // $data_session['lv'] = $sess->level;
             $data_session['status_perpustakaan'] = "login";
             $data_session['level'] = "Perpustakaan";
+            $data_session['id_hak_akses'] = "4";
             $this->session->set_userdata($data_session);
           }
-        if ($this->session->userdata('level')=='Perpustakaan') {
+        if ($this->session->userdata('id_hak_akses')=='4') {
             // // $last_login = array('last_login' =>date('Y-m-d H:i:s') );
             $where  = array('id_level'=>$this->session->userdata('id_level'));
             // // $this->M_login->last_login($last_login,$where);
@@ -164,17 +172,18 @@ class Login extends CI_Controller {
           }
     }elseif ($guru->num_rows() == 1) {
         foreach ($guru->result() as $sess) {
-            $data_session['id_level'] = $sess->id_level;
-            $data_session['username'] = $sess->username;
-            $data_session['password'] = $sess->password;
-            $data_session['kode_guru'] = $sess->kode_guru;
-            // $data_session['cdate'] = $sess->cdate;
-            // $data_session['lv'] = $sess->level;
-            $data_session['status_nilai'] = "login";
-            $data_session['level'] = "Nilai";
-            $this->session->set_userdata($data_session);
+          $data_session['id_level'] = $sess->id_level;
+          $data_session['username'] = $sess->username;
+          $data_session['password'] = $sess->password;
+          $data_session['kode_guru'] = $sess->kode_guru;
+          // $data_session['cdate'] = $sess->cdate;
+          // $data_session['lv'] = $sess->level;
+          $data_session['status_nilai'] = "login";
+          $data_session['level'] = "Nilai";
+          $data_session['id_hak_akses'] = "5";
+          $this->session->set_userdata($data_session);
           }
-        if ($this->session->userdata('level')=='Nilai') {
+        if ($this->session->userdata('id_hak_akses')=='5') {
             // // $last_login = array('last_login' =>date('Y-m-d H:i:s') );
             $where  = array('id_level'=>$this->session->userdata('id_level'));
             // // $this->M_login->last_login($last_login,$where);
@@ -191,9 +200,10 @@ class Login extends CI_Controller {
           // $data_session['lv'] = $sess->level;
           $data_session['status_keuangan'] = "login";
           $data_session['level'] = "Keuangan";
+          $data_session['id_hak_akses'] = "5";
           $this->session->set_userdata($data_session);
         }
-      if ($this->session->userdata('level')=='Keuangan') {
+      if ($this->session->userdata('id_hak_akses')=='5') {
           // // $last_login = array('last_login' =>date('Y-m-d H:i:s') );
           $where  = array('id_level'=>$this->session->userdata('id_level'));
           // // $this->M_login->last_login($last_login,$where);

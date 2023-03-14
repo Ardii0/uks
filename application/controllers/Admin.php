@@ -541,23 +541,41 @@ class Admin extends CI_Controller {
         $this->load->view('petugas/setting/setting', $data);
     }
 
+    public function delete_user($id_level)
+    {
+        $hapus=$this->M_admin->delete_user('tabel_level', 'id_level', $id_level);
+        if($hapus)
+        {
+            $this->session->set_flashdata('sukses', 'Berhasil..');
+            redirect(base_url('Admin/setting'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Admin/setting/error'));
+        }
+
+    }
+
     public function changepassword()
     {
         // $data['user'] = $this->db->get('tabel_level', ['username' => $this->session->userdata('username')])->result();
         $data['user']=$this->M_admin->get_userByLogin('tabel_level')->result();
-        $this->form_validation->set_rules('current_password', 'Password Sekarang', 'required|trim');
+        // $this->form_validation->set_rules('current_password', 'Password Sekarang', 'required|trim');
         $this->form_validation->set_rules('password_baru', 'Password Baru', 'required|trim|matches[password_baru2]');
         $this->form_validation->set_rules('password_baru2', 'Konfirmasi Password Baru', 'required|trim|matches[password_baru]');
-            $current_password = $this->input->post('current_password');
+            // $current_password = $this->input->post('current_password');
             $password_baru = $this->input->post('password_baru');
-            foreach($data['user'] as $item)
-            {
-            if(md5($current_password)!==$item->password){
-                $this->session->set_flashdata('message', 'Password yang anda masukan tidak sama dengan yang ada di database');
-                redirect(base_url('Admin/setting'));
-            }else{
-                if($current_password == $password_baru){
-                    $this->session->set_flashdata('message', 'Password lama dan paswword baru tidak boleh sama');
+            $password_baru2 = $this->input->post('password_baru2');
+            // foreach($data['user'] as $item)
+            // {
+            // if(md5($current_password)!==$item->password){
+            //     $this->session->set_flashdata('message', 'Password yang anda masukan tidak sama dengan yang ada di database');
+            //     redirect(base_url('Admin/setting'));
+            // }
+            // else{
+                if($password_baru !== $password_baru2){
+                    $this->session->set_flashdata('message', 'Password baru dan konfirmasi password harus sama');
                     redirect(base_url('Admin/setting'));
                 }else{
                     // $password_hash = password_hash($password_baru, PASSWORD_DEFAULT);
@@ -567,14 +585,33 @@ class Admin extends CI_Controller {
                     $this->session->set_flashdata('message', 'berhasil');
                     redirect(base_url('Admin/setting'));
                 }
-            } 
-            }
+            // } 
+            // }
     }
 
     public function hak_akses($id_level)
     {
+        $data['hak_akses'] = $this->M_admin->get_hak_akses('hak_akses');
         $data['user']=$this->M_admin->get_user_by_id($id_level)->result();
         $this->load->view('petugas/setting/hak_akses', $data);
+    }
+
+    public function update_hak_akses()
+    {
+        $data =  [
+            'id_hak_akses' => $this->input->post('id_hak_akses'),
+        ];
+        $logged=$this->M_admin->ubah_hak_akses('tabel_level', $data, array('id_level'=>$this->input->post('id_level')));
+        if($logged)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('Admin/hak_akses/'.$this->input->post('id_level')));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Admin/hak_akses/'.$this->input->post('id_level')));
+        }
     }
 
     public function setting_perpustakaan()
