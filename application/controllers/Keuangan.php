@@ -27,6 +27,14 @@ class Keuangan extends CI_Controller
     {
         $this->load->model('M_keuangan');
         $data['data_rencana_anggaran'] = $this->m_keuangan->get_all_data_rencana_anggaran('data_rencana_anggaran');
+        $data['data_jenis_transaksi'] = $this->m_keuangan->get_all_data_jenis_transaksi('data_jenis_transaksi');
+        $data['data_akun'] = $this->m_keuangan->get_all_akun('data_akun');
+        $data['data_rn'] = $this->m_keuangan->get_rnperid('tabel_rencana_anggaran', 1)->result();
+
+        $this->session->set_userdata('id_rn', 1);
+        $data['masuk'] = $this->m_keuangan->get_detail_rn('m', 1)->result();
+        $data['keluar'] = $this->m_keuangan->get_detail_rn('k', 1)->result();
+
         $this->load->view('keuangan/anggaran/anggaran', $data);
     }
 
@@ -36,14 +44,14 @@ class Keuangan extends CI_Controller
         $this->load->view('keuangan/anggaran/tambah_anggaran', $data);
     }
 
-    public function aksi_tambah_anggaran()
+    public function aksi_tambah_rencana_anggaran()
     {
         $data = array
         (
             'nama_anggaran' => $this->input->post('nama_anggaran'),
             'awal_periode' => $this->input->post('awal_periode'),
             'akhir_periode' => $this->input->post('akhir_periode'),
-            'pencatat' => 'Admin',
+            'pencatat' => $this->input->post('pencatat'),
             'status' => 1,
             'tetapkan' => 0,
         );
@@ -52,6 +60,21 @@ class Keuangan extends CI_Controller
             $this->session->set_flashdata('sukses', 'berhasil');
             redirect(base_url('keuangan/anggaran/anggaran'));
         } else {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('keuangan/anggaran/tambah_anggaran'));
+        }
+    }
+
+    public function hapus_rn($id_rencana_anggaran)
+    {
+        $hapus=$this->m_keuangan->hapus_rn('tabel_rencana_anggaran', 'id_rencana_anggaran', $id_rencana_anggaran);
+        if($hapus)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('keuangan/anggaran/anggaran'));
+        }
+        else
+        {
             $this->session->set_flashdata('error', 'gagal..');
             redirect(base_url('keuangan/anggaran/tambah_anggaran'));
         }
@@ -84,6 +107,84 @@ class Keuangan extends CI_Controller
         {
             $this->session->set_flashdata('error', 'gagal..');
             redirect(base_url('keuangan/anggaran/edit_anggaran'.$this->input->post('id')));
+        }
+    }
+
+    public function hapus_jt($id_jt)
+    {
+        $hapus=$this->m_keuangan->hapus_rn('tabel_jenis_transaksi', 'id', $id_jt);
+        if($hapus)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('keuangan/anggaran/anggaran'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('keuangan/anggaran/tambah_anggaran'));
+        }
+    }
+
+    //Tambah Anggaran
+    public function aksi_tambah_anggaran()
+    {
+        $data = array
+        (
+            'nama_jenis_transaksi' => $this->input->post('nama_jenis_transaksi'),
+            'rencana_anggaran' => $this->input->post('id_rencana_anggaran'),
+            'status' => 1,
+            'jenis_transaksi' => $this->input->post('jenis_transaksi'),
+            'nominal' => $this->input->post('nominal'),
+            'debit' => $this->input->post('debit'),
+            'kredit' => $this->input->post('kredit'),
+            'keterangan' => $this->input->post('keterangan'),
+        );
+        $masuk = $this->m_keuangan->tambah_anggaran('tabel_jenis_transaksi', $data);
+        if ($masuk) {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('keuangan/anggaran/anggaran'));
+        } else {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('keuangan/anggaran/anggaran'));
+        }
+    }
+
+    public function anggaran_filter()
+    {
+        $id_rn = $this->input->post('id_rencana_anggaran');
+        $this->load->model('M_keuangan');
+        $data['data_rencana_anggaran'] = $this->m_keuangan->get_all_data_rencana_anggaran('data_rencana_anggaran');
+        
+        $data['data_rn'] = $this->m_keuangan->get_rnperid('tabel_rencana_anggaran', $id_rn)->result();
+
+        $data['data_jenis_transaksi'] = $this->m_keuangan->get_rnperperiode('tabel_jenis_transaksi', $id_rn)->result();
+
+        $data['data_akun'] = $this->m_keuangan->get_all_akun('data_akun');
+        $this->session->set_userdata('id_rn', $id_rn);
+
+        $data['masuk'] = $this->m_keuangan->get_detail_rn('m', $id_rn)->result();
+        $data['keluar'] = $this->m_keuangan->get_detail_rn('k', $id_rn)->result();
+        
+        $this->load->view('keuangan/anggaran/anggaran', $data);
+    }
+
+    public function aksi_tetapkan($id)
+    {
+        $data= array
+        (
+            "tetapkan" => 1,
+        );
+
+        $approve_siswa=$this->m_keuangan->edit_jenis_transaksi('tabel_rencana_anggaran', $data, array('id_rencana_anggaran'=>$id));
+        if($approve_siswa)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('keuangan/anggaran/anggaran'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('keuangan/anggaran/anggaran'));
         }
     }
 

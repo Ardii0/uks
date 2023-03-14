@@ -30,7 +30,7 @@
                                         </b></center>
                                 </div>
                                 <!-- /.box-header -->
-                                <form action="<?php echo base_url('keuangan/aksi_tambah_anggaran') ?>"
+                                <form action="<?php echo base_url('keuangan/aksi_tambah_rencana_anggaran') ?>"
                                      method="post">
                                     <div class="box-body">
                                         <div class="form-group">
