@@ -96,7 +96,6 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              
               <li class="nav-item">
                 <a href="<?php echo base_url('Perpustakaan/data_anggota')?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -132,6 +131,29 @@
                 Pengembalian
               </p>
             </a>
+          </li>
+          <li class="nav-item">
+            <a  class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+               Laporan 
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url('Perpustakaan/laporan_peminjaman')?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Laporan Peminjaman </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url('Perpustakaan/laporan_pengembalian')?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Laporan Pengembalian</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item logout">
             <a href="<?php echo base_url('Login/logout');?>" class="nav-link">

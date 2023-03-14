@@ -7,3 +7,6 @@
   <script src="<?php echo base_url('builder/dist/js/status.js'); ?>"></script>
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="<?php echo base_url('builder/plugins/overlayScrollbars/css/OverlayScrollbars.min.css'); ?>">
+  
+  <!-- Style Down Below -->
+  <link rel="stylesheet" href="<?php echo base_url('builder/dist/css/sidebar.css'); ?>">

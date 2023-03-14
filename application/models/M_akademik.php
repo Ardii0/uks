@@ -1,6 +1,26 @@
 <?php
 
 class M_akademik extends CI_Model{
+// Home Dashboard
+    public function total_kelas()
+  {
+    return $this->db->get('tabel_kelas')->num_rows();
+  }
+
+    public function total_mapel()
+  {
+    return $this->db->get('tabel_mapel')->num_rows();
+  }
+
+    public function total_siswa()
+  {
+    return $this->db->get('tabel_siswa')->num_rows();
+  }
+
+    public function total_guru()
+  {
+    return $this->db->get('tabel_guru')->num_rows();
+  }
 // Tahun Ajar
     public function get_tahun_ajaran()
 	{
@@ -35,6 +55,12 @@ class M_akademik extends CI_Model{
         $data=$this->db->delete($tabel, array($field => $id_angkatan));
         return $data;
     }
+
+// Paket Jenjang
+    public function get_paketjenjang()
+	{
+		return $this->db->get('tabel_paketjenjang')->result();
+	}
 
 // Jenjang
     public function get_jenjang()
@@ -163,11 +189,6 @@ class M_akademik extends CI_Model{
         return $this->db->get('tabel_siswa')->result();
     }
 
-    public function get_siswa_kelas()
-    {
-        return $this->db->where('id_rombel', null)->get('tabel_siswa')->result();
-    }
-
     public function get_siswaById($tabel, $id_siswa)
     {
         $data=$this->db->where('id_siswa', $id_siswa)->get($tabel);
@@ -234,6 +255,20 @@ class M_akademik extends CI_Model{
     public function hapus_pendaftaran($tabel, $field, $id_daftar)
 	{
 		$data=$this->db->delete($tabel, array($field => $id_daftar));
+		return $data;
+	}
+    public function filterByJenjang($nama_jenjang){
+        if ($nama_jenjang != null) {
+          $query = $this->db->query("SELECT * from tabel_daftar where diterima = 'Y' AND id_jenjang = '$nama_jenjang' ORDER BY tgl_daftar ASC ");
+        } else {
+          $query = $this->db->query("SELECT * from tabel_daftar");
+        }
+
+        return $query->result();
+	}
+    public function get_filter($tabel, $id_daftar)
+	{
+		$data=$this->db->where('id_jenjang', $id_daftar)->get($tabel);
 		return $data;
 	}
 
@@ -359,7 +394,7 @@ class M_akademik extends CI_Model{
         return $data;
     }
 
-  //Alok Mapel
+ //Alok Mapel
   public function get_alokasimapel()
     {
         return $this->db->get('tabel_alokasimapel')->result();

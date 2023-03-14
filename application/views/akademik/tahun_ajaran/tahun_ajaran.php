@@ -56,8 +56,8 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Kode Tahun Ajaran</th>
                                             <th>Nama</th>
+                                            <th>Kode Tahun Ajaran</th>
                                             <th>Awal Periode</th>
                                             <th>Akhir Periode</th>
                                             <th>Keterangan</th>

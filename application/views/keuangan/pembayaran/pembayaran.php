@@ -12,12 +12,8 @@
 
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-        <!-- navbar -->
         <?php $this->load->view('keuangan/style/navbar') ?>
-        <!-- navbar -->
-        <!-- Sidebar -->
         <?php $this->load->view('keuangan/style/sidebar') ?>
-        <!-- Sidebar -->
 
         <div class="content-wrapper">
             <section class="content-header">
@@ -44,12 +40,12 @@
                         <div class="col-2 col-sm-6 ">
                             <div class="form-group d-flex flex-row " style="width: fit-content;">
                                 <div class="mt-2 mx-1">
-                                    <h4>Data Akun</h4>
+                                    <h4>History Pembayaran</h4>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3 d-flex justify-content-end align-self-start">
-                            <a> <button type="button" class="btn btn-success">
+                            <a href="<?php echo base_url('Keuangan/tambah_pembayaran');?>"><button type="button" class="btn btn-success">
                                     <i class="fa fa-plus pr-2"></i>Tambah
                                 </button>
                             </a>
@@ -63,7 +59,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Tanggal</th>
-                                            <th>Id Transaksi</th>
+                                            <th>ID Transaksi</th>
                                             <th>Nama/Rombel</th>
                                             <th>Jenis Bayar</th>
                                             <th>Keterangan</th>
@@ -72,16 +68,25 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>07/07/2007</td>
-                                            <td>80765747</td>
-                                            <td>Ardi/X TKJ 2</td>
-                                            <td>SPP</td>
-                                            <td>Keterangan ini bang</td>
-                                            <td>250.000</td>
-                                            <td>binusa@gmail.com</td>
-                                        </tr>
+                                        <?php $id=0; foreach ($pembayaran as $history): $id++?>
+                                            <tr>
+                                                <td><?php echo $id?></td>
+                                                <td><?php echo $history->date?></td>
+                                                <td><?php echo $history->id_tf?></td>
+                                                <td class="d-flex">
+                                                    <span>
+                                                        <?php echo tampil_namadaftar_ByIdSiswa($history->id_siswa)?>
+                                                    </span>/&nbsp;
+                                                    <span>
+                                                        <?php echo tampil_rombeldaftar_ByIdSiswa($history->id_siswa)?>
+                                                    </span>
+                                                </td>
+                                                <td><?php echo tampil_namajenisbayarById($history->id_jenis)?></td>
+                                                <td><?php echo $history->keterangan?></td>
+                                                <td><?php echo $history->nominal?></td>
+                                                <td><?php echo $history->akuntan?></td>
+                                            </tr>
+                                        <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>

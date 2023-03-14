@@ -196,4 +196,36 @@ class M_perpustakaan extends CI_Model{
 		$data=$this->db->delete($tabel, array($field => $id_pasien));
 		return $data;
 	}
+//Laporan
+public function get_laporan_pinjam()
+{
+	return $this->db->where('status', 'DIPINJAM')->get('tabel_pinjaman')->result();
+}
+public function filter_bytanggalpinjam($tanggalawal=0,$tanggalakhir=0){
+	if ($tanggalawal != 0 && $tanggalakhir == 0) {
+	  $query = $this->db->query("SELECT * from tabel_pinjaman where status = 'DIPINJAM' AND DATE(tgl_pinjaman) = '$tanggalawal' ORDER BY tgl_pinjaman ASC ");
+	} else if($tanggalawal != 0 && $tanggalakhir != 0) {
+	  $query = $this->db->query("SELECT * from tabel_pinjaman where status = 'DIPINJAM' and tgl_pinjaman BETWEEN '$tanggalawal' and '$tanggalakhir' ORDER BY tgl_pinjaman ASC ");
+	} else {
+	  $query = $this->db->query("SELECT * from tabel_pinjaman");
+	}
+
+	return $query->result();
+}
+
+public function get_laporan_kembali()
+{
+	return $this->db->where('status', 'DIKEMBALIKAN')->get('tabel_pinjaman')->result();
+}
+public function filter_bytanggalkembali($tanggalawal=0,$tanggalakhir=0){
+	if ($tanggalawal != 0 && $tanggalakhir == 0) {
+	  $query = $this->db->query("SELECT * from tabel_pinjaman where status = 'DIKEMBALIKAN' AND DATE(tgl_kembali) = '$tanggalawal' ORDER BY tgl_kembali ASC ");
+	} else if($tanggalawal != 0 && $tanggalakhir != 0) {
+	  $query = $this->db->query("SELECT * from tabel_pinjaman where status = 'DIKEMBALIKAN' and tgl_kembali BETWEEN '$tanggalawal' and '$tanggalakhir' ORDER BY tgl_pinjaman ASC ");
+	} else {
+	  $query = $this->db->query("SELECT * from tabel_pinjaman");
+	}
+
+	return $query->result();
+}
 }

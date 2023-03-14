@@ -69,8 +69,12 @@
                                 <div class="form-group">
                                     <label class="control-label">Paket</label>
                                     <div class="">
-                                        <input type="text" name="paket" class="form-control"
-                                            placeholder="Masukan Paket" value="<?php echo $data->paket ?>">
+                                        <select name="id_paket" class="form-control">
+                                            <option style="display: none;"><?php echo tampil_paketjenjangById($data->id_paket) ?></option>
+                                            <?php $id=0; foreach($paket as $paket ): $id++; ?>
+                                                <option value="<?php echo $paket->id_paket ?>"><?php echo $paket->nama_paket ?></option>
+                                            <?php endforeach ?>
+                                        </select>
                                     </div>
                                 </div>
                             </div>

@@ -120,7 +120,7 @@
         function hapus(id) {
             var yes = confirm('Yakin Di Hapus?');
             if (yes == true) {
-                window.location.href = "<?php echo base_url('Perpustakaan/hapus_rak_buku/')?>" + "/" + id;
+                window.location.href = "<?php echo base_url('Perpustakaan/hapus_kategori_buku/')?>" + "/" + id;
             }
         }
         </script>

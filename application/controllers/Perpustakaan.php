@@ -146,7 +146,7 @@ class Perpustakaan extends CI_Controller {
 
     public function edit_anggota($id_anggota)
     {
-        $data['data_anggota']=$this->m_perpustakaan->edit_anggota('table_anggota', $id_anggota)->result();
+        $data['data_anggota']=$this->m_perpustakaan->edit_anggota('tabel_anggota', $id_anggota)->result();
         $this->load->view('perpustakaan/data_anggota/edit_anggota', $data);
     }
 
@@ -159,7 +159,7 @@ class Perpustakaan extends CI_Controller {
             'keterangan' => $this->input->post('keterangan'),
             'del_flag' => '1',
         );
-        $masuk=$this->m_perpustakaan->ubah_anggota('table_anggota', $data, array('id_anggota'=>$this->input->post('id_anggota')));
+        $masuk=$this->m_perpustakaan->ubah_anggota('tabel_anggota', $data, array('id_anggota'=>$this->input->post('id_anggota')));
         if($masuk)
         {
             $this->session->set_flashdata('sukses', 'berhasil');
@@ -174,7 +174,7 @@ class Perpustakaan extends CI_Controller {
 
     public function hapus_anggota($id_anggota)
     {
-        $hapus=$this->m_perpustakaan->hapus_kategori('table_anggota', 'id_anggota', $id_anggota);
+        $hapus=$this->m_perpustakaan->hapus_kategori('tabel_anggota', 'id_anggota', $id_anggota);
         if($hapus)
         {
             $this->session->set_flashdata('sukses', 'Berhasil..');
@@ -317,34 +317,66 @@ class Perpustakaan extends CI_Controller {
         redirect(base_url('Perpustakaan/data_buku/detail_index_buku'.$id_buku));
     }
 
-    public function aksi_tambah_buku()
+    public function upload_img_buku($value)
     {
-        $data = array
-        (
-            'judul_buku' => $this->input->post('judul_buku'),
-            'penerbit_buku' => $this->input->post('penerbit_buku'),
-            'penulis_buku' => $this->input->post('penulis_buku'),
-            'tahun_terbit' => $this->input->post('tahun_terbit'),
-            'keterangan' => $this->input->post('keterangan'),
-            'sumber' => $this->input->post('sumber'),
-            'kategori_id' => $this->input->post('kategori_id'),
-            'rak_buku_id' => $this->input->post('rak_buku_id'),
-            'stok' => $this->input->post('stok'),
-            'del_flag' => '1',
-        );
-        $masuk=$this->m_perpustakaan->tambah_buku('table_buku', $data);
-        if($masuk)
+        $kode = round(microtime(true) * 1000);
+        $config['upload_path'] = './uploads/perpustakaan/buku/';
+        $config['allowed_types'] = 'jpg|png|jpeg';
+        $config['max_size'] = '100000';
+        $config['file_name'] = $kode;
+        $this->upload->initialize($config);
+        if (!$this->upload->do_upload($value))
         {
-            $this->session->set_flashdata('sukses', 'berhasil');
-            redirect(base_url('Perpustakaan/data_buku'));
+            return array( false, '' );
         }
         else
         {
-            $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Perpustakaan/tambah_buku'));
+            $fn = $this->upload->data();
+            $nama = $fn['file_name'];
+            return array( true, $nama );
         }
     }
 
+    public function aksi_tambah_buku()
+    {
+        $foto = $this->upload_img_buku('foto');
+        if($foto[0]==false)
+        {
+            //$this->upload->display_errors();
+            $this->session->set_flashdata('error', 'gagal upload foto.');
+            redirect(base_url('Perpustakaan/tambah_buku'));
+        }
+        else
+        {
+            $data = array
+            (
+                'foto' => $foto[1],
+                'judul_buku' => $this->input->post('judul_buku'),
+                'penerbit_buku' => $this->input->post('penerbit_buku'),
+                'penulis_buku' => $this->input->post('penulis_buku'),
+                'tahun_terbit' => $this->input->post('tahun_terbit'),
+                'keterangan' => $this->input->post('keterangan'),
+                'sumber' => $this->input->post('sumber'),
+                'kategori_id' => $this->input->post('kategori_id'),
+                'rak_buku_id' => $this->input->post('rak_buku_id'),
+                'stok' => $this->input->post('stok'),
+                'del_flag' => '1',
+            );
+
+
+            $masuk=$this->m_perpustakaan->tambah_buku('table_buku', $data);
+            if($masuk)
+            {
+                $this->session->set_flashdata('sukses', 'berhasil');
+                redirect(base_url('Perpustakaan/data_buku'));
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'gagal..');
+                redirect(base_url('Perpustakaan/tambah_buku'));
+            }
+        }
+    }
     public function edit_buku($id_buku)
     {
         $data['data_buku']=$this->m_perpustakaan->edit_buku('table_buku', $id_buku)->result();
@@ -498,16 +530,38 @@ class Perpustakaan extends CI_Controller {
         }
     }
 
-// Laporan
-    public function laporan()
-    {
-        $this->load->view('perpustakaan/laporan/laporan');
-    }
+ // Laporan
+ public function laporan_peminjaman() {
+    $peminjam['peminjam'] = $this->m_perpustakaan->get_laporan_pinjam('data_peminjam');
+    $this->load->view('perpustakaan/laporan/laporan_peminjaman', $peminjam);
+  }
+  public function filter_tanggalpinjam()
+     {
+        $tanggalawal = $this->input->post('tanggalawal');
+        $tanggalakhir = $this->input->post('tanggalakhir');
+        $peminjam = $this->input->post('peminjam');
+
+        if($peminjam = 1) {
+            $data['peminjam'] = $this->m_perpustakaan->filter_bytanggalpinjam($tanggalawal,$tanggalakhir);
+            $this->load->view('perpustakaan/laporan/laporan_peminjaman', $data);
+        }
+     }
+
+  public function laporan_pengembalian() {
+    $peminjam['peminjam'] = $this->m_perpustakaan->get_laporan_kembali('data_peminjam');
+    $this->load->view('perpustakaan/laporan/laporan_pengembalian', $peminjam);
+  }
+  public function filter_tanggalkembali()
+     {
+        $tanggalawal = $this->input->post('tanggalawal');
+        $tanggalakhir = $this->input->post('tanggalakhir');
+        $peminjam = $this->input->post('peminjam');
+
+        if($peminjam = 1) {
+            $data['peminjam'] = $this->m_perpustakaan->filter_bytanggalkembali($tanggalawal,$tanggalakhir);
+            $this->load->view('perpustakaan/laporan/laporan_pengembalian', $data);
+        }
+     }
     
-    public function barcode($id_buku)
-    {
-        require 'vendor/autoload.php';
-        $data['buku']=$this->m_perpustakaan->get_bukuById('table_buku', $id_buku)->result();
-        $this->load->view('perpustakaan/barcode', $data);
-    }
+   
 }

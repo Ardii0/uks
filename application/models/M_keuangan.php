@@ -108,12 +108,17 @@ class M_keuangan extends CI_Model{
 // Dana Masuk dan Keluar
     public function get_pendapatan()
     {
-        return $this->db->where("status", "1")->get('test_pendapatan_pengeluaran')->result();
+        return $this->db->where("jenis_transaksi", "m")->get('tabel_jenis_transaksi')->result();
     }
 
     public function get_pengeluaran()
     {
-        return $this->db->where("status", "2")->get('test_pendapatan_pengeluaran')->result();
+        return $this->db->where("jenis_transaksi", "k")->get('tabel_jenis_transaksi')->result();
+    }
+
+    public function get_anggaran()
+    {
+        return $this->db->get('tabel_jenis_transaksi')->result();
     }
     
     public function transaksi($tabel, $id)
@@ -144,4 +149,92 @@ class M_keuangan extends CI_Model{
 		return $data;
 	}
 
+// Jurnal Penyelesaian
+    public function aksi_input_jurnal($tabel, $data)
+    {
+        $this->db->insert($tabel, $data);
+        return $this->db->insert_id();
+    }
+
+    public function hapus_jurnal($tabel, $field, $id)
+	{
+		$data=$this->db->delete($tabel, array($field => $id));
+		return $data;
+	}
+
+// Pembayaran
+    public function get_jenjangByIdSiswafromDaftar($id_daftar)
+    {
+        $data = $this->db->where('id_daftar', $id_daftar)->get('tabel_siswa')->result();
+        return $data;
+    }
+
+    function get_rombelByIdKelas($id_kelas){
+        $query = $this->db->get_where('tabel_rombel', array('id_kelas' => $id_kelas));
+        return $query;
+    }
+
+    public function get_siswaById($tabel, $id_siswa)
+    {
+        $data=$this->db->where('id_siswa', $id_siswa)->get($tabel);
+        return $data;
+    }
+
+    function get_siswaByIdRombel($id_rombel){
+        // $this->db->select('tabel_daftar.nama, tabel_siswa.*');
+        // $this->db->from('tabel_siswa');
+        // $this->db->join('tabel_daftar', 'tabel_daftar.id_daftar = tabel_siswa.id_daftar');
+        // $this->db->where('tabel_siswa.id_rombel', $id_rombel);
+        $query = $this->db->get_where('tabel_siswa', array('id_rombel' => $id_rombel));
+        // $db = $this->db->get();
+        return $query;
+        // return $db;
+    }
+
+    public function get_pembayaran()
+    {
+        return $this->db->get('tabel_pembayaran')->result();
+    }
+
+    public function get_pembayaranByIdSiswa($ids)
+    {
+        return $this->db->where('id_siswa', $ids)->get('tabel_pembayaran')->result();
+    }
+
+    public function get_jenisbayar()
+    {
+        return $this->db->get('tabel_jenisbayar')->result();
+    }
+
+    public function tambah_pembayaran($tabel, $data)
+    {
+        $this->db->insert($tabel, $data);
+        return $this->db->insert_id();
+    }
+
+  //Laporan keuangan
+  public function filter_bytanggal($tanggalawal=0,$tanggalakhir=0){
+	if ($tanggalawal != 0 && $tanggalakhir == 0) {
+	  $query = $this->db->query("SELECT * from tabel_transaksi where DATE (waktu) = '$tanggalawal' ORDER BY waktu ASC ");
+	} else if($tanggalawal != 0 && $tanggalakhir != 0) {
+	  $query = $this->db->query("SELECT * from tabel_transaksi where waktu BETWEEN '$tanggalawal' and '$tanggalakhir' ORDER BY waktu ASC ");
+	} else {
+	  $query = $this->db->query("SELECT * from tabel_transaksi");
+	}
+	return $query->result();
+}
+public function filter_namakun($nama_akun){
+    if ($nama_akun != null) {
+        $query = $this->db->where('id_akun', $nama_akun)->get('tabel_jurnal');
+      } else {
+        $query = $this->db->query("SELECT * from tabel_jurnal");
+      }
+
+    return $query->result();
+    }
+    public function akun($tabel, $id)
+    {
+        $data=$this->db->where('id_akun', $id)->get($tabel);
+        return $data;
+    }
 }

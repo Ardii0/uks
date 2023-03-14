@@ -19,13 +19,6 @@ class Nilai extends CI_Controller {
     {
         $this->load->view('nilai/dashboard');
     }
-
-// Data Nilai
-    public function data_nilai_siswa($id_mapel, $id_semester)
-    {
-        $data['data']=$this->m_nilai->get_data_nilai($id_mapel, $id_semester)->result();
-        $this->load->view('nilai/data_nilai/data_nilai_siswa', $data);
-    }
     
 // Nilai
  // Entry
@@ -161,11 +154,24 @@ class Nilai extends CI_Controller {
         }
     }
 
-    public function modul_data_nilai($id_mapel)
+// Data Nilai
+    public function data_nilai_siswa($id_mapel, $id_semester)
+    {
+        $data['data']=$this->m_nilai->get_data_nilai($id_mapel, $id_semester)->result();
+        $this->load->view('nilai/data_nilai/data_nilai_siswa', $data);
+    }
+
+    public function modul_data_nilai()
+    {
+        $data['mapel'] = $this->m_akademik->get_mapel('tabel_mapel');
+        $this->load->view('nilai/data_nilai/modul_data_nilai_siswa', $data);
+    }
+
+    public function modul_data_nilai_filter($id_mapel)
     {
         $data['mapel'] = $this->m_akademik->get_mapel('tabel_mapel');
         $alokasimapel['alokasi']=$this->m_nilai->get_alokasimapelByIdMapel($id_mapel)->result();
-        $this->load->view('nilai/data_nilai/modul_data_nilai_siswa', $data + $alokasimapel);
+        $this->load->view('nilai/data_nilai/modul_data_nilai_siswa_filter', $data + $alokasimapel);
     }
     
     // public function modul_data_nilai_by()
@@ -179,4 +185,24 @@ class Nilai extends CI_Controller {
     //     $this->m_nilai->get_alokasi_mapel('tabel_alokasimapel', 'id_mapel', $id_mapel);
     //     redirect(base_url('Nilai/modul_data_nilai'));
     // }
+
+// Raport
+    public function cetak_raport()
+    {
+        $this->load->model('m_keuangan');
+	    $cek = $this->m_nilai->cek_wali()->num_rows();
+	    if ($cek > 0) {
+            $data['rombel'] = $this->m_nilai->get_rombel_raport()->result();    	
+	    }
+        $data['siswaPerRombel'] = $this->m_keuangan->ambil('tabel_siswa','id_rombel')->row();
+        $data['rombelPerWakel'] = $this->m_keuangan->ambil('tabel_rombel',array('kode_guru'=>$this->session->userdata('kode_guru')))->row();
+        $data['dt'] = $this->m_keuangan->ambil('tabel_level',array('id_level'=>$this->session->userdata('id_level')))->row();
+        $this->load->view('nilai/raport/raport', $data);
+    }
+
+	public function get_siswa($id)
+	{
+		$data = $this->m_nilai->entrynew($id)->result();
+		echo json_encode($data);
+	}
 }

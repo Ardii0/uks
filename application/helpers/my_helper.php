@@ -1,5 +1,16 @@
 <?php
 
+function tampil_paketjenjangById($id)
+{
+ $ci =& get_instance();
+ $ci->load->database();
+ $result = $ci->db->where('id_paket',$id)->get('tabel_paketjenjang');
+  foreach ($result->result() as $c) {
+  $stmt= $c->nama_paket;
+  return $stmt;
+  }
+}
+
 function tampil_namajenjang_byid($id)
 {
  $ci =& get_instance();
@@ -28,6 +39,23 @@ $result = $ci->db->select('*')
   return $namadaftar;
 }
 
+function tampil_idta_ByIdDaftar($id)
+{
+$ci =& get_instance();
+$ci->load->database();
+$idangkatan = '';
+$result = $ci->db->select('*')
+                  ->from('tabel_daftar')
+                  ->join('tabel_tahunajaran','tabel_daftar.id_angkatan = tabel_tahunajaran.id_angkatan')
+                  ->where('tabel_daftar.id_daftar',$id)
+                  ->get();
+  foreach ($result->result() as $c) {
+  $stmt= $c->id_angkatan;
+  $idangkatan= $idangkatan.$stmt;
+  }
+  return $idangkatan;
+}
+
 function tampil_tahunangkatan_byid($id)
 {
  $ci =& get_instance();
@@ -50,6 +78,17 @@ function tampil_mapelById($id)
   }
 }
 
+function tampil_ket_mapelById($id)
+{
+ $ci =& get_instance();
+ $ci->load->database();
+ $result = $ci->db->where('id_mapel',$id)->get('tabel_mapel');
+  foreach ($result->result() as $c) {
+  $stmt= $c->keterangan;
+  return $stmt;
+  }
+}
+
 function tampil_ket_kelasById($id)
 {
  $ci =& get_instance();
@@ -68,6 +107,17 @@ function tampil_jenismapelById($id)
  $result = $ci->db->where('id_jenismapel',$id)->get('tabel_jenismapel');
   foreach ($result->result() as $c) {
   $stmt= $c->nama_jenismapel;
+  return $stmt;
+  }
+}
+
+function tampil_ket_jenismapelById($id)
+{
+ $ci =& get_instance();
+ $ci->load->database();
+ $result = $ci->db->where('id_jenismapel',$id)->get('tabel_jenismapel');
+  foreach ($result->result() as $c) {
+  $stmt= $c->keterangan;
   return $stmt;
   }
 }
@@ -101,6 +151,28 @@ function tampil_rombel_byid($id)
  $result = $ci->db->where('id_rombel',$id)->get('tabel_rombel');
   foreach ($result->result() as $c) {
   $stmt= $c->nama_rombel;
+  return $stmt;
+  }
+}
+
+function tampil_id_kelas_rombel_byid($id)
+{
+ $ci =& get_instance();
+ $ci->load->database();
+ $result = $ci->db->where('id_rombel',$id)->get('tabel_rombel');
+  foreach ($result->result() as $c) {
+  $stmt= $c->id_kelas;
+  return $stmt;
+  }
+}
+
+function tampil_kelas_byid($id)
+{
+ $ci =& get_instance();
+ $ci->load->database();
+ $result = $ci->db->where('id_kelas',$id)->get('tabel_kelas');
+  foreach ($result->result() as $c) {
+  $stmt= $c->nama_kelas;
   return $stmt;
   }
 }
@@ -368,7 +440,7 @@ function tampil_nama_siswa_byid($id)
     }
   }
 
- //
+ // By Anggota
   function tampil_namadaftar_ByIdAnggota($id)
   {
   $ci =& get_instance();
@@ -424,7 +496,24 @@ function tampil_nama_siswa_byid($id)
     return $namarombel;
   }
 
-  // Detail Index Buku
+  function tampil_kelas_ByRombel($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $namakelas = '';
+  $result = $ci->db->select('*')
+                    ->from('tabel_rombel')
+                    ->join('tabel_kelas','tabel_rombel.id_kelas = tabel_kelas.id_kelas')
+                    ->where('tabel_rombel.id_rombel',$id)
+                    ->get();
+    foreach ($result->result() as $c) {
+    $stmt= $c->nama_kelas;
+    $namakelas= $namakelas.$stmt.'<br>';
+    }
+    return $namakelas;
+  }
+
+ // Detail Index Buku
   function tampil_judul_buku_byid($id)
   {
   $ci =& get_instance();
@@ -435,7 +524,6 @@ function tampil_nama_siswa_byid($id)
     return $stmt;
     }
   }
-  
 
   function tampil_penerbit_buku_byid($id)
   {
@@ -503,7 +591,7 @@ function tampil_nama_siswa_byid($id)
     }
   }
 
-  // Data Nilai Siswa
+ // Data Nilai Siswa
   function tampil_id_daftar_siswa_byid($id)
   {
   $ci =& get_instance();
@@ -582,4 +670,80 @@ function format_indo($date){
 
   return $result;
 }
+ // Jenis Bayar
+  function tampil_namajenisbayarById($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_jenis',$id)->get('tabel_jenisbayar');
+    foreach ($result->result() as $c) {
+    $stmt= $c->nama_jenis;
+    return $stmt;
+    }
+  }
+
+ // Transaksi
+  function tampil_nama_akun_transaksi($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_akun',$id)->get('tabel_akun');
+    foreach ($result->result() as $c) {
+    $stmt= $c->nama_akun;
+    return $stmt;
+    }
+  }
+  function tampil_debet_transaksi($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id',$id)->get('tabel_jenis_transaksi');
+    foreach ($result->result() as $c) {
+    $stmt= $c->debit;
+    return $stmt;
+    }
+  }
+  function tampil_kredit_transaksi($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id',$id)->get('tabel_jenis_transaksi');
+    foreach ($result->result() as $c) {
+    $stmt= $c->kredit;
+    return $stmt;
+    }
+  }
+  function tampil_nama_jenis_transaksi($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id',$id)->get('tabel_jenis_transaksi');
+    foreach ($result->result() as $c) {
+    $stmt= $c->nama_jenis_transaksi;
+    return $stmt;
+    }
+  }
+  function tampil_jenisbayarById($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_jenis',$id)->get('tabel_jenisbayar');
+    foreach ($result->result() as $c) {
+    $stmt= $c->nama_jenis;
+    return $stmt;
+    }
+  }
+
+  // Hak Akses
+  function tampil_hak_akses($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_hak_akses',$id)->get('tabel_hak_akses');
+    foreach ($result->result() as $c) {
+    $stmt= $c->akses;
+    return $stmt;
+    }
+  }
+
 ?>

@@ -36,68 +36,68 @@
                 </div>
             </section>
 
-            <section class="content">
-                <form action="<?php echo base_url('Akademik/tambah_alokasiguru'); ?>" enctype="multipart/form-data"
-                    method="post">
-                    <div class="container-fluid bg-white">
-                        <div class="d-flex p-3 justify-content-between">
-                            <div>
-                                <h5>
-                                    <?php foreach ($guru as $dataguru): ?>
-                                    <input type="hidden" name="kode_guru" value="<?php echo $dataguru->kode_guru ?>">
-                                    <?php echo $dataguru->nama_guru ?>
-                                    <?php endforeach;?>
-                                </h5>
-                            </div>
-                        </div>
-                        <div class="row px-1 pt-5">
-                            <div class="col">
-                                <div class="d-flex justify-content-between"
-                                    style="border-bottom: solid 2px; border-color: #">
-                                    <h3 class="text-start pl-3">DATA MATA PELAJARAN</h3>
-                                    <div class="">
-                                        <button type="submit" class="btn btn-success">
-                                            <i class="fa fa-plus pr-2"></i>Simpan
-                                        </button>
+            <section class="content bg-white">
+                <div class="d-flex p-3 justify-content-between">
+                    <div>
+                        <h5>
+                            <?php foreach ($guru as $dataguru): ?>
+                                <?php echo $dataguru->nama_guru ?>
+                            <?php endforeach;?>
+                        </h5>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <form action="<?php echo base_url('Akademik/tambah_alokasiguru'); ?>" enctype="multipart/form-data" class="col"
+                            method="post">
+                            <?php foreach ($guru as $dataguru): ?>
+                                <input type="hidden" name="kode_guru" value="<?php echo $dataguru->kode_guru ?>">
+                            <?php endforeach;?>
+                            <div class="row px-1 pt-5">
+                                <div class="col">
+                                    <div class="d-flex justify-content-between"
+                                        style="border-bottom: solid 2px; border-color: #">
+                                        <h3 class="text-start pl-3">DATA MATA PELAJARAN</h3>
+                                        <div class="">
+                                            <button type="submit" class="btn btn-success">
+                                                <i class="fa fa-plus pr-2"></i>Simpan
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <table id="datasiswa-table" class="table table-bordered table-striped">
+                                            <thead class="bg-info">
+                                                <tr>
+                                                    <th style="width: 4%;">
+                                                        <input type="checkbox" id="checkAll">
+                                                    </th>
+                                                    <th>Nama Mapel</th>
+                                                    <th>Keterangan</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php foreach ($mapel as $data): ?>
+                                                <tr>
+                                                    <td>
+                                                        <input type="checkbox" class="mapel" name="id_mapel[<?php echo $data->id_mapel ?>]">
+                                                    </td>
+                                                    <td>
+                                                        <?php echo $data->nama_mapel ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo tampil_ket_mapelById($data->id_mapel) ?>
+                                                    </td>
+                                                </tr>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                    <table id="datasiswa-table" class="table table-bordered table-striped">
-                                        <thead class="bg-info">
-                                            <tr>
-                                                <th style="width: 4%;">
-                                                    <input type="checkbox" id="checkAll">
-                                                </th>
-                                                <th>Nama Mapel</th>
-                                                <th>keterangan</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php foreach ($mapel as $data): ?>
-                                            <tr>
-                                                <td>
-                                                    <input type="checkbox" class="mapel" name="id_mapel[<?php echo $data->id_mapel ?>]">
-                                                </td>
-                                                <td>
-                                                    <?php echo $data->nama_mapel ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo tampil_jenismapelById($data->id_jenismapel) ?>
-                                                </td>
-                                            </tr>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
-                                </div>
                             </div>
-                        </div>
-                    </div>
-                </form>
-            </section>
-            <section class="content">
-                <form action="<?php echo base_url('Akademik/hapus_alokasiguru'); ?>" enctype="multipart/form-data"
-                    method="post">
-                    <div class="container-fluid bg-white">
+                        </form>
+                <!-- <section class="content"> -->
+                    <form action="<?php echo base_url('Akademik/hapus_alokasiguru'); ?>" enctype="multipart/form-data"
+                        method="post" class="col">
                         <div class="row px-1 pt-5">
                             <div class="col">
                                 <div class="d-flex justify-content-between"
@@ -117,7 +117,7 @@
                                                     <input type="checkbox">
                                                 </th>
                                                 <th>Nama Mapel</th>
-                                                <th>keterangan</th>
+                                                <th>Keterangan</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -130,14 +130,7 @@
                                                     <?php echo tampil_mapelById($datamapel->id_mapel) ?>
                                                 </td>
                                                 <td>
-                                                    Ketereangan
-                                                    <!-- <form action="<?php echo base_url('Akademik/hapus_alokasiguru/'.$datamapel->id_alokasiguru); ?>" 
-                                                    method="post">
-                                                    <button
-                                                    type="submit"
-                                                        class="btn btn-danger btn-sm">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button> -->
+                                                    <?php echo tampil_ket_mapelById($datamapel->id_mapel) ?>
                                                 </form>
                                                 </td>
                                             </tr>
@@ -147,8 +140,10 @@
                                 </div>
                             </div>
                         </div>
+                    </form>
+                <!-- </section> -->
                     </div>
-                </form>
+                </div>
             </section>
         </div>
     </div>

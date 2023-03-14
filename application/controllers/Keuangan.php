@@ -15,14 +15,13 @@ class Keuangan extends CI_Controller
         }
     }
 
-//Keuangan
     public function index()
     {
         $this->load->view('keuangan/dashboard');
 
     }
 
-//Anggaran
+// Anggaran
     public function anggaran()
     {
         $this->load->model('M_keuangan');
@@ -188,7 +187,7 @@ class Keuangan extends CI_Controller
         }
     }
 
-//Akun
+// Akun
     public function akun()
     {
         $this->load->model('M_keuangan');
@@ -260,7 +259,7 @@ class Keuangan extends CI_Controller
     }
 
 
-//Dana
+// Dana
     public function dana()
     {
         $this->load->model('M_keuangan');
@@ -275,8 +274,9 @@ class Keuangan extends CI_Controller
         $pendapatan['data_pendapatan'] = $this->m_keuangan->get_pendapatan('data_pendapatan');
         $pengeluaran['data_pengeluaran'] = $this->m_keuangan->get_pengeluaran('data_pengeluaran');
         $akun['data_akun'] = $this->m_keuangan->get_all_akun('data_akun');
+        $data['data_transaksi'] = $this->m_keuangan->get_data_transaksi('data_transaksi');
         $data['dt'] = $this->m_keuangan->ambil('tabel_level',array('id_level'=>$this->session->userdata('id_level')))->row();
-        $data['data_transaksi'] = $this->m_keuangan->transaksi('test_pendapatan_pengeluaran', $id)->result();
+        $data['transaksi'] = $this->m_keuangan->transaksi('tabel_jenis_transaksi', $id)->result();
         $this->load->view('keuangan/dana/input_dana', $data + $pendapatan + $akun + $pengeluaran);
     }
 
@@ -287,7 +287,7 @@ class Keuangan extends CI_Controller
             'id_anggaran' => $this->input->post('id_anggaran'),
             'uraian' => $this->input->post('uraian'),
             'pencatat' => $this->input->post('pencatat'),
-            'akun' => $this->input->post('akun'),
+            'id_akun' => $this->input->post('id_akun'),
             'nominal' => $this->input->post('nominal'),
         );
 
@@ -319,53 +319,195 @@ class Keuangan extends CI_Controller
         }
     }
 
-//Jurnal
+// Jurnal
     public function jurnal()
     {
         $this->load->model('M_keuangan');
-        // $data['data_akun'] = $this->m_keuangan->get_all_data_akun('data_akun');
-        $this->load->view('keuangan/jurnal/jurnal');
+        $data['dt'] = $this->m_keuangan->ambil('tabel_level',array('id_level'=>$this->session->userdata('id_level')))->row();
+        $data['data_akun'] = $this->m_keuangan->get_all_akun('data_akun');
+        $data['data_transaksi'] = $this->m_keuangan->get_data_transaksi('data_transaksi');
+        $data['data_anggaran'] = $this->m_keuangan->get_anggaran('data_anggaran');
+        $this->load->view('keuangan/jurnal/jurnal', $data);
     }
 
-//Laporan
-    public function laporan()
+    public function aksi_input_jurnal()
     {
-        $this->load->model('M_keuangan');
-        // $data['data_akun'] = $this->m_keuangan->get_all_data_akun('data_akun');
-        $this->load->view('keuangan/laporan/laporan');
+        $data = array
+        (
+            'id_akun' => $this->input->post('id_akun'),
+            'id_anggaran' => $this->input->post('id_anggaran'),
+            'uraian' => $this->input->post('uraian'),
+            'nominal' => $this->input->post('nominal'),
+            'pencatat' => $this->input->post('pencatat'),
+        );
+
+        $logging=$this->m_keuangan->aksi_input_jurnal('tabel_transaksi', $data);
+        if($logging)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('Keuangan/jurnal'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Keuangan/jurnal'));
+        }
     }
 
-//Pembayaran
+    public function hapus_jurnal($id)
+    {
+        $hapus=$this->m_keuangan->hapus_jurnal('tabel_transaksi', 'id_transaksi', $id);
+        if($hapus)
+        {
+            $this->session->set_flashdata('sukses', 'Berhasil..');
+            redirect(base_url('Keuangan/jurnal'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Keuangan/jurnal'));
+        }
+    }
+
+// Laporan
+ //Laporan Jurnal Penyesuaian
+   public function laporan_jurnalpenyesuaian()
+   {
+       $this->load->model('M_keuangan');
+       $data['data_akun'] = $this->m_keuangan->get_all_akun('data_akun');
+       $data['data_transaksi'] = $this->m_keuangan->get_data_transaksi('data_transaksi');
+       $this->load->view('keuangan/laporan/laporan_jurnalpenyesuaian', $data);
+   }
+   public function filter_tanggal()
+   {
+      $tanggalawal = $this->input->post('tanggalawal');
+      $tanggalakhir = $this->input->post('tanggalakhir');
+      $lapjurnal = $this->input->post('lapjurnal');
+
+      if($lapjurnal = 1) {
+          $data['data_transaksi'] = $this->m_keuangan->filter_bytanggal($tanggalawal,$tanggalakhir);
+          $this->load->view('Keuangan/laporan/laporan_jurnalpenyesuaian', $data);
+      }
+   }
+ //Laporan Buku Besar
+   public function laporan_bukubesar()
+   {
+       $this->load->model('M_keuangan');
+       $data['datafilter'] = $this->m_keuangan->filter_namakun("nama_akun");
+       $data['data_akun'] = $this->m_keuangan->get_all_akun('data_akun');
+       $this->load->view('keuangan/laporan/laporan_bukubesar', $data);
+   }
+   function filter_namakun(){
+        $data['data_akun'] = $this->m_keuangan->get_all_akun('data_akun');
+        $nama_akun = $this->input->post('nama_akun');
+        $nilaifilter = $this->input->post('nilaifilter');
+
+        if($nilaifilter = 1) {
+            $data['datafilter'] = $this->m_keuangan->filter_namakun($nama_akun);
+            $data['nama_akun'] = $this->m_keuangan->akun('tabel_akun', $nama_akun)->result();
+            
+            $this->load->view('keuangan/laporan/filter_namakun', $data);
+        }
+    }
+ //Laporan Neraca Lajur
+   public function laporan_neracalajur()
+   {
+       $this->load->model('M_keuangan');
+       $data['data_akun'] = $this->m_keuangan->get_all_akun('data_akun');
+       $this->load->view('keuangan/laporan/laporan_neracalajur', $data);
+   }
+
+// Pembayaran
     public function pembayaran()
     {
-        $this->load->model('M_keuangan');
-        // $data['data_akun'] = $this->m_keuangan->get_all_data_akun('data_akun');
-        $this->load->view('keuangan/pembayaran/pembayaran');
+        $data['pembayaran'] = $this->m_keuangan->get_pembayaran();
+        $this->load->view('keuangan/pembayaran/pembayaran', $data);
     }
 
+    public function get_rombelByIdKelas(){
+        $id_kelas = $this->input->post('id_kelas',TRUE);
+        $data = $this->m_keuangan->get_rombelByIdKelas($id_kelas)->result();
+        echo json_encode($data);
+    }
+
+    public function get_siswaByIdRombel(){
+        $id_rombel = $this->input->post('id_rombel',TRUE);
+        $data = $this->m_keuangan->get_siswaByIdRombel($id_rombel)->result();
+        echo json_encode($data);
+    }
+    
     public function tambah_pembayaran()
     {
-        // $this->load->model('M_keuangan');
-        $this->load->view('keuangan/pembayaran/tambah_pembayaran');
+        $this->load->model('m_akademik');
+        $data['kelas'] = $this->m_akademik->get_kelas();
+        $data['rombel'] = $this->m_akademik->get_rombel();
+        $data['siswa'] = $this->m_akademik->get_siswa();
+        $this->load->view('keuangan/pembayaran/tambah_pembayaran', $data);
     }
 
-    public function form_tambah_pembayaran()
+    public function menambahkan_pembayaran($ids)
     {
-        // $this->load->model('M_keuangan');
-        $this->load->view('keuangan/pembayaran/form_tambah_pembayaran');
+        $array = array(
+            'id_siswa' => $ids
+        );
+        $this->session->set_userdata($array);
+        redirect('Keuangan/form_tambah_pembayaran');
+    }
+
+    public function direct(){
+        $enc = $this->input->post('id_siswa');
+        redirect('Keuangan/form_tambah_pembayaran/'.$enc);
+    }
+
+	public function rig($long)
+	{
+		$char = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0987654321';
+		$string = '';
+		for ($i=0; $i < $long; $i++) { 			
+			$pos = rand(0, strlen($char)-1);
+			$string .= $char[$pos];
+		}
+		return $string;
+	}
+
+    public function form_tambah_pembayaran($ids)
+    {
+        // if(!empty($this->session->userdata('id_siswa'))) {
+        //    $ids = $this->session->userdata('id_siswa');
+		//    $ids = base64_decode($this->uri->segment(3));
+        
+           $data['dt'] = $this->m_keuangan->ambil('tabel_level',array('id_level'=>$this->session->userdata('id_level')))->row();
+           $data['siswa'] = $this->m_keuangan->get_siswaById('tabel_siswa', $ids)->result();
+           $data['jenjang'] = $this->m_keuangan->get_jenjangByIdSiswafromDaftar($ids);
+           $data['jenisbayar'] = $this->m_keuangan->get_jenisbayar();
+           $data['pembayaran'] = $this->m_keuangan->get_pembayaranByIdSiswa($ids);
+           $data['content'] = 'keuangan/tambah_pembayaran';
+
+           $this->load->view('keuangan/pembayaran/form_tambah_pembayaran', $data);
+        // }else{
+        //     redirect('/tambah_pembayaran');
+        // }
+    }
+
+    public function aksi_tambah_pembayaran()
+    {
+		$idt = 'INV'.date('md').$this->rig(3).date('is');
+        $data = [
+            'id_tf' => $idt,
+            'id_siswa' => $this->input->post('id_siswa'),
+            'id_jenis' => $this->input->post('id_jenis'),
+            'nominal' => $this->input->post('nominal'),
+            'keterangan' => $this->input->post('keterangan'),
+            'id_ta' => $this->input->post('id_ta'),
+            'akuntan' => $this->input->post('akuntan'),
+        ];
+        $this->m_keuangan->tambah_pembayaran('tabel_pembayaran', $data);
+        redirect(base_url('Keuangan/form_tambah_pembayaran/'.$this->input->post('id_siswa')));
     }
 
     public function cetak_invoice()
     {
-        // $this->load->model('M_keuangan');
         $this->load->view('keuangan/pembayaran/cetak_invoice');
     }
 
-//Setting
-    public function setting()
-    {
-        $this->load->model('M_keuangan');
-        // $data['data_akun'] = $this->m_keuangan->get_all_data_akun('data_akun');
-        $this->load->view('keuangan/setting/setting');
-    }
 }

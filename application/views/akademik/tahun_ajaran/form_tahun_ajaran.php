@@ -42,7 +42,7 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <label class="control-label">Kode Tahun Ajaran</label>
+                                    <label class="control-label">Nama</label>
                                     <div class="">
                                         <input type="text" name="nama_angkatan" class="form-control"
                                             placeholder="Masukan Nama Angkatan">
@@ -58,7 +58,7 @@
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <label class="control-label">Nama</label>
+                                    <label class="control-label">Kode Tahun Ajaran</label>
                                     <div class="">
                                         <input type="text" name="kd_angkatan" class="form-control"
                                             placeholder="Masukan KD Angkatan">

@@ -2,6 +2,70 @@
 
 class M_admin extends CI_Model
 {
+	//Data User
+	public function get_user()
+	{
+		return $this->db->get('tabel_level')->result();
+	}
+
+	public function get_user_by_id($id_level)
+    {
+        $data=$this->db->where('id_level', $id_level)->get('tabel_level');
+        return $data;
+    }
+
+	public function get_userByLogin($table)
+	{
+		$data = $this->db->get_where('tabel_level', array('id_level' => $this->session->userdata('id_level')));
+		return $data;
+	}
+
+	public function delete_user($tabel, $field, $id_stok)
+    {
+        $data=$this->db->delete($tabel, array($field => $id_stok));
+        return $data;
+    }
+
+	// Hak Akses
+	public function get_hak_akses()
+	{
+		return $this->db->get('tabel_hak_akses')->result();
+	}
+
+	public function ubah_hak_akses($tabel, $data, $where)
+	{
+		$data=$this->db->update($tabel, $data, $where);
+		return $this->db->affected_rows();
+	}
+
+	// Data Sekolah
+	public function get_sekolah($table)
+    {
+        $data=$this->db->where('id_sekolah', '1')->get($table);
+        return $data;
+    }
+
+	public function ubah_setting_sekolah($tabel, $data, $where)
+	{
+		$data=$this->db->update($tabel, $data, $where);
+		return $this->db->affected_rows();
+	}
+
+	// Data Setting Perpustakaan
+	public function get_setting_perpus($table)
+    {
+        $data=$this->db->where('id_setting_perpus', '1')->get($table);
+        return $data;
+    }
+
+	public function ubah_setting_perpus($tabel, $data, $where)
+    {
+        $data=$this->db->update($tabel, $data, $where);
+        return $this->db->affected_rows();
+    }
+
+	// Naon Eta
+
 	public function tambah($tabel, $data)
 	{
 		$this->db->insert($tabel, $data);

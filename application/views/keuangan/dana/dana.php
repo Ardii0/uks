@@ -68,7 +68,7 @@
                                                     <ul class="list-group list-group-flush">
                                                         <?php $id = 0; foreach($data_pendapatan as $data): $id++ ?>
                                                             <a href="<?php echo base_url('Keuangan/input_dana/' . $data->id) ?>">
-                                                                <li class="list-group-item" style="cursor: pointer;"><?php echo $data->nama_transaksi ?></li>
+                                                                <li class="list-group-item" style="cursor: pointer;"><?php echo $data->nama_jenis_transaksi ?></li>
                                                             </a>
                                                         <?php endforeach ?>
                                                     </ul>
@@ -91,7 +91,7 @@
                                                     <ul class="list-group list-group-flush">
                                                         <?php $id = 0; foreach($data_pengeluaran as $data): $id++ ?>
                                                             <a href="<?php echo base_url('Keuangan/input_dana/' . $data->id) ?>">
-                                                                <li class="list-group-item" style="cursor: pointer;"><?php echo $data->nama_transaksi ?></li>
+                                                                <li class="list-group-item" style="cursor: pointer;"><?php echo $data->nama_jenis_transaksi ?></li>
                                                             </a>
                                                         <?php endforeach ?>
                                                     </ul>
@@ -142,7 +142,7 @@
                                             <td><?php echo $data->waktu ?></td>
                                             <td><?php echo $data->uraian ?></td>
                                             <td><?php echo $data->pencatat ?></td>
-                                            <td><?php echo $data->akun ?></td>
+                                            <td><?php echo tampil_nama_akun_transaksi($data->id_akun) ?></td>
                                             <td><?php echo $data->nominal ?></td>
                                             <td>
                                                 <button onClick="hapus(<?php echo $data->id_transaksi ?>)" class="btn btn-danger btn-sm">

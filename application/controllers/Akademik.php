@@ -16,8 +16,12 @@ class Akademik extends CI_Controller {
     
     public function index()
     {
-        $this->load->view('akademik/dashboard');
-
+        $data['total_kelas'] = $this->m_akademik->total_kelas();
+        $data['total_mapel'] = $this->m_akademik->total_mapel();
+        $data['total_siswa'] = $this->m_akademik->total_siswa();
+        $data['total_guru'] = $this->m_akademik->total_guru();
+        $data['ta'] = $this->m_akademik->get_tahun_ajaran();
+        $this->load->view('akademik/dashboard', $data);
     }
 // Tahun Ajar
     public function tahun_ajaran()
@@ -82,6 +86,16 @@ class Akademik extends CI_Controller {
             $this->m_akademik->hapus_ta('tabel_tahunajaran', 'id_angkatan', $id_angkatan);
             redirect(base_url('Akademik/tahun_ajaran'));
     }
+// Paket Jenjang
+    public function tambah_paketjenjang()
+    {
+        $data = [
+            'nama_paket' => $this->input->post('nama_paket'),
+            'kode_paket' => $this->input->post('kode_paket')
+        ];
+        $this->m_akademik->tambah_jenjang('tabel_paketjenjang', $data);
+        redirect(base_url('Akademik/jenjang'));
+    }
 
 // Jenjang
     public function jenjang()
@@ -90,11 +104,11 @@ class Akademik extends CI_Controller {
         $data['jenjang'] = $this->m_akademik->get_jenjang('jenjang');
         $this->load->view('akademik/jenjang/jenjang', $data);
     }
-
+    
     public function jenjang_form()
     {
-        $this->load->model('M_akademik');
-        $this->load->view('akademik/jenjang/form_jenjang');
+        $data['paket'] = $this->m_akademik->get_paketjenjang('paket');
+        $this->load->view('akademik/jenjang/form_jenjang', $data);
     }
 
     public function tambah_jenjang()
@@ -102,7 +116,7 @@ class Akademik extends CI_Controller {
         $data = [
             'nama_jenjang' => $this->input->post('nama_jenjang'),
             'kd_jenjang' => $this->input->post('kd_jenjang'),
-            'paket' => $this->input->post('paket'),
+            'id_paket' => $this->input->post('id_paket'),
             'keterangan' => $this->input->post('keterangan'),
         ];
         $this->m_akademik->tambah_jenjang('tabel_jenjang', $data);
@@ -111,6 +125,7 @@ class Akademik extends CI_Controller {
 
     public function edit_jenjang($id_jenjang)
     {
+        $data['paket'] = $this->m_akademik->get_paketjenjang('paket');
         $data['jenjang']=$this->m_akademik->get_jenjangById('tabel_jenjang', $id_jenjang)->result();
         $this->load->view('akademik/jenjang/edit_jenjang', $data);
     }
@@ -120,7 +135,7 @@ class Akademik extends CI_Controller {
         $data =  [
             'nama_jenjang' => $this->input->post('nama_jenjang'),
             'kd_jenjang' => $this->input->post('kd_jenjang'),
-            'paket' => $this->input->post('paket'),
+            'id_paket' => $this->input->post('id_paket'),
             'keterangan' => $this->input->post('keterangan'),
         ];
         $logged=$this->m_akademik->ubah_jenjang('tabel_jenjang', $data, array('id_jenjang'=>$this->input->post('id_jenjang')));
@@ -468,6 +483,21 @@ class Akademik extends CI_Controller {
         $this->load->view('akademik/siswa/pembagian_kelas', $data + $jenjang + $rombel);
     }
 
+    public function finter_by_jenjang()
+    {
+        $nama_jenjang = $this->input->post('nama_jenjang');
+        $nilaifilter = $this->input->post('nilaifilter');
+        
+        if($nilaifilter = 1) {
+            $jenjang['jenjang'] = $this->m_akademik->get_jenjang('jenjang');
+            $rombel['rombel'] = $this->m_akademik->get_rombel('rombel');
+            $data['data_siswa_diterima'] = $this->m_akademik->filterByJenjang($nama_jenjang);
+            $data['filter']=$this->m_akademik->get_filter('tabel_jenjang', $nama_jenjang)->result();
+            
+            $this->load->view('akademik/siswa/filter/filter_by_jenjang', $data + $jenjang + $rombel);
+        }
+    }
+
     public function masuk_kelas()
     {
         $id_rombel = $this->input->post('id_rombel');
@@ -476,7 +506,7 @@ class Akademik extends CI_Controller {
         foreach( $id_daftar as $key => $value){
             $this->db->insert('tabel_siswa', array(
                 'id_rombel' => $id_rombel,
-                'id_daftar' => $key,
+                'id_daftar' => $key
             ));
             $this->m_akademik->ubah_pendaftaran('tabel_siswa', array( 
                 'id_siswa' => $key, 
@@ -919,21 +949,21 @@ function naik_kelas($id){
         redirect(base_url('Akademik/guru/'));
     }
     
-  //Alok Mapel
+ // Alok Mapel
     public function alokasi_mapel($id_mapel)
         {
-            $data['kelas'] = $this->m_akademik->get_kelas('kelas');
+            $data['rombel'] = $this->m_akademik->get_rombel('rombel');
             $data['mapel']=$this->m_akademik->get_mapelById('tabel_mapel', $id_mapel)->result();
             $data['alokasimapel'] = $this->m_akademik->get_alokasimapelByIdMapel('tabel_alokasimapel', $id_mapel);
             $this->load->view('akademik/alokasi/alokasi_mapel/alokasi_mapel', $data);
         }
     public function tambah_alokasimapel()
         {
-            $kelas = $this->input->post('id_kelas');
+            $rombel = $this->input->post('id_rombel');
             $mapel = $this->input->post('id_mapel');
-            foreach( $kelas as $key => $value){
+            foreach( $rombel as $key => $value){
                 $this->db->insert('tabel_alokasimapel', array(
-                    'id_kelas' => $key,
+                    'id_rombel' => $key,
                     'id_mapel' => $mapel,
                 ));
             }
@@ -941,10 +971,10 @@ function naik_kelas($id){
         }
     public function hapus_alokasimapel()
         {
-            $id = $this->input->post('id');
+            $id = $this->input->post('id_alokasimapel');
 
             foreach ($id as $key => $value) { 
-                $this->m_akademik->hapus_alokasimapel('tabel_alokasimapel', 'id', $key); 
+                $this->m_akademik->hapus_alokasimapel('tabel_alokasimapel', 'id_alokasimapel', $key); 
             }
             // $this->m_akademik->hapus_alokasimapel('tabel_alokasimapel', 'id_alokasimapel', $id_alokasimapel);
             redirect(base_url('Akademik/pelajaran/'));
