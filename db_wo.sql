@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 13, 2023 at 11:18 AM
+-- Generation Time: Mar 15, 2023 at 04:52 AM
 -- Server version: 8.0.29
 -- PHP Version: 8.0.25
 
@@ -216,8 +216,8 @@ INSERT INTO `tabel_daftar` (`id_daftar`, `no_reg`, `id_angkatan`, `id_jenjang`, 
 (3, '313', 1, 3, '2023-02-28', '3123', 'Irvanda', 'L', 'Taman', 1, '4', '0', '2023-03-03', 'Islam', 'Taman', '08989898', NULL, 'WNI', 'Y'),
 (6, '2334233', 1, 5, '2023-03-01', '34534545', 'Rizqi', 'L', 'Semarang', 2, 'ada', 'ada', '2003-11-11', 'Islam', 'Mangkang', '089765543321', '1677650453679.png', 'WNI', 'Y'),
 (7, '2334233', 1, 5, '2023-03-01', '34534545', 'Rizqi', 'L', 'Semarang', 2, 'ada', 'ada', '2003-11-11', 'Islam', 'Mangkang', '089765543321', '1677650453679.png', 'WNI', 'L'),
-(8, '2334233', 1, 5, '2023-03-01', '34534545', 'Rizqi', 'L', 'Semarang', 2, 'ada', 'ada', '2003-11-11', 'Islam', 'Mangkang', '089765543321', '1677650453679.png', 'WNI', 'P'),
-(10, '1213221', 1, 5, '2023-03-01', '31312', 'Ahmad Subardjo', 'L', 'Los Angel', 1, '1', '1', '2023-03-11', 'Islam', 'Jl.Tamai Raya', '09282734851', '1678519397023.jpg', 'WNI', 'A');
+(10, '1213221', 1, 5, '2023-03-01', '31312', 'Ahmad Subardjo', 'L', 'Los Angel', 1, '1', '1', '2023-03-11', 'Islam', 'Jl.Tamai Raya', '09282734851', '1678519397023.jpg', 'WNI', 'A'),
+(11, '123', 1, 1, '2023-03-16', '2', 'ShoeFantasy', 'L', 'sSfd', 1, '1', '1', '2023-03-30', 'Kristen', 'Jl.Tamai Raya', '09282734851', '1678850687584.jpg', 'WNI', 'P');
 
 -- --------------------------------------------------------
 
@@ -243,6 +243,29 @@ INSERT INTO `tabel_guru` (`kode_guru`, `nip`, `nama_guru`, `jekel`, `no_hp`, `al
 (444, '22222', 'Saburo', 'L', '0990998', 'Atlantis', 'AKTIF'),
 (449, '884564', 'Ahmad', 'L', '545454', '', 'AKTIF'),
 (450, '3242134', 'Eko', 'L', '08932422342', 'Ungaran', 'AKTIF');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tabel_hak_akses`
+--
+
+CREATE TABLE `tabel_hak_akses` (
+  `id_hak_akses` int DEFAULT NULL,
+  `akses` varchar(765) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tabel_hak_akses`
+--
+
+INSERT INTO `tabel_hak_akses` (`id_hak_akses`, `akses`) VALUES
+(1, '-'),
+(2, 'Admin'),
+(3, 'Kesiswaan'),
+(4, 'PetugasPerpus'),
+(5, 'Guru'),
+(6, 'TU');
 
 -- --------------------------------------------------------
 
@@ -327,7 +350,7 @@ CREATE TABLE `tabel_jenjang` (
   `kd_jenjang` varchar(50) NOT NULL,
   `nama_jenjang` varchar(50) NOT NULL,
   `keterangan` text,
-  `paket` varchar(2) NOT NULL,
+  `id_paket` int NOT NULL,
   `aktif` int NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -335,11 +358,12 @@ CREATE TABLE `tabel_jenjang` (
 -- Dumping data for table `tabel_jenjang`
 --
 
-INSERT INTO `tabel_jenjang` (`id_jenjang`, `kd_jenjang`, `nama_jenjang`, `keterangan`, `paket`, `aktif`) VALUES
-(1, 'J001', 'SD', 'Sekolah Dasar', '2', 1),
-(3, 'J002', 'SMP', 'Sekolah Menengah Pertama', '1', 1),
-(4, 'J003', 'SMA', 'Sekolah Menengah Atas', '2', 1),
-(5, 'J004', 'SMK', 'Sekolah Menengah Kejuruan', '4', 1);
+INSERT INTO `tabel_jenjang` (`id_jenjang`, `kd_jenjang`, `nama_jenjang`, `keterangan`, `id_paket`, `aktif`) VALUES
+(1, 'J001', 'SD', 'Sekolah Dasar', 2, 1),
+(3, 'J002', 'SMP', 'Sekolah Menengah Pertama', 1, 1),
+(4, 'J003', 'SMA', 'Sekolah Menengah Atas', 2, 1),
+(5, 'J004', 'SMK', 'Sekolah Menengah Kejuruan', 4, 1),
+(7, 'OK', 'OK', '5', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -363,7 +387,8 @@ INSERT INTO `tabel_kelas` (`id_kelas`, `id_jenjang`, `nama_kelas`, `keterangan`,
 (1, 1, 'VI', 'Ok', 'AKTIF'),
 (2, 4, 'XII', 'Test', 'AKTIF'),
 (3, 3, 'XI', 'Ok', 'AKTIF'),
-(5, 5, 'XII TKJ', '', 'AKTIF');
+(5, 5, 'XII TKJ', '', 'AKTIF'),
+(6, 7, 'tes', 're', 'AKTIF');
 
 -- --------------------------------------------------------
 
@@ -377,20 +402,21 @@ CREATE TABLE `tabel_level` (
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `level` varchar(20) NOT NULL,
-  `kode_guru` int DEFAULT NULL
+  `kode_guru` int DEFAULT NULL,
+  `id_hak_akses` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tabel_level`
 --
 
-INSERT INTO `tabel_level` (`id_level`, `username`, `email`, `password`, `level`, `kode_guru`) VALUES
-(1, 'Admin', 'adminis@tra.tor', '123', 'Admin', NULL),
-(2, 'Akademik', 'akademik@gmail.com', '202cb962ac59075b964b07152d234b70', 'Kesiswaan', NULL),
-(3, 'Perpus', 'perpus@gmail.com', '202cb962ac59075b964b07152d234b70', 'PetugasPerpus', NULL),
-(4, 'Guru', 'guru@gmail.com', '202cb962ac59075b964b07152d234b70', 'Guru', 449),
-(5, 'TU', 'tu@gmail.com', '202cb962ac59075b964b07152d234b70', 'TU', NULL),
-(6, 'Saburo', 'saburo@gmail.com', '202cb962ac59075b964b07152d234b70', 'Guru', 444);
+INSERT INTO `tabel_level` (`id_level`, `username`, `email`, `password`, `level`, `kode_guru`, `id_hak_akses`) VALUES
+(1, 'Admin', 'adminis@tra.tor', '123', 'Admin', NULL, 2),
+(2, 'Akademik', 'akademik@gmail.com', '202cb962ac59075b964b07152d234b70', 'Kesiswaan', NULL, 3),
+(3, 'Perpus', 'perpus@gmail.com', '202cb962ac59075b964b07152d234b70', 'PetugasPerpus', NULL, 4),
+(4, 'Guru', 'guru@gmail.com', '202cb962ac59075b964b07152d234b70', 'Guru', 449, 5),
+(5, 'TU', 'tu@gmail.com', '202cb962ac59075b964b07152d234b70', 'TU', NULL, 6),
+(6, 'Saburo', 'saburo@gmail.com', '202cb962ac59075b964b07152d234b70', 'Guru', 444, 5);
 
 -- --------------------------------------------------------
 
@@ -434,7 +460,8 @@ CREATE TABLE `tabel_mapel` (
 
 INSERT INTO `tabel_mapel` (`id_mapel`, `id_jenismapel`, `nama_mapel`, `keterangan`, `status`) VALUES
 (9, 2, 'Matematika', 'Matematika Ilmu yang MENYENANGKAN HAHAHAHA', 'AKTIF'),
-(10, 1, 'Bahasa Semua nya', 'Semangat Brother', 'AKTIF');
+(10, 1, 'Bahasa Semua nya', 'Semangat Brother', 'AKTIF'),
+(14, 2, 'tes aha', '123', 'AKTIF');
 
 -- --------------------------------------------------------
 
@@ -444,6 +471,7 @@ INSERT INTO `tabel_mapel` (`id_mapel`, `id_jenismapel`, `nama_mapel`, `keteranga
 
 CREATE TABLE `tabel_nilai` (
   `id_nilai` int NOT NULL,
+  `id_rombel` int NOT NULL,
   `id_siswa` int NOT NULL,
   `id_mapel` int NOT NULL,
   `id_semester` int NOT NULL,
@@ -465,13 +493,8 @@ CREATE TABLE `tabel_nilai` (
 -- Dumping data for table `tabel_nilai`
 --
 
-INSERT INTO `tabel_nilai` (`id_nilai`, `id_siswa`, `id_mapel`, `id_semester`, `nuh1`, `nuh2`, `nuh3`, `nt1`, `nt2`, `nt3`, `mid`, `smt`, `rnuh`, `rnt`, `nh`, `nar`) VALUES
-(1, 1, 9, 1, 1, 1, 1, 1, 1, 1, 1, 11, NULL, NULL, NULL, NULL),
-(2, 1, 9, 1, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL),
-(3, 1, 9, 1, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL),
-(4, 1, 9, 1, 10, 10, 10, 10, 10, 10, 10, 20, '10', '10', '10', '13.333333333333'),
-(5, 1, 9, 1, 20, 20, 20, 20, 20, 20, 20, 20, '20', '20', '20', '20'),
-(6, 1, 9, 1, 2, 2, 2, 2, 2, 2, 2, 2, '2', '2', '2', '2');
+INSERT INTO `tabel_nilai` (`id_nilai`, `id_rombel`, `id_siswa`, `id_mapel`, `id_semester`, `nuh1`, `nuh2`, `nuh3`, `nt1`, `nt2`, `nt3`, `mid`, `smt`, `rnuh`, `rnt`, `nh`, `nar`) VALUES
+(1, 12, 5, 9, 1, 1, 1, 1, 1, 1, 1, 1, 1, '1', '1', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -632,7 +655,7 @@ INSERT INTO `tabel_rombel` (`id_rombel`, `id_kelas`, `nama_rombel`, `kode_guru`,
 (5, 2, 'TKJ 3', 444, 291, 'AKTIF'),
 (6, 3, 'TB', 444, 221, 'AKTIF'),
 (10, 2, 'AKL', 444, 21, 'AKTIF'),
-(12, 5, 'VII A', 450, 50, 'AKTIF');
+(12, 6, 'VII A', 449, 50, 'AKTIF');
 
 -- --------------------------------------------------------
 
@@ -697,7 +720,6 @@ CREATE TABLE `tabel_siswa` (
 INSERT INTO `tabel_siswa` (`id_siswa`, `id_daftar`, `id_rombel`, `saldo_tabungan`, `nama`) VALUES
 (1, 2, 1, 123123123, 'Ahmad Jay'),
 (2, 3, 5, 123123123, 'Irvanda'),
-(3, 3, 1, 0, 'Irvanda'),
 (5, 10, 12, 0, 'Ahmad Subardjo');
 
 -- --------------------------------------------------------
@@ -1090,7 +1112,7 @@ ALTER TABLE `tabel_anggota`
 -- AUTO_INCREMENT for table `tabel_daftar`
 --
 ALTER TABLE `tabel_daftar`
-  MODIFY `id_daftar` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_daftar` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tabel_guru`
@@ -1120,13 +1142,13 @@ ALTER TABLE `tabel_jenis_transaksi`
 -- AUTO_INCREMENT for table `tabel_jenjang`
 --
 ALTER TABLE `tabel_jenjang`
-  MODIFY `id_jenjang` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_jenjang` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tabel_kelas`
 --
 ALTER TABLE `tabel_kelas`
-  MODIFY `id_kelas` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_kelas` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tabel_level`
@@ -1144,13 +1166,13 @@ ALTER TABLE `tabel_lulus`
 -- AUTO_INCREMENT for table `tabel_mapel`
 --
 ALTER TABLE `tabel_mapel`
-  MODIFY `id_mapel` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_mapel` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tabel_nilai`
 --
 ALTER TABLE `tabel_nilai`
-  MODIFY `id_nilai` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_nilai` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tabel_paketjenjang`
@@ -1186,7 +1208,7 @@ ALTER TABLE `tabel_rencana_anggaran`
 -- AUTO_INCREMENT for table `tabel_rombel`
 --
 ALTER TABLE `tabel_rombel`
-  MODIFY `id_rombel` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_rombel` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `tabel_sekolah`

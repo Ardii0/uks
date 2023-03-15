@@ -76,6 +76,33 @@ class M_nilai extends CI_Model{
         return $data;
     }
 
+	public function nps($ids, $idr, $smt)
+	{
+		$this->db->select('tabel_mapel.nama_mapel, tabel_nilai.nar');
+		$this->db->from('tabel_nilai');
+		$this->db->join('tabel_mapel', 'tabel_nilai.id_mapel = tabel_mapel.id_mapel');
+		$this->db->where('tabel_nilai.id_siswa', $ids);
+		$this->db->where('tabel_nilai.id_rombel', $idr);
+		$this->db->where('tabel_nilai.id_semester', $smt);
+		$db = $this->db->get();
+		return $db;
+	}
+
+	public function get_n($ids)
+	{
+		$this->db->select('tabel_daftar.nama');
+		$this->db->from('tabel_siswa');
+		$this->db->join('tabel_daftar', 'tabel_daftar.id_daftar = tabel_siswa.id_daftar');
+		$this->db->where('tabel_siswa.id_siswa', $ids);
+		$db = $this->db->get();
+		return $db;	
+	}
+
+	public function get_r($idr)
+	{
+		return $this->db->get_where('tabel_rombel', array('id_rombel' => $idr));
+	}
+
     public function semester($smt)
     {
         $data = $this->db->where('id_semester', $smt)->get('tabel_semester');
@@ -99,7 +126,7 @@ class M_nilai extends CI_Model{
         return $db;
     }
 
-    // Modul Data Siswa
+// Modul Data Siswa
     public function get_data_nilai($id_mapel, $id_semester)
     {
         $multiClause = array('id_mapel' => $id_mapel, 'id_semester' => $id_semester);

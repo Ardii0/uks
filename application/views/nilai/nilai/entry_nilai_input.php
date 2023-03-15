@@ -43,12 +43,7 @@
                         <?php endforeach; ?>
                         <p class="mt-n2 d-flex">
                             <?php foreach ($rombel as $information): ?>
-                                <span>
-                                 <?php echo tampil_kelasById($information->id_rombel) ?> 
-                                </span>
-                                <span>&nbsp;
                                  <?php echo $information->nama_rombel ?>
-                                </span>
                             <?php endforeach; ?>
                             <?php foreach ($semester as $smt): ?>
                                 <span>&nbsp;
@@ -103,6 +98,7 @@
                                         <div class="col-1 font-weight-bold">Nama</div>
                                         <div class="col-5 text-truncate" style="max-width: 210px;">: <?php echo tampil_namadaftar_ByIdSiswa($inputdata->id_siswa) ?></div>
                                         <input type="hidden" name="id_siswa" value="<?php echo $inputdata->id_siswa ?>">
+                                        <input type="hidden" name="id_rombel" value="<?php echo $inputdata->id_rombel ?>">
                                         <div class="col-1 font-weight-bold">NISN</div>
                                         <div class="col-5">: <?php echo tampil_nisndaftar_ByIdSiswa($inputdata->id_siswa) ?></div>
                                     <?php endforeach; ?>

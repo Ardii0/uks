@@ -34,16 +34,7 @@
             <section class="content">
                 <div class="container-fluid bg-white">
                     <div class="row mx-2 pt-3 d-flex justify-content-between">
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <select class="form-control">
-                                <option>Filter</option>
-                                <option>option 2</option>
-                                <option>option 3</option>
-                                <option>option 4</option>
-                                <option>option 5</option>
-                                </select>
-                            </div>
+                        <div>
                         </div>
                         <div class="col-md-3 d-flex justify-content-end align-self-start">
                             <button type="button" class="btn btn-success mr-1"><i class="fa fa-upload pr-2"></i>Upload</button>

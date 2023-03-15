@@ -103,6 +103,7 @@ class Nilai extends CI_Controller {
         $nar = ($nh + $mid + $smt) / 3;
         $this->m_nilai->tambah_nilai('tabel_nilai',
         array(
+            'id_rombel' => $this->input->post('id_rombel'),
             'id_siswa' => $this->input->post('id_siswa'),
             'id_mapel' => $this->input->post('id_mapel'),
             'id_semester' => $this->input->post('id_semester'),
@@ -193,6 +194,14 @@ class Nilai extends CI_Controller {
 	    $cek = $this->m_nilai->cek_wali()->num_rows();
 	    if ($cek > 0) {
             $data['rombel'] = $this->m_nilai->get_rombel_raport()->result();    	
+	    }else{
+	    	$this->session->set_flashdata('denided', 
+            '<div class="alert alert-danger">
+                <h4>Maaf</h4>
+                <p>Menu Cetak Raport hanya tersedia bagi Wali Kelas.</p>
+                <p>Hubungi Administrator untuk proses lebih lanjut.</p>
+            </div>');
+			$data['content'] = 'denided';
 	    }
         $data['siswaPerRombel'] = $this->m_keuangan->ambil('tabel_siswa','id_rombel')->row();
         $data['rombelPerWakel'] = $this->m_keuangan->ambil('tabel_rombel',array('kode_guru'=>$this->session->userdata('kode_guru')))->row();
@@ -204,5 +213,36 @@ class Nilai extends CI_Controller {
 	{
 		$data = $this->m_nilai->entrynew($id)->result();
 		echo json_encode($data);
+	}
+
+	public function raportpdf($ids,$idr,$smt)
+	{
+		$cek = $this->m_nilai->nps($ids,$idr,$smt)->num_rows();
+		// if (empty($cek)) {
+		// 	$this->session->set_flashdata('msg',
+        //     '<div class="alert alert-danger">
+        //         <h4>Maaf</h4>
+        //         <p>Data Tidak Ditemukan.</p>                
+        //     </div>');
+		// 	redirect('Nilai/cetak_raport','refresh');
+		// }else{
+			$nama = $this->m_nilai->get_n($ids);
+			$rombel = $this->m_nilai->get_r($idr);
+			foreach ($nama->result() as $key) {
+				$data['nama'] = $key->nama;
+			}
+			foreach ($rombel->result() as $key1) {
+				$data['rombel'] = $key1->nama_rombel;
+			}
+			$data['data'] = $this->m_nilai->nps($ids,$idr,$smt)->result();	
+			if ($this->uri->segment(6) == "pdf") {
+                $this->load->library('pdf');
+				$this->pdf->load_view('nilai/nilai/cetakraport', $data);
+				$this->pdf->render();
+				$this->pdf->stream($data['nama']."-".$data['rombel']."-".$smt.".pdf");		
+			}else{
+				$this->load->view('nilai/nilai/cetakraportexcel', $data);
+			}
+		// }
 	}
 }

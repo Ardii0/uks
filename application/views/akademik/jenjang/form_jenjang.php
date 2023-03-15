@@ -69,8 +69,8 @@
                                     <div class="form-group">
                                         <select name="id_paket" class="form-control">
                                             <option style="display: none;">Pilih Paket</option>
-                                            <?php $id=0; foreach($paket as $data ): $id++; ?>
-                                                <option value="<?php echo $data->id_paket ?>"><?php echo $data->nama_paket ?></option>
+                                            <?php foreach($paket as $data ): ?>
+                                                <option name="id_paket" value="<?php echo $data->id_paket ?>"><?php echo $data->nama_paket ?></option>
                                             <?php endforeach ?>
                                         </select>
                                     </div>

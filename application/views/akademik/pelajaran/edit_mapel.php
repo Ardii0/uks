@@ -62,7 +62,7 @@
                                     <label class="control-label">JENIS MAPEL</label>
                                     <div class="">
                                     <select name="id_jenismapel" class="form-control form-select px-2 py-1" aria-label="jenismapel">
-                                    <option style="display: none;" value="<?php echo tampil_jenismapelById($data->id_jenismapel)?>">
+                                    <option style="display: none;" value="<?php echo $data->id_jenismapel?>">
                                     <?php echo tampil_jenismapelById($data->id_jenismapel)?>
                                     </option>
                                     <?php foreach($jenismapel as $jenis): ?>

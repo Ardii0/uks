@@ -70,9 +70,9 @@
                                     <label class="control-label">Paket</label>
                                     <div class="">
                                         <select name="id_paket" class="form-control">
-                                            <option style="display: none;"><?php echo tampil_paketjenjangById($data->id_paket) ?></option>
+                                            <option name="id_paket" value="<?php echo $data->id_paket ?>" style="display: none;"><?php echo tampil_paketjenjangById($data->id_paket) ?></option>
                                             <?php $id=0; foreach($paket as $paket ): $id++; ?>
-                                                <option value="<?php echo $paket->id_paket ?>"><?php echo $paket->nama_paket ?></option>
+                                                <option name="id_paket" value="<?php echo $paket->id_paket ?>"><?php echo $paket->nama_paket ?></option>
                                             <?php endforeach ?>
                                         </select>
                                     </div>

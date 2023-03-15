@@ -393,7 +393,7 @@ function tampil_nama_siswa_byid($id)
                     ->get();
     foreach ($result->result() as $c) {
     $stmt= $c->nama_kelas;
-    $namakelas= $namakelas.$stmt.'<br>';
+    $namakelas= $namakelas.$stmt;
     }
     return $namakelas;
   }

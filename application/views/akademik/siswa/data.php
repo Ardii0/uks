@@ -108,7 +108,7 @@
     function hapus(id) {
         var yes = confirm('Yakin Di Hapus?');
         if (yes == true) {
-            window.location.href = "<?php echo base_url('Akademik/hapus_siswa/')?>" + "/" + id;
+            window.location.href = "<?php echo base_url('Akademik/hapus_siswa/')?>" + id;
         }
     }
     </script>

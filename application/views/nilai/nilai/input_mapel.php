@@ -85,13 +85,7 @@
                                         <?php $id=0; foreach ($alokasimapel as $ampl): $id++?>
                                             <tr>
                                                 <td><?php echo $id ?></td>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <span>&nbsp;<?php echo tampil_kelasdaftar_ByIdSiswa($ampl->id_rombel) ?>
-                                                        </span>
-                                                        <span>&nbsp;<?php echo $ampl->nama_rombel ?>
-                                                        </span></td>
-                                                    </div>
+                                                <td><?php echo $ampl->nama_rombel ?></td>
                                                 <td class="d-flex">
                                                     <a href="<?php echo base_url('Nilai/session/'.$ampl->id_mapel.'/'.$ampl->id_rombel.'/1') ?>" class="btn btn-success btn-sm">
                                                         Ganjil

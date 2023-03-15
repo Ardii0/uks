@@ -53,7 +53,7 @@
                                     <label class="control-label">Kelas</label>
                                     <div class="">
                                         <select name="id_kelas" class="form-control form-select px-2 py-1" aria-label="kelas">
-                                            <option style="display: none;" value="<?php echo tampil_kelasById($data->id_kelas)?>">
+                                            <option style="display: none;" value="<?php echo $data->id_kelas?>">
                                             <?php echo tampil_kelasById($data->id_kelas)?>
                                             </option>
                                             <?php foreach($kelas as $kelas): ?>
@@ -68,7 +68,7 @@
                                     <label class="control-label">Guru</label>
                                     <div class="">
                                         <select name="kode_guru" class="form-control form-select px-2 py-1" aria-label="guru">
-                                            <option style="display: none;" value="<?php echo tampil_guruById($data->kode_guru)?>">
+                                            <option style="display: none;" value="<?php echo $data->kode_guru?>">
                                             <?php echo tampil_guruById($data->kode_guru)?>
                                             </option>
                                             <?php foreach($guru as $guru): ?>

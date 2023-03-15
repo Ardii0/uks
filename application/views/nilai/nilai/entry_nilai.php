@@ -43,12 +43,7 @@
                         <?php endforeach; ?>
                         <p class="mt-n2 d-flex">
                             <?php foreach ($rombel as $information): ?>
-                                <span>
-                                 <?php echo tampil_kelasById($information->id_rombel) ?> 
-                                </span>
-                                <span>&nbsp;
                                  <?php echo $information->nama_rombel ?>
-                                </span>
                             <?php endforeach; ?>
                             <?php foreach ($semester as $smt): ?>
                                 <span>&nbsp;
@@ -91,115 +86,6 @@
                             </div>
                         </div>
                         <div class="col">
-                            <form class="" action="<?php echo base_url('Nilai/tambah_nilai') ?>" enctype="multipart/form-data" method="post">
-                                <div class="row card-body">
-                                    <!-- <?php foreach ($semester as $inputsmt): ?>
-                                        <input type="hidden" name="id_semester" value="<?php echo $inputsmt->semester ?>">
-                                    <?php endforeach; ?>
-                                    <?php foreach ($mapel as $inputmapel): ?>
-                                        <input type="hidden" name="id_mapel" value="<?php echo $inputmapel->id_mapel ?>">
-                                    <?php endforeach; ?> -->
-                                    <!-- <?php foreach ($rombel as $inputrombel): ?>
-                                        <input type="hidden" name="id_rombel" value="<?php echo $inputrombel->id_rombel ?>">
-                                    <?php endforeach; ?> -->
-                                    <!-- <?php foreach ($siswa as $inputdata): ?>
-                                        <div class="col-1 font-weight-bold">Nama</div>
-                                        <div class="col-5 text-truncate" style="max-width: 210px;">: <?php echo tampil_namadaftar_ByIdSiswa($inputdata->id_siswa) ?></div>
-                                        <input type="hidden" name="id_siswa" value="<?php echo $inputdata->id_siswa ?>">
-                                        <div class="col-1 font-weight-bold">NISN</div>
-                                        <div class="col-5">: <?php echo tampil_nisndaftar_ByIdSiswa($inputdata->id_siswa) ?></div>
-                                    <?php endforeach; ?> -->
-                                    <!-- <div class="col-6 mt-3">
-                                        <div class="form-group">
-                                            <label class="control-label">NUH1</label>
-                                            <div>
-                                                <input type="number" name="nuh1" class="form-control"
-                                                    placeholder="Masukan Nilai PR"><br>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label">NUH2</label>
-                                            <div>
-                                                <input type="number" name="nuh2" class="form-control"
-                                                    placeholder="Masukan Nilai PR"><br>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label">NUH3</label>
-                                            <div>
-                                                <input type="number" name="nuh3" class="form-control"
-                                                    placeholder="Masukan Nilai PR"><br>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label">MID</label>
-                                            <div>
-                                                <input type="number" name="mid" class="form-control"
-                                                    placeholder="Masukan Nilai PR"><br>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label">RNUH</label>
-                                            <div>
-                                                <input type="number" name="rnuh" class="form-control"
-                                                    placeholder="Masukan Nilai PR" disabled><br>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label">NH</label>
-                                            <div>
-                                                <input type="number" name="nh" class="form-control"
-                                                    placeholder="Masukan Nilai PR" disabled><br>
-                                            </div>
-                                        </div>
-                                        <button type="submit">simpan</button>
-                                    </div>
-                                    <div class="col-6 mt-3">
-                                        <div class="form-group">
-                                            <label class="control-label">NT1</label>
-                                            <div>
-                                                <input type="number" name="nt1" class="form-control"
-                                                    placeholder="Masukan Nilai Ulangan Harian"><br>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label">NT2</label>
-                                            <div>
-                                                <input type="number" name="nt2" class="form-control"
-                                                    placeholder="Masukan Nilai Ulangan Harian"><br>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label">NT3</label>
-                                            <div>
-                                                <input type="number" name="nt3" class="form-control"
-                                                    placeholder="Masukan Nilai Ulangan Harian"><br>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label">SMT</label>
-                                            <div>
-                                                <input type="number" name="smt" class="form-control"
-                                                    placeholder="Masukan Nilai Ulangan Harian"><br>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label">RNT</label>
-                                            <div>
-                                                <input type="number" name="rnt" class="form-control"
-                                                    placeholder="Masukan Nilai Ulangan Harian" disabled><br>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label">NAR</label>
-                                            <div>
-                                                <input type="number" name="nar" class="form-control"
-                                                    placeholder="Masukan Nilai Ulangan Harian" disabled><br>
-                                            </div>
-                                        </div>
-                                    </div> -->
-                                </div>
-                            </form>
                         </div>
                     </div>
                 </div>
