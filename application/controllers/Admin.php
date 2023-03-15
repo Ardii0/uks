@@ -534,11 +534,35 @@ class Admin extends CI_Controller {
 
     public function setting()
     {
+        $data['hak_akses'] = $this->M_admin->get_hak_akses('hak_akses');
         $data['data_user'] = $this->M_admin->get_user('data_user');
         $data['setting_perpustakan']=$this->M_admin->get_setting_perpus('setting_perpustakaan')->result();
         $data['sekolah']=$this->M_admin->get_sekolah('tabel_sekolah')->result();
         $data['user']=$this->M_admin->get_userByLogin('tabel_level')->result();
         $this->load->view('petugas/setting/setting', $data);
+    }
+
+    public function aksi_tambah_user()
+    {
+        $data = array
+        (
+            'username' => $this->input->post('username'),
+            'email' => $this->input->post('email'),
+            'password' => md5($this->input->post('password')),
+            'level' => $this->input->post('level'),
+            'id_hak_akses' => $this->input->post('id_hak_akses'),
+        );
+        $masuk=$this->M_admin->tambah_user('tabel_level', $data);
+        if($masuk)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('Admin/setting'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Admin/setting'));
+        }
     }
 
     public function delete_user($id_level)

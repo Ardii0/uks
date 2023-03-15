@@ -241,7 +241,7 @@
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <form action="<?php echo base_url('Admin/update_hak_akses') ?>" enctype="multipart/form-data"
+                        <form action="<?php echo base_url('Admin/aksi_tambah_user') ?>" enctype="multipart/form-data"
                             method="post">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">Data Transaksi</h5>
@@ -256,28 +256,29 @@
                                             <div class="form-group col-6">
                                                 <label class="control-label">Username</label>
                                                 <div>
-                                                    <input type="text" class="form-control"
+                                                    <input type="text" name="username" class="form-control"
                                                         placeholder="Masukan username baru">
                                                 </div>
                                             </div>
                                             <div class="form-group col-6">
                                                 <label class="control-label">Email</label>
                                                 <div>
-                                                    <input type="email" class="form-control"
+                                                    <input type="email" name="email" class="form-control"
                                                         placeholder="Masukan email baru">
                                                 </div>
                                             </div>
                                             <div class="form-group col-6">
                                                 <label class="control-label">Password</label>
                                                 <div>
-                                                    <input type="password" class="form-control"
+                                                    <input type="password" name="password" class="form-control"
                                                         placeholder="Masukan password baru">
                                                 </div>
                                             </div>
                                             <div class="form-group col-6">
                                                 <label class="control-label">Level</label>
                                                 <div>
-                                                    <input type="text" class="form-control" placeholder="Masukan level">
+                                                    <input type="text" name="level" class="form-control"
+                                                        placeholder="Masukan level">
                                                 </div>
                                             </div>
                                             <div class="form-group col-12">
@@ -285,7 +286,10 @@
                                                 <div>
                                                     <select name="id_hak_akses"
                                                         class="custom-select custom-select-md mb-3">
-                                                        <option value="Admin">Admin</option>
+                                                        <?php foreach ($hak_akses as $row): ?>
+                                                        <option value="<?php echo $row->id_hak_akses ?>">Page
+                                                            <?php echo $row->akses?></option>
+                                                        <?php endforeach ?>
                                                     </select>
                                                 </div>
                                             </div>

@@ -20,6 +20,13 @@ class M_admin extends CI_Model
 		return $data;
 	}
 
+	public function tambah_user($tabel, $data)
+	{
+	  $this->db->insert($tabel, $data);
+	  return $this->db->insert_id();
+	}
+
+
 	public function delete_user($tabel, $field, $id_stok)
     {
         $data=$this->db->delete($tabel, array($field => $id_stok));

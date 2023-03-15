@@ -349,6 +349,12 @@ class Akademik extends CI_Controller {
      $data['data_siswa_daftar'] = $this->m_akademik->get_siswa_pendaftaran('data_siswa_daftar');
      $this->load->view('akademik/siswa/pendaftaran', $data);
     }
+
+    public function detail_pendaftaran($id_daftar)
+    {
+        $data['daftar']=$this->m_akademik->get_daftarById('tabel_daftar', $id_daftar)->result();
+        $this->load->view('akademik/siswa/detail_pendaftaran', $data);
+    }
     
     public function upload_img_pendaftaran_siswa($value)
     {

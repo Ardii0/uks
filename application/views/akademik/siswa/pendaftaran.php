@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,19 +17,21 @@
 
         <div class="content-wrapper">
             <section class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Pendaftaran Siswa</h1>
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Pendaftaran Siswa</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a
+                                        href="<?php echo base_url('Akademik/') ?>"><?php echo $this->session->userdata('level') ?></a>
+                                </li>
+                                <li class="breadcrumb-item active">Pendaftaran</li>
+                            </ol>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="<?php echo base_url('Akademik/') ?>"><?php echo $this->session->userdata('level') ?></a></li>
-                    <li class="breadcrumb-item active">Pendaftaran</li>
-                    </ol>
-                </div>
-                </div>
-            </div>
             </section>
 
             <section class="content">
@@ -37,9 +40,11 @@
                         <div>
                         </div>
                         <div class="col-md-3 d-flex justify-content-end align-self-start">
-                            <button type="button" class="btn btn-success mr-1"><i class="fa fa-upload pr-2"></i>Upload</button>
+                            <button type="button" class="btn btn-success mr-1"><i
+                                    class="fa fa-upload pr-2"></i>Upload</button>
                             <a href="<?php echo base_url('Akademik/form_pendaftaran'); ?>">
-                                <button type="button" class="btn btn-success"><i class="fa fa-plus pr-2"></i>Tambah</button>
+                                <button type="button" class="btn btn-success"><i
+                                        class="fa fa-plus pr-2"></i>Tambah</button>
                             </a>
                         </div>
                     </div>
@@ -59,14 +64,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php 
+                                        <?php 
                                     $id=0; foreach($data_siswa_daftar as $row ): $id++;
                                     ?>
                                         <tr>
                                             <td><?php
                                                  echo $id 
                                                  ?></td>
-                                            <td><img style="width: 80px; height:90px; " src="<?php echo base_url('uploads/akademik/pendaftaran_siswa')."/".$row->foto;?>"></td>
+                                            <td><img style="width: 80px; height:90px; "
+                                                    src="<?php echo base_url('uploads/akademik/pendaftaran_siswa')."/".$row->foto;?>">
+                                            </td>
                                             <td class="text-truncate" style="max-width: 150px;"><?php
                                              echo $row->nama 
                                              ?></td>
@@ -80,16 +87,18 @@
                                              echo tampil_namajenjang_byid($row->id_jenjang) 
                                              ?></td>
                                             <td class="text-center">
-                                                <a href="<?php echo base_url('Akademik/edit_pendaftaran/'.$row->id_daftar)?>" class="btn btn-primary btn-sm">
+                                                <a href="<?php echo base_url('Akademik/edit_pendaftaran/'.$row->id_daftar)?>"
+                                                    class="btn btn-primary btn-sm">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
-                                                <a class="btn btn-warning btn-sm">
+                                                <a href="<?php echo base_url('Akademik/detail_pendaftaran/'.$row->id_daftar)?>"
+                                                    class="btn btn-warning btn-sm">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
                                                 <button onClick="hapus(<?php
                                                  echo $row->id_daftar 
                                                  ?>)" class="btn btn-danger btn-sm">
-                                                    <i class="fa fa-trash"></i> 
+                                                    <i class="fa fa-trash"></i>
                                                 </button>
                                             </td>
                                         </tr>
@@ -102,20 +111,20 @@
                         </div>
                     </div>
                 </div>
-            </div>
+        </div>
         </section>
     </div>
     </div>
 
     <?php $this->load->view('akademik/style/js')?>
     <script>
-        function hapus(id) {
-            var yes = confirm('Yakin Di Hapus?');
-            if (yes == true) {
-                window.location.href = "<?php echo base_url('Akademik/hapus_pendaftaran/')?>" + "/" + id;
-            }
+    function hapus(id) {
+        var yes = confirm('Yakin Di Hapus?');
+        if (yes == true) {
+            window.location.href = "<?php echo base_url('Akademik/hapus_pendaftaran/')?>" + "/" + id;
         }
-        </script>
+    }
+    </script>
 </body>
 
 </html>

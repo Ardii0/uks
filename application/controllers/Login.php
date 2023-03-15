@@ -63,35 +63,35 @@ class Login extends CI_Controller {
         // 'email' => $email,
         'username' => $username,
         'password' => md5($password),
-        'level' => "Admin",
+        // 'level' => "Admin",
         'id_hak_akses' => "2",
         );
       $whereKesiswaan = array(
         // 'email' => $email,
         'username' => $username,
         'password' => md5($password),
-        'level' => "Kesiswaan",
+        // 'level' => "Kesiswaan",
         'id_hak_akses' => "3",
         );
       $wherePetugasPerpus = array(
         // 'email' => $email,
         'username' => $username,
         'password' => md5($password),
-        'level' => "PetugasPerpus",
+        // 'level' => "PetugasPerpus",
         'id_hak_akses' => "4",
         );
       $whereGuru = array(
         // 'email' => $email,
         'username' => $username,
         'password' => md5($password),
-        'level' => "Guru",
+        // 'level' => "Guru",
         'id_hak_akses' => "5",
         );
       $whereTU = array(
         // 'email' => $email,
         'username' => $username,
         'password' => md5($password),
-        'level' => "TU",
+        // 'level' => "TU",
         'id_hak_akses' => "6",
         );
 
