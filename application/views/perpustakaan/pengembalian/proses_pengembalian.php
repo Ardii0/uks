@@ -43,7 +43,7 @@
                                  </tr>
                                  <tr>
                                    <th class="px-2">Nama Siswa</th>
-                                   <td class="px-2"><?php echo $data->id_anggota ?></td>
+                                   <td class="px-2"><?php echo tampil_namadaftar_ByIdAnggota($data->id_anggota) ?></td>
                                  </tr>
                                  <tr>
                                    <th class="px-2">Denda</th>

@@ -311,10 +311,10 @@ class Perpustakaan extends CI_Controller {
         }
     }
 
-    public function delete_detail_index_buku($id_stok, $id_buku)
+    public function delete_detail_index_buku($id_stok)
     {
         $this->m_perpustakaan->delete_detail_index_buku('table_detail_index_buku', 'id_stok', $id_stok);
-        redirect(base_url('Perpustakaan/data_buku/detail_index_buku'.$id_buku));
+        redirect(base_url('Perpustakaan/data_buku/detail_index_buku'));
     }
 
     public function upload_img_buku($value)

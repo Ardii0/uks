@@ -72,7 +72,7 @@
                                         <tr>
                                         <th class="" style="width: 20px">No</th>
                                             <th class="w-25">No Pinjaman</th>
-                                            <th class="w-20">ID Anggota</th>
+                                            <th class="w-20">Nama Anggota</th>
                                             <th class="w-20">Tanggal Pinjam</th>
                                             <th class="w-20">Tanggal Pengembalian</th>
                                             <th class="w-20">Status</th>
@@ -83,7 +83,7 @@
                                         <tr>
                                             <td><?php echo $id ?></td>
                                             <td><?php echo $data->no_pinjaman ?></td>
-                                            <td><?php echo $data->id_anggota ?></td>
+                                            <td><?php echo tampil_namadaftar_ByIdAnggota($data->id_anggota) ?></td>
                                             <td><?php echo $data->tgl_pinjaman ?></td>
                                             <td><?php echo $data->tgl_kembali ?></td>
                                             <td class="text-center d-flex justify-content-center">

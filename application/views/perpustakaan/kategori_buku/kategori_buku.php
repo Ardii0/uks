@@ -57,7 +57,7 @@
                                                 <td><?php echo $row->nama_kategori_buku?></td>
                                                 <td><?php echo $row->keterangan_kategori_buku?></td>
                                                 <td class="text-center">
-                                                    <a href="<?php echo base_url('Admin/edit_kategori_buku/'.$row->id_kategori_buku)?>"
+                                                    <a href="<?php echo base_url('Perpustakaan/edit_kategori_buku/'.$row->id_kategori_buku)?>"
                                                         class="btn btn-primary btn-sm">
                                                         <i class="fa fa-edit"></i> </a>
                                                     <button onclick="hapus(<?php echo $row->id_kategori_buku?>)"

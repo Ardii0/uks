@@ -56,8 +56,8 @@
                                         <tr>
                                           <td><?php echo $id ?></td>
                                           <td><?php echo $data->no_pinjaman ?></td>
-                                          <td><?php echo $data->id_anggota ?></td>
-                                          <td><?php echo $data->id_anggota ?></td>
+                                          <td><?php echo tampil_namadaftar_ByIdAnggota($data->id_anggota) ?></td>
+                                          <td><?php echo tampil_rombeldaftar_ByIdAnggota($data->id_anggota) ?></td>
                                           <td><?php echo $data->tgl_pinjaman ?></td>
                                           <td><?php echo $data->tgl_kembali ?></td>
                                           <td><?php echo $data->status ?></td>
