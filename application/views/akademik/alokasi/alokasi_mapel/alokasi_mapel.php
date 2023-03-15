@@ -84,10 +84,7 @@
                                                         <input type="checkbox" name="id_rombel[<?php echo $rombel->id_rombel ?>]">
                                                     </td>
                                                     <td class="d-flex">
-                                                        <span>
-                                                        <?php echo tampil_kelasById($rombel->id_kelas)?></span>
-                                                        <span>&nbsp;
-                                                        <?php echo $rombel->nama_rombel?></span>
+                                                        <?php echo $rombel->nama_rombel?>
                                                     </td>
                                                     <td>
                                                         <!-- <?php echo $rombel->id_kelas?> -->
@@ -131,10 +128,7 @@
                                         <input type="checkbox" name="id_alokasimapel[<?php echo $data->id_alokasimapel ?>]">
                                     </td>
                                     <td class="d-flex">
-                                        <span>
-                                            <?php echo tampil_kelas_ByRombel($data->id_rombel) ?></span>
-                                        <span>&nbsp;
-                                            <?php echo tampil_rombel_byid($data->id_rombel) ?></span>
+                                            <?php echo tampil_rombel_byid($data->id_rombel) ?>
                                     </td>
                                     <td>
                                         <?php echo tampil_ket_kelasById($data->id_rombel) ?>

@@ -37,8 +37,11 @@
                 <!-- <div class="container-fluid bg-white"> -->
                     <div class="row px-1 pt-2">
                         <div class="col-md-3">
-                            <h4><u>Wali Kelas:</u></h4>
-                            <h3><?php echo $dt->username ;?></h3>
+                            <div class="d-flex justify-content-between">
+                                <h4><u>Wali Kelas:</u></h4>
+                                <h3><?php echo $dt->username ;?></h3>
+                            </div>
+                            <h5>Pilih Kelas</h5>
                             <?php foreach($rombel as $key) {?>
                                 <div class="alert alert-success d-flex" onclick="show_siswa(<?php echo $key->id_rombel ?>)">
                                     <?php echo $key->nama_kelas." / ".$key->nama_rombel." / ".$key->jml." Siswa<br/>" ?>

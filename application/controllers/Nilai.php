@@ -222,7 +222,7 @@ class Nilai extends CI_Controller {
 		// 	$this->session->set_flashdata('msg',
         //     '<div class="alert alert-danger">
         //         <h4>Maaf</h4>
-        //         <p>Data Tidak Ditemukan.</p>                
+        //         <p>Data Tidak Ditemukan.</p>
         //     </div>');
 		// 	redirect('Nilai/cetak_raport','refresh');
 		// }else{
@@ -237,11 +237,11 @@ class Nilai extends CI_Controller {
 			$data['data'] = $this->m_nilai->nps($ids,$idr,$smt)->result();	
 			if ($this->uri->segment(6) == "pdf") {
                 $this->load->library('pdf');
-				$this->pdf->load_view('nilai/nilai/cetakraport', $data);
+				$this->pdf->load_view('nilai/raport/cetakraport', $data);
 				$this->pdf->render();
-				$this->pdf->stream($data['nama']."-".$data['rombel']."-".$smt.".pdf");		
+				$this->pdf->stream($data['nama']." ".$data['rombel']." Semester ".$smt.".pdf", array("Attachment" => false));		
 			}else{
-				$this->load->view('nilai/nilai/cetakraportexcel', $data);
+				$this->load->view('nilai/raport/cetakraportexcel', $data);
 			}
 		// }
 	}

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 15, 2023 at 04:52 AM
+-- Generation Time: Mar 15, 2023 at 10:49 AM
 -- Server version: 8.0.29
 -- PHP Version: 8.0.25
 
@@ -46,6 +46,66 @@ INSERT INTO `foto` (`id_foto`, `foto1`, `foto2`, `foto3`, `foto4`, `date_created
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `kembalikan`
+--
+
+CREATE TABLE `kembalikan` (
+  `id` int NOT NULL,
+  `id_buku` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `kembalikan`
+--
+
+INSERT INTO `kembalikan` (`id`, `id_buku`) VALUES
+(1, 4),
+(2, 4);
+
+--
+-- Triggers `kembalikan`
+--
+DELIMITER $$
+CREATE TRIGGER `kembalikan_stok` AFTER INSERT ON `kembalikan` FOR EACH ROW BEGIN
+   UPDATE table_buku SET stok = stok + 1
+   WHERE id_buku = NEW.id_buku;
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pinjam`
+--
+
+CREATE TABLE `pinjam` (
+  `id` int NOT NULL,
+  `id_buku` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pinjam`
+--
+
+INSERT INTO `pinjam` (`id`, `id_buku`) VALUES
+(1, 4),
+(2, 4);
+
+--
+-- Triggers `pinjam`
+--
+DELIMITER $$
+CREATE TRIGGER `kurang_stok` AFTER INSERT ON `pinjam` FOR EACH ROW BEGIN
+   UPDATE table_buku SET stok = stok - 1
+   WHERE id_buku = NEW.id_buku;
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `setting_perpustakaan`
 --
 
@@ -61,59 +121,6 @@ CREATE TABLE `setting_perpustakaan` (
 
 INSERT INTO `setting_perpustakaan` (`id_setting_perpus`, `maksimal_pengembalian_hari`, `denda`) VALUES
 (1, '10', 1000000);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `stok_buku_keluar`
---
-
-CREATE TABLE `stok_buku_keluar` (
-  `id_stok_keluar` int NOT NULL,
-  `id_buku` int NOT NULL,
-  `tgl_keluar` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `stok_buku_keluar`
---
-
-INSERT INTO `stok_buku_keluar` (`id_stok_keluar`, `id_buku`, `tgl_keluar`) VALUES
-(1, 1, '0000-00-00');
-
---
--- Triggers `stok_buku_keluar`
---
-DELIMITER $$
-CREATE TRIGGER `t_keluar` AFTER INSERT ON `stok_buku_keluar` FOR EACH ROW BEGIN
-   UPDATE table_buku SET stok = stok - 1
-   WHERE id_buku = NEW.id_buku;
-END
-$$
-DELIMITER ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `stok_buku_masuk`
---
-
-CREATE TABLE `stok_buku_masuk` (
-  `id_stok_masuk` int NOT NULL,
-  `id_buku` int NOT NULL,
-  `tgl_masuk` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Triggers `stok_buku_masuk`
---
-DELIMITER $$
-CREATE TRIGGER `t_masuk` AFTER INSERT ON `stok_buku_masuk` FOR EACH ROW BEGIN
-   UPDATE table_buku SET stok = stok + 1
-   WHERE id_buku = NEW.id_buku;
-END
-$$
-DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -135,7 +142,8 @@ INSERT INTO `tabel_alokasiguru` (`id_alokasiguru`, `kode_guru`, `id_mapel`) VALU
 (35, 449, 10),
 (36, 444, 9),
 (40, 449, 9),
-(47, 450, 10);
+(47, 450, 10),
+(48, 451, 9);
 
 -- --------------------------------------------------------
 
@@ -156,7 +164,10 @@ CREATE TABLE `tabel_alokasimapel` (
 INSERT INTO `tabel_alokasimapel` (`id_alokasimapel`, `id_mapel`, `id_rombel`) VALUES
 (1, 9, 2),
 (2, 9, 1),
-(8, 9, 12);
+(8, 9, 12),
+(12, 14, 12),
+(13, 14, 14),
+(14, 14, 15);
 
 -- --------------------------------------------------------
 
@@ -214,10 +225,11 @@ CREATE TABLE `tabel_daftar` (
 INSERT INTO `tabel_daftar` (`id_daftar`, `no_reg`, `id_angkatan`, `id_jenjang`, `tgl_daftar`, `nisn`, `nama`, `jekel`, `tempat_lahir`, `anak_ke`, `saudara_kandung`, `saudara_angkat`, `tgl_lahir`, `agama`, `alamat`, `telepon`, `foto`, `warga_negara`, `diterima`) VALUES
 (2, '12', 1, 3, '2023-02-18', '213', 'Ahmad Jay', 'L', 'Los Angel', 1, '1', '1', '2023-03-11', 'Islam', 'Jl.Roti Burger Ayam', '123', '1677472666712.png', 'WNI', 'Y'),
 (3, '313', 1, 3, '2023-02-28', '3123', 'Irvanda', 'L', 'Taman', 1, '4', '0', '2023-03-03', 'Islam', 'Taman', '08989898', NULL, 'WNI', 'Y'),
-(6, '2334233', 1, 5, '2023-03-01', '34534545', 'Rizqi', 'L', 'Semarang', 2, 'ada', 'ada', '2003-11-11', 'Islam', 'Mangkang', '089765543321', '1677650453679.png', 'WNI', 'Y'),
+(6, '2334233', 1, 5, '2023-03-01', '34534545', 'Rizqi', 'L', 'Semarang', 2, 'ada', 'ada', '2003-11-11', 'Islam', 'Mangkang', '089765543321', '1677650453679.png', 'WNI', 'A'),
 (7, '2334233', 1, 5, '2023-03-01', '34534545', 'Rizqi', 'L', 'Semarang', 2, 'ada', 'ada', '2003-11-11', 'Islam', 'Mangkang', '089765543321', '1677650453679.png', 'WNI', 'L'),
 (10, '1213221', 1, 5, '2023-03-01', '31312', 'Ahmad Subardjo', 'L', 'Los Angel', 1, '1', '1', '2023-03-11', 'Islam', 'Jl.Tamai Raya', '09282734851', '1678519397023.jpg', 'WNI', 'A'),
-(11, '123', 1, 1, '2023-03-16', '2', 'ShoeFantasy', 'L', 'sSfd', 1, '1', '1', '2023-03-30', 'Kristen', 'Jl.Tamai Raya', '09282734851', '1678850687584.jpg', 'WNI', 'P');
+(11, '123', 1, 1, '2023-03-16', '2', 'ShoeFantasy', 'L', 'sSfd', 1, '1', '1', '2023-03-30', 'Kristen', 'Jl.Tamai Raya', '09282734851', '1678850687584.jpg', 'WNI', 'P'),
+(12, '12313', 1, 9, '2023-03-01', '9878', 'Arya', 'L', 'Los Angel', 1, '2', '1', '2023-03-02', 'Islam', 'JL. Jakarta', '09282734851', '1678870842225.jpg', 'WNI', 'P');
 
 -- --------------------------------------------------------
 
@@ -242,7 +254,8 @@ CREATE TABLE `tabel_guru` (
 INSERT INTO `tabel_guru` (`kode_guru`, `nip`, `nama_guru`, `jekel`, `no_hp`, `alamat`, `status`) VALUES
 (444, '22222', 'Saburo', 'L', '0990998', 'Atlantis', 'AKTIF'),
 (449, '884564', 'Ahmad', 'L', '545454', '', 'AKTIF'),
-(450, '3242134', 'Eko', 'L', '08932422342', 'Ungaran', 'AKTIF');
+(450, '3242134', 'Eko', 'L', '08932422342', 'Ungaran', 'AKTIF'),
+(451, '32333', 'Ahmad', 'L', '087884635', 'Jl.Tamai Raya', 'AKTIF');
 
 -- --------------------------------------------------------
 
@@ -363,7 +376,9 @@ INSERT INTO `tabel_jenjang` (`id_jenjang`, `kd_jenjang`, `nama_jenjang`, `ketera
 (3, 'J002', 'SMP', 'Sekolah Menengah Pertama', 1, 1),
 (4, 'J003', 'SMA', 'Sekolah Menengah Atas', 2, 1),
 (5, 'J004', 'SMK', 'Sekolah Menengah Kejuruan', 4, 1),
-(7, 'OK', 'OK', '5', 4, 1);
+(7, 'OK', 'OK', '5', 4, 1),
+(8, 'J005', 'SD', 'Sekolah Dasar', 8, 1),
+(9, 'J006', 'SMP', '', 9, 1);
 
 -- --------------------------------------------------------
 
@@ -388,7 +403,8 @@ INSERT INTO `tabel_kelas` (`id_kelas`, `id_jenjang`, `nama_kelas`, `keterangan`,
 (2, 4, 'XII', 'Test', 'AKTIF'),
 (3, 3, 'XI', 'Ok', 'AKTIF'),
 (5, 5, 'XII TKJ', '', 'AKTIF'),
-(6, 7, 'tes', 're', 'AKTIF');
+(6, 7, 'tes', 're', 'AKTIF'),
+(7, 9, 'VIII', '', 'AKTIF');
 
 -- --------------------------------------------------------
 
@@ -494,7 +510,7 @@ CREATE TABLE `tabel_nilai` (
 --
 
 INSERT INTO `tabel_nilai` (`id_nilai`, `id_rombel`, `id_siswa`, `id_mapel`, `id_semester`, `nuh1`, `nuh2`, `nuh3`, `nt1`, `nt2`, `nt3`, `mid`, `smt`, `rnuh`, `rnt`, `nh`, `nar`) VALUES
-(1, 12, 5, 9, 1, 1, 1, 1, 1, 1, 1, 1, 1, '1', '1', '1', '1');
+(1, 12, 5, 9, 1, 1, 1, 1, 1, 1, 1, 1, 1, '1', '1', '1', '99');
 
 -- --------------------------------------------------------
 
@@ -518,7 +534,9 @@ INSERT INTO `tabel_paketjenjang` (`id_paket`, `kode_paket`, `nama_paket`) VALUES
 (3, 'SMA', 'Sekolah Menengah Atas'),
 (4, 'SMK', 'Sekolah Menengah Kejuruan'),
 (5, 'J223', 'Esdeh'),
-(7, 'J223', 'Esdeh');
+(7, 'J223', 'Esdeh'),
+(8, 'J223', 'SD'),
+(9, 'J224', 'Smp');
 
 -- --------------------------------------------------------
 
@@ -589,7 +607,7 @@ CREATE TABLE `tabel_pinjaman` (
   `id_pinjaman` int NOT NULL,
   `no_pinjaman` int DEFAULT NULL,
   `id_anggota` int NOT NULL,
-  `id_buku` int NOT NULL,
+  `id_index_buku` int NOT NULL,
   `tgl_pinjaman` date DEFAULT NULL,
   `tgl_kembali` date DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_general_ci DEFAULT 'DIPINJAM'
@@ -599,11 +617,8 @@ CREATE TABLE `tabel_pinjaman` (
 -- Dumping data for table `tabel_pinjaman`
 --
 
-INSERT INTO `tabel_pinjaman` (`id_pinjaman`, `no_pinjaman`, `id_anggota`, `id_buku`, `tgl_pinjaman`, `tgl_kembali`, `status`) VALUES
-(1, 798, 1, 1, '2023-02-28', '2023-02-28', 'DIKEMBALIKAN'),
-(2, 798333, 3, 7, '2023-02-28', '0000-00-00', 'DIPINJAM'),
-(4, 352, 1, 1, '2023-02-28', '0000-00-00', 'DIPINJAM'),
-(5, 12, 1, 1, '2023-03-01', '0000-00-00', 'DIPINJAM');
+INSERT INTO `tabel_pinjaman` (`id_pinjaman`, `no_pinjaman`, `id_anggota`, `id_index_buku`, `tgl_pinjaman`, `tgl_kembali`, `status`) VALUES
+(1, 798, 3, 1, '2023-03-15', '0000-00-00', 'DIPINJAM');
 
 -- --------------------------------------------------------
 
@@ -655,7 +670,9 @@ INSERT INTO `tabel_rombel` (`id_rombel`, `id_kelas`, `nama_rombel`, `kode_guru`,
 (5, 2, 'TKJ 3', 444, 291, 'AKTIF'),
 (6, 3, 'TB', 444, 221, 'AKTIF'),
 (10, 2, 'AKL', 444, 21, 'AKTIF'),
-(12, 6, 'VII A', 449, 50, 'AKTIF');
+(12, 5, 'VII A', 449, 50, 'AKTIF'),
+(14, 7, 'VIII D', 450, 35, 'AKTIF'),
+(15, 7, 'VIII B', 444, 35, 'AKTIF');
 
 -- --------------------------------------------------------
 
@@ -720,7 +737,8 @@ CREATE TABLE `tabel_siswa` (
 INSERT INTO `tabel_siswa` (`id_siswa`, `id_daftar`, `id_rombel`, `saldo_tabungan`, `nama`) VALUES
 (1, 2, 1, 123123123, 'Ahmad Jay'),
 (2, 3, 5, 123123123, 'Irvanda'),
-(5, 10, 12, 0, 'Ahmad Subardjo');
+(5, 10, 12, 0, 'Ahmad Subardjo'),
+(6, 6, 15, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -745,7 +763,8 @@ CREATE TABLE `tabel_tahunajaran` (
 
 INSERT INTO `tabel_tahunajaran` (`id_angkatan`, `kd_angkatan`, `nama_angkatan`, `keterangan`, `tgl_a`, `tgl_b`, `aktif`, `status`) VALUES
 (1, 'TA 2020/2021', 'TA2020/2021', 'OK', '2023-02-01', '2023-02-28', 0, 'AKTIF'),
-(3, 'TA 2022/2023', 'TA2022/2023', '', '2023-03-23', '2023-05-17', 0, 'AKTIF');
+(3, 'TA 2022/2023', 'TA2022/2023', '', '2023-03-23', '2023-05-17', 0, 'AKTIF'),
+(5, 'TA 2023/2024', 'TA2023/2024', '', '2023-03-01', '2023-03-30', 0, 'AKTIF');
 
 -- --------------------------------------------------------
 
@@ -777,7 +796,7 @@ CREATE TABLE `table_buku` (
   `tahun_terbit` int DEFAULT NULL,
   `keterangan` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `sumber` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `stok` int NOT NULL,
+  `stok` int NOT NULL DEFAULT '0',
   `del_flag` int NOT NULL DEFAULT '1',
   `kategori_id` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `rak_buku_id` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
@@ -790,9 +809,8 @@ CREATE TABLE `table_buku` (
 --
 
 INSERT INTO `table_buku` (`id_buku`, `judul_buku`, `penerbit_buku`, `penulis_buku`, `tahun_terbit`, `keterangan`, `sumber`, `stok`, `del_flag`, `kategori_id`, `rak_buku_id`, `created_at`, `foto`) VALUES
-(1, 'Tokyo Ravengers', 'Jepang', 'Ahmad Subarjo', 2000, 'Wibu', NULL, -1, 1, 'Anime', '001', '2023-03-03 02:44:45', NULL),
-(2, 'Tokyo Ravengers', 'Jepang', 'Ahmad Subarjo', 2000, 'Wibu', NULL, -1, 1, 'Anime', '001', '2023-03-03 02:44:45', NULL),
-(3, 'ada', 'ada', 'da', 12312, 'Semangat Brother', NULL, 2, 1, 'Cerpen', '001', '2023-03-03 02:45:40', NULL);
+(4, 'Naruto', 'Genji', 'Makise', 2000, 'GENJEHHH RASENGANNNN', NULL, 1, 1, 'Acara', '003', '2023-03-15 02:33:02', '1678847582689.jpg'),
+(5, 'Upin & Ipin', 'Tok Dalang', 'Opah', 2000, 'Bocil', NULL, 0, 1, 'Acara', '003', '2023-03-15 03:41:13', '1678851673188.png');
 
 -- --------------------------------------------------------
 
@@ -806,6 +824,32 @@ CREATE TABLE `table_detail_index_buku` (
   `status` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `id_buku` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `table_detail_index_buku`
+--
+
+INSERT INTO `table_detail_index_buku` (`id_stok`, `id_detail_index_buku`, `status`, `id_buku`) VALUES
+(1, 'A01', 'Di Pinjam', 4),
+(3, 'A02', 'Di Rak Buku', 4);
+
+--
+-- Triggers `table_detail_index_buku`
+--
+DELIMITER $$
+CREATE TRIGGER `hapus` AFTER DELETE ON `table_detail_index_buku` FOR EACH ROW BEGIN
+   UPDATE table_buku SET stok = stok - 1
+   WHERE id_buku = OLD.id_buku;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `tambah_stok` AFTER INSERT ON `table_detail_index_buku` FOR EACH ROW BEGIN
+   UPDATE table_buku SET stok = stok + 1
+   WHERE id_buku = NEW.id_buku;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -860,16 +904,22 @@ ALTER TABLE `foto`
   ADD PRIMARY KEY (`id_foto`);
 
 --
+-- Indexes for table `kembalikan`
+--
+ALTER TABLE `kembalikan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pinjam`
+--
+ALTER TABLE `pinjam`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `setting_perpustakaan`
 --
 ALTER TABLE `setting_perpustakaan`
   ADD PRIMARY KEY (`id_setting_perpus`);
-
---
--- Indexes for table `stok_buku_keluar`
---
-ALTER TABLE `stok_buku_keluar`
-  ADD PRIMARY KEY (`id_stok_keluar`);
 
 --
 -- Indexes for table `tabel_alokasiguru`
@@ -993,9 +1043,7 @@ ALTER TABLE `tabel_pindah`
 -- Indexes for table `tabel_pinjaman`
 --
 ALTER TABLE `tabel_pinjaman`
-  ADD PRIMARY KEY (`id_pinjaman`),
-  ADD KEY `id_anggota` (`id_anggota`),
-  ADD KEY `id_buku` (`id_buku`);
+  ADD PRIMARY KEY (`id_pinjaman`);
 
 --
 -- Indexes for table `tabel_rencana_anggaran`
@@ -1079,28 +1127,34 @@ ALTER TABLE `foto`
   MODIFY `id_foto` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `kembalikan`
+--
+ALTER TABLE `kembalikan`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `pinjam`
+--
+ALTER TABLE `pinjam`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `setting_perpustakaan`
 --
 ALTER TABLE `setting_perpustakaan`
   MODIFY `id_setting_perpus` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `stok_buku_keluar`
---
-ALTER TABLE `stok_buku_keluar`
-  MODIFY `id_stok_keluar` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT for table `tabel_alokasiguru`
 --
 ALTER TABLE `tabel_alokasiguru`
-  MODIFY `id_alokasiguru` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id_alokasiguru` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `tabel_alokasimapel`
 --
 ALTER TABLE `tabel_alokasimapel`
-  MODIFY `id_alokasimapel` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_alokasimapel` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tabel_anggota`
@@ -1112,13 +1166,13 @@ ALTER TABLE `tabel_anggota`
 -- AUTO_INCREMENT for table `tabel_daftar`
 --
 ALTER TABLE `tabel_daftar`
-  MODIFY `id_daftar` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_daftar` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tabel_guru`
 --
 ALTER TABLE `tabel_guru`
-  MODIFY `kode_guru` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=451;
+  MODIFY `kode_guru` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=452;
 
 --
 -- AUTO_INCREMENT for table `tabel_jenisbayar`
@@ -1142,13 +1196,13 @@ ALTER TABLE `tabel_jenis_transaksi`
 -- AUTO_INCREMENT for table `tabel_jenjang`
 --
 ALTER TABLE `tabel_jenjang`
-  MODIFY `id_jenjang` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_jenjang` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tabel_kelas`
 --
 ALTER TABLE `tabel_kelas`
-  MODIFY `id_kelas` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_kelas` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tabel_level`
@@ -1178,7 +1232,7 @@ ALTER TABLE `tabel_nilai`
 -- AUTO_INCREMENT for table `tabel_paketjenjang`
 --
 ALTER TABLE `tabel_paketjenjang`
-  MODIFY `id_paket` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_paket` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tabel_pembayaran`
@@ -1196,7 +1250,7 @@ ALTER TABLE `tabel_pindah`
 -- AUTO_INCREMENT for table `tabel_pinjaman`
 --
 ALTER TABLE `tabel_pinjaman`
-  MODIFY `id_pinjaman` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_pinjaman` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tabel_rencana_anggaran`
@@ -1208,7 +1262,7 @@ ALTER TABLE `tabel_rencana_anggaran`
 -- AUTO_INCREMENT for table `tabel_rombel`
 --
 ALTER TABLE `tabel_rombel`
-  MODIFY `id_rombel` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_rombel` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tabel_sekolah`
@@ -1226,13 +1280,13 @@ ALTER TABLE `tabel_semester`
 -- AUTO_INCREMENT for table `tabel_siswa`
 --
 ALTER TABLE `tabel_siswa`
-  MODIFY `id_siswa` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_siswa` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tabel_tahunajaran`
 --
 ALTER TABLE `tabel_tahunajaran`
-  MODIFY `id_angkatan` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_angkatan` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tabel_transaksi`
@@ -1244,13 +1298,13 @@ ALTER TABLE `tabel_transaksi`
 -- AUTO_INCREMENT for table `table_buku`
 --
 ALTER TABLE `table_buku`
-  MODIFY `id_buku` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_buku` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `table_detail_index_buku`
 --
 ALTER TABLE `table_detail_index_buku`
-  MODIFY `id_stok` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_stok` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `table_kategori_buku`
@@ -1341,12 +1395,6 @@ ALTER TABLE `tabel_rombel`
 ALTER TABLE `tabel_siswa`
   ADD CONSTRAINT `tabel_siswa_to_daftar_ibfk_1` FOREIGN KEY (`id_daftar`) REFERENCES `tabel_daftar` (`id_daftar`),
   ADD CONSTRAINT `tabel_siswa_to_rombel_ibfk_1` FOREIGN KEY (`id_rombel`) REFERENCES `tabel_rombel` (`id_rombel`);
-
---
--- Constraints for table `table_detail_index_buku`
---
-ALTER TABLE `table_detail_index_buku`
-  ADD CONSTRAINT `table_detail_index_buku_ibfk_1` FOREIGN KEY (`id_buku`) REFERENCES `table_buku` (`id_buku`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

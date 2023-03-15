@@ -49,7 +49,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">Jekel</label>
+                                    <label class="control-label">Jenis Kelamin</label>
                                     <div class="d-flex">
                                         <div class="form-check mr-3">
                                             <input class="form-check-input" value="L" type="radio" name="jekel"

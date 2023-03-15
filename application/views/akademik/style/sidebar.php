@@ -118,15 +118,15 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo base_url('Akademik/pelajaran') ;?>" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Mata Pelajaran</p>
-                </a>
-              </li>
-              <li class="nav-item">
                 <a href="<?php echo base_url('Akademik/jenis_pelajaran') ;?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Jenis Mata Pelajaran</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url('Akademik/pelajaran') ;?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Mata Pelajaran</p>
                 </a>
               </li>
             </ul>

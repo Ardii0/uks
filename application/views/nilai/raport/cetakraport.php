@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title></title>
+	<title>Raport <?php echo $nama ?>&nbsp;<?php echo $rombel ?></title>
 	<style type="text/css">
 
 	::selection { background-color: #E13300; color: white; }

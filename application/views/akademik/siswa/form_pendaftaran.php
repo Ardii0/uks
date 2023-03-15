@@ -175,7 +175,7 @@
                                 </label>
                             </div>
                             <div>
-                                <input id="saudara-kandung" type="text" name="saudara_kandung" class="form-control" placeholder="Saudara Kandung">
+                                <input id="saudara-kandung" type="number" name="saudara_kandung" class="form-control" placeholder="Saudara Kandung">
                             </div>
                         </div>
                         <div class="col-4 mt-2">
@@ -185,7 +185,7 @@
                                 </label>
                             </div>
                             <div>
-                                <input id="saudara-angkat" type="text" name="saudara_angkat" class="form-control" placeholder="Saudara Angkat">
+                                <input id="saudara-angkat" type="number" name="saudara_angkat" class="form-control" placeholder="Saudara Angkat">
                                 </div>
                         </div>
                         <div class="col-12 mt-2">
