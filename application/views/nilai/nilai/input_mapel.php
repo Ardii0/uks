@@ -53,10 +53,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $id=0; foreach ($mapelAll as $data): $id++?>
+                                        <?php $id=0; foreach ($mapel as $data): $id++?>
                                             <tr>
                                                 <td><?php echo $id ?></td>
-                                                <td><?php echo $data->nama_mapel ?></td>
+                                                <td><?php echo tampil_mapelById($data->id_mapel) ?></td>
                                                 <td class="d-flex">
                                                     <a href="<?php echo base_url('Nilai/data_input/'.$data->id_mapel) ?>" class="btn btn-success btn-sm">
                                                         <i class="fa fa- fa-arrow-right"></i>

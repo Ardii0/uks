@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 15, 2023 at 10:49 AM
+-- Generation Time: Mar 16, 2023 at 04:30 AM
 -- Server version: 8.0.29
 -- PHP Version: 8.0.25
 
@@ -427,7 +427,7 @@ CREATE TABLE `tabel_level` (
 --
 
 INSERT INTO `tabel_level` (`id_level`, `username`, `email`, `password`, `level`, `kode_guru`, `id_hak_akses`) VALUES
-(1, 'Admin', 'adminis@tra.tor', '123', 'Admin', NULL, 2),
+(1, 'Admin', 'adminis@tra.tor', '202cb962ac59075b964b07152d234b70', 'Admin', NULL, 2),
 (2, 'Akademik', 'akademik@gmail.com', '202cb962ac59075b964b07152d234b70', 'Kesiswaan', NULL, 3),
 (3, 'Perpus', 'perpus@gmail.com', '202cb962ac59075b964b07152d234b70', 'PetugasPerpus', NULL, 4),
 (4, 'Guru', 'guru@gmail.com', '202cb962ac59075b964b07152d234b70', 'Guru', 449, 5),
@@ -510,7 +510,8 @@ CREATE TABLE `tabel_nilai` (
 --
 
 INSERT INTO `tabel_nilai` (`id_nilai`, `id_rombel`, `id_siswa`, `id_mapel`, `id_semester`, `nuh1`, `nuh2`, `nuh3`, `nt1`, `nt2`, `nt3`, `mid`, `smt`, `rnuh`, `rnt`, `nh`, `nar`) VALUES
-(1, 12, 5, 9, 1, 1, 1, 1, 1, 1, 1, 1, 1, '1', '1', '1', '99');
+(1, 12, 5, 9, 1, 1, 1, 1, 1, 1, 1, 1, 1, '1', '1', '1', '99'),
+(2, 1, 1, 9, 1, 1, 1, 2, 1, 1, 2, 2, 2, '1.3333333333333', '1.3333333333333', '1.3333333333333', '1.7777777777778');
 
 -- --------------------------------------------------------
 
@@ -810,7 +811,7 @@ CREATE TABLE `table_buku` (
 
 INSERT INTO `table_buku` (`id_buku`, `judul_buku`, `penerbit_buku`, `penulis_buku`, `tahun_terbit`, `keterangan`, `sumber`, `stok`, `del_flag`, `kategori_id`, `rak_buku_id`, `created_at`, `foto`) VALUES
 (4, 'Naruto', 'Genji', 'Makise', 2000, 'GENJEHHH RASENGANNNN', NULL, 1, 1, 'Acara', '003', '2023-03-15 02:33:02', '1678847582689.jpg'),
-(5, 'Upin & Ipin', 'Tok Dalang', 'Opah', 2000, 'Bocil', NULL, 0, 1, 'Acara', '003', '2023-03-15 03:41:13', '1678851673188.png');
+(5, 'Upin & Ipin', 'Tok Dalang', 'Opah', 2000, 'Bocil', NULL, 1, 1, 'Acara', '003', '2023-03-15 03:41:13', '1678851673188.png');
 
 -- --------------------------------------------------------
 
@@ -831,7 +832,8 @@ CREATE TABLE `table_detail_index_buku` (
 
 INSERT INTO `table_detail_index_buku` (`id_stok`, `id_detail_index_buku`, `status`, `id_buku`) VALUES
 (1, 'A01', 'Di Pinjam', 4),
-(3, 'A02', 'Di Rak Buku', 4);
+(3, 'A02', 'Di Rak Buku', 4),
+(4, '1', 'Di Rak Buku', 5);
 
 --
 -- Triggers `table_detail_index_buku`
@@ -1226,7 +1228,7 @@ ALTER TABLE `tabel_mapel`
 -- AUTO_INCREMENT for table `tabel_nilai`
 --
 ALTER TABLE `tabel_nilai`
-  MODIFY `id_nilai` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_nilai` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tabel_paketjenjang`
@@ -1304,7 +1306,7 @@ ALTER TABLE `table_buku`
 -- AUTO_INCREMENT for table `table_detail_index_buku`
 --
 ALTER TABLE `table_detail_index_buku`
-  MODIFY `id_stok` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_stok` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `table_kategori_buku`

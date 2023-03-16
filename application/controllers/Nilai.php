@@ -8,6 +8,7 @@ class Nilai extends CI_Controller {
         parent::__construct();
         $this->load->model('m_nilai');
         $this->load->model('m_akademik');
+        $this->load->model('m_keuangan');
         $this->load->helpers('my_helper');
         // $this->load->library('excel');
         if ($this->session->userdata('status_nilai')!='login') {
@@ -127,7 +128,7 @@ class Nilai extends CI_Controller {
  // Modul
     public function modul_input_nilai()
     {
-        $data['mapel'] = $this->m_akademik->get_mapel('tabel_mapel');
+        $data['mapel'] = $this->m_keuangan->ambil('tabel_alokasiguru',array('kode_guru'=>$this->session->userdata('kode_guru')))->result();
         $this->load->view('nilai/nilai/modul_input_nilai', $data);
     }
 
@@ -145,7 +146,7 @@ class Nilai extends CI_Controller {
         if(!empty($this->session->userdata('id_mapel'))) {
            $idm = $this->session->userdata('id_mapel');
 
-           $data['mapelAll'] = $this->m_akademik->get_mapel('tabel_mapel');
+           $data['mapel'] = $this->m_keuangan->ambil('tabel_alokasiguru',array('kode_guru'=>$this->session->userdata('kode_guru')))->result();
            $data['alokasimapel'] = $this->m_nilai->data_nilai($idm)->result();
            $data['content'] = 'nilai/entry';
 
@@ -164,13 +165,14 @@ class Nilai extends CI_Controller {
 
     public function modul_data_nilai()
     {
-        $data['mapel'] = $this->m_akademik->get_mapel('tabel_mapel');
+        $data['mapel'] = $this->m_keuangan->ambil('tabel_alokasiguru',array('kode_guru'=>$this->session->userdata('kode_guru')))->result();
         $this->load->view('nilai/data_nilai/modul_data_nilai_siswa', $data);
     }
 
     public function modul_data_nilai_filter($id_mapel)
     {
-        $data['mapel'] = $this->m_akademik->get_mapel('tabel_mapel');
+        $data['mapel'] = $this->m_keuangan->ambil('tabel_alokasiguru',array('kode_guru'=>$this->session->userdata('kode_guru')))->result();
+        // $data['mapel'] = $this->m_akademik->get_mapel('tabel_mapel');
         $alokasimapel['alokasi']=$this->m_nilai->get_alokasimapelByIdMapel($id_mapel)->result();
         $this->load->view('nilai/data_nilai/modul_data_nilai_siswa_filter', $data + $alokasimapel);
     }

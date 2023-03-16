@@ -66,6 +66,7 @@
                                 <div class="col-4 text-right font-weight-bold mt-1">Jenis Pembayaran</div>
                                 <div class="col-8">
                                     <select name="id_jenis" class="custom-select custom-select-md">
+                                        <option value="" style="display: none;">Pilih Jenis Pembayaran</option>
                                         <?php foreach ($jenisbayar as $jenis): ?>
                                             <option name="id_jenis" value="<?php echo $jenis->id_jenis ;?>"><?php echo $jenis->nama_jenis ;?></option>
                                         <?php endforeach; ?>
