@@ -398,46 +398,95 @@ function tampil_nama_siswa_byid($id)
     return $namakelas;
   }
 
- // Peminjaman Buku
+  // Peminjaman Buku
   function tampil_namabuku_byPeminjamanId($id)
   {
-  $ci =& get_instance();
-  $ci->load->database();
-  $result = $ci->db->where('id_buku',$id)->get('table_buku');
-    foreach ($result->result() as $c) {
-    $stmt= $c->judul_buku;
-    return $stmt;
-    }
+    $ci =& get_instance();
+    $ci->load->database();
+    $namabuku = '';
+    $result = $ci->db->select('*')
+                      ->from('table_detail_index_buku')
+                      ->join('table_buku','table_detail_index_buku.id_buku = table_buku.id_buku')
+                      ->where('table_detail_index_buku.id_stok',$id)
+                      ->get();
+      foreach ($result->result() as $c) {
+      $stmt= $c->judul_buku;
+      $namabuku= $namabuku.$stmt.'<br>';
+      }
+      return $namabuku;
   }
   function tampil_pengarangbuku_byPeminjamanId($id)
   {
-  $ci =& get_instance();
-  $ci->load->database();
-  $result = $ci->db->where('id_buku',$id)->get('table_buku');
-    foreach ($result->result() as $c) {
-    $stmt= $c->penulis_buku;
-    return $stmt;
-    }
+    $ci =& get_instance();
+    $ci->load->database();
+    $namabuku = '';
+    $result = $ci->db->select('*')
+                      ->from('table_detail_index_buku')
+                      ->join('table_buku','table_detail_index_buku.id_buku = table_buku.id_buku')
+                      ->where('table_detail_index_buku.id_stok',$id)
+                      ->get();
+      foreach ($result->result() as $c) {
+      $stmt= $c->penulis_buku;
+      $namabuku= $namabuku.$stmt.'<br>';
+      }
+      return $namabuku;
   }
   function tampil_kategoribuku_byPeminjamanId($id)
   {
-  $ci =& get_instance();
-  $ci->load->database();
-  $result = $ci->db->where('id_buku',$id)->get('table_buku');
-    foreach ($result->result() as $c) {
-    $stmt= $c->kategori_id;
-    return $stmt;
-    }
+    $ci =& get_instance();
+    $ci->load->database();
+    $namabuku = '';
+    $result = $ci->db->select('*')
+                      ->from('table_detail_index_buku')
+                      ->join('table_buku','table_detail_index_buku.id_buku = table_buku.id_buku')
+                      ->where('table_detail_index_buku.id_stok',$id)
+                      ->get();
+      foreach ($result->result() as $c) {
+      $stmt= $c->kategori_id;
+      $namabuku= $namabuku.$stmt.'<br>';
+      }
+      return $namabuku;
   }
   function tampil_rakbuku_byPeminjamanId($id)
   {
-  $ci =& get_instance();
-  $ci->load->database();
-  $result = $ci->db->where('id_buku',$id)->get('table_buku');
-    foreach ($result->result() as $c) {
-    $stmt= $c->rak_buku_id;
-    return $stmt;
-    }
+    $ci =& get_instance();
+    $ci->load->database();
+    $namabuku = '';
+    $result = $ci->db->select('*')
+                      ->from('table_detail_index_buku')
+                      ->join('table_buku','table_detail_index_buku.id_buku = table_buku.id_buku')
+                      ->where('table_detail_index_buku.id_stok',$id)
+                      ->get();
+      foreach ($result->result() as $c) {
+      $stmt= $c->rak_buku_id;
+      $namabuku= $namabuku.$stmt.'<br>';
+      }
+      return $namabuku;
+  }
+  function tampil_idbuku_byPeminjamanId($id)
+  {
+    $ci =& get_instance();
+    $ci->load->database();
+    $namabuku = '';
+    $result = $ci->db->select('*')
+                      ->from('table_detail_index_buku')
+                      ->join('table_buku','table_detail_index_buku.id_buku = table_buku.id_buku')
+                      ->where('table_detail_index_buku.id_stok',$id)
+                      ->get();
+      foreach ($result->result() as $c) {
+      $stmt= $c->id_buku;
+      return $stmt;
+      }
+  }
+  function tampil_id_index_buku($id)
+  {
+    $ci =& get_instance();
+    $ci->load->database();
+    $result = $ci->db->where('id_stok',$id)->get('table_detail_index_buku');
+      foreach ($result->result() as $c) {
+      $stmt= $c->id_detail_index_buku;
+      return $stmt;
+      }
   }
 
  // By Anggota

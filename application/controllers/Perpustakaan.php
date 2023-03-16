@@ -17,7 +17,11 @@ class Perpustakaan extends CI_Controller {
     
     public function index()
     {
-        $this->load->view('perpustakaan/dashboard');
+        $data['total_buku'] = $this->m_perpustakaan->total_buku();
+        $data['total_rak_buku'] = $this->m_perpustakaan->total_rak_buku();
+        $data['total_kategori_buku'] = $this->m_perpustakaan->total_kategori_buku();
+        $data['total_anggota'] = $this->m_perpustakaan->total_anggota();
+        $this->load->view('perpustakaan/dashboard', $data);
 
     }
 
@@ -359,7 +363,6 @@ class Perpustakaan extends CI_Controller {
                 'sumber' => $this->input->post('sumber'),
                 'kategori_id' => $this->input->post('kategori_id'),
                 'rak_buku_id' => $this->input->post('rak_buku_id'),
-                'stok' => $this->input->post('stok'),
                 'del_flag' => '1',
             );
 
@@ -422,40 +425,64 @@ class Perpustakaan extends CI_Controller {
         }
 
     }
-    // Akhir Buku
-
    
-    // Peminjaman Buku
+// Peminjaman Buku
     public function peminjaman()
     {
         $peminjam['data_peminjam'] = $this->m_perpustakaan->get_peminjaman('data_peminjam');
         $this->load->view('perpustakaan/peminjaman/peminjaman', $peminjam);
     }
+
+    public function get_index_buku_by_id_buku()
+    {
+        $id_buku = $this->input->post('id_buku',TRUE);
+        $data = $this->m_perpustakaan->get_index_buku_by_id_buku($id_buku)->result();
+        echo json_encode($data);
+    }
     
     public function input_peminjaman()
     {
         $buku['data_buku'] = $this->m_perpustakaan->get_all_data_buku('data_buku');
+        $buku['index_buku'] = $this->m_perpustakaan->get_index_buku('index_buku');
         $anggota['data_anggota'] = $this->m_perpustakaan->get_anggota('data_anggota');
         $this->load->view('perpustakaan/peminjaman/input_peminjaman', $buku + $anggota);
     }
+
+    public function acak($long)
+	{
+		$char = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+		$string = '';
+		for ($i=0; $i < $long; $i++) { 			
+			$pos = rand(0, strlen($char)-1);
+			$string .= $char[$pos];
+		}
+		return $string;
+	}
 
     public function aksi_input_peminjaman()
     {
         $data = array
         (
-            'no_pinjaman' => $this->input->post('no_pinjaman'),
+            'no_pinjaman' => 'PMJ'.'-'.$this->acak(6),
             'id_anggota' => $this->input->post('id_anggota'),
-            'id_buku' => $this->input->post('id_buku'),
+            'id_index_buku' => $this->input->post('id_index_buku'),
             'tgl_pinjaman' => $this->input->post('tgl_pinjaman'),
             'tgl_kembali' => "0000-00-00",
             'status' => 'DIPINJAM',
         );
 
-        $stok_keluar = array
+        $status = array
         (
-            'id_buku' => $this->input->post('id_buku'),
+            'status' => 'Di Pinjam',
         );
-        $stok=$this->m_perpustakaan->stok_keluar('stok_buku_keluar', $stok_keluar);
+
+        $stok = array
+        (
+            'id_buku' => $this->input->post('id_buku_pinjam'),
+        );
+        
+        $kurangi_stok=$this->m_perpustakaan->tambah_pinjaman('pinjam', $stok);
+        $set_status=$this->m_perpustakaan->ubah_pinjaman('table_detail_index_buku', $status, array('id_stok'=>$this->input->post('id_index_buku')));
         $masuk=$this->m_perpustakaan->tambah_pinjaman('tabel_pinjaman', $data);
         if($masuk)
         {
@@ -511,12 +538,18 @@ class Perpustakaan extends CI_Controller {
             'status' => 'DIKEMBALIKAN',
         );
 
-        $stok_masuk = array
+        $status = array
         (
-            'id_buku' => $this->input->post('id_buku'),
+            'status' => 'Di Rak Buku',
         );
 
-        $stok=$this->m_perpustakaan->stok_masuk('stok_buku_masuk', $stok_masuk);
+        $stok = array
+        (
+            'id_buku' => $this->input->post('id_buku_pinjam'),
+        );
+        
+        $tambah_stok=$this->m_perpustakaan->tambah_pinjaman('kembalikan', $stok);
+        $set_status=$this->m_perpustakaan->ubah_pinjaman('table_detail_index_buku', $status, array('id_stok'=>$this->input->post('id_index_buku')));
         $masuk=$this->m_perpustakaan->ubah_pinjaman('tabel_pinjaman', $data, array('id_pinjaman'=>$this->input->post('id_pinjaman')));
         if($masuk)
         {

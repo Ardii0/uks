@@ -79,11 +79,11 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                          <td><?php echo $data->id_buku ?></td>
-                                          <td><?php echo tampil_namabuku_byPeminjamanId($data->id_buku) ?></td>
-                                          <td><?php echo tampil_pengarangbuku_byPeminjamanId($data->id_buku) ?></td>
-                                          <td><?php echo tampil_kategoribuku_byPeminjamanId($data->id_buku) ?></td>
-                                          <td><?php echo tampil_rakbuku_byPeminjamanId($data->id_buku) ?></td>
+                                          <td><?php echo tampil_id_index_buku($data->id_index_buku) ?></td>
+                                          <td><?php echo tampil_namabuku_byPeminjamanId($data->id_index_buku) ?></td>
+                                          <td><?php echo tampil_pengarangbuku_byPeminjamanId($data->id_index_buku) ?></td>
+                                          <td><?php echo tampil_kategoribuku_byPeminjamanId($data->id_index_buku) ?></td>
+                                          <td><?php echo tampil_rakbuku_byPeminjamanId($data->id_index_buku) ?></td>
                                         </tr>
                                     </tbody>
                                 </table>

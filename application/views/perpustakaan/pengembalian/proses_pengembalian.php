@@ -80,11 +80,11 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                          <td><?php echo $data->id_buku ?></td>
-                                          <td><?php echo tampil_namabuku_byPeminjamanId($data->id_buku) ?></td>
-                                          <td><?php echo tampil_pengarangbuku_byPeminjamanId($data->id_buku) ?></td>
-                                          <td><?php echo tampil_kategoribuku_byPeminjamanId($data->id_buku) ?></td>
-                                          <td><?php echo tampil_rakbuku_byPeminjamanId($data->id_buku) ?></td>
+                                        <td><?php echo tampil_id_index_buku($data->id_index_buku) ?></td>
+                                          <td><?php echo tampil_namabuku_byPeminjamanId($data->id_index_buku) ?></td>
+                                          <td><?php echo tampil_pengarangbuku_byPeminjamanId($data->id_index_buku) ?></td>
+                                          <td><?php echo tampil_kategoribuku_byPeminjamanId($data->id_index_buku) ?></td>
+                                          <td><?php echo tampil_rakbuku_byPeminjamanId($data->id_index_buku) ?></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -96,7 +96,8 @@
                         <label class="control-label" style="width: 300px;">Tanggal Dikembalikan</label>
                         <input type="date" value="<?php echo $data->tgl_kembali ?>" name="tgl_kembali" class="form-control" require>
                         </div>
-                        <input type="hidden" value="<?php echo $data->id_buku ?>" name="id_buku">
+                        <input type="hidden" value="<?php echo $data->id_index_buku ?>" name="id_index_buku">
+                        <input type="hidden" value="<?php echo tampil_idbuku_byPeminjamanId($data->id_index_buku) ?>" name="id_buku_pinjam">
                       <button type="submit" class="btn <?php $btn = $data->status == "DIPINJAM" ? 'btn-danger' : 'btn-success'; echo $btn ?>">
                       <?php $statuss = $data->status == "DIPINJAM" ? 'Kembalikan' : 'Sudah Dikembalikan'; echo $statuss ?>
                       </button>

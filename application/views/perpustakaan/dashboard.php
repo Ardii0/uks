@@ -38,7 +38,7 @@
                                         <div class="small-box bg-warning">
                                             <div class="inner">
                                                 <p>Jumlah Buku</p>
-                                                <h3>150</h3>
+                                                <h3><?php echo $total_buku;?></h3>
                                             </div>
                                             <div class="icon">
                                                 <i class="nav-icon fas fa-book"></i>
@@ -53,8 +53,7 @@
                                         <div class="small-box bg-warning">
                                             <div class="inner">
                                                 <p>Jumlah Rak</p>
-                                                <h3>-</h3>
-                                                <!-- <h3><?php echo $total_guru ?></h3> -->
+                                                <h3><?php echo $total_rak_buku;?></h3>
                                             </div>
                                             <div class="icon">
                                                 <i class="far fa-chart-bar"></i>
@@ -71,8 +70,7 @@
                                         <div class="small-box bg-warning">
                                             <div class="inner">
                                                 <p>Jumlah Kategori</p>
-                                                <h3>9</h3>
-                                                <!-- <h3><?php echo $total_guru ?></h3> -->
+                                                <h3><?php echo $total_kategori_buku;?></h3>
                                             </div>
                                             <div class="icon">
                                                 <i class="far fa-chart-bar"></i>
@@ -130,7 +128,7 @@
                                         <div class="small-box bg-warning" style="height:75vh">
                                             <div class="inner">
                                                 <p>Jumlah Anggota</p>
-                                                <h3>78</h3>
+                                                <h3><?php echo $total_anggota;?></h3>
                                             </div>
                                             <div class="icon">
                                                 <i class="far fa-user"></i>

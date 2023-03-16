@@ -1,6 +1,24 @@
 <?php
 
 class M_perpustakaan extends CI_Model{
+
+// Dashboard
+	public function total_buku()
+	{
+	return $this->db->get('table_buku')->num_rows();
+	}
+	public function total_rak_buku()
+	{
+	return $this->db->get('table_rak_buku')->num_rows();
+	}
+	public function total_kategori_buku()
+	{
+	return $this->db->get('table_kategori_buku')->num_rows();
+	}
+	public function total_anggota()
+	{
+	return $this->db->get('tabel_anggota')->num_rows();
+	}
     
 //==============================================RAK BUKU===========================================================
     public function get_all_data_rak_buku()
@@ -161,6 +179,16 @@ class M_perpustakaan extends CI_Model{
 		return $this->db->get('tabel_pinjaman')->result();
 	}
 
+	public function get_index_buku()
+	{
+		return $this->db->get('table_detail_index_buku')->result();
+	}
+
+	function get_index_buku_by_id_buku($id_buku){
+        $query = $this->db->where("status", "Di Rak Buku")->get_where('table_detail_index_buku', array('id_buku' => $id_buku));
+        return $query;
+    }
+
 	public function tambah_pinjaman($tabel, $data)
 	{
 		$this->db->insert($tabel, $data);
@@ -197,35 +225,35 @@ class M_perpustakaan extends CI_Model{
 		return $data;
 	}
 //Laporan
-public function get_laporan_pinjam()
-{
-	return $this->db->where('status', 'DIPINJAM')->get('tabel_pinjaman')->result();
-}
-public function filter_bytanggalpinjam($tanggalawal=0,$tanggalakhir=0){
-	if ($tanggalawal != 0 && $tanggalakhir == 0) {
-	  $query = $this->db->query("SELECT * from tabel_pinjaman where status = 'DIPINJAM' AND DATE(tgl_pinjaman) = '$tanggalawal' ORDER BY tgl_pinjaman ASC ");
-	} else if($tanggalawal != 0 && $tanggalakhir != 0) {
-	  $query = $this->db->query("SELECT * from tabel_pinjaman where status = 'DIPINJAM' and tgl_pinjaman BETWEEN '$tanggalawal' and '$tanggalakhir' ORDER BY tgl_pinjaman ASC ");
-	} else {
-	  $query = $this->db->query("SELECT * from tabel_pinjaman");
+	public function get_laporan_pinjam()
+	{
+		return $this->db->where('status', 'DIPINJAM')->get('tabel_pinjaman')->result();
+	}
+	public function filter_bytanggalpinjam($tanggalawal=0,$tanggalakhir=0){
+		if ($tanggalawal != 0 && $tanggalakhir == 0) {
+		$query = $this->db->query("SELECT * from tabel_pinjaman where status = 'DIPINJAM' AND DATE(tgl_pinjaman) = '$tanggalawal' ORDER BY tgl_pinjaman ASC ");
+		} else if($tanggalawal != 0 && $tanggalakhir != 0) {
+		$query = $this->db->query("SELECT * from tabel_pinjaman where status = 'DIPINJAM' and tgl_pinjaman BETWEEN '$tanggalawal' and '$tanggalakhir' ORDER BY tgl_pinjaman ASC ");
+		} else {
+		$query = $this->db->query("SELECT * from tabel_pinjaman");
+		}
+
+		return $query->result();
 	}
 
-	return $query->result();
-}
-
-public function get_laporan_kembali()
-{
-	return $this->db->where('status', 'DIKEMBALIKAN')->get('tabel_pinjaman')->result();
-}
-public function filter_bytanggalkembali($tanggalawal=0,$tanggalakhir=0){
-	if ($tanggalawal != 0 && $tanggalakhir == 0) {
-	  $query = $this->db->query("SELECT * from tabel_pinjaman where status = 'DIKEMBALIKAN' AND DATE(tgl_kembali) = '$tanggalawal' ORDER BY tgl_kembali ASC ");
-	} else if($tanggalawal != 0 && $tanggalakhir != 0) {
-	  $query = $this->db->query("SELECT * from tabel_pinjaman where status = 'DIKEMBALIKAN' and tgl_kembali BETWEEN '$tanggalawal' and '$tanggalakhir' ORDER BY tgl_pinjaman ASC ");
-	} else {
-	  $query = $this->db->query("SELECT * from tabel_pinjaman");
+	public function get_laporan_kembali()
+	{
+		return $this->db->where('status', 'DIKEMBALIKAN')->get('tabel_pinjaman')->result();
 	}
+	public function filter_bytanggalkembali($tanggalawal=0,$tanggalakhir=0){
+		if ($tanggalawal != 0 && $tanggalakhir == 0) {
+		$query = $this->db->query("SELECT * from tabel_pinjaman where status = 'DIKEMBALIKAN' AND DATE(tgl_kembali) = '$tanggalawal' ORDER BY tgl_kembali ASC ");
+		} else if($tanggalawal != 0 && $tanggalakhir != 0) {
+		$query = $this->db->query("SELECT * from tabel_pinjaman where status = 'DIKEMBALIKAN' and tgl_kembali BETWEEN '$tanggalawal' and '$tanggalakhir' ORDER BY tgl_pinjaman ASC ");
+		} else {
+		$query = $this->db->query("SELECT * from tabel_pinjaman");
+		}
 
-	return $query->result();
-}
+		return $query->result();
+	}
 }

@@ -4,7 +4,7 @@
 <script src="<?php echo base_url("builder/plugins/jquery-ui/jquery-ui.min.js"); ?>"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
-$.widget.bridge('uibutton', $.ui.button)
+  $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo base_url('builder/plugins/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
@@ -12,20 +12,9 @@ $.widget.bridge('uibutton', $.ui.button)
 <script src="<?php echo base_url('builder/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js'); ?>"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url('builder/dist/js/adminlte.js'); ?>"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="<?php echo base_url('builder/plugins/moment/moment.min.js'); ?>"></script>
-<script src="<?php echo base_url('builder/plugins/daterangepicker/daterangepicker.js'); ?>"></script>
+<!-- Select2 -->
+<script src="<?php echo base_url('builder/plugins/select2/js/select2.full.min.js'); ?>"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
-</script>
-
-<script src="<?php echo base_url('builer/dist/js/adminlte.js'); ?>"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?php echo base_url('builder/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
 <script src="<?php echo base_url('builder/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js'); ?>"></script>
 <script src="<?php echo base_url('builder/plugins/datatables-responsive/js/dataTables.responsive.min.js'); ?>"></script>
@@ -38,7 +27,6 @@ $.widget.bridge('uibutton', $.ui.button)
 <script src="<?php echo base_url('builder/plugins/datatables-buttons/js/buttons.html5.min.js'); ?>"></script>
 <script src="<?php echo base_url('builder/plugins/datatables-buttons/js/buttons.print.min.js'); ?>"></script>
 <script src="<?php echo base_url('builder/plugins/datatables-buttons/js/buttons.colVis.min.js'); ?>"></script>
-<script src="<?php echo base_url('builer/dist/js/pages/dashboard.js'); ?>"></script>
 <script>
 $(function() {
     //Initialize Select2 Elements
@@ -46,44 +34,31 @@ $(function() {
 
     //Initialize Select2 Elements
     $('.select2bs4').select2({
-        theme: 'bootstrap4'
+      theme: 'bootstrap4'
     })
-    $("#perpustakaan-table").DataTable({
+    
+    $("#akademik-table").DataTable({
         "responsive": true,
         "lengthChange": false,
         "autoWidth": false,
-    }).buttons().container().appendTo('#perpustakaan-table_wrapper .col-md-6:eq(0)');
+    }).buttons().container().appendTo('#akademik-table_wrapper .col-md-6:eq(0)');
 
-    $("#perpustakaan-table2").DataTable({
+    $("#akademik-table2").DataTable({
         "responsive": true,
         "lengthChange": false,
         "autoWidth": false,
-    }).buttons().container().appendTo('#perpustakaan-table_wrapper .col-md-6:eq(0)');
+    }).buttons().container().appendTo('#akademik-table2_wrapper .col-md-6:eq(0)');
 
-    $("#data-table").DataTable({
+    $("#datasiswa-table").DataTable({
         "responsive": true,
         "lengthChange": true,
         "autoWidth": false,
-    }).buttons().container().appendTo('#data-table_wrapper .col-md-6:eq(0)');
+    }).buttons().container().appendTo('#datasiswa-table_wrapper .col-md-6:eq(0)');
 
-    $("#data-table2").DataTable({
+    $("#datasiswa-table2").DataTable({
         "responsive": true,
         "lengthChange": true,
         "autoWidth": false,
-    }).buttons().container().appendTo('#data-table_wrapper .col-md-6:eq(0)');
-    $("#laporan").DataTable({
-        "responsive": true,
-        "lengthChange": true,
-        "autoWidth": false,
-        "ajax": {
-            "url": "<?php echo base_url("perpustakaan/laporan/laporan', $data")?>",
-            "data": {
-                status:$('#st').data(),
-            },
-        },
-        
-    }).buttons().container().appendTo('#data-table_wrapper .col-md-6:eq(0)');
+    }).buttons().container().appendTo('#datasiswa-table2_wrapper .col-md-6:eq(0)');
 });
 </script>
-<!-- Select2 -->
-<script src="<?php echo base_url('builder/plugins/select2/js/select2.full.min.js'); ?>"></script>

@@ -63,7 +63,7 @@
                                           <td><?php echo $data->status ?></td>
                                           <td class="text-center">
                                           <a href="<?php echo base_url('Perpustakaan/proses_peminjam_id/'.$data->id_pinjaman)?>">
-                                                <button type="button" class="btn <?php $btn = $data->status == "DIPINJAM" ? 'btn-danger' : 'btn-success'; echo $btn ?> btn-sm" style="width: 180px">
+                                                <button type="button" class="btn <?php $btn = $data->status == "DIPINJAM" ? 'btn-danger' : 'btn-success'; echo $btn ?> btn-sm" <?php $btn = $data->status == "DIKEMBALIKAN" ? 'disabled' : ''; echo $btn ?> style="width: 180px">
                                                 <?php $statuss = $data->status == "DIPINJAM" ? 'Kembalikan' : 'Sudah Dikembalikan'; echo $statuss ?>
                                                 </button>
                                               </a>
