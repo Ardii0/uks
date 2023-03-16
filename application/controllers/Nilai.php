@@ -157,11 +157,14 @@ class Nilai extends CI_Controller {
     }
 
 // Data Nilai
-    public function data_nilai_siswa($id_mapel, $id_semester)
-    {
-        $data['data']=$this->m_nilai->get_data_nilai($id_mapel, $id_semester)->result();
-        $this->load->view('nilai/data_nilai/data_nilai_siswa', $data);
-    }
+public function data_nilai_siswa($id_mapel, $id_rombel, $id_semester)
+{
+    $data['data']=$this->m_nilai->get_data_nilai($id_mapel, $id_rombel, $id_semester)->result();
+    $data['rombel']=$this->m_nilai->get_rombelByid($id_rombel)->result();
+    $data['mapel']=$this->m_nilai->get_mapelByid($id_mapel)->result();
+    $data['semester']=$this->m_nilai->get_semesterByid($id_semester)->result();
+    $this->load->view('nilai/data_nilai/data_nilai_siswa', $data);
+}
 
     public function modul_data_nilai()
     {

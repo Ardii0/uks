@@ -43,10 +43,16 @@
             </section>
 
             <section class="content">
+                <?php foreach($rombel as $rombels ): ?>
+                <?php foreach($mapel as $mapels ): ?>
+                <?php foreach($semester as $semesters ): ?>
                 <div class="container-fluid shadow p-3 mb-5 bg-white rounded">
                     <div class="px-3 pt-3 h5">
-                        <p>Matematika</p>
-                        <p class="mt-n2">X TKJ 1 (Semester 1)</p>
+                        <p><?php echo $mapels->nama_mapel?></p>
+                        <p class="mt-n2"><?php echo tampil_kelas_byid(($rombels->id_kelas))?>
+                            <?php echo $rombels->nama_rombel?>
+                            (Semester <?php echo $semesters->semester?>)
+                        </p>
                     </div>
                     <div class="row px-1">
                         <div class="col">
@@ -97,6 +103,9 @@
                         </div>
                     </div>
                 </div>
+                <?php endforeach;?>
+                <?php endforeach;?>
+                <?php endforeach;?>
             </section>
         </div>
         <?php $this->load->view('nilai/style/js')?>
