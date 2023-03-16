@@ -21,6 +21,7 @@ class Perpustakaan extends CI_Controller {
         $data['total_rak_buku'] = $this->m_perpustakaan->total_rak_buku();
         $data['total_kategori_buku'] = $this->m_perpustakaan->total_kategori_buku();
         $data['total_anggota'] = $this->m_perpustakaan->total_anggota();
+        $data['data_anggota'] = $this->m_perpustakaan->get_anggota('data_anggota');
         $this->load->view('perpustakaan/dashboard', $data);
 
     }
