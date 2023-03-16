@@ -44,7 +44,10 @@
                                                 <th>Cover Buku</th>
                                                 <th>Judul Buku</th>
                                                 <th>Penulis</th>
+                                                <th>Penerbit</th>
+                                                <th>Tahun Terbit</th>
                                                 <th>Kategori</th>
+                                                <th>Rak Buku</th>
                                                 <th>Keterangan</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -57,7 +60,10 @@
                                                 <td class="text-truncate" style="max-width: 150px;">
                                                     <?php echo $row->judul_buku?></td>
                                                 <td><?php echo $row->penulis_buku?></td>
+                                                <td><?php echo $row->penerbit_buku?></td>
+                                                <td><?php echo $row->tahun_terbit?></td>
                                                 <td><?php echo $row->kategori_id?></td>
+                                                <td><?php echo $row->rak_buku_id?></td>
                                                 <td class="text-truncate" style="max-width: 150px;">
                                                     <?php echo $row->keterangan?></td>
                                                 <td>

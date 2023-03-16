@@ -119,15 +119,9 @@
                                     <td class="p-1"
                                         style="border-left: 1px solid; border-bottom: 1px solid; border-top: 1px solid;">
                                         <?php foreach ($anggota as $data): ?>
-                                        <img style="width: 80px; height:90px; "
-                                                    src="<?php echo base_url('uploads/akademik/pendaftaran_siswa/').tampil_foto_ByIdSiswa($data->id_siswa)?>">
-                                                    <?php endforeach;?>
-                                        <!-- <div class="border justify-content-center d-flex align-items-center"
-                                            style="height: 140px">
-                                            <div class="">
-                                                2x3
-                                            </div>
-                                        </div> -->
+                                        <img style="width: 115px; height:145px; "
+                                            src="<?php echo base_url('uploads/akademik/pendaftaran_siswa/').tampil_foto_ByIdSiswa($data->id_siswa);?>">
+                                        <?php endforeach;?>
                                     </td>
                                     <td style="border: 1px solid">
                                         <?php foreach ($anggota as $data): ?>
@@ -143,7 +137,6 @@
                                                     </div>
                                                     <div class="col-6">
                                                         <?php echo tampil_namadaftar_ByIdSiswa($data->id_siswa)?>
-                                                        <?php echo tampil_foto_ByIdSiswa($data->id_siswa)?>
                                                     </div>
                                                 </div>
                                                 <div class="row text-left">
