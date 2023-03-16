@@ -48,7 +48,7 @@
                                             </div>
                                         </div>
                                     </td>
-                <?php foreach ($anggota as $data): ?>
+                                    <?php foreach ($anggota as $data): ?>
                                     <td style="border: 1px solid">
                                         <div class="text-center" style="height: 185px">
                                             <div class="text-center p-1">
@@ -61,7 +61,7 @@
                                                         :
                                                     </div>
                                                     <div class="col-6">
-                                                    <?php echo tampil_namadaftar_ByIdSiswa($data->id_siswa)?>
+                                                        <?php echo tampil_namadaftar_ByIdSiswa($data->id_siswa)?>
                                                     </div>
                                                 </div>
                                                 <div class="row text-left">
@@ -72,7 +72,7 @@
                                                         :
                                                     </div>
                                                     <div class="col-6">
-                                                    <?php echo tampil_nisn_siswa_byid($data->id_siswa)?>
+                                                        <?php echo tampil_nisn_siswa_byid($data->id_siswa)?>
                                                     </div>
                                                 </div>
                                                 <div class="row text-left">
@@ -83,11 +83,11 @@
                                                         :
                                                     </div>
                                                     <div class="col-6">
-                                                    <?php echo  tampil_kelasdaftar_ByIdSiswa($data->id_siswa)?>
+                                                        <?php echo  tampil_kelasdaftar_ByIdSiswa($data->id_siswa)?>
                                                     </div>
                                                 </div>
                                                 <div class=" p-4">
-                                                <?php    
+                                                    <?php    
                                                     $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
                                                     echo $generator->getBarcode(tampil_namadaftar_ByIdSiswa($data->id_siswa), $generator::TYPE_CODE_128, 1.5, 50);
                                                 ?>
@@ -95,7 +95,7 @@
                                             </div>
                                         </div>
                                     </td>
-                <?php endforeach;?>
+                                    <?php endforeach;?>
 
                                 </tbody>
                             </table>
@@ -118,15 +118,19 @@
                                 <tbody class="">
                                     <td class="p-1"
                                         style="border-left: 1px solid; border-bottom: 1px solid; border-top: 1px solid;">
-                                        <div class="border justify-content-center d-flex align-items-center"
+                                        <?php foreach ($anggota as $data): ?>
+                                        <img style="width: 80px; height:90px; "
+                                                    src="<?php echo base_url('uploads/akademik/pendaftaran_siswa/').tampil_foto_ByIdSiswa($data->id_siswa)?>">
+                                                    <?php endforeach;?>
+                                        <!-- <div class="border justify-content-center d-flex align-items-center"
                                             style="height: 140px">
                                             <div class="">
                                                 2x3
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </td>
                                     <td style="border: 1px solid">
-                <?php foreach ($anggota as $data): ?>
+                                        <?php foreach ($anggota as $data): ?>
                                         <div class="text-center" style="height: 185px">
                                             <div class="text-center p-1">
                                                 <h6>KARTU ANGGOTA</h6>
@@ -139,6 +143,7 @@
                                                     </div>
                                                     <div class="col-6">
                                                         <?php echo tampil_namadaftar_ByIdSiswa($data->id_siswa)?>
+                                                        <?php echo tampil_foto_ByIdSiswa($data->id_siswa)?>
                                                     </div>
                                                 </div>
                                                 <div class="row text-left">
@@ -149,7 +154,7 @@
                                                         :
                                                     </div>
                                                     <div class="col-6">
-                                                    <?php echo  tampil_nisn_siswa_byid($data->id_siswa)?>
+                                                        <?php echo  tampil_nisn_siswa_byid($data->id_siswa)?>
                                                     </div>
                                                 </div>
                                                 <div class="row text-left">
@@ -160,11 +165,11 @@
                                                         :
                                                     </div>
                                                     <div class="col-6">
-                                                    <?php echo  tampil_kelasdaftar_ByIdSiswa($data->id_siswa)?>
+                                                        <?php echo  tampil_kelasdaftar_ByIdSiswa($data->id_siswa)?>
                                                     </div>
                                                 </div>
                                                 <div class="p-4 text-center">
-                                                <?php    
+                                                    <?php    
                                                     $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
                                                     echo $generator->getBarcode(tampil_namadaftar_ByIdSiswa($data->id_siswa), $generator::TYPE_CODE_128, 1.5, 50);
                                                 ?>
@@ -172,14 +177,14 @@
                                             </div>
                                         </div>
                                     </td>
-                <?php endforeach;?>
+                                    <?php endforeach;?>
 
                                 </tbody>
                             </table>
                         </div>
                         <div class="mt-4 d-flex justify-content-center">
-                            <button type="button w-100" style="width: 425px"s value="Convert HTML to PDF" onclick="convertHTMLtoPDF()"
-                                class="btn btn-success">PRINT!</button>
+                            <button type="button w-100" style="width: 425px" s value="Convert HTML to PDF"
+                                onclick="convertHTMLtoPDF()" class="btn btn-success">PRINT!</button>
                         </div>
                     </div>
                 </div>
