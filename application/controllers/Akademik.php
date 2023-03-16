@@ -64,9 +64,7 @@ class Akademik extends CI_Controller {
             'kd_angkatan' => $this->input->post('kd_angkatan'),
             'tgl_a' => $this->input->post('tgl_a'),
             'tgl_b' => $this->input->post('tgl_b'),
-            // 'aktif' => $this->input->post('aktif'),
             'keterangan' => $this->input->post('keterangan'),
-            // 'status' => $this->input->post('status'),
         );
         $logged=$this->m_akademik->ubah_ta('tabel_tahunajaran', $data, array('id_angkatan'=>$this->input->post('id_angkatan')));
         if($logged)
@@ -79,6 +77,26 @@ class Akademik extends CI_Controller {
             $this->session->set_flashdata('error', 'gagal..');
             redirect(base_url('Akademik/tahun_ajaran/edit_ta/'.$this->input->post('id_angkatan')));
         }
+    }
+
+    public function activate_ta($act)
+    {
+        $data = array (
+            'aktif' => '1',
+            'status' => 'AKTIF',
+        );
+        $this->m_akademik->ubah_ta('tabel_tahunajaran', $data, array('id_angkatan'=>$act));
+            redirect(base_url('Akademik/tahun_ajaran'));
+    }
+
+    public function nonactivate_ta($act)
+    {
+        $data = array (
+            'aktif' => '0',
+            'status' => 'NONAKTIF',
+        );
+        $this->m_akademik->ubah_ta('tabel_tahunajaran', $data, array('id_angkatan'=>$act));
+            redirect(base_url('Akademik/tahun_ajaran'));
     }
     
     public function hapus_ta($id_angkatan)
@@ -304,6 +322,14 @@ class Akademik extends CI_Controller {
             'alamat' => $this->input->post('alamat'),
         ];
         $this->m_akademik->tambah_guru('tabel_guru', $data);
+        $nilaiAccess = [
+            'username' => $this->input->post('nama_guru'),
+            'email' => $this->input->post('nama_guru').'@gmail.com',
+            'password' => md5($this->input->post('nip')),
+            'level' => 'Guru',
+            'kode_guru' => $this->input->post('kode_guru'),
+        ];
+        $this->m_akademik->tambah_guru('tabel_level', $nilaiAccess);
         redirect(base_url('Akademik/guru'));
     }
 
@@ -338,6 +364,7 @@ class Akademik extends CI_Controller {
     public function hapus_guru($id_guru)
     {
         $this->m_akademik->hapus_guru('tabel_guru', 'kode_guru', $id_guru);
+        $this->m_akademik->hapus_guru('tabel_level', 'kode_guru', $id_guru);
         redirect(base_url('Akademik/guru'));
     }
     

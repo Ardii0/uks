@@ -76,6 +76,15 @@
                                             <td><?php echo $data->keterangan?></td>
                                             <td><?php echo $data->status?></td>
                                             <td class="text-center">
+                                                <?php if($data->status === "AKTIF"): ?>
+                                                    <button onclick="nonactive(<?php echo $data->id_angkatan ;?>)"
+                                                        class="btn btn-secondary btn-sm">
+                                                        NonAktifkan</button>
+                                                <?php elseif($data->status === "NONAKTIF"): ?>
+                                                    <button onclick="active(<?php echo $data->id_angkatan ;?>)"
+                                                        class="btn btn-success btn-sm">
+                                                        Aktifkan</button>
+                                                <?php endif; ?>
                                                 <a href="<?php echo base_url('Akademik/edit_ta/'.$data->id_angkatan)?>"
                                                     class="btn btn-primary btn-sm">
                                                     <i class="fa fa-edit"></i></a>
@@ -102,6 +111,14 @@ function hapus(id) {
     if (yes == true) {
         window.location.href = "<?php echo base_url('Akademik/hapus_ta/')?>" + id;
     }
+}
+
+function active(id) {
+    window.location.href = "<?php echo base_url('Akademik/activate_ta/')?>" + id;
+}
+
+function nonactive(id) {
+    window.location.href = "<?php echo base_url('Akademik/nonactivate_ta/')?>" + id;
 }
 </script>
 </body>
