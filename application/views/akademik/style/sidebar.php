@@ -91,7 +91,13 @@
               <li class="nav-item">
                 <a href="<?php echo base_url('Akademik/siswa_seleksi_siswa') ;?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Pembagian Siswa</p>
+                  <p>Seleksi Pendaftar</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url('Akademik/siswa_pembagian_kelas') ;?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Pembagian Kelas</p>
                 </a>
               </li>
               <li class="nav-item">

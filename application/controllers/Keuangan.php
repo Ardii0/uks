@@ -124,7 +124,7 @@ class Keuangan extends CI_Controller
         }
     }
 
-    //Tambah Anggaran
+ //Tambah Anggaran
     public function aksi_tambah_anggaran()
     {
         $data = array
@@ -201,6 +201,7 @@ class Keuangan extends CI_Controller
         (
             'nama_akun' => $this->input->post('nama_akun'),
             'jenis_akun' => $this->input->post('jenis_akun'),
+            'status' => 1,
         );
 
         $masuk=$this->m_keuangan->tambah_akun('tabel_akun', $data);
@@ -418,6 +419,7 @@ class Keuangan extends CI_Controller
    }
 
 // Pembayaran
+ // Pembayaran
     public function pembayaran()
     {
         $data['pembayaran'] = $this->m_keuangan->get_pembayaran();
@@ -505,6 +507,38 @@ class Keuangan extends CI_Controller
         redirect(base_url('Keuangan/form_tambah_pembayaran/'.$this->input->post('id_siswa')));
     }
 
+	public function cetak_pembayaran($ids, $idr)
+	{
+		$cek = $this->m_keuangan->nps($ids, $idr)->num_rows();
+		// if (empty($cek)) {
+		// 	$this->session->set_flashdata('msg',
+        //     '<div class="alert alert-danger">
+        //         <h4>Maaf</h4>
+        //         <p>Data Tidak Ditemukan.</p>
+        //     </div>');
+		// 	redirect('Nilai/cetak_raport','refresh');
+		// }else{
+			$nama = $this->m_keuangan->get_n($ids);
+			$rombel = $this->m_keuangan->get_r($idr);
+			foreach ($nama->result() as $key) {
+				$data['nama'] = $key->nama;
+			}
+			foreach ($rombel->result() as $key1) {
+				$data['rombel'] = $key1->nama_rombel;
+			}
+			$data['data'] = $this->m_keuangan->nps($ids)->result();
+			if ($this->uri->segment(5) == "pdf") {
+                $this->load->library('pdf');
+				$this->pdf->load_view('keuangan/pembayaran/cetakpembayaran', $data);
+				$this->pdf->render();
+				$this->pdf->stream("Rekap Bayar ".$data['nama'].".pdf", array("Attachment" => false));		
+			}else{
+                redirect('Keuangan/tambah_pembayaran','refresh');
+			}
+		// }
+	}
+    
+ // Cetak Invoice
     public function cetak_invoice()
     {
         $this->load->view('keuangan/pembayaran/cetak_invoice');

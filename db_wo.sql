@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 16, 2023 at 04:30 AM
+-- Generation Time: Mar 16, 2023 at 10:32 AM
 -- Server version: 8.0.29
 -- PHP Version: 8.0.25
 
@@ -121,6 +121,26 @@ CREATE TABLE `setting_perpustakaan` (
 
 INSERT INTO `setting_perpustakaan` (`id_setting_perpus`, `maksimal_pengembalian_hari`, `denda`) VALUES
 (1, '10', 1000000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tabel_akun`
+--
+
+CREATE TABLE `tabel_akun` (
+  `id_akun` int NOT NULL,
+  `nama_akun` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `jenis_akun` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `status` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tabel_akun`
+--
+
+INSERT INTO `tabel_akun` (`id_akun`, `nama_akun`, `jenis_akun`, `status`) VALUES
+(5, 'Kas', 'Kas', 1);
 
 -- --------------------------------------------------------
 
@@ -564,7 +584,8 @@ CREATE TABLE `tabel_pembayaran` (
 
 INSERT INTO `tabel_pembayaran` (`id_pembayaran`, `id_siswa`, `id_jenis`, `nominal`, `keterangan`, `date`, `akuntan`, `id_ta`, `id_tf`, `cek_p`) VALUES
 (1, 5, 1, 223322, '1', '2023-03-11 09:38:54', 'tu@gmail.com', 1, 'INV0311PLW3854', 0),
-(2, 1, 2, 200000, 'ok', '2023-03-13 02:35:36', 'tu@gmail.com', 1, 'INV0313WOF3536', 0);
+(2, 1, 2, 200000, 'ok', '2023-03-13 02:35:36', 'tu@gmail.com', 1, 'INV0313WOF3536', 0),
+(7, 5, 2, 21312, '1231', '2023-03-16 04:28:52', 'tu@gmail.com', 1, 'INV0316IYJ2852', 0);
 
 -- --------------------------------------------------------
 
@@ -755,7 +776,7 @@ CREATE TABLE `tabel_tahunajaran` (
   `tgl_a` date NOT NULL,
   `tgl_b` date NOT NULL,
   `aktif` int NOT NULL,
-  `status` enum('AKTIF','NONAKTIF') NOT NULL DEFAULT 'AKTIF'
+  `status` enum('NONAKTIF','AKTIF') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'AKTIF'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -922,6 +943,12 @@ ALTER TABLE `pinjam`
 --
 ALTER TABLE `setting_perpustakaan`
   ADD PRIMARY KEY (`id_setting_perpus`);
+
+--
+-- Indexes for table `tabel_akun`
+--
+ALTER TABLE `tabel_akun`
+  ADD PRIMARY KEY (`id_akun`);
 
 --
 -- Indexes for table `tabel_alokasiguru`
@@ -1147,6 +1174,12 @@ ALTER TABLE `setting_perpustakaan`
   MODIFY `id_setting_perpus` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `tabel_akun`
+--
+ALTER TABLE `tabel_akun`
+  MODIFY `id_akun` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `tabel_alokasiguru`
 --
 ALTER TABLE `tabel_alokasiguru`
@@ -1240,7 +1273,7 @@ ALTER TABLE `tabel_paketjenjang`
 -- AUTO_INCREMENT for table `tabel_pembayaran`
 --
 ALTER TABLE `tabel_pembayaran`
-  MODIFY `id_pembayaran` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pembayaran` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tabel_pindah`

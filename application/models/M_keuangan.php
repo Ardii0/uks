@@ -212,7 +212,34 @@ class M_keuangan extends CI_Model{
         return $this->db->insert_id();
     }
 
-  //Laporan keuangan
+	public function nps($ids)
+	{
+		$this->db->select('tabel_jenisbayar.nama_jenis, tabel_pembayaran.*');
+		$this->db->from('tabel_pembayaran');
+		$this->db->join('tabel_jenisbayar', 'tabel_pembayaran.id_jenis = tabel_jenisbayar.id_jenis');
+		// $this->db->where('tabel_pembayaran.id_jenis', $idj);
+		$this->db->where('tabel_pembayaran.id_siswa', $ids);
+		// $this->db->where('tabel_pembayaran.id_semester', $idp);
+		$db = $this->db->get();
+		return $db;
+	}
+
+	public function get_n($ids)
+	{
+		$this->db->select('tabel_daftar.nama');
+		$this->db->from('tabel_siswa');
+		$this->db->join('tabel_daftar', 'tabel_daftar.id_daftar = tabel_siswa.id_daftar');
+		$this->db->where('tabel_siswa.id_siswa', $ids);
+		$db = $this->db->get();
+		return $db;
+	}
+
+	public function get_r($idr)
+	{
+		return $this->db->get_where('tabel_rombel', array('id_rombel' => $idr));
+	}
+
+//Laporan keuangan
   public function filter_bytanggal($tanggalawal=0,$tanggalakhir=0){
 	if ($tanggalawal != 0 && $tanggalakhir == 0) {
 	  $query = $this->db->query("SELECT * from tabel_transaksi where DATE (waktu) = '$tanggalawal' ORDER BY waktu ASC ");
@@ -222,8 +249,8 @@ class M_keuangan extends CI_Model{
 	  $query = $this->db->query("SELECT * from tabel_transaksi");
 	}
 	return $query->result();
-}
-public function filter_namakun($nama_akun){
+    }
+    public function filter_namakun($nama_akun){
     if ($nama_akun != null) {
         $query = $this->db->where('id_akun', $nama_akun)->get('tabel_jurnal');
       } else {

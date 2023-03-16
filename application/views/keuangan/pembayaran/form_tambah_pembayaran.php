@@ -43,6 +43,9 @@
                         <div class="col-5">
                             <?php $id=0; foreach ($siswa as $data): $id++; ?>
                                 <div class="row mt-3">
+                                    <button type="reset" class="btn btn-primary">
+                                        <i class="fas fa-sync-alt"></i>
+                                    </button>
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-4 text-right font-weight-bold">Nama</div>
@@ -107,8 +110,8 @@
                                         <th>ID Transaksi</th>
                                         <th>Jenis Bayar</th>
                                         <th>Keterangan</th>
+                                        <th>Akuntan</th>
                                         <th>Nominal</th>
-                                        <th>User</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -119,16 +122,27 @@
                                             <td><?php echo $databayar->id_tf?></td>
                                             <td><?php echo tampil_jenisbayarById($databayar->id_jenis)?></td>
                                             <td><?php echo $databayar->keterangan?></td>
-                                            <td><?php echo $databayar->nominal?></td>
                                             <td><?php echo $databayar->akuntan?></td>
+                                            <td class="d-flex justify-content-end"><?php echo convRupiah($databayar->nominal)?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
+                            <div style="background: #367FA9;" class="d-flex align-content-center justify-content-end">
+                                <h5>Sub Total</h5>
+                                &emsp;
+                                <?php $subtotal = 0; 
+                                      foreach ($pembayaran as $total) {
+                                        $subtotal += $total->nominal;
+                                      }
+                                      echo convRupiah($subtotal) ?>
+                            </div>
                         </div>
-                        <div class="col-12 d-flex justify-content-end">
-                            <button type="submit" class="btn btn-warning"><i class="fas fa-print"></i> Cetak &
-                                Simpan</button>
+                        <div class="col-12 d-flex justify-content-end mt-3">
+                            <?php foreach ($siswa as $data): ?>
+                                <a href="<?php echo base_url('Keuangan/cetak_pembayaran/'.$data->id_siswa.'/'.$data->id_rombel.'/pdf') ?>" class="btn btn-warning"><i class="fas fa-print"></i> Cetak &
+                                    Simpan</a>
+                            <?php endforeach; ?>
                         </div>
                     </form>
                 </div>
