@@ -383,6 +383,17 @@ class Akademik extends CI_Controller {
         $this->load->view('akademik/siswa/form_pendaftaran', $pilih_jenjang + $data);
     }
     
+    public function acak($long)
+	{
+		$char = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+		$string = '';
+		for ($i=0; $i < $long; $i++) { 			
+			$pos = rand(0, strlen($char)-1);
+			$string .= $char[$pos];
+		}
+		return $string;
+	}
+
     public function aksi_tambah_pendaftaran_siswa()
     {
         $foto = $this->upload_img_pendaftaran_siswa('foto');
@@ -397,7 +408,7 @@ class Akademik extends CI_Controller {
             $data = array
             (
                 'foto' => $foto[1],
-                'no_reg' => $this->input->post('no_reg'),
+                'no_reg' => 'REG'.'-'.$this->acak(6),
                 'id_angkatan' => '1',
                 'id_jenjang' => $this->input->post('id_jenjang'),
                 'tgl_daftar' => $this->input->post('tgl_daftar'),
@@ -798,13 +809,13 @@ class Akademik extends CI_Controller {
     }
     
 
-function naik_kelas($id){
-    $this->db->set('id_kelas', 'id_kelas+1', FALSE);
-    $this->db->where('id_siswa', $id);
-    $this->db->update('tabel_siswa');
-    $siswa['siswa'] = $this->m_akademik->get_siswa('siswa');
-    $this->load->view('akademik/siswa/mutasi', $siswa);
-}
+    function naik_kelas($id){
+        $this->db->set('id_kelas', 'id_kelas+1', FALSE);
+        $this->db->where('id_siswa', $id);
+        $this->db->update('tabel_siswa');
+        $siswa['siswa'] = $this->m_akademik->get_siswa('siswa');
+        $this->load->view('akademik/siswa/mutasi', $siswa);
+    }
 
 
 // Pelajaran

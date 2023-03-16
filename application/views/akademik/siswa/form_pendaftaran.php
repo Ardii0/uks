@@ -41,7 +41,7 @@
             <form action="<?php echo base_url('Akademik/aksi_tambah_pendaftaran_siswa') ?>" enctype="multipart/form-data" method="post">
                 <div class="container-fluid p-3 bg-white">
                     <div class="row">
-                        <div class="col-3">
+                        <div class="col-4">
                             <div>
                                 <label for="id-daftar" class="mr-3">
                                     Tahun Ajaran
@@ -51,7 +51,7 @@
                                 <input type="text" value="TA 2023/2024" class="form-control" placeholder="Tahun Ajaran" disabled>
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col-4">
                             <div>
                                 <label for="id-daftar" class="mr-3">
                                     Tanggal Daftar
@@ -61,7 +61,7 @@
                                 <input type="date" name="tgl_daftar" class="form-control" placeholder="Tahun Ajaran">
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col-4">
                             <div>
                                 <label for="jenjang" class="mr-3">
                                     Jenjang
@@ -74,16 +74,6 @@
 	                                    <option value="<?php echo $row->id_jenjang ?>"><?php echo $row->nama_jenjang ?></option>
 	                                    <?php endforeach;?>
                                 </select>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div>
-                                <label for="id-daftar" class="mr-3">
-                                    ID Registrasi
-                                </label>
-                            </div>
-                            <div>
-                                <input type="number" name="no_reg" placeholder="ID Registrasi" class="form-control">
                             </div>
                         </div>
                     </div>

@@ -23,19 +23,18 @@
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                 <div class="card-body p-4 p-lg-5 text-black">
 
-                                    <form action="<?php echo base_url(); ?>login/aksi_login" method="post">
+                                    <form action="<?php echo base_url(); ?>login/aksi_login_email" method="post">
                                         <div class="text-center mb-2 pb-1">
                                             <img src="<?php echo base_url('assets/dist/img/logo-login.png'); ?>"
                                                 width="152" height="129" class="d-inline-block align-text-top me-3">
                                             <div class="h2 mt-1 fw-bold mb-0 mx-2">Sistem Informasi Sekolah</div>
                                         </div>
 
-                                        <h5 class="fw-normal mb-1 pb-3" style="letter-spacing: 1px;">Silahkan login ke
-                                            akun anda</h5>
+                                        <h5 class="fw-normal mb-1 pb-3" style="letter-spacing: 1px;">Login menggunakan email anda</h5>
                                         <div class="form-outline mb-2">
-                                            <label class="form-label" for="form2Example17">Username</label>
-                                            <input id="form2Example17" type="full name" name="username"
-                                                class="form-control form-control-lg" placeholder="Username" required
+                                            <label class="form-label" for="form2Example17">Email</label>
+                                            <input id="form2Example17" type="full name" name="email"
+                                                class="form-control form-control-lg" placeholder="Email" required
                                                 oninvalid="this.setCustomValidity('Tidak boleh kosong')"
                                                 oninput="setCustomValidity('')" />
                                         </div>
@@ -47,7 +46,6 @@
                                                 oninvalid="this.setCustomValidity('Tidak boleh kosong')"
                                                 oninput="setCustomValidity('')" />
                                         </div>
-                                        <a href="<?php echo base_url('Login/login_email'); ?>">Login menggunakan email</a>
 
                                         <div class="pt-2 mb-4">
                                             <button class="btn btn-dark btn-lg btn-block" type="submit">Login</button>
