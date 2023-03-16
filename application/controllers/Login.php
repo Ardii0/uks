@@ -112,7 +112,7 @@ class Login extends CI_Controller {
         // $sess_data['logged_in'] = 'Sudah Loggin';
         $data_session['id_level'] = $sess->id_level;
         $data_session['username'] = $sess->username;
-        $data_session['email'] = $sess->email;
+        // $data_session['email'] = $sess->email;
         $data_session['password'] = $sess->password;
         // $data_session['cdate'] = $sess->cdate;
         // $data_session['lv'] = $sess->level;

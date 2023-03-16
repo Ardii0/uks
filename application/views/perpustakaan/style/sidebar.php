@@ -39,45 +39,12 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link">
+            <a href="<?php echo base_url('Perpustakaan/data_buku')?>" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Data Buku
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="<?php echo base_url('Perpustakaan/data_buku')?>" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Daftar Buku</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?php echo base_url('Perpustakaan/tambah_buku');?>" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Form Input Buku</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/charts/flot.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Modul Buku</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/charts/inline.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Detail Index Buku</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/charts/inline.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Cetak Barcode Buku</p>
-                </a>
-              </li>
-            </ul>
           </li>
           <li class="nav-item">
             <a href="<?php echo base_url('Perpustakaan/kategori_buku')?>" class="nav-link">
@@ -106,12 +73,6 @@
                 <a href="<?php echo base_url('Perpustakaan/form_anggota')?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Form Input Anggota</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?php echo base_url('Perpustakaan/kartu_anggota')?>" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Cetak Kartu Anggota </p>
                 </a>
               </li>
             </ul>

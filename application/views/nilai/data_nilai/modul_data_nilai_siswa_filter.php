@@ -54,15 +54,15 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Mapel</th>
-                                            <th style="width: 50px;">Aksi</th>
+                                            <th class="text-center">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php $id=0; foreach ($mapel as $data): $id++?>
                                         <tr>
                                             <td><?php echo $id ?></td>
-                                            <td><?php echo $data->nama_mapel ?></td>
-                                            <td class="d-flex">
+                                            <td><?php echo tampil_mapelById($data->id_mapel) ?></td>
+                                            <td class="text-center">
                                                 <a href="<?php echo base_url('Nilai/modul_data_nilai_filter/'.$data->id_mapel)?>"
                                                     class="btn btn-success btn-sm">
                                                     <i class="fa fa- fa-arrow-right"></i>
@@ -84,7 +84,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Rombel</th>
-                                            <th style="width: 150px;">Aksi</th>
+                                            <th class="text-center">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -94,12 +94,12 @@
                                             <td>
                                                 <?php echo tampil_kelas_byid(tampil_id_kelas_rombel_byid($data->id_rombel))?>
                                                 <?php echo tampil_rombel_byid($data->id_rombel)?></td>
-                                            <td class="grid gap-3">
-                                                <a href="<?php echo base_url('Nilai/data_nilai_siswa/'.$data->id_mapel.'/1')?>"
+                                            <td class="grid gap-3 text-center">
+                                                <a href="<?php echo base_url('Nilai/data_nilai_siswa/'.$data->id_mapel.'/'.$data->id_rombel.'/1')?>"
                                                     class="btn btn-success btn-sm">
                                                     Ganjil
                                                 </a>
-                                                <a href="<?php echo base_url('Nilai/data_nilai_siswa/'.$data->id_mapel.'/2')?>"
+                                                <a href="<?php echo base_url('Nilai/data_nilai_siswa/'.$data->id_mapel.'/'.$data->id_rombel.'/2')?>"
                                                     class="btn btn-success btn-sm">
                                                     Genap
                                                 </a>

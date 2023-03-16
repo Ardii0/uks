@@ -127,9 +127,9 @@ class M_nilai extends CI_Model{
     }
 
 // Modul Data Siswa
-    public function get_data_nilai($id_mapel, $id_semester)
+    public function get_data_nilai($id_mapel, $id_rombel, $id_semester)
     {
-        $multiClause = array('id_mapel' => $id_mapel, 'id_semester' => $id_semester);
+        $multiClause = array('id_mapel' => $id_mapel,'id_rombel' => $id_rombel, 'id_semester' => $id_semester);
         $data = $this->db->where($multiClause)->get('tabel_nilai');
         return $data;
     }
@@ -138,6 +138,24 @@ class M_nilai extends CI_Model{
     {
         $multiClause = array('id_mapel' => $id_mapel);
         $data = $this->db->where($multiClause)->get('tabel_alokasimapel');
+        return $data;
+    }
+
+    public function get_mapelByid($id_mapel)
+    {
+        $data = $this->db->where('id_mapel', $id_mapel)->get('tabel_mapel');
+        return $data;
+    }
+
+    public function get_rombelByid($id_rombel)
+    {
+        $data = $this->db->where('id_rombel', $id_rombel)->get('tabel_rombel');
+        return $data;
+    }
+
+    public function get_semesterByid($id_semester)
+    {
+        $data = $this->db->where('id_semester', $id_semester)->get('tabel_semester');
         return $data;
     }
 
