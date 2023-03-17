@@ -141,7 +141,19 @@
                                                 <div class="col-4 text-right font-weight-bold mt-1">Akun Debit
                                                 </div>
                                                 <div class="col-8">
-                                                    <select name="id_akun" class="custom-select custom-select-md">
+                                                    <select name="debet" class="custom-select custom-select-md">
+                                                        <option selected>-- Pilih Akun --</option>
+                                                        <?php foreach ($data_akun as $data): ?>
+                                                            <option value="<?php echo $data->id_akun ?>"><?php echo $data->nama_akun ?></option>
+                                                        <?php endforeach ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 row mt-3">
+                                                <div class="col-4 text-right font-weight-bold mt-1">Akun Kredit
+                                                </div>
+                                                <div class="col-8">
+                                                    <select name="kredit" class="custom-select custom-select-md">
                                                         <option selected>-- Pilih Akun --</option>
                                                         <?php foreach ($data_akun as $data): ?>
                                                             <option value="<?php echo $data->id_akun ?>"><?php echo $data->nama_akun ?></option>

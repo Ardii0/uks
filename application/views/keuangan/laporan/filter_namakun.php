@@ -52,17 +52,15 @@
                     <div class="mx-2 pt-2 pl-2">
                         <form action="<?php echo base_url('keuangan/filter_namakun') ?>" method="post">
                             <div class="form-group d-flex" style="width: 30%;">
-                                <select name="nama_akun" class="form-control select2"
-                                    data-dropdown-css-class="select2-info" name="nama_akun" style="width: 100%;">
-                                    <option>
-                                        Pilih
-                                    </option>
-                                    <?php $id = 0;foreach ($data_akun as $data): $id++;?>
-                                    <option value="<?php echo $data->id_akun ?>"><?php echo $data->nama_akun ?></option>
-                                    <?php endforeach;?>
+                                <select name="nama_akun" class="form-control select2" style="width: 100%;" required="">
+                                <option value="">Pilih</option>
+                                    <?php foreach ($data_akun as $key) { ?>
+                                    <option value="<?php echo $key->id_akun ?>"><?php echo $key->nama_akun ?></option>
+                                    <?php } ?>
                                 </select>
                                 <button type="submit" style="width: " class="ml-2 w-50 btn btn-info">Tampilkan</button>
                             </div>
+                        </form>
                     </div>
                     <div class="card mb-4">
                         <div class="card-header">
@@ -73,7 +71,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-6">
-                                    <table id="datasiswa-table" class="table table-striped">
+                                    <table id="datasiswa-table" class="table">
                                         <thead>
                                             <tr>
                                                 <th>Tanggal</th>
@@ -83,7 +81,7 @@
                                         </thead>
                                         <tbody>
                                             <?php $id = 0;foreach ($datafilter as $data): $id++;?>
-                                            <tr>
+                                            <tr <?php $btn = $data->debet == 0 ? 'hidden' : ''; echo $btn ?>>
                                                 <td>
                                                     <?php echo $data->waktu ?>
                                                 </td>
@@ -91,7 +89,7 @@
                                                     <?php echo $data->uraian ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $data->nominal ?>
+                                                    Rp. <?php echo $data->debet ?>
                                                 </td>
                                             </tr>
                                             <?php endforeach;?>
@@ -99,10 +97,11 @@
                                                 <td colspan="2"> <strong> Jumlah Debet</strong></td>
                                                 <td>
                                                     <strong>
-                                                    <?php  
+                                                        Rp.
+                                                        <?php  
                                                             $totalprice = 0; 
                                                             foreach ($datafilter as $key) { 
-                                                                $totalprice += $key->nominal; 
+                                                                $totalprice += $key->debet;
                                                             } 
                                                             echo $totalprice;?>
                                                     </strong>
@@ -113,7 +112,7 @@
                                     </table>
                                 </div>
                                 <div class="col-6">
-                                    <table id="datasiswa-table" class="table table-striped">
+                                    <table id="datasiswa-table" class="table">
                                         <thead>
                                             <tr>
                                                 <th>Tanggal</th>
@@ -123,7 +122,7 @@
                                         </thead>
                                         <tbody>
                                             <?php $id = 0;foreach ($datafilter as $data): $id++;?>
-                                            <tr>
+                                            <tr <?php $btn = $data->kredit == 0 ? 'hidden' : ''; echo $btn ?>>
                                                 <td>
                                                     <?php echo $data->waktu ?>
                                                 </td>
@@ -131,20 +130,22 @@
                                                     <?php echo $data->uraian ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $data->nominal ?>
+                                                    Rp. <?php echo $data->kredit ?>
                                                 </td>
                                             </tr>
                                             <?php endforeach;?>
                                             <tr>
                                                 <td colspan="2"> <strong> Jumlah Kredit</strong></td>
                                                 <td>
+
                                                     <strong>
-                                                    <?php  
-                                                            $totalprice = 0; 
-                                                            foreach ($datafilter as $key) { 
-                                                                $totalprice += $key->nominal; 
-                                                            } 
-                                                            echo $totalprice;?>
+                                                        Rp.
+                                                        <?php  
+                                                                    $totalprice = 0; 
+                                                                    foreach ($datafilter as $key) { 
+                                                                        $totalprice += $key->kredit; 
+                                                                    } 
+                                                                    echo $totalprice;?>
                                                     </strong>
                                                 </td>
                                             </tr>
@@ -154,16 +155,22 @@
                             </div>
                         </div>
                         <div class="card-footer text-muted">
-                            Total Debet Rp<?php  
-                                                            $totalprice = 0; 
+                            Total Debet Rp
+                            <?php  
+                                                            
+                                                            $debet= 0;
+                                                            $kredit= 0;
                                                             foreach ($datafilter as $key) { 
-                                                                $totalprice -= $key->nominal; 
+                                                                $debet += $key->debet; 
+                                                                $kredit += $key->kredit;    
+                                                                $totalprice = $debet -  $kredit ;
                                                             } 
                                                             echo $totalprice;?>
                         </div>
                     </div>
                 </div>
         </div>
+
         </section>
     </div>
     </div>

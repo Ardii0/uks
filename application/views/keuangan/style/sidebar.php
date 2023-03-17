@@ -79,12 +79,6 @@
                   <p>Laporan Buku Besar</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="<?php echo base_url('keuangan/laporan_neracalajur')?>" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Laporan Neraca Lajur</p>
-                </a>
-              </li>
             </ul>
           <li class="nav-item">
             <a href="<?php echo base_url('keuangan/pembayaran')?>" class="nav-link">

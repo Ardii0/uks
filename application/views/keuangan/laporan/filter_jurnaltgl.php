@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -89,7 +88,7 @@
                                     </thead>
                                     <tbody>
                                     <?php $id = 0; foreach($data_transaksi as $data): $id++ ?>
-                                        <tr>
+                                        <tr <?php $btn = $data->id_akun == 0 ? 'hidden' : ''; echo $btn ?>>
                                             <td rowspan="3">
                                                 <div>
                                                 <?php echo $data->waktu ?>
@@ -107,10 +106,10 @@
                                                 <?php echo tampil_nama_jenis_transaksi($data->id_anggaran) ?>
                                             </td>
                                             <td>
-                                            <?php echo tampil_debet_transaksi($data->id_anggaran) ?>
+                                            <?php echo $data->debet ?>
                                         </td>
                                         <td>
-                                            <?php echo tampil_kredit_transaksi($data->id_anggaran) ?>
+                                        <?php echo $data->kredit ?>
                                             </td>
                                         </tr>
                                         <tr>

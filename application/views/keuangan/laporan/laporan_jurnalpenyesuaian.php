@@ -77,7 +77,7 @@
 
                                     </h4>
                                 </div>
-                                <table id="data-table2" class="table table-bordered table-striped">
+                                <table id="data-table2" class="table table-bordered ">
                                     <thead>
                                         <tr>
                                             <th>Date Time</th>
@@ -89,7 +89,7 @@
                                     </thead>
                                     <tbody>
                                     <?php $id = 0; foreach($data_transaksi as $data): $id++ ?>
-                                        <tr>
+                                        <tr <?php $btn = $data->id_akun == 0 ? 'hidden' : ''; echo $btn ?>>
                                             <td rowspan="3">
                                                 <div>
                                                 <?php echo $data->waktu ?>
@@ -102,15 +102,15 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr>
+                                        <tr <?php $btn = $data->id_akun == 0 ? 'hidden' : ''; echo $btn ?>>
                                             <td>
                                                 <?php echo tampil_nama_jenis_transaksi($data->id_anggaran) ?>
                                             </td>
                                             <td>
-                                            <?php echo tampil_debet_transaksi($data->id_anggaran) ?>
+                                            <?php echo $data->debet ?>
                                         </td>
                                         <td>
-                                            <?php echo tampil_kredit_transaksi($data->id_anggaran) ?>
+                                        <?php echo $data->kredit ?>
                                             </td>
                                         </tr>
                                         <tr>
