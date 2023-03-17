@@ -10,7 +10,7 @@
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini layout-fixed">
     <div class="wrapper">
         <?php $this->load->view('keuangan/style/navbar') ?>
         <?php $this->load->view('keuangan/style/sidebar') ?>
@@ -44,10 +44,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 d-flex justify-content-end align-self-start">
-                            <a href="<?php echo base_url('Keuangan/tambah_pembayaran');?>"><button type="button" class="btn btn-success">
-                                    <i class="fa fa-plus pr-2"></i>Tambah
-                                </button>
+                        <div class="col-md-3 grid gap-2 text-right align-self-start">
+                            <a class="btn btn-primary" href="<?php echo base_url('Keuangan/tambah_pembayaran');?>">
+                                <i class="fa fa-plus pr-2"></i>Tambah
+                            </a>
+                            <a class="btn btn-success" href="<?php echo base_url('Keuangan/cari_data');?>">
+                                <i class="fa fa-search pr-2"></i>Cari
                             </a>
                         </div>
                     </div>
@@ -69,23 +71,23 @@
                                     </thead>
                                     <tbody>
                                         <?php $id=0; foreach ($pembayaran as $history): $id++?>
-                                            <tr>
-                                                <td><?php echo $id?></td>
-                                                <td><?php echo $history->date?></td>
-                                                <td><?php echo $history->id_tf?></td>
-                                                <td class="d-flex">
-                                                    <span>
-                                                        <?php echo tampil_namadaftar_ByIdSiswa($history->id_siswa)?>
-                                                    </span>/&nbsp;
-                                                    <span>
-                                                        <?php echo tampil_rombeldaftar_ByIdSiswa($history->id_siswa)?>
-                                                    </span>
-                                                </td>
-                                                <td><?php echo tampil_namajenisbayarById($history->id_jenis)?></td>
-                                                <td><?php echo $history->keterangan?></td>
-                                                <td><?php echo $history->nominal?></td>
-                                                <td><?php echo $history->akuntan?></td>
-                                            </tr>
+                                        <tr>
+                                            <td><?php echo $id?></td>
+                                            <td><?php echo $history->date?></td>
+                                            <td><?php echo $history->id_tf?></td>
+                                            <td class="d-flex">
+                                                <span>
+                                                    <?php echo tampil_namadaftar_ByIdSiswa($history->id_siswa)?>
+                                                </span>/&nbsp;
+                                                <span>
+                                                    <?php echo tampil_rombeldaftar_ByIdSiswa($history->id_siswa)?>
+                                                </span>
+                                            </td>
+                                            <td><?php echo tampil_namajenisbayarById($history->id_jenis)?></td>
+                                            <td><?php echo $history->keterangan?></td>
+                                            <td><?php echo $history->nominal?></td>
+                                            <td><?php echo $history->akuntan?></td>
+                                        </tr>
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>

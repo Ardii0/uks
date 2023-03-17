@@ -18,7 +18,12 @@ class Nilai extends CI_Controller {
     
     public function index()
     {
-        $this->load->view('nilai/dashboard');
+        $data['total_kelas'] = $this->m_akademik->total_kelas();
+        $data['total_mapel'] = $this->m_akademik->total_mapel();
+        $data['total_siswa'] = $this->m_akademik->total_siswa();
+        $data['total_guru'] = $this->m_akademik->total_guru();
+        $data['ta'] = $this->m_akademik->get_tahun_ajaran();
+        $this->load->view('nilai/dashboard', $data);
     }
     
 // Nilai

@@ -419,11 +419,35 @@ class Keuangan extends CI_Controller
    }
 
 // Pembayaran
- // Pembayaran
     public function pembayaran()
     {
         $data['pembayaran'] = $this->m_keuangan->get_pembayaran();
         $this->load->view('keuangan/pembayaran/pembayaran', $data);
+    }
+
+    public function cari_data()
+    {
+        $this->load->model('m_akademik');
+        $data['kelas'] = $this->m_akademik->get_kelas();
+        $data['rombel'] = $this->m_akademik->get_rombel();
+        $data['siswa'] = $this->m_akademik->get_siswa();
+        $this->load->view('keuangan/pembayaran/cari_data', $data);
+    }
+
+    public function hasil_cari_data($ids)
+    {
+        $this->load->model('m_akademik');
+        $data['kelas'] = $this->m_akademik->get_kelas();
+        $data['rombel'] = $this->m_akademik->get_rombel();
+        $data['siswa'] = $this->m_akademik->get_siswa();
+        $data['siswa_hasil'] = $this->m_keuangan->get_siswaById('tabel_siswa', $ids)->result();
+        $data['pembayaran'] = $this->m_keuangan->get_pembayaranByIdSiswa($ids);
+        $this->load->view('keuangan/pembayaran/hasil_cari_data', $data);
+    }
+
+    public function direct_cari(){
+        $enc = $this->input->post('id_siswa');
+        redirect('Keuangan/hasil_cari_data/'.$enc);
     }
 
     public function get_rombelByIdKelas(){
