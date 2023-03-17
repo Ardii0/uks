@@ -18,6 +18,12 @@ class Nilai extends CI_Controller {
     
     public function index()
     {
+        $data = [
+            'judul' => 'nilai',
+            'page' => 'nilai',
+            'menu' => 'nilai',
+            'submenu'=>'nilai'
+            ];
         $data['total_kelas'] = $this->m_akademik->total_kelas();
         $data['total_mapel'] = $this->m_akademik->total_mapel();
         $data['total_siswa'] = $this->m_akademik->total_siswa();
@@ -30,13 +36,19 @@ class Nilai extends CI_Controller {
  // Entry
     public function session($idm,$idr,$smt)
     {
+        $data = [
+            'judul' => 'nilai',
+            'page' => 'nilai',
+            'menu' => 'nilai',
+            'submenu'=>'entry'
+            ];
         $array = array(
             'id_mapel' => $idm,
             'id_rombel' => $idr,
             'id_semester' => $smt
         );
         $this->session->set_userdata($array);
-        redirect('nilai/entry');
+        redirect('nilai/entry', $data);
     }
     
     public function input_session($idm,$idr,$smt,$ids)
@@ -53,6 +65,12 @@ class Nilai extends CI_Controller {
 
     public function entry()
     {
+        $data = [
+            'judul' => 'nilai',
+            'page' => 'nilai',
+            'menu' => 'nilai',
+            'submenu'=>'modul'
+            ];
         if(!empty($this->session->userdata('id_mapel'))) {
            $idm = $this->session->userdata('id_mapel');
            $idr = $this->session->userdata('id_rombel');
@@ -133,6 +151,12 @@ class Nilai extends CI_Controller {
  // Modul
     public function modul_input_nilai()
     {
+        $data = [
+            'judul' => 'nilai',
+            'page' => 'nilai',
+            'menu' => 'nilai',
+            'submenu'=>'modul'
+            ];
         $data['mapel'] = $this->m_keuangan->ambil('tabel_alokasiguru',array('kode_guru'=>$this->session->userdata('kode_guru')))->result();
         $this->load->view('nilai/nilai/modul_input_nilai', $data);
     }
@@ -148,6 +172,12 @@ class Nilai extends CI_Controller {
 
     public function data_mapel()
     {
+        $data = [
+            'judul' => 'nilai',
+            'page' => 'nilai',
+            'menu' => 'nilai',
+            'submenu'=>'modul'
+            ];
         if(!empty($this->session->userdata('id_mapel'))) {
            $idm = $this->session->userdata('id_mapel');
 
@@ -164,6 +194,12 @@ class Nilai extends CI_Controller {
 // Data Nilai
 public function data_nilai_siswa($id_mapel, $id_rombel, $id_semester)
 {
+        $data = [
+            'judul' => 'nilai',
+            'page' => 'nilai',
+            'menu' => 'nilai',
+            'submenu'=>'data_mapel'
+        ];
     $data['data']=$this->m_nilai->get_data_nilai($id_mapel, $id_rombel, $id_semester)->result();
     $data['rombel']=$this->m_nilai->get_rombelByid($id_rombel)->result();
     $data['mapel']=$this->m_nilai->get_mapelByid($id_mapel)->result();
@@ -173,12 +209,24 @@ public function data_nilai_siswa($id_mapel, $id_rombel, $id_semester)
 
     public function modul_data_nilai()
     {
+        $data = [
+            'judul' => 'nilai',
+            'page' => 'nilai',
+            'menu' => 'nilai',
+            'submenu'=>'data_mapel'
+            ];
         $data['mapel'] = $this->m_keuangan->ambil('tabel_alokasiguru',array('kode_guru'=>$this->session->userdata('kode_guru')))->result();
         $this->load->view('nilai/data_nilai/modul_data_nilai_siswa', $data);
     }
 
     public function modul_data_nilai_filter($id_mapel)
     {
+        $data = [
+            'judul' => 'nilai',
+            'page' => 'nilai',
+            'menu' => 'nilai',
+            'submenu'=>'data_mapel'
+            ];
         $data['mapel'] = $this->m_keuangan->ambil('tabel_alokasiguru',array('kode_guru'=>$this->session->userdata('kode_guru')))->result();
         // $data['mapel'] = $this->m_akademik->get_mapel('tabel_mapel');
         $alokasimapel['alokasi']=$this->m_nilai->get_alokasimapelByIdMapel($id_mapel)->result();
@@ -200,6 +248,12 @@ public function data_nilai_siswa($id_mapel, $id_rombel, $id_semester)
 // Raport
     public function cetak_raport()
     {
+        $data = [
+            'judul' => 'nilai',
+            'page' => 'nilai',
+            'menu' => 'nilai',
+            'submenu'=>'rapot'
+            ];
         $this->load->model('m_keuangan');
 	    $cek = $this->m_nilai->cek_wali()->num_rows();
 	    if ($cek > 0) {
@@ -221,6 +275,12 @@ public function data_nilai_siswa($id_mapel, $id_rombel, $id_semester)
 
 	public function get_siswa($id)
 	{
+        $data = [
+            'judul' => 'nilai',
+            'page' => 'nilai',
+            'menu' => 'nilai',
+            'submenu'=>'rapot'
+            ];
 		$data = $this->m_nilai->entrynew($id)->result();
 		echo json_encode($data);
 	}

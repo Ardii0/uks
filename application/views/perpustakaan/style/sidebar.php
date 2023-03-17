@@ -23,7 +23,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="<?php echo base_url('Perpustakaan/')?>" class="nav-link">
+            <a href="<?php echo base_url('Perpustakaan/')?>" class="nav-link <?=$menu == 'dashboard' ? 'active' :'' ?>">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -31,31 +31,46 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?php echo base_url('Perpustakaan/rak_buku')?>" class="nav-link">
+            <a href="<?php echo base_url('Perpustakaan/rak_buku')?>" class="nav-link <?=$menu == 'rak' ? 'active' :'' ?>">
               <i class="nav-icon fas fa-th"></i>
                 <p>
                 Data Rak Buku
                 </p> 
             </a>
           </li>
-          <li class="nav-item">
-            <a href="<?php echo base_url('Perpustakaan/data_buku')?>" class="nav-link">
+          <li class="nav-item <?=$menu == 'buku' ? 'menu-open' :'' ?>">
+            <a class="nav-link <?=$menu == 'buku' ? 'active' :'' ?>">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Data Buku
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url('Perpustakaan/data_buku')?>" class="nav-link <?=$submenu == 'buku' ? 'active' :'' ?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Daftar Buku</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url('Perpustakaan/tambah_buku');?>" class="nav-link <?=$submenu == 'form_buku' ? 'active' :'' ?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Form Input Buku</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item">
-            <a href="<?php echo base_url('Perpustakaan/kategori_buku')?>" class="nav-link">
+            <a href="<?php echo base_url('Perpustakaan/kategori_buku')?>" class="nav-link <?=$menu == 'kategori' ? 'active' :'' ?>">
               <i class="nav-icon fas fa-list"></i>
               <p>
                 Kategori Buku
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a  class="nav-link">
+          <li class="nav-item <?=$menu == 'anggota' ? 'menu-open' :'' ?>">
+            <a  class="nav-link <?=$menu == 'anggota' ? 'active' :'' ?>">
               <i class="nav-icon fas fa-user"></i>
               <p>
                Data Anggota
@@ -64,13 +79,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo base_url('Perpustakaan/data_anggota')?>" class="nav-link">
+                <a href="<?php echo base_url('Perpustakaan/data_anggota')?>" class="nav-link <?=$submenu == 'anggota' ? 'active' :'' ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Daftar Anggota</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo base_url('Perpustakaan/form_anggota')?>" class="nav-link">
+                <a href="<?php echo base_url('Perpustakaan/form_anggota')?>" class="nav-link <?=$submenu == 'form_anggota' ? 'active' :'' ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Form Input Anggota</p>
                 </a>
@@ -78,7 +93,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="<?php echo base_url('Perpustakaan/peminjaman')?>" class="nav-link">
+            <a href="<?php echo base_url('Perpustakaan/peminjaman')?>" class="nav-link <?=$menu == 'peminjaman' ? 'active' :'' ?>">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Peminjaman
@@ -86,15 +101,15 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?php echo base_url('Perpustakaan/pengembalian')?>" class="nav-link">
+            <a href="<?php echo base_url('Perpustakaan/pengembalian')?>" class="nav-link  <?=$menu == 'pengembalian' ? 'active' :'' ?>">
               <i class="nav-icon fas fa-inbox"></i>
               <p>
                 Pengembalian
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a  class="nav-link">
+          <li class="nav-item  <?=$menu == 'laporan' ? 'menu-open' :'' ?>">
+            <a  class="nav-link  <?=$menu == 'laporan' ? 'active' :'' ?>">
               <i class="nav-icon fas fa-user"></i>
               <p>
                Laporan 
@@ -103,13 +118,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo base_url('Perpustakaan/laporan_peminjaman')?>" class="nav-link">
+                <a href="<?php echo base_url('Perpustakaan/laporan_peminjaman')?>" class="nav-link  <?=$submenu == 'peminjaman' ? 'active' :'' ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Laporan Peminjaman </p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo base_url('Perpustakaan/laporan_pengembalian')?>" class="nav-link">
+                <a href="<?php echo base_url('Perpustakaan/laporan_pengembalian')?>" class="nav-link <?=$submenu == 'pengembalian' ? 'active' :'' ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Laporan Pengembalian</p>
                 </a>

@@ -251,11 +251,11 @@ class M_keuangan extends CI_Model{
 	return $query->result();
     }
     public function filter_namakun($nama_akun){
-    if ($nama_akun != null) {
-        $query = $this->db->where('id_akun', $nama_akun)->get('tabel_jurnal');
-      } else {
-        $query = $this->db->query("SELECT * from tabel_jurnal");
-      }
+        if ($nama_akun != null) {
+            $query = $this->db->where('id_akun', $nama_akun)->get('tabel_transaksi');
+          } else {
+            $query = $this->db->query("SELECT * from tabel_transaksi");
+          }
 
     return $query->result();
     }

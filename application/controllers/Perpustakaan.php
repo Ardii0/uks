@@ -17,6 +17,12 @@ class Perpustakaan extends CI_Controller {
     
     public function index()
     {
+        $data = [
+            'judul' => 'perpus',
+            'page' => 'perpus',
+            'menu' => 'dashboard',
+            'submenu'=>''
+        ];
         $data['total_buku'] = $this->m_perpustakaan->total_buku();
         $data['total_rak_buku'] = $this->m_perpustakaan->total_rak_buku();
         $data['total_kategori_buku'] = $this->m_perpustakaan->total_kategori_buku();
@@ -29,6 +35,12 @@ class Perpustakaan extends CI_Controller {
 // Rak Buku
     public function rak_buku()
     {
+        $data = [
+            'judul' => 'perpus',
+            'page' => 'perpus',
+            'menu' => 'rak',
+            'submenu'=>''
+        ];
         $this->load->model('M_perpustakaan');
         $data['data_rak_buku'] = $this->m_perpustakaan->get_all_data_rak_buku('data_rak_buku');
         $this->load->view('perpustakaan/rak_buku/rak_buku', $data);
@@ -36,6 +48,12 @@ class Perpustakaan extends CI_Controller {
 
     public function tambah_rak_buku()
     {
+        $data = [
+            'judul' => 'perpus',
+            'page' => 'perpus',
+            'menu' => 'rak',
+            'submenu'=>''
+        ];
         $data['data_rak_buku'] = $this->m_perpustakaan->get_all_data_rak_buku('data_rak_buku');
         $this->load->view('perpustakaan/rak_buku/tambah_rak_buku', $data);
     }
@@ -63,6 +81,12 @@ class Perpustakaan extends CI_Controller {
 
     public function edit_rak_buku($id_rak_buku)
     {
+        $data = [
+            'judul' => 'perpus',
+            'page' => 'perpus',
+            'menu' => 'rak',
+            'submenu'=>''
+        ];
         $data['data_rak_buku']=$this->m_perpustakaan->edit_rak('table_rak_buku', $id_rak_buku)->result();
         $this->load->view('perpustakaan/rak_buku/edit_rak_buku', $data);
     }
@@ -105,11 +129,23 @@ class Perpustakaan extends CI_Controller {
 // Anggota
     public function tambah_anggota()
     {
+        $data = [
+            'judul' => 'perpus',
+            'page' => 'perpus',
+            'menu' => 'anggota',
+            'submenu'=>''
+        ];
         $this->load->view('perpustakaan/anggota/tambah_anggota');
     }
 
     public function kartu_anggota($id_anggota)
     {
+        $data = [
+            'judul' => 'perpus',
+            'page' => 'perpus',
+            'menu' => 'anggota',
+            'submenu'=>'anggota'
+        ];
         require 'vendor/autoload.php';
         $data['anggota']=$this->m_perpustakaan->get_anggotaById('tabel_anggota', $id_anggota)->result();
         $this->load->view('perpustakaan/anggota/kartu_anggota', $data);
@@ -117,12 +153,24 @@ class Perpustakaan extends CI_Controller {
 
     public function data_anggota()
     {
+        $data = [
+            'judul' => 'perpus',
+            'page' => 'perpus',
+            'menu' => 'anggota',
+            'submenu'=>'anggota'
+        ];
         $data['data_anggota'] = $this->m_perpustakaan->get_anggota('data_anggota');
         $this->load->view('perpustakaan/anggota/data_anggota', $data);
     }
 
     public function form_anggota()
     {
+        $data = [
+            'judul' => 'perpus',
+            'page' => 'perpus',
+            'menu' => 'anggota',
+            'submenu'=>'form_anggota'
+        ];
         $this->load->model('m_akademik');
         $data['siswa'] = $this->m_akademik->get_siswa('siswa');
         $this->load->view('perpustakaan/anggota/form_anggota', $data);
@@ -151,6 +199,12 @@ class Perpustakaan extends CI_Controller {
 
     public function edit_anggota($id_anggota)
     {
+        $data = [
+            'judul' => 'perpus',
+            'page' => 'perpus',
+            'menu' => 'anggota',
+            'submenu'=>'anggota'
+        ];
         $data['data_anggota']=$this->m_perpustakaan->edit_anggota('tabel_anggota', $id_anggota)->result();
         $this->load->view('perpustakaan/data_anggota/edit_anggota', $data);
     }
@@ -196,6 +250,12 @@ class Perpustakaan extends CI_Controller {
 // Kategori
     public function kategori_buku()
     {
+        $data = [
+            'judul' => 'perpus',
+            'page' => 'perpus',
+            'menu' => 'kategori',
+            'submenu'=>''
+        ];
         $this->load->model('M_perpustakaan');
         $data['data_kategori_buku'] = $this->m_perpustakaan->get_all_data_kategori_buku('data_kategori_buku');
         $this->load->view('perpustakaan/kategori_buku/kategori_buku', $data);
@@ -230,6 +290,12 @@ class Perpustakaan extends CI_Controller {
 
     public function edit_kategori_buku($id_kategori_buku)
     {
+        $data = [
+            'judul' => 'perpus',
+            'page' => 'perpus',
+            'menu' => 'kategori',
+            'submenu'=>''
+        ];
         $data['data_kategori_buku']=$this->m_perpustakaan->edit_kategori('table_kategori_buku', $id_kategori_buku)->result();
         $this->load->view('perpustakaan/kategori_buku/edit_kategori_buku', $data);
     }
@@ -274,6 +340,12 @@ class Perpustakaan extends CI_Controller {
 // Buku
     public function data_buku()
     {
+        $data = [
+            'judul' => 'perpus',
+            'page' => 'perpus',
+            'menu' => 'buku',
+            'submenu'=>'buku'
+        ];
         $this->load->model('M_perpustakaan');
         $data['data_buku'] = $this->m_perpustakaan->get_all_data_buku('data_buku');
         $this->load->view('perpustakaan/data_buku/data_buku', $data);
@@ -281,6 +353,12 @@ class Perpustakaan extends CI_Controller {
 
     public function tambah_buku()
     {
+        $data = [
+            'judul' => 'perpus',
+            'page' => 'perpus',
+            'menu' => 'buku',
+            'submenu'=>'form_buku'
+        ];
         $kategori['data_kategori_buku'] = $this->m_perpustakaan->get_all_data_kategori_buku('data_kategori_buku');
         $rak_buku['data_rak_buku'] = $this->m_perpustakaan->get_all_data_rak_buku('data_rak_buku');
         $data['data_buku'] = $this->m_perpustakaan->get_all_data_buku('data_buku');
@@ -289,6 +367,12 @@ class Perpustakaan extends CI_Controller {
 
     public function detail_index_buku($id_buku)
     {
+        $data = [
+            'judul' => 'perpus',
+            'page' => 'perpus',
+            'menu' => 'buku',
+            'submenu'=>'buku'
+        ];
         require 'vendor/autoload.php';
         $data['buku']=$this->m_perpustakaan->get_bukuById('table_buku', $id_buku)->result();
         $detail_index_buku['stok']=$this->m_perpustakaan->get_all_detail_index_buku('table_detail_index_buku', $id_buku)->result();
@@ -364,6 +448,7 @@ class Perpustakaan extends CI_Controller {
                 'sumber' => $this->input->post('sumber'),
                 'kategori_id' => $this->input->post('kategori_id'),
                 'rak_buku_id' => $this->input->post('rak_buku_id'),
+                'stok' => $this->input->post('stok'),
                 'del_flag' => '1',
             );
 
@@ -383,6 +468,12 @@ class Perpustakaan extends CI_Controller {
     }
     public function edit_buku($id_buku)
     {
+        $data = [
+            'judul' => 'perpus',
+            'page' => 'perpus',
+            'menu' => 'buku',
+            'submenu'=>'buku'
+        ];
         $data['data_buku']=$this->m_perpustakaan->edit_buku('table_buku', $id_buku)->result();
         $this->load->view('perpustakaan/data_buku/edit_buku', $data);
     }
@@ -430,8 +521,14 @@ class Perpustakaan extends CI_Controller {
 // Peminjaman Buku
     public function peminjaman()
     {
+        $data = [
+            'judul' => 'perpus',
+            'page' => 'perpus',
+            'menu' => 'peminjaman',
+            'submenu'=>'pinjam'
+        ];
         $peminjam['data_peminjam'] = $this->m_perpustakaan->get_peminjaman('data_peminjam');
-        $this->load->view('perpustakaan/peminjaman/peminjaman', $peminjam);
+        $this->load->view('perpustakaan/peminjaman/peminjaman', $peminjam + $data);
     }
 
     public function get_index_buku_by_id_buku()
@@ -443,10 +540,16 @@ class Perpustakaan extends CI_Controller {
     
     public function input_peminjaman()
     {
+        $data = [
+            'judul' => 'perpus',
+            'page' => 'perpus',
+            'menu' => 'peminjaman',
+            'submenu'=>'pinjam'
+        ];
         $buku['data_buku'] = $this->m_perpustakaan->get_all_data_buku('data_buku');
         $buku['index_buku'] = $this->m_perpustakaan->get_index_buku('index_buku');
         $anggota['data_anggota'] = $this->m_perpustakaan->get_anggota('data_anggota');
-        $this->load->view('perpustakaan/peminjaman/input_peminjaman', $buku + $anggota);
+        $this->load->view('perpustakaan/peminjaman/input_peminjaman', $buku + $anggota + $data);
     }
 
     public function acak($long)
@@ -499,8 +602,14 @@ class Perpustakaan extends CI_Controller {
 
     public function peminjam_id($id_pinjaman)
     {
+        $data = [
+            'judul' => 'perpus',
+            'page' => 'perpus',
+            'menu' => 'peminjaman',
+            'submenu'=>'pinjam'
+        ];
         $peminjam['data_peminjam']=$this->m_perpustakaan->edit_pinjaman('tabel_pinjaman', $id_pinjaman)->result();
-        $this->load->view('perpustakaan/peminjaman/detail_peminjaman', $peminjam);
+        $this->load->view('perpustakaan/peminjaman/detail_peminjaman', $peminjam + $data);
     }
 
     public function hapus_peminjaman_id($id_pinjaman)
@@ -522,14 +631,26 @@ class Perpustakaan extends CI_Controller {
 // Pengembalian Buku
     public function pengembalian()
     {
+        $data = [
+            'judul' => 'perpus',
+            'page' => 'perpus',
+            'menu' => 'pengembalian',
+            'submenu'=>''
+        ];
         $peminjam['data_peminjam'] = $this->m_perpustakaan->get_peminjaman('data_peminjam');
-        $this->load->view('perpustakaan/pengembalian/pengembalian', $peminjam);
+        $this->load->view('perpustakaan/pengembalian/pengembalian', $peminjam + $data);
     }
 
     public function proses_peminjam_id($id_pinjaman)
     {
+        $data = [
+            'judul' => 'perpus',
+            'page' => 'perpus',
+            'menu' => 'pengembalian',
+            'submenu'=>''
+        ];
         $peminjam['data_pinjaman']=$this->m_perpustakaan->edit_pinjaman('tabel_pinjaman', $id_pinjaman)->result();
-        $this->load->view('perpustakaan/pengembalian/proses_pengembalian', $peminjam);
+        $this->load->view('perpustakaan/pengembalian/proses_pengembalian', $peminjam + $data);
     }
 
     public function proses_pengembalian_pinjaman()
@@ -565,12 +686,25 @@ class Perpustakaan extends CI_Controller {
     }
 
  // Laporan
- public function laporan_peminjaman() {
+ public function laporan_peminjaman() 
+ { 
+    $data = [
+    'judul' => 'perpus',
+    'page' => 'perpus',
+    'menu' => 'laporan',
+    'submenu'=>'peminjaman'
+    ];
     $peminjam['peminjam'] = $this->m_perpustakaan->get_laporan_pinjam('data_peminjam');
-    $this->load->view('perpustakaan/laporan/laporan_peminjaman', $peminjam);
+    $this->load->view('perpustakaan/laporan/laporan_peminjaman', $peminjam + $data);
   }
   public function filter_tanggalpinjam()
      {
+        $data = [
+            'judul' => 'perpus',
+            'page' => 'perpus',
+            'menu' => 'laporan',
+            'submenu'=>'peminjaman'
+            ];
         $tanggalawal = $this->input->post('tanggalawal');
         $tanggalakhir = $this->input->post('tanggalakhir');
         $peminjam = $this->input->post('peminjam');
@@ -581,12 +715,25 @@ class Perpustakaan extends CI_Controller {
         }
      }
 
-  public function laporan_pengembalian() {
+  public function laporan_pengembalian() 
+  {
+    $data = [
+        'judul' => 'perpus',
+        'page' => 'perpus',
+        'menu' => 'laporan',
+        'submenu'=>'pengembalian'
+        ];
     $peminjam['peminjam'] = $this->m_perpustakaan->get_laporan_kembali('data_peminjam');
-    $this->load->view('perpustakaan/laporan/laporan_pengembalian', $peminjam);
+    $this->load->view('perpustakaan/laporan/laporan_pengembalian', $peminjam + $data);
   }
   public function filter_tanggalkembali()
      {
+        $data = [
+            'judul' => 'perpus',
+            'page' => 'perpus',
+            'menu' => 'laporan',
+            'submenu'=>'pengembalian'
+            ];
         $tanggalawal = $this->input->post('tanggalawal');
         $tanggalakhir = $this->input->post('tanggalakhir');
         $peminjam = $this->input->post('peminjam');
