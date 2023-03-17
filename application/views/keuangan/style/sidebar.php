@@ -50,7 +50,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item hidden" hidden>
             <a href="<?php echo base_url('keuangan/jurnal')?>" class="nav-link <?=$menu == 'jurnal' ? 'active' :'' ?>">
               <i class="nav-icon fas fa-newspaper"></i>
               <p>

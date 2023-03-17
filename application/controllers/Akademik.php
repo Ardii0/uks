@@ -658,6 +658,12 @@ class Akademik extends CI_Controller {
 
     public function finter_by_jenjang()
     {
+        $data = [
+            'judul' => 'akademik',
+            'page' => 'akademik',
+            'menu' => 'siswa',
+            'submenu'=>'pembagian_kelas'
+        ];
         $nama_jenjang = $this->input->post('nama_jenjang');
         $nilaifilter = $this->input->post('nilaifilter');
         

@@ -53,7 +53,12 @@
                                 <div class="row mt-3">
                                     <div class="col-4 text-right font-weight-bold mt-1">Uraian</div>
                                     <div class="col-5">
-                                        <input type="text" name="uraian" class="form-control" placeholder="Uraian">
+                                    <select name="uraian" class="custom-select custom-select-md">
+                                                        <option selected>-- Pilih Uraian --</option>
+                                                        <?php foreach ($data_uraian as $data): ?>
+                                                            <option value="<?php echo $data->nama_jenis_transaksi ?>"><?php echo $data->nama_jenis_transaksi ?></option>
+                                                        <?php endforeach ?>
+                                                    </select>
                                     </div>
                                 </div>
                                 <div class="row mt-3">
