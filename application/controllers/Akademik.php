@@ -420,6 +420,7 @@ class Akademik extends CI_Controller {
             'password' => md5($this->input->post('nip')),
             'level' => 'Guru',
             'kode_guru' => $this->input->post('kode_guru'),
+            'id_hak_akses' => '5',
         ];
         $this->m_akademik->tambah_guru('tabel_level', $nilaiAccess);
 

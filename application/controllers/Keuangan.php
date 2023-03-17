@@ -665,10 +665,19 @@ class Keuangan extends CI_Controller
 		// }
 	}
     
- // Cetak Invoice
-    public function cetak_invoice()
+    public function hapus_pembayaran($id)
     {
-        $this->load->view('keuangan/pembayaran/cetak_invoice');
+        $this->m_keuangan->hapus_rn('tabel_pembayaran', 'id_pembayaran', $id);
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+    
+ // Cetak Invoice
+    public function cetak_invoice($ids)
+    {
+        $data['dt'] = $this->m_keuangan->ambil('tabel_level',array('id_level'=>$this->session->userdata('id_level')))->row();
+        $data['siswa'] = $this->m_keuangan->get_siswaById('tabel_siswa', $ids)->result();
+        $data['pembayaran'] = $this->m_keuangan->get_pembayaranByIdSiswa($ids);
+        $this->load->view('keuangan/pembayaran/cetak_invoice/cetak_invoice', $data);
     }
 
 }

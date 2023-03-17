@@ -39,6 +39,42 @@ $result = $ci->db->select('*')
   return $namadaftar;
 }
 
+function tampil_namajenjang_ByIdSiswa($id)
+{
+$ci =& get_instance();
+$ci->load->database();
+$namajenjang = '';
+$result = $ci->db->select('*')
+                  ->from('tabel_siswa')
+                  ->join('tabel_daftar','tabel_siswa.id_daftar = tabel_daftar.id_daftar')
+                  ->join('tabel_jenjang','tabel_daftar.id_jenjang = tabel_jenjang.id_jenjang')
+                  ->where('tabel_siswa.id_siswa',$id)
+                  ->get();
+  foreach ($result->result() as $c) {
+  $stmt= $c->nama_jenjang;
+  $namajenjang= $namajenjang.$stmt.'<br>';
+  }
+  return $namajenjang;
+}
+
+function tampil_almtjenjang_ByIdSiswa($id)
+{
+$ci =& get_instance();
+$ci->load->database();
+$addrs = '';
+$result = $ci->db->select('*')
+                  ->from('tabel_siswa')
+                  ->join('tabel_daftar','tabel_siswa.id_daftar = tabel_daftar.id_daftar')
+                  ->join('tabel_jenjang','tabel_daftar.id_jenjang = tabel_jenjang.id_jenjang')
+                  ->where('tabel_siswa.id_siswa',$id)
+                  ->get();
+  foreach ($result->result() as $c) {
+  $stmt= $c->keterangan;
+  $addrs= $addrs.$stmt.'<br>';
+  }
+  return $addrs;
+}
+
 function tampil_idta_ByIdDaftar($id)
 {
 $ci =& get_instance();
@@ -811,7 +847,7 @@ function format_indo($date){
     }
   }
 
-  // Hak Akses
+// Hak Akses
   function tampil_hak_akses($id)
   {
   $ci =& get_instance();
