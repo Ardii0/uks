@@ -176,10 +176,22 @@ class Perpustakaan extends CI_Controller {
         $this->load->view('perpustakaan/anggota/form_anggota', $data);
     }
 
+    public function acak_anggota($long)
+	{
+		$char = '1234567890';
+		$string = '';
+		for ($i=0; $i < $long; $i++) { 			
+			$pos = rand(0, strlen($char)-1);
+			$string .= $char[$pos];
+		}
+		return $string;
+	}
+
     public function aksi_tambah_anggota()
     {
         $data = array
         (
+            'id_anggota' => $this->acak_anggota(4),
             'id_siswa' => $this->input->post('id_siswa'),
             'tgl_daftar' => $this->input->post('tgl_daftar'),
             'status' => '1',
@@ -193,7 +205,7 @@ class Perpustakaan extends CI_Controller {
         else
         {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Perpustakaan/form_anggota'));
+            redirect(base_url('Perpustakaan/data_anggota'));
         }
     }
 

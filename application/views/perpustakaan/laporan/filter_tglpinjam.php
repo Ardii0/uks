@@ -45,8 +45,8 @@
                                 <input type="date" id="tanggalawal" class="validate form-control" name="tanggalawal">
                             </div>
                             <div class="form-group col-3">
-                            <label for="">Tanggal Akhir</label>
-                            <input type="date" id="tanggalakhir" class="validate form-control" name="tanggalakhir">
+                                <label for="">Tanggal Akhir</label>
+                                <input type="date" id="tanggalakhir" class="validate form-control" name="tanggalakhir">
                             </div>
                             <div class="form-group col-3 d-flex align-items-end">
                                 <div class="">
@@ -67,8 +67,8 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card-body">
-                                <table id="laporan" class="table table-bordered table-striped">
-                                    <thead class="bg-info">
+                                <table id="datasiswa-table" class="table table-bordered table-striped">
+                                    <thead>
                                         <tr>
                                             <th class="" style="width: 20px">No</th>
                                             <th class="w-25">No Pinjaman</th>

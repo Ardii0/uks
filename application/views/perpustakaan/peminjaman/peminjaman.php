@@ -46,9 +46,9 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card-body">
-                                <table id="perpustakaan-table" class="table table-bordered table-striped">
+                            <table id="datasiswa-table" class="table table-bordered table-striped">
                                     <thead>
-                                        <tr class="bg-secondary">
+                                        <tr>
                                             <th>No</th>
                                             <th>No-Peminjaman</th>
                                             <th>Nama Siswa</th>

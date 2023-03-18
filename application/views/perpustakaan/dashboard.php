@@ -30,18 +30,13 @@
                         <div>
                             <p style="font-size: 2rem">Dashboard Perpustakaan</p>
                         </div>
-                        <div class="w-25">
-                            <div class="input-group rounded-4">
-                                <input type="text" class="form-control " placeholder="cari">
-                            </div>
-                        </div>
                     </div>
                     <div class="row ">
                         <div class="col-md-8">
                             <div class="row">
                                 <div class="col-6 col-md-4 col-sm-8">
                                     <div>
-                                        <div class="small-box bg-warning">
+                                        <div class="small-box bg-info">
                                             <div class="inner">
                                                 <p>Jumlah Buku</p>
                                                 <h3><?php echo $total_buku; ?></h3>
@@ -57,7 +52,7 @@
                                 </div>
                                 <div class="col-6 col-md-4 col-sm-8">
                                     <div>
-                                        <div class="small-box bg-warning">
+                                        <div class="small-box bg-info">
                                             <div class="inner">
                                                 <p>Jumlah Rak</p>
                                                 <h3><?php echo $total_rak_buku; ?></h3>
@@ -74,7 +69,7 @@
                                 </div>
                                 <div class="col-6 col-md-4 col-sm-8">
                                     <div>
-                                        <div class="small-box bg-warning">
+                                        <div class="small-box bg-info">
                                             <div class="inner">
                                                 <p>Jumlah Kategori</p>
                                                 <h3><?php echo $total_kategori_buku; ?></h3>
@@ -85,23 +80,17 @@
                                             <a href="<?php echo base_url('Perpustakaan/kategori_buku') ?>"
                                                 class="small-box-footer">More
                                                 info
-                                                <i class="fa fa-arrow-circle-right"></i></a>
+                                                <i class="fa fa-arrow-circle-right"></i>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <div class="small-box  bg-gradient-warning mb-3" style="max-width: 100%;">
+                                    <div class="small-box  bg-gradient-info mb-3" style="max-width: 100%;">
                                         <div class="card-header bg-transparent text-center fw-bold h3 border-white">
                                             Peminjaman Buku</div>
-                                        <!-- <div class="card-body">
-                                            <h5 class="card-title">Success card title</h5>
-                                            <p class="card-text">Some quick example text to build on the card title and
-                                                make
-                                                up
-                                                the bulk of the card's content.</p>
-                                        </div> -->
                                         <a href="<?php echo base_url('Perpustakaan/peminjaman') ?>"
                                             class="small-box-footer">More
                                             info
@@ -110,16 +99,9 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="small-box  bg-gradient-warning mb-3" style="max-width: 100%;">
+                                    <div class="small-box  bg-gradient-info mb-3" style="max-width: 100%;">
                                         <div class="card-header bg-transparent text-center fw-bold h3 border-white">
                                             Pengembalian Buku</div>
-                                        <!-- <div class="card-body">
-                                            <h5 class="card-title">Success card title</h5>
-                                            <p class="card-text">Some quick example text to build on the card title and
-                                                make
-                                                up
-                                                the bulk of the card's content.</p>
-                                        </div> -->
                                         <a href="<?php echo base_url('Perpustakaan/pengembalian') ?>"
                                             class="small-box-footer">More
                                             info
@@ -130,21 +112,28 @@
                             </div>
                         </div>
                         <div class="col-6 col-md-4">
-                            <div class="bg-warning">
+                            <div class="">
                                 <div class="" style="width: 100%; ">
                                     <div class="">
-                                        <div class="small-box bg-warning" style="height:75vh">
-                                            <div class="inner">
-                                                <p>Jumlah Anggota</p>
-                                                <h3><?php echo $total_anggota; ?></h3>
-                                            </div>
-                                            <div class="icon">
-                                                <i class="far fa-user"></i>
+                                        <div class="" style="height:75vh">
+                                            <div class="small-box bg-info">
+                                                <div class="inner">
+                                                    <p>Jumlah Anggota</p>
+                                                    <h3><?php echo $total_anggota; ?></h3>
+                                                </div>
+                                                <div class="icon">
+                                                    <i class="far fa-user"></i>
+                                                </div>
+                                                <a href="<?php echo base_url('Perpustakaan/data_anggota') ?>"
+                                                    class="small-box-footer">More
+                                                    info
+                                                    <i class="fa fa-arrow-circle-right"></i>
+                                                </a>
                                             </div>
                                             <div class="m-2 anyClass">
                                                 <table class="table table-bordered">
                                                     <thead>
-                                                        <tr class="text-center bg-success">
+                                                        <tr class="text-center bg-info">
                                                             <th>No</th>
                                                             <th>Nama</th>
                                                             <th>Kelas</th>

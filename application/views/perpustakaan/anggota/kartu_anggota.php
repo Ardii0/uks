@@ -41,12 +41,10 @@
                                 <tbody class="">
                                     <td class="p-1"
                                         style="border-left: 1px solid; border-bottom: 1px solid; border-top: 1px solid;">
-                                        <div class="border justify-content-center d-flex align-items-center"
-                                            style="height: 140px">
-                                            <div class="">
-                                                2x3
-                                            </div>
-                                        </div>
+                                        <?php foreach ($anggota as $data): ?>
+                                        <img style="width: 115px; height:145px; "
+                                            src="<?php $img = $data->id_daftar == null ? base_url('uploads/akademik/default_profile/User.png') : base_url('uploads/akademik/pendaftaran_siswa')."/".tampil_foto_ByIdSiswa($data->id_siswa); echo $img?>">
+                                        <?php endforeach;?>
                                     </td>
                                     <?php foreach ($anggota as $data): ?>
                                     <td style="border: 1px solid">

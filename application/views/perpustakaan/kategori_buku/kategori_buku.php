@@ -40,10 +40,10 @@
                                     </div>
                                 </div>
                                 <!-- /.box-header -->
-                                <div class="box-body">
-                                    <table id="table_1" class="table table-bordered table-striped">
+                                <div class="container-fluid bg-white shadow p-4">
+                                    <table id="datasiswa-table" class="table table-bordered table-striped">
                                         <thead>
-                                            <tr class="bg-secondary">
+                                            <tr>
                                                 <th class="text-center" style="width: 25px">No</th>
                                                 <th class="w-25">Nama Kategori</th>
                                                 <th class="w-50">Keterangan Kategori</th>
@@ -80,7 +80,8 @@
             <div class="modal fade" id="modal_tambah_kategori" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <form action="<?php echo base_url('Perpustakaan/aksi_tambah_kategori_buku') ?>" enctype="multipart/form-data" method="post">
+                    <form action="<?php echo base_url('Perpustakaan/aksi_tambah_kategori_buku') ?>"
+                        enctype="multipart/form-data" method="post">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">Tambah Kategori Buku</h5>
@@ -107,7 +108,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer d-flex justify-content-between">
-                                <button type="button" class="btn btn-secondary" onclick="kembali()" data-dismiss="modal">Kembali</button>
+                                <button type="button" class="btn btn-secondary" onclick="kembali()"
+                                    data-dismiss="modal">Kembali</button>
                                 <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
                         </div>

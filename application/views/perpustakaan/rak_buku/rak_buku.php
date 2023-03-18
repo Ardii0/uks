@@ -33,17 +33,17 @@
                                                 data-target="#modal_tambah_rak">
                                                 Tambah rak Buku
                                             </button>
-                                            
+
                                             <a href="<?php echo base_url('Perpustakaan/tambah_rak_buku'); ?>"
                                                 class="btn btn-success">Tambah Rak Buku</a>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- /.box-header -->
-                                <div class="">
-                                    <table id="table_1" class="table table-bordered table-striped">
+                                <div class="container-fluid bg-white shadow p-4">
+                                    <table id="datasiswa-table" class="table table-bordered table-striped">
                                         <thead>
-                                            <tr class="bg-secondary">
+                                            <tr>
                                                 <th class="" style="width: 25px; text-align:center">No</th>
                                                 <th class="w-25">ID Rak Buku</th>
                                                 <th class="w-50">Keterangan</th>
@@ -130,4 +130,5 @@
         }
         </script>
 </body>
+
 </html>
