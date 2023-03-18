@@ -90,9 +90,9 @@
                                         Stok</a>
                                 </div>
                             </div>
-                            <table id="perpustakaan-table" class="table table-bordered">
+                            <table id="datasiswa-table" class="table table-bordered table-striped">
                                 <thead>
-                                    <tr class="text-center bg-secondary">
+                                    <tr class="text-center">
                                         <th>No</th>
                                         <th>Id Detail Buku</th>
                                         <th>Barcode</th>

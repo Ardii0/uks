@@ -19,7 +19,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-            <a href="<?php echo base_url('keuangan/')?>" class="nav-link">
+            <a href="<?php echo base_url('keuangan/')?>" class="nav-link <?=$menu == 'dashboard' ? 'active' :'' ?>">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -27,7 +27,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?php echo base_url('keuangan/anggaran')?>" class="nav-link">
+            <a href="<?php echo base_url('keuangan/anggaran')?>" class="nav-link <?=$menu == 'anggaran' ? 'active' :'' ?>">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Rencana Anggaran
@@ -35,7 +35,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?php echo base_url('keuangan/akun')?>" class="nav-link">
+            <a href="<?php echo base_url('keuangan/akun')?>" class="nav-link <?=$menu == 'akun' ? 'active' :'' ?>">
               <i class="nav-icon fas fa-user"></i>
               <p>
                Akun
@@ -43,23 +43,23 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?php echo base_url('keuangan/dana')?>" class="nav-link">
+            <a href="<?php echo base_url('keuangan/dana')?>" class="nav-link <?=$menu == 'dana' ? 'active' :'' ?>">
               <i class="nav-icon fas fa-share"></i>
               <p>
               Dana Masuk & Keluar
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="<?php echo base_url('keuangan/jurnal')?>" class="nav-link">
+          <li class="nav-item hidden" hidden>
+            <a href="<?php echo base_url('keuangan/jurnal')?>" class="nav-link <?=$menu == 'jurnal' ? 'active' :'' ?>">
               <i class="nav-icon fas fa-newspaper"></i>
               <p>
               Jurnal Penyesuaian
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a  class="nav-link">
+          <li class="nav-item <?=$menu == 'laporan' ? 'menu-open' :'' ?>">
+            <a  class="nav-link <?=$menu == 'laporan' ? 'active' :'' ?>">
               <i class="nav-icon fas fa-comments-dollar"></i>
               <p>
                Laporan Keuangan
@@ -68,20 +68,20 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo base_url('keuangan/laporan_jurnalpenyesuaian')?>" class="nav-link">
+                <a href="<?php echo base_url('keuangan/laporan_jurnalpenyesuaian')?>" class="nav-link <?=$submenu == 'penyesuaian' ? 'active' :'' ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Laporan Penyesuaian </p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo base_url('keuangan/laporan_bukubesar')?>" class="nav-link">
+                <a href="<?php echo base_url('keuangan/laporan_bukubesar')?>" class="nav-link <?=$submenu == 'bukubesar' ? 'active' :'' ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Laporan Buku Besar</p>
                 </a>
               </li>
             </ul>
           <li class="nav-item">
-            <a href="<?php echo base_url('keuangan/pembayaran')?>" class="nav-link">
+            <a href="<?php echo base_url('keuangan/pembayaran')?>" class="nav-link <?=$menu == 'pembayaran' ? 'active' :'' ?>">
               <i class="nav-icon fas fa-money-bill"></i>
               <p>
                 Pembayaran

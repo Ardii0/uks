@@ -29,7 +29,7 @@ class M_akademik extends CI_Model{
 
     public function get_tahun_ajaran_aktif()
 	{
-		return $this->db->where('aktif','1')->get('tabel_tahunajaran')->result();
+		return $this->db->where('status','AKTIF')->get('tabel_tahunajaran')->result();
 	}
 
     public function get_taById($tabel, $id_angkatan)
@@ -236,6 +236,16 @@ class M_akademik extends CI_Model{
     public function get_siswa_pendaftaran()
 	{
 		return $this->db->where('diterima','P')->get('tabel_daftar')->result();
+	}
+    public function insert($data){
+		$insert = $this->db->insert_batch('tabel_daftar', $data);
+		if($insert){
+			return true;
+		}
+	}
+	public function getData(){
+		$this->db->select('*');
+		return $this->db->get('tabel_daftar')->result_array();
 	}
     public function tambah_pendaftaran($tabel, $data)
 	{

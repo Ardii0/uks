@@ -67,8 +67,8 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card-body">
-                                <table id="laporan" class="table table-bordered table-striped">
-                                    <thead class="bg-info">
+                            <table id="datasiswa-table" class="table table-bordered table-striped">
+                                    <thead>
                                         <tr>
                                         <th class="" style="width: 20px">No</th>
                                             <th class="w-25">No Pinjaman</th>

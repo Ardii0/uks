@@ -141,6 +141,12 @@ class M_nilai extends CI_Model{
         return $data;
     }
 
+    public function get_nilaiByid($id_nilai)
+    {
+        $data = $this->db->where('id_nilai', $id_nilai)->get('tabel_nilai');
+        return $data;
+    }
+
     public function get_mapelByid($id_mapel)
     {
         $data = $this->db->where('id_mapel', $id_mapel)->get('tabel_mapel');

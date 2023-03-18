@@ -32,7 +32,7 @@
                                         href="<?php echo base_url('Nilai/') ?>"><?php echo $this->session->userdata('level') ?></a>
                                 </li>
                                 <li class="breadcrumb-item active"><a
-                                        href="<?php echo base_url('Nilai/modul_data_nilai_siswa') ?>">Modul Data Nilai
+                                        href="<?php echo base_url('Nilai/modul_data_nilai') ?>">Modul Data Nilai
                                         Siswa</a>
                                 </li>
                                 <li class="breadcrumb-item active">Lihat Nilai</li>
@@ -47,12 +47,20 @@
                 <?php foreach($mapel as $mapels ): ?>
                 <?php foreach($semester as $semesters ): ?>
                 <div class="container-fluid shadow p-3 mb-5 bg-white rounded">
-                    <div class="px-3 pt-3 h5">
-                        <p><?php echo $mapels->nama_mapel?></p>
-                        <p class="mt-n2"><?php echo tampil_kelas_byid(($rombels->id_kelas))?>
-                            <?php echo $rombels->nama_rombel?>
-                            (Semester <?php echo $semesters->semester?>)
-                        </p>
+                    <div class="d-flex justify-content-between">
+                        <div class="px-2 h5">
+                            <p><?php echo $mapels->nama_mapel?></p>
+                            <p class="mt-n2"><?php echo tampil_kelas_byid(($rombels->id_kelas))?>
+                                <?php echo $rombels->nama_rombel?>
+                                (Semester <?php echo $semesters->semester?>)
+                            </p>
+                        </div>
+                        <div>
+                            <a href="<?php echo base_url('Nilai/cetak_data_nilai/'.$mapels->id_mapel.'/'.$rombels->id_rombel.'/'.$semesters->id_semester.'/pdf') ?>"
+                                class="btn btn-success">
+                                <i class="fas fa-print"></i> Export PDF
+                            </a>
+                        </div>
                     </div>
                     <div class="row px-1">
                         <div class="col">
@@ -88,12 +96,10 @@
                                             <td><?php echo $row->nt2?></td>
                                             <td><?php echo $row->nt3?></td>
                                             <td class="d-flex justify-content-around">
-                                                <a href="detail" class="btn btn-primary btn-sm">
-                                                    <i class="fas fa-search-plus"></i>
-                                                </a>
-                                                <button type="submit" class="btn btn-success btn-sm">
+                                                <a href="<?php echo base_url('Nilai/cetak_data_nilai_byId/'.$row->id_nilai.'/pdf')?>"
+                                                    class="btn btn-primary btn-sm">
                                                     <i class="fas fa-print"></i>
-                                                </button>
+                                                </a>
                                             </td>
                                         </tr>
                                         <?php endforeach;?>

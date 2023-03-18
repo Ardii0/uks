@@ -126,24 +126,24 @@
                             <table id="data-table2" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
                                         <th>Tanggal</th>
                                         <th>Uraian</th>
                                         <th>Pencatat</th>
                                         <th>Akun</th>
-                                        <th>Nominal</th>
+                                        <th>Debet</th>
+                                        <th>Kredit</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $id = 0; foreach($data_transaksi as $data): $id++ ?>
-                                        <tr>
-                                            <td><?php echo $id ?></td>
+                                        <tr <?php $btn = $data->id_akun == 0 ? 'hidden' : ''; echo $btn ?>>
                                             <td><?php echo $data->waktu ?></td>
                                             <td><?php echo $data->uraian ?></td>
                                             <td><?php echo $data->pencatat ?></td>
                                             <td><?php echo tampil_nama_akun_transaksi($data->id_akun) ?></td>
-                                            <td><?php echo $data->nominal ?></td>
+                                            <td><?php echo $data->debet ?></td>
+                                            <td><?php echo $data->kredit ?></td>
                                             <td>
                                                 <button onClick="hapus(<?php echo $data->id_transaksi ?>)" class="btn btn-danger btn-sm">
                                                     <i class="fa fa-trash"></i>

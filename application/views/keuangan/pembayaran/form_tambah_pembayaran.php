@@ -105,6 +105,7 @@
                             <table id="data-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
+                                        <th></th>
                                         <th>No</th>
                                         <th>Date Time</th>
                                         <th>ID Transaksi</th>
@@ -117,6 +118,10 @@
                                 <tbody>
                                     <?php $id=0; foreach ($pembayaran as $databayar): $id++?>
                                         <tr>
+                                            <td>
+                                                <a href="<?php echo base_url('Keuangan/hapus_pembayaran/'.$databayar->id_pembayaran) ?>"
+                                                    class="btn btn-danger btn-sm">
+                                                    <i class="fa fa-trash"></i></a></td>
                                             <td><?php echo $id?></td>
                                             <td><?php echo $databayar->date?></td>
                                             <td><?php echo $databayar->id_tf?></td>
@@ -128,19 +133,24 @@
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
-                            <div style="background: #367FA9;" class="d-flex align-content-center justify-content-end">
-                                <h5>Sub Total</h5>
+                            <div class="col-12 row text-right p-1 m-0" style="background: rgba(0, 0, 255, 0.3);">
+                                <div class="col-10 font-weight-bold">
+                                    Subtotal :
+                                </div>
+                                <div class="col-2 font-weight-bold">
                                 &emsp;
                                 <?php $subtotal = 0; 
                                       foreach ($pembayaran as $total) {
                                         $subtotal += $total->nominal;
                                       }
                                       echo convRupiah($subtotal) ?>
+                                </div>
                             </div>
                         </div>
                         <div class="col-12 d-flex justify-content-end mt-3">
                             <?php foreach ($siswa as $data): ?>
-                                <a href="<?php echo base_url('Keuangan/cetak_pembayaran/'.$data->id_siswa.'/'.$data->id_rombel.'/pdf') ?>" class="btn btn-warning"><i class="fas fa-print"></i> Cetak &
+                                <!-- <a href="<?php echo base_url('Keuangan/cetak_pembayaran/'.$data->id_siswa.'/'.$data->id_rombel.'/pdf') ?>" class="btn btn-warning"><i class="fas fa-print"></i> Cetak & -->
+                                <a href="<?php echo base_url('Keuangan/cetak_invoice/'.$data->id_siswa) ?>" class="btn btn-warning"><i class="fas fa-print"></i> Cetak &
                                     Simpan</a>
                             <?php endforeach; ?>
                         </div>
@@ -150,6 +160,11 @@
         </div>
     </div>
     <?php $this->load->view('keuangan/style/js') ?>
+    <script>
+        function hapus(id) {
+            window.location.href = "<?php echo base_url('Keuangan/hapus_pembayaran/') ?>" + id;
+        }
+    </script>
 </body>
 
 </html>

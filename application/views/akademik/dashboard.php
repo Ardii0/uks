@@ -41,11 +41,6 @@
                         <div>
                             <p style="font-size: 2rem">Dashboard Akademik</p>
                         </div>
-                        <div class="w-25">
-                            <div class="input-group rounded-4">
-                                <input type="text" class="form-control " placeholder="cari">
-                            </div>
-                        </div>
                     </div>
                     <div class="row ">
                         <div class="col-8 col-sm-6 col-md-3">

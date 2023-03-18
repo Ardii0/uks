@@ -95,7 +95,31 @@
 			<td><?php echo convRupiah($key->nominal) ?></td>
 		</tr>
 		<?php } ?>
+		<tr style="font-weight: bold;">
+			<td></td>
+			<td></td>
+			<td>Total:</td>
+			<td>
+			<?php $subtotal = 0; 
+			foreach ($data as $total) {
+				$subtotal += $total->nominal;
+			}
+			echo convRupiah($subtotal) ?>
+			</td>
+		</tr>
 	</table>
+	
+	<div>
+		<div>
+			*Bukti ini sebagai tanda pembayaran yang sah
+		</div>
+		<div>
+			<div>
+				<h5 style="padding: 0 0 20px 0 ;">Petugas</h5>
+				<p>ttd</p>
+			</div>
+		</div>
+	</div>
 
 
 </body>

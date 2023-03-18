@@ -52,7 +52,7 @@
                                 <div class="card-body">
                                     <div class="d-flex flex-column align-items-center text-center">
                                         <img style="width: 150px; height:150px;"
-                                            src="<?php echo base_url('uploads/akademik/pendaftaran_siswa')."/".tampil_foto_siswa_byid($data->id_daftar);?>"
+                                            src="<?php $img = $data->id_daftar == null ? base_url('uploads/akademik/default_profile/User.png') : base_url('uploads/akademik/pendaftaran_siswa')."/".tampil_foto_siswa_byid($data->id_daftar); echo $img?>"
                                             alt="Admin" class="rounded-circle" width="150">
                                         <div class="mt-3">
                                             <h4><?php echo tampil_nama_siswa_byid($data->id_daftar)?></h4>

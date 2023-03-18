@@ -17,13 +17,25 @@ class Keuangan extends CI_Controller
 
     public function index()
     {
-        $this->load->view('keuangan/dashboard');
+        $data = [
+            'judul' => 'keuangan',
+            'page' => 'keuangan',
+            'menu' => 'dashboard',
+            'submenu'=>''
+        ];
+        $this->load->view('keuangan/dashboard', $data);
 
     }
 
 // Anggaran
     public function anggaran()
     {
+        $data = [
+            'judul' => 'keuangan',
+            'page' => 'keuangan',
+            'menu' => 'anggaran',
+            'submenu'=>''
+        ];
         $this->load->model('M_keuangan');
         $data['data_rencana_anggaran'] = $this->m_keuangan->get_all_data_rencana_anggaran('data_rencana_anggaran');
         $data['data_jenis_transaksi'] = $this->m_keuangan->get_all_data_jenis_transaksi('data_jenis_transaksi');
@@ -81,6 +93,12 @@ class Keuangan extends CI_Controller
 
     public function edit_anggaran($id)
     {
+        $data = [
+            'judul' => 'keuangan',
+            'page' => 'keuangan',
+            'menu' => 'anggaran',
+            'submenu'=>''
+        ];
         $data['data_rencana_anggaran']=$this->m_keuangan->edit_anggaran('tabel_rencana_anggaran', $id)->result();
         $this->load->view('keuangan/anggaran/edit_anggaran', $data);
     }
@@ -150,6 +168,12 @@ class Keuangan extends CI_Controller
 
     public function anggaran_filter()
     {
+        $data = [
+            'judul' => 'keuangan',
+            'page' => 'keuangan',
+            'menu' => 'anggaran',
+            'submenu'=>''
+        ];
         $id_rn = $this->input->post('id_rencana_anggaran');
         $this->load->model('M_keuangan');
         $data['data_rencana_anggaran'] = $this->m_keuangan->get_all_data_rencana_anggaran('data_rencana_anggaran');
@@ -190,6 +214,12 @@ class Keuangan extends CI_Controller
 // Akun
     public function akun()
     {
+        $data = [
+            'judul' => 'keuangan',
+            'page' => 'keuangan',
+            'menu' => 'akun',
+            'submenu'=>''
+        ];
         $this->load->model('M_keuangan');
         $data['data_akun'] = $this->m_keuangan->get_all_akun('data_akun');
         $this->load->view('keuangan/akun/akun', $data);
@@ -219,6 +249,12 @@ class Keuangan extends CI_Controller
 
     public function edit_akun($id_akun)
     {
+        $data = [
+            'judul' => 'keuangan',
+            'page' => 'keuangan',
+            'menu' => 'akun',
+            'submenu'=>''
+        ];
         $data['data_akun']=$this->m_keuangan->edit_akun('tabel_akun', $id_akun)->result();
         $this->load->view('keuangan/akun/edit_akun', $data);
     }
@@ -263,6 +299,12 @@ class Keuangan extends CI_Controller
 // Dana
     public function dana()
     {
+        $data = [
+            'judul' => 'keuangan',
+            'page' => 'keuangan',
+            'menu' => 'dana',
+            'submenu'=>''
+        ];
         $this->load->model('M_keuangan');
         $pendapatan['data_pendapatan'] = $this->m_keuangan->get_pendapatan('data_pendapatan');
         $data['data_transaksi'] = $this->m_keuangan->get_data_transaksi('data_transaksi');
@@ -272,6 +314,12 @@ class Keuangan extends CI_Controller
 
     public function input_dana($id)
     {
+        $data = [
+            'judul' => 'keuangan',
+            'page' => 'keuangan',
+            'menu' => 'dana',
+            'submenu'=>''
+        ];
         $pendapatan['data_pendapatan'] = $this->m_keuangan->get_pendapatan('data_pendapatan');
         $pengeluaran['data_pengeluaran'] = $this->m_keuangan->get_pengeluaran('data_pengeluaran');
         $akun['data_akun'] = $this->m_keuangan->get_all_akun('data_akun');
@@ -323,6 +371,12 @@ class Keuangan extends CI_Controller
 // Jurnal
     public function jurnal()
     {
+        $data = [
+            'judul' => 'keuangan',
+            'page' => 'keuangan',
+            'menu' => 'jurnal',
+            'submenu'=>''
+        ];
         $this->load->model('M_keuangan');
         $data['dt'] = $this->m_keuangan->ambil('tabel_level',array('id_level'=>$this->session->userdata('id_level')))->row();
         $data['data_akun'] = $this->m_keuangan->get_all_akun('data_akun');
@@ -374,6 +428,12 @@ class Keuangan extends CI_Controller
  //Laporan Jurnal Penyesuaian
    public function laporan_jurnalpenyesuaian()
    {
+    $data = [
+        'judul' => 'keuangan',
+        'page' => 'keuangan',
+        'menu' => 'laporan',
+        'submenu'=>'penyesuaian'
+    ];
        $this->load->model('M_keuangan');
        $data['data_akun'] = $this->m_keuangan->get_all_akun('data_akun');
        $data['data_transaksi'] = $this->m_keuangan->get_data_transaksi('data_transaksi');
@@ -381,6 +441,12 @@ class Keuangan extends CI_Controller
    }
    public function filter_tanggal()
    {
+    $data = [
+        'judul' => 'keuangan',
+        'page' => 'keuangan',
+        'menu' => 'laporan',
+        'submenu'=>'penyesuaian'
+    ];
       $tanggalawal = $this->input->post('tanggalawal');
       $tanggalakhir = $this->input->post('tanggalakhir');
       $lapjurnal = $this->input->post('lapjurnal');
@@ -393,12 +459,25 @@ class Keuangan extends CI_Controller
  //Laporan Buku Besar
    public function laporan_bukubesar()
    {
+    $data = [
+        'judul' => 'keuangan',
+        'page' => 'keuangan',
+        'menu' => 'laporan',
+        'submenu'=>'bukubesar'
+    ];
        $this->load->model('M_keuangan');
        $data['datafilter'] = $this->m_keuangan->filter_namakun("nama_akun");
        $data['data_akun'] = $this->m_keuangan->get_all_akun('data_akun');
        $this->load->view('keuangan/laporan/laporan_bukubesar', $data);
    }
-   function filter_namakun(){
+   function filter_namakun()
+   {
+    $data = [
+        'judul' => 'keuangan',
+        'page' => 'keuangan',
+        'menu' => 'laporan',
+        'submenu'=>'bukubesar'
+    ];
         $data['data_akun'] = $this->m_keuangan->get_all_akun('data_akun');
         $nama_akun = $this->input->post('nama_akun');
         $nilaifilter = $this->input->post('nilaifilter');
@@ -421,12 +500,24 @@ class Keuangan extends CI_Controller
 // Pembayaran
     public function pembayaran()
     {
+        $data = [
+            'judul' => 'keuangan',
+            'page' => 'keuangan',
+            'menu' => 'pembayaran',
+            'submenu'=>''
+        ];
         $data['pembayaran'] = $this->m_keuangan->get_pembayaran();
         $this->load->view('keuangan/pembayaran/pembayaran', $data);
     }
 
     public function cari_data()
     {
+        $data = [
+            'judul' => 'keuangan',
+            'page' => 'keuangan',
+            'menu' => 'pembayaran',
+            'submenu'=>''
+        ];
         $this->load->model('m_akademik');
         $data['kelas'] = $this->m_akademik->get_kelas();
         $data['rombel'] = $this->m_akademik->get_rombel();
@@ -436,6 +527,12 @@ class Keuangan extends CI_Controller
 
     public function hasil_cari_data($ids)
     {
+        $data = [
+            'judul' => 'keuangan',
+            'page' => 'keuangan',
+            'menu' => 'pembayaran',
+            'submenu'=>''
+        ];
         $this->load->model('m_akademik');
         $data['kelas'] = $this->m_akademik->get_kelas();
         $data['rombel'] = $this->m_akademik->get_rombel();
@@ -464,6 +561,12 @@ class Keuangan extends CI_Controller
     
     public function tambah_pembayaran()
     {
+        $data = [
+            'judul' => 'keuangan',
+            'page' => 'keuangan',
+            'menu' => 'pembayaran',
+            'submenu'=>''
+        ];
         $this->load->model('m_akademik');
         $data['kelas'] = $this->m_akademik->get_kelas();
         $data['rombel'] = $this->m_akademik->get_rombel();
@@ -562,10 +665,19 @@ class Keuangan extends CI_Controller
 		// }
 	}
     
- // Cetak Invoice
-    public function cetak_invoice()
+    public function hapus_pembayaran($id)
     {
-        $this->load->view('keuangan/pembayaran/cetak_invoice');
+        $this->m_keuangan->hapus_rn('tabel_pembayaran', 'id_pembayaran', $id);
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+    
+ // Cetak Invoice
+    public function cetak_invoice($ids)
+    {
+        $data['dt'] = $this->m_keuangan->ambil('tabel_level',array('id_level'=>$this->session->userdata('id_level')))->row();
+        $data['siswa'] = $this->m_keuangan->get_siswaById('tabel_siswa', $ids)->result();
+        $data['pembayaran'] = $this->m_keuangan->get_pembayaranByIdSiswa($ids);
+        $this->load->view('keuangan/pembayaran/cetak_invoice/cetak_invoice', $data);
     }
 
 }
