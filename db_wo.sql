@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 16, 2023 at 10:32 AM
+-- Generation Time: Mar 18, 2023 at 10:44 AM
 -- Server version: 8.0.29
 -- PHP Version: 8.0.25
 
@@ -150,20 +150,9 @@ INSERT INTO `tabel_akun` (`id_akun`, `nama_akun`, `jenis_akun`, `status`) VALUES
 
 CREATE TABLE `tabel_alokasiguru` (
   `id_alokasiguru` int NOT NULL,
-  `kode_guru` int NOT NULL,
+  `kode_guru` varchar(255) NOT NULL,
   `id_mapel` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tabel_alokasiguru`
---
-
-INSERT INTO `tabel_alokasiguru` (`id_alokasiguru`, `kode_guru`, `id_mapel`) VALUES
-(35, 449, 10),
-(36, 444, 9),
-(40, 449, 9),
-(47, 450, 10),
-(48, 451, 9);
 
 -- --------------------------------------------------------
 
@@ -182,12 +171,8 @@ CREATE TABLE `tabel_alokasimapel` (
 --
 
 INSERT INTO `tabel_alokasimapel` (`id_alokasimapel`, `id_mapel`, `id_rombel`) VALUES
-(1, 9, 2),
-(2, 9, 1),
-(8, 9, 12),
-(12, 14, 12),
-(13, 14, 14),
-(14, 14, 15);
+(12, 9, 2),
+(13, 9, 1);
 
 -- --------------------------------------------------------
 
@@ -207,8 +192,7 @@ CREATE TABLE `tabel_anggota` (
 --
 
 INSERT INTO `tabel_anggota` (`id_anggota`, `id_siswa`, `tgl_daftar`, `status`) VALUES
-(1, 1, '2023-02-21', 1),
-(3, 2, '2023-03-02', 1);
+(4343, 1, '2023-03-18', 1);
 
 -- --------------------------------------------------------
 
@@ -229,7 +213,7 @@ CREATE TABLE `tabel_daftar` (
   `anak_ke` int DEFAULT NULL,
   `saudara_kandung` varchar(255) DEFAULT NULL,
   `saudara_angkat` varchar(255) DEFAULT NULL,
-  `tgl_lahir` date NOT NULL,
+  `tgl_lahir` date DEFAULT NULL,
   `agama` varchar(50) NOT NULL,
   `alamat` text NOT NULL,
   `telepon` varchar(255) NOT NULL,
@@ -249,7 +233,7 @@ INSERT INTO `tabel_daftar` (`id_daftar`, `no_reg`, `id_angkatan`, `id_jenjang`, 
 (7, '2334233', 1, 5, '2023-03-01', '34534545', 'Rizqi', 'L', 'Semarang', 2, 'ada', 'ada', '2003-11-11', 'Islam', 'Mangkang', '089765543321', '1677650453679.png', 'WNI', 'L'),
 (10, '1213221', 1, 5, '2023-03-01', '31312', 'Ahmad Subardjo', 'L', 'Los Angel', 1, '1', '1', '2023-03-11', 'Islam', 'Jl.Tamai Raya', '09282734851', '1678519397023.jpg', 'WNI', 'A'),
 (11, '123', 1, 1, '2023-03-16', '2', 'ShoeFantasy', 'L', 'sSfd', 1, '1', '1', '2023-03-30', 'Kristen', 'Jl.Tamai Raya', '09282734851', '1678850687584.jpg', 'WNI', 'P'),
-(12, '12313', 1, 9, '2023-03-01', '9878', 'Arya', 'L', 'Los Angel', 1, '2', '1', '2023-03-02', 'Islam', 'JL. Jakarta', '09282734851', '1678870842225.jpg', 'WNI', 'P');
+(12, '12313', 1, 9, '2023-03-01', '9878', 'Arya', 'L', 'Los Angel', 1, '2', '1', '2023-03-02', 'Islam', 'JL. Jakarta', '09282734851', '1678870842225.jpg', 'WNI', 'T');
 
 -- --------------------------------------------------------
 
@@ -258,7 +242,7 @@ INSERT INTO `tabel_daftar` (`id_daftar`, `no_reg`, `id_angkatan`, `id_jenjang`, 
 --
 
 CREATE TABLE `tabel_guru` (
-  `kode_guru` int NOT NULL,
+  `kode_guru` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `nip` varchar(10) NOT NULL,
   `nama_guru` varchar(50) NOT NULL,
   `jekel` enum('L','P') DEFAULT NULL,
@@ -272,10 +256,15 @@ CREATE TABLE `tabel_guru` (
 --
 
 INSERT INTO `tabel_guru` (`kode_guru`, `nip`, `nama_guru`, `jekel`, `no_hp`, `alamat`, `status`) VALUES
-(444, '22222', 'Saburo', 'L', '0990998', 'Atlantis', 'AKTIF'),
-(449, '884564', 'Ahmad', 'L', '545454', '', 'AKTIF'),
-(450, '3242134', 'Eko', 'L', '08932422342', 'Ungaran', 'AKTIF'),
-(451, '32333', 'Ahmad', 'L', '087884635', 'Jl.Tamai Raya', 'AKTIF');
+('444', '22222', 'Saburo', 'L', '0990998', 'Atlantis', 'AKTIF'),
+('449', '884564', 'Ahmad', 'L', '545454', '', 'AKTIF'),
+('450', '3242134', 'Eko', 'L', '08932422342', 'Ungaran', 'AKTIF'),
+('451', '32333', 'Ahmad', 'L', '087884635', 'Jl.Tamai Raya', 'AKTIF'),
+('453', '222', 'Ahmad', 'L', '0893847522', '', 'AKTIF'),
+('455', '1212', 'Test', 'L', '1212', 'Jl.Tamai Raya', 'AKTIF'),
+('KG-69U9HX', '1414', 'Test', 'L', '0893847522', 'Jl.Roti Burger Ayam', 'AKTIF'),
+('KG-330OSN', '21312', 'Shelby', 'L', '1212', 'Jl.Tamai Raya', 'AKTIF'),
+('KG-3MKQ3P', '111', 'Test23', 'L', '222', 'Jl.Tamai Raya', 'AKTIF');
 
 -- --------------------------------------------------------
 
@@ -352,10 +341,10 @@ INSERT INTO `tabel_jenismapel` (`id_jenismapel`, `nama_jenismapel`, `keterangan`
 
 CREATE TABLE `tabel_jenis_transaksi` (
   `id` int NOT NULL,
-  `nama_jenis_transaksi` varchar(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `nama_jenis_transaksi` varchar(200) NOT NULL,
   `rencana_anggaran` int NOT NULL,
   `status` int NOT NULL DEFAULT '1',
-  `jenis_transaksi` enum('m','k') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `jenis_transaksi` enum('m','k') NOT NULL,
   `nominal` bigint NOT NULL,
   `debit` int NOT NULL,
   `kredit` int NOT NULL,
@@ -367,10 +356,12 @@ CREATE TABLE `tabel_jenis_transaksi` (
 --
 
 INSERT INTO `tabel_jenis_transaksi` (`id`, `nama_jenis_transaksi`, `rencana_anggaran`, `status`, `jenis_transaksi`, `nominal`, `debit`, `kredit`, `keterangan`) VALUES
-(1, 'Dana Hibah', 1, 1, 'm', 500000, 1, 1, 'Deskripsi Rancana Anggaran\r\n'),
-(2, 'Gaji Staff', 1, 1, 'k', 500000, 1, 1, 'Deskripsi Rancana Anggaran\r\n'),
-(3, 'Gaji Guru', 3, 1, 'k', 500000, 1, 1, 'Deskripsi Rancana Anggaran\r\n'),
-(4, 'HGOHLOHHO', 3, 1, 'm', 1231313, 210, 450, 'MAIDAKWDI');
+(1, 'Dana Hibah', 1, 1, 'm', 500000, 600000, 230000, 'Deskripsi Rancana Anggaran\r\n'),
+(2, 'Gaji Staff', 1, 1, 'k', 500000, 760000, 210000, 'Deskripsi Rancana Anggaran\r\n'),
+(3, 'Gaji Guru', 3, 1, 'k', 500000, 180000, 900000, 'Deskripsi Rancana Anggaran\r\n'),
+(4, 'Dana Pokok', 3, 1, 'm', 1231313, 1300000, 870000, 'MAIDAKWDI'),
+(5, 'Gaji Tukang Bangunan', 3, 1, 'k', 90909090, 450000, 400000, 'jdjdjdjd'),
+(6, 'Dana Bos', 3, 1, 'm', 909090, 1010000, 840000, 'Tes');
 
 -- --------------------------------------------------------
 
@@ -438,7 +429,7 @@ CREATE TABLE `tabel_level` (
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `level` varchar(20) NOT NULL,
-  `kode_guru` int DEFAULT NULL,
+  `kode_guru` varchar(255) DEFAULT NULL,
   `id_hak_akses` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -450,9 +441,15 @@ INSERT INTO `tabel_level` (`id_level`, `username`, `email`, `password`, `level`,
 (1, 'Admin', 'adminis@tra.tor', '202cb962ac59075b964b07152d234b70', 'Admin', NULL, 2),
 (2, 'Akademik', 'akademik@gmail.com', '202cb962ac59075b964b07152d234b70', 'Kesiswaan', NULL, 3),
 (3, 'Perpus', 'perpus@gmail.com', '202cb962ac59075b964b07152d234b70', 'PetugasPerpus', NULL, 4),
-(4, 'Guru', 'guru@gmail.com', '202cb962ac59075b964b07152d234b70', 'Guru', 449, 5),
+(4, 'Guru', 'guru@gmail.com', '202cb962ac59075b964b07152d234b70', 'Guru', '449', 5),
 (5, 'TU', 'tu@gmail.com', '202cb962ac59075b964b07152d234b70', 'TU', NULL, 6),
-(6, 'Saburo', 'saburo@gmail.com', '202cb962ac59075b964b07152d234b70', 'Guru', 444, 5);
+(6, 'Saburo', 'saburo@gmail.com', '202cb962ac59075b964b07152d234b70', 'Guru', '444', 5),
+(7, 'Shelby', 'Shelby@gmail.com', '698d51a19d8a121ce581499d7b701668', 'Guru', NULL, 5),
+(8, 'Ahmad', 'Ahmad@gmail.com', 'bcbe3365e6ac95ea2c0343a2395834dd', 'Guru', NULL, 5),
+(9, 'Test', 'Test@gmail.com', 'd41d8cd98f00b204e9800998ecf8427e', 'Guru', NULL, 5),
+(10, 'Test', 'Test@gmail.com', 'a01610228fe998f515a72dd730294d87', 'Guru', NULL, 5),
+(11, 'Test', 'Test@gmail.com', '7a674153c63cff1ad7f0e261c369ab2c', 'Guru', NULL, 5),
+(12, 'Shelby', 'Shelby@gmail.com', 'd064f3519426dcd30114b900431fc044', 'Guru', 'KG-K1EK6K', 5);
 
 -- --------------------------------------------------------
 
@@ -495,9 +492,8 @@ CREATE TABLE `tabel_mapel` (
 --
 
 INSERT INTO `tabel_mapel` (`id_mapel`, `id_jenismapel`, `nama_mapel`, `keterangan`, `status`) VALUES
-(9, 2, 'Matematika', 'Matematika Ilmu yang MENYENANGKAN HAHAHAHA', 'AKTIF'),
-(10, 1, 'Bahasa Semua nya', 'Semangat Brother', 'AKTIF'),
-(14, 2, 'tes aha', '123', 'AKTIF');
+(9, 1, 'Matematika', 'Pelajaran Matematika', 'AKTIF'),
+(10, 1, 'Bahasa Inggris', 'Semangat', 'AKTIF');
 
 -- --------------------------------------------------------
 
@@ -677,7 +673,7 @@ CREATE TABLE `tabel_rombel` (
   `id_rombel` int NOT NULL,
   `id_kelas` int NOT NULL,
   `nama_rombel` varchar(100) NOT NULL,
-  `kode_guru` int NOT NULL,
+  `kode_guru` varchar(255) NOT NULL,
   `kuota` int NOT NULL,
   `status` enum('AKTIF','NONAKTIF') NOT NULL DEFAULT 'AKTIF'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -687,14 +683,14 @@ CREATE TABLE `tabel_rombel` (
 --
 
 INSERT INTO `tabel_rombel` (`id_rombel`, `id_kelas`, `nama_rombel`, `kode_guru`, `kuota`, `status`) VALUES
-(1, 1, 'TKJ', 449, 35, 'AKTIF'),
-(2, 3, 'TKJ 2', 444, 123, 'AKTIF'),
-(5, 2, 'TKJ 3', 444, 291, 'AKTIF'),
-(6, 3, 'TB', 444, 221, 'AKTIF'),
-(10, 2, 'AKL', 444, 21, 'AKTIF'),
-(12, 5, 'VII A', 449, 50, 'AKTIF'),
-(14, 7, 'VIII D', 450, 35, 'AKTIF'),
-(15, 7, 'VIII B', 444, 35, 'AKTIF');
+(1, 1, 'TKJ', '449', 35, 'AKTIF'),
+(2, 3, 'TKJ 2', '444', 123, 'AKTIF'),
+(5, 2, 'TKJ 3', '444', 291, 'AKTIF'),
+(6, 3, 'TB', '444', 221, 'AKTIF'),
+(10, 2, 'AKL', '444', 21, 'AKTIF'),
+(12, 5, 'VII A', '449', 50, 'AKTIF'),
+(14, 7, 'VIII D', '450', 35, 'AKTIF'),
+(15, 7, 'VIII B', '444', 35, 'AKTIF');
 
 -- --------------------------------------------------------
 
@@ -784,9 +780,9 @@ CREATE TABLE `tabel_tahunajaran` (
 --
 
 INSERT INTO `tabel_tahunajaran` (`id_angkatan`, `kd_angkatan`, `nama_angkatan`, `keterangan`, `tgl_a`, `tgl_b`, `aktif`, `status`) VALUES
-(1, 'TA 2020/2021', 'TA2020/2021', 'OK', '2023-02-01', '2023-02-28', 0, 'AKTIF'),
-(3, 'TA 2022/2023', 'TA2022/2023', '', '2023-03-23', '2023-05-17', 0, 'AKTIF'),
-(5, 'TA 2023/2024', 'TA2023/2024', '', '2023-03-01', '2023-03-30', 0, 'AKTIF');
+(1, 'TA 2020/2021', 'TA2020/2021', 'OK', '2023-02-01', '2023-02-28', 1, 'AKTIF'),
+(3, 'TA 2022/2023', 'TA2022/2023', '', '2023-03-23', '2023-05-17', 1, 'AKTIF'),
+(5, 'TA 2023/2024', 'TA2023/2024', '', '2023-03-01', '2023-03-30', 0, 'NONAKTIF');
 
 -- --------------------------------------------------------
 
@@ -796,13 +792,40 @@ INSERT INTO `tabel_tahunajaran` (`id_angkatan`, `kd_angkatan`, `nama_angkatan`, 
 
 CREATE TABLE `tabel_transaksi` (
   `id_transaksi` int NOT NULL,
-  `id_anggaran` int NOT NULL,
+  `id_anggaran` int DEFAULT NULL,
+  `debet` int NOT NULL DEFAULT '0',
+  `kredit` int NOT NULL DEFAULT '0',
   `waktu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `uraian` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `pencatat` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `id_akun` int NOT NULL,
-  `nominal` double NOT NULL
+  `id_akun` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tabel_transaksi`
+--
+
+INSERT INTO `tabel_transaksi` (`id_transaksi`, `id_anggaran`, `debet`, `kredit`, `waktu`, `uraian`, `pencatat`, `id_akun`) VALUES
+(1, 1, 0, 123000, '2023-03-15 02:03:19', 'Dana Hibah', 'tu@gmail.com', 0),
+(2, 1, 123000, 0, '2023-03-15 02:03:19', 'Dana Hibah', 'tu@gmail.com', 1),
+(3, 4, 0, 143000, '2023-03-15 02:04:14', 'Dana Pokok', 'tu@gmail.com', 0),
+(4, 4, 143000, 0, '2023-03-15 02:04:14', 'Dana Pokok', 'tu@gmail.com', 2),
+(5, 1, 0, 78000, '2023-03-15 02:13:24', 'Dana Hibah', 'tu@gmail.com', 1),
+(6, 1, 78000, 0, '2023-03-15 02:13:24', 'Dana Hibah', 'tu@gmail.com', 0),
+(7, 6, 0, 20000, '2023-03-15 02:14:35', 'Dana Boss', 'tu@gmail.com', 5),
+(8, 6, 20000, 0, '2023-03-15 02:14:35', 'Dana Boss', 'tu@gmail.com', 0),
+(9, 4, 0, 19000, '2023-03-15 02:19:12', 'Dana Pokok', 'tu@gmail.com', 0),
+(10, 4, 19000, 0, '2023-03-15 02:19:12', 'Dana Pokok', 'tu@gmail.com', 1),
+(11, 1, 0, 12300, '2023-03-15 02:48:17', 'Dana Hibah hibah', 'tu@gmail.com', 1),
+(12, 1, 12300, 0, '2023-03-15 02:48:17', 'Dana Hibah hibah', 'tu@gmail.com', 0),
+(13, 6, 0, 21000, '2023-03-15 02:58:00', 'Dana Bos', 'tu@gmail.com', 0),
+(14, 6, 21000, 0, '2023-03-15 02:58:00', 'Dana Bos', 'tu@gmail.com', 1),
+(15, 1, 0, 12000, '2023-03-15 19:41:17', 'Dana Hibah', 'tu@gmail.com', 0),
+(16, 1, 12000, 0, '2023-03-15 19:41:17', 'Dana Hibah', 'tu@gmail.com', 4),
+(17, 6, 0, 2000, '2023-03-15 19:47:29', 'Dana Bos', 'tu@gmail.com', 0),
+(18, 6, 2000, 0, '2023-03-15 19:47:29', 'Dana Bos', 'tu@gmail.com', 2),
+(19, 4, 0, 500, '2023-03-15 19:48:10', 'Dana Pokok', 'tu@gmail.com', 2),
+(20, 4, 500, 0, '2023-03-15 19:48:10', 'Dana Pokok', 'tu@gmail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -970,7 +993,6 @@ ALTER TABLE `tabel_alokasimapel`
 -- Indexes for table `tabel_anggota`
 --
 ALTER TABLE `tabel_anggota`
-  ADD PRIMARY KEY (`id_anggota`),
   ADD KEY `id_siswa` (`id_siswa`);
 
 --
@@ -980,12 +1002,6 @@ ALTER TABLE `tabel_daftar`
   ADD PRIMARY KEY (`id_daftar`),
   ADD KEY `id_angkatan` (`id_angkatan`),
   ADD KEY `id_jenjang` (`id_jenjang`);
-
---
--- Indexes for table `tabel_guru`
---
-ALTER TABLE `tabel_guru`
-  ADD PRIMARY KEY (`kode_guru`);
 
 --
 -- Indexes for table `tabel_jenisbayar`
@@ -1183,31 +1199,19 @@ ALTER TABLE `tabel_akun`
 -- AUTO_INCREMENT for table `tabel_alokasiguru`
 --
 ALTER TABLE `tabel_alokasiguru`
-  MODIFY `id_alokasiguru` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id_alokasiguru` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `tabel_alokasimapel`
 --
 ALTER TABLE `tabel_alokasimapel`
-  MODIFY `id_alokasimapel` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- AUTO_INCREMENT for table `tabel_anggota`
---
-ALTER TABLE `tabel_anggota`
-  MODIFY `id_anggota` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_alokasimapel` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `tabel_daftar`
 --
 ALTER TABLE `tabel_daftar`
   MODIFY `id_daftar` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `tabel_guru`
---
-ALTER TABLE `tabel_guru`
-  MODIFY `kode_guru` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=452;
 
 --
 -- AUTO_INCREMENT for table `tabel_jenisbayar`
@@ -1243,7 +1247,7 @@ ALTER TABLE `tabel_kelas`
 -- AUTO_INCREMENT for table `tabel_level`
 --
 ALTER TABLE `tabel_level`
-  MODIFY `id_level` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_level` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `tabel_lulus`
@@ -1273,7 +1277,7 @@ ALTER TABLE `tabel_paketjenjang`
 -- AUTO_INCREMENT for table `tabel_pembayaran`
 --
 ALTER TABLE `tabel_pembayaran`
-  MODIFY `id_pembayaran` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_pembayaran` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `tabel_pindah`
@@ -1327,7 +1331,7 @@ ALTER TABLE `tabel_tahunajaran`
 -- AUTO_INCREMENT for table `tabel_transaksi`
 --
 ALTER TABLE `tabel_transaksi`
-  MODIFY `id_transaksi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_transaksi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `table_buku`
@@ -1361,7 +1365,6 @@ ALTER TABLE `table_rak_buku`
 -- Constraints for table `tabel_alokasiguru`
 --
 ALTER TABLE `tabel_alokasiguru`
-  ADD CONSTRAINT `tabel_alokasiguru_to_guru` FOREIGN KEY (`kode_guru`) REFERENCES `tabel_guru` (`kode_guru`),
   ADD CONSTRAINT `tabel_alokasiguru_to_mapel` FOREIGN KEY (`id_mapel`) REFERENCES `tabel_mapel` (`id_mapel`);
 
 --
@@ -1370,12 +1373,6 @@ ALTER TABLE `tabel_alokasiguru`
 ALTER TABLE `tabel_alokasimapel`
   ADD CONSTRAINT `tabel_alokasimapel_to_mapel` FOREIGN KEY (`id_mapel`) REFERENCES `tabel_mapel` (`id_mapel`),
   ADD CONSTRAINT `tabel_alokasimapel_to_rombel` FOREIGN KEY (`id_rombel`) REFERENCES `tabel_rombel` (`id_rombel`);
-
---
--- Constraints for table `tabel_anggota`
---
-ALTER TABLE `tabel_anggota`
-  ADD CONSTRAINT `tabel_anggota_to_siswa` FOREIGN KEY (`id_siswa`) REFERENCES `tabel_siswa` (`id_siswa`);
 
 --
 -- Constraints for table `tabel_daftar`
@@ -1389,12 +1386,6 @@ ALTER TABLE `tabel_daftar`
 --
 ALTER TABLE `tabel_kelas`
   ADD CONSTRAINT `tabel_kelas_ibfk_1` FOREIGN KEY (`id_jenjang`) REFERENCES `tabel_jenjang` (`id_jenjang`);
-
---
--- Constraints for table `tabel_level`
---
-ALTER TABLE `tabel_level`
-  ADD CONSTRAINT `tabel_level_to_guru` FOREIGN KEY (`kode_guru`) REFERENCES `tabel_guru` (`kode_guru`);
 
 --
 -- Constraints for table `tabel_mapel`
@@ -1421,7 +1412,6 @@ ALTER TABLE `tabel_pembayaran`
 -- Constraints for table `tabel_rombel`
 --
 ALTER TABLE `tabel_rombel`
-  ADD CONSTRAINT `tabel_guru_ibfk_1` FOREIGN KEY (`kode_guru`) REFERENCES `tabel_guru` (`kode_guru`),
   ADD CONSTRAINT `tabel_kelas_1` FOREIGN KEY (`id_kelas`) REFERENCES `tabel_kelas` (`id_kelas`);
 
 --

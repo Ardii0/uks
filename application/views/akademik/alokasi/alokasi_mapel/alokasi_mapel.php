@@ -72,7 +72,7 @@
                                         <table id="akademik-table" class="table table-bordered table-striped">
                                             <thead class="bg-info">
                                                 <tr>
-                                                    <th><input type="checkbox"></th>
+                                                    <th><input type="checkbox" class="checkAll"></th>
                                                     <th>Nama Kelas</th>
                                                     <th>Keterangan</th>
                                                 </tr>
@@ -81,7 +81,7 @@
                                                 <?php foreach($rombel as $rombel ):?>
                                                 <tr>
                                                     <td>
-                                                        <input type="checkbox" name="id_rombel[<?php echo $rombel->id_rombel ?>]">
+                                                        <input type="checkbox" class="check" name="id_rombel[<?php echo $rombel->id_rombel ?>]">
                                                     </td>
                                                     <td class="d-flex">
                                                         <?php echo $rombel->nama_rombel?>
@@ -116,7 +116,7 @@
                         <table id="datasiswa-table" class="table table-bordered table-striped">
                             <thead class="bg-info">
                                 <tr>
-                                    <th><input type="checkbox"></th>
+                                    <th><input type="checkbox" class="deleteAll"></th>
                                     <th>Nama Kelas</th>
                                     <th>Keterangan</th>
                                 </tr>
@@ -125,7 +125,7 @@
                                 <?php foreach ($alokasimapel as $data): ?>
                                 <tr>
                                     <td>
-                                        <input type="checkbox" name="id_alokasimapel[<?php echo $data->id_alokasimapel ?>]">
+                                        <input type="checkbox" class="deletealokmapel" name="id_alokasimapel[<?php echo $data->id_alokasimapel ?>]">
                                     </td>
                                     <td class="d-flex">
                                             <?php echo tampil_rombel_byid($data->id_rombel) ?>
@@ -148,7 +148,23 @@
     </div>
     </div>
 
-    <?php $this->load->view('akademik/style/js')?>
+<?php $this->load->view('akademik/style/js')?>
+<script>
+    $('.checkAll').click(function() {
+    if ($(this).is(':checked')) {
+        $('.check').attr('checked', true);
+    } else {
+        $('.check').attr('checked', false);
+    }
+    });
+    $('.deleteAll').click(function() {
+    if ($(this).is(':checked')) {
+        $('.deletealokmapel').attr('checked', true);
+    } else {
+        $('.deletealokmapel').attr('checked', false);
+    }
+    });
+</script>
 </body>
 
 </html>

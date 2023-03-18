@@ -44,6 +44,7 @@
                                 <div class="form-group">
                                     <label class="control-label">Nama Guru</label>
                                     <div class="">
+                                        <input type="hidden" name="kode_guru" value="<?php echo $acak?>">
                                         <input type="text" name="nama_guru" class="form-control"
                                             placeholder="Masukan Nama guru">
                                     </div>

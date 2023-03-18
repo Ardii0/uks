@@ -53,7 +53,7 @@
                                     <div class="icon">
                                         <i class="nav-icon fas fa-door-closed"></i>
                                     </div>
-                                    <a href="#" class="small-box-footer">More info <i
+                                    <a href="<?php echo base_url('Akademik/kelas')?>" class="small-box-footer">Info Lebih Lanjut <i
                                             class="fas fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
@@ -68,7 +68,7 @@
                                     <div class="icon">
                                         <i class="nav-icon fas fa-book"></i>
                                     </div>
-                                    <a href="#" class="small-box-footer">More info <i
+                                    <a href="<?php echo base_url('Akademik/pelajaran')?>" class="small-box-footer">Info Lebih Lanjut <i
                                             class="fas fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
                                     <div class="icon">
                                         <i class="nav-icon fas fa-user"></i>
                                     </div>
-                                    <a href="#" class="small-box-footer">More info <i
+                                    <a href="<?php echo base_url('Akademik/siswa_data')?>" class="small-box-footer">Info Lebih Lanjut <i
                                             class="fas fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
@@ -98,8 +98,8 @@
                                     <div class="icon">
                                         <i class="nav-icon fas fa-user-tie"></i>
                                     </div>
-                                    <a href="#" class="small-box-footer">More info <i
-                                            class="fas fa-arrow-circle-right"></i></a>
+                                    <a href="<?php echo base_url('Akademik/guru')?>" class="small-box-footer">Info Lebih Lanjut <i
+                                       class="fas fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -110,22 +110,22 @@
                                 <div class="card-header bg-transparent text-center fw-bold h3 border-white"> Jenjang
                                 </div>
                                 <div class="card-body text-white">
-                                    <h5 class="card-title">Success card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and
-                                        make
-                                        up
-                                        the bulk of the card's content.</p>
+                                    <ul>
+                                        <?php foreach($jenjang as $jenjang):?>
+                                            <li><?php echo $jenjang->nama_jenjang?></li>
+                                        <?php endforeach;?>
+                                    </ul>
                                 </div>
-                                <a href="<?php echo base_url('Akademik/tahun_ajaran')?>" class="small-box-footer">More
-                                    info
-                                    <i class="fa fa-arrow-circle-right"></i></a>
-
+                                <a href="<?php echo base_url('Akademik/tahun_ajaran')?>" class="small-box-footer">
+                                    Info Lebih Lanjut
+                                    <i class="fa fa-arrow-circle-right"></i>
+                                </a>
                             </div>
                         </div>
                         <div class="col">
                             <div class="small-box border-success mb-3" style="max-width: 100%;">
                                 <div class="card-header bg-transparent text-center fw-bold h3 border-white"> Tahun
-                                    Ajaran</div>
+                                    Ajaran Aktif</div>
                                 <div class="card-body text-success">
                                     <div class="box-body example-1 scrollbar-ripe-malinka">
                                         <table id="table_1" class="table table-bordered">
@@ -133,8 +133,6 @@
                                                 <tr class="fixed bg-secondary">
                                                     <th>No</th>
                                                     <th>Tahun Ajaran</th>
-                                                    <th>Total Siswa</th>
-                                                    <th>Total Rombel</th>
 
                                                 </tr>
                                             </thead>
@@ -143,8 +141,6 @@
                                                     <tr>
                                                         <td><?php echo $id;?></td>
                                                         <td><?php echo $ta->nama_angkatan;?></td>
-                                                        <td><?php echo $total_siswa;?></td>
-                                                        <td><?php echo $total_kelas;?></td>
                                                     </tr>
                                                 <?php endforeach; ?>
                                             </tbody>

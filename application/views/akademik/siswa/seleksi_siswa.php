@@ -76,16 +76,15 @@
                                                             <i class="fa fa-eject"></i>
                                                         </button>
                                                     </form>
-                                                    <button class="btn btn-info btn-sm">
-                                                        <i class="fas fa- fa-eye"></i> <i
-                                                            class="fa-solid fa-magnifying-glass-plus"></i>
+                                                    <a href="<?php echo base_url('Akademik/detail_pendaftaran/'.$data->id_daftar) ?>" class="btn btn-info btn-sm">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                    <form action="<?php echo base_url('Akademik/terima_siswa') ?>" method="post" class="ml-1">
+                                                        <input type="hidden" value="<?php echo $data->id_daftar ?>" name="id_daftar">
+                                                        <button type="submit" class="btn btn-success btn-sm">
+                                                            <i class="fa fa- fa-arrow-right"></i>
                                                         </button>
-                                                        <form action="<?php echo base_url('Akademik/terima_siswa') ?>" method="post" class="ml-1">
-                                                            <input type="hidden" value="<?php echo $data->id_daftar ?>" name="id_daftar">
-                                                            <button type="submit" class="btn btn-success btn-sm">
-                                                                <i class="fa fa- fa-arrow-right"></i>
-                                                            </button>
-                                                        </form>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         <?php endforeach ?>
@@ -117,10 +116,9 @@
                                                 <td><?php echo $data->nama ?></td>
                                                 <td><?php echo tampil_namajenjang_byid($data->id_jenjang) ?></td>
                                                 <td class="d-flex">
-                                                    <button class="btn btn-info btn-sm">
-                                                        <i class="fas fa- fa-eye"></i> <i
-                                                            class="fa-solid fa-magnifying-glass-plus"></i>
-                                                    </button>
+                                                    <a href="<?php echo base_url('Akademik/detail_pendaftaran/'.$data->id_daftar) ?>" class="btn btn-info btn-sm">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
                                                     <form action="<?php echo base_url('Akademik/kembalikan_siswa') ?>" method="post" class="ml-1">
                                                         <input type="hidden" value="<?php echo $data->id_daftar ?>" name="id_daftar">
                                                         <button type="submit" class="btn btn-success btn-sm">

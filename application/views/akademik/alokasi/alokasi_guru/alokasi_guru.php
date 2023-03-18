@@ -69,7 +69,7 @@
                                             <thead class="bg-info">
                                                 <tr>
                                                     <th style="width: 4%;">
-                                                        <input type="checkbox" id="checkAll">
+                                                        <input type="checkbox" class="checkAll">
                                                     </th>
                                                     <th>Nama Mapel</th>
                                                     <th>Keterangan</th>
@@ -79,7 +79,7 @@
                                                 <?php foreach ($mapel as $data): ?>
                                                 <tr>
                                                     <td>
-                                                        <input type="checkbox" class="mapel" name="id_mapel[<?php echo $data->id_mapel ?>]">
+                                                        <input type="checkbox" class="check" name="id_mapel[<?php echo $data->id_mapel ?>]">
                                                     </td>
                                                     <td>
                                                         <?php echo $data->nama_mapel ?>
@@ -95,85 +95,73 @@
                                 </div>
                             </div>
                         </form>
-                <!-- <section class="content"> -->
-                    <form action="<?php echo base_url('Akademik/hapus_alokasiguru'); ?>" enctype="multipart/form-data"
-                        method="post" class="col">
-                        <div class="row px-1 pt-5">
-                            <div class="col">
-                                <div class="d-flex justify-content-between"
-                                    style="border-bottom: solid 2px; border-color: #">
-                                    <h3 class="text-start pl-3">DATA ALOKASI KE GURU</h3>
-                                    <div class="">
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="fa fa-minus pr-2"></i>Hapus
-                                        </button>
+                        <form action="<?php echo base_url('Akademik/hapus_alokasiguru'); ?>" enctype="multipart/form-data"
+                            method="post" class="col">
+                            <div class="row px-1 pt-5">
+                                <div class="col">
+                                    <div class="d-flex justify-content-between"
+                                        style="border-bottom: solid 2px; border-color: #">
+                                        <h3 class="text-start pl-3">DATA ALOKASI KE GURU</h3>
+                                        <div class="">
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fa fa-minus pr-2"></i>Hapus
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <table id="datasiswa-table2" class="table table-bordered table-striped">
+                                            <thead class="bg-info">
+                                                <tr>
+                                                    <th style="width: 4%;">
+                                                        <input type="checkbox" class="deleteAll">
+                                                    </th>
+                                                    <th>Nama Mapel</th>
+                                                    <th>Keterangan</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php foreach ($alokasiguru as $datamapel): ?>
+                                                <tr>
+                                                    <td>
+                                                        <input type="checkbox" class="deletealokguru" name="id_alokasiguru[<?php echo $datamapel->id_alokasiguru ?>]">
+                                                    </td>
+                                                    <td>
+                                                        <?php echo tampil_mapelById($datamapel->id_mapel) ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo tampil_ket_mapelById($datamapel->id_mapel) ?>
+                                                    </form>
+                                                    </td>
+                                                </tr>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                    <table id="datasiswa-table2" class="table table-bordered table-striped">
-                                        <thead class="bg-info">
-                                            <tr>
-                                                <th style="width: 4%;">
-                                                    <input type="checkbox">
-                                                </th>
-                                                <th>Nama Mapel</th>
-                                                <th>Keterangan</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php foreach ($alokasiguru as $datamapel): ?>
-                                            <tr>
-                                                <td>
-                                                    <input type="checkbox" class="alokasiguru" name="id_alokasiguru[<?php echo $datamapel->id_alokasiguru ?>]">
-                                                </td>
-                                                <td>
-                                                    <?php echo tampil_mapelById($datamapel->id_mapel) ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo tampil_ket_mapelById($datamapel->id_mapel) ?>
-                                                </form>
-                                                </td>
-                                            </tr>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
-                                </div>
                             </div>
-                        </div>
-                    </form>
-                <!-- </section> -->
+                        </form>
                     </div>
                 </div>
             </section>
         </div>
     </div>
-    <?php $this->load->view('akademik/style/js')?>
-    <script>
-        $("#checkAll").click(function () {
-            $('.mapel').prop('checked',$(this).prop('checked'))
-        });
-        $('#datasiswa-table').on('click'. '.mapel', function(){
-            var ca = true
-            $('.mapel').each(function(){
-                if(!$(this).prop('checked')){
-                    ca = false
-                }
-            })
-            $("$checkAll").prop('checked', ca)
-        })
-        $('#datasiswa-table2').on('click'. '.alokasiguru', function(){
-            var ca = true
-            $('.alokasiguru').each(function(){
-                if(!$(this).prop('checked')){
-                    ca = false
-                }
-            })
-            $("$checkAll").prop('checked', ca)
-        })
-        $('#checkAll').click(function () {    
-            $('input:checkbox').prop('checked', this.checked);    
-        });
-    </script>
+<?php $this->load->view('akademik/style/js')?>
+<script>
+    $('.checkAll').click(function() {
+    if ($(this).is(':checked')) {
+        $('.check').attr('checked', true);
+    } else {
+        $('.check').attr('checked', false);
+    }
+    });
+    $('.deleteAll').click(function() {
+    if ($(this).is(':checked')) {
+        $('.deletealokguru').attr('checked', true);
+    } else {
+        $('.deletealokguru').attr('checked', false);
+    }
+    });
+</script>
 </body>
 
 </html>
