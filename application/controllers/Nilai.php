@@ -91,6 +91,12 @@ class Nilai extends CI_Controller {
 
     public function entry_nilai()
     {
+        $data = [
+            'judul' => 'nilai',
+            'page' => 'nilai',
+            'menu' => 'nilai',
+            'submenu'=>'modul'
+            ];
         if(!empty($this->session->userdata('id_mapel'))) {
            $idm = $this->session->userdata('id_mapel');
            $idr = $this->session->userdata('id_rombel');
@@ -192,20 +198,88 @@ class Nilai extends CI_Controller {
     }
 
 // Data Nilai
-public function data_nilai_siswa($id_mapel, $id_rombel, $id_semester)
-{
+    public function data_nilai_siswa($id_mapel, $id_rombel, $id_semester)
+    {
         $data = [
             'judul' => 'nilai',
             'page' => 'nilai',
             'menu' => 'nilai',
             'submenu'=>'data_mapel'
         ];
-    $data['data']=$this->m_nilai->get_data_nilai($id_mapel, $id_rombel, $id_semester)->result();
-    $data['rombel']=$this->m_nilai->get_rombelByid($id_rombel)->result();
-    $data['mapel']=$this->m_nilai->get_mapelByid($id_mapel)->result();
-    $data['semester']=$this->m_nilai->get_semesterByid($id_semester)->result();
-    $this->load->view('nilai/data_nilai/data_nilai_siswa', $data);
-}
+        $data['data']=$this->m_nilai->get_data_nilai($id_mapel, $id_rombel, $id_semester)->result();
+        $data['rombel']=$this->m_nilai->get_rombelByid($id_rombel)->result();
+        $data['mapel']=$this->m_nilai->get_mapelByid($id_mapel)->result();
+        $data['semester']=$this->m_nilai->get_semesterByid($id_semester)->result();
+        $this->load->view('nilai/data_nilai/data_nilai_siswa', $data);
+    }
+
+    public function detail_data_nilai($id_nilai)
+    {
+        $data = [
+            'judul' => 'nilai',
+            'page' => 'nilai',
+            'menu' => 'nilai',
+            'submenu'=>'data_mapel'
+        ];
+        $data['data']=$this->m_nilai->get_nilaiByid($id_nilai)->result();
+        $this->load->view('nilai/data_nilai/detail_data_nilai_siswa', $data);
+    }
+
+    public function cetak_data_nilai_byId($id_nilai)
+    {
+        $data = [
+            'judul' => 'nilai',
+            'page' => 'nilai',
+            'menu' => 'nilai',
+            'submenu'=>'data_mapel'
+        ];
+        $cek = $this->m_nilai->get_nilaiByid($id_nilai)->result();
+            // $rombel = $this->m_nilai->get_rombelByid($id_rombel)->result();
+            // $mapel = $this->m_nilai->get_mapelByid($id_mapel)->result();
+            // foreach ($rombel as $key) {
+            //     $data['rombel'] = $key->nama_rombel;
+            //     $data['id_kelas'] = $key->id_kelas;
+            // }
+            // foreach ($mapel as $key1) {
+            //     $data['mapel'] = $key1->nama_mapel;
+            // }
+            $data['data'] = $this->m_nilai->get_nilaiByid($id_nilai)->result();
+            $this->load->library('pdf');
+            $this->pdf->load_view('nilai/data_nilai/cetak_data_nilai_byId', $data);
+            $this->pdf->render();
+            $this->pdf->stream(" Nilai ".$id_nilai.".pdf", array("Attachment" => false));		
+            
+    }
+    
+    public function cetak_data_nilai($id_mapel, $id_rombel, $id_semester)
+	{
+        $data = [
+            'judul' => 'nilai',
+            'page' => 'nilai',
+            'menu' => 'nilai',
+            'submenu'=>'data_mapel'
+        ];
+		$cek = $this->m_nilai->get_data_nilai($id_mapel, $id_rombel, $id_semester)->result();
+			$rombel = $this->m_nilai->get_rombelByid($id_rombel)->result();
+			$mapel = $this->m_nilai->get_mapelByid($id_mapel)->result();
+			foreach ($rombel as $key) {
+				$data['rombel'] = $key->nama_rombel;
+				$data['id_kelas'] = $key->id_kelas;
+			}
+			foreach ($mapel as $key1) {
+				$data['mapel'] = $key1->nama_mapel;
+			}
+			$data['data'] = $this->m_nilai->get_data_nilai($id_mapel, $id_rombel, $id_semester)->result();
+			if ($this->uri->segment(6) == "pdf") {
+                $this->load->library('pdf');
+				$this->pdf->load_view('nilai/data_nilai/cetak_data_nilai', $data);
+				$this->pdf->render();
+				$this->pdf->stream($data['rombel']." Semester ".$id_semester.".pdf", array("Attachment" => false));		
+			}else{
+				$this->load->view('nilai/data_nilai/cetakraportexcel', $data);
+			}
+	}
+
 
     public function modul_data_nilai()
     {
