@@ -818,6 +818,26 @@ class Akademik extends CI_Controller {
         }
     }
 
+    public function tolak_siswa()
+    {
+        $approve = array
+        (
+            "diterima" => "T",
+        );
+
+        $approve_siswa=$this->m_akademik->ubah_seleksi('tabel_daftar', $approve, array('id_daftar'=>$this->input->post('id_daftar')));
+        if($approve_siswa)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('Akademik/siswa_seleksi_siswa'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Akademik/siswa_seleksi_siswa'));
+        }
+    }
+
     public function kembalikan_siswa()
     {
         $data = array
