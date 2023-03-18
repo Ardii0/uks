@@ -54,7 +54,7 @@
                                     <p style="font-weight: bold">Pilih Rencana Anggaran</p>
                                 </div>
                                 <div class="mx-1">
-                                    <select name="id_rencana_anggaran" id="id_rencana_anggaran" class="form-control select2 select2-info"
+                                    <select name="id_rencana_anggaran" id="id_rencana_anggaran" class="form-control"
                                             data-dropdown-css-class="select2-info">
                                             <?php $id = 0; foreach ($data_rencana_anggaran as $data): $id++; ?>
                                                 <option value="<?php echo $data->id_rencana_anggaran ?>"><?php echo $data->nama_anggaran ?></option>

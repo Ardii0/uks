@@ -705,22 +705,24 @@ class Akademik extends CI_Controller {
     public function siswa_mutasi()
     {
         $this->load->model('M_akademik');
-        $siswa['siswa'] = $this->m_akademik->get_siswa('siswa');
-        $rombel['rombel'] = $this->m_akademik->get_rombel('rombel');
-        $kelas['kelas'] = $this->m_akademik->get_kelas('kelas');
-        $this->load->view('akademik/siswa/mutasi', $siswa + $rombel + $kelas);
+        $data['siswa'] = $this->m_akademik->get_siswa('siswa');
+        $data['rombel'] = $this->m_akademik->get_rombel('rombel');
+        $data['rombel2'] = $this->m_akademik->get_rombel('rombel2');
+        $data['kelas'] = $this->m_akademik->get_kelas('kelas');
+        $this->load->view('akademik/siswa/mutasi', $data);
     }
 
     public function aksi_mutasi_siswa() {
         $option = $this->input->post('option');
         $id_rombel = $this->input->post('id_rombel');
+        $id_rombel2 = $this->input->post('id_rombel2');
         $id_daftar = $this->input->post('id_daftar');
 
         if ($option == 'Naik Kelas') {
             foreach ($id_daftar as $key => $value) {
                 $logged=$this->m_akademik->ubah_siswa('tabel_siswa', array(
                     'id_daftar' => $key,
-                    'id_rombel' => $id_rombel
+                    'id_rombel' => $id_rombel2
                 ), array(
                     'id_daftar' => $key
                 ));
@@ -826,22 +828,17 @@ class Akademik extends CI_Controller {
         }
     }
 
-    public function filter_kelas($id_rombel)
+    public function filter_kelas()
     {
-        $this->load->model('M_akademik');
-        $siswa['siswa'] = $this->m_akademik->get_siswaperkelas('tabel_siswa', $id_rombel)->result();
-        $rombel['rombel'] = $this->m_akademik->get_rombel('rombel');
-        $kelas['kelas'] = $this->m_akademik->get_kelas('kelas');
-        $this->load->view('akademik/siswa/mutasi', $siswa + $rombel + $kelas);
-    }
-    
+        $id_rombel = $this->input->post('id_rombel');
 
-    function naik_kelas($id){
-        $this->db->set('id_kelas', 'id_kelas+1', FALSE);
-        $this->db->where('id_siswa', $id);
-        $this->db->update('tabel_siswa');
-        $siswa['siswa'] = $this->m_akademik->get_siswa('siswa');
-        $this->load->view('akademik/siswa/mutasi', $siswa);
+        $this->load->model('M_akademik');
+        $this->session->set_userdata('id_rombel', $id_rombel);
+
+        $data['siswa'] = $this->m_akademik->get_siswaperkelas('tabel_siswa', $id_rombel)->result();
+        $data['rombel'] = $this->m_akademik->get_rombel('rombel');
+        $data['kelas'] = $this->m_akademik->get_kelas('kelas');
+        $this->load->view('akademik/siswa/mutasi', $data);
     }
 
 

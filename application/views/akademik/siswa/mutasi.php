@@ -38,22 +38,21 @@
                 <div class="container-fluid bg-white">
                     <div class="row mx-2 pt-3 d-flex justify-content-between">
                         <div class="col-2 col-sm-6 ">   
-                            <form action="">
+                            <form action="<?php echo base_url('akademik/filter_kelas/') ?>" method="post">
                             <div class="form-group d-flex flex-row " style="width: fit-content;">
                                 <div class="mt-2 mx-1">
                                     <p style="font-weight: bold">Pilih Kelas</p>
                                 </div>
                                 <div class="mx-1">
-                                    <select name="id_rombel" class="form-control select2 select2-info"
+                                    <select name="id_rombel" id="id_rombel" class="form-control select2 select2-info"
                                             data-dropdown-css-class="select2-info">
-                                            <?php $id = 0; foreach ($rombel as $data):
-                                                $id++; ?>
+                                            <?php $id = 0; foreach ($rombel as $data): $id++; ?>
                                                 <option value="<?php echo $data->id_rombel ?>"><?php echo $data->nama_rombel ?></option>
                                             <?php endforeach ?>
                                         </select>
                                 </div>
                                 <div class="mx-1">
-                                    <button type="button" class="btn btn-primary" onclick="filter(<?php echo $data->id_rombel; ?>)">Tampilkan</button>
+                                    <button type="submit" class="btn btn-primary">Tampilkan</button>
                                 </div>
                             </div>
                             </form>
@@ -76,7 +75,7 @@
                                     <thead>
                                         <tr>
                                             <th>
-                                                <input type="checkbox" name="" id="">
+                                                <input type="checkbox" name="sample" class="selectall"/>
                                             </th>
                                             <th>Rombel</th>
                                             <th>NIS</th>
@@ -144,20 +143,10 @@
                                         <p style="font-weight: bold">Kelas</p>
                                     </div>
                                     <div class="mx-1">
-                                        <select name="id_rombel" class="form-control select2 select2-info"
+                                        <select name="id_rombel2" class="form-control select2 select2-info"
                                             data-dropdown-css-class="select2-info">
                                             <option selected="selected">Pilih Kelas</option>
-                                            <?php $id = 0; foreach ($kelas as $data):
-                                                $id++; ?>
-                                                <option value="<?php echo $data->id_kelas ?>"><?php echo $data->nama_kelas ?></option>
-                                            <?php endforeach ?>
-                                        </select>
-                                    </div>
-                                    <div class="mx-1">
-                                        <select name="id_rombel" class="form-control select2 select2-info"
-                                            data-dropdown-css-class="select2-info">
-                                            <option selected="selected">Pilih Rombel</option>
-                                            <?php $id = 0; foreach ($rombel as $data):
+                                            <?php $id = 0; foreach ($rombel2 as $data):
                                                 $id++; ?>
                                                 <option value="<?php echo $data->id_rombel ?>"><?php echo $data->nama_rombel ?></option>
                                             <?php endforeach ?>
@@ -206,9 +195,13 @@
     </div>
     <?php $this->load->view('akademik/style/js') ?>
     <script>
-        function filter(id) {
-            window.location.href = "<?php echo base_url('Akademik/filter_kelas/') ?>" + id;
+    $('.selectall').click(function() {
+        if ($(this).is(':checked')) {
+            $('div input').attr('checked', true);
+        } else {
+            $('div input').attr('checked', false);
         }
+    });
     </script>
 </body>
 
