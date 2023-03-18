@@ -1088,7 +1088,13 @@ class Akademik extends CI_Controller {
         ];
         $this->load->model('M_akademik');
         $this->session->set_userdata('id_rombel', $id_rombel);
-        
+
+        // $siswa['siswa'] = $this->m_akademik->get_siswaperkelas('tabel_siswa', $id_rombel)->result();
+        // $rombel['rombel'] = $this->m_akademik->get_rombel('rombel');
+        // $kelas['kelas'] = $this->m_akademik->get_kelas('kelas');
+        // $this->load->view('akademik/siswa/mutasi', $siswa + $rombel + $kelas + $data);
+    
+
         $data['siswa'] = $this->m_akademik->get_siswaperkelas('tabel_siswa', $id_rombel)->result();
         $data['rombel'] = $this->m_akademik->get_rombel('rombel');
         $data['kelas'] = $this->m_akademik->get_kelas('kelas');
