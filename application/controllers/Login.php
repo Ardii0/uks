@@ -117,6 +117,10 @@ class Login extends CI_Controller {
         // $data_session['cdate'] = $sess->cdate;
         // $data_session['lv'] = $sess->level;
         $data_session['status_admin'] = "login";
+        $data_session['status_akademik'] = "login";
+        $data_session['status_perpustakaan'] = "login";
+        $data_session['status_nilai'] = "login";
+        $data_session['status_keuangan'] = "login";
         $data_session['level'] = "Admin";
         $data_session['id_hak_akses'] = "2";
         $this->session->set_userdata($data_session);
