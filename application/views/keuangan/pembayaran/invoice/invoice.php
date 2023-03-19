@@ -21,8 +21,8 @@
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <h1>Cetak Invoice
-                                <?php foreach ($siswa as $data): ?>
-                                    <a href="<?php echo base_url('Keuangan/cetak_pembayaran/'.$data->id_siswa.'/'.$data->id_rombel.'/pdf') ?>" class="btn btn-success"><i class="fas fa-print"></i>
+                                <?php foreach ($idinvc as $idinvc): ?>
+                                    <a href="<?php echo base_url('Keuangan/cetak_pembayaran/'.$idinvc->id_invoice.'/pdf') ?>" class="btn btn-success"><i class="fas fa-print"></i>
                                         Cetak
                                     </a>
                                 <?php endforeach; ?>
@@ -49,35 +49,37 @@
                         <div class="col-4 px-2">
                             <div class="shadow bg-white px-3 py-2 rounded">
                                 <div class="font-weight-bold">Dari :</div>
-                                <?php foreach($siswa as $data): ?>
-                                    <div><strong><?php echo $data->nama?></strong></div>
-                                    <div>Kelas <?php echo tampil_kelas_ByRombel($data->id_rombel)?></div>
-                                    <div><?php echo tampil_rombel_byid($data->id_rombel)?></div>
-                                <?php endforeach; ?>
+                                    <div><strong><?php echo tampil_namadaftar_ByIdSiswa($idinvc->id_siswa)?></strong></div>
+                                    <div>Kelas <?php echo tampil_kelas_ByRombel($idinvc->id_siswa)?></div>
+                                    <div><?php echo tampil_rombel_byid($idinvc->id_siswa)?></div>
                             </div>
                         </div>
                         <div class="col-4 px-3">
                             <div class="shadow bg-white px-3 py-2 rounded">
                                 <div class="font-weight-bold">Kepada :</div>
-                                <?php foreach($siswa as $data): ?>
-                                    <div><?php echo tampil_namajenjang_ByIdSiswa($data->id_siswa)?></div>
-                                    <div><?php echo tampil_almtjenjang_ByIdSiswa($data->id_siswa)?></div>
-                                    <div><?php echo $dt->email?></div>
-                                <?php endforeach; ?>
+                                    <div><?php echo tampil_namajenjang_ByIdSiswa($idinvc->id_siswa)?></div>
+                                    <div><?php echo tampil_almtjenjang_ByIdSiswa($idinvc->id_siswa)?></div>
+                                    <?php echo tampil_emaillevelById($idinvc->id_level) ?>
                             </div>
                         </div>
                         <div class="col-4 px-3">
                             <div class="shadow bg-white px-3 py-2 rounded" style="height: 112px;">
                                 <div class="row">
-                                    <div class="col-4 text-right font-weight-bold">Tanggal Bayar :</div>
-                                    <div class="col-8">
-                                        <?php echo date("j M Y");?>
+                                    <div class="col-6 text-right font-weight-bold">Invoice :</div>
+                                    <div class="col-6 font-weight-bold">
+                                        <?php echo $idinvc->id_invoice ?>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-4 text-right font-weight-bold">Petugas :</div>
-                                    <div class="col-8">
-                                        <?php echo $dt->username?>
+                                    <div class="col-6 text-right font-weight-bold">Tanggal Bayar :</div>
+                                    <div class="col-6">
+                                        <?php echo changeDateFormat('j M Y',$idinvc->date) ?>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6 text-right font-weight-bold">Petugas :</div>
+                                    <div class="col-6">
+                                        <?php echo tampil_usernamelevelById($idinvc->id_level) ?>
                                     </div>
                                 </div>
                             </div>

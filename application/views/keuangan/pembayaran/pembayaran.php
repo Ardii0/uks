@@ -64,9 +64,9 @@
                                             <th>ID Transaksi</th>
                                             <th>Nama/Rombel</th>
                                             <th>Jenis Bayar</th>
-                                            <th>Keterangan</th>
                                             <th>Nominal</th>
                                             <th>User</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -84,9 +84,11 @@
                                                 </span>
                                             </td>
                                             <td><?php echo tampil_namajenisbayarById($history->id_jenis)?></td>
-                                            <td><?php echo $history->keterangan?></td>
                                             <td><?php echo $history->nominal?></td>
-                                            <td><?php echo $history->akuntan?></td>
+                                            <td><?php echo tampil_emaillevelById($history->id_level)?></td>
+                                            <td><button class="btn btn-success" onclick="window.location.href='<?php echo base_url('Keuangan/cetak_invoice/'.$history->id_invoice)?>'">
+                                                <i class="fas fa-print"></i>
+                                            </button></td>
                                         </tr>
                                         <?php endforeach; ?>
                                     </tbody>

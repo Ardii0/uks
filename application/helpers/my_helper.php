@@ -1,5 +1,27 @@
 <?php
 
+function tampil_usernamelevelById($id)
+{
+ $ci =& get_instance();
+ $ci->load->database();
+ $result = $ci->db->where('id_level',$id)->get('tabel_level');
+  foreach ($result->result() as $c) {
+  $stmt= $c->username;
+  return $stmt;
+  }
+}
+
+function tampil_emaillevelById($id)
+{
+ $ci =& get_instance();
+ $ci->load->database();
+ $result = $ci->db->where('id_level',$id)->get('tabel_level');
+  foreach ($result->result() as $c) {
+  $stmt= $c->email;
+  return $stmt;
+  }
+}
+
 function tampil_paketjenjangById($id)
 {
  $ci =& get_instance();
@@ -75,15 +97,16 @@ $result = $ci->db->select('*')
   return $addrs;
 }
 
-function tampil_idta_ByIdDaftar($id)
+function tampil_idta_ByIdSiswa($id)
 {
 $ci =& get_instance();
 $ci->load->database();
 $idangkatan = '';
 $result = $ci->db->select('*')
-                  ->from('tabel_daftar')
+                  ->from('tabel_siswa')
+                  ->join('tabel_daftar','tabel_siswa.id_daftar = tabel_daftar.id_daftar')
                   ->join('tabel_tahunajaran','tabel_daftar.id_angkatan = tabel_tahunajaran.id_angkatan')
-                  ->where('tabel_daftar.id_daftar',$id)
+                  ->where('tabel_siswa.id_siswa',$id)
                   ->get();
   foreach ($result->result() as $c) {
   $stmt= $c->id_angkatan;
@@ -857,6 +880,11 @@ function format_indo($date){
     $stmt= $c->akses;
     return $stmt;
     }
+  }
+
+  function changeDateFormat($format)
+  {
+      return date($format);
   }
 
 ?>

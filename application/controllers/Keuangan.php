@@ -498,6 +498,7 @@ class Keuangan extends CI_Controller
    }
 
 // Pembayaran
+ // Pembayaran
     public function pembayaran()
     {
         $data = [
@@ -508,43 +509,6 @@ class Keuangan extends CI_Controller
         ];
         $data['pembayaran'] = $this->m_keuangan->get_pembayaran();
         $this->load->view('keuangan/pembayaran/pembayaran', $data);
-    }
-
-    public function cari_data()
-    {
-        $data = [
-            'judul' => 'keuangan',
-            'page' => 'keuangan',
-            'menu' => 'pembayaran',
-            'submenu'=>''
-        ];
-        $this->load->model('m_akademik');
-        $data['kelas'] = $this->m_akademik->get_kelas();
-        $data['rombel'] = $this->m_akademik->get_rombel();
-        $data['siswa'] = $this->m_akademik->get_siswa();
-        $this->load->view('keuangan/pembayaran/cari_data', $data);
-    }
-
-    public function hasil_cari_data($ids)
-    {
-        $data = [
-            'judul' => 'keuangan',
-            'page' => 'keuangan',
-            'menu' => 'pembayaran',
-            'submenu'=>''
-        ];
-        $this->load->model('m_akademik');
-        $data['kelas'] = $this->m_akademik->get_kelas();
-        $data['rombel'] = $this->m_akademik->get_rombel();
-        $data['siswa'] = $this->m_akademik->get_siswa();
-        $data['siswa_hasil'] = $this->m_keuangan->get_siswaById('tabel_siswa', $ids)->result();
-        $data['pembayaran'] = $this->m_keuangan->get_pembayaranByIdSiswa($ids);
-        $this->load->view('keuangan/pembayaran/hasil_cari_data', $data);
-    }
-
-    public function direct_cari(){
-        $enc = $this->input->post('id_siswa');
-        redirect('Keuangan/hasil_cari_data/'.$enc);
     }
 
     public function get_rombelByIdKelas(){
@@ -585,7 +549,7 @@ class Keuangan extends CI_Controller
 
     public function direct(){
         $enc = $this->input->post('id_siswa');
-        redirect('Keuangan/form_tambah_pembayaran/'.$enc);
+        redirect('Keuangan/form_pembayaran_invoice/'.$enc);
     }
 
 	public function rig($long)
@@ -599,17 +563,49 @@ class Keuangan extends CI_Controller
 		return $string;
 	}
 
-    public function form_tambah_pembayaran($ids)
+    public function form_pembayaran_invoice($ids)
     {
+        $data = [
+            'judul'  => 'keuangan',
+            'page'   => 'keuangan',
+            'menu'   => 'pembayaran',
+            'submenu'=> ''
+        ];
         // if(!empty($this->session->userdata('id_siswa'))) {
         //    $ids = $this->session->userdata('id_siswa');
 		//    $ids = base64_decode($this->uri->segment(3));
         
+		   $data['rig'] = 'INV'.date('md').$this->rig(3).date('is');
            $data['dt'] = $this->m_keuangan->ambil('tabel_level',array('id_level'=>$this->session->userdata('id_level')))->row();
            $data['siswa'] = $this->m_keuangan->get_siswaById('tabel_siswa', $ids)->result();
            $data['jenjang'] = $this->m_keuangan->get_jenjangByIdSiswafromDaftar($ids);
            $data['jenisbayar'] = $this->m_keuangan->get_jenisbayar();
            $data['pembayaran'] = $this->m_keuangan->get_pembayaranByIdSiswa($ids);
+           $data['content'] = 'keuangan/tambah_pembayaran';
+
+           $this->load->view('keuangan/pembayaran/invoice/form_invoice', $data);
+        // }else{
+        //     redirect('/tambah_pembayaran');
+        // }
+    }
+
+    public function form_tambah_pembayaran($idi)
+    {
+        $data = [
+            'judul'  => 'keuangan',
+            'page'   => 'keuangan',
+            'menu'   => 'pembayaran',
+            'submenu'=> ''
+        ];
+        // if(!empty($this->session->userdata('id_siswa'))) {
+        //    $ids = $this->session->userdata('id_siswa');
+		//    $ids = base64_decode($this->uri->segment(3));
+        
+           $data['dt'] = $this->m_keuangan->ambil('tabel_level',array('id_level'=>$this->session->userdata('id_level')))->row();
+        //    $data['siswa'] = $this->m_keuangan->get_invoiceById($idi)->result();
+           $data['idinvc'] = $this->m_keuangan->get_invoiceById($idi)->result();
+           $data['invoice'] = $this->m_keuangan->get_pembayaranByIdInvoice($idi);
+           $data['jenisbayar'] = $this->m_keuangan->get_jenisbayar();
            $data['content'] = 'keuangan/tambah_pembayaran';
 
            $this->load->view('keuangan/pembayaran/form_tambah_pembayaran', $data);
@@ -618,25 +614,51 @@ class Keuangan extends CI_Controller
         // }
     }
 
-    public function aksi_tambah_pembayaran()
+    public function aksi_tambah_invoice()
     {
-		$idt = 'INV'.date('md').$this->rig(3).date('is');
         $data = [
-            'id_tf' => $idt,
+            'id_invoice' => $this->input->post('id_invoice'),
+            'id_siswa' => $this->input->post('id_siswa'),
+            'id_ta' => $this->input->post('id_ta'),
+            'id_level' => $this->input->post('id_level'),
+            'cek_p' => '1',
+        ];
+        $pembayaran = [
             'id_siswa' => $this->input->post('id_siswa'),
             'id_jenis' => $this->input->post('id_jenis'),
             'nominal' => $this->input->post('nominal'),
             'keterangan' => $this->input->post('keterangan'),
             'id_ta' => $this->input->post('id_ta'),
-            'akuntan' => $this->input->post('akuntan'),
+            'id_tf' => 'TSK'.date('md').$this->rig(3).date('is'),
+            'id_invoice' => $this->input->post('id_invoice'),
+            'id_level' => $this->input->post('id_level'),
+            'cek_p' => '1',
         ];
-        $this->m_keuangan->tambah_pembayaran('tabel_pembayaran', $data);
-        redirect(base_url('Keuangan/form_tambah_pembayaran/'.$this->input->post('id_siswa')));
+        $this->m_keuangan->tambah_pembayaran('tabel_invoice', $data);
+        $this->m_keuangan->tambah_pembayaran('tabel_pembayaran', $pembayaran);
+        redirect(base_url('Keuangan/form_tambah_pembayaran/'.$this->input->post('id_invoice')));
     }
 
-	public function cetak_pembayaran($ids, $idr)
+    public function aksi_tambah_pembayaran()
+    {
+        $data = [
+            'id_tf' => 'TSK'.date('md').$this->rig(3).date('is'),
+            'id_siswa' => $this->input->post('id_siswa'),
+            'id_jenis' => $this->input->post('id_jenis'),
+            'nominal' => $this->input->post('nominal'),
+            'keterangan' => $this->input->post('keterangan'),
+            'id_ta' => $this->input->post('id_ta'),
+            'id_invoice' => $this->input->post('id_invoice'),
+            'id_level' => $this->input->post('id_level'),
+            'cek_p' => '1',
+        ];
+        $this->m_keuangan->tambah_pembayaran('tabel_pembayaran', $data);
+        redirect(base_url('Keuangan/form_tambah_pembayaran/'.$this->input->post('id_invoice')));
+    }
+
+	public function cetak_pembayaran($idi)
 	{
-		$cek = $this->m_keuangan->nps($ids, $idr)->num_rows();
+		// $cek = $this->m_keuangan->ibs($idr)->num_rows();
 		// if (empty($cek)) {
 		// 	$this->session->set_flashdata('msg',
         //     '<div class="alert alert-danger">
@@ -645,22 +667,23 @@ class Keuangan extends CI_Controller
         //     </div>');
 		// 	redirect('Nilai/cetak_raport','refresh');
 		// }else{
-			$nama = $this->m_keuangan->get_n($ids);
-			$rombel = $this->m_keuangan->get_r($idr);
+			$nama = $this->m_keuangan->get_s($idi);
+			$invoice = $this->m_keuangan->get_inv($idi);
 			foreach ($nama->result() as $key) {
 				$data['nama'] = $key->nama;
+				$data['rombel'] = $key->id_rombel;
 			}
-			foreach ($rombel->result() as $key1) {
-				$data['rombel'] = $key1->nama_rombel;
+			foreach ($invoice->result() as $key2) {
+				$data['invoice'] = $key2->id_invoice;
 			}
-			$data['data'] = $this->m_keuangan->nps($ids)->result();
-			if ($this->uri->segment(5) == "pdf") {
+			$data['data'] = $this->m_keuangan->ibs($idi)->result();
+			if ($this->uri->segment(4) == "pdf") {
                 $this->load->library('pdf');
-				$this->pdf->load_view('keuangan/pembayaran/cetakpembayaran', $data);
+				$this->pdf->load_view('keuangan/pembayaran/invoice/cetak_invoice', $data);
 				$this->pdf->render();
 				$this->pdf->stream("Rekap Bayar ".$data['nama'].".pdf", array("Attachment" => false));		
 			}else{
-                redirect('Keuangan/tambah_pembayaran','refresh');
+                redirect($_SERVER['HTTP_REFERER']);
 			}
 		// }
 	}
@@ -672,12 +695,54 @@ class Keuangan extends CI_Controller
     }
     
  // Cetak Invoice
-    public function cetak_invoice($ids)
+    public function cetak_invoice($idi)
     {
-        $data['dt'] = $this->m_keuangan->ambil('tabel_level',array('id_level'=>$this->session->userdata('id_level')))->row();
-        $data['siswa'] = $this->m_keuangan->get_siswaById('tabel_siswa', $ids)->result();
-        $data['pembayaran'] = $this->m_keuangan->get_pembayaranByIdSiswa($ids);
-        $this->load->view('keuangan/pembayaran/cetak_invoice/cetak_invoice', $data);
+        $data = [
+            'judul'  => 'keuangan',
+            'page'   => 'keuangan',
+            'menu'   => 'pembayaran',
+            'submenu'=> ''
+        ];
+        $data['idinvc'] = $this->m_keuangan->get_invoiceById($idi)->result();
+        $data['pembayaran'] = $this->m_keuangan->get_pembayaranByIdInvoice($idi);
+        $this->load->view('keuangan/pembayaran/invoice/invoice', $data);
     }
 
+ // CARI DATA
+    public function cari_data()
+    {
+        $data = [
+            'judul' => 'keuangan',
+            'page' => 'keuangan',
+            'menu' => 'pembayaran',
+            'submenu'=>''
+        ];
+        $this->load->model('m_akademik');
+        $data['kelas'] = $this->m_akademik->get_kelas();
+        $data['rombel'] = $this->m_akademik->get_rombel();
+        $data['siswa'] = $this->m_akademik->get_siswa();
+        $this->load->view('keuangan/pembayaran/cari_data', $data);
+    }
+
+    public function hasil_cari_data($ids)
+    {
+        $data = [
+            'judul' => 'keuangan',
+            'page' => 'keuangan',
+            'menu' => 'pembayaran',
+            'submenu'=>''
+        ];
+        $this->load->model('m_akademik');
+        $data['kelas'] = $this->m_akademik->get_kelas();
+        $data['rombel'] = $this->m_akademik->get_rombel();
+        $data['siswa'] = $this->m_akademik->get_siswa();
+        $data['siswa_hasil'] = $this->m_keuangan->get_siswaById('tabel_siswa', $ids)->result();
+        $data['pembayaran'] = $this->m_keuangan->get_pembayaranByIdSiswa($ids);
+        $this->load->view('keuangan/pembayaran/hasil_cari_data', $data);
+    }
+
+    public function direct_cari(){
+        $enc = $this->input->post('id_siswa');
+        redirect('Keuangan/hasil_cari_data/'.$enc);
+    }
 }
