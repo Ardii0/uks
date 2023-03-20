@@ -11,9 +11,9 @@
 
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-        <!-- navbar -->
+       
         <?php $this->load->view('keuangan/style/navbar') ?>
-        <!-- navbar -->
+       
         <!-- Sidebar -->
         <?php $this->load->view('keuangan/style/sidebar') ?>
         <!-- Sidebar -->

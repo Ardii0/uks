@@ -142,8 +142,8 @@
                                             <td><?php echo $data->uraian ?></td>
                                             <td><?php echo $data->pencatat ?></td>
                                             <td><?php echo tampil_nama_akun_transaksi($data->id_akun) ?></td>
-                                            <td><?php echo $data->debet ?></td>
-                                            <td><?php echo $data->kredit ?></td>
+                                            <td><?php echo convRupiah($data->debet) ?></td>
+                                            <td><?php echo convRupiah($data->kredit) ?></td>
                                             <td>
                                                 <button onClick="hapus(<?php echo $data->id_transaksi ?>)" class="btn btn-danger btn-sm">
                                                     <i class="fa fa-trash"></i>

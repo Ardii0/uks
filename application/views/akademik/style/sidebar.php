@@ -15,8 +15,8 @@
       </div>
 
     <div class="sidebar">
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <nav class="mt-2" data-scrollbar-auto-hide="n">
+        <ul class="nav nav-pills nav-sidebar nav-child-indent flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
             <a href="<?php echo base_url('Akademik/') ;?>"  class="<?=$menu == 'dashboard' ? 'active' :'' ?> nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>

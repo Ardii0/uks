@@ -34,8 +34,6 @@
                                                 data-target="#modal_tambah_kategori">
                                                 Tambah Kategori
                                             </button>
-                                            <a href="<?php echo base_url('Perpustakaan/tambah_kategori_buku');?>"
-                                                class="btn btn-success">Tambah Kategori Buku</a>
                                         </div>
                                     </div>
                                 </div>

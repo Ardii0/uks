@@ -12,9 +12,9 @@
 
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-        <!-- navbar -->
+       
         <?php $this->load->view('keuangan/style/navbar') ?>
-        <!-- navbar -->
+       
         <!-- Sidebar -->
         <?php $this->load->view('keuangan/style/sidebar') ?>
         <!-- Sidebar -->
@@ -77,7 +77,7 @@
 
                                     </h4>
                                 </div>
-                                <table id="data-table2" class="table table-bordered ">
+                                <table id="data-table" class="table table-bordered ">
                                     <thead>
                                         <tr>
                                             <th>Date Time</th>
@@ -107,10 +107,10 @@
                                                 <?php echo tampil_nama_jenis_transaksi($data->id_anggaran) ?>
                                             </td>
                                             <td>
-                                            <?php echo $data->debet ?>
+                                            <?php echo convRupiah($data->debet) ?>
                                         </td>
                                         <td>
-                                        <?php echo $data->kredit ?>
+                                        <?php echo convRupiah($data->kredit) ?>
                                             </td>
                                         </tr>
                                         <tr>

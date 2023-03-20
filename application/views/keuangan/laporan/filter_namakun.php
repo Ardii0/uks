@@ -12,9 +12,9 @@
 
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-        <!-- navbar -->
+       
         <?php $this->load->view('keuangan/style/navbar') ?>
-        <!-- navbar -->
+       
         <!-- Sidebar -->
         <?php $this->load->view('keuangan/style/sidebar') ?>
         <!-- Sidebar -->
@@ -89,7 +89,7 @@
                                                     <?php echo $data->uraian ?>
                                                 </td>
                                                 <td>
-                                                    Rp. <?php echo $data->debet ?>
+                                                     <?php echo convRupiah($data->debet) ?>
                                                 </td>
                                             </tr>
                                             <?php endforeach;?>
@@ -103,7 +103,7 @@
                                                             foreach ($datafilter as $key) { 
                                                                 $totalprice += $key->debet;
                                                             } 
-                                                            echo $totalprice;?>
+                                                            echo convRupiah($totalprice);?>
                                                     </strong>
                                                 </td>
                                             </tr>
@@ -130,7 +130,7 @@
                                                     <?php echo $data->uraian ?>
                                                 </td>
                                                 <td>
-                                                    Rp. <?php echo $data->kredit ?>
+                                                    <?php echo convRupiah($data->kredit) ?>
                                                 </td>
                                             </tr>
                                             <?php endforeach;?>
@@ -139,13 +139,12 @@
                                                 <td>
 
                                                     <strong>
-                                                        Rp.
                                                         <?php  
                                                                     $totalprice = 0; 
                                                                     foreach ($datafilter as $key) { 
                                                                         $totalprice += $key->kredit; 
                                                                     } 
-                                                                    echo $totalprice;?>
+                                                                    echo convRupiah($totalprice);?>
                                                     </strong>
                                                 </td>
                                             </tr>
@@ -155,22 +154,20 @@
                             </div>
                         </div>
                         <div class="card-footer text-muted">
-                            Total Debet Rp
+                            Total Debet
                             <?php  
-                                                            
-                                                            $debet= 0;
-                                                            $kredit= 0;
-                                                            foreach ($datafilter as $key) { 
-                                                                $debet += $key->debet; 
-                                                                $kredit += $key->kredit;    
-                                                                $totalprice = $debet -  $kredit ;
-                                                            } 
-                                                            echo $totalprice;?>
+                            $debet= 0;
+                            $kredit= 0;
+                            foreach ($datafilter as $key) { 
+                                $debet += $key->debet; 
+                                $kredit += $key->kredit;    
+                                $totalprice = $debet -  $kredit ;
+                            } 
+                            echo convRupiah($totalprice);?>
                         </div>
                     </div>
                 </div>
         </div>
-
         </section>
     </div>
     </div>

@@ -15,8 +15,7 @@
           </div>
         </div>
       </div>
-
-      <nav class="mt-2">
+      <nav class="mt-2" style="padding-bottom: 90px" data-scrollbar-auto-hide="n">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
             <a href="<?php echo base_url('keuangan/')?>" class="nav-link <?=$menu == 'dashboard' ? 'active' :'' ?>">

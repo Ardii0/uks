@@ -12,9 +12,9 @@
 
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-        <!-- navbar -->
+       
         <?php $this->load->view('keuangan/style/navbar') ?>
-        <!-- navbar -->
+       
         <!-- Sidebar -->
         <?php $this->load->view('keuangan/style/sidebar') ?>
         <!-- Sidebar -->
@@ -61,7 +61,6 @@
                                 <button type="submit" style="width: " class="ml-2 w-50 btn btn-info">Tampilkan</button>
                             </div>
                     </div>
-
                 </div>
         </div>
         </section>
