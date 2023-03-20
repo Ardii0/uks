@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modul Input Nilai</title>
+    <title>Nilai</title>
     <?php $this->load->view('nilai/style/head')?>
 </head>
 
@@ -35,26 +35,17 @@
 
             <section class="content container-fluid">
                 <!-- <div class="container-fluid bg-white"> -->
+                <?php if(!empty($rombel)) {?>
                     <div class="row px-1 pt-2">
                         <div class="col-md-3">
                             <div class="d-flex justify-content-between">
-                                <?php if(!empty($rombel)) {?>
-                                    <h4><u>Wali Kelas:</u></h4>
-                                <?php }else{?>
-                                    <h4><u>Nama Guru:</u></h4>
-                                <?php } ?>
+                                <h4><u>Wali Kelas:</u></h4>
                                 <h3><?php echo $dt->username ;?></h3>
                             </div>
-                            <?php if(!empty($rombel)) {?>
                             <h5>Pilih Kelas</h5>
                             <?php foreach($rombel as $key) {?>
                                 <div class="alert alert-success d-flex" onclick="show_siswa(<?php echo $key->id_rombel ?>)">
                                     <?php echo $key->nama_kelas." / ".$key->nama_rombel." / ".$key->jml." Siswa<br/>" ?>
-                                </div>
-                            <?php } ?>
-                            <?php }else{?>
-                                <div class="alert alert-danger d-flex">
-                                    Hanya Walikelas yang bisa mencetak raport
                                 </div>
                             <?php } ?>
                             </div>
@@ -72,6 +63,19 @@
                             </div>
                         </div>
                     </div>
+                    <?php }else{?>
+                        <div class="container">
+                            <div class="alert alert-danger">
+                                <h4>Peringatan</h4>
+                                <div>
+                                    Menu cetak raport hanya tersedia untuk Walikelas,
+                                </div>
+                                <div>    
+                                    Hubungi Administrator untuk Proses lebih lanjut.
+                                </div>
+                            </div>
+                        </div>    
+                    <?php } ?>
                 <!-- </div> -->
             </section>
         </div>

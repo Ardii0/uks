@@ -26,7 +26,8 @@ class Akademik extends CI_Controller {
         $data['total_mapel'] = $this->m_akademik->total_mapel();
         $data['total_siswa'] = $this->m_akademik->total_siswa();
         $data['total_guru'] = $this->m_akademik->total_guru();
-        $data['ta'] = $this->m_akademik->get_tahun_ajaran();
+        $data['ta'] = $this->m_akademik->get_tahun_ajaran_aktif();
+        $data['jenjang'] = $this->m_akademik->get_jenjang('jenjang');
         $this->load->view('akademik/dashboard', $data);
     }
 // Tahun Ajar
@@ -88,9 +89,7 @@ class Akademik extends CI_Controller {
             'kd_angkatan' => $this->input->post('kd_angkatan'),
             'tgl_a' => $this->input->post('tgl_a'),
             'tgl_b' => $this->input->post('tgl_b'),
-            // 'aktif' => $this->input->post('aktif'),
             'keterangan' => $this->input->post('keterangan'),
-            // 'status' => $this->input->post('status'),
         );
         $logged=$this->m_akademik->ubah_ta('tabel_tahunajaran', $data, array('id_angkatan'=>$this->input->post('id_angkatan')));
         if($logged)
@@ -400,13 +399,14 @@ class Akademik extends CI_Controller {
             'menu' => 'guru',
             'submenu'=>''
         ];
-        $this->load->model('M_akademik');
-        $this->load->view('akademik/guru/form_guru');
+        $data['acak'] = 'KG'.'-'.$this->acak(6);
+        $this->load->view('akademik/guru/form_guru', $data);
     }
 
     public function tambah_guru()
     {
         $data = [
+            'kode_guru' => $this->input->post('kode_guru'),
             'nama_guru' => $this->input->post('nama_guru'),
             'nip' => $this->input->post('nip'),
             'jekel' => $this->input->post('jekel'),
@@ -803,6 +803,26 @@ class Akademik extends CI_Controller {
         $approve = array
         (
             "diterima" => "Y",
+        );
+
+        $approve_siswa=$this->m_akademik->ubah_seleksi('tabel_daftar', $approve, array('id_daftar'=>$this->input->post('id_daftar')));
+        if($approve_siswa)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('Akademik/siswa_seleksi_siswa'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Akademik/siswa_seleksi_siswa'));
+        }
+    }
+
+    public function tolak_siswa()
+    {
+        $approve = array
+        (
+            "diterima" => "T",
         );
 
         $approve_siswa=$this->m_akademik->ubah_seleksi('tabel_daftar', $approve, array('id_daftar'=>$this->input->post('id_daftar')));
@@ -1285,10 +1305,9 @@ class Akademik extends CI_Controller {
         $data = [
             'judul' => 'akademik',
             'page' => 'akademik',
-            'menu' => 'mapel',
-            'submenu'=>'alok_mapel'
+            'menu' => 'guru',
+            'submenu'=>''
         ];
-        $this->load->model('M_akademik');
         $data['guru']=$this->m_akademik->get_guruById('tabel_guru', $kode_guru)->result();
         $data['mapel'] = $this->m_akademik->get_mapel('mapel');
         $data['alokasiguru'] = $this->m_akademik->get_alokasiguruByIdGuru('tabel_alokasiguru', $kode_guru);

@@ -5,7 +5,19 @@ class M_keuangan extends CI_Model{
     {
         return $this->db->get('tabel_keuangan')->result();
     }
-
+// Dashboard
+public function total_akun()
+{
+return $this->db->get('tabel_akun')->num_rows();
+}
+  public function total_jenis_trans()
+{
+return $this->db->get('tabel_jenis_transaksi')->num_rows();
+}
+  public function total_anggaran()
+{
+return $this->db->get('tabel_rencana_anggaran')->num_rows();
+}
 //Rencana Anggaran   
     public function get_all_data_rencana_anggaran()
     {
@@ -201,6 +213,16 @@ class M_keuangan extends CI_Model{
         return $this->db->where('id_siswa', $ids)->get('tabel_pembayaran')->result();
     }
 
+    public function get_invoiceById($idi)
+    {
+        return $this->db->where('id_invoice', $idi)->get('tabel_invoice');
+    }
+
+    public function get_pembayaranByIdInvoice($idi)
+    {
+        return $this->db->where('id_invoice', $idi)->get('tabel_pembayaran')->result();
+    }
+
     public function get_jenisbayar()
     {
         return $this->db->get('tabel_jenisbayar')->result();
@@ -212,31 +234,31 @@ class M_keuangan extends CI_Model{
         return $this->db->insert_id();
     }
 
-	public function nps($ids)
+	public function ibs($idi)
 	{
 		$this->db->select('tabel_jenisbayar.nama_jenis, tabel_pembayaran.*');
 		$this->db->from('tabel_pembayaran');
 		$this->db->join('tabel_jenisbayar', 'tabel_pembayaran.id_jenis = tabel_jenisbayar.id_jenis');
 		// $this->db->where('tabel_pembayaran.id_jenis', $idj);
-		$this->db->where('tabel_pembayaran.id_siswa', $ids);
+		$this->db->where('tabel_pembayaran.id_invoice', $idi);
 		// $this->db->where('tabel_pembayaran.id_semester', $idp);
 		$db = $this->db->get();
 		return $db;
 	}
 
-	public function get_n($ids)
+	public function get_s($idi)
 	{
-		$this->db->select('tabel_daftar.nama');
-		$this->db->from('tabel_siswa');
-		$this->db->join('tabel_daftar', 'tabel_daftar.id_daftar = tabel_siswa.id_daftar');
-		$this->db->where('tabel_siswa.id_siswa', $ids);
+		$this->db->select('*');
+		$this->db->from('tabel_invoice');
+		$this->db->join('tabel_siswa', 'tabel_siswa.id_siswa = tabel_invoice.id_siswa');
+		$this->db->where('tabel_invoice.id_invoice', $idi);
 		$db = $this->db->get();
 		return $db;
 	}
 
-	public function get_r($idr)
+	public function get_inv($idi)
 	{
-		return $this->db->get_where('tabel_rombel', array('id_rombel' => $idr));
+		return $this->db->get_where('tabel_pembayaran', array('id_invoice' => $idi));
 	}
 
 //Laporan keuangan

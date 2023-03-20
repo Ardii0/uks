@@ -26,7 +26,7 @@
                     <div class="row ">
                         <div class="col-12  col-sm-6 col-md-4">
                             <div>
-                                <div class="small-box bg-gradient-secondary">
+                                <div class="small-box bg-gradient-info">
                                     <div class="inner">
                                         <p>Jumlah Mapel</p>
                                         <h3><?php echo $total_mapel;?></h3>
@@ -41,7 +41,7 @@
                         </div>
                         <div class="col-12 col-sm-6 col-md-4">
                             <div>
-                                <div class="small-box bg-gradient-secondary">
+                                <div class="small-box bg-gradient-info">
                                     <div class="inner">
                                         <p>Jumlah Siswa</p>
                                         <h3><?php echo $total_siswa;?></h3>
@@ -56,7 +56,7 @@
                         </div>
                         <div class="col-12 col-sm-6 col-md-4">
                             <div>
-                                <div class="small-box bg-gradient-secondary">
+                                <div class="small-box bg-gradient-info">
                                     <div class="inner">
                                         <p>Jumlah Guru</p>
                                         <h3><?php echo $total_guru;?></h3>
@@ -72,7 +72,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <div class="small-box bg-gradient-secondary text-white mb-3" style="max-width: 100%;">
+                            <div class="small-box bg-gradient-info text-white mb-3" style="max-width: 100%;">
                                 <div class="card-header bg-transparent text-center fw-bold h3 border-white"> Dashboard
                                     Nilai
                                 </div>
@@ -95,7 +95,7 @@
                                     <div class="box-body example-1 scrollbar-ripe-malinka">
                                         <table id="table_1" class="table table-bordered">
                                             <thead>
-                                                <tr class="fixed bg-gradient-secondary">
+                                                <tr class="fixed bg-gradient-info">
                                                     <th>No</th>
                                                     <th>Tahun Ajaran</th>
                                                     <th>Total Siswa</th>

@@ -6,3 +6,5 @@
   <link rel="stylesheet" href="<?php echo base_url('builder/dist/css/adminlte.min.css'); ?>">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="<?php echo base_url('builder/plugins/overlayScrollbars/css/OverlayScrollbars.min.css'); ?>">
+  <!-- Style Down Below -->
+  <link rel="stylesheet" href="<?php echo base_url('builder/dist/css/sidebar.css'); ?>">

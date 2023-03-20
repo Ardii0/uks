@@ -14,6 +14,17 @@ class Login extends CI_Controller {
 //======login=======
   public function index()
   {
+    if ($this->session->userdata('status_admin')==='login') {
+      redirect(base_url('Admin/'));
+    } elseif ($this->session->userdata('status_akademik')==='login') {
+      redirect(base_url('Akademik/'));
+    } elseif ($this->session->userdata('status_perpustakaan')==='login') {
+      redirect(base_url('Perpustakaan/'));
+    } elseif ($this->session->userdata('status_nilai')==='login') {
+      redirect(base_url('Nilai/'));
+    } elseif ($this->session->userdata('status_keuangan')==='login') {
+      redirect(base_url('Keuangan/'));
+    }
     $sub_data['warning']=$this->session->userdata('warning');
     $this->load->view('petugas/login',$sub_data);
   }
@@ -117,6 +128,10 @@ class Login extends CI_Controller {
         // $data_session['cdate'] = $sess->cdate;
         // $data_session['lv'] = $sess->level;
         $data_session['status_admin'] = "login";
+        $data_session['status_akademik'] = "login";
+        $data_session['status_perpustakaan'] = "login";
+        $data_session['status_nilai'] = "login";
+        $data_session['status_keuangan'] = "login";
         $data_session['level'] = "Admin";
         $data_session['id_hak_akses'] = "2";
         $this->session->set_userdata($data_session);

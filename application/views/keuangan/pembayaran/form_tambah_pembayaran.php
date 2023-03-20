@@ -41,19 +41,28 @@
                 <div class="container-fluid bg-white shadow py-3 px-5">
                     <form class="row" action="<?php echo base_url('Keuangan/aksi_tambah_pembayaran') ?>" enctype="multipart/form-data" method="post">
                         <div class="col-5">
-                            <?php $id=0; foreach ($siswa as $data): $id++; ?>
+                            <?php foreach ($idinvc as $data): ?>
                                 <div class="row mt-3">
                                     <button type="reset" class="btn btn-primary">
                                         <i class="fas fa-sync-alt"></i>
                                     </button>
                                 </div>
                                 <div class="row mt-3">
+                                    <div class="col-4 text-right font-weight-bold">ID Invoice</div>
+                                    <div class="col-8">
+                                        <?php foreach ($idinvc as $invoiceid): ?>
+                                            <?php echo $invoiceid->id_invoice ;?>
+                                            <input type="hidden" name="id_invoice" value="<?php echo $invoiceid->id_invoice ;?>">
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
                                     <div class="col-4 text-right font-weight-bold">Nama</div>
                                     <div class="col-8">
                                         <?php echo tampil_namadaftar_ByIdSiswa($data->id_siswa) ;?>
                                         <input type="hidden" name="id_siswa" value="<?php echo $data->id_siswa ;?>">
-                                        <input type="hidden" name="id_ta" value="<?php echo tampil_idta_ByIdDaftar($data->id_daftar) ;?>">
-                                        <input type="hidden" name="akuntan" value="<?php echo $dt->email ;?>">
+                                        <input type="hidden" name="id_ta" value="<?php echo tampil_idta_ByIdSiswa($data->id_siswa) ;?>">
+                                        <input type="hidden" name="id_level" value="<?php echo $dt->id_level ;?>">
                                     </div>
                                 </div>
                                 <div class="row mt-3">
@@ -116,7 +125,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $id=0; foreach ($pembayaran as $databayar): $id++?>
+                                    <?php $id=0; foreach ($invoice as $databayar): $id++?>
                                         <tr>
                                             <td>
                                                 <a href="<?php echo base_url('Keuangan/hapus_pembayaran/'.$databayar->id_pembayaran) ?>"
@@ -127,7 +136,7 @@
                                             <td><?php echo $databayar->id_tf?></td>
                                             <td><?php echo tampil_jenisbayarById($databayar->id_jenis)?></td>
                                             <td><?php echo $databayar->keterangan?></td>
-                                            <td><?php echo $databayar->akuntan?></td>
+                                            <td><?php echo tampil_emaillevelById($databayar->id_level)?></td>
                                             <td class="d-flex justify-content-end"><?php echo convRupiah($databayar->nominal)?></td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -140,7 +149,7 @@
                                 <div class="col-2 font-weight-bold">
                                 &emsp;
                                 <?php $subtotal = 0; 
-                                      foreach ($pembayaran as $total) {
+                                      foreach ($invoice as $total) {
                                         $subtotal += $total->nominal;
                                       }
                                       echo convRupiah($subtotal) ?>
@@ -148,9 +157,9 @@
                             </div>
                         </div>
                         <div class="col-12 d-flex justify-content-end mt-3">
-                            <?php foreach ($siswa as $data): ?>
+                            <?php foreach ($idinvc as $data): ?>
                                 <!-- <a href="<?php echo base_url('Keuangan/cetak_pembayaran/'.$data->id_siswa.'/'.$data->id_rombel.'/pdf') ?>" class="btn btn-warning"><i class="fas fa-print"></i> Cetak & -->
-                                <a href="<?php echo base_url('Keuangan/cetak_invoice/'.$data->id_siswa) ?>" class="btn btn-warning"><i class="fas fa-print"></i> Cetak &
+                                <a href="<?php echo base_url('Keuangan/cetak_invoice/'.$data->id_invoice) ?>" class="btn btn-warning"><i class="fas fa-print"></i> Cetak &
                                     Simpan</a>
                             <?php endforeach; ?>
                         </div>

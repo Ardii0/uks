@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entry Nilai Input</title>
+    <title>Nilai</title>
     <?php $this->load->view('nilai/style/head')?>
 </head>
 
@@ -107,87 +107,87 @@
                                             <label class="control-label">NUH1</label>
                                             <div>
                                                 <input type="number" name="nuh1" class="form-control"
-                                                    placeholder="Masukan Nilai PR"><br>
+                                                    placeholder="Masukan Nilai Ulangan Harian 1"><br>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">NUH2</label>
                                             <div>
                                                 <input type="number" name="nuh2" class="form-control"
-                                                    placeholder="Masukan Nilai PR"><br>
+                                                    placeholder="Masukan Nilai Ulangan Harian 2"><br>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">NUH3</label>
                                             <div>
                                                 <input type="number" name="nuh3" class="form-control"
-                                                    placeholder="Masukan Nilai PR"><br>
+                                                    placeholder="Masukan Nilai Ulangan Harian 3"><br>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">MID</label>
                                             <div>
                                                 <input type="number" name="mid" class="form-control"
-                                                    placeholder="Masukan Nilai PR"><br>
+                                                    placeholder="Masukan Nilai Ujian Tengah Semester"><br>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">RNUH</label>
                                             <div>
                                                 <input type="number" name="rnuh" class="form-control"
-                                                    placeholder="Masukan Nilai PR" disabled><br>
+                                                    placeholder="Nilai Rata-Rata Ulangan Harian" disabled><br>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">NH</label>
                                             <div>
                                                 <input type="number" name="nh" class="form-control"
-                                                    placeholder="Masukan Nilai PR" disabled><br>
+                                                    placeholder="Rata-Rata Tugas dan Ulangan Harian" disabled><br>
                                             </div>
                                         </div>
-                                        <button type="submit">simpan</button>
+                                        <button type="submit" class="btn btn-success">Simpan</button>
                                     </div>
                                     <div class="col-6 mt-3">
                                         <div class="form-group">
                                             <label class="control-label">NT1</label>
                                             <div>
                                                 <input type="number" name="nt1" class="form-control"
-                                                    placeholder="Masukan Nilai Ulangan Harian"><br>
+                                                    placeholder="Masukan Nilai Tugas 1"><br>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">NT2</label>
                                             <div>
                                                 <input type="number" name="nt2" class="form-control"
-                                                    placeholder="Masukan Nilai Ulangan Harian"><br>
+                                                    placeholder="Masukan Nilai Tugas 2"><br>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">NT3</label>
                                             <div>
                                                 <input type="number" name="nt3" class="form-control"
-                                                    placeholder="Masukan Nilai Ulangan Harian"><br>
+                                                    placeholder="Masukan Nilai Tugas 3"><br>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">SMT</label>
                                             <div>
                                                 <input type="number" name="smt" class="form-control"
-                                                    placeholder="Masukan Nilai Ulangan Harian"><br>
+                                                    placeholder="Masukan Nilai Ujian Akhir Semester"><br>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">RNT</label>
                                             <div>
                                                 <input type="number" name="rnt" class="form-control"
-                                                    placeholder="Masukan Nilai Ulangan Harian" disabled><br>
+                                                    placeholder="Nilai Rata-Rata Tugas" disabled><br>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">NAR</label>
                                             <div>
                                                 <input type="number" name="nar" class="form-control"
-                                                    placeholder="Masukan Nilai Ulangan Harian" disabled><br>
+                                                    placeholder="Nilai Keseluruhan" disabled><br>
                                             </div>
                                         </div>
                                     </div>

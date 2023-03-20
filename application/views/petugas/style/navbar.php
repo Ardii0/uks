@@ -6,10 +6,25 @@
         </li>
     </ul>
 
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <div class="nav-item dropdown">
+                <a class="nav-link bg-primary dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                    aria-haspopup="true" aria-expanded="false">Pindah Dashboard</a>
+                <div class="dropdown-menu mt-0">
+                    <a class="dropdown-item" href="<?php echo base_url('Akademik/')?>">Akademik</a>
+                    <a class="dropdown-item" href="<?php echo base_url('Perpustakaan/')?>">Perpus</a>
+                    <a class="dropdown-item" href="<?php echo base_url('Nilai/')?>">Guru</a>
+                    <a class="dropdown-item" href="<?php echo base_url('Keuangan/')?>">Keuangan</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-            <a href="<?php echo base_url('Admin/setting') ;?>" class="nav-link h4 hover-animation">
+            <a href="<?php echo base_url('Admin/setting') ;?>" class="nav-link hover-animation">
                 <i class="fas fa-cog"></i>
             </a>
         </li>
