@@ -34,7 +34,6 @@
             </section>
 
             <section class="content container-fluid">
-                <!-- <div class="container-fluid bg-white"> -->
                 <?php if(!empty($rombel)) {?>
                     <div class="row px-1 pt-2">
                         <div class="col-md-3">
@@ -48,7 +47,7 @@
                                     <?php echo $key->nama_kelas." / ".$key->nama_rombel." / ".$key->jml." Siswa<br/>" ?>
                                 </div>
                             <?php } ?>
-                            </div>
+                        </div>
                         <div class="col">
                             <div class="card-body bg-white" id="box">
                                 <table id="data-table" class="table table-bordered table-striped">
@@ -63,20 +62,19 @@
                             </div>
                         </div>
                     </div>
-                    <?php }else{?>
-                        <div class="container">
-                            <div class="alert alert-danger">
-                                <h4>Peringatan</h4>
-                                <div>
-                                    Menu cetak raport hanya tersedia untuk Walikelas,
-                                </div>
-                                <div>    
-                                    Hubungi Administrator untuk Proses lebih lanjut.
-                                </div>
+                <?php }else{?>
+                    <div class="container">
+                        <div class="alert alert-danger">
+                            <h4>Peringatan</h4>
+                            <div>
+                                Menu cetak raport hanya tersedia untuk Walikelas,
                             </div>
-                        </div>    
-                    <?php } ?>
-                <!-- </div> -->
+                            <div>    
+                                Hubungi Administrator untuk Proses lebih lanjut.
+                            </div>
+                        </div>
+                    </div>    
+                <?php } ?>
             </section>
         </div>
     </div>

@@ -289,6 +289,7 @@ class Nilai extends CI_Controller {
             'menu' => 'nilai',
             'submenu'=>'data_mapel'
             ];
+        $data['allMapel'] = $this->m_akademik->get_mapel();
         $data['mapel'] = $this->m_keuangan->ambil('tabel_alokasiguru',array('kode_guru'=>$this->session->userdata('kode_guru')))->result();
         $this->load->view('nilai/data_nilai/modul_data_nilai_siswa', $data);
     }
@@ -301,6 +302,7 @@ class Nilai extends CI_Controller {
             'menu' => 'nilai',
             'submenu'=>'data_mapel'
             ];
+        $data['allMapel'] = $this->m_akademik->get_mapel();
         $data['mapel'] = $this->m_keuangan->ambil('tabel_alokasiguru',array('kode_guru'=>$this->session->userdata('kode_guru')))->result();
         // $data['mapel'] = $this->m_akademik->get_mapel('tabel_mapel');
         $alokasimapel['alokasi']=$this->m_nilai->get_alokasimapelByIdMapel($id_mapel)->result();

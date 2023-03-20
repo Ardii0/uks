@@ -61,11 +61,11 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Tanggal</th>
+                                            <th>ID Invoice</th>
                                             <th>ID Transaksi</th>
                                             <th>Nama/Rombel</th>
                                             <th>Jenis Bayar</th>
                                             <th>Nominal</th>
-                                            <th>User</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -74,6 +74,7 @@
                                         <tr>
                                             <td><?php echo $id?></td>
                                             <td><?php echo $history->date?></td>
+                                            <td><?php echo $history->id_invoice?></td>
                                             <td><?php echo $history->id_tf?></td>
                                             <td class="d-flex">
                                                 <span>
@@ -84,8 +85,7 @@
                                                 </span>
                                             </td>
                                             <td><?php echo tampil_namajenisbayarById($history->id_jenis)?></td>
-                                            <td><?php echo $history->nominal?></td>
-                                            <td><?php echo tampil_emaillevelById($history->id_level)?></td>
+                                            <td><?php echo convRupiah($history->nominal)?></td>
                                             <td><button class="btn btn-success" onclick="window.location.href='<?php echo base_url('Keuangan/cetak_invoice/'.$history->id_invoice)?>'">
                                                 <i class="fas fa-print"></i>
                                             </button></td>
