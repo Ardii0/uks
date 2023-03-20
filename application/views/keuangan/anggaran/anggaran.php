@@ -623,7 +623,7 @@
                                         </div>
                                     </div>
                                     <input type="hidden" name="id_rencana_anggaran" id="id_rencana_anggaran" value="<?php echo $this->session->userdata('id_rn');?>">
-                                    <input type="hidden" name="jenis_transaksi" value="m">
+                                    <input type="hidden" name="jenis_transaksi" value="k">
                                     <div class="form-group col-sm-12">
                                         <label class="control-label">Akun Debit</label>
                                         <div class="">

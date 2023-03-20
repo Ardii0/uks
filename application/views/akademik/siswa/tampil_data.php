@@ -68,6 +68,11 @@
                                             <th>Jekel</th>
                                             <th>TTL</th>
                                             <th>Alamat</th>
+                                            <?php
+                                                if( $this->session->userdata('id_select') == "1")
+                                                echo "<th>Nama Sekolah</th>"; 
+                                                elseif( $this->session->userdata('id_select') == "2")
+                                                echo "<th>Tanggal Lulus</th>"?>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -85,7 +90,7 @@
                                                 <td>
                                                     <?php echo tampil_nama_siswa_byid($data->id_daftar) ?>
                                                 </td>
-                                                <td>
+                                                <td> 
                                                     <?php echo tampil_jekel_siswa_byid($data->id_daftar) ?>
                                                 </td>
                                                 <td>
@@ -95,6 +100,16 @@
                                                 <td>
                                                     <?php echo tampil_alamat_siswa_byid($data->id_daftar) ?>
                                                 </td>
+                                                <?php
+                                                $pindah = tampil_pindah_siswa_byid($data->id_daftar); 
+                                                $lulus = tampil_lulus_siswa_byid($data->id_daftar);
+                                                if ($lulus != null) {
+                                                    $format_lulus = format_indo($lulus);
+                                                } 
+                                                if( $this->session->userdata('id_select') == "1")
+                                                echo "<td>$pindah</td>"; 
+                                                elseif( $this->session->userdata('id_select') == "2")
+                                                echo "<td>$format_lulus</td>"?>
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>

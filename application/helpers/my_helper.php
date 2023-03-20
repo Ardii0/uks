@@ -288,6 +288,26 @@ function tampil_nama_siswa_byid($id)
     return $stmt;
     }
   }
+  function tampil_pindah_siswa_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_daftar',$id)->get('tabel_pindah');
+    foreach ($result->result() as $c) {
+    $stmt= $c->nama_sekolah;
+    return $stmt;
+    }
+  }
+  function tampil_lulus_siswa_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_daftar',$id)->get('tabel_lulus');
+    foreach ($result->result() as $c) {
+    $stmt= $c->tanggal_lulus;
+    return $stmt;
+    }
+  }
   function tampil_agama_siswa_byid($id)
   {
   $ci =& get_instance();
