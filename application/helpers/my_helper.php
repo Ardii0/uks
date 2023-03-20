@@ -784,6 +784,17 @@ function tampil_nama_siswa_byid($id)
     return $stmt;
     }
   }
+
+  function tampil_akun_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_akun',$id)->get('tabel_akun');
+    foreach ($result->result() as $c) {
+    $stmt= $c->nama_akun;
+    return $stmt;
+    }
+  }
   
   
 function convRupiah($value) {

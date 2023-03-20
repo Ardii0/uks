@@ -146,12 +146,10 @@
                                                     <tr>
                                                         <td class="text-right">
                                                             <div <?php if (tampil_tetapkan_byid($this->session->userdata('id_rn')) == 1) echo "class='hidden''"; ?>>
-                                                            <!-- <button class="btn btn-warning btn-sm" type="button" data-toggle="modal"
+                                                            <button class="btn btn-warning btn-sm" type="button" data-toggle="modal"
                                                             data-target="#modal_pendapatan<?php echo $data->id ?>">
                                                                 <i class="fa fa-edit"></i>
-                                                            </button> -->
-                                                            <a href="" class="btn btn-sm btn-info" data-toggle="modal"
-                                                    data-target="#modals<?php echo $data->id; ?>">Edit</a>
+                                                            </button>
                                                             <button class="btn btn-danger btn-sm" onClick="hapus_jt(<?php echo $data->id ?>)">
                                                                 <i class="fa fa-trash"></i>
                                                             </button>
@@ -202,7 +200,7 @@
                                                         <td class="text-right">
                                                         <div <?php if (tampil_tetapkan_byid($this->session->userdata('id_rn')) == 1) echo "class='hidden''"; ?>>
                                                             <button class="btn btn-warning btn-sm" type="button" data-toggle="modal"
-                                                        data-target="#modal_pengeluaran<?php echo $data_rn[0]->id_rencana_anggaran ?>">
+                                                            data-target="#modal_pengeluaran<?php echo $data->id ?>">
                                                                 <i class="fa fa-edit"></i>
                                                             </button>
                                                             <button class="btn btn-danger btn-sm" onClick="hapus_jt(<?php echo $data->id ?>)">
@@ -464,7 +462,6 @@
             </div>
         </div>
     
-
         <!-- Modal Edit Rencana Anggaran-->
         <div class="modal fade" id="modal<?php echo $data_rn[0]->id_rencana_anggaran ?>"  tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -517,9 +514,10 @@
             </form>
         </div>
     </div>
-
+    
+    <?php foreach ($masuk as $data): ?>
     <!-- Modal Edit Pendapatan-->
-    <div class="modal fade" id="modal_pendapatan<?php echo $data->id ?>" tabindex="-1" role="dialog"
+    <div class="modal fade" id="modal_pendapatan<?php echo $data->id?>" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <form action="<?php echo base_url('keuangan/aksi_edit_anggaran') ?>" enctype="multipart/form-data"
@@ -535,11 +533,11 @@
                             <div class="box">
                                 <!-- /.box-header -->
                                 <div class="box-body">
+                                <input type="hidden" name="id" id="id" value="<?php echo $data->id?>">
                                     <div class="form-group col-sm-12">
                                         <label class="control-label">Nama Pendapatan</label>
                                         <div class="">
-                                            <input type="text" name="nama_jenis_transaksi" class="form-control"
-                                                placeholder="Masukan Nama Pendapatan"><br>
+                                            <input type="text" name="nama_jenis_transaksi" class="form-control" value="<?php echo $data->nama_jenis_transaksi?>"><br>
                                         </div>
                                     </div>
                                     <input type="hidden" name="id_rencana_anggaran" id="id_rencana_anggaran" value="<?php echo $this->session->userdata('id_rn');?>">
@@ -549,7 +547,7 @@
                                         <div class="">
                                             <select class="form-control form-select px-2 py-1" name="debit"
                                                 aria-label="Default select example">
-                                                <option selected>Pilih Akun Debit</option>
+                                                <option value="<?php echo $data->debit ?>" selected><?php echo tampil_akun_byid($data->debit) ?></option>
                                                 <?php $id = 0; foreach ($data_akun as $row):
                                                     $id++; ?>
                                                     <option value="<?php echo $row->id_akun ?>"><?php echo $row->nama_akun ?>
@@ -563,7 +561,7 @@
                                         <div class="">
                                             <select class="form-control form-select px-2 py-1" name="kredit"
                                                 aria-label="Default select example">
-                                                <option selected>Pilih Akun Kredit</option>
+                                                <option value="<?php echo $data->kredit ?>" selected><?php echo tampil_akun_byid($data->kredit) ?></option>
                                                 <?php $id = 0; foreach ($data_akun as $row):
                                                     $id++; ?>
                                                     <option value="<?php echo $row->id_akun ?>"><?php echo $row->nama_akun ?>
@@ -575,15 +573,13 @@
                                     <div class="form-group col-sm-12">
                                         <label class="control-label">Nominal</label>
                                         <div class="">
-                                            <input type="number" name="nominal" class="form-control"
-                                                placeholder="Masukan Nominal"><br>
+                                            <input type="number" name="nominal" class="form-control" value="<?php echo $data->nominal?>"><br>
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-12">
                                         <label class="control-label">Keterangan</label>
                                         <div class="">
-                                            <input type="text" name="keterangan" class="form-control"
-                                                placeholder="Masukan Keterangan"><br>
+                                            <input type="text" name="keterangan" class="form-control" value="<?php echo $data->keterangan?>"><br>
                                         </div>
                                     </div>
                                 </div>
@@ -598,9 +594,11 @@
                 </form>
             </div>
         </div>
+        <?php endforeach; ?>
 
-        <!-- Modal Edit Pengeluaran-->
-        <div class="modal fade" id="modal_pengeluaran<?php echo $data_rn[0]->id_rencana_anggaran ?>" tabindex="-1" role="dialog"
+    <!-- Modal Edit Pengeluaran-->
+    <?php foreach ($keluar as $data): ?>
+    <div class="modal fade" id="modal_pengeluaran<?php echo $data->id ?>" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <form action="<?php echo base_url('keuangan/aksi_edit_anggaran') ?>" enctype="multipart/form-data"
@@ -617,22 +615,21 @@
                             <div class="box">
                                 <!-- /.box-header -->
                                 <div class="box-body">
+                                <input type="hidden" name="id" id="id" value="<?php echo $data->id?>">
                                     <div class="form-group col-sm-12">
-                                        <label class="control-label">Nama Pengeluaran</label>
+                                        <label class="control-label">Nama Pendapatan</label>
                                         <div class="">
-                                            <input type="text" name="nama_jenis_transaksi" class="form-control"
-                                                placeholder="Masukan Nama Pendapatan"><br>
+                                            <input type="text" name="nama_jenis_transaksi" class="form-control" value="<?php echo $data->nama_jenis_transaksi?>"><br>
                                         </div>
                                     </div>
                                     <input type="hidden" name="id_rencana_anggaran" id="id_rencana_anggaran" value="<?php echo $this->session->userdata('id_rn');?>">
-
-                                    <input type="hidden" name="jenis_transaksi" value="k">
+                                    <input type="hidden" name="jenis_transaksi" value="m">
                                     <div class="form-group col-sm-12">
                                         <label class="control-label">Akun Debit</label>
                                         <div class="">
                                             <select class="form-control form-select px-2 py-1" name="debit"
                                                 aria-label="Default select example">
-                                                <option selected>Pilih Akun Debit</option>
+                                                <option value="<?php echo $data->debit ?>" selected><?php echo tampil_akun_byid($data->debit) ?></option>
                                                 <?php $id = 0; foreach ($data_akun as $row):
                                                     $id++; ?>
                                                     <option value="<?php echo $row->id_akun ?>"><?php echo $row->nama_akun ?>
@@ -646,7 +643,7 @@
                                         <div class="">
                                             <select class="form-control form-select px-2 py-1" name="kredit"
                                                 aria-label="Default select example">
-                                                <option selected>Pilih Akun Kredit</option>
+                                                <option value="<?php echo $data->kredit ?>" selected><?php echo tampil_akun_byid($data->kredit) ?></option>
                                                 <?php $id = 0; foreach ($data_akun as $row):
                                                     $id++; ?>
                                                     <option value="<?php echo $row->id_akun ?>"><?php echo $row->nama_akun ?>
@@ -658,15 +655,13 @@
                                     <div class="form-group col-sm-12">
                                         <label class="control-label">Nominal</label>
                                         <div class="">
-                                            <input type="number" name="nominal" class="form-control"
-                                                placeholder="Masukan Nominal"><br>
+                                            <input type="number" name="nominal" class="form-control" value="<?php echo $data->nominal?>"><br>
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-12">
                                         <label class="control-label">Keterangan</label>
                                         <div class="">
-                                            <input type="text" name="keterangan" class="form-control"
-                                                placeholder="Masukan Keterangan"><br>
+                                            <input type="text" name="keterangan" class="form-control" value="<?php echo $data->keterangan?>"><br>
                                         </div>
                                     </div>
                                 </div>
@@ -681,46 +676,8 @@
                 </form>
             </div>
         </div>
+    <?php endforeach?>
   
-
-        <div class="modal fade" id="modals<?php echo $data->id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Edit Barang</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <!-- di dalam modal-body terdapat 4 form input yang berisi data.
-                    data-data tersebut ditampilkan sama seperti menampilkan data pada tabel. -->
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="exampleFormControlInput1">Nama Barang</label>
-                                <input type="text" class="form-control" value="<?php echo $data['nama_barang']; ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Deskripsi Barang</label>
-                                <textarea class="form-control" rows="5"><?php echo $data['deskripsi_barang']; ?></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlInput1">Jenis Barang</label>
-                                <input type="text" class="form-control" value="<?php echo $data['jenis_barang']; ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlInput1">Harga Barang</label>
-                                <input type="text" class="form-control" value="<?php echo $data['harga_barang']; ?>">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <?php $this->load->view('keuangan/style/js') ?>
