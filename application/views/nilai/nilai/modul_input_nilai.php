@@ -59,7 +59,7 @@
                                                 <td><?php echo tampil_mapelById($data->id_mapel) ?></td>
                                                 <td class="d-flex">
                                                     <a href="<?php echo base_url('Nilai/data_input/'.$data->id_mapel) ?>" class="btn btn-success btn-sm">
-                                                        <i class="fa fa- fa-arrow-right"></i>
+                                                        <i class="fa fa-arrow-right"></i>
                                                     </a>
                                                 </td>
                                             </tr>

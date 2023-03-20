@@ -58,6 +58,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php if($this->session->userdata('level') === 'Admin') {?>
+                                            <?php $id=0; foreach ($allMapel as $data): $id++?>
+                                                <tr>
+                                                    <td><?php echo $id ?></td>
+                                                    <td><?php echo tampil_mapelById($data->id_mapel) ?></td>
+                                                    <td class="d-flex">
+                                                        <a href="<?php echo base_url('Nilai/modul_data_nilai_filter/'.$data->id_mapel) ?>" class="btn btn-success btn-sm">
+                                                            <i class="fa fa-arrow-right"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        <?php } else {?>
                                         <?php $id=0; foreach ($mapel as $data): $id++?>
                                         <tr>
                                             <td><?php echo $id ?></td>
@@ -70,6 +83,7 @@
                                             </td>
                                         </tr>
                                         <?php endforeach; ?>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
