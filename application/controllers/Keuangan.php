@@ -103,7 +103,7 @@ class Keuangan extends CI_Controller
         $this->load->view('keuangan/anggaran/edit_anggaran', $data);
     }
 
-    public function aksi_edit_anggaran()
+    public function aksi_edit_rencana_anggaran()
     {
         $data = array
         (
@@ -111,10 +111,10 @@ class Keuangan extends CI_Controller
             'awal_periode' => $this->input->post('awal_periode'),
             'akhir_periode' => $this->input->post('akhir_periode'),
             'pencatat' => $this->input->post('pencatat'),
-            'status' => $this->input->post('status'),
-            'tetapkan' => $this->input->post('tetapkan'),
+            'status' => 1,
+            'tetapkan' => 0,
         );
-        $masuk=$this->m_keuangan->edit_anggaran('tabel_rencana_anggaran', $data, array('id'=>$this->input->post('id')));
+        $masuk=$this->m_keuangan->edit_anggaran('tabel_rencana_anggaran', $data, array('id_rencana_anggaran'=>$this->input->post('id_rencana_anggaran')));
         if($masuk)
         {
             $this->session->set_flashdata('sukses', 'berhasil');
@@ -157,6 +157,29 @@ class Keuangan extends CI_Controller
             'keterangan' => $this->input->post('keterangan'),
         );
         $masuk = $this->m_keuangan->tambah_anggaran('tabel_jenis_transaksi', $data);
+        if ($masuk) {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('keuangan/anggaran/anggaran'));
+        } else {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('keuangan/anggaran/anggaran'));
+        }
+    }
+
+    public function aksi_edit_anggaran()
+    {
+        $data = array
+        (
+            'nama_jenis_transaksi' => $this->input->post('nama_jenis_transaksi'),
+            'rencana_anggaran' => $this->input->post('id_rencana_anggaran'),
+            'status' => 1,
+            'jenis_transaksi' => $this->input->post('jenis_transaksi'),
+            'nominal' => $this->input->post('nominal'),
+            'debit' => $this->input->post('debit'),
+            'kredit' => $this->input->post('kredit'),
+            'keterangan' => $this->input->post('keterangan'),
+        );
+        $masuk=$this->m_keuangan->edit_anggaran('tabel_jenis_transaksi', $data, array('id'=>$this->input->post('id')));
         if ($masuk) {
             $this->session->set_flashdata('sukses', 'berhasil');
             redirect(base_url('keuangan/anggaran/anggaran'));
@@ -441,7 +464,7 @@ class Keuangan extends CI_Controller
    }
    public function filter_tanggal()
    {
-    $data = [
+    $data = [ 
         'judul' => 'keuangan',
         'page' => 'keuangan',
         'menu' => 'laporan',

@@ -59,11 +59,15 @@
                         </div>
                         <div class="col-md-3 d-flex justify-content-end align-self-start">
                             <div class="form-group">
-                                <select class="custom-select rounded bg-success shadow" id="exampleSelectRounded0">
-                                    <option>Lihat Data</option>
-                                    <option>Value 2</option>
-                                    <option>Value 3</option>
-                                </select>
+                            <form action="<?php echo base_url('akademik/tampil_data_mutasi/') ?>" method="post">
+                            <div class="mx-1">
+                                    <select name="id_rombel" id="id_rombel" class="form-control bg-success" onchange="this.form.submit();">
+                                            <option value="0">Lihat Data</option>
+                                            <option value="1">Pindah</option>
+                                            <option value="2">Lulus</option>
+                                        </select>
+                                </div>
+                            </form>
                             </div>
                         </div>
                     </div>

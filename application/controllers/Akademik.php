@@ -1074,6 +1074,9 @@ class Akademik extends CI_Controller {
                 $this->session->set_flashdata('error', 'gagal..');
                 redirect(base_url('Akademik/siswa_mutasi/'.$key));
             }
+        } else {
+                $this->session->set_flashdata('sukses', 'berhasil');
+                redirect(base_url('Akademik/siswa_mutasi'));
         }
     }
 
@@ -1101,6 +1104,29 @@ class Akademik extends CI_Controller {
         $this->load->view('akademik/siswa/mutasi', $data);
     }
 
+
+    public function tampil_data_mutasi()
+    {
+        $data = [
+            'judul' => 'akademik',
+            'page' => 'akademik',
+            'menu' => 'siswa',
+            'submenu'=>'mutasi'
+        ];
+        $id = $this->input->post('id_rombel');
+        $this->session->set_userdata('id_select', $id);
+        $this->load->model('M_akademik');
+        $data['rombel'] = $this->m_akademik->get_rombel('rombel');
+        $data['kelas'] = $this->m_akademik->get_kelas('kelas');
+
+        if ($id == 1) {
+            $data['siswa'] = $this->m_akademik->get_pindah('siswa');
+            $this->load->view('akademik/siswa/tampil_data', $data);
+        } elseif ($id == 2) {
+            $data['siswa'] = $this->m_akademik->get_lulus('siswa');
+            $this->load->view('akademik/siswa/tampil_data', $data);
+        }
+    }
 
 // Pelajaran
  // Mapel

@@ -232,6 +232,16 @@ class M_akademik extends CI_Model{
         return $data;
     }
 
+
+    public function get_pindah()
+    {
+        return $this->db->get('tabel_pindah')->result();
+    }
+    public function get_lulus()
+    {
+        return $this->db->get('tabel_lulus')->result();
+    }
+
 // Pendaftaran Siswa
     public function get_siswa_pendaftaran()
 	{
