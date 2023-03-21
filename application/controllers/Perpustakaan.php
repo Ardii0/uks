@@ -160,9 +160,11 @@ class Perpustakaan extends CI_Controller {
             'judul' => 'perpus',
             'page' => 'perpus',
             'menu' => 'anggota',
-            'submenu'=>'anggota'
+            'submenu'=>'anggota',
+            'menu_submenu_admin'=>'data_anggota',
+            'menu_admin' => 'perpustakaan',
+            'submenu_admin'=> 'daftar_anggota'
         ];
-        require 'vendor/autoload.php';
         $data['anggota']=$this->m_perpustakaan->get_anggotaById('tabel_anggota', $id_anggota)->result();
         $this->load->view('perpustakaan/anggota/kartu_anggota', $data);
     }

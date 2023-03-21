@@ -247,13 +247,13 @@
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
                                         <a href="<?php echo base_url('Perpustakaan/laporan_peminjaman')?>" class="nav-link  <?=$submenu_admin == 'laporan_peminjaman' ? 'active' :'' ?>">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Peminjaman </p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="<?php echo base_url('Perpustakaan/laporan_pengembalian')?>" class="nav-link <?=$submenu_admin == 'laporan_pengembalian' ? 'active' :'' ?>">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Pengembalian</p>
                                         </a>
                                     </li>
