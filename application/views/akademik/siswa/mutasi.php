@@ -46,6 +46,7 @@
                                 <div class="mx-1">
                                     <select name="id_rombel" id="id_rombel" class="form-control select2 select2-info"
                                             data-dropdown-css-class="select2-info">
+                                            <option selected="selected">Pilih Kelas</option>
                                             <?php $id = 0; foreach ($rombel as $data): $id++; ?>
                                                 <option value="<?php echo $data->id_rombel ?>"><?php echo $data->nama_rombel ?></option>
                                             <?php endforeach ?>

@@ -22,6 +22,17 @@ function tampil_emaillevelById($id)
   }
 }
 
+function find_idjenjang($id)
+{
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_jenjang',$id)->get('tabel_kelas');
+    foreach ($result->result() as $c) {
+    $stmt= $c->id_jenjang;
+    return $stmt;
+    }
+}
+
 function tampil_paketjenjangById($id)
 {
  $ci =& get_instance();
@@ -102,7 +113,7 @@ $result = $ci->db->select('*')
                   ->where('tabel_siswa.id_siswa',$id)
                   ->get();
   foreach ($result->result() as $c) {
-  $stmt= $c->keterangan;
+  $stmt= $c->alamat;
   $addrs= $addrs.$stmt.'<br>';
   }
   return $addrs;
@@ -137,6 +148,27 @@ function tampil_tahunangkatan_byid($id)
   }
 }
 
+function find_idjenismapel($id)
+{
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_jenismapel',$id)->get('tabel_jenismapel');
+    foreach ($result->result() as $c) {
+    $stmt= $c->id_jenismapel;
+    return $stmt;
+    }
+}
+
+function find_idmapel($id)
+{
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_mapel',$id)->get('tabel_alokasiguru');
+    foreach ($result->result() as $c) {
+    $stmt= $c->id_mapel;
+    return $stmt;
+    }
+}
 function tampil_mapelById($id)
 {
  $ci =& get_instance();
@@ -667,6 +699,17 @@ function tampil_nama_siswa_byid($id)
     $namakelas= $namakelas.$stmt.'<br>';
     }
     return $namakelas;
+  }
+
+  function find_idrombel($id)
+  {
+    $ci =& get_instance();
+    $ci->load->database();
+    $result = $ci->db->where('id_kelas',$id)->get('tabel_rombel');
+      foreach ($result->result() as $c) {
+      $stmt= $c->id_kelas;
+      return $stmt;
+      }
   }
 
  // Detail Index Buku

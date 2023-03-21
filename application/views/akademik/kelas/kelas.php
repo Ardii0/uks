@@ -74,9 +74,13 @@
                                                 <a href="<?php echo base_url('Akademik/edit_kelas/'.$data->id_kelas)?>"
                                                     class="btn btn-primary btn-sm">
                                                     <i class="fa fa-edit"></i></a>
-                                                <button onclick="hapus(<?php echo $data->id_kelas ;?>)"
-                                                    class="btn btn-danger btn-sm">
-                                                    <i class="fa fa-trash"></i></button>
+                                                    <?php 
+                                                    $find = find_idrombel($data->id_kelas);
+                                                    if($find == null) echo "                                                
+                                                    <button onclick='hapus($data->id_kelas)'
+                                                    class='btn btn-danger btn-sm'>
+                                                    <i class='fa fa-trash'></i></button>"; 
+                                                    else echo ""?>
                                             </td>
                                         </tr>
                                         <?php endforeach;?>
