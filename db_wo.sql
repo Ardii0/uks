@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 21, 2023 at 05:17 AM
+-- Generation Time: Mar 21, 2023 at 10:29 AM
 -- Server version: 8.0.29
 -- PHP Version: 8.0.25
 
@@ -244,9 +244,10 @@ INSERT INTO `tabel_daftar` (`id_daftar`, `no_reg`, `id_angkatan`, `id_jenjang`, 
 (6, '2334233', 1, 5, '2023-03-01', '34534545', 'Rizqi', 'L', 'Semarang', 2, 'ada', 'ada', '2003-11-11', 'Islam', 'Mangkang', '089765543321', '1677650453679.png', 'WNI', 'M'),
 (7, '2334233', 1, 5, '2023-03-01', '34534545', 'Rizqi', 'L', 'Semarang', 2, 'ada', 'ada', '2003-11-11', 'Islam', 'Mangkang', '089765543321', '1677650453679.png', 'WNI', 'L'),
 (10, '1213221', 1, 5, '2023-03-01', '31312', 'Ahmad Subardjo', 'L', 'Los Angel', 1, '1', '1', '2023-03-11', 'Islam', 'Jl.Tamai Raya', '09282734851', '1678519397023.jpg', 'WNI', 'A'),
-(11, '123', 1, 1, '2023-03-16', '2', 'ShoeFantasy', 'L', 'sSfd', 1, '1', '1', '2023-03-30', 'Kristen', 'Jl.Tamai Raya', '09282734851', '1678850687584.jpg', 'WNI', 'P'),
+(11, '123', 1, 1, '2023-03-16', '2', 'ShoeFantasy', 'L', 'sSfd', 1, '1', '1', '2023-03-30', 'Kristen', 'Jl.Tamai Raya', '09282734851', '1678850687584.jpg', 'WNI', 'S'),
 (12, '12313', 1, 9, '2023-03-01', '9878', 'Arya', 'L', 'Los Angel', 1, '2', '1', '2023-03-02', 'Islam', 'JL. Jakarta', '09282734851', '1678870842225.jpg', 'WNI', 'T'),
-(13, 'REG-3NBD40', 1, 1, '2023-03-16', '45345', 'ada', 'L', 'Los Angel', 2, '2', '2', '2023-03-24', 'Islam', 'p', '09282734851', '1679367084036.jpg', 'WNI', 'A');
+(13, 'REG-3NBD40', 1, 1, '2023-03-16', '45345', 'ada', 'L', 'Los Angel', 2, '2', '2', '2023-03-24', 'Islam', 'p', '09282734851', '1679367084036.jpg', 'WNI', 'A'),
+(15, 'REG-R4TMYY', 6, 5, '0000-00-00', '12312', 'Kevin Sanjaya', 'L', 'Los Angel', 1, '2', '3', '2023-03-21', 'Islam', 'Jl.pekan sari', '09282734851', NULL, 'WNI', 'A');
 
 -- --------------------------------------------------------
 
@@ -269,7 +270,6 @@ CREATE TABLE `tabel_guru` (
 --
 
 INSERT INTO `tabel_guru` (`kode_guru`, `nip`, `nama_guru`, `jekel`, `no_hp`, `alamat`, `status`) VALUES
-('449', '884564', 'Ahmad', 'L', '545454', 'ada', 'AKTIF'),
 ('450', '3242134', 'Eko', 'L', '08932422342', 'Ungaran', 'AKTIF'),
 ('451', '32333', 'Ahmad', 'L', '087884635', 'Jl.Tamai Raya', 'AKTIF'),
 ('453', '222', 'Ahmad', 'L', '0893847522', '', 'AKTIF'),
@@ -278,9 +278,7 @@ INSERT INTO `tabel_guru` (`kode_guru`, `nip`, `nama_guru`, `jekel`, `no_hp`, `al
 ('KG-330OSN', '21312', 'Shelby', 'L', '1212', 'Jl.Tamai Raya', 'AKTIF'),
 ('KG-3MKQ3P', '111', 'Test23', 'L', '222', 'Jl.Tamai Raya', 'AKTIF'),
 ('KG-QQRODS', '123', 'Test', 'L', '0893847522', 'Jl.Tamai Raya', 'AKTIF'),
-('KG-LVUMAY', '1212', 'Arga', 'L', '0893847522', '', 'AKTIF'),
-('KG-TEFKZU', '12', 'ar', 'L', '0893847522', '', 'AKTIF'),
-('KG-8GVW0P', '32333', 'Test23', 'L', '', 'ada', 'AKTIF');
+('KG-LVUMAY', '1212', 'Arga', 'L', '0893847522', '', 'AKTIF');
 
 -- --------------------------------------------------------
 
@@ -424,6 +422,7 @@ CREATE TABLE `tabel_jenjang` (
   `nama_jenjang` varchar(50) NOT NULL,
   `keterangan` text,
   `id_paket` int NOT NULL,
+  `alamat` text CHARACTER SET latin1 COLLATE latin1_swedish_ci,
   `aktif` int NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -431,15 +430,13 @@ CREATE TABLE `tabel_jenjang` (
 -- Dumping data for table `tabel_jenjang`
 --
 
-INSERT INTO `tabel_jenjang` (`id_jenjang`, `kd_jenjang`, `nama_jenjang`, `keterangan`, `id_paket`, `aktif`) VALUES
-(1, 'J001', 'SD', 'Sekolah Dasar', 2, 1),
-(3, 'J002', 'SMP', 'Sekolah Menengah Pertama', 1, 1),
-(4, 'J003', 'SMA', 'Sekolah Menengah Atas', 2, 1),
-(5, 'J004', 'SMK', 'Sekolah Menengah Kejuruan', 4, 1),
-(7, 'OK', 'OK', '5', 4, 1),
-(8, 'J005', 'SD', 'Sekolah Dasar', 8, 1),
-(9, 'J006', 'SMP', '', 9, 1),
-(10, 'J010', 'Sekolah Menengah Atas', '', 10, 1);
+INSERT INTO `tabel_jenjang` (`id_jenjang`, `kd_jenjang`, `nama_jenjang`, `keterangan`, `id_paket`, `alamat`, `aktif`) VALUES
+(1, 'J001', 'SD Mekar Sari', 'Sekolah Dasar', 2, 'Jl. Sd kemantren', 1),
+(3, 'J002', 'SMP Sehat Mekar Percaya', 'Sekolah Menengah Pertama', 1, 'Jl. Smp kemantren', 1),
+(4, 'J003', 'SMA Public', 'Sekolah Menengah Atas', 2, 'Jl. Sma kemantren', 1),
+(5, 'J004', 'SMK Bina Nusantara', 'Sekolah Menengah Kejuruan', 4, 'Jl. Kemantren Raya no.4', 1),
+(9, 'J006', 'SMP', '', 9, NULL, 1),
+(10, 'J010', 'Sekolah Menengah Atas', '', 10, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -760,7 +757,7 @@ INSERT INTO `tabel_rombel` (`id_rombel`, `id_kelas`, `nama_rombel`, `kode_guru`,
 (10, 2, 'AKL', '444', 21, 'AKTIF'),
 (12, 5, 'VII A', 'KG-330OSN', 50, 'AKTIF'),
 (14, 7, 'VIII D', '450', 35, 'AKTIF'),
-(15, 7, 'VIII B', '444', 35, 'AKTIF');
+(15, 7, 'VIII B', 'KG-330OSN', 35, 'AKTIF');
 
 -- --------------------------------------------------------
 
@@ -828,7 +825,8 @@ INSERT INTO `tabel_siswa` (`id_siswa`, `id_daftar`, `id_rombel`, `saldo_tabungan
 (5, 10, 12, 0, 'Ahmad Subardjo'),
 (6, 6, 15, 0, NULL),
 (7, 3, 15, 0, NULL),
-(8, 13, 1, 0, NULL);
+(8, 13, 1, 0, NULL),
+(9, 15, 15, 0, 'Kevin Sanjaya');
 
 -- --------------------------------------------------------
 
@@ -1103,7 +1101,8 @@ ALTER TABLE `tabel_jenis_transaksi`
 --
 ALTER TABLE `tabel_jenjang`
   ADD PRIMARY KEY (`id_jenjang`),
-  ADD KEY `id_jenjang` (`id_jenjang`);
+  ADD KEY `id_jenjang` (`id_jenjang`),
+  ADD KEY `tabel_jenjang_to_paketjenjang` (`id_paket`);
 
 --
 -- Indexes for table `tabel_kelas`
@@ -1288,7 +1287,7 @@ ALTER TABLE `tabel_alokasimapel`
 -- AUTO_INCREMENT for table `tabel_daftar`
 --
 ALTER TABLE `tabel_daftar`
-  MODIFY `id_daftar` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_daftar` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tabel_jenisbayar`
@@ -1396,7 +1395,7 @@ ALTER TABLE `tabel_semester`
 -- AUTO_INCREMENT for table `tabel_siswa`
 --
 ALTER TABLE `tabel_siswa`
-  MODIFY `id_siswa` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_siswa` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tabel_tahunajaran`
@@ -1457,6 +1456,12 @@ ALTER TABLE `tabel_alokasimapel`
 ALTER TABLE `tabel_daftar`
   ADD CONSTRAINT `tabel_daftar_to_angkatan` FOREIGN KEY (`id_angkatan`) REFERENCES `tabel_tahunajaran` (`id_angkatan`),
   ADD CONSTRAINT `tabel_daftar_to_jenjang` FOREIGN KEY (`id_jenjang`) REFERENCES `tabel_jenjang` (`id_jenjang`);
+
+--
+-- Constraints for table `tabel_jenjang`
+--
+ALTER TABLE `tabel_jenjang`
+  ADD CONSTRAINT `tabel_jenjang_to_paketjenjang` FOREIGN KEY (`id_paket`) REFERENCES `tabel_paketjenjang` (`id_paket`);
 
 --
 -- Constraints for table `tabel_kelas`

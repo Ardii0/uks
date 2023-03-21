@@ -300,7 +300,7 @@ class M_akademik extends CI_Model{
 	}
     public function filterByJenjang($nama_jenjang){
         if ($nama_jenjang != null) {
-          $query = $this->db->query("SELECT * from tabel_daftar where diterima = 'Y' AND id_jenjang = '$nama_jenjang' ORDER BY tgl_daftar ASC ");
+          $query = $this->db->query("SELECT * from tabel_daftar where diterima = 'S' AND id_jenjang = '$nama_jenjang' ORDER BY tgl_daftar ASC ");
         } else {
           $query = $this->db->query("SELECT * from tabel_daftar");
         }

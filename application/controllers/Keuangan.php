@@ -638,7 +638,10 @@ class Keuangan extends CI_Controller
             'judul'  => 'keuangan',
             'page'   => 'keuangan',
             'menu'   => 'pembayaran',
-            'submenu'=> ''
+            'submenu'=> '',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'keuangan',
+            'submenu_admin'=> 'pembayaran'
         ];
         // if(!empty($this->session->userdata('id_siswa'))) {
         //    $ids = $this->session->userdata('id_siswa');
@@ -664,7 +667,10 @@ class Keuangan extends CI_Controller
             'judul'  => 'keuangan',
             'page'   => 'keuangan',
             'menu'   => 'pembayaran',
-            'submenu'=> ''
+            'submenu'=> '',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'keuangan',
+            'submenu_admin'=> 'pembayaran'
         ];
         // if(!empty($this->session->userdata('id_siswa'))) {
         //    $ids = $this->session->userdata('id_siswa');
@@ -770,7 +776,10 @@ class Keuangan extends CI_Controller
             'judul'  => 'keuangan',
             'page'   => 'keuangan',
             'menu'   => 'pembayaran',
-            'submenu'=> ''
+            'submenu'=> '',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'keuangan',
+            'submenu_admin'=> 'pembayaran'
         ];
         $data['idinvc'] = $this->m_keuangan->get_invoiceById($idi)->result();
         $data['pembayaran'] = $this->m_keuangan->get_pembayaranByIdInvoice($idi);
