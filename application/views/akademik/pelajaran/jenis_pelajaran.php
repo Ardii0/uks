@@ -69,9 +69,14 @@
                                                 <a href="<?php echo base_url('Akademik/edit_jenismapel/'.$data->id_jenismapel)?>"
                                                     class="btn btn-primary btn-sm">
                                                     <i class="fa fa-edit"></i></a>
-                                                <button onclick="hapus(<?php echo $data->id_jenismapel ;?>)"
-                                                    class="btn btn-danger btn-sm">
-                                                    <i class="fa fa-trash"></i></button>
+                                                    <?php 
+                                                    $find = find_idjenismapel($data->id_jenismapel);
+                                                    if($find == null) echo "
+                                                    <button onclick='hapus($data->id_jenismapel)'
+                                                    class='btn btn-danger btn-sm'>
+                                                    <i class='fa fa-trash'></i></button>                                              
+                                                    "; 
+                                                    else echo ""?>
                                             </td>
                                         </tr>
                                         <?php endforeach;?>

@@ -8,6 +8,20 @@
     <?php $this->load->view('akademik/style/head') ?>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+        <script language="JavaScript" type="text/javascript">
+function checkDelete(){
+    if (confirm('Yakin Di Hapus?');) {
+        window.location.href = "<?php echo base_url('Akademik/hapus_jenjang/') ?>" + id;
+        location.href="<?php echo base_url('Akademik/hapus_jenjang/') ?>" + id;;
+    };
+}
+var baseUrl='http://example.com';
+      function ConfirmDelete()
+      {
+            if (confirm("Delete Account?"))
+                 location.href=baseUrl+'/deleteRecord.php';
+      }
+</script>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -89,9 +103,14 @@
                                                     <a href="<?php echo base_url('Akademik/edit_jenjang/' . $data->id_jenjang) ?>"
                                                         class="btn btn-primary btn-sm">
                                                         <i class="fa fa-edit"></i></a>
-                                                    <button onclick="hapus(<?php echo $data->id_jenjang; ?>)"
-                                                        class="btn btn-danger btn-sm">
-                                                        <i class="fa fa-trash"></i></button>
+                                                        <?php 
+                                                    $find = find_idjenjang($data->id_jenjang);
+                                                    if($find == null) echo "
+                                                    <button onclick='hapus($data->id_jenjang)'
+                                                    class='btn btn-danger btn-sm'>
+                                                    <i class='fa fa-trash'></i></button>                                                
+                                                    "; 
+                                                    else echo ""?>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
