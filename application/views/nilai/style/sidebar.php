@@ -1,4 +1,7 @@
-<div>
+<?php if($this->session->userdata('level') === 'Admin') {?>
+  <?php $this->load->view('petugas/style/sidebar')?>
+<?php } else {?>
+  <div>
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <a href="index3.html" class="brand-link">
 
@@ -62,4 +65,5 @@
             </nav>
         </div>
     </aside>
-</div>
+  </div>
+<?php }?>

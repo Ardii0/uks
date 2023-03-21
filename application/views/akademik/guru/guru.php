@@ -56,10 +56,10 @@
                                 <table id="datasiswa-table" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
+                                            <th style="width: 2%;">No</th>
                                             <th>NIP</th>
                                             <th>Nama</th>
-                                            <th>Jenis Kelamin</th>
+                                            <th style="width: 14%;">Jenis Kelamin</th>
                                             <th>No HP</th>
                                             <th>Alamat</th>
                                             <th>Aksi</th>

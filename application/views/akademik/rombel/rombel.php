@@ -53,7 +53,7 @@
                                             <th>Kelas</th>
                                             <th>Jenjang</th>
                                             <th>Wali Kelas</th>
-                                            <th>Kouta</th>
+                                            <th>Kuota</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>

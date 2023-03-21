@@ -71,8 +71,7 @@
                                 <div class="form-group">
                                     <label class="control-label">Alamat</label>
                                     <div class="">
-                                        <input type="text" name="alamat" class="form-control"
-                                            placeholder="Masukan Alamat">
+                                        <textarea name="alamat" class="form-control" cols="88" rows="2" placeholder="Masukan Alamat"></textarea>
                                     </div>
                                 </div>
                             </div>

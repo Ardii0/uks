@@ -461,10 +461,9 @@ class Akademik extends CI_Controller {
         }
     }
     
-    public function hapus_guru($id_guru)
+    public function hapus_guru($kode_guru)
     {
-        $this->m_akademik->hapus_guru('tabel_guru', 'kode_guru', $id_guru);
-        $this->m_akademik->hapus_guru('tabel_level', 'kode_guru', $id_guru);
+        $this->m_akademik->hapus_guru('tabel_guru', 'kode_guru', $kode_guru);
         redirect(base_url('Akademik/guru'));
     }
     

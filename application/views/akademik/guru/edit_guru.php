@@ -71,8 +71,9 @@
                                 <div class="form-group">
                                     <label class="control-label">Alamat</label>
                                     <div class="">
-                                        <input type="text" name="alamat" class="form-control"
-                                            placeholder="Masukan Alamat" value="<?php echo $data->alamat ?>">
+                                        <textarea class="form-control" name="alamat" cols="88" rows="2" placeholder="Masukan Alamat">
+                                            <?php echo $data->alamat ?>
+                                        </textarea>
                                     </div>
                                 </div>
                             </div>

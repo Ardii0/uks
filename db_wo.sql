@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 20, 2023 at 10:53 AM
+-- Generation Time: Mar 21, 2023 at 05:17 AM
 -- Server version: 8.0.29
 -- PHP Version: 8.0.25
 
@@ -90,7 +90,8 @@ CREATE TABLE `pinjam` (
 
 INSERT INTO `pinjam` (`id`, `id_buku`) VALUES
 (1, 4),
-(2, 4);
+(2, 4),
+(3, 5);
 
 --
 -- Triggers `pinjam`
@@ -159,7 +160,10 @@ CREATE TABLE `tabel_alokasiguru` (
 --
 
 INSERT INTO `tabel_alokasiguru` (`id_alokasiguru`, `kode_guru`, `id_mapel`) VALUES
-(63, 'KG-330OSN', 9);
+(63, 'KG-330OSN', 9),
+(66, '449', 9),
+(67, '449', 10),
+(68, '450', 9);
 
 -- --------------------------------------------------------
 
@@ -199,7 +203,8 @@ CREATE TABLE `tabel_anggota` (
 --
 
 INSERT INTO `tabel_anggota` (`id_anggota`, `id_siswa`, `tgl_daftar`, `status`) VALUES
-(4343, 1, '2023-03-18', 1);
+(4343, 1, '2023-03-18', 1),
+(8624, 8, '2023-03-01', 1);
 
 -- --------------------------------------------------------
 
@@ -235,12 +240,13 @@ CREATE TABLE `tabel_daftar` (
 
 INSERT INTO `tabel_daftar` (`id_daftar`, `no_reg`, `id_angkatan`, `id_jenjang`, `tgl_daftar`, `nisn`, `nama`, `jekel`, `tempat_lahir`, `anak_ke`, `saudara_kandung`, `saudara_angkat`, `tgl_lahir`, `agama`, `alamat`, `telepon`, `foto`, `warga_negara`, `diterima`) VALUES
 (2, '12', 1, 3, '2023-02-18', '213', 'Ahmad Jay', 'L', 'Los Angel', 1, '1', '1', '2023-03-11', 'Islam', 'Jl.Roti Burger Ayam', '123', '1677472666712.png', 'WNI', 'Y'),
-(3, '313', 1, 3, '2023-02-28', '3123', 'Irvanda', 'L', 'Taman', 1, '4', '0', '2023-03-03', 'Islam', 'Taman', '08989898', NULL, 'WNI', 'Y'),
-(6, '2334233', 1, 5, '2023-03-01', '34534545', 'Rizqi', 'L', 'Semarang', 2, 'ada', 'ada', '2003-11-11', 'Islam', 'Mangkang', '089765543321', '1677650453679.png', 'WNI', 'A'),
+(3, '313', 1, 3, '2023-02-28', '3123', 'Irvanda', 'L', 'Taman', 1, '4', '0', '2023-03-03', 'Islam', 'Taman', '08989898', NULL, 'WNI', 'A'),
+(6, '2334233', 1, 5, '2023-03-01', '34534545', 'Rizqi', 'L', 'Semarang', 2, 'ada', 'ada', '2003-11-11', 'Islam', 'Mangkang', '089765543321', '1677650453679.png', 'WNI', 'M'),
 (7, '2334233', 1, 5, '2023-03-01', '34534545', 'Rizqi', 'L', 'Semarang', 2, 'ada', 'ada', '2003-11-11', 'Islam', 'Mangkang', '089765543321', '1677650453679.png', 'WNI', 'L'),
 (10, '1213221', 1, 5, '2023-03-01', '31312', 'Ahmad Subardjo', 'L', 'Los Angel', 1, '1', '1', '2023-03-11', 'Islam', 'Jl.Tamai Raya', '09282734851', '1678519397023.jpg', 'WNI', 'A'),
 (11, '123', 1, 1, '2023-03-16', '2', 'ShoeFantasy', 'L', 'sSfd', 1, '1', '1', '2023-03-30', 'Kristen', 'Jl.Tamai Raya', '09282734851', '1678850687584.jpg', 'WNI', 'P'),
-(12, '12313', 1, 9, '2023-03-01', '9878', 'Arya', 'L', 'Los Angel', 1, '2', '1', '2023-03-02', 'Islam', 'JL. Jakarta', '09282734851', '1678870842225.jpg', 'WNI', 'T');
+(12, '12313', 1, 9, '2023-03-01', '9878', 'Arya', 'L', 'Los Angel', 1, '2', '1', '2023-03-02', 'Islam', 'JL. Jakarta', '09282734851', '1678870842225.jpg', 'WNI', 'T'),
+(13, 'REG-3NBD40', 1, 1, '2023-03-16', '45345', 'ada', 'L', 'Los Angel', 2, '2', '2', '2023-03-24', 'Islam', 'p', '09282734851', '1679367084036.jpg', 'WNI', 'A');
 
 -- --------------------------------------------------------
 
@@ -263,8 +269,7 @@ CREATE TABLE `tabel_guru` (
 --
 
 INSERT INTO `tabel_guru` (`kode_guru`, `nip`, `nama_guru`, `jekel`, `no_hp`, `alamat`, `status`) VALUES
-('444', '22222', 'Saburo', 'L', '0990998', 'Atlantis', 'AKTIF'),
-('449', '884564', 'Ahmad', 'L', '545454', '', 'AKTIF'),
+('449', '884564', 'Ahmad', 'L', '545454', 'ada', 'AKTIF'),
 ('450', '3242134', 'Eko', 'L', '08932422342', 'Ungaran', 'AKTIF'),
 ('451', '32333', 'Ahmad', 'L', '087884635', 'Jl.Tamai Raya', 'AKTIF'),
 ('453', '222', 'Ahmad', 'L', '0893847522', '', 'AKTIF'),
@@ -272,7 +277,10 @@ INSERT INTO `tabel_guru` (`kode_guru`, `nip`, `nama_guru`, `jekel`, `no_hp`, `al
 ('KG-69U9HX', '1414', 'Test', 'L', '0893847522', 'Jl.Roti Burger Ayam', 'AKTIF'),
 ('KG-330OSN', '21312', 'Shelby', 'L', '1212', 'Jl.Tamai Raya', 'AKTIF'),
 ('KG-3MKQ3P', '111', 'Test23', 'L', '222', 'Jl.Tamai Raya', 'AKTIF'),
-('KG-QQRODS', '123', 'Test', 'L', '0893847522', 'Jl.Tamai Raya', 'AKTIF');
+('KG-QQRODS', '123', 'Test', 'L', '0893847522', 'Jl.Tamai Raya', 'AKTIF'),
+('KG-LVUMAY', '1212', 'Arga', 'L', '0893847522', '', 'AKTIF'),
+('KG-TEFKZU', '12', 'ar', 'L', '0893847522', '', 'AKTIF'),
+('KG-8GVW0P', '32333', 'Test23', 'L', '', 'ada', 'AKTIF');
 
 -- --------------------------------------------------------
 
@@ -430,7 +438,8 @@ INSERT INTO `tabel_jenjang` (`id_jenjang`, `kd_jenjang`, `nama_jenjang`, `ketera
 (5, 'J004', 'SMK', 'Sekolah Menengah Kejuruan', 4, 1),
 (7, 'OK', 'OK', '5', 4, 1),
 (8, 'J005', 'SD', 'Sekolah Dasar', 8, 1),
-(9, 'J006', 'SMP', '', 9, 1);
+(9, 'J006', 'SMP', '', 9, 1),
+(10, 'J010', 'Sekolah Menengah Atas', '', 10, 1);
 
 -- --------------------------------------------------------
 
@@ -455,7 +464,6 @@ INSERT INTO `tabel_kelas` (`id_kelas`, `id_jenjang`, `nama_kelas`, `keterangan`,
 (2, 4, 'XII', 'Test', 'AKTIF'),
 (3, 3, 'XI', 'Ok', 'AKTIF'),
 (5, 5, 'XII TKJ', '', 'AKTIF'),
-(6, 7, 'tes', 're', 'AKTIF'),
 (7, 9, 'VIII', '', 'AKTIF');
 
 -- --------------------------------------------------------
@@ -484,9 +492,32 @@ INSERT INTO `tabel_level` (`id_level`, `username`, `email`, `password`, `level`,
 (3, 'Perpus', 'perpus@gmail.com', '202cb962ac59075b964b07152d234b70', 'PetugasPerpus', NULL, 4),
 (4, 'Guru', 'guru@gmail.com', '202cb962ac59075b964b07152d234b70', 'Guru', '449', 5),
 (5, 'TU', 'tu@gmail.com', '202cb962ac59075b964b07152d234b70', 'TU', NULL, 6),
-(6, 'Saburo', 'saburo@gmail.com', '202cb962ac59075b964b07152d234b70', 'Guru', '444', 5),
 (7, 'Shelby', 'Shelby@gmail.com', '698d51a19d8a121ce581499d7b701668', 'Guru', 'KG-330OSN', 5),
-(8, 'Ahmad', 'Ahmad@gmail.com', 'bcbe3365e6ac95ea2c0343a2395834dd', 'Guru', NULL, 5);
+(8, 'Ahmad', 'Ahmad@gmail.com', 'bcbe3365e6ac95ea2c0343a2395834dd', 'Guru', NULL, 5),
+(19, 'Arga', 'Arga@gmail.com', 'a01610228fe998f515a72dd730294d87', 'Guru', 'KG-LVUMAY', 5),
+(20, 'ar', 'ar@gmail.com', 'c20ad4d76fe97759aa27a0c99bff6710', 'Guru', 'KG-TEFKZU', 5),
+(21, 'Test23', 'Test23@gmail.com', 'ec43638b66e16a5bbede9b710b12b0c7', 'Guru', 'KG-8GVW0P', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tabel_lulus`
+--
+
+CREATE TABLE `tabel_lulus` (
+  `id_lulus` int NOT NULL,
+  `id_daftar` int DEFAULT NULL,
+  `id_rombel` int DEFAULT NULL,
+  `tanggal_lulus` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tabel_lulus`
+--
+
+INSERT INTO `tabel_lulus` (`id_lulus`, `id_daftar`, `id_rombel`, `tanggal_lulus`) VALUES
+(1, 3, 0, '2023-03-03'),
+(2, 2, 0, '2023-03-03');
 
 -- --------------------------------------------------------
 
@@ -568,7 +599,8 @@ INSERT INTO `tabel_paketjenjang` (`id_paket`, `kode_paket`, `nama_paket`) VALUES
 (5, 'J223', 'Esdeh'),
 (7, 'J223', 'Esdeh'),
 (8, 'J223', 'SD'),
-(9, 'J224', 'Smp');
+(9, 'J224', 'Smp'),
+(10, 'J009', 'SMA');
 
 -- --------------------------------------------------------
 
@@ -630,8 +662,8 @@ CREATE TABLE `tabel_pindah` (
   `id_pindah` int NOT NULL,
   `id_daftar` int DEFAULT NULL,
   `id_rombel` int DEFAULT NULL,
-  `nama_sekolah` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `nama_sekolah` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tabel_pindah`
@@ -673,7 +705,8 @@ CREATE TABLE `tabel_pinjaman` (
 --
 
 INSERT INTO `tabel_pinjaman` (`id_pinjaman`, `no_pinjaman`, `id_anggota`, `id_index_buku`, `tgl_pinjaman`, `tgl_kembali`, `status`) VALUES
-(1, 798, 3, 1, '2023-03-15', '0000-00-00', 'DIPINJAM');
+(1, 798, 3, 1, '2023-03-15', '0000-00-00', 'DIPINJAM'),
+(2, 799, 8624, 4, '2023-03-21', '0000-00-00', 'DIPINJAM');
 
 -- --------------------------------------------------------
 
@@ -793,7 +826,9 @@ INSERT INTO `tabel_siswa` (`id_siswa`, `id_daftar`, `id_rombel`, `saldo_tabungan
 (1, 2, 1, 123123123, 'Ahmad Jay'),
 (2, 3, 5, 123123123, 'Irvanda'),
 (5, 10, 12, 0, 'Ahmad Subardjo'),
-(6, 6, 15, 0, NULL);
+(6, 6, 15, 0, NULL),
+(7, 3, 15, 0, NULL),
+(8, 13, 1, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -819,7 +854,8 @@ CREATE TABLE `tabel_tahunajaran` (
 INSERT INTO `tabel_tahunajaran` (`id_angkatan`, `kd_angkatan`, `nama_angkatan`, `keterangan`, `tgl_a`, `tgl_b`, `aktif`, `status`) VALUES
 (1, 'TA 2020/2021', 'TA2020/2021', 'OK', '2023-02-01', '2023-02-28', 1, 'AKTIF'),
 (3, 'TA 2022/2023', 'TA2022/2023', '', '2023-03-23', '2023-05-17', 1, 'AKTIF'),
-(5, 'TA 2023/2024', 'TA2023/2024', '', '2023-03-01', '2023-03-30', 0, 'NONAKTIF');
+(5, 'TA 2023/2024', 'TA2023/2024', '', '2023-03-01', '2023-03-30', 0, 'NONAKTIF'),
+(6, 'TA 2024/2025', 'TA2024/2025', '', '2023-03-01', '2023-03-09', 0, 'AKTIF');
 
 -- --------------------------------------------------------
 
@@ -878,7 +914,7 @@ CREATE TABLE `table_buku` (
   `tahun_terbit` int DEFAULT NULL,
   `keterangan` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `sumber` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `stok` int NOT NULL DEFAULT '0',
+  `stok` int DEFAULT '0',
   `del_flag` int NOT NULL DEFAULT '1',
   `kategori_id` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `rak_buku_id` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
@@ -892,7 +928,9 @@ CREATE TABLE `table_buku` (
 
 INSERT INTO `table_buku` (`id_buku`, `judul_buku`, `penerbit_buku`, `penulis_buku`, `tahun_terbit`, `keterangan`, `sumber`, `stok`, `del_flag`, `kategori_id`, `rak_buku_id`, `created_at`, `foto`) VALUES
 (4, 'Naruto', 'Genji', 'Makise', 2000, 'GENJEHHH RASENGANNNN', NULL, 1, 1, 'Acara', '003', '2023-03-15 02:33:02', '1678847582689.jpg'),
-(5, 'Upin & Ipin', 'Tok Dalang', 'Opah', 2000, 'Bocil', NULL, 1, 1, 'Acara', '003', '2023-03-15 03:41:13', '1678851673188.png');
+(5, 'Upin & Ipin', 'Tok Dalang', 'Opah', 2000, 'Bocil', NULL, 0, 1, 'Acara', '003', '2023-03-15 03:41:13', '1678851673188.png'),
+(6, 'ada', 'ada', 'da', 1221, 'ada', NULL, NULL, 1, 'Cerpen', '003', '2023-03-21 03:17:14', '1679368634339.jpg'),
+(7, 'Test', 'ada', 'da', 2000, 'Ada', NULL, NULL, 1, 'Cerpen', '003', '2023-03-21 03:28:18', '1679369298700.jpg');
 
 -- --------------------------------------------------------
 
@@ -914,7 +952,9 @@ CREATE TABLE `table_detail_index_buku` (
 INSERT INTO `table_detail_index_buku` (`id_stok`, `id_detail_index_buku`, `status`, `id_buku`) VALUES
 (1, 'A01', 'Di Pinjam', 4),
 (3, 'A02', 'Di Rak Buku', 4),
-(4, '1', 'Di Rak Buku', 5);
+(4, '1', 'Di Pinjam', 5),
+(6, 'A01', 'Di Rak Buku', 7),
+(7, 'A02', 'Di Rak Buku', 7);
 
 --
 -- Triggers `table_detail_index_buku`
@@ -1080,6 +1120,12 @@ ALTER TABLE `tabel_level`
   ADD KEY `tabel_level_to_guru` (`kode_guru`);
 
 --
+-- Indexes for table `tabel_lulus`
+--
+ALTER TABLE `tabel_lulus`
+  ADD PRIMARY KEY (`id_lulus`);
+
+--
 -- Indexes for table `tabel_mapel`
 --
 ALTER TABLE `tabel_mapel`
@@ -1212,7 +1258,7 @@ ALTER TABLE `kembalikan`
 -- AUTO_INCREMENT for table `pinjam`
 --
 ALTER TABLE `pinjam`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `setting_perpustakaan`
@@ -1230,7 +1276,7 @@ ALTER TABLE `tabel_akun`
 -- AUTO_INCREMENT for table `tabel_alokasiguru`
 --
 ALTER TABLE `tabel_alokasiguru`
-  MODIFY `id_alokasiguru` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id_alokasiguru` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `tabel_alokasimapel`
@@ -1242,7 +1288,7 @@ ALTER TABLE `tabel_alokasimapel`
 -- AUTO_INCREMENT for table `tabel_daftar`
 --
 ALTER TABLE `tabel_daftar`
-  MODIFY `id_daftar` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_daftar` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tabel_jenisbayar`
@@ -1266,19 +1312,25 @@ ALTER TABLE `tabel_jenis_transaksi`
 -- AUTO_INCREMENT for table `tabel_jenjang`
 --
 ALTER TABLE `tabel_jenjang`
-  MODIFY `id_jenjang` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_jenjang` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tabel_kelas`
 --
 ALTER TABLE `tabel_kelas`
-  MODIFY `id_kelas` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_kelas` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tabel_level`
 --
 ALTER TABLE `tabel_level`
-  MODIFY `id_level` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_level` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `tabel_lulus`
+--
+ALTER TABLE `tabel_lulus`
+  MODIFY `id_lulus` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tabel_mapel`
@@ -1296,7 +1348,7 @@ ALTER TABLE `tabel_nilai`
 -- AUTO_INCREMENT for table `tabel_paketjenjang`
 --
 ALTER TABLE `tabel_paketjenjang`
-  MODIFY `id_paket` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_paket` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tabel_pembayaran`
@@ -1314,7 +1366,7 @@ ALTER TABLE `tabel_pindah`
 -- AUTO_INCREMENT for table `tabel_pinjaman`
 --
 ALTER TABLE `tabel_pinjaman`
-  MODIFY `id_pinjaman` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pinjaman` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tabel_rencana_anggaran`
@@ -1344,13 +1396,13 @@ ALTER TABLE `tabel_semester`
 -- AUTO_INCREMENT for table `tabel_siswa`
 --
 ALTER TABLE `tabel_siswa`
-  MODIFY `id_siswa` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_siswa` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tabel_tahunajaran`
 --
 ALTER TABLE `tabel_tahunajaran`
-  MODIFY `id_angkatan` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_angkatan` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tabel_transaksi`
@@ -1362,13 +1414,13 @@ ALTER TABLE `tabel_transaksi`
 -- AUTO_INCREMENT for table `table_buku`
 --
 ALTER TABLE `table_buku`
-  MODIFY `id_buku` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_buku` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `table_detail_index_buku`
 --
 ALTER TABLE `table_detail_index_buku`
-  MODIFY `id_stok` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_stok` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `table_kategori_buku`
