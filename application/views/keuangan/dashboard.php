@@ -60,9 +60,9 @@
                                         <h3><?php echo $total_anggaran?></h3>
                                     </div>
                                     <div class="icon">
-                                        <i class="nav-icon fas fa-book"></i>
+                                        <i class="nav-icon fas fa-th"></i>
                                     </div>
-                                    <a href="#" class="small-box-footer">More info <i
+                                    <a href="<?php echo base_url('keuangan/anggaran')?>" class="small-box-footer">Info Lebih Lanjut <i
                                             class="fas fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
@@ -75,9 +75,10 @@
                                         <h3><?php echo $total_jenis_trans;  ?></h3>
                                     </div>
                                     <div class="icon">
-                                        <i class="nav-icon fas fa-book"></i>
+                                        <i class="nav-icon fas "></i>
+                                        <i class="nav-icon fas fa-money-bill"></i>
                                     </div>
-                                    <a href="#" class="small-box-footer">More info <i
+                                    <a href="<?php echo base_url('keuangan/dana')?>" class="small-box-footer">Info Lebih Lanjut <i
                                             class="fas fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
@@ -97,10 +98,9 @@
                                                 <div class="icon">
                                                     <i class="far fa-user"></i>
                                                 </div>
-                                                <a href="<?php echo base_url('Perpustakaan/data_anggota') ?>"
-                                                    class="small-box-footer">More
-                                                    info
-                                                    <i class="fa fa-arrow-circle-right"></i>
+                                                <a href="<?php echo base_url('keuangan/akun') ?>"
+                                                 class="small-box-footer">Infor Lebih Lanjut
+                                                 <i class="fa fa-arrow-circle-right"></i>
                                                 </a>
                                             </div>
                                             <div class="m-2 anyClass">
@@ -117,7 +117,6 @@
                                                             <td style="width: 4%;"><?php echo $id ?></td>
                                                             <td>  <?php echo $data->nama_akun?>
                                                             </td>
-                                                            
                                                             </td>
                                                         </tr>
                                                         <?php endforeach;?>

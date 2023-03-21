@@ -9,6 +9,25 @@
     <?php $this->load->view('nilai/style/head')?>
 </head>
 
+<style>
+    .example-1 {
+    position: relative;
+    overflow-y: scroll;
+    height: 200px;
+}
+
+.example-1::-webkit-scrollbar {
+    display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.example-1 {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+</style>
+
 <body class="hold-transition sidebar-mini layout-fixed" data-panel-auto-height-mode="height">
     <div class="wrapper">
         <!-- navbar -->
@@ -34,8 +53,7 @@
                                     <div class="icon">
                                         <i class="nav-icon fas fa-book"></i>
                                     </div>
-                                    <a href="#" class="small-box-footer">More info <i
-                                            class="fas fa-arrow-circle-right"></i></a>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -49,8 +67,7 @@
                                     <div class="icon">
                                         <i class="nav-icon fas fa-user"></i>
                                     </div>
-                                    <a href="#" class="small-box-footer">More info <i
-                                            class="fas fa-arrow-circle-right"></i></a>
+                                   
                                 </div>
                             </div>
                         </div>
@@ -64,8 +81,7 @@
                                     <div class="icon">
                                         <i class="nav-icon fas fa-user-tie"></i>
                                     </div>
-                                    <a href="#" class="small-box-footer">More info <i
-                                            class="fas fa-arrow-circle-right"></i></a>
+                                   
                                 </div>
                             </div>
                         </div>
@@ -84,14 +100,13 @@
                                 <a href="<?php echo base_url('Nilai/modul_input_nilai')?>" class="small-box-footer">More
                                     info
                                     <i class="fa fa-arrow-circle-right"></i></a>
-
                             </div>
                         </div>
                         <div class="col">
-                            <div class="small-box border-success mb-3" style="max-width: 100%;">
+                            <div class="small-box bg-info mb-3" style="max-width: 100%;">
                                 <div class="card-header bg-transparent text-center fw-bold h3 border-white"> Tahun
                                     Ajaran</div>
-                                <div class="card-body text-success">
+                                <div class="card-body text-white">
                                     <div class="box-body example-1 scrollbar-ripe-malinka">
                                         <table id="table_1" class="table table-bordered">
                                             <thead>
@@ -106,10 +121,10 @@
                                             <tbody>
                                                 <?php $id=0; foreach($ta as $ta): $id++?>
                                                 <tr>
-                                                    <td><?php echo $id;?></td>
-                                                    <td><?php echo $ta->nama_angkatan;?></td>
-                                                    <td><?php echo $total_siswa;?></td>
-                                                    <td><?php echo $total_kelas;?></td>
+                                                    <td class="text-bold"><?php echo $id;?></td>
+                                                    <td class="text-bold"><?php echo $ta->nama_angkatan;?></td>
+                                                    <td class="text-bold"><?php echo $total_siswa;?></td>
+                                                    <td class="text-bold"><?php echo $total_kelas;?></td>
                                                 </tr>
                                                 <?php endforeach; ?>
                                             </tbody>
