@@ -21,7 +21,10 @@ class Keuangan extends CI_Controller
             'judul' => 'keuangan',
             'page' => 'keuangan',
             'menu' => 'dashboard',
-            'submenu'=>''
+            'submenu'=>'',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'keuangan',
+            'submenu_admin'=> 'keuangan'
         ];
         $data['total_akun'] = $this->m_keuangan->total_akun();
         $data['total_jenis_trans'] = $this->m_keuangan->total_jenis_trans();
@@ -38,7 +41,10 @@ class Keuangan extends CI_Controller
             'judul' => 'keuangan',
             'page' => 'keuangan',
             'menu' => 'anggaran',
-            'submenu'=>''
+            'submenu'=>'',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'keuangan',
+            'submenu_admin'=> 'anggaran'
         ];
         $this->load->model('M_keuangan');
         $data['data_rencana_anggaran'] = $this->m_keuangan->get_all_data_rencana_anggaran('data_rencana_anggaran');
@@ -101,7 +107,10 @@ class Keuangan extends CI_Controller
             'judul' => 'keuangan',
             'page' => 'keuangan',
             'menu' => 'anggaran',
-            'submenu'=>''
+            'submenu'=>'',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'keuangan',
+            'submenu_admin'=> 'anggaran'
         ];
         $data['data_rencana_anggaran']=$this->m_keuangan->edit_anggaran('tabel_rencana_anggaran', $id)->result();
         $this->load->view('keuangan/anggaran/edit_anggaran', $data);
@@ -199,7 +208,10 @@ class Keuangan extends CI_Controller
             'judul' => 'keuangan',
             'page' => 'keuangan',
             'menu' => 'anggaran',
-            'submenu'=>''
+            'submenu'=>'',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'keuangan',
+            'submenu_admin'=> 'anggaran'
         ];
         $id_rn = $this->input->post('id_rencana_anggaran');
         $this->load->model('M_keuangan');
@@ -245,7 +257,10 @@ class Keuangan extends CI_Controller
             'judul' => 'keuangan',
             'page' => 'keuangan',
             'menu' => 'akun',
-            'submenu'=>''
+            'submenu'=>'',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'keuangan',
+            'submenu_admin'=> 'akun'
         ];
         $this->load->model('M_keuangan');
         $data['data_akun'] = $this->m_keuangan->get_all_akun('data_akun');
@@ -280,7 +295,10 @@ class Keuangan extends CI_Controller
             'judul' => 'keuangan',
             'page' => 'keuangan',
             'menu' => 'akun',
-            'submenu'=>''
+            'submenu'=>'',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'keuangan',
+            'submenu_admin'=> 'akun'
         ];
         $data['data_akun']=$this->m_keuangan->edit_akun('tabel_akun', $id_akun)->result();
         $this->load->view('keuangan/akun/edit_akun', $data);
@@ -330,7 +348,10 @@ class Keuangan extends CI_Controller
             'judul' => 'keuangan',
             'page' => 'keuangan',
             'menu' => 'dana',
-            'submenu'=>''
+            'submenu'=>'',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'keuangan',
+            'submenu_admin'=> 'dana'
         ];
         $this->load->model('M_keuangan');
         $pendapatan['data_pendapatan'] = $this->m_keuangan->get_pendapatan('data_pendapatan');
@@ -345,7 +366,10 @@ class Keuangan extends CI_Controller
             'judul' => 'keuangan',
             'page' => 'keuangan',
             'menu' => 'dana',
-            'submenu'=>''
+            'submenu'=>'',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'keuangan',
+            'submenu_admin'=> 'dana'
         ];
         $pendapatan['data_pendapatan'] = $this->m_keuangan->get_pendapatan('data_pendapatan');
         $pengeluaran['data_pengeluaran'] = $this->m_keuangan->get_pengeluaran('data_pengeluaran');
@@ -459,7 +483,10 @@ class Keuangan extends CI_Controller
         'judul' => 'keuangan',
         'page' => 'keuangan',
         'menu' => 'laporan',
-        'submenu'=>'penyesuaian'
+        'submenu'=>'penyesuaian',
+        'menu_submenu_admin'=>'laporan_keuangan',
+        'menu_admin' => 'keuangan',
+        'submenu_admin'=> 'penyesuaian'
     ];
        $this->load->model('M_keuangan');
        $data['data_akun'] = $this->m_keuangan->get_all_akun('data_akun');
@@ -472,7 +499,10 @@ class Keuangan extends CI_Controller
         'judul' => 'keuangan',
         'page' => 'keuangan',
         'menu' => 'laporan',
-        'submenu'=>'penyesuaian'
+        'submenu'=>'penyesuaian',
+        'menu_submenu_admin'=>'laporan_keuangan',
+        'menu_admin' => 'keuangan',
+        'submenu_admin'=> 'penyesuaian'
     ];
       $tanggalawal = $this->input->post('tanggalawal');
       $tanggalakhir = $this->input->post('tanggalakhir');
@@ -490,7 +520,10 @@ class Keuangan extends CI_Controller
         'judul' => 'keuangan',
         'page' => 'keuangan',
         'menu' => 'laporan',
-        'submenu'=>'bukubesar'
+        'submenu'=>'bukubesar',
+        'menu_submenu_admin'=>'laporan_keuangan',
+        'menu_admin' => 'keuangan',
+        'submenu_admin'=> 'bukubesar'
     ];
        $this->load->model('M_keuangan');
        $data['datafilter'] = $this->m_keuangan->filter_namakun("nama_akun");
@@ -503,7 +536,10 @@ class Keuangan extends CI_Controller
         'judul' => 'keuangan',
         'page' => 'keuangan',
         'menu' => 'laporan',
-        'submenu'=>'bukubesar'
+        'submenu'=>'bukubesar',
+        'menu_submenu_admin'=>'laporan_keuangan',
+        'menu_admin' => 'keuangan',
+        'submenu_admin'=> 'bukubesar'
     ];
         $data['data_akun'] = $this->m_keuangan->get_all_akun('data_akun');
         $nama_akun = $this->input->post('nama_akun');
@@ -532,7 +568,10 @@ class Keuangan extends CI_Controller
             'judul' => 'keuangan',
             'page' => 'keuangan',
             'menu' => 'pembayaran',
-            'submenu'=>''
+            'submenu'=>'',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'keuangan',
+            'submenu_admin'=> 'pembayaran'
         ];
         $data['pembayaran'] = $this->m_keuangan->get_pembayaran();
         $this->load->view('keuangan/pembayaran/pembayaran', $data);
@@ -556,7 +595,10 @@ class Keuangan extends CI_Controller
             'judul' => 'keuangan',
             'page' => 'keuangan',
             'menu' => 'pembayaran',
-            'submenu'=>''
+            'submenu'=>'',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'keuangan',
+            'submenu_admin'=> 'pembayaran'
         ];
         $this->load->model('m_akademik');
         $data['kelas'] = $this->m_akademik->get_kelas();
@@ -742,7 +784,10 @@ class Keuangan extends CI_Controller
             'judul' => 'keuangan',
             'page' => 'keuangan',
             'menu' => 'pembayaran',
-            'submenu'=>''
+            'submenu'=>'',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'keuangan',
+            'submenu_admin'=> 'pembayaran'
         ];
         $this->load->model('m_akademik');
         $data['kelas'] = $this->m_akademik->get_kelas();
@@ -757,7 +802,10 @@ class Keuangan extends CI_Controller
             'judul' => 'keuangan',
             'page' => 'keuangan',
             'menu' => 'pembayaran',
-            'submenu'=>''
+            'submenu'=>'',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'keuangan',
+            'submenu_admin'=> 'pembayaran'
         ];
         $this->load->model('m_akademik');
         $data['kelas'] = $this->m_akademik->get_kelas();

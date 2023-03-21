@@ -22,7 +22,10 @@ class Nilai extends CI_Controller {
             'judul' => 'nilai',
             'page' => 'nilai',
             'menu' => 'nilai',
-            'submenu'=>'nilai'
+            'submenu'=>'nilai',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'nilai',
+            'submenu_admin'=> 'nilai'
             ];
         $data['total_kelas'] = $this->m_akademik->total_kelas();
         $data['total_mapel'] = $this->m_akademik->total_mapel();
@@ -204,7 +207,10 @@ class Nilai extends CI_Controller {
             'judul' => 'nilai',
             'page' => 'nilai',
             'menu' => 'nilai',
-            'submenu'=>'data_mapel'
+            'submenu'=>'data_mapel',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'nilai',
+            'submenu_admin'=> 'data_nilai'
         ];
         $data['data']=$this->m_nilai->get_data_nilai($id_mapel, $id_rombel, $id_semester)->result();
         $data['rombel']=$this->m_nilai->get_rombelByid($id_rombel)->result();
@@ -219,7 +225,10 @@ class Nilai extends CI_Controller {
             'judul' => 'nilai',
             'page' => 'nilai',
             'menu' => 'nilai',
-            'submenu'=>'data_mapel'
+            'submenu'=>'data_mapel',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'nilai',
+            'submenu_admin'=> 'data_nilai'
         ];
         $data['data']=$this->m_nilai->get_nilaiByid($id_nilai)->result();
         $this->load->view('nilai/data_nilai/detail_data_nilai_siswa', $data);
@@ -287,7 +296,10 @@ class Nilai extends CI_Controller {
             'judul' => 'nilai',
             'page' => 'nilai',
             'menu' => 'nilai',
-            'submenu'=>'data_mapel'
+            'submenu'=>'data_mapel',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'nilai',
+            'submenu_admin'=> 'data_nilai'
             ];
         $data['allMapel'] = $this->m_akademik->get_mapel();
         $data['mapel'] = $this->m_keuangan->ambil('tabel_alokasiguru',array('kode_guru'=>$this->session->userdata('kode_guru')))->result();
@@ -300,7 +312,10 @@ class Nilai extends CI_Controller {
             'judul' => 'nilai',
             'page' => 'nilai',
             'menu' => 'nilai',
-            'submenu'=>'data_mapel'
+            'submenu'=>'data_mapel',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'nilai',
+            'submenu_admin'=> 'data_nilai'
             ];
         $data['allMapel'] = $this->m_akademik->get_mapel();
         $data['mapel'] = $this->m_keuangan->ambil('tabel_alokasiguru',array('kode_guru'=>$this->session->userdata('kode_guru')))->result();

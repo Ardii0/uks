@@ -22,6 +22,7 @@
 
 <style>
 .fa-cog {
+    font-size: 20px;
     transition: transform .5s ease-in-out;
 }
 

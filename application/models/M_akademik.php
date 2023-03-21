@@ -189,6 +189,22 @@ class M_akademik extends CI_Model{
         return $this->db->get('tabel_siswa')->result();
     }
 
+    public function filterByRombel($id_rombel){
+        if ($id_rombel != null) {
+          $query = $this->db->query("SELECT * from tabel_siswa where id_rombel = '$id_rombel' ");
+        } else {
+          $query = $this->db->query("SELECT * from tabel_siswa");
+        }
+
+        return $query->result();
+	}
+
+    public function get_filter_rombel($tabel, $id_rombel)
+	{
+		$data=$this->db->where('id_rombel', $id_rombel)->get($tabel);
+		return $data;
+	}
+
     public function get_siswaById($tabel, $id_siswa)
     {
         $data=$this->db->where('id_siswa', $id_siswa)->get($tabel);
@@ -318,7 +334,7 @@ class M_akademik extends CI_Model{
 // Pembagian Kelas
     public function get_siswa_diterima()
     {
-        return $this->db->where('diterima','Y')->get('tabel_daftar')->result();
+        return $this->db->where('diterima','S')->get('tabel_daftar')->result();
     }
 
     public function ubah_siswa_diterima($tabel, $data, $where)

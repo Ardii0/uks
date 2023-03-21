@@ -44,6 +44,17 @@ function tampil_paketjenjangById($id)
   }
 }
 
+function tampil_namarombel_byid($id)
+{
+ $ci =& get_instance();
+ $ci->load->database();
+ $result = $ci->db->where('id_rombel',$id)->get('tabel_rombel');
+  foreach ($result->result() as $c) {
+  $stmt= $c->nama_rombel;
+  return $stmt;
+  }
+}
+
 function tampil_namajenjang_byid($id)
 {
  $ci =& get_instance();

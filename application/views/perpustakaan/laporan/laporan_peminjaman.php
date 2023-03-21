@@ -74,6 +74,8 @@
                                             <th class="w-25">No Pinjaman</th>
                                             <th class="w-20">Nama Anggota</th>
                                             <th class="w-20">Tanggal Pinjam</th>
+                                            <th class="w-20">Tanggal Pengembalian</th>
+                                            <th class="w-20">Denda</th>
                                             <th class="w-10 text-center" style="">Status</th>
                                         </tr>
                                     </thead>
@@ -84,6 +86,8 @@
                                             <td><?php echo $data->no_pinjaman ?></td>
                                             <td><?php echo tampil_namadaftar_ByIdAnggota($data->id_anggota) ?></td>
                                             <td><?php echo $data->tgl_pinjaman ?></td>
+                                            <td><?php echo $data->tgl_kembali ?></td>
+                                            <td><?php echo $data->denda ?></td>
                                             <td class="text-center d-flex justify-content-center">
                                                 <div class="text-center <?php $btn = $data->status == "DIPINJAM" ? 'bg-danger' : 'bg-success'; echo $btn ?> btn-sm"
                                                     style="width: 100px">

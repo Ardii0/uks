@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Raport <?php echo $rombel ?></title>
+    <title>Data Nilai<?php echo $rombel ?></title>
     <style type="text/css">
     ::selection {
         background-color: #E13300;

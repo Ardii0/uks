@@ -11,7 +11,7 @@
 </head>
 
 <style>
-    .example-1 {
+.example-1 {
     position: relative;
     overflow-y: scroll;
     height: 200px;
@@ -20,19 +20,39 @@
 .example-1::-webkit-scrollbar {
     display: none;
 }
-
 /* Hide scrollbar for IE, Edge and Firefox */
 .example-1 {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
+.example-2 {
+    position: relative;
+    overflow-x: scroll;
+}
+
+.example-2::-webkit-scrollbar {
+    display: none;
+}
+
+.example-2 {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
 </style>
 
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
         <?php $this->load->view('akademik/style/navbar')?>
+        <?php if($this->session->userdata('level') === 'Admin') {?>
+        <?php $this->load->view('petugas/style/sidebar')?>
+        <?php } else {?>
         <?php $this->load->view('akademik/style/sidebar')?>
+        <?php }?>
 
         <div class="content-wrapper">
             <div class="container-fluid">
@@ -42,7 +62,7 @@
                             <p style="font-size: 2rem">Dashboard Akademik</p>
                         </div>
                     </div>
-                    <div class="row ">
+                    <div class="row">
                         <div class="col-8 col-sm-6 col-md-3">
                             <div>
                                 <div class="small-box bg-info">
@@ -53,8 +73,8 @@
                                     <div class="icon">
                                         <i class="nav-icon fas fa-door-closed"></i>
                                     </div>
-                                    <a href="<?php echo base_url('Akademik/kelas')?>" class="small-box-footer">Info Lebih Lanjut <i
-                                            class="fas fa-arrow-circle-right"></i></a>
+                                    <a href="<?php echo base_url('Akademik/kelas')?>" class="small-box-footer">Info
+                                        Lebih Lanjut <i class="fas fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -68,8 +88,8 @@
                                     <div class="icon">
                                         <i class="nav-icon fas fa-book"></i>
                                     </div>
-                                    <a href="<?php echo base_url('Akademik/pelajaran')?>" class="small-box-footer">Info Lebih Lanjut <i
-                                            class="fas fa-arrow-circle-right"></i></a>
+                                    <a href="<?php echo base_url('Akademik/pelajaran')?>" class="small-box-footer">Info
+                                        Lebih Lanjut <i class="fas fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -83,8 +103,8 @@
                                     <div class="icon">
                                         <i class="nav-icon fas fa-user"></i>
                                     </div>
-                                    <a href="<?php echo base_url('Akademik/siswa_data')?>" class="small-box-footer">Info Lebih Lanjut <i
-                                            class="fas fa-arrow-circle-right"></i></a>
+                                    <a href="<?php echo base_url('Akademik/siswa_data')?>" class="small-box-footer">Info
+                                        Lebih Lanjut <i class="fas fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -98,55 +118,68 @@
                                     <div class="icon">
                                         <i class="nav-icon fas fa-user-tie"></i>
                                     </div>
-                                    <a href="<?php echo base_url('Akademik/guru')?>" class="small-box-footer">Info Lebih Lanjut <i
-                                       class="fas fa-arrow-circle-right"></i></a>
+                                    <a href="<?php echo base_url('Akademik/guru')?>" class="small-box-footer">Info Lebih
+                                        Lanjut <i class="fas fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col">
-                            <div class="small-box bg-gradient-info text-white mb-3" style="max-width: 100%;">
+                        <div class="col-6">
+                            <div class="small-box bg-gradient-info text-white mb-3" style="max-width: ;">
                                 <div class="card-header bg-transparent text-center fw-bold h3 border-white"> Jenjang
                                 </div>
-                                <div class="card-body text-white">
-                                    <ul>
+                                <div class="">
+                                    <div class="card-body d-flex p-2 example-2" style="height: ; ">
                                         <?php foreach($jenjang as $jenjang):?>
-                                            <li><?php echo $jenjang->nama_jenjang?></li>
+                                        <div class="info-box w-25 m-1 d-flex justify-content-center align-items-center">
+                                            <div class="text-center">
+                                                <span class="info-box-icon bg-info"><i class="fas fa-graduation-cap"></i>
+                                                </span>
+                                                <h5 class="text-dark">
+                                                    <?php echo $jenjang->nama_jenjang?>
+                                                </h5>
+                                            </div>
+                                        </div>
                                         <?php endforeach;?>
-                                    </ul>
+                                    </div>
                                 </div>
-                                <a href="<?php echo base_url('Akademik/tahun_ajaran')?>" class="small-box-footer">
+                                <a href="<?php echo base_url('Akademik/jenjang')?>" class="small-box-footer">
                                     Info Lebih Lanjut
                                     <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="small-box border-success mb-3" style="max-width: 100%;">
+                        <div class="col-6">
+                            <div class="small-box bg-info border-white mb-3" style="max-width: 100%;">
                                 <div class="card-header bg-transparent text-center fw-bold h3 border-white"> Tahun
                                     Ajaran Aktif</div>
-                                <div class="card-body text-success">
+                                <div class="card-body text-white">
                                     <div class="box-body example-1 scrollbar-ripe-malinka">
-                                        <table id="table_1" class="table table-bordered">
+                                        <table id="table_1" class="table table-bordered ">
                                             <thead>
-                                                <tr class="fixed bg-secondary">
+                                                <tr class="text-bold">
                                                     <th>No</th>
                                                     <th>Tahun Ajaran</th>
-
-                                                </tr>
+                                                    </tr>
                                             </thead>
                                             <tbody>
                                                 <?php $id=0; foreach($ta as $ta): $id++?>
-                                                    <tr>
-                                                        <td><?php echo $id;?></td>
-                                                        <td><?php echo $ta->nama_angkatan;?></td>
-                                                    </tr>
+                                                <tr>
+                                                    <td class="text-bold"><?php echo $id;?></td>
+                                                    <td class="text-bold"><?php echo $ta->nama_angkatan;?></td>
+                                                </tr>
                                                 <?php endforeach; ?>
                                             </tbody>
                                         </table>
+                                        
                                     </div>
+                                    
                                 </div>
+                                <a href="<?php echo base_url('Akademik/tahun_ajaran')?>" class="small-box-footer">
+                                    Info Lebih Lanjut
+                                    <i class="fa fa-arrow-circle-right"></i>
+                                </a>
                             </div>
                         </div>
                     </div>

@@ -44,21 +44,26 @@
                                                 <td class="px-2"><?php echo $data->no_pinjaman ?></td>
                                             </tr>
                                             <tr>
-                                                <th class="px-2">ID Anggota</th>
-                                                <td class="px-2"><?php echo $data->id_anggota ?></td>
-                                            </tr>
-                                            <tr>
                                                 <th class="px-2">Nama Siswa</th>
                                                 <td class="px-2">
                                                     <?php echo tampil_namadaftar_ByIdAnggota($data->id_anggota) ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th class="px-2">Denda</th>
+                                                <td class="px-2"><?php echo $data->denda ?></td>
                                             </tr>
                                         </table>
                                     </div>
                                     <div>
                                         <table>
                                             <tr>
+                                                <th class="px-2">ID Anggota</th>
+                                                <td class="px-2"><?php echo $data->id_anggota ?></td>
+                                            </tr>
+                                            <tr>
                                                 <th class="px-2">Tanggal Peminjaman</th>
                                                 <td class="px-2"><?php echo $data->tgl_pinjaman ?></td>
+                                                <input type="hidden" name="tgl_pinjaman" value="<?php echo $data->tgl_pinjaman ?>">
                                             </tr>
                                             <tr>
                                                 <th class="px-2">Tanggal Kembali</th>
@@ -95,13 +100,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer d-flex justify-content-start">
+                        <div class="modal-footer d-flex justify-content-end">
                             <input type="hidden" value="<?php echo $data->id_pinjaman?>" name="id_pinjaman">
-                            <div class="d-flex align-items-center">
+                            <!-- <div class="d-flex align-items-center">
                                 <label class="control-label" style="width: 300px;">Tanggal Dikembalikan</label>
                                 <input type="date" value="<?php echo $data->tgl_kembali ?>" name="tgl_kembali"
                                     class="form-control" require>
-                            </div>
+                            </div> -->
                             <input type="hidden" value="<?php echo $data->id_index_buku ?>" name="id_index_buku">
                             <input type="hidden"
                                 value="<?php echo tampil_idbuku_byPeminjamanId($data->id_index_buku) ?>"
