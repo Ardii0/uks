@@ -59,7 +59,7 @@
                                             <th>No</th>
                                             <th>NIP</th>
                                             <th>Nama</th>
-                                            <th>Jekel</th>
+                                            <th>Jenis Kelamin</th>
                                             <th>No HP</th>
                                             <th>Alamat</th>
                                             <th>Aksi</th>

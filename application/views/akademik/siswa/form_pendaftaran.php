@@ -49,10 +49,14 @@
                                     </label>
                                 </div>
                                 <div>
-                                    <input type="text" value="<?php echo $tahun_ajaran_aktif[0]->kd_angkatan ?>"
-                                        class="form-control" placeholder="Tahun Ajaran" disabled>
-                                    <input type="hidden" name="id_angkatan" value="<?php echo $tahun_ajaran_aktif[0]->id_angkatan ?>"
-                                        class="form-control" placeholder="Tahun Ajaran">
+                                    <select name="id_angkatan" class="form-control select2 select2-info"
+                                        data-dropdown-css-class="select2-info">
+                                        <option selected>Pilih Tahun Ajaran</option>
+                                        <?php $id = 0;foreach ($tahun_ajaran_aktif as $row): $id++;?>
+                                        <option value="<?php echo $row->id_angkatan ?>"><?php echo $row->kd_angkatan ?>
+                                        </option>
+                                        <?php endforeach ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-4">
@@ -73,8 +77,8 @@
                                     </label>
                                 </div>
                                 <div>
-                                    <select class="form-control form-select px-2 py-1" name="id_jenjang"
-                                        aria-label="Default select example">
+                                    <select name="id_jenjang" class="form-control select2 select2-info"
+                                        data-dropdown-css-class="select2-info">
                                         <option selected>Pilih Jenjang</option>
                                         <?php $id = 0;foreach ($data_jenjang as $row): $id++;?>
                                         <option value="<?php echo $row->id_jenjang ?>"><?php echo $row->nama_jenjang ?>
@@ -104,8 +108,8 @@
                                     </label>
                                 </div>
                                 <div>
-                                    <select id="agama" name="agama" class="form-control form-select px-2 py-1"
-                                        aria-label="Default select example">
+                                    <select id="agama" name="agama" class="form-control select2 select2-info"
+                                        data-dropdown-css-class="select2-info">
                                         <option selected>Pilih Agama</option>
                                         <option value="Islam">Islam</option>
                                         <option value="Kristen">Kristen</option>

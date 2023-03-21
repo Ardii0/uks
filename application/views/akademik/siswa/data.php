@@ -44,17 +44,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="col-md-3 d-flex justify-content-end align-self-start">
-                            <div class="mx-1">
-                                <button type="button" class="btn btn-success">
-                                    <i class="fa fa-download pr-2"></i>Export Data</button>
-                            </div>
-                            <a href="#">
-                                <button type="button" class="btn btn-success">
-                                    <i class="fa fa-eye pr-2"></i>Tampilkan Data
-                                </button>
-                            </a>
-                        </div> -->
                     </div>
                     <div class="row">
                         <div class="col-12">
@@ -65,7 +54,7 @@
                                             <th>No</th>
                                             <th>Rombel</th>
                                             <th>Nama</th>
-                                            <th>Jekel</th>
+                                            <th>Jenis Kelamin</th>
                                             <th>Tempat Lahir</th>
                                             <th>Tanggal Lahir</th>
                                             <th>Alamat</th>

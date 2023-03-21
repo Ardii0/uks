@@ -179,6 +179,11 @@ class M_perpustakaan extends CI_Model{
 		return $this->db->get('tabel_pinjaman')->result();
 	}
 
+	public function get_buku_dipinjam()
+	{
+		return $this->db->where('status', 'DIPINJAM')->order_by('tgl_pinjaman', 'desc')->get('tabel_pinjaman')->result();
+	}
+
 	public function get_index_buku()
 	{
 		return $this->db->get('table_detail_index_buku')->result();

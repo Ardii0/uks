@@ -89,7 +89,7 @@
                                                 <th>Tahun Ajaran</th>
                                                 <th>Jenjang</th>
                                                 <th>Nama</th>
-                                                <th>Jekel</th>
+                                                <th>Jenis Kelamin</th>
                                                 <th>Tempat Lahir</th>
                                                 <th>Tanggal Lahir</th>
                                                 <th>Alamat Tinggal</th>

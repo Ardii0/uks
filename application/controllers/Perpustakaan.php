@@ -539,7 +539,7 @@ class Perpustakaan extends CI_Controller {
             'menu' => 'peminjaman',
             'submenu'=>'pinjam'
         ];
-        $peminjam['data_peminjam'] = $this->m_perpustakaan->get_peminjaman('data_peminjam');
+        $peminjam['data_peminjam'] = $this->m_perpustakaan->get_buku_dipinjam('data_peminjam');
         $this->load->view('perpustakaan/peminjaman/peminjaman', $peminjam + $data);
     }
 
@@ -649,7 +649,7 @@ class Perpustakaan extends CI_Controller {
             'menu' => 'pengembalian',
             'submenu'=>''
         ];
-        $peminjam['data_peminjam'] = $this->m_perpustakaan->get_peminjaman('data_peminjam');
+        $peminjam['data_peminjam'] = $this->m_perpustakaan->get_buku_dipinjam('data_peminjam');
         $this->load->view('perpustakaan/pengembalian/pengembalian', $peminjam + $data);
     }
 
