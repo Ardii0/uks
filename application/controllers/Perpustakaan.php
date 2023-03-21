@@ -7,6 +7,7 @@ class Perpustakaan extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
+        date_default_timezone_set("Asia/Bangkok");
         $this->load->model('m_perpustakaan');
         $this->load->helpers('my_helper');
         // $this->load->library('excel');
@@ -622,12 +623,13 @@ class Perpustakaan extends CI_Controller {
 
     public function aksi_input_peminjaman()
     {
+        $date = date('Y-m-d');
         $data = array
         (
             'no_pinjaman' => 'PMJ'.'-'.$this->acak(6),
             'id_anggota' => $this->input->post('id_anggota'),
             'id_index_buku' => $this->input->post('id_index_buku'),
-            'tgl_pinjaman' => $this->input->post('tgl_pinjaman'),
+            'tgl_pinjaman' => $date,
             'tgl_kembali' => "0000-00-00",
             'status' => 'DIPINJAM',
         );
@@ -721,11 +723,30 @@ class Perpustakaan extends CI_Controller {
 
     public function proses_pengembalian_pinjaman()
     {
+        $date = date('Y-m-d');
+        $db = $this->db->get('setting_perpustakaan')->result();
+        foreach ($db as $dnd) {
+			$denda = $dnd->denda;
+			$maksimal_pengembalian_hari = $dnd->maksimal_pengembalian_hari;
+		}
+
+        $dt = date('Y-m-d');
+		$tgl_pinjaman = strtotime($this->input->post('tgl_pinjaman'));
+		$t = date('Y-m-d', $tgl_pinjaman);
+
+        $selisih=(strtotime($dt)-$tgl_pinjaman)/(60*60*24);
+
+        if ($selisih > $maksimal_pengembalian_hari) {
+			$hitung = $selisih - $maksimal_pengembalian_hari;
+			$byr = $hitung * $denda;
+		}else{
+			$byr = 0;
+		}
         $data = array (
-            'tgl_kembali' => $this->input->post('tgl_kembali'),
+            'tgl_kembali' => $date,
+            'denda' => $byr,
             'status' => 'DIKEMBALIKAN',
         );
-
         $status = array
         (
             'status' => 'Di Rak Buku',

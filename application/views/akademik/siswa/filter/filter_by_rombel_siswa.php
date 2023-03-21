@@ -40,7 +40,9 @@
                         <div class="col-2 col-sm-6 ">
                             <div class="form-group d-flex flex-row " style="width: fit-content;">
                                 <div class="mt-2 mx-1">
-                                    <h4>Data Siswa</h4>
+                                <?php foreach ($filter as $data): ?>
+                                    <h4>Data Siswa Rombel <?php echo tampil_namarombel_byid($data->id_rombel) ?></h4>
+                                    <?php endforeach ?>
                                 </div>
                             </div>
                         </div>

@@ -936,8 +936,29 @@ class Akademik extends CI_Controller {
             'submenu_admin'=>'data_siswa',
         ];
         $this->load->model('M_akademik');
+        $data['rombel'] = $this->m_akademik->get_rombel('rombel');
         $data['siswa'] = $this->m_akademik->get_siswa('siswa');
         $this->load->view('akademik/siswa/data', $data);
+    }
+
+    public function finter_by_rombel_siswa()
+    {
+        $data = [
+            'judul' => 'akademik',
+            'page' => 'akademik',
+            'menu' => 'siswa',
+            'submenu'=>'data_siswa'
+        ];
+        $id_rombel = $this->input->post('id_rombel');
+        $nilaifilter = $this->input->post('nilaifilter');
+
+        if($nilaifilter = 1) {
+            $data['rombel'] = $this->m_akademik->get_rombel('rombel');
+            $data['siswa'] = $this->m_akademik->filterByRombel($id_rombel);
+            $data['filter']=$this->m_akademik->get_filter_rombel('tabel_rombel', $id_rombel)->result();
+            
+            $this->load->view('akademik/siswa/filter/filter_by_rombel_siswa', $data);
+        }
     }
     
     public function hapus_siswa($id_siswa)

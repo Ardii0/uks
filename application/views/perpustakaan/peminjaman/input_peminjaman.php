@@ -94,11 +94,11 @@
                         </div>
                         <!-- /.box-body -->
 
-                        <div class="box-footer d-flex">
-                            <div class="d-flex align-items-center">
+                        <div class="box-footer d-flex justify-content-end">
+                            <!-- <div class="d-flex align-items-center">
                                 <label class="control-label" style="width: 180px;">Tanggal Pinjam</label>
                                 <input type="date" name="tgl_pinjaman" class="form-control">
-                            </div>
+                            </div> -->
                             <div>
                                 <button type="submit" class="btn btn-primary ml-2">Simpan</button>
                             </div>
