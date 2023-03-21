@@ -23,7 +23,14 @@ class Admin extends CI_Controller {
         // $data['total_pembayaran_dp'] = $this->M_admin->pembayaran_dp_total_rows();
         // $data['total_pembayaran_pelunasan'] = $this->M_admin->pembayaran_pelunasan_total_rows();
         // $data['total_pembayaran_lunas'] = $this->M_admin->pembayaran_lunas_total_rows();
-        $this->load->view('petugas/dashboard');
+        $data = [
+            'judul' => 'admin',
+            'page' => 'admin',
+            'menu_admin' => 'admin',
+            'menu_submenu_admin'=>'',
+            'submenu_admin'=>''
+        ];
+        $this->load->view('petugas/dashboard', $data);
     }
 
     // Setting
@@ -84,6 +91,13 @@ class Admin extends CI_Controller {
 
     public function setting()
     {
+        $data = [
+            'judul' => '',
+            'page' => '',
+            'menu_admin' => '',
+            'menu_submenu_admin'=>'',
+            'submenu_admin'=>''
+        ];
         $data['hak_akses'] = $this->M_admin->get_hak_akses('hak_akses');
         $data['data_user'] = $this->M_admin->get_user('data_user');
         $data['setting_perpustakan']=$this->M_admin->get_setting_perpus('setting_perpustakaan')->result();
@@ -165,6 +179,13 @@ class Admin extends CI_Controller {
 
     public function hak_akses($id_level)
     {
+        $data = [
+            'judul' => '',
+            'page' => '',
+            'menu_admin' => '',
+            'menu_submenu_admin'=>'',
+            'submenu_admin'=>''
+        ];
         $data['hak_akses'] = $this->M_admin->get_hak_akses('hak_akses');
         $data['user']=$this->M_admin->get_user_by_id($id_level)->result();
         $this->load->view('petugas/setting/hak_akses', $data);
@@ -190,6 +211,13 @@ class Admin extends CI_Controller {
 
     public function setting_perpustakaan()
     {
+        $data = [
+            'judul' => '',
+            'page' => '',
+            'menu_admin' => '',
+            'menu_submenu_admin'=>'',
+            'submenu_admin'=>''
+        ];
         $data['perpus']=$this->M_admin->get_setting_perpus('setting_perpustakaan')->result();
         $this->load->view('petugas/setting/setting_perpustakaan', $data);
     }

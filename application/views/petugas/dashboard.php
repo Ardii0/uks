@@ -26,7 +26,7 @@
                     <div class="row">
                         <div class="col-lg-4 col-6">
                             <!-- small box -->
-                            <div class="small-box btn-success">
+                            <div class="small-box btn-secondary">
                                 <div class="inner">
                                     <h3>2022/2023</h3>
                                     <p>Tahun Ajaran</p>
@@ -41,7 +41,7 @@
                         </div>
                         <div class="col-lg-4 col-6">
                             <!-- small box -->
-                            <div class="small-box btn-success">
+                            <div class="small-box btn-secondary">
                                 <div class="inner">
                                     <h3>24</h3>
                                     <p>Jumlah Guru</p>
@@ -55,7 +55,7 @@
                         </div>
                         <div class="col-lg-4 col-6">
                             <!-- small box -->
-                            <div class="small-box btn-success">
+                            <div class="small-box btn-secondary">
                                 <div class="inner">
                                     <h3>279</h3>
                                     <p>Jumlah Murid</p>
@@ -70,7 +70,7 @@
                         </div>
                         <div class="col-lg-4 col-6">
                             <!-- small box -->
-                            <div class="small-box btn-success">
+                            <div class="small-box btn-secondary">
                                 <div class="inner">
                                     <h3>24</h3>
                                     <p>Jumlah Buku</p>
@@ -84,7 +84,7 @@
                         </div>
                         <div class="col-lg-4 col-6">
                             <!-- small box -->
-                            <div class="small-box btn-success">
+                            <div class="small-box btn-secondary">
                                 <div class="inner">
                                     <h3>Jumlah</h3>
                                     <p>Paket Jenjang</p>
@@ -98,7 +98,7 @@
                         </div>
                         <div class="col-lg-4 col-6">
                             <!-- small box -->
-                            <div class="small-box btn-success">
+                            <div class="small-box btn-secondary">
                                 <div class="inner">
                                     <h3>3</h3>
                                     <p>Jumlah Paket Jenjang</p>
