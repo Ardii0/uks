@@ -44,22 +44,18 @@
                                                 <td class="px-2"><?php echo $data->no_pinjaman ?></td>
                                             </tr>
                                             <tr>
+                                                <th class="px-2">ID Anggota</th>
+                                                <td class="px-2"><?php echo $data->id_anggota ?></td>
+                                            </tr>
+                                            <tr>
                                                 <th class="px-2">Nama Siswa</th>
                                                 <td class="px-2">
                                                     <?php echo tampil_namadaftar_ByIdAnggota($data->id_anggota) ?></td>
-                                            </tr>
-                                            <tr>
-                                                <th class="px-2">Denda</th>
-                                                <td class="px-2">0</td>
                                             </tr>
                                         </table>
                                     </div>
                                     <div>
                                         <table>
-                                            <tr>
-                                                <th class="px-2">ID Anggota</th>
-                                                <td class="px-2"><?php echo $data->id_anggota ?></td>
-                                            </tr>
                                             <tr>
                                                 <th class="px-2">Tanggal Peminjaman</th>
                                                 <td class="px-2"><?php echo $data->tgl_pinjaman ?></td>
