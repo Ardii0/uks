@@ -117,7 +117,7 @@
                 </li>
               </ul>
             </li>
-            <li class="nav-item <?=$menu == 'mapel' ? 'menu-open' :'' ?>">
+            <li class="nav-item <?=$menu == 'mapel' ? 'menu-open' :'' ?> mb-5">
               <a href="#" class="nav-link <?=$menu == 'mapel' ? 'active' :'' ?>">
                 <i class="nav-icon fas fa-book"></i>
                 <p>

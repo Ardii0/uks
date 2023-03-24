@@ -68,18 +68,16 @@
                                             <td><?php echo tampil_namadaftar_ByIdSiswa($data->id_siswa)?></td>
                                             <td><?php echo tampil_kelasdaftar_ByIdSiswa($data->id_siswa)?></td>
                                             <td><?php echo tampil_rombeldaftar_ByIdSiswa($data->id_siswa)?></td>
-                                            <td><?php echo $data->tgl_daftar?></td>
+                                            <td><?php echo $data->date?></td>
                                             <td class="text-center">
-                                                <div class="btn btn-success btn-sm">
+                                                <a href="<?php echo base_url('Perpustakaan/kartu_anggota/'.$data->id_anggota)?>"
+                                                   class="btn btn-success btn-sm">
                                                     <i class="fa fa-credit-card"></i>
-                                                </div>
+                                                </a>
                                                 <button onclick="hapus(<?php echo $data->id_anggota ;?>)"
                                                     class="btn btn-danger btn-sm">
-                                                    <i class="fa fa-trash"></i></button>
-                                                <a href="<?php echo base_url('Perpustakaan/kartu_anggota/'.$data->id_anggota)?>"
-                                                    class="btn btn-success btn-sm">
-                                                    <i class="fas fa-barcode"></i>
-                                                </a>
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                         <?php endforeach;?>

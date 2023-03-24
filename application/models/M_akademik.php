@@ -9,17 +9,17 @@ class M_akademik extends CI_Model{
 
     public function total_mapel()
   {
-    return $this->db->get('tabel_mapel')->num_rows();
+    return $this->db->where('status','AKTIF')->get('tabel_mapel')->num_rows();
   }
 
     public function total_siswa()
   {
-    return $this->db->get('tabel_siswa')->num_rows();
+    return $this->db->where('diterima','A')->get('tabel_daftar')->num_rows();
   }
 
     public function total_guru()
   {
-    return $this->db->get('tabel_guru')->num_rows();
+    return $this->db->where('status','AKTIF')->get('tabel_guru')->num_rows();
   }
 // Tahun Ajar
     public function get_tahun_ajaran()

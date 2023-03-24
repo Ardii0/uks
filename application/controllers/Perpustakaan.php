@@ -215,22 +215,12 @@ class Perpustakaan extends CI_Controller {
     {
         $data = array
         (
-            'id_anggota' => $this->acak_anggota(4),
+            'id_anggota' => $this->acak_anggota(5),
             'id_siswa' => $this->input->post('id_siswa'),
-            'tgl_daftar' => $this->input->post('tgl_daftar'),
             'status' => '1',
         );
-        $masuk=$this->m_perpustakaan->aksi_tambah_anggota('tabel_anggota', $data);
-        if($masuk)
-        {
-            $this->session->set_flashdata('sukses', 'berhasil');
-            redirect(base_url('Perpustakaan/data_anggota'));
-        }
-        else
-        {
-            $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Perpustakaan/data_anggota'));
-        }
+        $this->m_perpustakaan->aksi_tambah_anggota('tabel_anggota', $data);
+        redirect(base_url('Perpustakaan/data_anggota'));
     }
 
     public function edit_anggota($id_anggota)
@@ -243,28 +233,6 @@ class Perpustakaan extends CI_Controller {
         ];
         $data['data_anggota']=$this->m_perpustakaan->edit_anggota('tabel_anggota', $id_anggota)->result();
         $this->load->view('perpustakaan/data_anggota/edit_anggota', $data);
-    }
-
-    public function update_anggota()
-    {
-        $data = array
-        (
-            'nama_anggota' => $this->input->post('nama_anggota'),
-            'nisn' => $this->input->post('nisn'),
-            'keterangan' => $this->input->post('keterangan'),
-            'del_flag' => '1',
-        );
-        $masuk=$this->m_perpustakaan->ubah_anggota('tabel_anggota', $data, array('id_anggota'=>$this->input->post('id_anggota')));
-        if($masuk)
-        {
-            $this->session->set_flashdata('sukses', 'berhasil');
-            redirect(base_url('Perpustakaan/data_anggota'));
-        }
-        else
-        {
-            $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Perpustakaan/edit_anggoota/'.$this->input->post('id_anggota')));
-        }
     }
 
     public function hapus_anggota($id_anggota)

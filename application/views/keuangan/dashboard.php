@@ -32,13 +32,8 @@
 
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-        <!-- navbar -->
         <?php $this->load->view('keuangan/style/navbar') ?>
-        <!-- navbar -->
-        <!-- Sidebar -->
         <?php $this->load->view('keuangan/style/sidebar') ?>
-        <!-- Sidebar -->
-
 
         <div class="content-wrapper">
             <div class="container-fluid">
@@ -67,7 +62,7 @@
                                 </div>
                             </div>
                                 </div>
-                                <div class="col">
+                            <div class="col">
                                 <div>
                                 <div class="small-box bg-gradient-info">
                                     <div class="inner">
@@ -75,11 +70,26 @@
                                         <h3><?php echo $total_jenis_trans;  ?></h3>
                                     </div>
                                     <div class="icon">
-                                        <i class="nav-icon fas "></i>
                                         <i class="nav-icon fas fa-money-bill"></i>
                                     </div>
                                     <a href="<?php echo base_url('keuangan/dana')?>" class="small-box-footer">Info Lebih Lanjut <i
                                             class="fas fa-arrow-circle-right"></i></a>
+                                </div>
+                                <div class="small-box bg-gradient-info d-flex">
+                                    <div class="inner col-4 d-flex justify-content-center align-items-center">
+                                        <i class="nav-icon fas fa-money-bill" style="font-size: 55px;"></i>
+                                    </div>
+                                    <div class="inner">
+                                        <p>Jumlah Pembayaran Hari ini</p>
+                                            <?php foreach ($pembayaran as $totalprch) { ?>
+                                                <h5><?php if($totalprch->total == 0) {
+                                                    echo "Rp. -";
+                                                } else {
+                                                    echo convRupiah($totalprch->total);
+                                                }
+                                                ?></h5>
+                                            <?php } ?>
+                                    </div>
                                 </div>
                             </div>
                                 </div>
@@ -92,7 +102,7 @@
                                         <div class="" style="height:75vh">
                                             <div class="small-box bg-info">
                                                 <div class="inner">
-                                                    <p>Jumlah Anggota</p>
+                                                    <p>Jumlah Akun</p>
                                                     <h3><?php echo $total_akun; ?></h3>
                                                 </div>
                                                 <div class="icon">
@@ -108,7 +118,7 @@
                                                     <thead>
                                                         <tr class="text-center bg-info">
                                                             <th>No</th>
-                                                            <th>Nama</th>
+                                                            <th>Nama Akun</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>

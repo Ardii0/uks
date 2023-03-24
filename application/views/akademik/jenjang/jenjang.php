@@ -8,20 +8,6 @@
     <?php $this->load->view('akademik/style/head') ?>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-        <script language="JavaScript" type="text/javascript">
-function checkDelete(){
-    if (confirm('Yakin Di Hapus?');) {
-        window.location.href = "<?php echo base_url('Akademik/hapus_jenjang/') ?>" + id;
-        location.href="<?php echo base_url('Akademik/hapus_jenjang/') ?>" + id;;
-    };
-}
-var baseUrl='http://example.com';
-      function ConfirmDelete()
-      {
-            if (confirm("Delete Account?"))
-                 location.href=baseUrl+'/deleteRecord.php';
-      }
-</script>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -56,7 +42,7 @@ var baseUrl='http://example.com';
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 d-flex justify-content-end align-self-start">
+                        <div class="col-md-4 d-flex justify-content-end align-self-start">
                             <div class="mx-1">
                                 <button type="button" class="btn btn-success" data-toggle="modal"
                                     data-target="#modal_tambah_rak">
@@ -78,6 +64,7 @@ var baseUrl='http://example.com';
                                             <th>No</th>
                                             <th>Nama</th>
                                             <th>Kode Jenjang</th>
+                                            <th>Alamat</th>
                                             <th>Keterangan</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -95,6 +82,9 @@ var baseUrl='http://example.com';
                                                 </td>
                                                 <td>
                                                     <?php echo $data->kd_jenjang ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $data->alamat ?>
                                                 </td>
                                                 <td>
                                                     <?php echo $data->keterangan ?>

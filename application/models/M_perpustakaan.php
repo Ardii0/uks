@@ -137,7 +137,7 @@ class M_perpustakaan extends CI_Model{
 	}
 //==============================================DAFTAR BUKU===========================================================
 
-// ANGGOTA
+// Anggota
 	public function get_anggota()
 	{
 		return $this->db->get('tabel_anggota')->result();

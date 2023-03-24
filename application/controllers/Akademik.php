@@ -190,6 +190,7 @@ class Akademik extends CI_Controller {
             'nama_jenjang' => $this->input->post('nama_jenjang'),
             'kd_jenjang' => $this->input->post('kd_jenjang'),
             'id_paket' => $this->input->post('id_paket'),
+            'alamat' => $this->input->post('alamat'),
             'keterangan' => $this->input->post('keterangan'),
         ];
         $this->m_akademik->tambah_jenjang('tabel_jenjang', $data);
@@ -215,6 +216,7 @@ class Akademik extends CI_Controller {
             'nama_jenjang' => $this->input->post('nama_jenjang'),
             'kd_jenjang' => $this->input->post('kd_jenjang'),
             'id_paket' => $this->input->post('id_paket'),
+            'alamat' => $this->input->post('alamat'),
             'keterangan' => $this->input->post('keterangan'),
         ];
         $logged=$this->m_akademik->ubah_jenjang('tabel_jenjang', $data, array('id_jenjang'=>$this->input->post('id_jenjang')));

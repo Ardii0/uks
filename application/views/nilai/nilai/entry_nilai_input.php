@@ -102,7 +102,7 @@
                                         <div class="col-1 font-weight-bold">NISN</div>
                                         <div class="col-5">: <?php echo tampil_nisndaftar_ByIdSiswa($inputdata->id_siswa) ?></div>
                                     <?php endforeach; ?>
-                                    <?php if($this->session->userdata('level') === 'Guru') {?>
+                                    <?php if($this->session->userdata('level') === 'Nilai') {?>
                                         <div class="col-6 mt-3">
                                             <div class="form-group">
                                                 <label class="control-label">NUH1</label>

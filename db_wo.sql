@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 21, 2023 at 10:29 AM
--- Server version: 8.0.29
+-- Generation Time: Mar 24, 2023 at 02:46 PM
+-- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -28,11 +28,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `foto` (
-  `id_foto` int NOT NULL,
-  `foto1` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `foto2` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `foto3` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `foto4` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `id_foto` int(11) NOT NULL,
+  `foto1` varchar(255) DEFAULT NULL,
+  `foto2` varchar(255) DEFAULT NULL,
+  `foto3` varchar(255) DEFAULT NULL,
+  `foto4` varchar(255) DEFAULT NULL,
   `date_created` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -50,8 +50,8 @@ INSERT INTO `foto` (`id_foto`, `foto1`, `foto2`, `foto3`, `foto4`, `date_created
 --
 
 CREATE TABLE `kembalikan` (
-  `id` int NOT NULL,
-  `id_buku` int NOT NULL
+  `id` int(11) NOT NULL,
+  `id_buku` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -80,8 +80,8 @@ DELIMITER ;
 --
 
 CREATE TABLE `pinjam` (
-  `id` int NOT NULL,
-  `id_buku` int NOT NULL
+  `id` int(11) NOT NULL,
+  `id_buku` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -111,8 +111,8 @@ DELIMITER ;
 --
 
 CREATE TABLE `setting_perpustakaan` (
-  `id_setting_perpus` int NOT NULL,
-  `maksimal_pengembalian_hari` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `id_setting_perpus` int(11) NOT NULL,
+  `maksimal_pengembalian_hari` varchar(255) DEFAULT NULL,
   `denda` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -130,10 +130,10 @@ INSERT INTO `setting_perpustakaan` (`id_setting_perpus`, `maksimal_pengembalian_
 --
 
 CREATE TABLE `tabel_akun` (
-  `id_akun` int NOT NULL,
-  `nama_akun` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `jenis_akun` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `status` int DEFAULT NULL
+  `id_akun` int(11) NOT NULL,
+  `nama_akun` varchar(255) DEFAULT NULL,
+  `jenis_akun` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -150,10 +150,10 @@ INSERT INTO `tabel_akun` (`id_akun`, `nama_akun`, `jenis_akun`, `status`) VALUES
 --
 
 CREATE TABLE `tabel_alokasiguru` (
-  `id_alokasiguru` int NOT NULL,
+  `id_alokasiguru` int(11) NOT NULL,
   `kode_guru` varchar(255) NOT NULL,
-  `id_mapel` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id_mapel` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tabel_alokasiguru`
@@ -172,10 +172,10 @@ INSERT INTO `tabel_alokasiguru` (`id_alokasiguru`, `kode_guru`, `id_mapel`) VALU
 --
 
 CREATE TABLE `tabel_alokasimapel` (
-  `id_alokasimapel` int NOT NULL,
-  `id_mapel` int NOT NULL,
-  `id_rombel` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id_alokasimapel` int(11) NOT NULL,
+  `id_mapel` int(11) NOT NULL,
+  `id_rombel` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tabel_alokasimapel`
@@ -192,19 +192,22 @@ INSERT INTO `tabel_alokasimapel` (`id_alokasimapel`, `id_mapel`, `id_rombel`) VA
 --
 
 CREATE TABLE `tabel_anggota` (
-  `id_anggota` int NOT NULL,
-  `id_siswa` int NOT NULL,
-  `tgl_daftar` date NOT NULL,
-  `status` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id_anggota` int(11) NOT NULL,
+  `id_siswa` int(11) NOT NULL,
+  `date` date DEFAULT curdate(),
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tabel_anggota`
 --
 
-INSERT INTO `tabel_anggota` (`id_anggota`, `id_siswa`, `tgl_daftar`, `status`) VALUES
-(4343, 1, '2023-03-18', 1),
-(8624, 8, '2023-03-01', 1);
+INSERT INTO `tabel_anggota` (`id_anggota`, `id_siswa`, `date`, `status`) VALUES
+(9923, 8, '2023-03-24', 1),
+(199, 1, '2023-03-24', 1),
+(875, 7, '2023-03-24', 1),
+(863, 9, '2023-03-24', 1),
+(31271, 6, '2023-03-24', 1);
 
 -- --------------------------------------------------------
 
@@ -213,16 +216,16 @@ INSERT INTO `tabel_anggota` (`id_anggota`, `id_siswa`, `tgl_daftar`, `status`) V
 --
 
 CREATE TABLE `tabel_daftar` (
-  `id_daftar` int NOT NULL,
+  `id_daftar` int(11) NOT NULL,
   `no_reg` varchar(100) NOT NULL,
-  `id_angkatan` int DEFAULT NULL,
-  `id_jenjang` int NOT NULL,
+  `id_angkatan` int(11) DEFAULT NULL,
+  `id_jenjang` int(11) NOT NULL,
   `tgl_daftar` date NOT NULL,
   `nisn` varchar(10) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `jekel` varchar(255) NOT NULL,
   `tempat_lahir` varchar(255) NOT NULL,
-  `anak_ke` int DEFAULT NULL,
+  `anak_ke` int(11) DEFAULT NULL,
   `saudara_kandung` varchar(255) DEFAULT NULL,
   `saudara_angkat` varchar(255) DEFAULT NULL,
   `tgl_lahir` date DEFAULT NULL,
@@ -232,7 +235,7 @@ CREATE TABLE `tabel_daftar` (
   `foto` varchar(255) DEFAULT NULL,
   `warga_negara` varchar(255) DEFAULT NULL,
   `diterima` varchar(1) NOT NULL DEFAULT 'P'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tabel_daftar`
@@ -261,9 +264,9 @@ CREATE TABLE `tabel_guru` (
   `nama_guru` varchar(50) NOT NULL,
   `jekel` enum('L','P') DEFAULT NULL,
   `no_hp` varchar(14) DEFAULT NULL,
-  `alamat` text,
+  `alamat` text DEFAULT NULL,
   `status` enum('AKTIF','NONAKTIF') DEFAULT 'AKTIF'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tabel_guru`
@@ -287,8 +290,8 @@ INSERT INTO `tabel_guru` (`kode_guru`, `nip`, `nama_guru`, `jekel`, `no_hp`, `al
 --
 
 CREATE TABLE `tabel_hak_akses` (
-  `id_hak_akses` int DEFAULT NULL,
-  `akses` varchar(765) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
+  `id_hak_akses` int(11) DEFAULT NULL,
+  `akses` varchar(765) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -310,12 +313,12 @@ INSERT INTO `tabel_hak_akses` (`id_hak_akses`, `akses`) VALUES
 --
 
 CREATE TABLE `tabel_invoice` (
-  `id_invoice` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `id_siswa` int NOT NULL,
-  `date` date DEFAULT (curdate()),
-  `id_level` int NOT NULL,
-  `id_ta` int DEFAULT NULL,
-  `cek_p` int DEFAULT '0'
+  `id_invoice` varchar(255) NOT NULL,
+  `id_siswa` int(11) NOT NULL,
+  `date` date DEFAULT curdate(),
+  `id_level` int(11) NOT NULL,
+  `id_ta` int(11) DEFAULT NULL,
+  `cek_p` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -334,7 +337,9 @@ INSERT INTO `tabel_invoice` (`id_invoice`, `id_siswa`, `date`, `id_level`, `id_t
 ('INV0319L3I0249', 6, '2023-03-19', 5, 1, 1),
 ('INV031903H4605', 5, '2023-03-19', 5, 0, 1),
 ('INV0319T4W4609', 5, '2023-03-19', 5, 0, 1),
-('INV0320H213525', 5, '2023-03-20', 5, 0, 1);
+('INV0320H213525', 5, '2023-03-20', 5, 0, 1),
+('INV03236WP0544', 8, '2023-03-24', 1, 0, 1),
+('INV0323MSV1842', 8, '2023-03-22', 1, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -343,13 +348,13 @@ INSERT INTO `tabel_invoice` (`id_invoice`, `id_siswa`, `date`, `id_level`, `id_t
 --
 
 CREATE TABLE `tabel_jenisbayar` (
-  `id_jenis` int NOT NULL,
+  `id_jenis` int(11) NOT NULL,
   `kode_jenis` varchar(3) DEFAULT NULL,
   `nama_jenis` varchar(25) DEFAULT NULL,
-  `tipe_jenis` int DEFAULT NULL,
-  `keterangan` text,
-  `status` int NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `tipe_jenis` int(11) DEFAULT NULL,
+  `keterangan` text DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tabel_jenisbayar`
@@ -366,11 +371,11 @@ INSERT INTO `tabel_jenisbayar` (`id_jenis`, `kode_jenis`, `nama_jenis`, `tipe_je
 --
 
 CREATE TABLE `tabel_jenismapel` (
-  `id_jenismapel` int NOT NULL,
+  `id_jenismapel` int(11) NOT NULL,
   `nama_jenismapel` varchar(100) NOT NULL,
   `keterangan` text NOT NULL,
   `status` enum('AKTIF','NONAKTIF') NOT NULL DEFAULT 'AKTIF'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tabel_jenismapel`
@@ -387,16 +392,16 @@ INSERT INTO `tabel_jenismapel` (`id_jenismapel`, `nama_jenismapel`, `keterangan`
 --
 
 CREATE TABLE `tabel_jenis_transaksi` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `nama_jenis_transaksi` varchar(200) NOT NULL,
-  `rencana_anggaran` int NOT NULL,
-  `status` int NOT NULL DEFAULT '1',
+  `rencana_anggaran` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 1,
   `jenis_transaksi` enum('m','k') NOT NULL,
-  `nominal` bigint NOT NULL,
-  `debit` int NOT NULL,
-  `kredit` int NOT NULL,
+  `nominal` bigint(20) NOT NULL,
+  `debit` int(11) NOT NULL,
+  `kredit` int(11) NOT NULL,
   `keterangan` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tabel_jenis_transaksi`
@@ -417,14 +422,14 @@ INSERT INTO `tabel_jenis_transaksi` (`id`, `nama_jenis_transaksi`, `rencana_angg
 --
 
 CREATE TABLE `tabel_jenjang` (
-  `id_jenjang` int NOT NULL,
+  `id_jenjang` int(11) NOT NULL,
   `kd_jenjang` varchar(50) NOT NULL,
   `nama_jenjang` varchar(50) NOT NULL,
-  `keterangan` text,
-  `id_paket` int NOT NULL,
-  `alamat` text CHARACTER SET latin1 COLLATE latin1_swedish_ci,
-  `aktif` int NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `keterangan` text DEFAULT NULL,
+  `id_paket` int(11) NOT NULL,
+  `alamat` text DEFAULT NULL,
+  `aktif` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tabel_jenjang`
@@ -433,10 +438,9 @@ CREATE TABLE `tabel_jenjang` (
 INSERT INTO `tabel_jenjang` (`id_jenjang`, `kd_jenjang`, `nama_jenjang`, `keterangan`, `id_paket`, `alamat`, `aktif`) VALUES
 (1, 'J001', 'SD Mekar Sari', 'Sekolah Dasar', 2, 'Jl. Sd kemantren', 1),
 (3, 'J002', 'SMP Sehat Mekar Percaya', 'Sekolah Menengah Pertama', 1, 'Jl. Smp kemantren', 1),
-(4, 'J003', 'SMA Public', 'Sekolah Menengah Atas', 2, 'Jl. Sma kemantren', 1),
+(4, 'J003', 'SMA Public', 'Sekolah Menengah Atas', 2, 'Jl. Sma kemantren Raya', 1),
 (5, 'J004', 'SMK Bina Nusantara', 'Sekolah Menengah Kejuruan', 4, 'Jl. Kemantren Raya no.4', 1),
-(9, 'J006', 'SMP', '', 9, NULL, 1),
-(10, 'J010', 'Sekolah Menengah Atas', '', 10, NULL, 1);
+(9, 'J006', 'SMP', '', 9, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -445,12 +449,12 @@ INSERT INTO `tabel_jenjang` (`id_jenjang`, `kd_jenjang`, `nama_jenjang`, `ketera
 --
 
 CREATE TABLE `tabel_kelas` (
-  `id_kelas` int NOT NULL,
-  `id_jenjang` int NOT NULL,
+  `id_kelas` int(11) NOT NULL,
+  `id_jenjang` int(11) NOT NULL,
   `nama_kelas` varchar(50) NOT NULL,
-  `keterangan` text,
+  `keterangan` text DEFAULT NULL,
   `status` enum('AKTIF','NONAKTIF','','') NOT NULL DEFAULT 'AKTIF'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tabel_kelas`
@@ -470,14 +474,14 @@ INSERT INTO `tabel_kelas` (`id_kelas`, `id_jenjang`, `nama_kelas`, `keterangan`,
 --
 
 CREATE TABLE `tabel_level` (
-  `id_level` int NOT NULL,
+  `id_level` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `level` varchar(20) NOT NULL,
   `kode_guru` varchar(255) DEFAULT NULL,
-  `id_hak_akses` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id_hak_akses` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tabel_level`
@@ -502,9 +506,9 @@ INSERT INTO `tabel_level` (`id_level`, `username`, `email`, `password`, `level`,
 --
 
 CREATE TABLE `tabel_lulus` (
-  `id_lulus` int NOT NULL,
-  `id_daftar` int DEFAULT NULL,
-  `id_rombel` int DEFAULT NULL,
+  `id_lulus` int(11) NOT NULL,
+  `id_daftar` int(11) DEFAULT NULL,
+  `id_rombel` int(11) DEFAULT NULL,
   `tanggal_lulus` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -523,12 +527,12 @@ INSERT INTO `tabel_lulus` (`id_lulus`, `id_daftar`, `id_rombel`, `tanggal_lulus`
 --
 
 CREATE TABLE `tabel_mapel` (
-  `id_mapel` int NOT NULL,
-  `id_jenismapel` int NOT NULL,
+  `id_mapel` int(11) NOT NULL,
+  `id_jenismapel` int(11) NOT NULL,
   `nama_mapel` varchar(100) NOT NULL,
-  `keterangan` text,
+  `keterangan` text DEFAULT NULL,
   `status` enum('AKTIF','NONAKTIF') NOT NULL DEFAULT 'AKTIF'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tabel_mapel`
@@ -545,24 +549,24 @@ INSERT INTO `tabel_mapel` (`id_mapel`, `id_jenismapel`, `nama_mapel`, `keteranga
 --
 
 CREATE TABLE `tabel_nilai` (
-  `id_nilai` int NOT NULL,
-  `id_rombel` int NOT NULL,
-  `id_siswa` int NOT NULL,
-  `id_mapel` int NOT NULL,
-  `id_semester` int NOT NULL,
-  `nuh1` int NOT NULL,
-  `nuh2` int NOT NULL,
-  `nuh3` int NOT NULL,
-  `nt1` int NOT NULL,
-  `nt2` int NOT NULL,
-  `nt3` int NOT NULL,
-  `mid` int NOT NULL,
-  `smt` int NOT NULL,
-  `rnuh` text,
-  `rnt` text,
-  `nh` text,
-  `nar` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id_nilai` int(11) NOT NULL,
+  `id_rombel` int(11) NOT NULL,
+  `id_siswa` int(11) NOT NULL,
+  `id_mapel` int(11) NOT NULL,
+  `id_semester` int(11) NOT NULL,
+  `nuh1` int(11) NOT NULL,
+  `nuh2` int(11) NOT NULL,
+  `nuh3` int(11) NOT NULL,
+  `nt1` int(11) NOT NULL,
+  `nt2` int(11) NOT NULL,
+  `nt3` int(11) NOT NULL,
+  `mid` int(11) NOT NULL,
+  `smt` int(11) NOT NULL,
+  `rnuh` text DEFAULT NULL,
+  `rnt` text DEFAULT NULL,
+  `nh` text DEFAULT NULL,
+  `nar` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tabel_nilai`
@@ -570,7 +574,14 @@ CREATE TABLE `tabel_nilai` (
 
 INSERT INTO `tabel_nilai` (`id_nilai`, `id_rombel`, `id_siswa`, `id_mapel`, `id_semester`, `nuh1`, `nuh2`, `nuh3`, `nt1`, `nt2`, `nt3`, `mid`, `smt`, `rnuh`, `rnt`, `nh`, `nar`) VALUES
 (1, 12, 5, 9, 1, 1, 1, 1, 1, 1, 1, 1, 1, '1', '1', '1', '99'),
-(2, 1, 1, 9, 1, 1, 1, 2, 1, 1, 2, 2, 2, '1.3333333333333', '1.3333333333333', '1.3333333333333', '1.7777777777778');
+(2, 1, 1, 9, 1, 1, 1, 2, 1, 1, 2, 2, 2, '1.3333333333333', '1.3333333333333', '1.3333333333333', '1.7777777777778'),
+(3, 1, 8, 9, 1, 20, 20, 20, 30, 30, 30, 20, 30, '20', '30', '25', '25'),
+(4, 1, 1, 9, 1, 75, 72, 73, 27, 27, 89, 45, 90, '73.333333333333', '47.666666666667', '60.5', '65.166666666667'),
+(5, 1, 1, 9, 2, 97, 79, 97, 97, 79, 97, 79, 79, '91', '91', '91', '83'),
+(6, 1, 1, 9, 1, 21, 32, 35, 11, 25, 57, 12, 35, '29.333333333333', '31', '30.166666666667', '25.722222222222'),
+(7, 1, 1, 9, 1, 21, 32, 35, 11, 25, 57, 12, 35, '29.333333333333', '31', '30', '25.666666666667'),
+(8, 1, 1, 9, 1, 21, 32, 35, 11, 25, 57, 12, 35, '29.333333333333', '31', '30', '25.666666666667'),
+(9, 1, 1, 9, 1, 21, 32, 35, 11, 25, 57, 12, 35, '29', '31', '30', '25');
 
 -- --------------------------------------------------------
 
@@ -579,10 +590,10 @@ INSERT INTO `tabel_nilai` (`id_nilai`, `id_rombel`, `id_siswa`, `id_mapel`, `id_
 --
 
 CREATE TABLE `tabel_paketjenjang` (
-  `id_paket` int NOT NULL,
+  `id_paket` int(11) NOT NULL,
   `kode_paket` varchar(10) NOT NULL,
   `nama_paket` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tabel_paketjenjang`
@@ -606,18 +617,18 @@ INSERT INTO `tabel_paketjenjang` (`id_paket`, `kode_paket`, `nama_paket`) VALUES
 --
 
 CREATE TABLE `tabel_pembayaran` (
-  `id_pembayaran` int NOT NULL,
-  `id_siswa` int DEFAULT NULL,
-  `id_jenis` int DEFAULT NULL,
-  `nominal` int NOT NULL,
-  `keterangan` text,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `id_ta` int DEFAULT NULL,
+  `id_pembayaran` int(11) NOT NULL,
+  `id_siswa` int(11) DEFAULT NULL,
+  `id_jenis` int(11) DEFAULT NULL,
+  `nominal` int(11) NOT NULL,
+  `keterangan` text DEFAULT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `id_ta` int(11) DEFAULT NULL,
   `id_tf` varchar(20) DEFAULT NULL,
   `id_invoice` varchar(255) NOT NULL,
-  `id_level` int NOT NULL,
-  `cek_p` int DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id_level` int(11) NOT NULL,
+  `cek_p` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tabel_pembayaran`
@@ -647,7 +658,9 @@ INSERT INTO `tabel_pembayaran` (`id_pembayaran`, `id_siswa`, `id_jenis`, `nomina
 (42, 6, 1, 2, '3', '2023-03-19 13:02:59', 1, 'TSK0319F8K0259', 'INV0319L3I0249', 5, 1),
 (44, 5, 2, 1, '1', '2023-03-19 13:46:11', 0, 'TSK0319ES34611', 'INV0319T4W4609', 5, 1),
 (45, 5, 1, 20000, 'Tes', '2023-03-20 06:35:36', 0, 'TSK032046O3536', 'INV0320H213525', 5, 1),
-(46, 5, 2, 15000, 'Tes 2', '2023-03-20 06:35:53', 1, 'TSK03205PS3553', 'INV0320H213525', 5, 1);
+(46, 5, 2, 15000, 'Tes 2', '2023-03-20 06:35:53', 1, 'TSK03205PS3553', 'INV0320H213525', 5, 1),
+(47, 8, 2, 1000, 'ada', '2023-03-23 17:13:10', 0, 'TSK0323L160554', 'INV03236WP0544', 1, 1),
+(48, 8, 2, 15000, 'Ok', '2023-03-22 10:18:57', 0, 'TSK0323T281857', 'INV0323MSV1842', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -656,10 +669,10 @@ INSERT INTO `tabel_pembayaran` (`id_pembayaran`, `id_siswa`, `id_jenis`, `nomina
 --
 
 CREATE TABLE `tabel_pindah` (
-  `id_pindah` int NOT NULL,
-  `id_daftar` int DEFAULT NULL,
-  `id_rombel` int DEFAULT NULL,
-  `nama_sekolah` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `id_pindah` int(11) NOT NULL,
+  `id_daftar` int(11) DEFAULT NULL,
+  `id_rombel` int(11) DEFAULT NULL,
+  `nama_sekolah` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -688,13 +701,13 @@ INSERT INTO `tabel_pindah` (`id_pindah`, `id_daftar`, `id_rombel`, `nama_sekolah
 --
 
 CREATE TABLE `tabel_pinjaman` (
-  `id_pinjaman` int NOT NULL,
-  `no_pinjaman` int DEFAULT NULL,
-  `id_anggota` int NOT NULL,
-  `id_index_buku` int NOT NULL,
+  `id_pinjaman` int(11) NOT NULL,
+  `no_pinjaman` int(11) DEFAULT NULL,
+  `id_anggota` int(11) NOT NULL,
+  `id_index_buku` int(11) NOT NULL,
   `tgl_pinjaman` date DEFAULT NULL,
   `tgl_kembali` date DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8mb4_general_ci DEFAULT 'DIPINJAM'
+  `status` varchar(255) DEFAULT 'DIPINJAM'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -712,14 +725,14 @@ INSERT INTO `tabel_pinjaman` (`id_pinjaman`, `no_pinjaman`, `id_anggota`, `id_in
 --
 
 CREATE TABLE `tabel_rencana_anggaran` (
-  `id_rencana_anggaran` int NOT NULL,
+  `id_rencana_anggaran` int(11) NOT NULL,
   `nama_anggaran` varchar(150) NOT NULL,
   `awal_periode` date NOT NULL,
   `akhir_periode` date NOT NULL,
   `pencatat` varchar(100) NOT NULL,
-  `status` int NOT NULL,
-  `tetapkan` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` int(11) NOT NULL,
+  `tetapkan` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tabel_rencana_anggaran`
@@ -737,13 +750,13 @@ INSERT INTO `tabel_rencana_anggaran` (`id_rencana_anggaran`, `nama_anggaran`, `a
 --
 
 CREATE TABLE `tabel_rombel` (
-  `id_rombel` int NOT NULL,
-  `id_kelas` int NOT NULL,
+  `id_rombel` int(11) NOT NULL,
+  `id_kelas` int(11) NOT NULL,
   `nama_rombel` varchar(100) NOT NULL,
   `kode_guru` varchar(255) NOT NULL,
-  `kuota` int NOT NULL,
+  `kuota` int(11) NOT NULL,
   `status` enum('AKTIF','NONAKTIF') NOT NULL DEFAULT 'AKTIF'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tabel_rombel`
@@ -766,13 +779,13 @@ INSERT INTO `tabel_rombel` (`id_rombel`, `id_kelas`, `nama_rombel`, `kode_guru`,
 --
 
 CREATE TABLE `tabel_sekolah` (
-  `id_sekolah` int NOT NULL,
-  `nama_sekolah` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `id_sekolah` int(11) NOT NULL,
+  `nama_sekolah` varchar(255) DEFAULT NULL,
   `tanggal_regristasi` date DEFAULT NULL,
   `nomor_telepon` double DEFAULT NULL,
-  `alamat` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `email_sekolah` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `foto` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `alamat` varchar(255) DEFAULT NULL,
+  `email_sekolah` varchar(255) DEFAULT NULL,
+  `foto` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -789,8 +802,8 @@ INSERT INTO `tabel_sekolah` (`id_sekolah`, `nama_sekolah`, `tanggal_regristasi`,
 --
 
 CREATE TABLE `tabel_semester` (
-  `id_semester` int NOT NULL,
-  `semester` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `id_semester` int(11) NOT NULL,
+  `semester` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -808,12 +821,12 @@ INSERT INTO `tabel_semester` (`id_semester`, `semester`) VALUES
 --
 
 CREATE TABLE `tabel_siswa` (
-  `id_siswa` int NOT NULL,
-  `id_daftar` int NOT NULL,
-  `id_rombel` int DEFAULT NULL,
-  `saldo_tabungan` int NOT NULL,
+  `id_siswa` int(11) NOT NULL,
+  `id_daftar` int(11) NOT NULL,
+  `id_rombel` int(11) DEFAULT NULL,
+  `saldo_tabungan` int(11) NOT NULL,
   `nama` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tabel_siswa`
@@ -835,15 +848,15 @@ INSERT INTO `tabel_siswa` (`id_siswa`, `id_daftar`, `id_rombel`, `saldo_tabungan
 --
 
 CREATE TABLE `tabel_tahunajaran` (
-  `id_angkatan` int NOT NULL,
+  `id_angkatan` int(11) NOT NULL,
   `kd_angkatan` varchar(15) NOT NULL,
   `nama_angkatan` varchar(20) NOT NULL,
-  `keterangan` text,
+  `keterangan` text DEFAULT NULL,
   `tgl_a` date NOT NULL,
   `tgl_b` date NOT NULL,
-  `aktif` int NOT NULL,
+  `aktif` int(11) NOT NULL,
   `status` enum('NONAKTIF','AKTIF') NOT NULL DEFAULT 'AKTIF'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tabel_tahunajaran`
@@ -862,14 +875,14 @@ INSERT INTO `tabel_tahunajaran` (`id_angkatan`, `kd_angkatan`, `nama_angkatan`, 
 --
 
 CREATE TABLE `tabel_transaksi` (
-  `id_transaksi` int NOT NULL,
-  `id_anggaran` int DEFAULT NULL,
-  `debet` int NOT NULL DEFAULT '0',
-  `kredit` int NOT NULL DEFAULT '0',
-  `waktu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `uraian` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `pencatat` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `id_akun` int NOT NULL
+  `id_transaksi` int(11) NOT NULL,
+  `id_anggaran` int(11) DEFAULT NULL,
+  `debet` int(11) NOT NULL DEFAULT 0,
+  `kredit` int(11) NOT NULL DEFAULT 0,
+  `waktu` timestamp NOT NULL DEFAULT current_timestamp(),
+  `uraian` varchar(255) NOT NULL,
+  `pencatat` varchar(255) NOT NULL,
+  `id_akun` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -905,19 +918,19 @@ INSERT INTO `tabel_transaksi` (`id_transaksi`, `id_anggaran`, `debet`, `kredit`,
 --
 
 CREATE TABLE `table_buku` (
-  `id_buku` int NOT NULL,
-  `judul_buku` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `penerbit_buku` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `penulis_buku` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `tahun_terbit` int DEFAULT NULL,
-  `keterangan` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `sumber` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `stok` int DEFAULT '0',
-  `del_flag` int NOT NULL DEFAULT '1',
-  `kategori_id` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `rak_buku_id` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `foto` text COLLATE utf8mb4_general_ci
+  `id_buku` int(11) NOT NULL,
+  `judul_buku` varchar(255) DEFAULT NULL,
+  `penerbit_buku` varchar(255) DEFAULT NULL,
+  `penulis_buku` varchar(255) DEFAULT NULL,
+  `tahun_terbit` int(11) DEFAULT NULL,
+  `keterangan` varchar(255) DEFAULT NULL,
+  `sumber` varchar(255) DEFAULT NULL,
+  `stok` int(11) DEFAULT 0,
+  `del_flag` int(11) NOT NULL DEFAULT 1,
+  `kategori_id` varchar(255) NOT NULL,
+  `rak_buku_id` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `foto` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -937,10 +950,10 @@ INSERT INTO `table_buku` (`id_buku`, `judul_buku`, `penerbit_buku`, `penulis_buk
 --
 
 CREATE TABLE `table_detail_index_buku` (
-  `id_stok` int NOT NULL,
-  `id_detail_index_buku` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `id_buku` int NOT NULL
+  `id_stok` int(11) NOT NULL,
+  `id_detail_index_buku` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `id_buku` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -979,10 +992,10 @@ DELIMITER ;
 --
 
 CREATE TABLE `table_kategori_buku` (
-  `id_kategori_buku` int NOT NULL,
-  `nama_kategori_buku` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `keterangan_kategori_buku` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `del_flag` int NOT NULL DEFAULT '1'
+  `id_kategori_buku` int(11) NOT NULL,
+  `nama_kategori_buku` varchar(255) DEFAULT NULL,
+  `keterangan_kategori_buku` varchar(255) DEFAULT NULL,
+  `del_flag` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -1000,10 +1013,10 @@ INSERT INTO `table_kategori_buku` (`id_kategori_buku`, `nama_kategori_buku`, `ke
 --
 
 CREATE TABLE `table_rak_buku` (
-  `id_rak_buku` int NOT NULL,
-  `nama_rak_buku` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `keterangan_rak_buku` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `del_flag` int NOT NULL DEFAULT '1'
+  `id_rak_buku` int(11) NOT NULL,
+  `nama_rak_buku` varchar(255) DEFAULT NULL,
+  `keterangan_rak_buku` varchar(255) DEFAULT NULL,
+  `del_flag` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -1245,193 +1258,193 @@ ALTER TABLE `table_rak_buku`
 -- AUTO_INCREMENT for table `foto`
 --
 ALTER TABLE `foto`
-  MODIFY `id_foto` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_foto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `kembalikan`
 --
 ALTER TABLE `kembalikan`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pinjam`
 --
 ALTER TABLE `pinjam`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `setting_perpustakaan`
 --
 ALTER TABLE `setting_perpustakaan`
-  MODIFY `id_setting_perpus` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_setting_perpus` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tabel_akun`
 --
 ALTER TABLE `tabel_akun`
-  MODIFY `id_akun` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_akun` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tabel_alokasiguru`
 --
 ALTER TABLE `tabel_alokasiguru`
-  MODIFY `id_alokasiguru` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id_alokasiguru` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `tabel_alokasimapel`
 --
 ALTER TABLE `tabel_alokasimapel`
-  MODIFY `id_alokasimapel` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_alokasimapel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `tabel_daftar`
 --
 ALTER TABLE `tabel_daftar`
-  MODIFY `id_daftar` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_daftar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tabel_jenisbayar`
 --
 ALTER TABLE `tabel_jenisbayar`
-  MODIFY `id_jenis` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_jenis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tabel_jenismapel`
 --
 ALTER TABLE `tabel_jenismapel`
-  MODIFY `id_jenismapel` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_jenismapel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tabel_jenis_transaksi`
 --
 ALTER TABLE `tabel_jenis_transaksi`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tabel_jenjang`
 --
 ALTER TABLE `tabel_jenjang`
-  MODIFY `id_jenjang` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_jenjang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tabel_kelas`
 --
 ALTER TABLE `tabel_kelas`
-  MODIFY `id_kelas` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tabel_level`
 --
 ALTER TABLE `tabel_level`
-  MODIFY `id_level` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_level` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `tabel_lulus`
 --
 ALTER TABLE `tabel_lulus`
-  MODIFY `id_lulus` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_lulus` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tabel_mapel`
 --
 ALTER TABLE `tabel_mapel`
-  MODIFY `id_mapel` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_mapel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tabel_nilai`
 --
 ALTER TABLE `tabel_nilai`
-  MODIFY `id_nilai` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tabel_paketjenjang`
 --
 ALTER TABLE `tabel_paketjenjang`
-  MODIFY `id_paket` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_paket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tabel_pembayaran`
 --
 ALTER TABLE `tabel_pembayaran`
-  MODIFY `id_pembayaran` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `tabel_pindah`
 --
 ALTER TABLE `tabel_pindah`
-  MODIFY `id_pindah` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_pindah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `tabel_pinjaman`
 --
 ALTER TABLE `tabel_pinjaman`
-  MODIFY `id_pinjaman` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pinjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tabel_rencana_anggaran`
 --
 ALTER TABLE `tabel_rencana_anggaran`
-  MODIFY `id_rencana_anggaran` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_rencana_anggaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tabel_rombel`
 --
 ALTER TABLE `tabel_rombel`
-  MODIFY `id_rombel` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_rombel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tabel_sekolah`
 --
 ALTER TABLE `tabel_sekolah`
-  MODIFY `id_sekolah` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_sekolah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tabel_semester`
 --
 ALTER TABLE `tabel_semester`
-  MODIFY `id_semester` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_semester` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tabel_siswa`
 --
 ALTER TABLE `tabel_siswa`
-  MODIFY `id_siswa` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tabel_tahunajaran`
 --
 ALTER TABLE `tabel_tahunajaran`
-  MODIFY `id_angkatan` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_angkatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tabel_transaksi`
 --
 ALTER TABLE `tabel_transaksi`
-  MODIFY `id_transaksi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `table_buku`
 --
 ALTER TABLE `table_buku`
-  MODIFY `id_buku` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_buku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `table_detail_index_buku`
 --
 ALTER TABLE `table_detail_index_buku`
-  MODIFY `id_stok` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_stok` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `table_kategori_buku`
 --
 ALTER TABLE `table_kategori_buku`
-  MODIFY `id_kategori_buku` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_kategori_buku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `table_rak_buku`
 --
 ALTER TABLE `table_rak_buku`
-  MODIFY `id_rak_buku` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_rak_buku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -1449,6 +1462,12 @@ ALTER TABLE `tabel_alokasiguru`
 ALTER TABLE `tabel_alokasimapel`
   ADD CONSTRAINT `tabel_alokasimapel_to_mapel` FOREIGN KEY (`id_mapel`) REFERENCES `tabel_mapel` (`id_mapel`),
   ADD CONSTRAINT `tabel_alokasimapel_to_rombel` FOREIGN KEY (`id_rombel`) REFERENCES `tabel_rombel` (`id_rombel`);
+
+--
+-- Constraints for table `tabel_anggota`
+--
+ALTER TABLE `tabel_anggota`
+  ADD CONSTRAINT `tabel_anggota_to_siswa` FOREIGN KEY (`id_siswa`) REFERENCES `tabel_siswa` (`id_siswa`);
 
 --
 -- Constraints for table `tabel_daftar`

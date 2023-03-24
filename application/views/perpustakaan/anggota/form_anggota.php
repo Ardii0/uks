@@ -40,23 +40,12 @@
                     <div class="container-fluid bg-white">
                         <div class="p-5">
                             <div class="row p-1">
-                                <div class="col-2 text-right d-flex justify-content-end align-items-center">
-                                    Tanggal
-                                </div>
-                                <div class="col-6 align-items-center">
-                                    <div class="input-group date">
-                                        <input type="date" name="tgl_daftar" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="col-2 align-items-center"></div>
-                            </div>
-                            <div class="row p-1">
-                                <div class="col-2 text-right d-flex justify-content-end align-items-center">
+                                <div class="col-2 text-right d-flex justify-content-end align-items-center pb-4">
                                     Nama Siswa
                                 </div>
                                 <div class="col-6 align-items-center">
                                     <div class="form-group">
-                                        <select class="form-control select2" data-dropdown-css-class="select2-info" name="id_siswa" style="width: 100%;">
+                                        <select class="form-control select2" data-dropdown-css-class="select2-info" name="id_siswa">
                                         <option>
                                         Pilih Siswa
                                         </option>

@@ -49,6 +49,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="control-label">Alamat</label>
+                                    <div class="">
+                                        <textarea class="form-control" name="alamat"
+                                            placeholder="Masukan Alamat"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="control-label">Keterangan</label>
                                     <div class="">
                                         <textarea class="form-control" name="keterangan"

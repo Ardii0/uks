@@ -6,18 +6,30 @@ class M_keuangan extends CI_Model{
         return $this->db->get('tabel_keuangan')->result();
     }
 // Dashboard
-public function total_akun()
-{
-return $this->db->get('tabel_akun')->num_rows();
-}
-  public function total_jenis_trans()
-{
-return $this->db->get('tabel_jenis_transaksi')->num_rows();
-}
-  public function total_anggaran()
-{
-return $this->db->get('tabel_rencana_anggaran')->num_rows();
-}
+
+    public function total_akun()
+    {
+    return $this->db->get('tabel_akun')->num_rows();
+    }
+    public function total_jenis_trans()
+    {
+    return $this->db->get('tabel_jenis_transaksi')->num_rows();
+    }
+    public function total_anggaran()
+    {
+    return $this->db->get('tabel_rencana_anggaran')->num_rows();
+    }
+    
+	public function totalbayar($date)
+	{
+		$this->db->select('SUM(nominal) as total');	
+		$this->db->from('tabel_pembayaran');
+		$this->db->join('tabel_invoice', 'tabel_invoice.id_invoice = tabel_pembayaran.id_invoice');
+		$this->db->where('tabel_invoice.date', $date);
+		$db = $this->db->get();
+		return $db;
+	}
+
 //Rencana Anggaran   
     public function get_all_data_rencana_anggaran()
     {

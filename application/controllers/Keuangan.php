@@ -30,6 +30,7 @@ class Keuangan extends CI_Controller
         $data['total_jenis_trans'] = $this->m_keuangan->total_jenis_trans();
         $data['total_anggaran'] = $this->m_keuangan->total_anggaran();
         $data['data_akun'] = $this->m_keuangan->get_all_akun('data_akun');
+        $data['pembayaran'] = $this->m_keuangan->totalbayar(date('y-m-d'))->result();
         $this->load->view('keuangan/dashboard', $data);
 
     }

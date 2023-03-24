@@ -130,10 +130,10 @@ class Nilai extends CI_Controller {
         $nt3 = $this->input->post('nt3');
         $mid = $this->input->post('mid');
         $smt = $this->input->post('smt');
-        $rnuh = ($nuh1 + $nuh2 + $nuh3) / 3;
-        $rnt = ($nt1 + $nt2 + $nt3) / 3;
-        $nh = ($rnuh + $rnt) / 2;
-        $nar = ($nh + $mid + $smt) / 3;
+        $rnuh = intdiv(($nuh1 + $nuh2 + $nuh3) , 3);
+        $rnt = intdiv(($nt1 + $nt2 + $nt3) , 3);
+        $nh = intdiv(($rnuh + $rnt) , 2);
+        $nar = intdiv(($nh + $mid + $smt) , 3);
         $this->m_nilai->tambah_nilai('tabel_nilai',
         array(
             'id_rombel' => $this->input->post('id_rombel'),
