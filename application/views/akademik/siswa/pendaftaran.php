@@ -42,6 +42,10 @@
                         <div class="col-md-3 d-flex justify-content-end align-self-start">
                             <button type="button" data-toggle="modal" data-target="#modal_import_pendaftaran"
                                 class="btn btn-success mr-1"><i class="fa fa-upload pr-2"></i>Upload</button>
+                            <a href="<?php echo base_url('Akademik/export_to_excel'); ?>">
+                                <button type="button" class="btn btn-success mr-1"><i
+                                        class="fa fa-download pr-2"></i>Export</button>
+                            </a>
                             <a href="<?php echo base_url('Akademik/form_pendaftaran'); ?>">
                                 <button type="button" class="btn btn-success"><i
                                         class="fa fa-plus pr-2"></i>Tambah</button>
@@ -142,7 +146,7 @@
                             </div>
                             <div>
                                 <select name="id_angkatan" class="form-control select2 select2-info"
-                                        data-dropdown-css-class="select2-info">
+                                    data-dropdown-css-class="select2-info">
                                     <option selected>Pilih Tahun Ajaran</option>
                                     <?php $id = 0;foreach ($tahun_ajaran_aktif as $row): $id++;?>
                                     <option value="<?php echo $row->id_angkatan ?>"><?php echo $row->kd_angkatan ?>
@@ -158,7 +162,7 @@
                             </div>
                             <div>
                                 <select name="id_jenjang" class="form-control select2 select2-info"
-                                        data-dropdown-css-class="select2-info">
+                                    data-dropdown-css-class="select2-info">
                                     <option selected>Pilih Jenjang</option>
                                     <?php $id = 0;foreach ($data_jenjang as $row): $id++;?>
                                     <option value="<?php echo $row->id_jenjang ?>"><?php echo $row->nama_jenjang ?>

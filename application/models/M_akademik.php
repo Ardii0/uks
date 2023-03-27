@@ -189,6 +189,13 @@ class M_akademik extends CI_Model{
         return $this->db->get('tabel_siswa')->result();
     }
 
+    public function exportSiswa() {
+        $this->db->select(array('nama', 'id_daftar', 'id_rombel'));
+        $this->db->from('tabel_siswa');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     public function filterByRombel($id_rombel){
         if ($id_rombel != null) {
           $query = $this->db->query("SELECT * from tabel_siswa where id_rombel = '$id_rombel' ");
@@ -259,6 +266,12 @@ class M_akademik extends CI_Model{
     }
 
 // Pendaftaran Siswa
+    public function exportList() {
+        $this->db->where('diterima','P')->select(array('no_reg', 'id_angkatan', 'id_jenjang', 'tgl_daftar', 'nisn', 'nama', 'jekel', 'tempat_lahir', 'anak_ke', 'saudara_kandung', 'saudara_angkat', 'tgl_lahir', 'agama', 'alamat', 'telepon', 'warga_negara'));
+        $this->db->from('tabel_daftar');
+        $query = $this->db->get();
+        return $query->result();
+    }
     public function get_siswa_pendaftaran()
 	{
 		return $this->db->where('diterima','P')->get('tabel_daftar')->result();
