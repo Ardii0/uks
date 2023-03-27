@@ -59,7 +59,7 @@
                                     <thead class="bg-dark">
                                         <tr>
                                             <th>No</th>
-                                            <th>NIS</th>
+                                            <th>NISN</th>
                                             <th>Nama Siswa</th>
                                             <th style="width: 50px;">Aksi</th>
                                         </tr>

@@ -63,6 +63,19 @@ class M_nilai extends CI_Model{
         return $data;
     }
 
+	public function cek_nilai($ids)
+	{
+		$ses_ids = $this->session->userdata('id_siswa');
+		$db = $this->db->get_where('tabel_nilai', array('id_siswa' => $ses_ids));
+		return $db; 
+	}
+
+    public function edit_nilai($tabel, $data, $where)
+    {
+        $data=$this->db->update($tabel, $data, $where);
+        return $this->db->affected_rows();
+    }
+
     public function rombel($idr)
     {
         // $this->db->select('tabel_rombel.nama_rombel, tabel_siswa.*');

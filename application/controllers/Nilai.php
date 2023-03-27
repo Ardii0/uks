@@ -112,6 +112,7 @@ class Nilai extends CI_Controller {
            $data['rombel'] = $this->m_nilai->rombel($idr)->result();
            $data['semester'] = $this->m_nilai->semester($smt)->result();
            $data['siswa'] = $this->m_nilai->get_nilaiBySiswa('tabel_siswa', $ids);
+           $data['edit'] = $this->m_nilai->get_nilaiBySiswa('tabel_nilai', $ids);
            $data['content'] = 'nilai/entry';
 
            $this->load->view('nilai/nilai/entry_nilai_input', $data);
@@ -130,10 +131,10 @@ class Nilai extends CI_Controller {
         $nt3 = $this->input->post('nt3');
         $mid = $this->input->post('mid');
         $smt = $this->input->post('smt');
-        $rnuh = intdiv(($nuh1 + $nuh2 + $nuh3) , 3);
-        $rnt = intdiv(($nt1 + $nt2 + $nt3) , 3);
-        $nh = intdiv(($rnuh + $rnt) , 2);
-        $nar = intdiv(($nh + $mid + $smt) , 3);
+        $rnuh = round(($nuh1 + $nuh2 + $nuh3) / 3);
+        $rnt = round(($nt1 + $nt2 + $nt3) / 3);
+        $nh = round(($rnuh + $rnt) / 2);
+        $nar = round(($nh + $mid + $smt) / 3);
         $this->m_nilai->tambah_nilai('tabel_nilai',
         array(
             'id_rombel' => $this->input->post('id_rombel'),
@@ -154,7 +155,46 @@ class Nilai extends CI_Controller {
             'nar' => $nar,
         )
     );
-        redirect(base_url('Nilai/modul_input_nilai'));
+        redirect(base_url('Nilai/session/'.$this->input->post('id_mapel').'/'.$this->input->post('id_rombel').'/'.$this->input->post('id_semester')));
+    }
+
+    public function update_nilai()
+    {
+        $nuh1 = $this->input->post('nuh1');
+        $nuh2 = $this->input->post('nuh2');
+        $nuh3 = $this->input->post('nuh3');
+        $nt1 = $this->input->post('nt1');
+        $nt2 = $this->input->post('nt2');
+        $nt3 = $this->input->post('nt3');
+        $mid = $this->input->post('mid');
+        $smt = $this->input->post('smt');
+        $rnuh = round(($nuh1 + $nuh2 + $nuh3) / 3);
+        $rnt = round(($nt1 + $nt2 + $nt3) / 3);
+        $nh = round(($rnuh + $rnt) / 2);
+        $nar = round(($nh + $mid + $smt) / 3);
+        $this->m_nilai->edit_nilai('tabel_nilai',
+        array(
+            'id_rombel' => $this->input->post('id_rombel'),
+            'nuh1' => $nuh1,
+            'nuh2' => $nuh2,
+            'nuh3' => $nuh3,
+            'nt1' => $nt1,
+            'nt2' => $nt2,
+            'nt3' => $nt3,
+            'mid' => $mid,
+            'smt' => $smt,
+            'rnuh' => $rnuh,
+            'rnt' => $rnt,
+            'nh' => $nh,
+            'nar' => $nar,
+        ),
+        array(
+            'id_siswa' => $this->input->post('id_siswa'),
+            'id_mapel' => $this->input->post('id_mapel'),
+            'id_semester' => $this->input->post('id_semester'),
+        )
+    );
+        redirect(base_url('Nilai/session/'.$this->input->post('id_mapel').'/'.$this->input->post('id_rombel').'/'.$this->input->post('id_semester')));
     }
 
  // Modul
