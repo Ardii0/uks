@@ -30,12 +30,8 @@
 
 <body class="hold-transition sidebar-mini layout-fixed" data-panel-auto-height-mode="height">
     <div class="wrapper">
-        <!-- navbar -->
         <?php $this->load->view('nilai/style/navbar')?>
-        <!-- navbar -->
-        <!-- Sidebar -->
         <?php $this->load->view('nilai/style/sidebar')?>
-        <!-- Sidebar -->
         <div class="content-wrapper">
             <div class="container-fluid">
                 <div class="px-3 py-1">
@@ -53,7 +49,9 @@
                                     <div class="icon">
                                         <i class="nav-icon fas fa-book"></i>
                                     </div>
-                                    
+                                    <a href="<?php echo base_url('Perpustakaan/data_buku') ?>"
+                                                class="small-box-footer">Info Lebih Lanjut <i
+                                                    class="fas fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -67,7 +65,9 @@
                                     <div class="icon">
                                         <i class="nav-icon fas fa-user"></i>
                                     </div>
-                                   
+                                    <a href="<?php echo base_url('Perpustakaan/data_buku') ?>"
+                                                class="small-box-footer">Info Lebih Lanjut <i
+                                                    class="fas fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -81,7 +81,9 @@
                                     <div class="icon">
                                         <i class="nav-icon fas fa-user-tie"></i>
                                     </div>
-                                   
+                                    <a href="<?php echo base_url('Perpustakaan/data_buku') ?>"
+                                                class="small-box-footer">Info Lebih Lanjut <i
+                                                    class="fas fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -97,8 +99,8 @@
                                     <p class="card-text">Dashboard nilai ini berfungsi untuk memberi dan juga melihat
                                         nilai siswa di SMK BINA NUSANTARA Semarang</p>
                                 </div>
-                                <a href="<?php echo base_url('Nilai/modul_input_nilai')?>" class="small-box-footer">More
-                                    info
+                                <a href="<?php echo base_url('Nilai/modul_input_nilai')?>" class="small-box-footer">
+                                    Info Lebih Lanjut
                                     <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>

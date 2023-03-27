@@ -16,12 +16,8 @@
 
 <body class="hold-transition sidebar-mini layout-fixed" data-panel-auto-height-mode="height">
     <div class="wrapper">
-        <!-- navbar -->
         <?php $this->load->view('perpustakaan/style/navbar')?>
-        <!-- navbar -->
-        <!-- Sidebar -->
         <?php $this->load->view('perpustakaan/style/sidebar')?>
-        <!-- Sidebar -->
 
         <div class="content-wrapper">
             <div class="container-fluid">
@@ -45,8 +41,9 @@
                                                 <i class="nav-icon fas fa-book"></i>
                                             </div>
                                             <a href="<?php echo base_url('Perpustakaan/data_buku') ?>"
-                                                class="small-box-footer">More info <i
-                                                    class="fas fa-arrow-circle-right"></i></a>
+                                                class="small-box-footer">Info Lebih Lanjut
+                                                <i class="fas fa-arrow-circle-right"></i>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -61,9 +58,9 @@
                                                 <i class="far fa-chart-bar"></i>
                                             </div>
                                             <a href="<?php echo base_url('Perpustakaan/rak_buku') ?>"
-                                                class="small-box-footer">More
-                                                info
-                                                <i class="fa fa-arrow-circle-right"></i></a>
+                                                class="small-box-footer">Info Lebih Lanjut
+                                                <i class="fa fa-arrow-circle-right"></i>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -78,8 +75,8 @@
                                                 <i class="far fa-chart-bar"></i>
                                             </div>
                                             <a href="<?php echo base_url('Perpustakaan/kategori_buku') ?>"
-                                                class="small-box-footer">More
-                                                info
+                                                class="small-box-footer">
+                                                Info Lebih Lanjut
                                                 <i class="fa fa-arrow-circle-right"></i>
                                             </a>
                                         </div>
@@ -92,10 +89,10 @@
                                         <div class="card-header bg-transparent text-center fw-bold h3 border-white">
                                             Peminjaman Buku</div>
                                         <a href="<?php echo base_url('Perpustakaan/peminjaman') ?>"
-                                            class="small-box-footer">More
-                                            info
-                                            <i class="fa fa-arrow-circle-right"></i></a>
-
+                                            class="small-box-footer">
+                                            Info Lebih Lanjut
+                                            <i class="fa fa-arrow-circle-right"></i>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -103,18 +100,18 @@
                                         <div class="card-header bg-transparent text-center fw-bold h3 border-white">
                                             Pengembalian Buku</div>
                                         <a href="<?php echo base_url('Perpustakaan/pengembalian') ?>"
-                                            class="small-box-footer">More
-                                            info
-                                            <i class="fa fa-arrow-circle-right"></i></a>
-
+                                            class="small-box-footer">
+                                            Info Lebih Lanjut
+                                            <i class="fa fa-arrow-circle-right"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-6 col-md-4">
-                            <div class="">
-                                <div class="" style="width: 100%; ">
-                                    <div class="">
+                            <div>
+                                <div style="width: 100%; ">
+                                    <div>
                                         <div class="" style="height:75vh">
                                             <div class="small-box bg-info">
                                                 <div class="inner">
@@ -125,8 +122,7 @@
                                                     <i class="far fa-user"></i>
                                                 </div>
                                                 <a href="<?php echo base_url('Perpustakaan/data_anggota') ?>"
-                                                    class="small-box-footer">More
-                                                    info
+                                                    class="small-box-footer">Info Lebih Lanjut
                                                     <i class="fa fa-arrow-circle-right"></i>
                                                 </a>
                                             </div>

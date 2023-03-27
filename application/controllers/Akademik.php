@@ -8,7 +8,7 @@ class Akademik extends CI_Controller {
         parent::__construct();
         $this->load->model('m_akademik');
         $this->load->helpers('my_helper');
-        // $this->load->library('excel');
+        // $this->load->library('PhpSpreadsheet/Spreadsheet');
         if ($this->session->userdata('status_akademik')!='login') {
             redirect(base_url());
         }
@@ -716,6 +716,100 @@ class Akademik extends CI_Controller {
             redirect(base_url('Akademik/siswa_pendaftaran'));
         }
 	}
+
+    public function export_to_excel()
+    {
+        // load excel library
+        $this->load->library('excel');
+        $listInfo = $this->m_akademik->exportList();
+        $objPHPExcel = new PHPExcel();
+        $objPHPExcel->setActiveSheetIndex(0);
+        // set Header
+        $objPHPExcel->getActiveSheet()->SetCellValue('A1', 'No Reg');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('B1', 'Tahun Ajaran');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('C1', 'Jenjang');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('D1', 'Tanggal Daftar');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('E1', 'NISN');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('F1', 'Nama');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('G1', 'Gender');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('H1', 'Tempat Lahir');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('I1', 'Anak Ke');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('J1', 'Saudara Kandung');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('K1', 'Saudara Angkat');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('L1', 'Tanggal Lahir');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('M1', 'Agama');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('N1', 'Alamat');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('O1', 'Telepon');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('P1', 'Warga Negara');
+        // set Row
+        $rowCount = 2;
+        foreach ($listInfo as $list) {
+            $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, $list->no_reg);
+            $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, tampil_tahunangkatan_byid($list->id_angkatan));
+            $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, tampil_namajenjang_byid($list->id_jenjang));
+            $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $list->tgl_daftar);
+            $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, $list->nisn);
+            $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, $list->nama);
+            $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount, $list->jekel);
+            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount, $list->tempat_lahir);
+            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount, $list->anak_ke);
+            $objPHPExcel->getActiveSheet()->SetCellValue('J' . $rowCount, $list->saudara_kandung);
+            $objPHPExcel->getActiveSheet()->SetCellValue('K' . $rowCount, $list->saudara_angkat);
+            $objPHPExcel->getActiveSheet()->SetCellValue('L' . $rowCount, $list->tgl_lahir);
+            $objPHPExcel->getActiveSheet()->SetCellValue('M' . $rowCount, $list->agama);
+            $objPHPExcel->getActiveSheet()->SetCellValue('N' . $rowCount, $list->alamat);
+            $objPHPExcel->getActiveSheet()->SetCellValue('O' . $rowCount, $list->telepon);
+            $objPHPExcel->getActiveSheet()->SetCellValue('P' . $rowCount, $list->warga_negara);
+            $rowCount++;
+        }
+        $filename = "data-pendaftaran-siswa.csv";
+        header('Content-Type: application/vnd.ms-excel'); 
+        header('Content-Disposition: attachment;filename="'.$filename.'"');
+        header('Cache-Control: max-age=0'); 
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'CSV');  
+        $objWriter->save('php://output'); 
+    }
+
+    public function export_siswa_to_excel()
+    {
+        // load excel library
+        $this->load->library('excel');
+        $listInfo = $this->m_akademik->exportSiswa();
+        $objPHPExcel = new PHPExcel();
+        $objPHPExcel->setActiveSheetIndex(0);
+        // set Header
+        $objPHPExcel->getActiveSheet()->SetCellValue('A1', 'Rombel');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('B1', 'NISN');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('C1', 'Nama');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('D1', 'Jenis Kelamin');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('E1', 'Tempat Lahir');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('F1', 'Tanggal Lahir');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('G1', 'Alamat');
+        $objPHPExcel->getActiveSheet()->SetCellValue('H1', 'Agama');
+        $objPHPExcel->getActiveSheet()->SetCellValue('I1', 'Telepon');
+        $objPHPExcel->getActiveSheet()->SetCellValue('J1', 'Warga Negara');
+        // set Row
+        $rowCount = 2;
+        foreach ($listInfo as $list) {
+            $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, tampil_rombel_byid($list->id_rombel));
+            $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, tampil_nisn_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, tampil_nama_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, tampil_jekel_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, tampil_tempat_lahir_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, tampil_tanggal_lahir_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount, tampil_alamat_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount, tampil_agama_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount, tampil_telepon_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('J' . $rowCount, tampil_warga_negara_siswa_byid($list->id_daftar));
+            $rowCount++;
+        }
+        $filename = "data-siswa.csv";
+        header('Content-Type: application/vnd.ms-excel'); 
+        header('Content-Disposition: attachment;filename="'.$filename.'"');
+        header('Cache-Control: max-age=0'); 
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'CSV');  
+        $objWriter->save('php://output'); 
+    }
 
     public function edit_pendaftaran($id_daftar)
     {

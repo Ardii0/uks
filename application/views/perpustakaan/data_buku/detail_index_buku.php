@@ -107,7 +107,7 @@
                                         <td><?php echo $row->id_detail_index_buku?></td>
                                         <td class="d-flex justify-content-center">
                                             <div class="d-none text-center">
-                                                <span id="cetak">
+                                                <span id="content">
                                                     <div>
                                                         <?php  
                                                         $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
@@ -130,7 +130,7 @@
                                                 class="btn btn-danger btn-sm">
                                                 <i class="fa fa-trash"></i>
                                             </button>
-                                            <button onclick="convertHTMLtoPDF(<?php echo $row->id_stok?>)"
+                                            <button id="print" onclick="convertHTMLtoPDF(<?php echo $row->id_stok?>)"
                                                 class="btn btn-success btn-sm">
                                                 <i class="fas fa-barcode"></i>
                                             </button>

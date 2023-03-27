@@ -58,9 +58,15 @@
                                                     <a href="<?php echo base_url('Perpustakaan/edit_kategori_buku/'.$row->id_kategori_buku)?>"
                                                         class="btn btn-primary btn-sm">
                                                         <i class="fa fa-edit"></i> </a>
+                                                    <?php if ( tampil_bukuBy_kategori($row->nama_kategori_buku) === null ) : ?>
                                                     <button onclick="hapus(<?php echo $row->id_kategori_buku?>)"
                                                         class="btn btn-danger btn-sm">
                                                         <i class="fa fa-trash"></i> </button>
+                                                    <?php else : ?>
+                                                    <!-- <button onclick="hapus(<?php echo $row->id_kategori_buku?>)"
+                                                        class="btn btn-danger btn-sm" disabled="disabled">
+                                                        <i class="fa fa-trash"></i> </button> -->
+                                                    <?php endif; ?>
                                                 </td>
                                             </tr>
                                             <?php endforeach;?>

@@ -36,11 +36,21 @@
 
             <section class="content">
                 <div class="container-fluid bg-white">
-                    <div class="row mx-2 pt-3 d-flex justify-content-between">
-                        <div class="col-2 col-sm-6 ">
+                    <div class="row pt-3 d-flex justify-content-between">
+                        <div class="col">
                             <div class="form-group d-flex flex-row " style="width: fit-content;">
                                 <div class="mt-2 mx-1">
                                     <h4>Data Siswa</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group d-flex justify-content-end">
+                                <div class="mt-2 mx-1">
+                                    <a href="<?php echo base_url('Akademik/export_siswa_to_excel'); ?>">
+                                        <button type="button" class="btn btn-success mr-1"><i
+                                                class="fa fa-download pr-2"></i>Export Data Siswa</button>
+                                    </a>
                                 </div>
                             </div>
                         </div>

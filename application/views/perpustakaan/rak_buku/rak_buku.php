@@ -60,9 +60,15 @@
                                                     <a href="<?php echo base_url('Perpustakaan/edit_rak_buku/' . $row->id_rak_buku) ?>"
                                                         class="btn btn-primary btn-sm">
                                                         <i class="fa fa-edit"></i> </a>
+                                                    <?php if ( tampil_bukuById_rak($row->nama_rak_buku) === null ) : ?>
                                                     <button onclick="hapus(<?php echo $row->id_rak_buku ?>)"
                                                         class="btn btn-danger btn-sm">
                                                         <i class="fa fa-trash"></i> </button>
+                                                    <?php else : ?>
+                                                    <!-- <button onclick="hapus(<?php echo $row->id_rak_buku ?>)"
+                                                        class="btn btn-danger btn-sm" disabled="disabled">
+                                                        <i class="fa fa-trash"></i> </button> -->
+                                                    <?php endif; ?>
                                                 </td>
                                             </tr>
                                             <?php endforeach;?>

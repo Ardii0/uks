@@ -134,8 +134,7 @@
                                         <?php foreach($jenjang as $jenjang):?>
                                         <div class="info-box w-25 m-1 d-flex justify-content-center align-items-center">
                                             <div class="text-center">
-                                                <span class="info-box-icon bg-info"><i class="fas fa-graduation-cap"></i>
-                                                </span>
+                                               
                                                 <h5 class="text-dark">
                                                     <?php echo $jenjang->nama_jenjang?>
                                                 </h5>
