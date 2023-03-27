@@ -48,7 +48,7 @@
                                                 <th>Tahun Terbit</th>
                                                 <th>Kategori</th>
                                                 <th>Rak Buku</th>
-                                                <th>Keterangan</th>
+                                                <!-- <th>Keterangan</th> -->
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -66,8 +66,8 @@
                                                 <td><?php echo $row->tahun_terbit?></td>
                                                 <td><?php echo $row->kategori_id?></td>
                                                 <td><?php echo $row->rak_buku_id?></td>
-                                                <td class="text-truncate" style="max-width: 150px;">
-                                                    <?php echo $row->keterangan?></td>
+                                                <!-- <td class="text-truncate" style="max-width: 150px;">
+                                                    <?php echo $row->keterangan?></td> -->
                                                 <td>
                                                     <a href="<?php echo base_url('Perpustakaan/detail_index_buku/'.$row->id_buku)?>"
                                                         class="btn btn-success btn-sm">
@@ -76,9 +76,11 @@
                                                     <a href="<?php echo base_url('Perpustakaan/edit_buku/'.$row->id_buku)?>"
                                                         class="btn btn-primary btn-sm">
                                                         <i class="fa fa-edit"></i></a>
+                                                    <?php if ( tampil_detailBukuById_buku($row->id_buku) === null ) : ?>
                                                     <button onClick="hapus(<?php echo $row->id_buku?>)"
                                                         class="btn btn-danger btn-sm">
                                                         <i class="fa fa-trash"></i> </button>
+                                                    <?php else : ?><?php endif; ?>
                                                 </td>
                                             </tr>
                                             <?php endforeach;?>

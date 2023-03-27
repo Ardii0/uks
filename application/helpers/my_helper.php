@@ -972,4 +972,39 @@ function format_indo($date){
       return date($format);
   }
 
+    // For Hide Button
+  
+    function tampil_bukuById_rak($id)
+    {
+     $ci =& get_instance();
+     $ci->load->database();
+     $result = $ci->db->where('rak_buku_id',$id)->get('table_buku');
+      foreach ($result->result() as $c) {
+      $stmt= $c->judul_buku;
+      return $stmt;
+      }
+    }
+  
+    function tampil_bukuBy_kategori($id)
+    {
+     $ci =& get_instance();
+     $ci->load->database();
+     $result = $ci->db->where('kategori_id',$id)->get('table_buku');
+      foreach ($result->result() as $c) {
+      $stmt= $c->judul_buku;
+      return $stmt;
+      }
+    }
+  
+    function tampil_detailBukuById_buku($id)
+    {
+     $ci =& get_instance();
+     $ci->load->database();
+     $result = $ci->db->where('id_buku',$id)->get('table_detail_index_buku');
+      foreach ($result->result() as $c) {
+      $stmt= $c->id_detail_index_buku;
+      return $stmt;
+      }
+    }
+
 ?>
