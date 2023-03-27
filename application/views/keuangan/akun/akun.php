@@ -12,12 +12,8 @@
 
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-        <!-- navbar -->
         <?php $this->load->view('keuangan/style/navbar') ?>
-        <!-- navbar -->
-        <!-- Sidebar -->
         <?php $this->load->view('keuangan/style/sidebar') ?>
-        <!-- Sidebar -->
 
         <div class="content-wrapper">
             <section class="content-header">
@@ -80,8 +76,12 @@
                                                 <a href="<?php echo base_url('keuangan/edit_akun/'.$data->id_akun) ?>" class="btn btn-primary btn-sm">
                                                     <i class="fa fa-edit"></i>Edit
                                                 </a>
-                                                <button onClick="hapus(<?php echo $data->id_akun ?>)" class="btn btn-danger btn-sm">
-                                                    <i class="fa fa-trash"></i>Hapus</button>
+                                                <?php if(!$this->db->where('id_akun',$data->id_akun)->get('tabel_transaksi')->result()) {?>
+                                                    <button onClick="hapus(<?php echo $data->id_akun ?>)" class="btn btn-danger btn-sm">
+                                                        <i class="fa fa-trash"></i>
+                                                        Hapus
+                                                    </button>
+                                                <?php } ?>
                                             </td>
                                         </tr>
                                         <?php endforeach ?>

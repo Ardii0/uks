@@ -19,13 +19,8 @@
 
 <body class="hold-transition sidebar-mini layout-fixed" data-panel-auto-height-mode="height">
     <div class="wrapper">
-
-        <!-- navbar -->
         <?php $this->load->view('keuangan/style/navbar') ?>
-        <!-- navbar -->
-        <!-- Sidebar -->
         <?php $this->load->view('keuangan/style/sidebar') ?>
-        <!-- Sidebar -->
 
         <div class="content-wrapper">
             <section class="content-header">
@@ -80,9 +75,12 @@
                                     <div class="mb-3">
                                         <span class="h2"><?php echo tampil_rn_byid($data_rn[0]->id_rencana_anggaran)?></span>
                                         <span <?php if (tampil_tetapkan_byid($this->session->userdata('id_rn')) == 1) echo "class='hidden''" ?>>
-                                        <button class="btn btn-danger btn-sm mx-1" onClick="hapus(<?php echo $data_rn[0]->id_rencana_anggaran ?>)">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
+                                        <?php if(!$this->db->where('rencana_anggaran',$data_rn[0]->id_rencana_anggaran)->get('tabel_jenis_transaksi')->result() &&
+                                                 !$this->db->where('id_anggaran',$data_rn[0]->id_rencana_anggaran)->get('tabel_transaksi')->result()) {?>
+                                            <button class="btn btn-danger btn-sm mx-1" onClick="hapus(<?php echo $data_rn[0]->id_rencana_anggaran ?>)">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        <?php } ?>
                                         <a href="#myModal" class="trash" data-id="1" >       
                                             <button class="btn btn-primary btn-sm" type="button" class="btn btn-success" data-toggle="modal"
                                                  data-target="#modal<?php echo $data_rn[0]->id_rencana_anggaran ?>">

@@ -194,7 +194,7 @@ INSERT INTO `tabel_alokasimapel` (`id_alokasimapel`, `id_mapel`, `id_rombel`) VA
 CREATE TABLE `tabel_anggota` (
   `id_anggota` int(11) NOT NULL,
   `id_siswa` int(11) NOT NULL,
-  `date` date DEFAULT curdate(),
+  `date` date DEFAULT (curdate()),
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -315,7 +315,7 @@ INSERT INTO `tabel_hak_akses` (`id_hak_akses`, `akses`) VALUES
 CREATE TABLE `tabel_invoice` (
   `id_invoice` varchar(255) NOT NULL,
   `id_siswa` int(11) NOT NULL,
-  `date` date DEFAULT curdate(),
+  `date` date DEFAULT (curdate()),
   `id_level` int(11) NOT NULL,
   `id_ta` int(11) DEFAULT NULL,
   `cek_p` int(11) DEFAULT 0
