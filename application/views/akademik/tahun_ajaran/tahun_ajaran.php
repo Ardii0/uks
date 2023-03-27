@@ -71,8 +71,8 @@
                                             <td><?php echo $id?></td>
                                             <td><?php echo $data->nama_angkatan?></td>
                                             <td><?php echo $data->kd_angkatan?></td>
-                                            <td><?php echo $data->tgl_a?></td>
-                                            <td><?php echo $data->tgl_b?></td>
+                                            <td><?php echo changeDateFormat('d M Y',$data->tgl_a)?></td>
+                                            <td><?php echo changeDateFormat('d M Y',$data->tgl_b)?></td>
                                             <td><?php echo $data->keterangan?></td>
                                             <td><?php echo $data->status?></td>
                                             <td class="text-center">
