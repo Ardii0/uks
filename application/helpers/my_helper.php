@@ -771,7 +771,7 @@ function tampil_nama_siswa_byid($id)
   {
     $ci =& get_instance();
     $ci->load->database();
-    $result = $ci->db->where('id_buku',$id)->get('table_buku');
+    $result = $ci->db->where('id_buku',$id)->get('table_detail_index_buku');
       foreach ($result->result() as $c) {
       $stmt= $c->id_buku;
       return $stmt;

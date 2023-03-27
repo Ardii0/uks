@@ -79,7 +79,7 @@
                                                         <?php 
                                                     $find = find_iddetailbuku($row->id_buku);
                                                     if($find == null) echo "
-                                                    <button onClick='hapus($row->id_buku?>)'
+                                                    <button onClick='hapus($row->id_buku)'
                                                         class='btn btn-danger btn-sm'>
                                                         <i class='fa fa-trash'></i> </button>                                      
                                                     "; 
