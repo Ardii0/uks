@@ -70,9 +70,15 @@
                                                 <a href="<?php echo base_url('Akademik/edit_rombel/'.$data->id_rombel)?>"
                                                     class="btn btn-primary btn-sm">
                                                     <i class="fa fa-edit"></i></a>
-                                                <button onclick="hapus(<?php echo $data->id_rombel ;?>)"
-                                                    class="btn btn-danger btn-sm">
-                                                    <i class="fa fa-trash"></i></button>
+                                                    <?php 
+                                                    $find = find_idalokasimapel($data->id_rombel);
+                                                    $find2 = find_idsiswa($data->id_rombel);
+                                                    if($find == null && $find2 == null) echo "
+                                                    <button onclick='hapus($data->id_rombel)'
+                                                    class='btn btn-danger btn-sm'>
+                                                    <i class='fa fa-trash'></i></button>                                              
+                                                    "; 
+                                                    else echo ""?>
                                             </td>
                                         </tr>
                                         <?php endforeach;?>

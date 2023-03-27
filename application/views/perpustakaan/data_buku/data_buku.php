@@ -76,9 +76,14 @@
                                                     <a href="<?php echo base_url('Perpustakaan/edit_buku/'.$row->id_buku)?>"
                                                         class="btn btn-primary btn-sm">
                                                         <i class="fa fa-edit"></i></a>
-                                                    <button onClick="hapus(<?php echo $row->id_buku?>)"
-                                                        class="btn btn-danger btn-sm">
-                                                        <i class="fa fa-trash"></i> </button>
+                                                        <?php 
+                                                    $find = find_iddetailbuku($row->id_buku);
+                                                    if($find == null) echo "
+                                                    <button onClick='hapus($row->id_buku?>)'
+                                                        class='btn btn-danger btn-sm'>
+                                                        <i class='fa fa-trash'></i> </button>                                      
+                                                    "; 
+                                                    else echo ""?>
                                                 </td>
                                             </tr>
                                             <?php endforeach;?>

@@ -97,9 +97,14 @@
                                                     <!-- <a href="<?php echo base_url('Akademik/hapus_guru/' . $data->kode_guru) ?>"
                                                         class="btn btn-danger btn-sm">
                                                         <i class="fa fa-edit"></i></a> -->
-                                                    <button onclick="hapus('<?php echo $data->kode_guru; ?>')" onclick="console.log(<?php echo $data->kode_guru; ?>)"
-                                                        class="btn btn-danger btn-sm">
-                                                        <i class="fa fa-trash"></i></button>
+                                                        <?php 
+                                                    $find = find_idalokasiguru2($data->kode_guru);
+                                                    if($find == null) echo "
+                                                    <button onclick='hapus($data->kode_guru)'
+                                                        class='btn btn-danger btn-sm'>
+                                                        <i class='fa fa-trash'></i></button>                                         
+                                                    "; 
+                                                    else echo ""?>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>

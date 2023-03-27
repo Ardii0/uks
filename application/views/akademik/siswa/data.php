@@ -96,9 +96,14 @@
                                                 <a href="<?php echo base_url('Akademik/detail_siswa/'.$data->id_siswa)?>"
                                                     class="btn btn-warning btn-sm">
                                                     <i class="fa fa-eye"></i></a>
-                                                <button onClick="hapus(<?php echo $data->id_siswa?>)"
-                                                    class="btn btn-danger btn-sm">
-                                                    <i class="fa fa-trash"></i></button>
+                                                    <?php 
+                                                    $find = find_idanggota($data->id_siswa);
+                                                    if($find == null) echo "
+                                                    <button onClick='hapus($data->id_siswa)'
+                                                    class='btn btn-danger btn-sm'>
+                                                    <i class='fa fa-trash'></i></button>                                           
+                                                    "; 
+                                                    else echo ""?>
                                             </td>
                                         </tr>
                                         <?php endforeach;?>

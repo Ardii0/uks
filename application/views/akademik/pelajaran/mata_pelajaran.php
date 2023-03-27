@@ -87,8 +87,9 @@
                                                         class="btn btn-primary btn-sm">
                                                         <i class="fa fa-edit"></i></a>
                                                         <?php 
-                                                    $find = find_idmapel($data->id_mapel);
-                                                    if($find == null) echo "
+                                                    $find = find_idalokasiguru($data->id_mapel);
+                                                    $find2 = find_idalokasimapel2($data->id_mapel);
+                                                    if($find == null || $find == null) echo "
                                                     <button onclick='hapus($data->id_mapel)'
                                                     class='btn btn-danger btn-sm'>
                                                     <i class='fa fa-trash'></i></button>                                          

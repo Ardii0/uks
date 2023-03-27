@@ -94,7 +94,7 @@
                                                         class="btn btn-primary btn-sm">
                                                         <i class="fa fa-edit"></i></a>
                                                         <?php 
-                                                    $find = find_idjenjang($data->id_jenjang);
+                                                    $find = find_idrombel($data->id_jenjang);
                                                     if($find == null) echo "
                                                     <button onclick='hapus($data->id_jenjang)'
                                                     class='btn btn-danger btn-sm'>

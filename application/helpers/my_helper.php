@@ -159,7 +159,7 @@ function find_idjenismapel($id)
     }
 }
 
-function find_idmapel($id)
+function find_idalokasiguru($id)
 {
   $ci =& get_instance();
   $ci->load->database();
@@ -712,6 +712,72 @@ function tampil_nama_siswa_byid($id)
       }
   }
 
+  function find_idalokasimapel($id)
+  {
+    $ci =& get_instance();
+    $ci->load->database();
+    $result = $ci->db->where('id_rombel',$id)->get('tabel_alokasimapel');
+      foreach ($result->result() as $c) {
+      $stmt= $c->id_rombel;
+      return $stmt;
+      }
+  }
+
+  function find_idalokasimapel2($id)
+  {
+    $ci =& get_instance();
+    $ci->load->database();
+    $result = $ci->db->where('id_mapel',$id)->get('tabel_alokasimapel');
+      foreach ($result->result() as $c) {
+      $stmt= $c->id_mapel;
+      return $stmt;
+      }
+  }
+
+  function find_idsiswa($id)
+  {
+    $ci =& get_instance();
+    $ci->load->database();
+    $result = $ci->db->where('id_rombel',$id)->get('tabel_siswa');
+      foreach ($result->result() as $c) {
+      $stmt= $c->id_rombel;
+      return $stmt;
+      }
+  }
+
+  function find_idanggota($id)
+  {
+    $ci =& get_instance();
+    $ci->load->database();
+    $result = $ci->db->where('id_siswa',$id)->get('tabel_anggota');
+      foreach ($result->result() as $c) {
+      $stmt= $c->id_siswa;
+      return $stmt;
+      }
+  }
+
+  function find_idalokasiguru2($id)
+  {
+    $ci =& get_instance();
+    $ci->load->database();
+    $result = $ci->db->where('kode_guru',$id)->get('tabel_alokasiguru');
+      foreach ($result->result() as $c) {
+      $stmt= $c->kode_guru;
+      return $stmt;
+      }
+  }
+
+  function find_iddetailbuku($id)
+  {
+    $ci =& get_instance();
+    $ci->load->database();
+    $result = $ci->db->where('id_buku',$id)->get('table_buku');
+      foreach ($result->result() as $c) {
+      $stmt= $c->id_buku;
+      return $stmt;
+      }
+  }
+  
  // Detail Index Buku
   function tampil_judul_buku_byid($id)
   {
