@@ -213,10 +213,12 @@ class Perpustakaan extends CI_Controller {
 
     public function aksi_tambah_anggota()
     {
+        $date = date('Y-m-d');
         $data = array
         (
             'id_anggota' => $this->acak_anggota(5),
             'id_siswa' => $this->input->post('id_siswa'),
+            'date' => $date,
             'status' => '1',
         );
         $this->m_perpustakaan->aksi_tambah_anggota('tabel_anggota', $data);
@@ -467,7 +469,6 @@ class Perpustakaan extends CI_Controller {
                 'sumber' => $this->input->post('sumber'),
                 'kategori_id' => $this->input->post('kategori_id'),
                 'rak_buku_id' => $this->input->post('rak_buku_id'),
-                'stok' => $this->input->post('stok'),
                 'del_flag' => '1',
             );
 

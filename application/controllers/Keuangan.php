@@ -383,16 +383,25 @@ class Keuangan extends CI_Controller
 
     public function aksi_transaksi()
     {
-        $data = array
-        (
-            'id_anggaran' => $this->input->post('id_anggaran'),
+        $jk = array(
+			'id_anggaran' => $this->input->post('id_anggaran'),
             'uraian' => $this->input->post('uraian'),
             'pencatat' => $this->input->post('pencatat'),
-            'id_akun' => $this->input->post('id_akun'),
-            'nominal' => $this->input->post('nominal'),
-        );
+            'id_akun' => $this->input->post('kredit'),
+			'debet' => '0',
+			'kredit' => $this->input->post('nominal')
+		);
+		$jd = array(
+			'id_anggaran' => $this->input->post('id_anggaran'),
+            'uraian' => $this->input->post('uraian'),
+            'pencatat' => $this->input->post('pencatat'),
+            'id_akun' => $this->input->post('debet'),
+			'debet' => $this->input->post('nominal'),
+			'kredit' => '0',
+		);
 
-        $logging=$this->m_keuangan->aksi_transaksi('tabel_transaksi', $data);
+        $logging=$this->m_keuangan->aksi_transaksi('tabel_transaksi', $jk);
+        $logging=$this->m_keuangan->aksi_transaksi('tabel_transaksi', $jd);
         if($logging)
         {
             $this->session->set_flashdata('sukses', 'berhasil');

@@ -68,7 +68,7 @@
                                 <label class="control-label">Buku</label>
                                 <div class="">
                                     <select id="buku" name="id_buku_pinjam" class="form-control select2 select2-info"
-                                        data-dropdown-css-class="select2-info" style="width: 100%;">
+                                        data-dropdown-css-class="select2-info" style="width: 100%;" required="">
                                         <option selected="selected">Pilih Buku</option>
                                         <?php $id = 0; foreach ($data_buku as $data): $id++ ?>
                                         <option value="<?php echo $data->id_buku ?>"><?php echo $data->judul_buku ?>

@@ -33,9 +33,6 @@
                                                 data-target="#modal_tambah_rak">
                                                 Tambah rak Buku
                                             </button>
-
-                                            <a href="<?php echo base_url('Perpustakaan/tambah_rak_buku'); ?>"
-                                                class="btn btn-success">Tambah Rak Buku</a>
                                         </div>
                                     </div>
                                 </div>
