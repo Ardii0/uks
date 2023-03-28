@@ -83,7 +83,7 @@
                                                 <td>
                                                     <?php echo $data->kd_jenjang ?>
                                                 </td>
-                                                <td>
+                                                <td style="width: 40%;">
                                                     <?php echo $data->alamat ?>
                                                 </td>
                                                 <td>
@@ -93,14 +93,12 @@
                                                     <a href="<?php echo base_url('Akademik/edit_jenjang/' . $data->id_jenjang) ?>"
                                                         class="btn btn-primary btn-sm">
                                                         <i class="fa fa-edit"></i></a>
-                                                        <?php 
-                                                    $find = find_idrombel($data->id_jenjang);
-                                                    if($find == null) echo "
-                                                    <button onclick='hapus($data->id_jenjang)'
-                                                    class='btn btn-danger btn-sm'>
-                                                    <i class='fa fa-trash'></i></button>                                                
-                                                    "; 
-                                                    else echo ""?>
+                                                    <?php if(!$this->db->where('id_jenjang',$data->id_jenjang)->get('tabel_daftar')->result() &&
+                                                             !$this->db->where('id_jenjang',$data->id_jenjang)->get('tabel_kelas')->result()) {?>
+                                                        <button onclick='hapus($data->id_jenjang)'
+                                                        class='btn btn-danger btn-sm'>
+                                                        <i class='fa fa-trash'></i></button> 
+                                                    <?php }?>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>

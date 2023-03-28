@@ -4,7 +4,7 @@ class M_akademik extends CI_Model{
 // Home Dashboard
     public function total_kelas()
   {
-    return $this->db->get('tabel_kelas')->num_rows();
+    return $this->db->where('status','AKTIF')->get('tabel_kelas')->num_rows();
   }
 
     public function total_mapel()

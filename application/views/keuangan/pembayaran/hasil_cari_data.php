@@ -115,7 +115,7 @@
                                         <td><?php echo tampil_jenisbayarById($databayar->id_jenis)?></td>
                                         <td><?php echo $databayar->keterangan?></td>
                                         <td><?php echo $databayar->nominal?></td>
-                                        <td><?php echo $databayar->akuntan?></td>
+                                        <td><?php echo tampil_emaillevelById($databayar->id_level)?></td>
                                     </tr>
                                     <?php endforeach; ?>
                                 </tbody>

@@ -88,9 +88,11 @@
                                                 <a href="<?php echo base_url('Akademik/edit_ta/'.$data->id_angkatan)?>"
                                                     class="btn btn-primary btn-sm">
                                                     <i class="fa fa-edit"></i></a>
-                                                <button onclick="hapus(<?php echo $data->id_angkatan ;?>)"
-                                                    class="btn btn-danger btn-sm">
-                                                    <i class="fa fa-trash"></i></button>
+                                                        <?php if(!$this->db->where('id_angkatan',$data->id_angkatan)->get('tabel_daftar')->result()) {?>
+                                                            <button onclick="hapus(<?php echo $data->id_angkatan ;?>)"
+                                                                class="btn btn-danger btn-sm">
+                                                                <i class="fa fa-trash"></i></button>
+                                                        <?php }?>
                                             </td>
                                         </tr>
                                         <?php endforeach;?>

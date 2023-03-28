@@ -90,7 +90,6 @@
                                 <?php if($this->db->get_where('tabel_nilai', array('id_siswa' => $this->session->userdata('id_siswa')))->num_rows() && 
                                          $this->db->get_where('tabel_nilai', array('id_mapel' => $this->session->userdata('id_mapel')))->num_rows() &&
                                          $this->db->get_where('tabel_nilai', array('id_semester' => $this->session->userdata('id_semester')))->num_rows()) { ?>
-                                    ini edit btw
                                     <?php foreach($edit as $edit): ?>
                                         <form class="row card-body" action="<?php echo base_url('Nilai/update_nilai') ?>" enctype="multipart/form-data" method="post">
                                             <?php foreach ($semester as $inputsmt): ?>
