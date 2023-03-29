@@ -4,23 +4,20 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>WO</title>
+    <title>Sistem Informasi Sekolah</title>
     <!-- Tell the browser to be responsive to screen width -->
+    <link rel="icon" href="<?php echo base_url('assets/dist/img/logo-login.png'); ?>">
     <?php $this->load->view('petugas/style/head'); ?>
 </head>
 
 <body>
-    <section class="vh-100" style="background-color: #4169e1;">
+<section class="min-vh-100" style="background-color: #4169e1;">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col col-xl-10">
+            <div class="col-md-6 col-lg-7 ">
                     <div class="card" style="border-radius: 1rem;">
-                        <div class="row g-0">
-                            <div class="col-md-6 col-lg-5 d-none d-md-block">
-                                <img src="<?php echo base_url('assets/dist/img/head-login.jpg'); ?>" alt="login form"
-                                    class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
-                            </div>
-                            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                        <div class="">
+                            <div class="d-flex align-items-center">
                                 <div class="card-body p-4 p-lg-5 text-black">
 
                                     <form action="<?php echo base_url(); ?>login/aksi_login_email" method="post">
@@ -46,7 +43,7 @@
                                                 oninvalid="this.setCustomValidity('Tidak boleh kosong')"
                                                 oninput="setCustomValidity('')" />
                                         </div>
-
+                                        <a href="<?php echo base_url('login'); ?>">Login menggunakan Username</a>
                                         <div class="pt-2 mb-4">
                                             <button class="btn btn-dark btn-lg btn-block" type="submit">Login</button>
                                         </div>

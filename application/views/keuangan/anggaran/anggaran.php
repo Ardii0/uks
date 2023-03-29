@@ -51,6 +51,7 @@
                                 <div class="mx-1">
                                     <select name="id_rencana_anggaran" id="id_rencana_anggaran" class="form-control"
                                             data-dropdown-css-class="select2-info">
+                                            <option value="1">Pilih</option>
                                             <?php $id = 0; foreach ($data_rencana_anggaran as $data): $id++; ?>
                                                 <option value="<?php echo $data->id_rencana_anggaran ?>"><?php echo $data->nama_anggaran ?></option>
                                             <?php endforeach ?>
@@ -69,7 +70,8 @@
                                         class="fa fa-plus pr-2"></i>Tambah</button>
                             </div>
                         </div>
-                        <div class="row">
+                        <?php if ($data_rn === null ) : ?>
+                            <div class="row">
                             <div class="col-12">
                                 <div class="card-body">
                                     <div class="mb-3">
@@ -240,6 +242,7 @@
                                 </div>
                             </div>
                         </div>
+                    <?php else : ?><?php endif; ?>
                     </div>
             </div>
             </section>

@@ -57,6 +57,7 @@ class Keuangan extends CI_Controller
         $data['masuk'] = $this->m_keuangan->get_detail_rn('m', 1)->result();
         $data['keluar'] = $this->m_keuangan->get_detail_rn('k', 1)->result();
 
+        
         $this->load->view('keuangan/anggaran/anggaran', $data);
     }
 
