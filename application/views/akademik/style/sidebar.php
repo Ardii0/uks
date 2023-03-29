@@ -44,6 +44,14 @@
                 </p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url('Akademik/guru'); ?>" class="nav-link <?=$menu == 'guru' ? 'active' :'' ?>">
+                <i class="nav-icon fas fa-user-tie"></i>
+                <p>
+                  Guru
+                </p>
+              </a>
+            </li>
             <li class="nav-item <?=$menu == 'kelas' ? 'menu-open' :'' ?>">
               <a href="#" class="nav-link <?=$menu == 'kelas' ? 'active' :'' ?>">
                 <i class="nav-icon fas fa-book"></i>
@@ -66,15 +74,6 @@
                   </a>
                 </li>
               </ul>
-            </li>
-            
-            <li class="nav-item">
-              <a href="<?php echo base_url('Akademik/guru'); ?>" class="nav-link <?=$menu == 'guru' ? 'active' :'' ?>">
-                <i class="nav-icon fas fa-user-tie"></i>
-                <p>
-                  Guru
-                </p>
-              </a>
             </li>
             <li class="nav-item <?=$menu == 'siswa' ? 'menu-open' :'' ?>">
               <a href="#" class="nav-link <?=$menu == 'siswa' ? 'active' :'' ?>">

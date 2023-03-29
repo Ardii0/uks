@@ -8,6 +8,15 @@ class M_nilai extends CI_Model{
         return $data;
     }
 
+    public function get_nilaiSiswaperMapel()
+    {
+        $idm = $this->session->userdata('id_mapel');
+        $smt = $this->session->userdata('id_semester');
+        $ids = $this->session->userdata('id_siswa');
+        $data = $this->db->where(array('id_siswa' => $ids), array('id_mapel' => $idm), array('id_semester' => $smt))->get('tabel_nilai')->result();
+        return $data;
+    }
+
     public function entry($idr)
     {
         $this->db->select('tabel_daftar.nama, tabel_siswa.*');
