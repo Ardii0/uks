@@ -112,7 +112,7 @@ class Nilai extends CI_Controller {
            $data['rombel'] = $this->m_nilai->rombel($idr)->result();
            $data['semester'] = $this->m_nilai->semester($smt)->result();
            $data['siswa'] = $this->m_nilai->get_nilaiBySiswa('tabel_siswa', $ids);
-           $data['edit'] = $this->m_nilai->get_nilaiBySiswa('tabel_nilai', $ids);
+           $data['edit'] = $this->m_nilai->get_nilaiSiswaperMapel();
            $data['content'] = 'nilai/entry';
 
            $this->load->view('nilai/nilai/entry_nilai_input', $data);

@@ -157,21 +157,21 @@
                                                         <label class="control-label">NT1</label>
                                                         <div>
                                                             <input type="number" name="nt1" class="form-control"
-                                                            placeholder="Masukan Nilai Tugas 1" value="<?php echo $edit->nuh1?>"><br>
+                                                            placeholder="Masukan Nilai Tugas 1" value="<?php echo $edit->nt1?>"><br>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="control-label">NT2</label>
                                                         <div>
                                                             <input type="number" name="nt2" class="form-control"
-                                                            placeholder="Masukan Nilai Tugas 2" value="<?php echo $edit->nuh2?>"><br>
+                                                            placeholder="Masukan Nilai Tugas 2" value="<?php echo $edit->nt2?>"><br>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="control-label">NT3</label>
                                                         <div>
                                                             <input type="number" name="nt3" class="form-control"
-                                                            placeholder="Masukan Nilai Tugas 3" value="<?php echo $edit->nuh3?>"><br>
+                                                            placeholder="Masukan Nilai Tugas 3" value="<?php echo $edit->nt3?>"><br>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">

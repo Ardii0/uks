@@ -27,7 +27,7 @@
                                 <li class="breadcrumb-item"><a
                                         href="<?php echo base_url('Akademik/') ?>"><?php echo $this->session->userdata('level') ?></a>
                                 </li>
-                                <li class="breadcrumb-item active"><a href="<?php echo base_url('Akademik/jenismapel') ?>">Jenis Mapel</a></li>
+                                <li class="breadcrumb-item active"><a href="<?php echo base_url('Akademik/jenis_pelajaran') ?>">Jenis Mapel</a></li>
                                 <li class="breadcrumb-item active">Edit Jenis Mapel</li>
                             </ol>
                         </div>

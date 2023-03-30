@@ -13,7 +13,12 @@ class M_nilai extends CI_Model{
         $idm = $this->session->userdata('id_mapel');
         $smt = $this->session->userdata('id_semester');
         $ids = $this->session->userdata('id_siswa');
-        $data = $this->db->where(array('id_siswa' => $ids), array('id_mapel' => $idm), array('id_semester' => $smt))->get('tabel_nilai')->result();
+        $checknilai = array(
+            'id_mapel' => $idm,
+            'id_siswa' => $ids,
+            'id_semester' => $smt
+          );
+        $data = $this->db->where($checknilai)->get('tabel_nilai')->result();
         return $data;
     }
 

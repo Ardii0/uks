@@ -24,7 +24,7 @@ $.widget.bridge('uibutton', $.ui.button)
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
 </script>
 
-<script src="<?php echo base_url('builer/dist/js/adminlte.js'); ?>"></script>
+<script src="<?php echo base_url('builder/dist/js/adminlte.js'); ?>"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?php echo base_url('builder/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
 <script src="<?php echo base_url('builder/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js'); ?>"></script>
@@ -38,7 +38,6 @@ $.widget.bridge('uibutton', $.ui.button)
 <script src="<?php echo base_url('builder/plugins/datatables-buttons/js/buttons.html5.min.js'); ?>"></script>
 <script src="<?php echo base_url('builder/plugins/datatables-buttons/js/buttons.print.min.js'); ?>"></script>
 <script src="<?php echo base_url('builder/plugins/datatables-buttons/js/buttons.colVis.min.js'); ?>"></script>
-<script src="<?php echo base_url('builer/dist/js/pages/dashboard.js'); ?>"></script>
 
 <script>
 $(function() {

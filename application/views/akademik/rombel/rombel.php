@@ -19,12 +19,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Rombel</h1>
+                    <h1>Rombongan Belajar</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="<?php echo base_url('Akademik/') ?>"><?php echo $this->session->userdata('level') ?></a></li>
-                    <li class="breadcrumb-item active">Rombel</li>
+                    <li class="breadcrumb-item active">Rombongan Belajar</li>
                     </ol>
                 </div>
                 </div>

@@ -34,7 +34,7 @@
                                     href="<?php echo base_url('Keuangan/') ?>"><?php echo $this->session->userdata('level') ?></a>
                                 </li>
                                 <li class="breadcrumb-item active"><a
-                                    href="<?php echo base_url('Akademik/pembayaran') ?>">Pembayaran</a>
+                                    href="<?php echo base_url('Keuangan/pembayaran') ?>">Pembayaran</a>
                                 </li>
                                 <li class="breadcrumb-item active">Cetak Pembayaran</li>
                             </ol>
@@ -50,14 +50,14 @@
                             <div class="shadow bg-white px-3 py-2 rounded">
                                 <div class="font-weight-bold">Dari :</div>
                                     <div><strong><?php echo tampil_namadaftar_ByIdSiswa($idinvc->id_siswa)?></strong></div>
-                                    <div>Kelas <?php echo tampil_kelas_ByRombel($idinvc->id_siswa)?></div>
-                                    <div><?php echo tampil_rombel_byid($idinvc->id_siswa)?></div>
+                                    <div>Kelas <?php echo tampil_kelasdaftar_ByIdSiswa($idinvc->id_siswa)?></div>
+                                    <div><?php echo tampil_rombeldaftar_ByIdSiswa($idinvc->id_siswa)?></div>
                             </div>
                         </div>
                         <div class="col-4 px-3">
                             <div class="shadow bg-white px-3 py-2 rounded">
                                 <div class="font-weight-bold">Kepada :</div>
-                                    <div><?php echo tampil_namajenjang_ByIdSiswa($idinvc->id_siswa)?></div>
+                                    <div><strong><?php echo tampil_namajenjang_ByIdSiswa($idinvc->id_siswa)?></strong></div>
                                     <div><?php echo tampil_almtjenjang_ByIdSiswa($idinvc->id_siswa)?></div>
                                     <?php echo tampil_emaillevelById($idinvc->id_level) ?>
                             </div>

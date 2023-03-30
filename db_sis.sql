@@ -24,13 +24,12 @@ CREATE TABLE `kembalikan` (
   `id` int NOT NULL AUTO_INCREMENT,
   `id_buku` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `kembalikan` */
 
 insert  into `kembalikan`(`id`,`id_buku`) values 
-(1,4),
-(2,4);
+(1,17);
 
 /*Table structure for table `pinjam` */
 
@@ -40,14 +39,13 @@ CREATE TABLE `pinjam` (
   `id` int NOT NULL AUTO_INCREMENT,
   `id_buku` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `pinjam` */
 
 insert  into `pinjam`(`id`,`id_buku`) values 
-(1,4),
-(2,4),
-(3,5);
+(1,12),
+(2,17);
 
 /*Table structure for table `setting_perpustakaan` */
 
@@ -55,7 +53,7 @@ DROP TABLE IF EXISTS `setting_perpustakaan`;
 
 CREATE TABLE `setting_perpustakaan` (
   `id_setting_perpus` int NOT NULL AUTO_INCREMENT,
-  `maksimal_pengembalian_hari` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `maksimal_pengembalian_hari` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `denda` double DEFAULT NULL,
   PRIMARY KEY (`id_setting_perpus`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -63,7 +61,83 @@ CREATE TABLE `setting_perpustakaan` (
 /*Data for the table `setting_perpustakaan` */
 
 insert  into `setting_perpustakaan`(`id_setting_perpus`,`maksimal_pengembalian_hari`,`denda`) values 
-(1,'10',1000000);
+(1,'1',1000);
+
+/*Table structure for table `stok_buku_keluar` */
+
+DROP TABLE IF EXISTS `stok_buku_keluar`;
+
+CREATE TABLE `stok_buku_keluar` (
+  `id_stok_keluar` int NOT NULL,
+  `id_buku` int NOT NULL,
+  `tgl_keluar` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+/*Data for the table `stok_buku_keluar` */
+
+/*Table structure for table `stok_buku_masuk` */
+
+DROP TABLE IF EXISTS `stok_buku_masuk`;
+
+CREATE TABLE `stok_buku_masuk` (
+  `id_stok_masuk` int NOT NULL,
+  `id_buku` int NOT NULL,
+  `tgl_masuk` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+/*Data for the table `stok_buku_masuk` */
+
+/*Table structure for table `tabel_admin` */
+
+DROP TABLE IF EXISTS `tabel_admin`;
+
+CREATE TABLE `tabel_admin` (
+  `id_admin` int NOT NULL AUTO_INCREMENT,
+  `id_pesanan` varchar(20) DEFAULT NULL,
+  `id_pembayaran` varchar(20) DEFAULT NULL,
+  `id_paket_wedding` varchar(11) DEFAULT NULL,
+  `nama` varchar(50) NOT NULL,
+  `username` varchar(40) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `no_telp` varchar(20) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `jenis_kelamin` varchar(15) DEFAULT NULL,
+  `alamat` varchar(255) DEFAULT NULL,
+  `nama_pemesan` varchar(100) DEFAULT NULL,
+  `no_telp_pemesan` varchar(20) DEFAULT NULL,
+  `email_pemesan` varchar(100) DEFAULT NULL,
+  `alamat_pemesan` varchar(255) DEFAULT NULL,
+  `judul_pw` varchar(100) DEFAULT NULL,
+  `tanggal_pesanan` date DEFAULT NULL,
+  `tanggal_acara` date DEFAULT NULL,
+  `tanggal_bayar_dp` date DEFAULT NULL,
+  `harga_pw` varchar(50) DEFAULT NULL,
+  `dp_pw` varchar(100) DEFAULT NULL,
+  `pelunasan_pw` varchar(100) DEFAULT NULL,
+  `bayar_dp` varchar(100) DEFAULT NULL,
+  `bayar_pelunasan` varchar(100) DEFAULT NULL,
+  `no_invoice_dp` varchar(255) DEFAULT NULL,
+  `nama_bank_dp` varchar(50) DEFAULT NULL,
+  `bukti_pembayaran_dp` varchar(250) DEFAULT NULL,
+  `tanggal_bayar_pelunasan` date DEFAULT NULL,
+  `nama_bank_pelunasan` varchar(100) DEFAULT NULL,
+  `no_invoice_pelunasan` varchar(100) DEFAULT NULL,
+  `bukti_pembayaran_pelunasan` varchar(100) DEFAULT NULL,
+  `status_pembayaran_dp` int DEFAULT '0',
+  `status_pembayaran_pelunasan` int DEFAULT '0',
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `mdate` datetime NOT NULL,
+  `ddate` datetime NOT NULL,
+  `c_by` varchar(50) NOT NULL,
+  `m_by` varchar(50) NOT NULL,
+  `d_by` varchar(50) NOT NULL,
+  `del_flag` int NOT NULL,
+  `last_login` datetime NOT NULL,
+  `level` int NOT NULL,
+  PRIMARY KEY (`id_admin`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `tabel_admin` */
 
 /*Table structure for table `tabel_akun` */
 
@@ -71,17 +145,18 @@ DROP TABLE IF EXISTS `tabel_akun`;
 
 CREATE TABLE `tabel_akun` (
   `id_akun` int NOT NULL AUTO_INCREMENT,
-  `nama_akun` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `jenis_akun` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nama_akun` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `jenis_akun` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `status` int DEFAULT NULL,
   PRIMARY KEY (`id_akun`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `tabel_akun` */
 
 insert  into `tabel_akun`(`id_akun`,`nama_akun`,`jenis_akun`,`status`) values 
-(5,'Kas','Kas',1),
-(6,'Ada','2',1);
+(1,'Kas','Kas',1),
+(2,'Modal','Modal',1),
+(3,'Pendapatan','Pendapatan',NULL);
 
 /*Table structure for table `tabel_alokasiguru` */
 
@@ -95,15 +170,13 @@ CREATE TABLE `tabel_alokasiguru` (
   KEY `id_mapel` (`id_mapel`),
   KEY `id_guru` (`kode_guru`),
   CONSTRAINT `tabel_alokasiguru_to_mapel` FOREIGN KEY (`id_mapel`) REFERENCES `tabel_mapel` (`id_mapel`)
-) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tabel_alokasiguru` */
 
 insert  into `tabel_alokasiguru`(`id_alokasiguru`,`kode_guru`,`id_mapel`) values 
-(63,'KG-330OSN',9),
-(66,'449',9),
-(67,'449',10),
-(68,'450',9);
+(1,'KG-QUC568',1),
+(2,'KG-QUC568',2);
 
 /*Table structure for table `tabel_alokasimapel` */
 
@@ -118,14 +191,13 @@ CREATE TABLE `tabel_alokasimapel` (
   KEY `id_mapel` (`id_mapel`),
   CONSTRAINT `tabel_alokasimapel_to_mapel` FOREIGN KEY (`id_mapel`) REFERENCES `tabel_mapel` (`id_mapel`),
   CONSTRAINT `tabel_alokasimapel_to_rombel` FOREIGN KEY (`id_rombel`) REFERENCES `tabel_rombel` (`id_rombel`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tabel_alokasimapel` */
 
 insert  into `tabel_alokasimapel`(`id_alokasimapel`,`id_mapel`,`id_rombel`) values 
-(12,9,2),
-(13,9,1),
-(24,10,1);
+(1,1,1),
+(2,1,2);
 
 /*Table structure for table `tabel_anggota` */
 
@@ -143,12 +215,7 @@ CREATE TABLE `tabel_anggota` (
 /*Data for the table `tabel_anggota` */
 
 insert  into `tabel_anggota`(`id_anggota`,`id_siswa`,`date`,`status`) values 
-(9923,8,'2023-03-24',1),
-(199,1,'2023-03-24',1),
-(875,7,'2023-03-24',1),
-(863,9,'2023-03-24',1),
-(31271,6,'2023-03-24',1),
-(96912,8,'2023-03-28',1);
+(74282,4,'2023-03-28',1);
 
 /*Table structure for table `tabel_daftar` */
 
@@ -179,20 +246,34 @@ CREATE TABLE `tabel_daftar` (
   KEY `id_jenjang` (`id_jenjang`),
   CONSTRAINT `tabel_daftar_to_angkatan` FOREIGN KEY (`id_angkatan`) REFERENCES `tabel_tahunajaran` (`id_angkatan`),
   CONSTRAINT `tabel_daftar_to_jenjang` FOREIGN KEY (`id_jenjang`) REFERENCES `tabel_jenjang` (`id_jenjang`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tabel_daftar` */
 
 insert  into `tabel_daftar`(`id_daftar`,`no_reg`,`id_angkatan`,`id_jenjang`,`tgl_daftar`,`nisn`,`nama`,`jekel`,`tempat_lahir`,`anak_ke`,`saudara_kandung`,`saudara_angkat`,`tgl_lahir`,`agama`,`alamat`,`telepon`,`foto`,`warga_negara`,`diterima`) values 
-(2,'12',1,3,'2023-02-18','213','Ahmad Jay','L','Los Angel',1,'1','1','2023-03-11','Islam','Jl.Roti Burger Ayam','123','1677472666712.png','WNI','Y'),
-(3,'313',1,3,'2023-02-28','3123','Irvanda','L','Taman',1,'4','0','2023-03-03','Islam','Taman','08989898',NULL,'WNI','A'),
-(6,'2334233',1,5,'2023-03-01','34534545','Rizqi','L','Semarang',2,'ada','ada','2003-11-11','Islam','Mangkang','089765543321','1677650453679.png','WNI','M'),
-(7,'2334233',1,5,'2023-03-01','34534545','Rizqi','L','Semarang',2,'ada','ada','2003-11-11','Islam','Mangkang','089765543321','1677650453679.png','WNI','L'),
-(10,'1213221',1,5,'2023-03-01','31312','Ahmad Subardjo','L','Los Angel',1,'1','1','2023-03-11','Islam','Jl.Tamai Raya','09282734851','1678519397023.jpg','WNI','A'),
-(11,'123',1,1,'2023-03-16','2','ShoeFantasy','L','sSfd',1,'1','1','2023-03-30','Kristen','Jl.Tamai Raya','09282734851','1678850687584.jpg','WNI','S'),
-(12,'12313',1,9,'2023-03-01','9878','Arya','L','Los Angel',1,'2','1','2023-03-02','Islam','JL. Jakarta','09282734851','1678870842225.jpg','WNI','T'),
-(13,'REG-3NBD40',1,1,'2023-03-16','45345','ada','L','Los Angel',2,'2','2','2023-03-24','Islam','p','09282734851','1679367084036.jpg','WNI','A'),
-(15,'REG-R4TMYY',6,5,'0000-00-00','12312','Kevin Sanjaya','L','Los Angel',1,'2','3','2023-03-21','Islam','Jl.pekan sari','09282734851',NULL,'WNI','A');
+(1,'REG-A724E5',1,1,'2023-03-28','234','t','L','t',2,'2','31','0000-00-00','Islam','t','975',NULL,'WNI','M'),
+(2,'REG-8IL92S',1,1,'2023-03-28','234','t','L','t',2,'2','31','0000-00-00','Islam','t','975',NULL,'WNI','L'),
+(3,'REG-6SBG5K',1,1,'2023-03-28','234','t','L','t',2,'2','31','0000-00-00','Islam','t','975',NULL,'WNI','A'),
+(4,'REG-DQRHL3',1,1,'2023-03-28','12345789 0','Ahmad A. Bahar','L','Semarang',1,'2','0','0000-00-00','Islam','Jl. Melati 1','0812346789 0',NULL,'WNI','A'),
+(5,'REG-AZ41WL',1,1,'2023-03-28','12345789 1','Ahmad B. Bahar','L','Semarang',1,'3','0','0000-00-00','Islam','Jl. Melati 2','0812346789 1',NULL,'WNI','A'),
+(6,'REG-QNXVCR',1,1,'2023-03-28','12345789 2','Ahmad C. Bahar','L','Semarang',1,'2','0','0000-00-00','Islam','Jl. Melati 3','0812346789 2',NULL,'WNI','A'),
+(7,'REG-TRI2KM',1,1,'2023-03-28','12345789 3','Ahmad D. Bahar','L','Semarang',1,'2','0','0000-00-00','Islam','Jl. Melati 4','0812346789 3',NULL,'WNI','A'),
+(8,'REG-KUJDCX',1,1,'2023-03-28','12345789 4','Ahmad E. Bahar','L','Semarang',1,'2','0','0000-00-00','Islam','Jl. Melati 5','0812346789 4',NULL,'WNI','A'),
+(9,'REG-F9T1CP',1,1,'2023-03-28','12345789 5','Ahmad F. Bahar','L','Semarang',1,'2','0','0000-00-00','Islam','Jl. Melati 6','0812346789 5',NULL,'WNI','P'),
+(10,'REG-DV2WRJ',1,1,'2023-03-28','12345789 6','Ahmad G. Bahar','L','Jakarta',1,'2','0','0000-00-00','Islam','Jl. Melati 7','0812346789 6',NULL,'WNI','P'),
+(11,'REG-TPKNI7',1,1,'2023-03-28','12345789 7','Ahmad H. Bahar','L','Jakarta',1,'2','0','0000-00-00','Islam','Jl. Melati 8','0812346789 7',NULL,'WNI','P'),
+(12,'REG-DS0KXV',1,1,'2023-03-28','12345789 8','Ahmad I. Bahar','L','Jakarta',1,'2','0','0000-00-00','Islam','Jl. Melati 9','0812346789 8',NULL,'WNI','P'),
+(13,'REG-CVHZ1P',1,1,'2023-03-28','12345789 9','Ahmad J. Bahar','P','Jakarta',1,'2','0','0000-00-00','Islam','Jl. Melati 10','0812346789 9',NULL,'WNI','P'),
+(14,'REG-BR15AO',1,1,'2023-03-28','12345789 1','Ahmad K. Bahar','P','Jakarta',1,'2','0','0000-00-00','Islam','Jl. Melati 11','0812346789 10',NULL,'WNI','P'),
+(15,'REG-KJWIEL',1,1,'2023-03-28','12345789 1','Ahmad L. Bahar','P','Jakarta',1,'2','0','0000-00-00','Islam','Jl. Melati 12','0812346789 11',NULL,'WNI','P'),
+(16,'REG-A791QU',1,1,'2023-03-28','12345789 1','Ahmad M. Bahar','P','Jakarta',1,'2','0','0000-00-00','Islam','Jl. Melati 13','0812346789 12',NULL,'WNI','P'),
+(17,'REG-MJ5YA7',1,1,'2023-03-28','12345789 1','Ahmad N. Bahar','P','Jakarta',1,'2','0','0000-00-00','Islam','Jl. Melati 14','0812346789 13',NULL,'WNI','P'),
+(18,'REG-M1NFVB',1,1,'2023-03-28','12345789 1','Ahmad O. Bahar','P','Jakarta',1,'2','0','0000-00-00','Islam','Jl. Melati 15','0812346789 14',NULL,'WNI','P'),
+(19,'REG-WRU9F1',1,1,'2023-03-28','12345789 1','Ahmad P. Bahar','P','Jakarta',1,'2','0','0000-00-00','Islam','Jl. Melati 16','0812346789 15',NULL,'WNI','P'),
+(20,'REG-1CYNVN',1,1,'2023-03-28','12345789 1','Ahmad Q. Bahar','P','Jakarta',1,'2','0','0000-00-00','Islam','Jl. Melati 17','0812346789 16',NULL,'WNI','P'),
+(21,'REG-P4EK2W',1,1,'2023-03-28','12345789 1','Ahmad R. Bahar','P','Jakarta',1,'2','0','0000-00-00','Islam','Jl. Melati 18','0812346789 17',NULL,'WNI','P'),
+(22,'REG-IHHY87',1,1,'2023-03-28','12345789 1','Ahmad S. Bahar','P','Ngawi',1,'2','0','0000-00-00','Islam','Jl. Melati 19','0812346789 18',NULL,'WNI','P'),
+(23,'REG-KW5KWH',1,1,'2023-03-28','12345789 1','Ahmad S. Bahar','P','Ngawi',1,'2','0','0000-00-00','Islam','Jl. Melati 20','0812346789 19',NULL,'WNI','P');
 
 /*Table structure for table `tabel_guru` */
 
@@ -211,15 +292,11 @@ CREATE TABLE `tabel_guru` (
 /*Data for the table `tabel_guru` */
 
 insert  into `tabel_guru`(`kode_guru`,`nip`,`nama_guru`,`jekel`,`no_hp`,`alamat`,`status`) values 
-('450','3242134','Eko','L','08932422342','Ungaran','AKTIF'),
-('451','32333','Ahmad','L','087884635','Jl.Tamai Raya','AKTIF'),
-('453','222','Ahmad','L','0893847522','','AKTIF'),
-('455','1212','Test','L','1212','Jl.Tamai Raya','AKTIF'),
-('KG-69U9HX','1414','Test','L','0893847522','Jl.Roti Burger Ayam','AKTIF'),
-('KG-330OSN','21312','Shelby','L','1212','Jl.Tamai Raya','AKTIF'),
-('KG-3MKQ3P','111','Test23','L','222','Jl.Tamai Raya','AKTIF'),
-('KG-QQRODS','123','Test','L','0893847522','Jl.Tamai Raya','AKTIF'),
-('KG-LVUMAY','1212','Arga','L','0893847522','','AKTIF');
+('KG-QUC568','903123456','Ahmad','L','08561234567','Jl. Melati','AKTIF'),
+('KG-IPN4QC','9031234509','Ahmad D. Marcel','L','08561234909','Jl. Melati 89','AKTIF'),
+('KG-2MPLF7','9031234899','Ahmad U. Marcel',NULL,'08561234787','Jl. Mawar 45','AKTIF'),
+('KG-IVWC3I','9031234999','Ahmad T. Marcel','L','08561234980','Jl. Kembang 78','AKTIF'),
+('KG-SGMGVA','9031234898','Siti Nur','P','08561287888','Jl. Merpati 09','AKTIF');
 
 /*Table structure for table `tabel_hak_akses` */
 
@@ -227,7 +304,7 @@ DROP TABLE IF EXISTS `tabel_hak_akses`;
 
 CREATE TABLE `tabel_hak_akses` (
   `id_hak_akses` int DEFAULT NULL,
-  `akses` varchar(765) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `akses` varchar(765) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `tabel_hak_akses` */
@@ -245,7 +322,7 @@ insert  into `tabel_hak_akses`(`id_hak_akses`,`akses`) values
 DROP TABLE IF EXISTS `tabel_invoice`;
 
 CREATE TABLE `tabel_invoice` (
-  `id_invoice` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `id_invoice` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `id_siswa` int NOT NULL,
   `date` date DEFAULT (curdate()),
   `id_level` int NOT NULL,
@@ -256,21 +333,9 @@ CREATE TABLE `tabel_invoice` (
 /*Data for the table `tabel_invoice` */
 
 insert  into `tabel_invoice`(`id_invoice`,`id_siswa`,`date`,`id_level`,`id_ta`,`cek_p`) values 
-('INV0318KGO2144',1,'2023-03-19',5,1,1),
-('INV0318RST2235',1,'2023-03-19',5,1,1),
-('INV031892F2244',1,'2023-03-19',5,1,1),
-('INV0319P4I3006',1,'2023-03-19',5,1,1),
-('INV0319XSY3546',1,'2023-03-19',5,1,1),
-('INV031988B3717',1,'2023-03-19',5,1,1),
-('INV0319V9Q0017',2,'2023-03-19',5,0,1),
-('INV0319H8Y0133',2,'2023-03-19',5,0,1),
-('INV0319L3I0249',6,'2023-03-19',5,1,1),
-('INV031903H4605',5,'2023-03-19',5,0,1),
-('INV0319T4W4609',5,'2023-03-19',5,0,1),
-('INV0320H213525',5,'2023-03-20',5,0,1),
-('INV03236WP0544',8,'2023-03-24',1,0,1),
-('INV0323MSV1842',8,'2023-03-22',1,0,1),
-('INV0328ELT3029',9,'2023-03-28',5,0,1);
+('INV0330Y9G3650',4,'2023-03-30',5,1,1),
+('INV0330R9V3731',5,'2023-03-30',5,1,1),
+('INV0330EZB3807',6,'2023-03-30',5,1,1);
 
 /*Table structure for table `tabel_jenis_transaksi` */
 
@@ -295,9 +360,9 @@ insert  into `tabel_jenis_transaksi`(`id`,`nama_jenis_transaksi`,`rencana_anggar
 (1,'Dana Hibah',1,1,'m',500000,600000,230000,'Deskripsi Rancana Anggaran\r\n'),
 (2,'Gaji Staff',1,1,'k',500000,760000,210000,'Deskripsi Rancana Anggaran\r\n'),
 (3,'Gaji Guru',3,1,'k',500000,180000,900000,'Deskripsi Rancana Anggaran\r\n'),
-(4,'Dana Pokok',3,1,'m',1231313,1300000,870000,'MAIDAKWDI'),
-(5,'Gaji Tukang Bangunan',3,1,'k',90909090,450000,400000,'jdjdjdjd'),
-(6,'Dana Bos',3,1,'m',909090,1010000,840000,'Tes');
+(4,'Dana Pokok',3,1,'m',1231313,1300000,870000,'Dana Pokok'),
+(5,'Gaji Tukang Bangunan',3,1,'k',90909090,450000,400000,'Gaji Tukang Bangunan'),
+(6,'Dana Bos',3,1,'m',909090,1010000,840000,'Dana Bos');
 
 /*Table structure for table `tabel_jenisbayar` */
 
@@ -316,8 +381,8 @@ CREATE TABLE `tabel_jenisbayar` (
 /*Data for the table `tabel_jenisbayar` */
 
 insert  into `tabel_jenisbayar`(`id_jenis`,`kode_jenis`,`nama_jenis`,`tipe_jenis`,`keterangan`,`status`) values 
-(1,'ada','Pembayaran SPP',1,NULL,1),
-(2,'okk','Pembayaran UKT',2,NULL,1);
+(1,'spp','Pembayaran SPP',1,'Pembayaran SPP',1),
+(2,'ukt','Pembayaran UKT',2,'Pembayaran UKT',1);
 
 /*Table structure for table `tabel_jenismapel` */
 
@@ -329,13 +394,13 @@ CREATE TABLE `tabel_jenismapel` (
   `keterangan` text NOT NULL,
   `status` enum('AKTIF','NONAKTIF') NOT NULL DEFAULT 'AKTIF',
   PRIMARY KEY (`id_jenismapel`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tabel_jenismapel` */
 
 insert  into `tabel_jenismapel`(`id_jenismapel`,`nama_jenismapel`,`keterangan`,`status`) values 
-(1,'Wajib','Semangat Brother','AKTIF'),
-(2,'Bebas','Silahkan Kalau Mau hehe','AKTIF');
+(1,'WAJIB','Mata Pelajaran Wajib','AKTIF'),
+(2,'KEJURUSAN','Mata Pelajaran Kejurusan','AKTIF');
 
 /*Table structure for table `tabel_jenjang` */
 
@@ -353,17 +418,15 @@ CREATE TABLE `tabel_jenjang` (
   KEY `id_jenjang` (`id_jenjang`),
   KEY `tabel_jenjang_to_paketjenjang` (`id_paket`),
   CONSTRAINT `tabel_jenjang_to_paketjenjang` FOREIGN KEY (`id_paket`) REFERENCES `tabel_paketjenjang` (`id_paket`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tabel_jenjang` */
 
 insert  into `tabel_jenjang`(`id_jenjang`,`kd_jenjang`,`nama_jenjang`,`keterangan`,`id_paket`,`alamat`,`aktif`) values 
-(1,'J001','SD Mekar Sari','Sekolah Dasar',2,'Jl. Sd kemantren',1),
-(3,'J002','SMP Sehat Mekar Percaya','Sekolah Menengah Pertama',1,'Jl. Smp kemantren',1),
-(4,'J003','SMA Public','Sekolah Menengah Atas',2,'Jl. Sma kemantren Raya',1),
-(5,'J004','SMK Bina Nusantara','Sekolah Menengah Kejuruan',4,'Jl. Kemantren Raya no.4',1),
-(9,'J006','SMP','',9,NULL,1),
-(13,'J007','SD Muhammadiyah 1 Surakarta','',8,'Jl. Kartini No.1, RT.01/RW.09, Ketelan, Kec. Banjarsari, Kota Surakarta, Jawa Tengah 57132',1);
+(1,'J001','SMK Bina Nusantara','SMK Bina Nusantara JL.Kemantren Raya no 4',4,'Jl. Kemantren Raya no 4',1),
+(2,'J002','SD','',1,'Jl. Puyuh 08',1),
+(3,'J003','SMP','',2,'Jl. Balaraja 90',1),
+(4,'J004','SMA','',3,'Jl. Raya',1);
 
 /*Table structure for table `tabel_kelas` */
 
@@ -378,16 +441,14 @@ CREATE TABLE `tabel_kelas` (
   PRIMARY KEY (`id_kelas`),
   KEY `id_jenjang` (`id_jenjang`),
   CONSTRAINT `tabel_kelas_ibfk_1` FOREIGN KEY (`id_jenjang`) REFERENCES `tabel_jenjang` (`id_jenjang`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tabel_kelas` */
 
 insert  into `tabel_kelas`(`id_kelas`,`id_jenjang`,`nama_kelas`,`keterangan`,`status`) values 
-(1,1,'VI','Ok','AKTIF'),
-(2,4,'XII','Test','AKTIF'),
-(3,3,'XI','Ok','AKTIF'),
-(5,5,'XII TKJ','','AKTIF'),
-(7,9,'VIII','','AKTIF');
+(1,1,'X TKJ','Teknik Komputer Jaringan','AKTIF'),
+(3,1,'XI TKJ ','','AKTIF'),
+(4,1,'XII TKJ ','','AKTIF');
 
 /*Table structure for table `tabel_level` */
 
@@ -403,7 +464,7 @@ CREATE TABLE `tabel_level` (
   `id_hak_akses` int DEFAULT NULL,
   PRIMARY KEY (`id_level`),
   KEY `tabel_level_to_guru` (`kode_guru`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tabel_level` */
 
@@ -417,7 +478,12 @@ insert  into `tabel_level`(`id_level`,`username`,`email`,`password`,`level`,`kod
 (8,'Ahmad','Ahmad@gmail.com','bcbe3365e6ac95ea2c0343a2395834dd','Guru',NULL,5),
 (19,'Arga','Arga@gmail.com','a01610228fe998f515a72dd730294d87','Guru','KG-LVUMAY',5),
 (20,'ar','ar@gmail.com','c20ad4d76fe97759aa27a0c99bff6710','Guru','KG-TEFKZU',5),
-(21,'Test23','Test23@gmail.com','ec43638b66e16a5bbede9b710b12b0c7','Guru','KG-8GVW0P',5);
+(21,'Test23','Test23@gmail.com','ec43638b66e16a5bbede9b710b12b0c7','Guru','KG-8GVW0P',5),
+(22,'Ahmad','Ahmad@gmail.com','3afa240240487a03628ad77c37a34446','Guru','KG-QUC568',5),
+(23,'Ahmad D. Marcel','Ahmad D. Marcel@gmail.com','2a86f85a1e6d9c927af8304d4bda705a','Guru','KG-IPN4QC',5),
+(24,'Ahmad U. Marcel','Ahmad U. Marcel@gmail.com','a20ddc99f6ac873194f18ac4c860e1bb','Guru','KG-2MPLF7',5),
+(25,'Ahmad T. Marcel','Ahmad T. Marcel@gmail.com','cf431efa0b9f27f436d284cb59cb2f83','Guru','KG-IVWC3I',5),
+(26,'Siti Nur','Siti Nur@gmail.com','b9f9ea70f5102a12d83c163ae6e5552d','Guru','KG-SGMGVA',5);
 
 /*Table structure for table `tabel_lulus` */
 
@@ -429,13 +495,12 @@ CREATE TABLE `tabel_lulus` (
   `id_rombel` int DEFAULT NULL,
   `tanggal_lulus` date DEFAULT NULL,
   PRIMARY KEY (`id_lulus`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `tabel_lulus` */
 
 insert  into `tabel_lulus`(`id_lulus`,`id_daftar`,`id_rombel`,`tanggal_lulus`) values 
-(1,3,0,'2023-03-03'),
-(2,2,0,'2023-03-03');
+(1,2,0,'2023-03-28');
 
 /*Table structure for table `tabel_mapel` */
 
@@ -450,13 +515,17 @@ CREATE TABLE `tabel_mapel` (
   PRIMARY KEY (`id_mapel`),
   KEY `id_jenismapel` (`id_jenismapel`),
   CONSTRAINT `tabel_mapel_ibfk_1` FOREIGN KEY (`id_jenismapel`) REFERENCES `tabel_jenismapel` (`id_jenismapel`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tabel_mapel` */
 
 insert  into `tabel_mapel`(`id_mapel`,`id_jenismapel`,`nama_mapel`,`keterangan`,`status`) values 
-(9,1,'Matematika','Pelajaran Matematika','AKTIF'),
-(10,1,'Bahasa Inggris','Semangat','AKTIF');
+(1,1,'Matematika','','AKTIF'),
+(2,1,'Fisika','','AKTIF'),
+(3,1,'Biologi','','AKTIF'),
+(5,1,'Kimia','','AKTIF'),
+(6,2,'Jaringan Komputer','','AKTIF'),
+(7,2,'Tata Usaha','','AKTIF');
 
 /*Table structure for table `tabel_nilai` */
 
@@ -487,13 +556,41 @@ CREATE TABLE `tabel_nilai` (
   CONSTRAINT `tabel_nilai_to_mapel` FOREIGN KEY (`id_mapel`) REFERENCES `tabel_mapel` (`id_mapel`),
   CONSTRAINT `tabel_nilai_to_semester` FOREIGN KEY (`id_semester`) REFERENCES `tabel_semester` (`id_semester`),
   CONSTRAINT `tabel_nilai_to_siswa` FOREIGN KEY (`id_siswa`) REFERENCES `tabel_siswa` (`id_siswa`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tabel_nilai` */
 
 insert  into `tabel_nilai`(`id_nilai`,`id_rombel`,`id_siswa`,`id_mapel`,`id_semester`,`nuh1`,`nuh2`,`nuh3`,`nt1`,`nt2`,`nt3`,`mid`,`smt`,`rnuh`,`rnt`,`nh`,`nar`) values 
-(1,12,5,9,1,1,1,1,1,1,1,1,1,'1','1','1','99'),
-(9,1,1,9,1,25,32,35,25,32,35,12,35,'31','31','31','26');
+(5,1,4,1,1,80,80,80,80,80,80,80,80,'80','80','80','80'),
+(7,1,4,2,1,80,80,80,80,80,80,80,80,'80','80','80','80'),
+(8,1,4,2,2,80,80,80,80,80,80,80,80,'80','80','80','80'),
+(9,1,4,1,2,80,80,80,80,80,80,80,80,'80','80','80','80');
+
+/*Table structure for table `tabel_paket_wedding` */
+
+DROP TABLE IF EXISTS `tabel_paket_wedding`;
+
+CREATE TABLE `tabel_paket_wedding` (
+  `id_paket_wedding` int NOT NULL AUTO_INCREMENT,
+  `judul_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `gambar_pw` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `harga_pw` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `dp_pw` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `pelunasan_pw` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `deskripsi_pw` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `decoration_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `makeup_artist_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `documentation_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `catering_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `entertainment_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `efek_flashmob_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `exclusive_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `del_flag` int NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id_paket_wedding`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+/*Data for the table `tabel_paket_wedding` */
 
 /*Table structure for table `tabel_paketjenjang` */
 
@@ -504,20 +601,9 @@ CREATE TABLE `tabel_paketjenjang` (
   `kode_paket` varchar(10) NOT NULL,
   `nama_paket` varchar(100) NOT NULL,
   PRIMARY KEY (`id_paket`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `tabel_paketjenjang` */
-
-insert  into `tabel_paketjenjang`(`id_paket`,`kode_paket`,`nama_paket`) values 
-(1,'SD','Sekolah Dasar'),
-(2,'SMP','Sekolah Menengah Pertama'),
-(3,'SMA','Sekolah Menengah Atas'),
-(4,'SMK','Sekolah Menengah Kejuruan'),
-(5,'J223','Esdeh'),
-(7,'J223','Esdeh'),
-(8,'J223','SD'),
-(9,'J224','Smp'),
-(10,'J009','SMA');
 
 /*Table structure for table `tabel_pembayaran` */
 
@@ -540,39 +626,54 @@ CREATE TABLE `tabel_pembayaran` (
   KEY `id_siswa` (`id_siswa`),
   CONSTRAINT `tabel_pembayaran_to_jenisbayar` FOREIGN KEY (`id_jenis`) REFERENCES `tabel_jenisbayar` (`id_jenis`),
   CONSTRAINT `tabel_pembayaran_to_siswa` FOREIGN KEY (`id_siswa`) REFERENCES `tabel_siswa` (`id_siswa`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tabel_pembayaran` */
 
 insert  into `tabel_pembayaran`(`id_pembayaran`,`id_siswa`,`id_jenis`,`nominal`,`keterangan`,`date`,`id_ta`,`id_tf`,`id_invoice`,`id_level`,`cek_p`) values 
-(1,5,1,223322,'1','2023-03-11 16:38:54',1,'INV0311PLW3854','INV0318KGO2144',5,0),
-(2,1,2,200000,'ok','2023-03-13 09:35:36',1,'INV0313WOF3536','INV0318KGO2144',5,0),
-(7,5,2,21312,'1231','2023-03-16 11:28:52',1,'INV0316IYJ2852','INV0318KGO2144',5,0),
-(22,1,2,20000,'ada','2023-03-19 01:17:49',1,'INV03183371749','INV0318KGO2144',5,0),
-(25,1,1,12000,'Ada','2023-03-19 01:24:07',1,'TSK0318H5G2407','INV031892F2244',5,1),
-(26,1,1,50000,'Ok','2023-03-19 17:30:18',1,'TSK0319ARN3018','INV0319P4I3006',5,1),
-(27,1,1,75000,'Ok Jay 2','2023-03-19 17:45:29',1,'INV0319JHG4529','INV0319P4I3006',5,1),
-(28,1,2,100000,'Ok Jay 3','2023-03-19 17:46:15',1,'INV03192RQ4615','INV0319P4I3006',5,1),
-(29,1,2,25000,'Ok Jay 4','2023-03-19 17:54:37',1,'INV0319HHO5437','INV0319P4I3006',5,1),
-(30,1,1,15000,'Ok Jay 5','2023-03-19 17:57:20',1,'TSK03190FD5720','INV0319P4I3006',5,1),
-(32,1,1,0,'','2023-03-19 18:37:26',1,'TSK0319I0Z3726','INV031988B3717',5,1),
-(33,1,2,10000,'Ok Jay 6','2023-03-19 19:58:14',1,'TSK0319HYD5814','INV0319P4I3006',5,1),
-(34,2,2,12,'2','2023-03-19 20:00:22',0,'TSK03199VJ0022','INV0319V9Q0017',5,1),
-(35,2,2,1,'1','2023-03-19 20:00:27',1,'TSK0319RKG0027','INV0319V9Q0017',5,1),
-(36,2,1,2,'2','2023-03-19 20:00:38',1,'TSK0319PD90038','INV0319V9Q0017',5,1),
-(37,2,2,12,'2','2023-03-19 20:01:35',0,'TSK0319E0O0135','INV0319H8Y0133',5,1),
-(38,2,1,2,'2','2023-03-19 20:01:40',1,'TSK03191Y90140','INV0319H8Y0133',5,1),
-(39,2,1,2,'2','2023-03-19 20:02:02',1,'TSK0319B7G0202','INV0319H8Y0133',5,1),
-(40,2,2,3,'3','2023-03-19 20:02:41',1,'TSK0319F000241','INV0319H8Y0133',5,1),
-(41,6,2,2,'2','2023-03-19 20:02:53',1,'TSK0319K7X0253','INV0319L3I0249',5,1),
-(42,6,1,2,'3','2023-03-19 20:02:59',1,'TSK0319F8K0259','INV0319L3I0249',5,1),
-(44,5,2,1,'1','2023-03-19 20:46:11',0,'TSK0319ES34611','INV0319T4W4609',5,1),
-(45,5,1,20000,'Tes','2023-03-20 13:35:36',0,'TSK032046O3536','INV0320H213525',5,1),
-(46,5,2,15000,'Tes 2','2023-03-20 13:35:53',1,'TSK03205PS3553','INV0320H213525',5,1),
-(47,8,2,1000,'ada','2023-03-24 00:13:10',0,'TSK0323L160554','INV03236WP0544',1,1),
-(48,8,2,15000,'Ok','2023-03-22 17:18:57',0,'TSK0323T281857','INV0323MSV1842',1,1),
-(49,9,1,10000,'','2023-03-28 10:30:53',0,'TSK03285ZQ3053','INV0328ELT3029',5,1),
-(50,9,2,25000,'','2023-03-28 10:31:12',6,'TSK03280D43112','INV0328ELT3029',5,1);
+(1,4,1,225000,'SPP Bulan Maret','2023-03-30 14:37:08',1,'TSK03303V43708','INV0330Y9G3650',5,1),
+(2,4,2,175000,'UKT Bulan Maret','2023-03-30 14:37:23',1,'TSK0330H8A3723','INV0330Y9G3650',5,1),
+(3,5,1,250000,'SPP Bulan Maret','2023-03-30 14:37:50',1,'TSK0330KPZ3750','INV0330R9V3731',5,1),
+(4,5,2,125000,'UKT Bulan Maret','2023-03-30 14:38:00',1,'TSK0330O203800','INV0330R9V3731',5,1),
+(5,6,2,75000,'UKT Bulan Maret','2023-03-30 14:38:13',1,'TSK0330O8U3813','INV0330EZB3807',5,1);
+
+/*Table structure for table `tabel_pesanan` */
+
+DROP TABLE IF EXISTS `tabel_pesanan`;
+
+CREATE TABLE `tabel_pesanan` (
+  `id_pesanan` int NOT NULL AUTO_INCREMENT,
+  `id_admin` int DEFAULT NULL,
+  `id_pembayaran` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `id_paket_wedding` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nama_pemesan` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `username` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `no_telp_pemesan` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email_pemesan` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `jenis_kelamin_pemesan` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `alamat_pemesan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `judul_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `gambar_pw` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `harga_pw` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `dp_pw` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `pelunasan_pw` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `deskripsi_pw` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `decoration_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `makeup_artist_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `documentation_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `catering_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `entertainment_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `efek_flashmob_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `exclusive_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `tanggal_acara` date DEFAULT NULL,
+  `tanggal_pesanan` datetime DEFAULT NULL,
+  `status` int NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `del_flag` int NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id_pesanan`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+/*Data for the table `tabel_pesanan` */
 
 /*Table structure for table `tabel_pindah` */
 
@@ -582,26 +683,14 @@ CREATE TABLE `tabel_pindah` (
   `id_pindah` int NOT NULL AUTO_INCREMENT,
   `id_daftar` int DEFAULT NULL,
   `id_rombel` int DEFAULT NULL,
-  `nama_sekolah` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nama_sekolah` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id_pindah`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `tabel_pindah` */
 
 insert  into `tabel_pindah`(`id_pindah`,`id_daftar`,`id_rombel`,`nama_sekolah`) values 
-(1,3,6,''),
-(2,3,6,''),
-(3,3,5,''),
-(4,NULL,6,''),
-(5,2,3,'SMK Texmaco'),
-(6,2,3,'SMP 1'),
-(7,2,0,'sssss'),
-(8,1,0,'asdasaqsd'),
-(9,2,0,'asdasaqsd'),
-(10,2,0,'SMK Texmaco'),
-(11,3,0,'ssss'),
-(12,3,0,'adawdaw'),
-(13,3,0,'adawd');
+(1,1,0,'SMK 1 Ngawi');
 
 /*Table structure for table `tabel_pinjaman` */
 
@@ -614,12 +703,16 @@ CREATE TABLE `tabel_pinjaman` (
   `id_index_buku` int NOT NULL,
   `tgl_pinjaman` date DEFAULT NULL,
   `tgl_kembali` date DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8mb4_general_ci DEFAULT 'DIPINJAM',
+  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT 'DIPINJAM',
   `denda` double DEFAULT NULL,
   PRIMARY KEY (`id_pinjaman`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `tabel_pinjaman` */
+
+insert  into `tabel_pinjaman`(`id_pinjaman`,`no_pinjaman`,`id_anggota`,`id_index_buku`,`tgl_pinjaman`,`tgl_kembali`,`status`,`denda`) values 
+(1,0,74282,1,'2023-03-28','0000-00-00','DIPINJAM',NULL),
+(2,0,0,2,'2023-03-28','2023-03-28','DIKEMBALIKAN',0);
 
 /*Table structure for table `tabel_rencana_anggaran` */
 
@@ -634,15 +727,14 @@ CREATE TABLE `tabel_rencana_anggaran` (
   `status` int NOT NULL,
   `tetapkan` int NOT NULL,
   PRIMARY KEY (`id_rencana_anggaran`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tabel_rencana_anggaran` */
 
 insert  into `tabel_rencana_anggaran`(`id_rencana_anggaran`,`nama_anggaran`,`awal_periode`,`akhir_periode`,`pencatat`,`status`,`tetapkan`) values 
 (1,'RAB 2018/2019','2023-03-06','2023-03-07','Admin',1,0),
 (2,'RAB 2019/2020','2023-03-06','2023-03-08','Admin',1,0),
-(3,'RAB 2020/2021','2023-03-09','2023-03-31','Admin',1,0),
-(5,'Ada','2023-03-10','2023-03-11','5',1,0);
+(3,'RAB 2020/2021','2023-03-09','2023-03-31','Admin',1,0);
 
 /*Table structure for table `tabel_rombel` */
 
@@ -659,19 +751,17 @@ CREATE TABLE `tabel_rombel` (
   KEY `id_kelas` (`id_kelas`),
   KEY `kode_guru` (`kode_guru`),
   CONSTRAINT `tabel_kelas_1` FOREIGN KEY (`id_kelas`) REFERENCES `tabel_kelas` (`id_kelas`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tabel_rombel` */
 
 insert  into `tabel_rombel`(`id_rombel`,`id_kelas`,`nama_rombel`,`kode_guru`,`kuota`,`status`) values 
-(1,1,'VI A','449',35,'AKTIF'),
-(2,3,'TKJ 2','444',123,'AKTIF'),
-(5,2,'TKJ 3','444',291,'AKTIF'),
-(6,3,'TB','444',221,'AKTIF'),
-(10,2,'AKL','444',21,'AKTIF'),
-(12,5,'VII A','KG-330OSN',50,'AKTIF'),
-(14,7,'VIII D','450',35,'AKTIF'),
-(15,7,'VIII B','KG-330OSN',35,'AKTIF');
+(1,1,'X TKJ 1','KG-IVWC3I',36,'AKTIF'),
+(2,1,'X TKJ 2','KG-IPN4QC',12,'AKTIF'),
+(3,3,'XI TKJ 1','KG-QUC568',30,'AKTIF'),
+(5,3,'XI TKJ 2','KG-2MPLF7',20,'AKTIF'),
+(6,4,'XII TKJ 1 ','KG-SGMGVA',20,'AKTIF'),
+(7,4,'XII TKJ 2','KG-2MPLF7',20,'AKTIF');
 
 /*Table structure for table `tabel_sekolah` */
 
@@ -679,12 +769,12 @@ DROP TABLE IF EXISTS `tabel_sekolah`;
 
 CREATE TABLE `tabel_sekolah` (
   `id_sekolah` int NOT NULL AUTO_INCREMENT,
-  `nama_sekolah` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nama_sekolah` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `tanggal_regristasi` date DEFAULT NULL,
   `nomor_telepon` double DEFAULT NULL,
-  `alamat` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `email_sekolah` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `foto` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `alamat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email_sekolah` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `foto` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id_sekolah`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -699,7 +789,7 @@ DROP TABLE IF EXISTS `tabel_semester`;
 
 CREATE TABLE `tabel_semester` (
   `id_semester` int NOT NULL AUTO_INCREMENT,
-  `semester` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `semester` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id_semester`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -724,18 +814,16 @@ CREATE TABLE `tabel_siswa` (
   KEY `id_rombel` (`id_rombel`),
   CONSTRAINT `tabel_siswa_to_daftar_ibfk_1` FOREIGN KEY (`id_daftar`) REFERENCES `tabel_daftar` (`id_daftar`),
   CONSTRAINT `tabel_siswa_to_rombel_ibfk_1` FOREIGN KEY (`id_rombel`) REFERENCES `tabel_rombel` (`id_rombel`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tabel_siswa` */
 
 insert  into `tabel_siswa`(`id_siswa`,`id_daftar`,`id_rombel`,`saldo_tabungan`,`nama`) values 
-(1,2,1,123123123,'Ahmad Jay'),
-(2,3,5,123123123,'Irvanda'),
-(5,10,12,0,'Ahmad Subardjo'),
-(6,6,15,0,NULL),
-(7,3,15,0,NULL),
-(8,13,1,0,'ada'),
-(9,15,15,0,'Kevin Sanjaya');
+(4,4,1,0,'Ahmad A. Bahar'),
+(5,5,2,0,'Ahmad B. Bahar'),
+(6,6,3,0,'Ahmad C. Bahar'),
+(7,7,5,0,'Ahmad D. Bahar'),
+(8,8,7,0,'Ahmad E. Bahar');
 
 /*Table structure for table `tabel_tahunajaran` */
 
@@ -751,15 +839,16 @@ CREATE TABLE `tabel_tahunajaran` (
   `aktif` int NOT NULL,
   `status` enum('NONAKTIF','AKTIF') NOT NULL DEFAULT 'AKTIF',
   PRIMARY KEY (`id_angkatan`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tabel_tahunajaran` */
 
 insert  into `tabel_tahunajaran`(`id_angkatan`,`kd_angkatan`,`nama_angkatan`,`keterangan`,`tgl_a`,`tgl_b`,`aktif`,`status`) values 
-(1,'TA 2020/2021','TA2020/2021','OK','2023-02-01','2023-02-28',1,'AKTIF'),
-(3,'TA 2022/2023','TA2022/2023','','2023-03-23','2023-05-17',1,'AKTIF'),
-(5,'TA 2023/2024','TA2023/2024','','2023-03-01','2023-03-30',0,'NONAKTIF'),
-(6,'TA 2024/2025','TA2024/2025','','2023-03-01','2023-03-09',0,'AKTIF');
+(1,'TA2018/2019','TA 2018/2019','','2018-07-01','2019-06-30',0,'AKTIF'),
+(2,'TA2019/2020','TA 2019/2020','','2019-01-28','2020-01-28',0,'AKTIF'),
+(3,'TA2020/2021','TA 2020/2021','','2020-01-28','2021-01-28',0,'AKTIF'),
+(4,'TA2021/2022','TA 2021/2022','','2021-01-28','2022-01-28',0,'AKTIF'),
+(5,'TA2022/2023','TA 2022/2023','','2022-01-28','2023-01-28',0,'AKTIF');
 
 /*Table structure for table `tabel_transaksi` */
 
@@ -771,35 +860,20 @@ CREATE TABLE `tabel_transaksi` (
   `debet` int NOT NULL DEFAULT '0',
   `kredit` int NOT NULL DEFAULT '0',
   `waktu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `uraian` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `pencatat` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `uraian` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `pencatat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `id_akun` int NOT NULL,
   PRIMARY KEY (`id_transaksi`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `tabel_transaksi` */
 
 insert  into `tabel_transaksi`(`id_transaksi`,`id_anggaran`,`debet`,`kredit`,`waktu`,`uraian`,`pencatat`,`id_akun`) values 
-(1,1,0,123000,'2023-03-15 09:03:19','Dana Hibah','tu@gmail.com',0),
+(1,1,0,123000,'2023-03-15 09:03:19','Dana Hibah','tu@gmail.com',1),
 (2,1,123000,0,'2023-03-15 09:03:19','Dana Hibah','tu@gmail.com',1),
-(3,4,0,143000,'2023-03-15 09:04:14','Dana Pokok','tu@gmail.com',0),
+(3,4,0,143000,'2023-03-15 09:04:14','Dana Pokok','tu@gmail.com',3),
 (4,4,143000,0,'2023-03-15 09:04:14','Dana Pokok','tu@gmail.com',2),
-(5,1,0,78000,'2023-03-15 09:13:24','Dana Hibah','tu@gmail.com',1),
-(6,1,78000,0,'2023-03-15 09:13:24','Dana Hibah','tu@gmail.com',0),
-(7,6,0,20000,'2023-03-15 09:14:35','Dana Boss','tu@gmail.com',5),
-(8,6,20000,0,'2023-03-15 09:14:35','Dana Boss','tu@gmail.com',0),
-(9,4,0,19000,'2023-03-15 09:19:12','Dana Pokok','tu@gmail.com',0),
-(10,4,19000,0,'2023-03-15 09:19:12','Dana Pokok','tu@gmail.com',1),
-(11,1,0,12300,'2023-03-15 09:48:17','Dana Hibah hibah','tu@gmail.com',1),
-(12,1,12300,0,'2023-03-15 09:48:17','Dana Hibah hibah','tu@gmail.com',0),
-(13,6,0,21000,'2023-03-15 09:58:00','Dana Bos','tu@gmail.com',0),
-(14,6,21000,0,'2023-03-15 09:58:00','Dana Bos','tu@gmail.com',1),
-(15,1,0,12000,'2023-03-16 02:41:17','Dana Hibah','tu@gmail.com',0),
-(16,1,12000,0,'2023-03-16 02:41:17','Dana Hibah','tu@gmail.com',4),
-(17,6,0,2000,'2023-03-16 02:47:29','Dana Bos','tu@gmail.com',0),
-(18,6,2000,0,'2023-03-16 02:47:29','Dana Bos','tu@gmail.com',2),
-(19,4,0,500,'2023-03-16 02:48:10','Dana Pokok','tu@gmail.com',2),
-(20,4,500,0,'2023-03-16 02:48:10','Dana Pokok','tu@gmail.com',1);
+(5,1,0,78000,'2023-03-15 09:13:24','Dana Hibah','tu@gmail.com',1);
 
 /*Table structure for table `table_buku` */
 
@@ -807,28 +881,30 @@ DROP TABLE IF EXISTS `table_buku`;
 
 CREATE TABLE `table_buku` (
   `id_buku` int NOT NULL AUTO_INCREMENT,
-  `judul_buku` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `penerbit_buku` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `penulis_buku` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `judul_buku` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `penerbit_buku` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `penulis_buku` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `tahun_terbit` int DEFAULT NULL,
-  `keterangan` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `sumber` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `keterangan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `sumber` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `stok` int DEFAULT '0',
   `del_flag` int NOT NULL DEFAULT '1',
-  `kategori_id` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `rak_buku_id` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `kategori_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `rak_buku_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `foto` text COLLATE utf8mb4_general_ci,
+  `foto` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
   PRIMARY KEY (`id_buku`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `table_buku` */
 
 insert  into `table_buku`(`id_buku`,`judul_buku`,`penerbit_buku`,`penulis_buku`,`tahun_terbit`,`keterangan`,`sumber`,`stok`,`del_flag`,`kategori_id`,`rak_buku_id`,`created_at`,`foto`) values 
-(4,'Naruto','Genji','Makise',2000,'GENJEHHH RASENGANNNN',NULL,1,1,'Acara','003','2023-03-15 09:33:02','1678847582689.jpg'),
-(5,'Upin & Ipin','Tok Dalang','Opah',2000,'Bocil',NULL,0,1,'Acara','003','2023-03-15 10:41:13','1678851673188.png'),
-(6,'ada','ada','da',1221,'ada',NULL,NULL,1,'Cerpen','003','2023-03-21 10:17:14','1679368634339.jpg'),
-(7,'Test','ada','da',2000,'Ada',NULL,NULL,1,'Cerpen','003','2023-03-21 10:28:18','1679369298700.jpg');
+(12,'Sri Asih','MBC Group','Joko Puspito',2018,'Alana tidak mengerti mengapa dia selalu dikuasai oleh kemarahan. Tapi dia selalu berusaha untuk melawannya. Dia lahir saat letusan gunung berapi yang memisahkan dia dan orang tuanya. Dia kemudian diadopsi oleh seorang wanita kaya yang berusaha membantunya',NULL,0,1,'Novel Action','002','2023-03-28 07:13:11','1679987591723.jpg'),
+(13,'Tiga Sandra Terakhir','Noura Publishing','Brahmanto Anindito',2015,'Tiga Sandera Terakhir adalah sebuah novel thriller-militer karya Brahmanto Anindito yang diterbitkan pertama pada 2015 oleh Noura Publishing, Jakarta. Novel bersubjudul Terinspirasi dari Konflik Berdarah di Timur Indonesia ini menceritakan sebuah drama pe',NULL,0,1,'Novel Action','002','2023-03-28 07:16:37','1679987797810.jpg'),
+(14,'Atlas','MBC Group','Ariestotoles',2017,'Atlas adalah kumpulan peta yang disatukan dalam bentuk buku, tetapi juga ditemukan dalam bentuk multimedia. Atlas dapat memuat informasi geografi, batas negara, statisik geopolitik, sosial, agama dan ekonomi.',NULL,0,1,'Ilmu Pengetahuan','001','2023-03-28 07:17:57','1679987877012.jpg'),
+(15,'Kebebasan Ilmu Pengetahuan & Teknolgi','MBC Group','Joko Puspito',2018,'Sebuah Esai Etika',NULL,0,1,'Ilmu Pengetahuan','001','2023-03-28 07:21:40','1679988100523.jpg'),
+(16,'Kita Pergi Hari ini','MBC Group','Ziggy Z.',2020,'Mi dan Ma dan Mo tidak pernah melihat kucing seperti Nona Gigi. Tentu saja, mereka sudah pernah melihat kucing biasa. Tapi Nona Gigi adalah Kucing Luar Biasa. Kucing Luar Biasa berarti kucing yang di luar kebiasaan. Nona Gigi adalah Cara Lain yang dinanti',NULL,0,1,'Novel Romance','002','2023-03-28 07:23:45','1679988225192.jpg'),
+(17,'Luka Cita','Gramedia',' Valerie Patkar',2019,'Untuk mereka yang berhasil menggapai cita-cita, tetapi masih terluka karenanya. Lukacita bercerita tentang para pemimpi yang dikhianati cita-cita mereka sendiri. Ada seorang pendiri perusahaan startup idealis bernama Javier dan seorang mantan atlet catur ',NULL,1,1,'Novel Romance','002','2023-03-28 07:29:04','1679988544943.jpg');
 
 /*Table structure for table `table_detail_index_buku` */
 
@@ -836,21 +912,18 @@ DROP TABLE IF EXISTS `table_detail_index_buku`;
 
 CREATE TABLE `table_detail_index_buku` (
   `id_stok` int NOT NULL AUTO_INCREMENT,
-  `id_detail_index_buku` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `id_detail_index_buku` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `id_buku` int NOT NULL,
   PRIMARY KEY (`id_stok`),
   KEY `id_buku` (`id_buku`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `table_detail_index_buku` */
 
 insert  into `table_detail_index_buku`(`id_stok`,`id_detail_index_buku`,`status`,`id_buku`) values 
-(1,'A01','Di Pinjam',4),
-(3,'A02','Di Rak Buku',4),
-(4,'1','Di Pinjam',5),
-(6,'A01','Di Rak Buku',7),
-(7,'A02','Di Rak Buku',7);
+(1,'A01','Di Pinjam',12),
+(2,'A03','Di Rak Buku',17);
 
 /*Table structure for table `table_kategori_buku` */
 
@@ -858,17 +931,23 @@ DROP TABLE IF EXISTS `table_kategori_buku`;
 
 CREATE TABLE `table_kategori_buku` (
   `id_kategori_buku` int NOT NULL AUTO_INCREMENT,
-  `nama_kategori_buku` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `keterangan_kategori_buku` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nama_kategori_buku` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `keterangan_kategori_buku` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `del_flag` int NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_kategori_buku`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `table_kategori_buku` */
 
 insert  into `table_kategori_buku`(`id_kategori_buku`,`nama_kategori_buku`,`keterangan_kategori_buku`,`del_flag`) values 
-(1,'Anime','Wibu',1),
-(3,'Cerpen','Cerpen',1);
+(4,'Ilmu Pengetahuan',' Buku Ilmu Pengetahuan',1),
+(5,'Novel Romance','Novel Romantis',1),
+(6,'Dongeng Lokal','Dongeng Lokal',1),
+(7,'Majalah Terbaru','Majalah Terbaru',1),
+(8,'Komik Fiksi','Komik Fiksi',1),
+(9,'Manga','Manga JPN',1),
+(10,'Novel Action','Novel Berandrelain',1),
+(11,'Sejarah','Sejarah',1);
 
 /*Table structure for table `table_rak_buku` */
 
@@ -876,17 +955,19 @@ DROP TABLE IF EXISTS `table_rak_buku`;
 
 CREATE TABLE `table_rak_buku` (
   `id_rak_buku` int NOT NULL AUTO_INCREMENT,
-  `nama_rak_buku` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `keterangan_rak_buku` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nama_rak_buku` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `keterangan_rak_buku` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `del_flag` int NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_rak_buku`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `table_rak_buku` */
 
 insert  into `table_rak_buku`(`id_rak_buku`,`nama_rak_buku`,`keterangan_rak_buku`,`del_flag`) values 
-(1,'001','Awokwok',1),
-(5,'003','Cerpennn',1);
+(6,'001','Ilmu Pengetahuan',1),
+(7,'002','Cerita',1),
+(8,'003','Majalah',1),
+(9,'004','Komik',1);
 
 /* Trigger structure for table `kembalikan` */
 
@@ -910,6 +991,34 @@ DELIMITER $$
 
 /*!50003 CREATE */ /*!50017 DEFINER = 'root'@'localhost' */ /*!50003 TRIGGER `kurang_stok` AFTER INSERT ON `pinjam` FOR EACH ROW BEGIN
    UPDATE table_buku SET stok = stok - 1
+   WHERE id_buku = NEW.id_buku;
+END */$$
+
+
+DELIMITER ;
+
+/* Trigger structure for table `stok_buku_keluar` */
+
+DELIMITER $$
+
+/*!50003 DROP TRIGGER*//*!50032 IF EXISTS */ /*!50003 `t_keluar` */$$
+
+/*!50003 CREATE */ /*!50017 DEFINER = 'root'@'localhost' */ /*!50003 TRIGGER `t_keluar` AFTER INSERT ON `stok_buku_keluar` FOR EACH ROW BEGIN
+   UPDATE table_buku SET stok = stok - 1
+   WHERE id_buku = NEW.id_buku;
+END */$$
+
+
+DELIMITER ;
+
+/* Trigger structure for table `stok_buku_masuk` */
+
+DELIMITER $$
+
+/*!50003 DROP TRIGGER*//*!50032 IF EXISTS */ /*!50003 `t_masuk` */$$
+
+/*!50003 CREATE */ /*!50017 DEFINER = 'root'@'localhost' */ /*!50003 TRIGGER `t_masuk` AFTER INSERT ON `stok_buku_masuk` FOR EACH ROW BEGIN
+   UPDATE table_buku SET stok = stok + 1
    WHERE id_buku = NEW.id_buku;
 END */$$
 
