@@ -14,10 +14,7 @@
     <div class="wrapper">
        
         <?php $this->load->view('keuangan/style/navbar') ?>
-       
-        <!-- Sidebar -->
         <?php $this->load->view('keuangan/style/sidebar') ?>
-        <!-- Sidebar -->
 
         <div class="content-wrapper">
             <section class="content-header">

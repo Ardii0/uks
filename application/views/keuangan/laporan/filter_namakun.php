@@ -14,10 +14,7 @@
     <div class="wrapper">
        
         <?php $this->load->view('keuangan/style/navbar') ?>
-       
-        <!-- Sidebar -->
         <?php $this->load->view('keuangan/style/sidebar') ?>
-        <!-- Sidebar -->
 
         <div class="content-wrapper">
             <section class="content-header">
@@ -97,7 +94,6 @@
                                                 <td colspan="2"> <strong> Jumlah Debet</strong></td>
                                                 <td>
                                                     <strong>
-                                                        Rp.
                                                         <?php  
                                                             $totalprice = 0; 
                                                             foreach ($datafilter as $key) { 
