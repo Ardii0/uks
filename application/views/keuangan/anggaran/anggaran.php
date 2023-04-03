@@ -70,7 +70,7 @@
                                         class="fa fa-plus pr-2"></i>Tambah</button>
                             </div>
                         </div>
-                        <?php if ($data_rn === null ) : ?>
+                        <?php if ($data_rn != null ) : ?>
                             <div class="row">
                             <div class="col-12">
                                 <div class="card-body">
@@ -402,7 +402,7 @@
                                         <label class="control-label">Nama Pengeluaran</label>
                                         <div class="">
                                             <input type="text" name="nama_jenis_transaksi" class="form-control"
-                                                placeholder="Masukan Nama Pendapatan"><br>
+                                                placeholder="Masukan Nama Pengeluaran"><br>
                                         </div>
                                     </div>
                                     <input type="hidden" name="id_rencana_anggaran" id="id_rencana_anggaran" value="<?php echo $this->session->userdata('id_rn');?>">
