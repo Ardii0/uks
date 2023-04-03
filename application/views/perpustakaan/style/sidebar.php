@@ -18,7 +18,6 @@
             </div>
           </div>
         </div>
-
         <nav class="mt-2" style="padding-bottom: 50px" data-scrollbar-auto-hide="n">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
@@ -35,6 +34,14 @@
                   <p>
                   Data Rak Buku
                   </p> 
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url('Perpustakaan/kategori_buku')?>" class="nav-link <?=$menu == 'kategori' ? 'active' :'' ?>">
+                <i class="nav-icon fas fa-list"></i>
+                <p>
+                  Kategori Buku
+                </p>
               </a>
             </li>
             <li class="nav-item <?=$menu == 'buku' ? 'menu-open' :'' ?>">
@@ -59,14 +66,6 @@
                   </a>
                 </li>
               </ul>
-            </li>
-            <li class="nav-item">
-              <a href="<?php echo base_url('Perpustakaan/kategori_buku')?>" class="nav-link <?=$menu == 'kategori' ? 'active' :'' ?>">
-                <i class="nav-icon fas fa-list"></i>
-                <p>
-                  Kategori Buku
-                </p>
-              </a>
             </li>
             <li class="nav-item <?=$menu == 'anggota' ? 'menu-open' :'' ?>">
               <a  class="nav-link <?=$menu == 'anggota' ? 'active' :'' ?>">

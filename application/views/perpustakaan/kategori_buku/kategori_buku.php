@@ -26,13 +26,14 @@
                             <div class="box">
                                 <div class="d-flex justify-content-between">
                                     <div>
-                                        <p style="font-size: 2.5rem">Data kategori Buku</p>
+                                        <p style="font-size: 2rem">Data kategori Buku</p>
                                     </div>
                                     <div class="p-2 d-flex align-items-center gap-3">
                                         <div class="grid gap-3">
-                                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                            <button type="button"  class="btn btn-success" data-toggle="modal"
                                                 data-target="#modal_tambah_kategori">
-                                                Tambah Kategori
+                                                <i class="fas fa-plus"></i>&nbsp;
+                                                Tambah
                                             </button>
                                         </div>
                                     </div>

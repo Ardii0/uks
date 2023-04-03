@@ -26,12 +26,13 @@
                             <div class="box">
                                 <div class="d-flex justify-content-between">
                                     <div>
-                                        <p style="font-size: 2.5rem">Data Buku</p>
+                                        <p style="font-size: 2rem">Data Buku</p>
                                     </div>
                                     <div class="p-2 d-flex align-items-center gap-3">
                                         <div class="grid gap-3">
                                             <a href="<?php echo base_url('Perpustakaan/tambah_buku'); ?>"
-                                                class="btn btn-success">Tambah Buku</a>
+                                                class="btn btn-success"><i class="fas fa-plus"></i>&nbsp; Tambah</a>
+                                                
                                         </div>
                                     </div>
                                 </div>
@@ -59,10 +60,10 @@
                                                 <td><img style="width: 70px; height:100px; "
                                                         src="<?php echo base_url('uploads/perpustakaan/buku')."/".$row->foto;?>">
                                                 </td>
-                                                <td class="text-truncate" style="max-width: 150px;">
+                                                <td class="text-left" style="max-width: 150px;">
                                                     <?php echo $row->judul_buku?></td>
-                                                <td><?php echo $row->penulis_buku?></td>
-                                                <td><?php echo $row->penerbit_buku?></td>
+                                                <td  class="text-left"><?php echo $row->penulis_buku?></td>
+                                                <td  class="text-left"><?php echo $row->penerbit_buku?></td>
                                                 <td><?php echo $row->tahun_terbit?></td>
                                                 <td><?php echo $row->kategori_id?></td>
                                                 <td><?php echo $row->rak_buku_id?></td>

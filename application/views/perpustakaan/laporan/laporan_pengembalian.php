@@ -23,7 +23,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Laporan Perpustakaan</h1>
+                            <p style="font-size: 2rem">Laporan Perpustakaan</p>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -89,7 +89,7 @@
                                             <td><?php echo $data->tgl_kembali ?></td>
                                             <td><?php echo convRupiah($data->denda) ?></td>
                                             <td class="text-center d-flex justify-content-center">
-                                                <div class="text-center <?php $btn = $data->status == "DIPINJAM" ? 'bg-danger' : 'bg-success'; echo $btn ?> btn-sm"
+                                                <div class="text-center user-select-none <?php $btn = $data->status == "DIPINJAM" ? 'bg-danger' : 'bg-success'; echo $btn ?> btn-sm"
                                                     style="width: 100px">
                                                     <?php $statuss = $data->status == "DIPINJAM" ? 'Belum Selesai' : 'Selesai'; echo $statuss ?>
                                                 </div>
