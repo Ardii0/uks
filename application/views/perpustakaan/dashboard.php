@@ -8,8 +8,11 @@
     <?php $this->load->view('perpustakaan/style/head')?>
     <style>
     .anyClass {
-        height: 480px;
+        height: 200px;
         overflow-y: auto;
+    }
+    .anyClass::-webkit-scrollbar {
+        display: none;
     }
     </style>
 </head>
@@ -126,30 +129,49 @@
                                                     <i class="fa fa-arrow-circle-right"></i>
                                                 </a>
                                             </div>
-                                            <div class="m-2 anyClass">
-                                                <table class="table table-bordered">
-                                                    <thead>
-                                                        <tr class="text-center bg-info">
-                                                            <th>No</th>
-                                                            <th>Nama</th>
-                                                            <th>Kelas</th>
-                                                            <th>Rombel</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php $id = 0;foreach ($data_anggota as $data): $id++;?>
-                                                        <tr class="bg-white text-center">
-                                                            <td style="width: 4%;"><?php echo $id ?></td>
-                                                            <td><?php echo tampil_namadaftar_ByIdSiswa($data->id_siswa) ?>
-                                                            </td>
-                                                            <td><?php echo tampil_kelasdaftar_ByIdSiswa($data->id_siswa) ?>
-                                                            </td>
-                                                            <td><?php echo tampil_rombeldaftar_ByIdSiswa($data->id_siswa) ?>
-                                                            </td>
-                                                        </tr>
-                                                        <?php endforeach;?>
-                                                    </tbody>
-                                                </table>
+                                            <div class="small-box  bg-gradient-info mb-3" style="max-width: 100%;">
+                                                <div
+                                                    class="card-header bg-transparent text-center fw-bold h3 border-white">
+                                                    Data Anggota</div>
+                                                <div class="card-body bg-white anyClass">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr class="text-center bg-info">
+                                                                <th>No</th>
+                                                                <th>Nama</th>
+                                                                <th>Kelas</th>
+                                                                <th>Rombel</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php $id = 0;foreach ($data_anggota as $data): $id++;?>
+                                                            <tr class="bg-white text-center">
+                                                                <td style="width: 4%;"><?php echo $id ?></td>
+                                                                <td><?php echo tampil_namadaftar_ByIdSiswa($data->id_siswa) ?>
+                                                                </td>
+                                                                <td><?php echo tampil_kelasdaftar_ByIdSiswa($data->id_siswa) ?>
+                                                                </td>
+                                                                <td><?php echo tampil_rombeldaftar_ByIdSiswa($data->id_siswa) ?>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="bg-white text-center">
+                                                                <td style="width: 4%;"><?php echo $id ?></td>
+                                                                <td><?php echo tampil_namadaftar_ByIdSiswa($data->id_siswa) ?>
+                                                                </td>
+                                                                <td><?php echo tampil_kelasdaftar_ByIdSiswa($data->id_siswa) ?>
+                                                                </td>
+                                                                <td><?php echo tampil_rombeldaftar_ByIdSiswa($data->id_siswa) ?>
+                                                                </td>
+                                                            </tr>
+                                                            <?php endforeach;?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <a href="<?php echo base_url('Perpustakaan/data_anggota') ?>"
+                                                    class="small-box-footer">
+                                                    Info Lebih Lanjut
+                                                    <i class="fa fa-arrow-circle-right"></i>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
