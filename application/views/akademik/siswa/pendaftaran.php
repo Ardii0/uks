@@ -57,7 +57,7 @@
                             <div class="card-body">
                                 <table id="akademik-table" class="table table-bordered table-striped">
                                     <thead>
-                                        <tr>
+                                        <tr class="text-center">
                                             <th>No</th>
                                             <th>Foto</th>
                                             <th>No Reg</th>
@@ -73,7 +73,7 @@
                                             <td><?php
                                                  echo $id 
                                                  ?></td>
-                                            <td>
+                                            <td class="d-flex justify-content-center">
                                                 <img style="width: 80px; height:90px;"
                                                     src="<?php $data = $row->foto == null ? base_url('uploads/akademik/default_profile/User.png') : base_url('uploads/akademik/pendaftaran_siswa')."/".$row->foto; echo $data ?>"
                                                     alt="tidak ada foto">
@@ -84,10 +84,10 @@
                                             <td class="text-truncate" style="max-width: 150px;"><?php
                                              echo $row->nama 
                                              ?></td>
-                                            <td><?php
+                                            <td class="text-center"><?php
                                              echo tampil_tahunangkatan_byid($row->id_angkatan) 
                                              ?></td>
-                                            <td><?php
+                                            <td class="text-center"><?php
                                              echo tampil_namajenjang_byid($row->id_jenjang) 
                                              ?></td>
                                             <td class="text-center">

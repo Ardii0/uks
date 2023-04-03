@@ -24,7 +24,9 @@
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="<?php echo base_url('Akademik/') ?>"><?php echo $this->session->userdata('level') ?></a></li>
+                                <li class="breadcrumb-item"><a
+                                        href="<?php echo base_url('Akademik/') ?>"><?php echo $this->session->userdata('level') ?></a>
+                                </li>
                                 <li class="breadcrumb-item active">Jenjang</li>
                             </ol>
                         </div>
@@ -73,34 +75,34 @@
                                         <?php $id = 0;
                                         foreach ($jenjang as $data):
                                             $id++; ?>
-                                            <tr>
-                                                <td>
-                                                    <?php echo $id ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $data->nama_jenjang ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $data->kd_jenjang ?>
-                                                </td>
-                                                <td style="width: 40%;">
-                                                    <?php echo $data->alamat ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $data->keterangan ?>
-                                                </td>
-                                                <td class="text-center">
-                                                    <a href="<?php echo base_url('Akademik/edit_jenjang/' . $data->id_jenjang) ?>"
-                                                        class="btn btn-primary btn-sm">
-                                                        <i class="fa fa-edit"></i></a>
-                                                    <?php if(!$this->db->where('id_jenjang',$data->id_jenjang)->get('tabel_daftar')->result() &&
+                                        <tr>
+                                            <td>
+                                                <?php echo $id ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $data->nama_jenjang ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $data->kd_jenjang ?>
+                                            </td>
+                                            <td style="width: 40%;">
+                                                <?php echo $data->alamat ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $data->keterangan ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="<?php echo base_url('Akademik/edit_jenjang/' . $data->id_jenjang) ?>"
+                                                    class="btn btn-primary btn-sm">
+                                                    <i class="fa fa-edit"></i></a>
+                                                <?php if(!$this->db->where('id_jenjang',$data->id_jenjang)->get('tabel_daftar')->result() &&
                                                              !$this->db->where('id_jenjang',$data->id_jenjang)->get('tabel_kelas')->result()) {?>
-                                                        <button onclick="hapus(<?php echo $data->id_jenjang ?>)"
-                                                        class='btn btn-danger btn-sm'>
-                                                        <i class='fa fa-trash'></i></button> 
-                                                    <?php }?>
-                                                </td>
-                                            </tr>
+                                                <button onclick="hapus(<?php echo $data->id_jenjang ?>)"
+                                                    class='btn btn-danger btn-sm'>
+                                                    <i class='fa fa-trash'></i></button>
+                                                <?php }?>
+                                            </td>
+                                        </tr>
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
@@ -113,7 +115,8 @@
         <div class="modal fade" id="modal_tambah_rak" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <form action="<?php echo base_url('Akademik/tambah_paketjenjang') ?>" enctype="multipart/form-data" method="post">
+                <form action="<?php echo base_url('Akademik/tambah_paketjenjang') ?>" enctype="multipart/form-data"
+                    method="post">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Paket Jenjang</h5>
@@ -125,19 +128,19 @@
                             <div class="box">
                                 <div class="box-body">
                                     <div class="form-group col-sm-12">
-                                        <div class="form-group d-flex flex-row " style="width: 100%;">
-                                            <div class="mt-2 mx-1">
+                                        <div class="form-group" style="width: 100%;">
+                                            <div class="mt-2 mb-n2">
                                                 <p style="font-weight: bold">Paket Jenjang</p>
                                             </div>
-                                            <div class="mx-1">
+                                            <div>
                                                 <input type="text" name="nama_paket" class="form-control">
                                             </div>
                                         </div>
-                                        <div class="form-group d-flex flex-row " style="width: 100%;">
-                                            <div class="mt-2 mx-1">
+                                        <div class="form-group " style="width: 100%;">
+                                            <div class="mt-2 mb-n2">
                                                 <p style="font-weight: bold">Kode Jenjang</p>
                                             </div>
-                                            <div class="mx-1">
+                                            <div>
                                                 <input type="text" name="kode_paket" class="form-control">
                                             </div>
                                         </div>
@@ -161,12 +164,12 @@
     </div>
     <?php $this->load->view('akademik/style/js') ?>
     <script>
-        function hapus(id) {
-            var yes = confirm('Apakah Anda Yakin Untuk Menghapus?');
-            if (yes == true) {
-                window.location.href = "<?php echo base_url('Akademik/hapus_jenjang/') ?>" + id;
-            }
+    function hapus(id) {
+        var yes = confirm('Apakah Anda Yakin Untuk Menghapus?');
+        if (yes == true) {
+            window.location.href = "<?php echo base_url('Akademik/hapus_jenjang/') ?>" + id;
         }
+    }
     </script>
 </body>
 
