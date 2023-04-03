@@ -1555,11 +1555,10 @@ class Akademik extends CI_Controller {
     public function hapus_alokasiguru()
     {
         $id_alokasiguru = $this->input->post('id_alokasiguru');
-
         foreach ($id_alokasiguru as $key => $value) { 
             $this->m_akademik->hapus_alokasiguru('tabel_alokasiguru', 'id_alokasiguru', $key); 
         }
-        redirect(base_url('Akademik/guru/'));
+        redirect(base_url('Akademik/alokasi_guru/'.$this->input->post('kode_guru')));
     }
     
  // Alok Mapel
@@ -1598,8 +1597,7 @@ class Akademik extends CI_Controller {
             foreach ($id as $key => $value) { 
                 $this->m_akademik->hapus_alokasimapel('tabel_alokasimapel', 'id_alokasimapel', $key); 
             }
-            // $this->m_akademik->hapus_alokasimapel('tabel_alokasimapel', 'id_alokasimapel', $id_alokasimapel);
-            redirect(base_url('Akademik/pelajaran/'));
+            redirect(base_url('Akademik/alokasi_mapel/'.$this->input->post('id_mapel')));
         }
     
 

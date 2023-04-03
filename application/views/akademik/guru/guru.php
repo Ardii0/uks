@@ -99,12 +99,11 @@
                                                         <i class="fa fa-edit"></i></a> -->
                                                         <?php 
                                                     $find = find_idalokasiguru2($data->kode_guru);
-                                                    if($find == null) echo "
-                                                    <button onclick='hapus($data->kode_guru)'
+                                                    if($find == null) {?>
+                                                    <button onclick="hapus('<?php echo $data->kode_guru ?>')"
                                                         class='btn btn-danger btn-sm'>
-                                                        <i class='fa fa-trash'></i></button>                                         
-                                                    "; 
-                                                    else echo ""?>
+                                                    <i class='fa fa-trash'></i></button>
+                                                    <?php }?>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -121,7 +120,7 @@
     <?php $this->load->view('akademik/style/js') ?>
     <script>
         function hapus(id) {
-            var yes = confirm('Yakin Di Hapus?');
+            var yes = confirm('Apakah Anda Yakin Untuk Menghapus?');
             if (yes == true) {
                 window.location.href = "<?php echo base_url('Akademik/hapus_guru/') ?>" + id;
             }

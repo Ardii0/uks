@@ -97,6 +97,7 @@
                         </form>
                         <form action="<?php echo base_url('Akademik/hapus_alokasiguru'); ?>" enctype="multipart/form-data"
                             method="post" class="col">
+                                <input type="hidden" name="kode_guru" value="<?php echo $dataguru->kode_guru ?>">
                             <div class="row px-1 pt-5">
                                 <div class="col">
                                     <div class="d-flex justify-content-between"

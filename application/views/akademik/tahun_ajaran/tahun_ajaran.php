@@ -79,20 +79,23 @@
                                                 <?php if($data->status === "AKTIF"): ?>
                                                     <button onclick="nonactive(<?php echo $data->id_angkatan ;?>)"
                                                         class="btn btn-secondary btn-sm">
-                                                        NonAktifkan</button>
+                                                        <i class="fas fa-check d-flex" style="height: 21px; align-items: center"></i>
+                                                    </button>
                                                 <?php elseif($data->status === "NONAKTIF"): ?>
                                                     <button onclick="active(<?php echo $data->id_angkatan ;?>)"
                                                         class="btn btn-success btn-sm">
-                                                        Aktifkan</button>
+                                                        <i class="fas fa-minus d-flex" style="height: 21px; align-items: center"></i>
+                                                    </button>
                                                 <?php endif; ?>
                                                 <a href="<?php echo base_url('Akademik/edit_ta/'.$data->id_angkatan)?>"
                                                     class="btn btn-primary btn-sm">
-                                                    <i class="fa fa-edit"></i></a>
-                                                        <?php if(!$this->db->where('id_angkatan',$data->id_angkatan)->get('tabel_daftar')->result()) {?>
-                                                            <button onclick="hapus(<?php echo $data->id_angkatan ;?>)"
-                                                                class="btn btn-danger btn-sm">
-                                                                <i class="fa fa-trash"></i></button>
-                                                        <?php }?>
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <?php if(!$this->db->where('id_angkatan',$data->id_angkatan)->get('tabel_daftar')->result()) {?>
+                                                    <button onclick="hapus(<?php echo $data->id_angkatan ;?>)"
+                                                        class="btn btn-danger btn-sm">
+                                                        <i class="fa fa-trash"></i></button>
+                                                <?php }?>
                                             </td>
                                         </tr>
                                         <?php endforeach;?>

@@ -17,7 +17,6 @@
         <?php $this->load->view('akademik/style/sidebar')?>
 
         <div class="content-wrapper">
-            <!-- HEADER -->
             <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
@@ -38,9 +37,7 @@
                     </div>
                 </div>
             </section>
-            <!-- ENDHEADER -->
 
-            <!-- BODY -->
             <section class="content">
                 <div class="container-fluid bg-white">
                     <form action="<?php echo base_url('Akademik/tambah_alokasimapel'); ?>" enctype="multipart/form-data"
@@ -101,6 +98,7 @@
             <section class="content">
                 <form action="<?php echo base_url('Akademik/hapus_alokasimapel/'); ?>" enctype="multipart/form-data"
                     method="post">
+                    <input type="hidden" name="id_mapel" value="<?php echo $mapel->id_mapel ?>">
                     <div>
                         <div class="text-center mb-3 d-flex justify-content-between"
                             style="border-bottom: solid 1px; border-color: #">
@@ -144,7 +142,7 @@
     </div>
     </div>
     </section>
-    <!-- ENDBODY -->
+    
     </div>
     </div>
 
