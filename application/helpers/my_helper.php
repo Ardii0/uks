@@ -159,16 +159,6 @@ function find_idjenismapel($id)
     }
 }
 
-function find_idalokasiguru($id)
-{
-  $ci =& get_instance();
-  $ci->load->database();
-  $result = $ci->db->where('id_mapel',$id)->get('tabel_alokasiguru');
-    foreach ($result->result() as $c) {
-    $stmt= $c->id_mapel;
-    return $stmt;
-    }
-}
 function tampil_mapelById($id)
 {
  $ci =& get_instance();
@@ -723,17 +713,6 @@ function tampil_nama_siswa_byid($id)
       }
   }
 
-  function find_idalokasimapel2($id)
-  {
-    $ci =& get_instance();
-    $ci->load->database();
-    $result = $ci->db->where('id_mapel',$id)->get('tabel_alokasimapel');
-      foreach ($result->result() as $c) {
-      $stmt= $c->id_mapel;
-      return $stmt;
-      }
-  }
-
   function find_idsiswa($id)
   {
     $ci =& get_instance();
@@ -752,17 +731,6 @@ function tampil_nama_siswa_byid($id)
     $result = $ci->db->where('id_siswa',$id)->get('tabel_anggota');
       foreach ($result->result() as $c) {
       $stmt= $c->id_siswa;
-      return $stmt;
-      }
-  }
-
-  function find_idalokasiguru2($id)
-  {
-    $ci =& get_instance();
-    $ci->load->database();
-    $result = $ci->db->where('kode_guru',$id)->get('tabel_alokasiguru');
-      foreach ($result->result() as $c) {
-      $stmt= $c->kode_guru;
       return $stmt;
       }
   }
@@ -1033,9 +1001,9 @@ function format_indo($date){
     }
   }
 
-  function changeDateFormat($format)
+  function ChangeDateFormat($format, $givenDate=null)
   {
-      return date($format);
+      return date($format, strtotime($givenDate));
   }
 
     // For Hide Button
