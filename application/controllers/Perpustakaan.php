@@ -484,7 +484,8 @@ class Perpustakaan extends CI_Controller {
             }
         }
     }
-    public function edit_buku($id_buku)
+
+   public function edit_buku($id_buku)
     {
         $data = [
             'judul' => 'perpus',
@@ -495,22 +496,55 @@ class Perpustakaan extends CI_Controller {
             'menu_admin' => 'perpustakaan',
             'submenu_admin'=> 'buku'
         ];
+        $data['data_kategori_buku'] = $this->m_perpustakaan->get_all_data_kategori_buku('data_kategori_buku');
+        $data['data_rak_buku'] = $this->m_perpustakaan->get_all_data_rak_buku('data_rak_buku');
         $data['data_buku']=$this->m_perpustakaan->edit_buku('table_buku', $id_buku)->result();
         $this->load->view('perpustakaan/data_buku/edit_buku', $data);
     }
 
     public function update_buku()
     {
+        $foto = $this->upload_img_buku('foto');
+        if($foto[0]==false)
+        {
+            //$this->upload->display_errors();
+            $this->session->set_flashdata('error', 'gagal upload foto.');
+            redirect(base_url('Perpustakaan/edit_buku/'.$this->input->post('id_buku')));
+        }
+        else
+        {
+            $data = array (
+                'foto' => $foto[1],
+                'judul_buku' => $this->input->post('judul_buku'),
+                'penerbit_buku' => $this->input->post('penerbit_buku'),
+                'penulis_buku' => $this->input->post('penulis_buku'),
+                'rak_buku_id' => $this->input->post('rak_buku_id'),
+                'kategori_id' => $this->input->post('kategori_id'),
+                'tahun_terbit' => $this->input->post('tahun_terbit'),
+                'keterangan' => $this->input->post('keterangan'),
+                'sumber' => $this->input->post('sumber'),
+                'del_flag' => '1',
+            );
+            $masuk=$this->m_perpustakaan->ubah_buku('table_buku', $data, array('id_buku'=>$this->input->post('id_buku')));
+            if($masuk)
+            {
+                $this->session->set_flashdata('sukses', 'berhasil');
+                redirect(base_url('Perpustakaan/data_buku'));
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'gagal..');
+                redirect(base_url('Perpustakaan/edit_buku/'.$this->input->post('id_buku')));
+            }
+        }
+    }
+
+    public function hapus_buku_sementara($id_buku)
+    {
         $data = array (
-            'judul_buku' => $this->input->post('judul_buku'),
-            'penerbit_buku' => $this->input->post('penerbit_buku'),
-            'penulis_buku' => $this->input->post('penulis_buku'),
-            'tahun_terbit' => $this->input->post('tahun_terbit'),
-            'keterangan' => $this->input->post('keterangan'),
-            'sumber' => $this->input->post('sumber'),
-            'del_flag' => '1',
+            'del_flag' => '0',
         );
-        $masuk=$this->m_perpustakaan->ubah_buku('table_buku', $data, array('id_buku'=>$this->input->post('id_buku')));
+        $masuk=$this->m_perpustakaan->ubah_buku('table_buku', $data, array('id_buku'=>$id_buku));
         if($masuk)
         {
             $this->session->set_flashdata('sukses', 'berhasil');
@@ -519,24 +553,8 @@ class Perpustakaan extends CI_Controller {
         else
         {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Perpustakaan/edit_buku/'.$this->input->post('id_buku')));
-        }
-    }
-
-    public function hapus_buku($id_buku)
-    {
-        $hapus=$this->m_perpustakaan->hapus_buku('table_buku', 'id_buku', $id_buku);
-        if($hapus)
-        {
-            $this->session->set_flashdata('sukses', 'Berhasil..');
             redirect(base_url('Perpustakaan/data_buku'));
         }
-        else
-        {
-            $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Perpustakaan/data_buku'));
-        }
-
     }
    
 // Peminjaman Buku

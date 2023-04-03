@@ -32,13 +32,13 @@
                                         <div class="grid gap-3">
                                             <a href="<?php echo base_url('Perpustakaan/tambah_buku'); ?>"
                                                 class="btn btn-success"><i class="fas fa-plus"></i>&nbsp; Tambah</a>
-                                                
+
                                         </div>
                                     </div>
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body shadow p-4 mb-5 bg-white rounded">
-                                    <table id="datasiswa-table" class="table table-bordered table-striped">
+                                <table id="datasiswa-table" class="table table-bordered table-striped">
                                         <thead>
                                             <tr class="text-center">
                                                 <th>No</th>
@@ -49,7 +49,6 @@
                                                 <th>Tahun Terbit</th>
                                                 <th>Kategori</th>
                                                 <th>Rak Buku</th>
-                                                <!-- <th>Keterangan</th> -->
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -62,13 +61,11 @@
                                                 </td>
                                                 <td class="text-left" style="max-width: 150px;">
                                                     <?php echo $row->judul_buku?></td>
-                                                <td  class="text-left"><?php echo $row->penulis_buku?></td>
-                                                <td  class="text-left"><?php echo $row->penerbit_buku?></td>
+                                                <td class="text-left"><?php echo $row->penulis_buku?></td>
+                                                <td class="text-left"><?php echo $row->penerbit_buku?></td>
                                                 <td><?php echo $row->tahun_terbit?></td>
                                                 <td><?php echo $row->kategori_id?></td>
                                                 <td><?php echo $row->rak_buku_id?></td>
-                                                <!-- <td class="text-truncate" style="max-width: 150px;">
-                                                    <?php echo $row->keterangan?></td> -->
                                                 <td>
                                                     <a href="<?php echo base_url('Perpustakaan/detail_index_buku/'.$row->id_buku)?>"
                                                         class="btn btn-success btn-sm">
@@ -78,9 +75,11 @@
                                                         class="btn btn-primary btn-sm">
                                                         <i class="fa fa-edit"></i></a>
                                                     <?php if ( tampil_detailBukuById_buku($row->id_buku) === null ) : ?>
-                                                    <button onClick="hapus(<?php echo $row->id_buku?>)"
-                                                        class="btn btn-danger btn-sm">
-                                                        <i class="fa fa-trash"></i> </button>
+                                                    <a
+                                                        href="<?php echo base_url('Perpustakaan/hapus_buku_sementara/'.$row->id_buku)?>">
+                                                        <button class="btn btn-danger btn-sm">
+                                                            <i class="fa fa-trash"></i> </button>
+                                                    </a>
                                                     <?php else : ?><?php endif; ?>
                                                 </td>
                                             </tr>

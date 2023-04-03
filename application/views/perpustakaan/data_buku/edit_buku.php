@@ -23,7 +23,7 @@
                 <div class="container-fluid">
                     <div class="row px-3 py-2 mb-2">
                         <div class="col-sm-6">
-                            <h1>Form Edit Pendaftaran Siswa</h1>
+                            <h1>Form Edit Buku</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -52,9 +52,10 @@
                                 <?php foreach($data_buku as $row ):?>
                                 <!-- /.box-header -->
                                 <!-- form start -->
-                                <form action="<?php echo base_url('Perpustakaan/update_buku')?>" method="post">
+                                <form action="<?php echo base_url('Perpustakaan/update_buku')?>"
+                                    enctype="multipart/form-data" method="post">
                                     <div class="box-body row">
-                                        <div class="form-group col-sm-6">
+                                        <div class="form-group col-sm-4">
                                             <label class="control-label">Judul Buku</label>
                                             <div class="col-sm-12">
                                                 <input type="text" value="<?php echo $row->judul_buku?>"
@@ -62,7 +63,7 @@
                                                     placeholder="Masukan Judul Buku"><br>
                                             </div>
                                         </div>
-                                        <div class="form-group col-sm-6">
+                                        <div class="form-group col-sm-4">
                                             <label class="control-label">Penerbit Buku</label>
                                             <div class="col-sm-12">
                                                 <input type="text" value="<?php echo $row->penerbit_buku?>"
@@ -70,7 +71,7 @@
                                                     placeholder="Masukan Penerbit Buku"><br>
                                             </div>
                                         </div>
-                                        <div class="form-group col-sm-6">
+                                        <div class="form-group col-sm-4">
                                             <label class="control-label">Penulis Buku</label>
                                             <div class="col-sm-12">
                                                 <input type="text" value="<?php echo $row->penulis_buku?>"
@@ -79,6 +80,37 @@
                                             </div>
                                         </div>
                                         <div class="form-group col-sm-6">
+                                            <label class="control-label">Rak Buku</label>
+                                            <div class="col-sm-12">
+                                                <select name="rak_buku_id" class="custom-select custom-select-md mb-3">
+                                                    <option style="display: none;"
+                                                        value="<?php echo $row->rak_buku_id ?>">
+                                                        <?php echo $row->rak_buku_id ?>
+                                                        <?php $no = 0;foreach ($data_rak_buku as $rak): $no++;?>
+                                                    <option value="<?php echo $rak->nama_rak_buku ?>">
+                                                        <?php echo $rak->nama_rak_buku ?>
+                                                        <?php echo $rak->keterangan_rak_buku ?></option>
+
+                                                    <?php endforeach;?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-sm-6">
+                                            <label class="control-label">Kategori Buku</label>
+                                            <div class="col-sm-12">
+                                                <select name="kategori_id" class="custom-select custom-select-md mb-3">
+                                                    <option style="display: none;"
+                                                        value="<?php echo $row->kategori_id ?>">
+                                                        <?php echo $row->kategori_id ?>
+                                                    </option>
+                                                    <?php $no = 0;foreach ($data_kategori_buku as $data): $no++;?>
+                                                    <option value="<?php echo $data->nama_kategori_buku ?>">
+                                                        <?php echo $data->nama_kategori_buku ?></option>
+                                                    <?php endforeach;?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-sm-4">
                                             <label class="control-label">Tahun Terbit</label>
                                             <div class="col-sm-12">
                                                 <input type="number" value="<?php echo $row->tahun_terbit?>"
@@ -86,7 +118,7 @@
                                                     placeholder="Masukan Tahun Terbit"><br>
                                             </div>
                                         </div>
-                                        <div class="form-group col-sm-6">
+                                        <div class="form-group col-sm-4">
                                             <label class="control-label">Keterangan</label>
                                             <div class="col-sm-12">
                                                 <input type="text" value="<?php echo $row->keterangan?>"
@@ -94,14 +126,33 @@
                                                     placeholder="Masukan Keterangan"><br>
                                             </div>
                                         </div>
+                                        <div class="form-group col-sm-4">
+                                            <label class="control-label">Cover</label>
+                                            <div class="col-sm-12">
+                                                <div class="mt-1">
+                                                    <input type="file" name="foto" onchange="readURL(this);" />
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div>Foto Sebelum :</div>
+                                                        <img src="<?php echo base_url('uploads/Perpustakaan/buku')."/".$row->foto;?>"
+                                                            width="140" />
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div>Foto Sesudah :</div>
+                                                        <img id="blah" name="foto" width="140" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <!-- /.box-body -->
-                                    <div class="box-footer">
+                                    <div class="box-footer d-flex justify-content-between">
                                         <input type="hidden" value="<?php echo $row->id_buku?>" name="id_buku">
-                                        <button type="submit" class="btn btn-primary">update</button>
                                         <button type="button" class="btn btn-primary"
                                             onclick="kembali()">Kembali</button>
+                                        <button type="submit" class="btn btn-primary">update</button>
                                     </div>
                                     <!-- /.box-footer -->
                                 </form>
@@ -119,6 +170,18 @@
         <script>
         function kembali() {
             window.history.go(-1);
+        }
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#blah').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
         }
         </script>
 
