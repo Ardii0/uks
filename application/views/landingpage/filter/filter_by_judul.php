@@ -14,16 +14,18 @@
 <body class="hold-transition layout-fixed" style="background-color: #E5E7EB" data-panel-auto-height-mode="height">
     <div class="container-fluid py-3 fixed-top mb-2 bg-light">
         <div class="container d-flex justify-content-between align-items-center">
-             <a href="<?php echo base_url ('Landingpage/daftar_buku')?>"> <div class="text-dark">
-                <h3>E-Perpus</h3>
-            </div></a>
+            <a href="<?php echo base_url ('Landingpage/daftar_buku')?>">
+                <div class="text-dark">
+                    <h3>E-Perpus</h3>
+                </div>
+            </a>
             <div class="d-flex gap-4 justify-content-between align-items-center">
                 <div>
                     <form action="<?php echo base_url('LandingPage/filter_ByJudulBuku') ?>" method="post">
                         <div class="form-group d-flex" style="width: 160%;">
                             <select name="judul_buku" class="form-control select2"
-                                data-dropdown-css-class="select2-info" name="id_siswa" style="width: 100%;">
-                                <option>
+                                data-dropdown-css-class="select2-info" required="" style="width: 100%;">
+                                <option value="">
                                     Pilih Buku
                                 </option>
                                 <?php $id = 0;foreach ($data_buku as $buku): $id++;?>
@@ -79,7 +81,14 @@
                         </div>
                     </div>
                     <?php endforeach;?>
-
+                </div>
+                <div class=" d-flex justify-content-center">
+                    <a href="<?php echo base_url ('Landingpage/filter_AllBuku')?>" class="" style="width:343px ">
+                        <div class="btn btn-info w-100">
+                            <i class="fas fa-arrow-left"></i>
+                            Kembali
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>

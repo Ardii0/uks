@@ -24,8 +24,8 @@
                     <form action="<?php echo base_url('LandingPage/filter_ByRakBuku') ?>" method="post">
                         <div class="form-group d-flex" style="width: 130%;">
                             <select name="nama_rak_buku" class="form-control select2"
-                                data-dropdown-css-class="select2-info" style="width: 100%;">
-                                <option>
+                                data-dropdown-css-class="select2-info" required="" style="width: 100%;">
+                                <option value="">
                                     Pilih Rak Buku
                                 </option>
                                 <?php $id = 0;foreach ($data_rak_buku as $buku): $id++;?>
@@ -39,6 +39,12 @@
             </div>
             <div>
                 <!-- sengaja kosong -->
+                <a href="<?php echo base_url ('Landingpage/daftar_buku')?>">
+                    <div class="btn btn-info">
+                    <i class="fas fa-arrow-left"></i>
+                        Kembali
+                    </div>
+                </a>
             </div>
         </div>
     </div>
@@ -52,9 +58,9 @@
                     <?php $id=0; foreach($datafilter as $data ): $id++;?>
                     <div class="col-md-3">
                         <div class="card card-blog">
-                            <div class="card-image">
+                            <div class="card-image" style="width: 225px; height: 260px">
                                 <a href="#">
-                                    <img class="img"
+                                    <img class="" style="width: 225px; height: 260px"
                                         src="<?php echo base_url('uploads/perpustakaan/buku')."/".$data->foto;?>"
                                         alt="">
                                 </a>
@@ -78,13 +84,11 @@
                         </div>
                     </div>
                     <?php endforeach;?>
-
                 </div>
             </div>
         </div>
     </div>
     </div>
-
     <?php $this->load->view('landingpage/style/js')?>
 </body>
 

@@ -20,27 +20,27 @@
                     <h3>E-Perpus</h3>
                 </div>
             </a>
-        <div class="d-flex gap-4 justify-content-between align-items-center">
+            <div class="d-flex gap-4 justify-content-between align-items-center">
+                <div>
+                    <form action="<?php echo base_url('LandingPage/filter_ByJudulBuku') ?>" method="post">
+                        <div class="form-group d-flex" style="width: 160%;">
+                            <select name="judul_buku" class="form-control select2"
+                                data-dropdown-css-class="select2-info" style="width: 100%" required="">
+                                <option value="">
+                                    Pilih Buku
+                                </option>
+                                <?php foreach ($data_buku as $key) { ?>
+                                <option value="<?php echo $key->judul_buku ?>"><?php echo $key->judul_buku ?></option>
+                                <?php } ?>
+                            </select>
+                            <button type="submit" style="width: " class="ml-2 w-20 btn btn-success">Tampilkan</button>
+                        </div>
+                </div>
+            </div>
             <div>
-                <form action="<?php echo base_url('LandingPage/filter_ByJudulBuku') ?>" method="post">
-                    <div class="form-group d-flex" style="width: 160%;">
-                        <select name="judul_buku" class="form-control select2" data-dropdown-css-class="select2-info"
-                            name="id_siswa" style="width: 100%;">
-                            <option>
-                                Pilih Buku
-                            </option>
-                            <?php $id = 0;foreach ($data_buku as $buku): $id++;?>
-                            <option value="<?php echo $buku->judul_buku ?>"><?php echo $buku->judul_buku ?></option>
-                            <?php endforeach;?>
-                        </select>
-                        <button type="submit" style="width: " class="ml-2 w-20 btn btn-success">Tampilkan</button>
-                    </div>
+                <!-- sengaja biar kosong -->
             </div>
         </div>
-        <div>
-            <!-- sengaja biar kosong -->
-        </div>
-    </div>
     </div>
     <div class="container-fluid db-content" style="margin-top:110px">
         <div class="row">
@@ -108,7 +108,6 @@
                                 </div>
                             </div>
                             <?php endforeach;?>
-
                         </div>
                     </div>
                 </div>

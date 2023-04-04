@@ -12,11 +12,13 @@
 </head>
 
 <body class="hold-transition layout-fixed" style="background-color: #E5E7EB" data-panel-auto-height-mode="height">
-<div class="container-fluid py-3 fixed-top mb-2 bg-light">
+    <div class="container-fluid py-3 fixed-top mb-2 bg-light">
         <div class="container d-flex justify-content-between align-items-center">
-             <a href="<?php echo base_url ('Landingpage/daftar_buku')?>"> <div class="text-dark">
-                <h3>E-Perpus</h3>
-            </div></a>
+            <a href="<?php echo base_url ('Landingpage/daftar_buku')?>">
+                <div class="text-dark">
+                    <h3>E-Perpus</h3>
+                </div>
+            </a>
             <div class="d-flex gap-4 justify-content-between align-items-center">
                 <div class="input-group px-2 w-100">
                 </div>
@@ -24,8 +26,8 @@
                     <form action="<?php echo base_url('LandingPage/filter_ByKategoriBuku') ?>" method="post">
                         <div class="form-group d-flex" style="width: 130%;">
                             <select name="nama_kategori_buku" class="form-control select2"
-                                data-dropdown-css-class="select2-info" style="width: 140%;">
-                                <option>
+                                data-dropdown-css-class="select2-info" required="" style="width: 140%;">
+                                <option value="">
                                     Pilih Kategori
                                 </option>
                                 <?php $id = 0;foreach ($data_kategori_buku as $buku): $id++;?>
@@ -39,6 +41,12 @@
             </div>
             <div>
                 <!-- sengaja kosong -->
+                <a href="<?php echo base_url ('Landingpage/daftar_buku')?>">
+                    <div class="btn btn-info">
+                        <i class="fas fa-arrow-left"></i>
+                        Kembali
+                    </div>
+                </a>
             </div>
         </div>
     </div>
@@ -68,11 +76,11 @@
                                     <p class="card-description overflow-hidden" style="height: 100px;">
                                         <?php echo $data->keterangan?></p>
                                     <div class="ftr">
-                                                <div class="author">
-                                                    <a><span><strong><?php echo $data->penulis_buku?></strong></span></a>
-                                                </div>
-                                                <div class="stats"><strong><?php echo $data->tahun_terbit?></strong></div>
-                                            </div>
+                                        <div class="author">
+                                            <a><span><strong><?php echo $data->penulis_buku?></strong></span></a>
+                                        </div>
+                                        <div class="stats"><strong><?php echo $data->tahun_terbit?></strong></div>
+                                    </div>
                             </div>
                         </div>
                     </div>

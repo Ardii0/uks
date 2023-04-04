@@ -24,8 +24,8 @@
                     <form action="<?php echo base_url('LandingPage/filter_ByRakBuku') ?>" method="post">
                         <div class="form-group d-flex" style="width: 130%;">
                             <select name="nama_rak_buku" class="form-control select2"
-                                data-dropdown-css-class="select2-info" style="width: 100%;">
-                                <option>
+                                data-dropdown-css-class="select2-info" required="" style="width: 100%;">
+                                <option value="">
                                     Pilih Rak Buku
                                 </option>
                                 <?php $id = 0;foreach ($data_rak_buku as $buku): $id++;?>
@@ -45,7 +45,6 @@
 
     </div>
     <div class="container-fluid db-content" style="margin-top: 110px">
-
         <div class="cards-1 section-gray">
             <div class="container">
                 <div class="row d-flex justify-content-center">
@@ -78,7 +77,14 @@
                         </div>
                     </div>
                     <?php endforeach;?>
-
+                </div>
+                <div class=" d-flex justify-content-center">
+                    <a onclick=kembali() class="" style="width:343px ">
+                        <div class="btn btn-info w-100">
+                        <i class="fas fa-arrow-left"></i>
+                            Kembali
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -87,5 +93,9 @@
 
     <?php $this->load->view('landingpage/style/js')?>
 </body>
-
+<script>
+    function kembali() {
+        window.history.go(-1)
+    }
+</script>
 </html>

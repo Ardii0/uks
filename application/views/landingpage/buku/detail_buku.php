@@ -88,7 +88,7 @@
             </div>
         </div>
         <div class="pt-4 d-flex justify-content-end">
-            <a href="<?php echo base_url ('Landingpage/daftar_buku')?>">
+            <a href="<?php echo base_url('landingpage/filter_AllBuku') ?>">
                 <div class="btn btn-info">
                     Kembali
                 </div>
