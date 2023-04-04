@@ -94,12 +94,9 @@
                                                     <a href="<?php echo base_url('Akademik/edit_guru/' . $data->kode_guru) ?>"
                                                         class="btn btn-primary btn-sm">
                                                         <i class="fa fa-edit"></i></a>
-                                                    <!-- <a href="<?php echo base_url('Akademik/hapus_guru/' . $data->kode_guru) ?>"
-                                                        class="btn btn-danger btn-sm">
-                                                        <i class="fa fa-edit"></i></a> -->
-                                                        <?php 
-                                                    $find = find_idalokasiguru2($data->kode_guru);
-                                                    if($find == null) {?>
+                                                    <?php 
+                                                    if(!$this->db->where('kode_guru',$data->kode_guru)->get('tabel_rombel')->result() &&
+                                                       !$this->db->where('kode_guru',$data->kode_guru)->get('tabel_alokasiguru')->result()) {?>
                                                     <button onclick="hapus('<?php echo $data->kode_guru ?>')"
                                                         class='btn btn-danger btn-sm'>
                                                     <i class='fa fa-trash'></i></button>

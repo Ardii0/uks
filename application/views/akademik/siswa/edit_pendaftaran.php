@@ -170,18 +170,18 @@
                                         name="saudara_angkat" class="form-control" placeholder="Saudara Angkat">
                                 </div>
                             </div>
-                            <div class="col-6 mt-2">
+                            <div class="col-4 mt-2">
                                 <div>
                                     <label for="alamat" class="mr-3">
                                         Alamat
                                     </label>
                                 </div>
                                 <div>
-                                    <input id="alamat" type="text" value="<?php echo $row->alamat?>"
-                                        name="alamat" class="form-control" placeholder="Alamat">
+                                    <input id="alamat" type="text" value="<?php echo $row->alamat?>" name="alamat"
+                                        class="form-control" placeholder="Alamat">
                                 </div>
                             </div>
-                            <div class="col-6 mt-2">
+                            <div class="col-4 mt-2">
                                 <div>
                                     <label for="tempat-lahir" class="mr-3">
                                         Tempat Lahir
@@ -192,7 +192,7 @@
                                         name="tempat_lahir" class="form-control" placeholder="Tempat Lahir">
                                 </div>
                             </div>
-                            <div class="col-6 mt-2">
+                            <div class="col-4 mt-2">
                                 <div>
                                     <label for="tanggal-lahir" class="mr-3">
                                         Tanggal Lahir
@@ -201,6 +201,27 @@
                                 <div>
                                     <input id="tanggal-lahir" value="<?php echo $row->tgl_lahir?>" name="tgl_lahir"
                                         type="date" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-12 mt-2">
+                                <div class="form-group col-sm-4">
+                                    <label class="control-label">Foto</label>
+                                    <div class="col-sm-12">
+                                        <div class="mt-1">
+                                            <input type="file" name="foto" onchange="readURL(this);" />
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div>Foto Sebelum :</div>
+                                                <img src="<?php $data = $row->foto == null ? base_url('uploads/akademik/default_profile/User.png') : base_url('uploads/akademik/pendaftaran_siswa')."/".$row->foto; echo $data ?>"
+                                                    width="140" />
+                                            </div>
+                                            <div class="col-6">
+                                                <div>Foto Sesudah :</div>
+                                                <img id="blah" name="foto" width="140" />
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -220,6 +241,18 @@
     <script type="text/javascript">
     function kembali() {
         window.history.go(-1);
+    }
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('#blah').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
     }
     </script>
 </body>

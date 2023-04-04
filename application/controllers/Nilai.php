@@ -34,6 +34,56 @@ class Nilai extends CI_Controller {
         $data['ta'] = $this->m_akademik->get_tahun_ajaran();
         $this->load->view('nilai/dashboard', $data);
     }
+
+    // Tambahan
+    public function mapel()
+    {
+        $data = [
+            'judul' => 'nilai',
+            'page' => 'nilai',
+            'menu' => 'nilai',
+            'submenu'=>'nilai',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'nilai',
+            'submenu_admin'=> 'nilai'
+            ];
+        $this->load->model('M_akademik');
+        $data['mapel'] = $this->m_akademik->get_mapel('mapel');
+        $this->load->view('nilai/tambahan/mapel', $data);
+    }
+
+    public function siswa()
+    {
+        $data = [
+            'judul' => 'nilai',
+            'page' => 'nilai',
+            'menu' => 'nilai',
+            'submenu'=>'nilai',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'nilai',
+            'submenu_admin'=> 'nilai'
+            ];
+        $this->load->model('M_akademik');
+        $data['rombel'] = $this->m_akademik->get_rombel('rombel');
+        $data['siswa'] = $this->m_akademik->get_siswa('siswa');
+        $this->load->view('nilai/tambahan/siswa', $data);
+    }
+
+    public function guru()
+    {
+        $data = [
+            'judul' => 'nilai',
+            'page' => 'nilai',
+            'menu' => 'nilai',
+            'submenu'=>'nilai',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'nilai',
+            'submenu_admin'=> 'nilai'
+            ];
+        $this->load->model('M_akademik');
+        $data['guru'] = $this->m_akademik->get_guru('guru');
+        $this->load->view('nilai/tambahan/guru', $data);
+    }
     
 // Nilai
  // Entry

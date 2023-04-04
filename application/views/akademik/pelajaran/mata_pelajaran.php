@@ -80,21 +80,19 @@
                                                     <?php echo $data->keterangan ?>
                                                 </td>
                                                 <td class="text-center">
-                                                <a href="<?php echo base_url('Akademik/alokasi_mapel/' . $data->id_mapel) ?>"
+                                                    <a href="<?php echo base_url('Akademik/alokasi_mapel/'.$data->id_mapel) ?>"
                                                         class="btn btn-success btn-sm">
                                                         <i class="fa fa-share"></i></a>
-                                                    <a href="<?php echo base_url('Akademik/edit_mapel/' . $data->id_mapel) ?>"
+                                                    <a href="<?php echo base_url('Akademik/edit_mapel/'.$data->id_mapel) ?>"
                                                         class="btn btn-primary btn-sm">
                                                         <i class="fa fa-edit"></i></a>
-                                                        <?php 
-                                                    $find = find_idalokasiguru($data->id_mapel);
-                                                    $find2 = find_idalokasimapel2($data->id_mapel);
-                                                    if($find == null || $find == null) echo "
-                                                    <button onclick='hapus($data->id_mapel)'
-                                                    class='btn btn-danger btn-sm'>
-                                                    <i class='fa fa-trash'></i></button>                                          
-                                                    "; 
-                                                    else echo ""?>
+                                                    <?php if(!$this->db->where('id_mapel',$data->id_mapel)->get('tabel_alokasiguru')->result() &&
+                                                             !$this->db->where('id_mapel',$data->id_mapel)->get('tabel_alokasimapel')->result()) {?>
+                                                    <button onclick="hapus('<?php echo $data->id_mapel?>')"
+                                                            class='btn btn-danger btn-sm'>
+                                                        <i class='fa fa-trash'></i>
+                                                    </button>
+                                                    <?php }?>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>

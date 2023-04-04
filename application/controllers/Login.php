@@ -24,6 +24,8 @@ class Login extends CI_Controller {
       redirect(base_url('Nilai/'));
     } elseif ($this->session->userdata('status_keuangan')==='login') {
       redirect(base_url('Keuangan/'));
+    } elseif ($this->session->userdata('status_alumni')==='login') {
+      redirect(base_url('Alumni/'));
     }
     $sub_data['warning']=$this->session->userdata('warning');
     $this->load->view('petugas/login',$sub_data);
@@ -71,9 +73,7 @@ class Login extends CI_Controller {
     $email = $this->input->post('email', TRUE);
     $password = $this->input->post('password', TRUE);
     echo $email.$username."-".$password;
-    // $perintah = "SELECT * FROM tabel_level WHERE (username='$email' OR email='$email') AND password='md5($password)'"; 
-    // $sql = $this->db->query($perintah);
-
+    
       $where = array(
         // 'email' => $email,
         'username' => $username,
@@ -109,13 +109,19 @@ class Login extends CI_Controller {
         // 'level' => "TU",
         'id_hak_akses' => "6",
         );
+      $whereAlumni = array(
+        // 'email' => $email,
+        'username' => $username,
+        'password' => md5($password),
+        'level' => "Alumni",
+        );
 
     $cek = $this->M_login->cek_login("tabel_level",$where);
     $kesiswaan = $this->M_login->cek_login("tabel_level",$whereKesiswaan);
     $petugasPerpus = $this->M_login->cek_login("tabel_level",$wherePetugasPerpus);
     $guru = $this->M_login->cek_login("tabel_level",$whereGuru);
     $TU = $this->M_login->cek_login("tabel_level",$whereTU);
-    // $TU = $this->M_login->cek_us();
+    $Alumni = $this->M_login->cek_login("tabel_level",$whereAlumni);
 
     //logika
     if ($cek->num_rows() == 1) {
@@ -169,8 +175,7 @@ class Login extends CI_Controller {
           $this->session->set_flashdata('pesan','<div class="alert alert-success">Login sukses.</div>');
           redirect(base_url()."Akademik/");//Controller/function
         }
-    }
-    elseif ($petugasPerpus->num_rows() == 1) {
+    }elseif ($petugasPerpus->num_rows() == 1) {
         foreach ($petugasPerpus->result() as $sess) {
             $data_session['id_level'] = $sess->id_level;
             $data_session['username'] = $sess->username;
@@ -228,6 +233,26 @@ class Login extends CI_Controller {
           // // $this->M_login->last_login($last_login,$where);
           $this->session->set_flashdata('pesan','<div class="alert alert-success">Login sukses.</div>');
           redirect(base_url()."Keuangan/");//Controller/function
+        }
+    }elseif ($Alumni->num_rows() == 1) {
+      foreach ($Alumni->result() as $sess) {
+          $data_session['id_level'] = $sess->id_level;
+          $data_session['email'] = $sess->email;
+          // $data_session['username'] = $sess->username;
+          $data_session['password'] = $sess->password;
+          // $data_session['cdate'] = $sess->cdate;
+          // $data_session['lv'] = $sess->level;
+          $data_session['status_alumni'] = "login";
+          $data_session['level'] = "Alumni";
+          $data_session['id_hak_akses'] = "6";
+          $this->session->set_userdata($data_session);
+        }
+      if ($this->session->userdata('level')=='Alumni') {
+          // // $last_login = array('last_login' =>date('Y-m-d H:i:s') );
+          $where  = array('id_level'=>$this->session->userdata('id_level'));
+          // // $this->M_login->last_login($last_login,$where);
+          $this->session->set_flashdata('pesan','<div class="alert alert-success">Login sukses.</div>');
+          redirect(base_url()."Alumni/");//Controller/function
         }
   }
   else{

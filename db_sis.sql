@@ -294,7 +294,7 @@ CREATE TABLE `tabel_guru` (
 insert  into `tabel_guru`(`kode_guru`,`nip`,`nama_guru`,`jekel`,`no_hp`,`alamat`,`status`) values 
 ('KG-QUC568','903123456','Ahmad','L','08561234567','Jl. Melati','AKTIF'),
 ('KG-IPN4QC','9031234509','Ahmad D. Marcel','L','08561234909','Jl. Melati 89','AKTIF'),
-('KG-2MPLF7','9031234899','Ahmad U. Marcel',NULL,'08561234787','Jl. Mawar 45','AKTIF'),
+('KG-2MPLF7','9031234899','Ahmad U. Marcel','L','08561234787','Jl. Mawar 45','AKTIF'),
 ('KG-IVWC3I','9031234999','Ahmad T. Marcel','L','08561234980','Jl. Kembang 78','AKTIF'),
 ('KG-SGMGVA','9031234898','Siti Nur','P','08561287888','Jl. Merpati 09','AKTIF');
 
@@ -335,7 +335,8 @@ CREATE TABLE `tabel_invoice` (
 insert  into `tabel_invoice`(`id_invoice`,`id_siswa`,`date`,`id_level`,`id_ta`,`cek_p`) values 
 ('INV0330Y9G3650',4,'2023-03-30',5,1,1),
 ('INV0330R9V3731',5,'2023-03-30',5,1,1),
-('INV0330EZB3807',6,'2023-03-30',5,1,1);
+('INV0330EZB3807',6,'2023-03-30',5,1,1),
+('INV0403M2Y2748',8,'2023-04-03',5,1,1);
 
 /*Table structure for table `tabel_jenis_transaksi` */
 
@@ -418,7 +419,7 @@ CREATE TABLE `tabel_jenjang` (
   KEY `id_jenjang` (`id_jenjang`),
   KEY `tabel_jenjang_to_paketjenjang` (`id_paket`),
   CONSTRAINT `tabel_jenjang_to_paketjenjang` FOREIGN KEY (`id_paket`) REFERENCES `tabel_paketjenjang` (`id_paket`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tabel_jenjang` */
 
@@ -474,6 +475,7 @@ insert  into `tabel_level`(`id_level`,`username`,`email`,`password`,`level`,`kod
 (3,'Perpus','perpus@gmail.com','202cb962ac59075b964b07152d234b70','PetugasPerpus',NULL,4),
 (4,'Guru','guru@gmail.com','202cb962ac59075b964b07152d234b70','Guru','449',5),
 (5,'TU','tu@gmail.com','202cb962ac59075b964b07152d234b70','TU',NULL,6),
+(6,'Alumni','alumnmi@gmail.com','202cb962ac59075b964b07152d234b70','Alumni',NULL,NULL),
 (7,'Shelby','Shelby@gmail.com','698d51a19d8a121ce581499d7b701668','Guru','KG-330OSN',5),
 (8,'Ahmad','Ahmad@gmail.com','bcbe3365e6ac95ea2c0343a2395834dd','Guru',NULL,5),
 (19,'Arga','Arga@gmail.com','a01610228fe998f515a72dd730294d87','Guru','KG-LVUMAY',5),
@@ -525,7 +527,7 @@ insert  into `tabel_mapel`(`id_mapel`,`id_jenismapel`,`nama_mapel`,`keterangan`,
 (3,1,'Biologi','','AKTIF'),
 (5,1,'Kimia','','AKTIF'),
 (6,2,'Jaringan Komputer','','AKTIF'),
-(7,2,'Tata Usaha','','AKTIF');
+(7,2,'WAN','','AKTIF');
 
 /*Table structure for table `tabel_nilai` */
 
@@ -566,32 +568,6 @@ insert  into `tabel_nilai`(`id_nilai`,`id_rombel`,`id_siswa`,`id_mapel`,`id_seme
 (8,1,4,2,2,80,80,80,80,80,80,80,80,'80','80','80','80'),
 (9,1,4,1,2,80,80,80,80,80,80,80,80,'80','80','80','80');
 
-/*Table structure for table `tabel_paket_wedding` */
-
-DROP TABLE IF EXISTS `tabel_paket_wedding`;
-
-CREATE TABLE `tabel_paket_wedding` (
-  `id_paket_wedding` int NOT NULL AUTO_INCREMENT,
-  `judul_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `gambar_pw` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `harga_pw` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `dp_pw` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `pelunasan_pw` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `deskripsi_pw` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `decoration_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `makeup_artist_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `documentation_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `catering_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `entertainment_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `efek_flashmob_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `exclusive_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `del_flag` int NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id_paket_wedding`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-/*Data for the table `tabel_paket_wedding` */
-
 /*Table structure for table `tabel_paketjenjang` */
 
 DROP TABLE IF EXISTS `tabel_paketjenjang`;
@@ -601,9 +577,15 @@ CREATE TABLE `tabel_paketjenjang` (
   `kode_paket` varchar(10) NOT NULL,
   `nama_paket` varchar(100) NOT NULL,
   PRIMARY KEY (`id_paket`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tabel_paketjenjang` */
+
+insert  into `tabel_paketjenjang`(`id_paket`,`kode_paket`,`nama_paket`) values 
+(1,'J001','SD'),
+(2,'J002','SMP'),
+(3,'J003','SMA'),
+(4,'J004','SMK');
 
 /*Table structure for table `tabel_pembayaran` */
 
@@ -626,7 +608,7 @@ CREATE TABLE `tabel_pembayaran` (
   KEY `id_siswa` (`id_siswa`),
   CONSTRAINT `tabel_pembayaran_to_jenisbayar` FOREIGN KEY (`id_jenis`) REFERENCES `tabel_jenisbayar` (`id_jenis`),
   CONSTRAINT `tabel_pembayaran_to_siswa` FOREIGN KEY (`id_siswa`) REFERENCES `tabel_siswa` (`id_siswa`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tabel_pembayaran` */
 
@@ -635,45 +617,8 @@ insert  into `tabel_pembayaran`(`id_pembayaran`,`id_siswa`,`id_jenis`,`nominal`,
 (2,4,2,175000,'UKT Bulan Maret','2023-03-30 14:37:23',1,'TSK0330H8A3723','INV0330Y9G3650',5,1),
 (3,5,1,250000,'SPP Bulan Maret','2023-03-30 14:37:50',1,'TSK0330KPZ3750','INV0330R9V3731',5,1),
 (4,5,2,125000,'UKT Bulan Maret','2023-03-30 14:38:00',1,'TSK0330O203800','INV0330R9V3731',5,1),
-(5,6,2,75000,'UKT Bulan Maret','2023-03-30 14:38:13',1,'TSK0330O8U3813','INV0330EZB3807',5,1);
-
-/*Table structure for table `tabel_pesanan` */
-
-DROP TABLE IF EXISTS `tabel_pesanan`;
-
-CREATE TABLE `tabel_pesanan` (
-  `id_pesanan` int NOT NULL AUTO_INCREMENT,
-  `id_admin` int DEFAULT NULL,
-  `id_pembayaran` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `id_paket_wedding` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `nama_pemesan` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `username` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `no_telp_pemesan` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `email_pemesan` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `jenis_kelamin_pemesan` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `alamat_pemesan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `judul_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `gambar_pw` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `harga_pw` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `dp_pw` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `pelunasan_pw` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `deskripsi_pw` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `decoration_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `makeup_artist_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `documentation_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `catering_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `entertainment_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `efek_flashmob_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `exclusive_pw` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `tanggal_acara` date DEFAULT NULL,
-  `tanggal_pesanan` datetime DEFAULT NULL,
-  `status` int NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `del_flag` int NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id_pesanan`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-/*Data for the table `tabel_pesanan` */
+(5,6,2,75000,'UKT Bulan Maret','2023-03-30 14:38:13',1,'TSK0330O8U3813','INV0330EZB3807',5,1),
+(6,8,1,45000,'Ok','2023-04-03 10:28:00',1,'TSK0403DPJ2800','INV0403M2Y2748',5,1);
 
 /*Table structure for table `tabel_pindah` */
 
@@ -761,7 +706,7 @@ insert  into `tabel_rombel`(`id_rombel`,`id_kelas`,`nama_rombel`,`kode_guru`,`ku
 (3,3,'XI TKJ 1','KG-QUC568',30,'AKTIF'),
 (5,3,'XI TKJ 2','KG-2MPLF7',20,'AKTIF'),
 (6,4,'XII TKJ 1 ','KG-SGMGVA',20,'AKTIF'),
-(7,4,'XII TKJ 2','KG-2MPLF7',20,'AKTIF');
+(7,4,'XII TKJ 2','KG-SGMGVA',20,'AKTIF');
 
 /*Table structure for table `tabel_sekolah` */
 
@@ -847,8 +792,8 @@ insert  into `tabel_tahunajaran`(`id_angkatan`,`kd_angkatan`,`nama_angkatan`,`ke
 (1,'TA2018/2019','TA 2018/2019','','2018-07-01','2019-06-30',0,'AKTIF'),
 (2,'TA2019/2020','TA 2019/2020','','2019-01-28','2020-01-28',0,'AKTIF'),
 (3,'TA2020/2021','TA 2020/2021','','2020-01-28','2021-01-28',0,'AKTIF'),
-(4,'TA2021/2022','TA 2021/2022','','2021-01-28','2022-01-28',0,'AKTIF'),
-(5,'TA2022/2023','TA 2022/2023','','2022-01-28','2023-01-28',0,'AKTIF');
+(4,'TA2021/2022','TA 2021/2022','','2021-01-28','2022-01-28',1,'AKTIF'),
+(5,'TA2022/2023','TA 2022/2023','','2022-01-28','2023-01-28',0,'NONAKTIF');
 
 /*Table structure for table `tabel_transaksi` */
 

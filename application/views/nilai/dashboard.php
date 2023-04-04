@@ -10,7 +10,7 @@
 </head>
 
 <style>
-    .example-1 {
+.example-1 {
     position: relative;
     overflow-y: scroll;
     height: 200px;
@@ -19,6 +19,7 @@
 .example-1::-webkit-scrollbar {
     display: none;
 }
+
 /* Hide scrollbar for IE, Edge and Firefox */
 .example-1 {
     -ms-overflow-style: none;
@@ -49,9 +50,8 @@
                                     <div class="icon">
                                         <i class="nav-icon fas fa-book"></i>
                                     </div>
-                                    <a href="<?php echo base_url('Perpustakaan/data_buku') ?>"
-                                                class="small-box-footer">Info Lebih Lanjut <i
-                                                    class="fas fa-arrow-circle-right"></i></a>
+                                    <a href="<?php echo base_url('Nilai/mapel') ?>" class="small-box-footer">Info Lebih
+                                        Lanjut <i class="fas fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -65,9 +65,8 @@
                                     <div class="icon">
                                         <i class="nav-icon fas fa-user"></i>
                                     </div>
-                                    <a href="<?php echo base_url('Perpustakaan/data_buku') ?>"
-                                                class="small-box-footer">Info Lebih Lanjut <i
-                                                    class="fas fa-arrow-circle-right"></i></a>
+                                    <a href="<?php echo base_url('Nilai/siswa') ?>" class="small-box-footer">Info Lebih
+                                        Lanjut <i class="fas fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -81,9 +80,8 @@
                                     <div class="icon">
                                         <i class="nav-icon fas fa-user-tie"></i>
                                     </div>
-                                    <a href="<?php echo base_url('Perpustakaan/data_buku') ?>"
-                                                class="small-box-footer">Info Lebih Lanjut <i
-                                                    class="fas fa-arrow-circle-right"></i></a>
+                                    <a href="<?php echo base_url('Nilai/guru') ?>" class="small-box-footer">Info Lebih
+                                        Lanjut <i class="fas fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                         </div>

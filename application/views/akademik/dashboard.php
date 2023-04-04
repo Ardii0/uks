@@ -48,11 +48,7 @@
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
         <?php $this->load->view('akademik/style/navbar')?>
-        <?php if($this->session->userdata('level') === 'Admin') {?>
-        <?php $this->load->view('petugas/style/sidebar')?>
-        <?php } else {?>
         <?php $this->load->view('akademik/style/sidebar')?>
-        <?php }?>
 
         <div class="content-wrapper">
             <div class="container-fluid">

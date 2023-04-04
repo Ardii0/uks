@@ -4,7 +4,7 @@
 <script src="<?php echo base_url("builder/plugins/jquery-ui/jquery-ui.min.js"); ?>"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
-$.widget.bridge('uibutton', $.ui.button)
+  $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo base_url('builder/plugins/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
@@ -34,32 +34,13 @@ $(function() {
 
     //Initialize Select2 Elements
     $('.select2bs4').select2({
-        theme: 'bootstrap4'
+      theme: 'bootstrap4'
     })
-    $("#nilai-table").DataTable({
+    
+    $("#table").DataTable({
         "responsive": true,
         "lengthChange": false,
         "autoWidth": false,
-    }).buttons().container().appendTo('#nilai-table_wrapper .col-md-6:eq(0)');
-
-    $("#nilai-table2").DataTable({
-        "responsive": true,
-        "lengthChange": false,
-        "autoWidth": false,
-    }).buttons().container().appendTo('#nilai-table2_wrapper .col-md-6:eq(0)');
-
-    $("#data-table").DataTable({
-        "responsive": true,
-        "lengthChange": true,
-        "autoWidth": false,
-    }).buttons().container().appendTo('#data-table_wrapper .col-md-6:eq(0)');
-
-    $("#data-table2").DataTable({
-        "responsive": true,
-        "lengthChange": true,
-        "autoWidth": false,
-    }).buttons().container().appendTo('#data-table2_wrapper .col-md-6:eq(0)');
+    }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
 });
 </script>
-<!-- Select2 -->
-<script src="<?php echo base_url('builder/plugins/select2/js/select2.full.min.js'); ?>"></script>

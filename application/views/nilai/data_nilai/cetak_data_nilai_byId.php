@@ -82,175 +82,87 @@
         <table border="0" style="font-size: 14px; font-weight: bold;">
             <tr>
                 <td>Nama Siswa</td>
-                <td>:</td>
-                <td><?php echo tampil_nama_siswa_byid(tampil_id_daftar_siswa_byid($key->id_siswa))?></td>
+                <td>: <?php echo tampil_nama_siswa_byid(tampil_id_daftar_siswa_byid($key->id_siswa))?></td>
             </tr>
             <tr>
                 <td>Mata Pelajaran</td>
-                <td>:</td>
-                <td><?php echo tampil_mapelById($key->id_mapel)?></td>
+                <td>: <?php echo tampil_mapelById($key->id_mapel)?></td>
             </tr>
             <tr>
                 <td>Kelas / Rombel</td>
-                <td>:</td>
-                <td><?php echo tampil_kelas_byid(tampil_id_kelas_rombel_byid($key->id_rombel))?> /
+                <td>: <?php echo tampil_kelas_byid(tampil_id_kelas_rombel_byid($key->id_rombel))?> /
                     <?php echo tampil_rombel_byid($key->id_rombel)?></td>
             </tr>
             <tr>
                 <td>Semester</td>
-                <td>:</td>
-                <td><?php echo $key->id_semester?></td>
+                <td>: <?php echo $key->id_semester?></td>
             </tr>
         </table>
         <hr>
-        <!-- <table border="0" style="font-size: 14px; font-weight: bold;">
-            <tr>
-                <td>Ulangan Harian 1</td>
-                <td>:</td>
-                <td><?php echo $key->nuh1?></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Ulangan Harian 2</td>
-                <td>:</td>
-                <td><?php echo $key->nuh2?></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Ulangan Harian 3</td>
-                <td>:</td>
-                <td><?php echo $key->nuh3?></td>
-            </tr>
-            <br>
-            <tr>
-                <td>Nilai Tugas 1</td>
-                <td>:</td>
-                <td><?php echo $key->nt1?></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Nilai Tugas 1</td>
-                <td>:</td>
-                <td><?php echo $key->nt2?></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Nilai Tugas 1</td>
-                <td>:</td>
-                <td><?php echo $key->nt3?></td>
-            </tr>
-            <br>
-            <tr>
-                <td>Nilai Rata Rata (Ulangan)</td>
-                <td>:</td>
-                <td><?php echo $key->rnuh?></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Nilai Rata Rata (Tugas)</td>
-                <td>:</td>
-                <td><?php echo $key->rnt?></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Nilai Rata Rata (Harian)</td>
-                <td>:</td>
-                <td><?php echo $key->nh?></td>
-            </tr>
-            <br>
-            <tr>
-                <td>Nilai Tengah Semester</td>
-                <td>:</td>
-                <td><?php echo $key->mid?></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Nilai Semesteran</td>
-                <td>:</td>
-                <td><?php echo $key->smt?></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Nilai Keseluruhan</td>
-                <td>:</td>
-                <td><?php echo $key->nar?></td>
-            </tr>
-        </table> -->
-        <!-- <table border="1" style="border-collapse: collapse;" width="100%" cellpadding="4" cellspacing="4">
+        <table border="1" style="border-collapse: collapse;" width="100%" cellpadding="4" cellspacing="4">
             <tr style="font-weight: bold;">
-                <th>Rata-Rata Nilai Tugas</th>
-                <th>Rata-Rata Nilai Ulangan Harian</th>
-                <th>Nilai Tengah Semester</th>
-                <th>Nilai Semesteran</th>
-                <th>Nilai Keseluruhan</th>
+                <td width="1%">No</td>
+                <th>Nama Nilai</th>
+                <th>Nilai</th>
             </tr>
-            <tr style="text-align: center;">
-                <td><?php echo $key->rnt?></td>
-                <td><?php echo $key->rnuh?></td>
-                <td><?php echo $key->mid?></td>
-                <td><?php echo $key->smt?></td>
-                <td><?php echo $key->nar?></td>
-            </tr>
-        </table> -->
-        <table border="0" style="font-size: 14px;">
             <tr>
-                <td>1. Nilai Ulangan Harian 1</td>
-                <td>:</td>
+                <td>1</td>
+                <td>Nilai Ulangan Harian 1</td>
                 <td><?php echo $key->nuh1?></td>
             </tr>
             <tr>
-                <td>2. Nilai Ulangan Harian 2</td>
-                <td>:</td>
+                <td>2</td>
+                <td>Nilai Ulangan Harian 2</td>
                 <td><?php echo $key->nuh2?></td>
             </tr>
             <tr>
-                <td>3. Nilai Ulangan Harian 3</td>
-                <td>:</td>
+                <td>3</td>
+                <td>Nilai Ulangan Harian 3</td>
                 <td><?php echo $key->nuh3?></td>
             </tr>
             <tr>
-                <td>4. Nilai Tugas 1</td>
-                <td>:</td>
+                <td>4</td>
+                <td>Nilai Tugas 1</td>
                 <td><?php echo $key->nt1?></td>
             </tr>
             <tr>
-                <td>5. Nilai Tugas 2</td>
-                <td>:</td>
+                <td>5</td>
+                <td>Nilai Tugas 2</td>
                 <td><?php echo $key->nt2?></td>
             </tr>
             <tr>
-                <td>6. Nilai Tugas 3</td>
-                <td>:</td>
+                <td>6</td>
+                <td>Nilai Tugas 3</td>
                 <td><?php echo $key->nt3?></td>
             </tr>
             <tr>
-                <td>7. Nilai Tengah Semester</td>
-                <td>:</td>
+                <td>7</td>
+                <td>Nilai Tengah Semester</td>
                 <td><?php echo $key->mid?></td>
             </tr>
             <tr>
-                <td>8. Nilai Semesteran</td>
-                <td>:</td>
+                <td>8</td>
+                <td>Nilai Semesteran</td>
                 <td><?php echo $key->smt?></td>
             </tr>
             <tr>
-                <td>9. Rata-Rata Nilai Ulangan Harian</td>
-                <td>:</td>
+                <td>9</td>
+                <td>Rata-Rata Nilai Ulangan Harian</td>
                 <td><?php echo $key->rnuh?></td>
             </tr>
             <tr>
-                <td>10. Rata-Rata Nilai Tugas</td>
-                <td>:</td>
+                <td>10</td>
+                <td>Rata-Rata Nilai Tugas</td>
                 <td><?php echo $key->rnt?></td>
             </tr>
             <tr>
-                <td>11. Rata-Rata Nilai Tugas % Ulangan</td>
-                <td>:</td>
+                <td>11</td>
+                <td>Rata-Rata Nilai Tugas % Ulangan</td>
                 <td><?php echo $key->nh?></td>
             </tr>
             <tr>
-                <td>12. Nilai Keseluruhan</td>
-                <td>:</td>
+                <td>12</td>
+                <td>Nilai Keseluruhan 1</td>
                 <td><?php echo $key->nar?></td>
             </tr>
         </table>
