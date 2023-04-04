@@ -73,6 +73,7 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
+                                        <th>Username</th>
                                         <th>Level</th>
                                         <th>Hak Akses</th>
                                         <th class="text-center">Aksi</th>
@@ -82,6 +83,7 @@
                                     <?php $no = 0; foreach ($data_user as $row): $no++ ?>
                                     <tr>
                                         <td><?php echo $no?></td>
+                                        <td><?php echo $row->username?></td>
                                         <td><?php echo $row->level?></td>
                                         <td>Page <?php echo tampil_hak_akses($row->id_hak_akses)?></td>
                                         <td class="text-center">
