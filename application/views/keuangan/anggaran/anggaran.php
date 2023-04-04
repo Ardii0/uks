@@ -76,7 +76,7 @@
                                 <div class="card-body">
                                     <div class="mb-3">
                                         <span class="h2"><?php echo tampil_rn_byid($data_rn[0]->id_rencana_anggaran)?></span>
-                                        <span <?php if (tampil_tetapkan_byid($this->session->userdata('id_rn')) == 1) echo "class='hidden''" ?>>
+                                        <span class="h2"<?php if (tampil_tetapkan_byid($this->session->userdata('id_rn')) == 1) echo "class='hidden''" ?>>
                                         <?php if(!$this->db->where('rencana_anggaran',$data_rn[0]->id_rencana_anggaran)->get('tabel_jenis_transaksi')->result() &&
                                                  !$this->db->where('id_anggaran',$data_rn[0]->id_rencana_anggaran)->get('tabel_transaksi')->result()) {?>
                                             <button class="btn btn-danger btn-sm mx-1" onClick="hapus(<?php echo $data_rn[0]->id_rencana_anggaran ?>)">
