@@ -82,20 +82,20 @@
         <table border="0" style="font-size: 14px; font-weight: bold;">
             <tr>
                 <td>Nama Siswa</td>
-                <td><?php echo tampil_nama_siswa_byid(tampil_id_daftar_siswa_byid($key->id_siswa))?></td>
+                <td>: <?php echo tampil_nama_siswa_byid(tampil_id_daftar_siswa_byid($key->id_siswa))?></td>
             </tr>
             <tr>
                 <td>Mata Pelajaran</td>
-                <td><?php echo tampil_mapelById($key->id_mapel)?></td>
+                <td>: <?php echo tampil_mapelById($key->id_mapel)?></td>
             </tr>
             <tr>
                 <td>Kelas / Rombel</td>
-                <td><?php echo tampil_kelas_byid(tampil_id_kelas_rombel_byid($key->id_rombel))?> /
+                <td>: <?php echo tampil_kelas_byid(tampil_id_kelas_rombel_byid($key->id_rombel))?> /
                     <?php echo tampil_rombel_byid($key->id_rombel)?></td>
             </tr>
             <tr>
                 <td>Semester</td>
-                <td><?php echo $key->id_semester?></td>
+                <td>: <?php echo $key->id_semester?></td>
             </tr>
         </table>
         <hr>
