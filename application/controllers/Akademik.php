@@ -1083,7 +1083,10 @@ class Akademik extends CI_Controller {
             'judul' => 'akademik',
             'page' => 'akademik',
             'menu' => 'siswa',
-            'submenu'=>'data_siswa'
+            'submenu'=>'data_siswa',
+            'menu_submenu_admin'=>'siswa',
+            'menu_admin' => 'akademik',
+            'submenu_admin'=>'data_siswa',
         ];
         $id_rombel = $this->input->post('id_rombel');
         $nilaifilter = $this->input->post('nilaifilter');
