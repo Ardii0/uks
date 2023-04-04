@@ -18,4 +18,15 @@ class Alumni extends CI_Controller {
         $this->load->view('alumni/dashboard');
     }
 
+    public function data_diri()
+    {
+        $this->load->view('alumni/data_diri/data_diri');
+    }
+
+    public function bekerja()
+    {
+        $data['user'] = $this->m_alumni->get('tabel_level', array('id_level' => $this->session->userdata('id_level')))->result();
+        $this->load->view('alumni/data_diri/bekerja/bekerja', $data);
+    }
+
 }

@@ -28,6 +28,14 @@
                 </p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url('Alumni/data_diri') ;?>"  class="nav-link">
+                <i class="nav-icon fas fa-graduation-cap"></i>
+                <p>
+                  Data Diri
+                </p>
+              </a>
+            </li>
             <li class="nav-item logout">
               <a href="<?php echo base_url('Login/logout');?>" class="nav-link">
                 <i class="nav-icon far fa-circle text-danger"></i>

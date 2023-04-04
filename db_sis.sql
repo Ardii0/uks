@@ -87,58 +87,6 @@ CREATE TABLE `stok_buku_masuk` (
 
 /*Data for the table `stok_buku_masuk` */
 
-/*Table structure for table `tabel_admin` */
-
-DROP TABLE IF EXISTS `tabel_admin`;
-
-CREATE TABLE `tabel_admin` (
-  `id_admin` int NOT NULL AUTO_INCREMENT,
-  `id_pesanan` varchar(20) DEFAULT NULL,
-  `id_pembayaran` varchar(20) DEFAULT NULL,
-  `id_paket_wedding` varchar(11) DEFAULT NULL,
-  `nama` varchar(50) NOT NULL,
-  `username` varchar(40) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `no_telp` varchar(20) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `jenis_kelamin` varchar(15) DEFAULT NULL,
-  `alamat` varchar(255) DEFAULT NULL,
-  `nama_pemesan` varchar(100) DEFAULT NULL,
-  `no_telp_pemesan` varchar(20) DEFAULT NULL,
-  `email_pemesan` varchar(100) DEFAULT NULL,
-  `alamat_pemesan` varchar(255) DEFAULT NULL,
-  `judul_pw` varchar(100) DEFAULT NULL,
-  `tanggal_pesanan` date DEFAULT NULL,
-  `tanggal_acara` date DEFAULT NULL,
-  `tanggal_bayar_dp` date DEFAULT NULL,
-  `harga_pw` varchar(50) DEFAULT NULL,
-  `dp_pw` varchar(100) DEFAULT NULL,
-  `pelunasan_pw` varchar(100) DEFAULT NULL,
-  `bayar_dp` varchar(100) DEFAULT NULL,
-  `bayar_pelunasan` varchar(100) DEFAULT NULL,
-  `no_invoice_dp` varchar(255) DEFAULT NULL,
-  `nama_bank_dp` varchar(50) DEFAULT NULL,
-  `bukti_pembayaran_dp` varchar(250) DEFAULT NULL,
-  `tanggal_bayar_pelunasan` date DEFAULT NULL,
-  `nama_bank_pelunasan` varchar(100) DEFAULT NULL,
-  `no_invoice_pelunasan` varchar(100) DEFAULT NULL,
-  `bukti_pembayaran_pelunasan` varchar(100) DEFAULT NULL,
-  `status_pembayaran_dp` int DEFAULT '0',
-  `status_pembayaran_pelunasan` int DEFAULT '0',
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `mdate` datetime NOT NULL,
-  `ddate` datetime NOT NULL,
-  `c_by` varchar(50) NOT NULL,
-  `m_by` varchar(50) NOT NULL,
-  `d_by` varchar(50) NOT NULL,
-  `del_flag` int NOT NULL,
-  `last_login` datetime NOT NULL,
-  `level` int NOT NULL,
-  PRIMARY KEY (`id_admin`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `tabel_admin` */
-
 /*Table structure for table `tabel_akun` */
 
 DROP TABLE IF EXISTS `tabel_akun`;
