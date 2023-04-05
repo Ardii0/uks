@@ -460,7 +460,7 @@ class Akademik extends CI_Controller {
         $this->m_akademik->tambah_guru('tabel_guru', $data);
         $nilaiAccess = [
             'username' => $this->input->post('nama_guru'),
-            'email' => $this->input->post('nama_guru').'@gmail.com',
+            'email' => str_replace(' ', '', $this->input->post('nama_guru').'@gmail.com'),
             'password' => md5($this->input->post('nip')),
             'level' => 'Guru',
             'kode_guru' => $this->input->post('kode_guru'),
