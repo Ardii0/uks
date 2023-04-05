@@ -1041,4 +1041,15 @@ function format_indo($date){
       }
     }
 
+    function tampil_pesan_byId_alumni($id)
+    {
+     $ci =& get_instance();
+     $ci->load->database();
+     $result = $ci->db->where('id_alumni',$id)->get('tabel_testimoni');
+      foreach ($result->result() as $c) {
+      $stmt= $c->pesan;
+      return $stmt;
+      }
+    }
+
 ?>

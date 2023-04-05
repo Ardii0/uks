@@ -48,7 +48,7 @@
                         </div>
                         <div class="col-6 row mt-1">
                             <div class="col-6 text-right font-weight-bold">Id Buku :</div>
-                            <div class="col-6">1</div>
+                            <div class="col-6"><?php echo $data->id_buku ?></div>
                         </div>
                         <div class="col-6 row mt-1">
                             <div class="col-6 text-right font-weight-bold">Penerbit :</div>

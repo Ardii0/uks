@@ -29,4 +29,47 @@ class Alumni extends CI_Controller {
         $this->load->view('alumni/data_diri/bekerja/bekerja', $data);
     }
 
+    public function testimoni()
+    {
+        $data['testimoni']=$this->m_alumni->get_testimoni_byId('tabel_testimoni')->result();
+        $this->load->view('alumni/testimoni/testimoni', $data);
+    }
+
+    public function delete_testimoni($id_testimoni)
+    {
+        $hapus=$this->m_alumni->delete_testimoni('tabel_testimoni', 'id_testimoni', $id_testimoni);
+        if($hapus)
+        {
+            $this->session->set_flashdata('sukses', 'Berhasil..');
+            redirect(base_url('Alumni/testimoni'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Alumni/testimoni/error'));
+        }
+
+    }
+
+    public function aksi_tambah_testimoni()
+    {
+        $data = array
+        (
+            'id_alumni' => $this->input->post('id_alumni'),
+            'pesan' => $this->input->post('pesan'),
+            'tampil' => 'tidak',
+        );
+        $masuk=$this->m_alumni->tambah_testimoni('tabel_testimoni', $data);
+        if($masuk)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('Alumni/testimoni'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Alumni/testimoni'));
+        }
+    }
+
 }
