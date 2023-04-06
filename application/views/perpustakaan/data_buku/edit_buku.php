@@ -100,11 +100,11 @@
                                             <div class="col-sm-12">
                                                 <select name="kategori_id" class="custom-select custom-select-md mb-3">
                                                     <option style="display: none;"
-                                                        value="<?php echo $row->kategori_id ?>">
-                                                        <?php echo $row->kategori_id ?>
+                                                        value="<?php echo namakategori($row->kategori_id) ?>">
+                                                        <?php echo namakategori($row->kategori_id) ?>
                                                     </option>
                                                     <?php $no = 0;foreach ($data_kategori_buku as $data): $no++;?>
-                                                    <option value="<?php echo $data->nama_kategori_buku ?>">
+                                                    <option value="<?php echo $data->id_kategori_buku ?>">
                                                         <?php echo $data->nama_kategori_buku ?></option>
                                                     <?php endforeach;?>
                                                 </select>

@@ -14,9 +14,11 @@
 <body class="hold-transition layout-fixed" style="background-color: #E5E7EB" data-panel-auto-height-mode="height">
     <div class="container-fluid py-3 fixed-top mb-2 bg-light">
         <div class="container d-flex justify-content-between align-items-center">
-             <a href="<?php echo base_url ('Landingpage/daftar_buku')?>"> <div class="text-dark">
-                <h3>E-Perpus</h3>
-            </div></a>
+            <a href="<?php echo base_url ('Landingpage/daftar_buku')?>">
+                <div class="text-dark">
+                    <h3>E-Perpus</h3>
+                </div>
+            </a>
             <div class="d-flex gap-4 justify-content-between align-items-center">
                 <div class="input-group px-2 w-100">
                 </div>
@@ -24,7 +26,7 @@
                     <form action="<?php echo base_url('LandingPage/filter_ByRakBuku') ?>" method="post">
                         <div class="form-group d-flex" style="width: 130%;">
                             <select name="nama_rak_buku" class="form-control select2"
-                                data-dropdown-css-class="select2-info" required="" style="width: 100%;">
+                                data-dropdown-css-class="select2-info" style="width: 100%;">
                                 <option value="">
                                     Pilih Rak Buku
                                 </option>
@@ -41,45 +43,33 @@
                 <!-- sengaja kosong -->
                 <a href="<?php echo base_url ('Landingpage/daftar_buku')?>">
                     <div class="btn btn-info">
-                    <i class="fas fa-arrow-left"></i>
+                        <i class="fas fa-arrow-left"></i>
                         Kembali
                     </div>
                 </a>
             </div>
         </div>
     </div>
-
     </div>
     <div class="container-fluid db-content" style="margin-top:110px">
-
         <div class="cards-1 section-gray">
             <div class="container">
+            <div class="ml-5 border-bottom border-dark" style="width: 135px">
+                    <h2>Rak Buku</h2>
+                </div>
                 <div class="row d-flex justify-content-start">
-                    <?php $id=0; foreach($datafilter as $data ): $id++;?>
+                    <?php $id=0; foreach($data_rak_buku as $data ): $id++;?>
                     <div class="col-md-3">
                         <div class="card card-blog">
-                            <div class="card-image" style="width: 225px; height: 260px">
-                                <a href="#">
-                                    <img class="" style="width: 225px; height: 260px"
-                                        src="<?php echo base_url('uploads/perpustakaan/buku')."/".$data->foto;?>"
-                                        alt="">
-                                </a>
-                                <div class="ripple-cont"></div>
-                            </div>
                             <div class="table">
-                                <h5 class="category text-success"></i><?php echo $data->kategori_id?></h6>
-                                    <h3 class="card-caption">
-                                        <a href="buku/<?php echo $data->id_buku?>"
-                                            class="text-wrap"><?php echo $data->judul_buku?></a>
-                                    </h3>
-                                    <p class="card-description overflow-hidden" style="height: 100px;">
-                                        <?php echo $data->keterangan?></p>
-                                    <div class="ftr">
-                                        <div class="author">
-                                            <a><span><strong><?php echo $data->penulis_buku?></strong></span></a>
-                                        </div>
-                                        <div class="stats"><strong><?php echo $data->tahun_terbit?></strong></div>
-                                    </div>
+                                <h5 class="category text-success">Nama Rak : <?php echo $data->nama_rak_buku?></h5>
+                                <div class="pt-2">
+                                    Keterangan :
+                                    <p class="overflow-hidden" style="font-size: 20px; height: 100px;">
+                                        <?php echo $data->keterangan_rak_buku?>
+                                    </p>
+                                </div>
+                                <a href="<?php echo base_url('landingpage/rak_buku/'.$data->nama_rak_buku)?>" style="width: ;" class="text-white ml-2 w-100 btn btn-warning"><b>Lihat</b></a>
                             </div>
                         </div>
                     </div>

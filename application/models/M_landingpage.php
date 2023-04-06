@@ -54,15 +54,15 @@ class M_landingpage extends CI_Model
         return $query->result();
 		}
 
-	public function filterByKategoriBuku($nama_kategori_buku){
-        if ($nama_kategori_buku != null) {
-          $query = $this->db->where('kategori_id', $nama_kategori_buku)->get('table_buku');
-        } else {
-          $query = $this->db->query("SELECT * from table_buku");
-        }
+    public function filterByKategoriBuku($id_kategori_buku){
+      if ($id_kategori_buku != null) {
+        $query = $this->db->where('kategori_id', $id_kategori_buku)->get('table_buku');
+      } else {
+        $query = $this->db->query("SELECT * from table_buku");
+      }
 
-        return $query->result();
-}
+      return $query->result();
+    }
 	public function filterByRakBuku($nama_rak_buku){
         if ($nama_rak_buku != null) {
           $query = $this->db->where('rak_buku_id', $nama_rak_buku)->get('table_buku');
@@ -72,4 +72,15 @@ class M_landingpage extends CI_Model
 
         return $query->result();
   }
+  public function get_bukuByKat($tabel, $kategori_id)
+        {
+          $data = $this->db->where('kategori_id', $kategori_id)->get($tabel)->result();
+          return $data;
+      }
+
+    public function get_bukuByRak($tabel, $rak_buku_id)
+    {
+        $data = $this->db->where('rak_buku_id', $rak_buku_id)->get($tabel)->result();
+        return $data;
+    }
 }

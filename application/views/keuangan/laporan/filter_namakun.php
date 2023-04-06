@@ -68,7 +68,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-6">
-                                    <table id="datasiswa-table" class="table">
+                                    <table class="table">
                                         <thead>
                                             <tr>
                                                 <th>Tanggal</th>
@@ -103,12 +103,11 @@
                                                     </strong>
                                                 </td>
                                             </tr>
-
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="col-6">
-                                    <table id="datasiswa-table" class="table">
+                                    <table class="table">
                                         <thead>
                                             <tr>
                                                 <th>Tanggal</th>

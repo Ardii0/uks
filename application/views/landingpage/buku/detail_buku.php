@@ -11,10 +11,38 @@
 </head>
 
 <body class="hold-transition layout-fixed" style="background-color: #ECECEC" data-panel-auto-height-mode="height">
-
+<div class="container-fluid py-3 fixed-top mb-2 bg-light">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="<?php echo base_url ('Landingpage/daftar_buku')?>">
+                <div class="text-dark">
+                    <h3>E-Perpus</h3>
+                </div>
+            </a>
+            <div class="d-flex gap-4 justify-content-between align-items-center">
+                <div>
+                    <form action="<?php echo base_url('LandingPage/filter_ByJudulBuku') ?>" method="post">
+                        <div class="form-group d-flex" style="width: 160%;">
+                            <select name="judul_buku" class="form-control select2"
+                                data-dropdown-css-class="select2-info" required="" style="width: 100%;">
+                                <option value="">
+                                    Pilih Buku
+                                </option>
+                                <?php $id = 0;foreach ($data_buku as $jud): $id++;?>
+                                <option value="<?php echo $jud->judul_buku ?>"><?php echo $jud->judul_buku ?></option>
+                                <?php endforeach;?>
+                            </select>
+                            <button type="submit" style="width: " class="ml-2 w-20 btn btn-success">Tampilkan</button>
+                        </div>
+                </div>
+            </div>
+            <div>
+                <!-- sengaja biar kosong -->
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="bg-white rounded">
-            <div class="row p-2" style="margin-top: 80px">
+            <div class="row p-2" style="margin-top: 120px">
                 <?php $id=0; foreach($buku as $data ): $id++;?>
                 <div class="rounded p-3">
                     <img style="width:240px; height: 390px"

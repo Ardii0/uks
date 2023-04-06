@@ -66,11 +66,11 @@ class LandingPage extends CI_Controller {
 
     function filter_ByKategoriBuku(){
         $data['data_kategori_buku'] = $this->m_perpustakaan->get_all_data_kategori_buku('data_kategori_buku');
-        $nama_kategori_buku = $this->input->post('nama_kategori_buku');
+        $id_kategori_buku = $this->input->post('id_kategori_buku');
         $nilaifilter = $this->input->post('nilaifilter');
 
         if($nilaifilter = 1) {
-            $data['datafilter'] = $this->m_landingpage->filterByKategoriBuku($nama_kategori_buku);
+            $data['datafilter'] = $this->m_landingpage->filterByKategoriBuku($id_kategori_buku);
             
             $this->load->view('landingpage/filter/filter_by_kategori', $data);
         }
@@ -100,11 +100,26 @@ class LandingPage extends CI_Controller {
         }
     }
 
+    public function kategori_buku($kategori_id)
+    {
+        $data['data_kategori_buku'] = $this->m_perpustakaan->get_all_data_kategori_buku('data_kategori_buku');
+        $data['buku'] = $this->m_landingpage->get_bukuByKat('table_buku', $kategori_id);
+        $this->load->view('landingpage/filter/buku_by_kat', $data);
+    }
+
+    public function rak_buku($rak_buku_id)
+    {
+        $data['data_rak_buku'] = $this->m_perpustakaan->get_all_data_rak_buku('data_rak_buku');
+        $data['buku'] = $this->m_landingpage->get_bukuByRak('table_buku', $rak_buku_id);
+        $this->load->view('landingpage/filter/buku_by_rak', $data);
+    }
+
     public function buku($id_buku)
     {
-        $buku['data_buku'] = $this->m_perpustakaan->get_all_data_buku('data_buku');
+        $data['data_buku'] = $this->m_perpustakaan->get_all_data_buku('data_buku');
         $data['buku'] = $this->m_landingpage->get_bukuById('table_buku', $id_buku);
-        $this->load->view('landingpage/buku/detail_buku', $data, $buku);
+
+        $this->load->view('landingpage/buku/detail_buku', $data);
     }
 
     public function register()

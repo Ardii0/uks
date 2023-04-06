@@ -25,13 +25,13 @@
                 <div>
                     <form action="<?php echo base_url('LandingPage/filter_ByKategoriBuku') ?>" method="post">
                         <div class="form-group d-flex" style="width: 130%;">
-                            <select name="nama_kategori_buku" class="form-control select2"
+                            <select name="id_kategori_buku" class="form-control select2"
                                 data-dropdown-css-class="select2-info" required="" style="width: 140%;">
                                 <option value="">
                                     Pilih Kategori
                                 </option>
                                 <?php $id = 0;foreach ($data_kategori_buku as $buku): $id++;?>
-                                <option value="<?php echo $buku->nama_kategori_buku ?>">
+                                <option value="<?php echo $buku->id_kategori_buku ?>">
                                     <?php echo $buku->nama_kategori_buku ?></option>
                                 <?php endforeach;?>
                             </select>
@@ -55,37 +55,26 @@
     <div class="container-fluid db-content" style="margin-top:110px">
         <div class="cards-1 section-gray">
             <div class="container">
+                <div class="ml-5 border-bottom border-dark" style="width: 195px">
+                    <h2>Kategori Buku</h2>
+                </div>
                 <div class="row d-flex justify-content-start">
-                    <?php $id=0; foreach($datafilter as $data ): $id++;?>
+                    <?php $id=0; foreach($data_kategori_buku as $data ): $id++;?>
                     <div class="col-md-3">
                         <div class="card card-blog">
-                            <div class="card-image" style="width: 225px; height: 260px">
-                                <a href="#">
-                                    <img class="" style="width: 225px; height: 260px"
-                                        src="<?php echo base_url('uploads/perpustakaan/buku')."/".$data->foto;?>"
-                                        alt="">
-                                </a>
-                                <div class="ripple-cont"></div>
-                            </div>
                             <div class="table">
-                                <h5 class="category text-success"></i><?php echo $data->kategori_id?></h6>
-                                    <h3 class="card-caption">
-                                        <a href="buku/<?php echo $data->id_buku?>"
-                                            class="text-wrap"><?php echo $data->judul_buku?></a>
-                                    </h3>
-                                    <p class="card-description overflow-hidden" style="height: 100px;">
-                                        <?php echo $data->keterangan?></p>
-                                    <div class="ftr">
-                                        <div class="author">
-                                            <a><span><strong><?php echo $data->penulis_buku?></strong></span></a>
-                                        </div>
-                                        <div class="stats"><strong><?php echo $data->tahun_terbit?></strong></div>
-                                    </div>
+                                <h5 class="category text-success"> <?php echo $data->nama_kategori_buku?></h5>
+                                <div class="pt-2">
+                                    Keterangan :
+                                    <p class="overflow-hidden" style="font-size: 20px; height: 100px;">
+                                        <?php echo $data->keterangan_kategori_buku?>
+                                    </p>
+                                </div>
+                                <a href="<?php echo base_url('landingpage/kategori_buku/'.$data->id_kategori_buku)?>" style="width: ;" class="text-white ml-2 w-100 btn btn-warning"><b>Lihat</b></a>
                             </div>
                         </div>
                     </div>
                     <?php endforeach;?>
-
                 </div>
             </div>
         </div>

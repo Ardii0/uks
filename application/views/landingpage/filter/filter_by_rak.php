@@ -60,7 +60,7 @@
                                 <div class="ripple-cont"></div>
                             </div>
                             <div class="table">
-                                <h5 class="category text-success"></i><?php echo $data->kategori_id?></h6>
+                                <h5 class="category text-success"></i><?php echo namakategori($data->kategori_id)?></h6>
                                     <h3 class="card-caption">
                                         <a href="buku/<?php echo $data->id_buku?>"
                                             class="text-wrap"><?php echo $data->judul_buku?></a>

@@ -423,6 +423,16 @@ function tampil_nama_siswa_byid($id)
   }
 
 // Perpustakaan
+function namakategori($id)
+  {
+    $ci =& get_instance();
+    $ci->load->database();
+    $result = $ci->db->where('id_kategori_buku',$id)->get('table_kategori_buku');
+      foreach ($result->result() as $c) {
+      $stmt= $c->nama_kategori_buku;
+      return $stmt;
+      }
+  }
  // Anggota
   function tampil_namadaftar_ByIdSiswa($id)
   {

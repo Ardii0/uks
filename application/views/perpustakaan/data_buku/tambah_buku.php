@@ -65,7 +65,7 @@
                                                             class="custom-select custom-select-md mb-3">
                                                             <option selected>-- Pilih Kategori --</option>
                                                             <?php $no = 0;foreach ($data_kategori_buku as $row): $no++;?>
-                                                            <option value="<?php echo $row->nama_kategori_buku ?>">
+                                                            <option value="<?php echo $row->id_kategori_buku ?>">
                                                                 <?php echo $row->nama_kategori_buku ?></option>
                                                             <?php endforeach;?>
                                                         </select>

@@ -23,14 +23,14 @@
                 <div>
                     <form action="<?php echo base_url('LandingPage/filter_ByKategoriBuku') ?>" method="post">
                         <div class="form-group d-flex" style="width: 130%;">
-                            <select name="nama_kategori_buku" class="form-control select2"
-                                data-dropdown-css-class="select2-info" required="" style="width: 100%;">
+                        <select name="id_kategori_buku" class="form-control select2"
+                                data-dropdown-css-class="select2-info" required="" style="width: 140%;">
                                 <option value="">
                                     Pilih Kategori
                                 </option>
-                                <?php $id = 0;foreach ($data_kategori_buku as $buku): $id++;?>
-                                <option value="<?php echo $buku->nama_kategori_buku ?>">
-                                    <?php echo $buku->nama_kategori_buku ?></option>
+                                <?php $id = 0;foreach ($data_kategori_buku as $kat): $id++;?>
+                                <option value="<?php echo $kat->id_kategori_buku ?>">
+                                    <?php echo $kat->nama_kategori_buku ?></option>
                                 <?php endforeach;?>
                             </select>
                             <button type="submit" style="width: " class="ml-2 w-50 btn btn-success">Tampilkan</button>
@@ -61,7 +61,7 @@
                                 <div class="ripple-cont"></div>
                             </div>
                             <div class="table">
-                                <h5 class="category text-success"></i><?php echo $data->kategori_id?></h6>
+                                <h5 class="category text-success"></i><?php echo namakategori($data->kategori_id)?></h6>
                                     <h3 class="card-caption">
                                         <a href="buku/<?php echo $data->id_buku?>"
                                             class="text-wrap"><?php echo $data->judul_buku?></a>
