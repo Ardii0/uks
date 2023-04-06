@@ -26,11 +26,24 @@ class M_alumni extends CI_Model{
 		return $data;
 	}
 
-    function get($table,$where)
+    function get($table)
+  	{
+		return $this->db->get($table);
+	}
+
+    function getwhere($table,$where)
   	{
 		return $this->db->get_where($table,$where);
 	}
 
+// Data Diri
+    function get_rombelByIdKelas($id_kelas){
+        $query = $this->db->get_where('tabel_rombel', array('id_kelas' => $id_kelas));
+        return $query;
+    }
+
+
+//
 	public function tambah_testimoni($tabel, $data)
 	{
 	  $this->db->insert($tabel, $data);

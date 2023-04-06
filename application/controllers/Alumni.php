@@ -17,15 +17,22 @@ class Alumni extends CI_Controller {
     {
         $this->load->view('alumni/dashboard');
     }
-
+// Data Diri
     public function data_diri()
     {
         $this->load->view('alumni/data_diri/data_diri');
     }
 
+    public function get_daftarByNisn(){
+        $id_daftar = $this->input->post('id_daftar',TRUE);
+        $data = $this->m_alumni->getwhere('tabel_daftar', array('id_daftar' => $id_daftar))->result();
+        echo json_encode($data);
+    }
+
     public function bekerja()
     {
-        $data['user'] = $this->m_alumni->get('tabel_level', array('id_level' => $this->session->userdata('id_level')))->result();
+        $data['data'] = $this->m_alumni->getwhere('tabel_daftar', array('diterima' => 'G'))->result();
+        $data['user'] = $this->m_alumni->getwhere('tabel_level', array('id_level' => $this->session->userdata('id_level')))->result();
         $this->load->view('alumni/data_diri/bekerja/bekerja', $data);
     }
 
@@ -138,6 +145,7 @@ class Alumni extends CI_Controller {
         }
     }
 
+//
     public function testimoni()
     {
         $data['testimoni']=$this->m_alumni->get_testimoni_byId('tabel_testimoni')->result();

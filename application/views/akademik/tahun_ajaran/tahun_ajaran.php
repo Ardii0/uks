@@ -62,7 +62,7 @@
                                             <th>Akhir Periode</th>
                                             <th>Keterangan</th>
                                             <th>Status</th>
-                                            <th>Aksi</th>
+                                            <th style="width: 100px;">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>

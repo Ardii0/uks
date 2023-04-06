@@ -59,7 +59,7 @@
                                             <th>Nama Mata Pelajaran</th>
                                             <th>Jenis Mapel</th>
                                             <th>Keterangan</th>
-                                            <th>Aksi</th>
+                                            <th style="width: 100px;">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>

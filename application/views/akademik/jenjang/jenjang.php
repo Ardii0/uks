@@ -68,7 +68,7 @@
                                             <th>Kode Jenjang</th>
                                             <th>Alamat</th>
                                             <th>Keterangan</th>
-                                            <th>Aksi</th>
+                                            <th style="width: 80px;">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -85,7 +85,7 @@
                                             <td>
                                                 <?php echo $data->kd_jenjang ?>
                                             </td>
-                                            <td style="width: 40%;">
+                                            <td style="width: 35%;">
                                                 <?php echo $data->alamat ?>
                                             </td>
                                             <td>

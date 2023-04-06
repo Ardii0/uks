@@ -16,6 +16,40 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`db_sis` /*!40100 DEFAULT CHARACTER SET 
 
 USE `db_sis`;
 
+/*Table structure for table `data_diri` */
+
+DROP TABLE IF EXISTS `data_diri`;
+
+CREATE TABLE `data_diri` (
+  `id_data_diri` int NOT NULL AUTO_INCREMENT,
+  `id_level` int NOT NULL,
+  `id_daftar` int NOT NULL,
+  `jurusan_sekolah` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `nik` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
+  `alamat` text CHARACTER SET latin1,
+  `no_telp` varchar(12) CHARACTER SET latin1 DEFAULT NULL,
+  `tahun_lulus` year DEFAULT NULL,
+  `status` varchar(20) CHARACTER SET latin1 DEFAULT NULL,
+  `deskripsi_status` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
+  `nama_instansi` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
+  `jabatan` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
+  `tanggal_kerja` date DEFAULT NULL,
+  `nama_instansi2` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `jabatan2` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `tanggal_kerja2` date DEFAULT NULL,
+  `nama_usaha` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `jenis_usaha` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `tahun_usaha` varchar(10) CHARACTER SET latin1 DEFAULT NULL,
+  `nama_perguruan_tinggi` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `jurusan` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `tahun_perguruan_tinggi` varchar(10) CHARACTER SET latin1 DEFAULT NULL,
+  `timestamp` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id_data_diri`),
+  KEY `id_user` (`id_level`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+/*Data for the table `data_diri` */
+
 /*Table structure for table `kembalikan` */
 
 DROP TABLE IF EXISTS `kembalikan`;
@@ -154,7 +188,7 @@ DROP TABLE IF EXISTS `tabel_anggota`;
 CREATE TABLE `tabel_anggota` (
   `id_anggota` int NOT NULL,
   `id_siswa` int NOT NULL,
-  `date` date DEFAULT (curdate()),
+  `date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `status` int NOT NULL,
   KEY `id_siswa` (`id_siswa`),
   CONSTRAINT `tabel_anggota_to_siswa` FOREIGN KEY (`id_siswa`) REFERENCES `tabel_siswa` (`id_siswa`)
@@ -163,7 +197,8 @@ CREATE TABLE `tabel_anggota` (
 /*Data for the table `tabel_anggota` */
 
 insert  into `tabel_anggota`(`id_anggota`,`id_siswa`,`date`,`status`) values 
-(74282,4,'2023-03-28',1);
+(74282,4,'2023-03-28 12:23:34',1),
+(20470,8,'2023-04-05 10:19:47',1);
 
 /*Table structure for table `tabel_daftar` */
 
@@ -200,14 +235,14 @@ CREATE TABLE `tabel_daftar` (
 
 insert  into `tabel_daftar`(`id_daftar`,`no_reg`,`id_angkatan`,`id_jenjang`,`tgl_daftar`,`nisn`,`nama`,`jekel`,`tempat_lahir`,`anak_ke`,`saudara_kandung`,`saudara_angkat`,`tgl_lahir`,`agama`,`alamat`,`telepon`,`foto`,`warga_negara`,`diterima`) values 
 (1,'REG-A724E5',1,1,'2023-03-28','234','t','L','t',2,'2','31','0000-00-00','Islam','t','975',NULL,'WNI','M'),
-(2,'REG-8IL92S',1,1,'2023-03-28','234','t','L','t',2,'2','31','0000-00-00','Islam','t','975',NULL,'WNI','L'),
+(2,'REG-8IL92S',1,1,'2023-03-28','234','t','L','t',2,'2','31','0000-00-00','Islam','t','975',NULL,'WNI','G'),
 (3,'REG-6SBG5K',1,1,'2023-03-28','234','t','L','t',2,'2','31','0000-00-00','Islam','t','975',NULL,'WNI','A'),
 (4,'REG-DQRHL3',1,1,'2023-03-28','12345789 0','Ahmad A. Bahar','L','Semarang',1,'2','0','0000-00-00','Islam','Jl. Melati 1','0812346789 0',NULL,'WNI','A'),
 (5,'REG-AZ41WL',1,1,'2023-03-28','12345789 1','Ahmad B. Bahar','L','Semarang',1,'3','0','0000-00-00','Islam','Jl. Melati 2','0812346789 1',NULL,'WNI','A'),
 (6,'REG-QNXVCR',1,1,'2023-03-28','12345789 2','Ahmad C. Bahar','L','Semarang',1,'2','0','0000-00-00','Islam','Jl. Melati 3','0812346789 2',NULL,'WNI','A'),
 (7,'REG-TRI2KM',1,1,'2023-03-28','12345789 3','Ahmad D. Bahar','L','Semarang',1,'2','0','0000-00-00','Islam','Jl. Melati 4','0812346789 3',NULL,'WNI','A'),
 (8,'REG-KUJDCX',1,1,'2023-03-28','12345789 4','Ahmad E. Bahar','L','Semarang',1,'2','0','0000-00-00','Islam','Jl. Melati 5','0812346789 4',NULL,'WNI','A'),
-(9,'REG-F9T1CP',1,1,'2023-03-28','12345789 5','Ahmad F. Bahar','L','Semarang',1,'2','0','0000-00-00','Islam','Jl. Melati 6','0812346789 5',NULL,'WNI','P'),
+(9,'REG-F9T1CP',1,1,'2023-03-28','12345789 5','Ahmad F. Bahar','L','Semarang',1,'2','0','0000-00-00','Islam','Jl. Melati 6','0812346789 5',NULL,'WNI','G'),
 (10,'REG-DV2WRJ',1,1,'2023-03-28','12345789 6','Ahmad G. Bahar','L','Jakarta',1,'2','0','0000-00-00','Islam','Jl. Melati 7','0812346789 6',NULL,'WNI','P'),
 (11,'REG-TPKNI7',1,1,'2023-03-28','12345789 7','Ahmad H. Bahar','L','Jakarta',1,'2','0','0000-00-00','Islam','Jl. Melati 8','0812346789 7',NULL,'WNI','P'),
 (12,'REG-DS0KXV',1,1,'2023-03-28','12345789 8','Ahmad I. Bahar','L','Jakarta',1,'2','0','0000-00-00','Islam','Jl. Melati 9','0812346789 8',NULL,'WNI','P'),
@@ -272,7 +307,7 @@ DROP TABLE IF EXISTS `tabel_invoice`;
 CREATE TABLE `tabel_invoice` (
   `id_invoice` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `id_siswa` int NOT NULL,
-  `date` date DEFAULT (curdate()),
+  `date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `id_level` int NOT NULL,
   `id_ta` int DEFAULT NULL,
   `cek_p` int DEFAULT '0'
@@ -281,10 +316,11 @@ CREATE TABLE `tabel_invoice` (
 /*Data for the table `tabel_invoice` */
 
 insert  into `tabel_invoice`(`id_invoice`,`id_siswa`,`date`,`id_level`,`id_ta`,`cek_p`) values 
-('INV0330Y9G3650',4,'2023-03-30',5,1,1),
-('INV0330R9V3731',5,'2023-03-30',5,1,1),
-('INV0330EZB3807',6,'2023-03-30',5,1,1),
-('INV0403M2Y2748',8,'2023-04-03',5,1,1);
+('INV0330Y9G3650',4,'2023-03-30 12:34:44',5,1,1),
+('INV0330R9V3731',5,'2023-03-30 00:00:00',5,1,1),
+('INV0330EZB3807',6,'2023-03-30 00:00:00',5,1,1),
+('INV0403M2Y2748',8,'2023-04-03 00:00:00',5,1,1),
+('INV0405RDX1145',8,'2023-04-05 10:12:16',5,1,1);
 
 /*Table structure for table `tabel_jenis_transaksi` */
 
@@ -556,7 +592,7 @@ CREATE TABLE `tabel_pembayaran` (
   KEY `id_siswa` (`id_siswa`),
   CONSTRAINT `tabel_pembayaran_to_jenisbayar` FOREIGN KEY (`id_jenis`) REFERENCES `tabel_jenisbayar` (`id_jenis`),
   CONSTRAINT `tabel_pembayaran_to_siswa` FOREIGN KEY (`id_siswa`) REFERENCES `tabel_siswa` (`id_siswa`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tabel_pembayaran` */
 
@@ -566,7 +602,8 @@ insert  into `tabel_pembayaran`(`id_pembayaran`,`id_siswa`,`id_jenis`,`nominal`,
 (3,5,1,250000,'SPP Bulan Maret','2023-03-30 14:37:50',1,'TSK0330KPZ3750','INV0330R9V3731',5,1),
 (4,5,2,125000,'UKT Bulan Maret','2023-03-30 14:38:00',1,'TSK0330O203800','INV0330R9V3731',5,1),
 (5,6,2,75000,'UKT Bulan Maret','2023-03-30 14:38:13',1,'TSK0330O8U3813','INV0330EZB3807',5,1),
-(6,8,1,45000,'Ok','2023-04-03 10:28:00',1,'TSK0403DPJ2800','INV0403M2Y2748',5,1);
+(6,8,1,45000,'Ok','2023-04-03 10:28:00',1,'TSK0403DPJ2800','INV0403M2Y2748',5,1),
+(8,8,1,75000,'ada','2023-04-05 10:17:02',1,'TSK0405O251702','INV0405RDX1145',5,1);
 
 /*Table structure for table `tabel_pindah` */
 
@@ -650,9 +687,9 @@ CREATE TABLE `tabel_rombel` (
 
 insert  into `tabel_rombel`(`id_rombel`,`id_kelas`,`nama_rombel`,`kode_guru`,`kuota`,`status`) values 
 (1,1,'X TKJ 1','KG-IVWC3I',36,'AKTIF'),
-(2,1,'X TKJ 2','KG-IPN4QC',12,'AKTIF'),
-(3,3,'XI TKJ 1','KG-QUC568',30,'AKTIF'),
-(5,3,'XI TKJ 2','KG-2MPLF7',20,'AKTIF'),
+(2,1,'X TKJ 2','KG-SGMGVA',12,'AKTIF'),
+(3,3,'XI TKJ 1','KG-IPN4QC',30,'AKTIF'),
+(5,3,'XI TKJ 2','KG-QUC568',20,'AKTIF'),
 (6,4,'XII TKJ 1 ','KG-SGMGVA',20,'AKTIF'),
 (7,4,'XII TKJ 2','KG-SGMGVA',20,'AKTIF');
 
