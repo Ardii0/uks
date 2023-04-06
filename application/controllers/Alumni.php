@@ -33,6 +33,7 @@ class Alumni extends CI_Controller {
     {
         $data['data'] = $this->m_alumni->getwhere('tabel_daftar', array('diterima' => 'G'))->result();
         $data['user'] = $this->m_alumni->getwhere('tabel_level', array('id_level' => $this->session->userdata('id_level')))->result();
+        $data['readydata'] = $this->m_alumni->getwhere('data_diri', array('id_level' => $this->session->userdata('id_level')))->result();
         $this->load->view('alumni/data_diri/bekerja/bekerja', $data);
     }
 
@@ -53,9 +54,35 @@ class Alumni extends CI_Controller {
             'tanggal_kerja' => $this->input->post('tanggal_kerja'),
             'bidang_instansi' => $this->input->post('bidang_instansi'),
             'lokasi_instansi' => $this->input->post('lokasi_instansi'),
+            'nama_instansi2' => $this->input->post('nama_instansi2'),
+            'jabatan2' => $this->input->post('jabatan2'),
+            'tanggal_kerja2' => $this->input->post('tanggal_kerja2'),
         ];
         $this->m_alumni->input_data('data_diri', $data);
         redirect(base_url('Alumni/data_diri'));
+    }
+
+    public function update_datadiri()
+    {
+        $data = array (
+            'jurusan_sekolah' => $this->input->post('jurusan_sekolah'),
+            'nik' => $this->input->post('nik'),
+            'alamat' => $this->input->post('alamat'),
+            'no_telp' => $this->input->post('no_telp'),
+            'tahun_lulus' => $this->input->post('tahun_lulus'),
+            'status' => $this->input->post('status'),
+            'deskripsi_status' => $this->input->post('deskripsi_status'),
+            'nama_instansi' => $this->input->post('nama_instansi'),
+            'jabatan' => $this->input->post('jabatan'),
+            'tanggal_kerja' => $this->input->post('tanggal_kerja'),
+            'bidang_instansi' => $this->input->post('bidang_instansi'),
+            'lokasi_instansi' => $this->input->post('lokasi_instansi'),
+            'nama_instansi2' => $this->input->post('nama_instansi2'),
+            'jabatan2' => $this->input->post('jabatan2'),
+            'tanggal_kerja2' => $this->input->post('tanggal_kerja2'),
+        );
+        $this->m_alumni->edit_data('data_diri', $data, array('id_level' => $this->session->userdata('id_level')));
+        redirect(base_url('Alumni/bekerja/'));
     }
 
 //Event

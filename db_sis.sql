@@ -237,15 +237,15 @@ CREATE TABLE `tabel_daftar` (
 
 insert  into `tabel_daftar`(`id_daftar`,`no_reg`,`id_angkatan`,`id_jenjang`,`tgl_daftar`,`nisn`,`nama`,`jekel`,`tempat_lahir`,`anak_ke`,`saudara_kandung`,`saudara_angkat`,`tgl_lahir`,`agama`,`alamat`,`telepon`,`foto`,`warga_negara`,`diterima`) values 
 (1,'REG-A724E5',1,1,'2023-03-28','234','1','L','t',2,'2','31','0000-00-00','Islam','t','975',NULL,'WNI','M'),
-(2,'REG-8IL92S',1,1,'2023-03-28','234','2','L','Jawa Tengah',2,'2','31','0000-00-00','Islam','t','975',NULL,'WNI','G'),
+(2,'REG-8IL92S',1,1,'2023-03-28','234','2','L','Jawa Tengah',2,'2','31','1970-01-01','Islam','t','975',NULL,'WNI','G'),
 (3,'REG-6SBG5K',1,1,'2023-03-28','234','3','L','t',2,'2','31','0000-00-00','Islam','t','975',NULL,'WNI','A'),
 (4,'REG-DQRHL3',1,1,'2023-03-28','12345789 0','Ahmad A. Bahar','L','Semarang',1,'2','0','0000-00-00','Islam','Jl. Melati 1','0812346789 0',NULL,'WNI','A'),
 (5,'REG-AZ41WL',1,1,'2023-03-28','12345789 1','Ahmad B. Bahar','L','Semarang',1,'3','0','0000-00-00','Islam','Jl. Melati 2','0812346789 1',NULL,'WNI','A'),
 (6,'REG-QNXVCR',1,1,'2023-03-28','12345789 2','Ahmad C. Bahar','L','Semarang',1,'2','0','0000-00-00','Islam','Jl. Melati 3','0812346789 2',NULL,'WNI','A'),
 (7,'REG-TRI2KM',1,1,'2023-03-28','12345789 3','Ahmad D. Bahar','L','Semarang',1,'2','0','0000-00-00','Islam','Jl. Melati 4','0812346789 3',NULL,'WNI','A'),
 (8,'REG-KUJDCX',1,1,'2023-03-28','12345789 4','Ahmad E. Bahar','L','Semarang',1,'2','0','0000-00-00','Islam','Jl. Melati 5','0812346789 4',NULL,'WNI','A'),
-(9,'REG-F9T1CP',1,1,'2023-03-28','12345789 5','Ahmad F. Bahar','L','Semarang',1,'2','0','0000-00-00','Islam','Jl. Melati 6','0812346789 5',NULL,'WNI','G'),
-(10,'REG-DV2WRJ',1,1,'2023-03-28','12345789 6','Ahmad G. Bahar','L','Jakarta',1,'2','0','0000-00-00','Islam','Jl. Melati 7','0812346789 6',NULL,'WNI','G'),
+(9,'REG-F9T1CP',1,1,'2023-03-28','12345789 5','Ahmad F. Bahar','L','Semarang',1,'2','0','1987-07-03','Islam','Jl. Melati 6','0812346789 5',NULL,'WNI','G'),
+(10,'REG-DV2WRJ',1,1,'2023-03-28','12345789 6','Ahmad G. Bahar','L','Jakarta',1,'2','0','1988-07-02','Islam','Jl. Melati 7','0812346789 6',NULL,'WNI','G'),
 (11,'REG-TPKNI7',1,1,'2023-03-28','12345789 7','Ahmad H. Bahar','L','Jakarta',1,'2','0','0000-00-00','Islam','Jl. Melati 8','0812346789 7',NULL,'WNI','P'),
 (12,'REG-DS0KXV',1,1,'2023-03-28','12345789 8','Ahmad I. Bahar','L','Jakarta',1,'2','0','0000-00-00','Islam','Jl. Melati 9','0812346789 8',NULL,'WNI','P'),
 (13,'REG-CVHZ1P',1,1,'2023-03-28','12345789 9','Ahmad J. Bahar','P','Jakarta',1,'2','0','0000-00-00','Islam','Jl. Melati 10','0812346789 9',NULL,'WNI','P'),
@@ -451,7 +451,7 @@ CREATE TABLE `tabel_level` (
   `id_hak_akses` int DEFAULT NULL,
   PRIMARY KEY (`id_level`),
   KEY `tabel_level_to_guru` (`kode_guru`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tabel_level` */
 
@@ -471,7 +471,8 @@ insert  into `tabel_level`(`id_level`,`username`,`email`,`password`,`level`,`kod
 (23,'Ahmad D. Marcel','Ahmad D. Marcel@gmail.com','2a86f85a1e6d9c927af8304d4bda705a','Guru','KG-IPN4QC',5),
 (24,'Ahmad U. Marcel','Ahmad U. Marcel@gmail.com','a20ddc99f6ac873194f18ac4c860e1bb','Guru','KG-2MPLF7',5),
 (25,'Ahmad T. Marcel','Ahmad T. Marcel@gmail.com','cf431efa0b9f27f436d284cb59cb2f83','Guru','KG-IVWC3I',5),
-(26,'Siti Nur','Siti Nur@gmail.com','b9f9ea70f5102a12d83c163ae6e5552d','Guru','KG-SGMGVA',5);
+(26,'Siti Nur','Siti Nur@gmail.com','b9f9ea70f5102a12d83c163ae6e5552d','Guru','KG-SGMGVA',5),
+(32,'Alumni2','alumnmi2@gmail.com','202cb962ac59075b964b07152d234b70','Alumni',NULL,NULL);
 
 /*Table structure for table `tabel_lulus` */
 
@@ -631,7 +632,7 @@ DROP TABLE IF EXISTS `tabel_pinjaman`;
 
 CREATE TABLE `tabel_pinjaman` (
   `id_pinjaman` int NOT NULL AUTO_INCREMENT,
-  `no_pinjaman` int DEFAULT NULL,
+  `no_pinjaman` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `id_anggota` int NOT NULL,
   `id_index_buku` int NOT NULL,
   `tgl_pinjaman` date DEFAULT NULL,
@@ -644,8 +645,8 @@ CREATE TABLE `tabel_pinjaman` (
 /*Data for the table `tabel_pinjaman` */
 
 insert  into `tabel_pinjaman`(`id_pinjaman`,`no_pinjaman`,`id_anggota`,`id_index_buku`,`tgl_pinjaman`,`tgl_kembali`,`status`,`denda`) values 
-(1,0,74282,1,'2023-03-28','0000-00-00','DIPINJAM',NULL),
-(2,0,0,2,'2023-03-28','2023-03-28','DIKEMBALIKAN',0);
+(1,'0',74282,1,'2023-03-28','0000-00-00','DIPINJAM',NULL),
+(2,'0',0,2,'2023-03-28','2023-03-28','DIKEMBALIKAN',0);
 
 /*Table structure for table `tabel_rencana_anggaran` */
 
@@ -840,7 +841,7 @@ CREATE TABLE `table_buku` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `foto` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
   PRIMARY KEY (`id_buku`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `table_buku` */
 

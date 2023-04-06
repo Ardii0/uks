@@ -25,7 +25,7 @@
                 <div>
                     <form action="<?php echo base_url('LandingPage/filter_ByRakBuku') ?>" method="post">
                         <div class="form-group d-flex" style="width: 130%;">
-                            <select name="nama_rak_buku" class="form-control select2"
+                            <select name="nama_rak_buku" class="form-control select2" required=""
                                 data-dropdown-css-class="select2-info" style="width: 100%;">
                                 <option value="">
                                     Pilih Rak Buku
