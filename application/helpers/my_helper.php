@@ -1073,4 +1073,20 @@ function format_indo($date){
       }
     }
 
+// Peminjaman
+    function tampil_status_buku_ByDetailIndexBuku($id)
+    {
+    $ci =& get_instance();
+    $ci->load->database();
+    $result = $ci->db->select('*')
+                      ->from('table_detail_index_buku')
+                      ->join('table_buku','table_detail_index_buku.id_buku = table_buku.id_buku')
+                      ->where('table_detail_index_buku.id_stok',$id)
+                      ->get();
+      foreach ($result->result() as $c) {
+      $stmt= $c->del_flag;
+      }
+      return $stmt;
+    }
+
 ?>

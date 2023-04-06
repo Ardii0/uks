@@ -81,7 +81,7 @@
                                     </thead>
                                     <tbody>
                                         <?php $id = 0; foreach ($peminjam as $data): $id++ ?>
-                                        <tr>
+                                        <tr <?php $dataa = tampil_status_buku_ByDetailIndexBuku($data->id_index_buku) == 1 ? '' : 'hidden'; echo $dataa ?>>
                                             <td><?php echo $id ?></td>
                                             <td><?php echo $data->no_pinjaman ?></td>
                                             <td><?php echo tampil_namadaftar_ByIdAnggota($data->id_anggota) ?></td>

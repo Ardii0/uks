@@ -64,7 +64,7 @@
                                                 <td class="text-left"><?php echo $row->penulis_buku?></td>
                                                 <td class="text-left"><?php echo $row->penerbit_buku?></td>
                                                 <td><?php echo $row->tahun_terbit?></td>
-                                                <td><?php echo namakategori($row->kategori_id)?></td>
+                                                <td><?php echo $row->kategori_id?></td>
                                                 <td><?php echo $row->rak_buku_id?></td>
                                                 <td>
                                                     <a href="<?php echo base_url('Perpustakaan/detail_index_buku/'.$row->id_buku)?>"
@@ -74,13 +74,16 @@
                                                     <a href="<?php echo base_url('Perpustakaan/edit_buku/'.$row->id_buku)?>"
                                                         class="btn btn-primary btn-sm">
                                                         <i class="fa fa-edit"></i></a>
-                                                    <?php if ( tampil_detailBukuById_buku($row->id_buku) === null ) : ?>
+                                                    <a href="<?php echo base_url('Perpustakaan/hapus_buku_sementara/'.$row->id_buku)?>"
+                                                        class="btn btn-danger btn-sm">
+                                                        <i class="fa fa-trash"></i></a>
+                                                    <!-- <?php if ( tampil_detailBukuById_buku($row->id_buku) === null ) : ?>
                                                     <a
                                                         href="<?php echo base_url('Perpustakaan/hapus_buku_sementara/'.$row->id_buku)?>">
                                                         <button class="btn btn-danger btn-sm">
                                                             <i class="fa fa-trash"></i> </button>
                                                     </a>
-                                                    <?php else : ?><?php endif; ?>
+                                                    <?php else : ?><?php endif; ?> -->
                                                 </td>
                                             </tr>
                                             <?php endforeach;?>
