@@ -98,7 +98,7 @@
                     </div>
                     <div class="modal-footer d-flex justify-content-end">
                         <button type="button" onClick="kembali()" class="btn btn-danger">
-                            kembali
+                            Kembali
                         </button>
                     </div>
                 </div>

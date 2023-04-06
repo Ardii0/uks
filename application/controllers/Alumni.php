@@ -36,7 +36,29 @@ class Alumni extends CI_Controller {
         $this->load->view('alumni/data_diri/bekerja/bekerja', $data);
     }
 
-    //Event
+    public function tambah_datadiri()
+    {
+        $data = [
+            'id_level' => $this->session->userdata('id_level'),
+            'id_daftar' => $this->input->post('id_daftar'),
+            'jurusan_sekolah' => $this->input->post('jurusan_sekolah'),
+            'nik' => $this->input->post('nik'),
+            'alamat' => $this->input->post('alamat'),
+            'no_telp' => $this->input->post('no_telp'),
+            'tahun_lulus' => $this->input->post('tahun_lulus'),
+            'status' => $this->input->post('status'),
+            'deskripsi_status' => $this->input->post('deskripsi_status'),
+            'nama_instansi' => $this->input->post('nama_instansi'),
+            'jabatan' => $this->input->post('jabatan'),
+            'tanggal_kerja' => $this->input->post('tanggal_kerja'),
+            'bidang_instansi' => $this->input->post('bidang_instansi'),
+            'lokasi_instansi' => $this->input->post('lokasi_instansi'),
+        ];
+        $this->m_alumni->input_data('data_diri', $data);
+        redirect(base_url('Alumni/data_diri'));
+    }
+
+//Event
     public function event()
     {
         $this->load->model('M_alumni');
