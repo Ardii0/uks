@@ -32,6 +32,7 @@ class Nilai extends CI_Controller {
         $data['total_siswa'] = $this->m_akademik->total_siswa();
         $data['total_guru'] = $this->m_akademik->total_guru();
         $data['ta'] = $this->m_akademik->get_tahun_ajaran();
+        $data['siswa'] = $this->m_nilai->siswa();
         $this->load->view('nilai/dashboard', $data);
     }
 

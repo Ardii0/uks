@@ -6,6 +6,11 @@ class M_landingpage extends CI_Model
 	{
 		return $this->db->get('table_buku')->num_rows();
 	}
+	public function get_testimoni()
+	{
+		return $this->db->get('tabel_testimoni')->result();
+	}
+
     public function total_ketegori()
 	{
 		return $this->db->get('table_kategori_buku')->num_rows();

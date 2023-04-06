@@ -1,6 +1,12 @@
 <?php
 
 class M_nilai extends CI_Model{
+    // Dashboard
+    public function siswa()
+	{
+		return $this->db->where('diterima', 'A')->get('tabel_daftar')->result();
+	}
+
 // Entry Nilai
     public function get_nilaiBySiswa($tabel, $id_siswa)
     {

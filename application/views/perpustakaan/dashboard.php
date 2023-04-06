@@ -11,6 +11,7 @@
         height: 200px;
         overflow-y: auto;
     }
+
     .anyClass::-webkit-scrollbar {
         display: none;
     }
@@ -90,7 +91,9 @@
                                 <div class="col">
                                     <div class="small-box  bg-gradient-info mb-3" style="max-width: 100%;">
                                         <div class="card-header bg-transparent text-center fw-bold h3 border-white">
-                                            Peminjaman Buku</div>
+                                            <p>Peminjaman Buku (Hari Ini)</p>
+                                            <h3><?php echo $total_peminjaman; ?></h3>
+                                        </div>
                                         <a href="<?php echo base_url('Perpustakaan/peminjaman') ?>"
                                             class="small-box-footer">
                                             Info Lebih Lanjut
@@ -101,7 +104,9 @@
                                 <div class="col">
                                     <div class="small-box  bg-gradient-info mb-3" style="max-width: 100%;">
                                         <div class="card-header bg-transparent text-center fw-bold h3 border-white">
-                                            Pengembalian Buku</div>
+                                            <p>Pengembalian Buku (Hari Ini)</p>
+                                            <h3><?php echo $total_pengembalian; ?></h3>
+                                        </div>
                                         <a href="<?php echo base_url('Perpustakaan/pengembalian') ?>"
                                             class="small-box-footer">
                                             Info Lebih Lanjut
@@ -145,15 +150,6 @@
                                                         </thead>
                                                         <tbody>
                                                             <?php $id = 0;foreach ($data_anggota as $data): $id++;?>
-                                                            <tr class="bg-white text-center">
-                                                                <td style="width: 4%;"><?php echo $id ?></td>
-                                                                <td><?php echo tampil_namadaftar_ByIdSiswa($data->id_siswa) ?>
-                                                                </td>
-                                                                <td><?php echo tampil_kelasdaftar_ByIdSiswa($data->id_siswa) ?>
-                                                                </td>
-                                                                <td><?php echo tampil_rombeldaftar_ByIdSiswa($data->id_siswa) ?>
-                                                                </td>
-                                                            </tr>
                                                             <tr class="bg-white text-center">
                                                                 <td style="width: 4%;"><?php echo $id ?></td>
                                                                 <td><?php echo tampil_namadaftar_ByIdSiswa($data->id_siswa) ?>

@@ -8,13 +8,15 @@ class LandingPage extends CI_Controller {
         parent::__construct();
         $this->load->model('m_landingpage');
         $this->load->model('m_perpustakaan');
+        $this->load->model('m_alumni');
         $this->load->helpers('my_helper');
         // $this->load->library('excel');
     }
 
     public function index()
     {
-        $this->load->view('landingpage/home');
+        $data['testimoni'] = $this->m_alumni->get('tabel_testimoni', array('tampil' => 'yes'))->result();
+        $this->load->view('landingpage/home', $data);
     }
 
     public function daftar_buku()

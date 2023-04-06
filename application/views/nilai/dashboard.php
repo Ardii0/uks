@@ -94,8 +94,9 @@
                                 </div>
                                 <div class="card-body text-white">
                                     <h5 class="card-title">Fitur : </h5>
-                                    <p class="card-text">Dashboard nilai ini berfungsi untuk memberi dan juga melihat
-                                        nilai siswa di SMK BINA NUSANTARA Semarang</p>
+                                    <p class="card-text">
+                                        Dashboard nilai ini berfungsi untuk menambahkan dan melihat nilai siswa
+                                    </p>
                                 </div>
                                 <a href="<?php echo base_url('Nilai/modul_input_nilai')?>" class="small-box-footer">
                                     Info Lebih Lanjut
@@ -104,27 +105,25 @@
                         </div>
                         <div class="col">
                             <div class="small-box bg-info mb-3" style="max-width: 100%;">
-                                <div class="card-header bg-transparent text-center fw-bold h3 border-white"> Tahun
-                                    Ajaran</div>
+                                <div class="card-header bg-transparent text-center fw-bold h3 border-white">Data Siswa
+                                </div>
                                 <div class="card-body text-white">
                                     <div class="box-body example-1 scrollbar-ripe-malinka">
                                         <table id="table_1" class="table table-bordered">
                                             <thead>
                                                 <tr class="fixed bg-gradient-info">
                                                     <th>No</th>
-                                                    <th>Tahun Ajaran</th>
-                                                    <th>Total Siswa</th>
-                                                    <th>Total Rombel</th>
-
+                                                    <th>Nama Siswa</th>
+                                                    <th>Ankatan</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php $id=0; foreach($ta as $ta): $id++?>
+                                                <?php $id=0; foreach($siswa as $siswa): $id++?>
                                                 <tr>
                                                     <td class="text-bold"><?php echo $id;?></td>
-                                                    <td class="text-bold"><?php echo $ta->nama_angkatan;?></td>
-                                                    <td class="text-bold"><?php echo $total_siswa;?></td>
-                                                    <td class="text-bold"><?php echo $total_kelas;?></td>
+                                                    <td class="text-bold"><?php echo $siswa->nama;?></td>
+                                                    <td class="text-bold">
+                                                        <?php echo nama_angkatan($siswa->id_angkatan);?></td>
                                                 </tr>
                                                 <?php endforeach; ?>
                                             </tbody>

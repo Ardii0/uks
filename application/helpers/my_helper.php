@@ -1052,4 +1052,15 @@ function format_indo($date){
       }
     }
 
+    function nama_angkatan($id)
+    {
+     $ci =& get_instance();
+     $ci->load->database();
+     $result = $ci->db->where('id_angkatan',$id)->get('tabel_tahunajaran');
+      foreach ($result->result() as $c) {
+      $stmt= $c->nama_angkatan;
+      return $stmt;
+      }
+    }
+
 ?>

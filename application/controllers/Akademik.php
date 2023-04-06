@@ -1259,29 +1259,40 @@ class Akademik extends CI_Controller {
     
     public function update_siswa()
     {
-        $data = array (
-            "nisn" => $this->input->post("nisn"),
-            "nama" => $this->input->post("nama"),
-            "tempat_lahir" => $this->input->post("tempat_lahir"),
-            "tgl_lahir" => $this->input->post("tgl_lahir"),
-            "agama" => $this->input->post("agama"),
-            "alamat" => $this->input->post("alamat"),
-            "telepon" => $this->input->post("telepon"),
-            'anak_ke' => $this->input->post('anak_ke'),
-            'saudara_kandung' => $this->input->post('saudara_kandung'),
-            'saudara_angkat' => $this->input->post('saudara_angkat'),
-            "diterima" => "Y",
-        );
-        $masuk = $this->m_akademik->ubah_pendaftaran("tabel_daftar", $data, array("id_daftar" => $this->input->post("id_daftar")));
-        if ($masuk)
+        $foto = $this->upload_img_pendaftaran_siswa('foto');
+        if($foto[0]==false)
         {
-            $this->session->set_flashdata('sukses', 'berhasil');
-            redirect(base_url('Akademik/siswa_data'));
+            //$this->upload->display_errors();
+            $this->session->set_flashdata('error', 'gagal upload foto.');
+            redirect(base_url('Akademik/edit_pendaftaran/'.$this->input->post('id_daftar')));
         }
         else
         {
-            $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Akademik/edit_siswa/'.$this->input->post('id_daftar')));
+            $data = array (
+                'foto' => $foto[1],
+                "nisn" => $this->input->post("nisn"),
+                "nama" => $this->input->post("nama"),
+                "tempat_lahir" => $this->input->post("tempat_lahir"),
+                "tgl_lahir" => $this->input->post("tgl_lahir"),
+                "agama" => $this->input->post("agama"),
+                "alamat" => $this->input->post("alamat"),
+                "telepon" => $this->input->post("telepon"),
+                'anak_ke' => $this->input->post('anak_ke'),
+                'saudara_kandung' => $this->input->post('saudara_kandung'),
+                'saudara_angkat' => $this->input->post('saudara_angkat'),
+                "diterima" => "Y",
+            );
+            $masuk = $this->m_akademik->ubah_pendaftaran("tabel_daftar", $data, array("id_daftar" => $this->input->post("id_daftar")));
+            if ($masuk)
+            {
+                $this->session->set_flashdata('sukses', 'berhasil');
+                redirect(base_url('Akademik/siswa_data'));
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'gagal..');
+                redirect(base_url('Akademik/edit_siswa/'.$this->input->post('id_daftar')));
+            }
         }
     }
 

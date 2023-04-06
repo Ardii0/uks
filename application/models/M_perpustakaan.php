@@ -19,6 +19,18 @@ class M_perpustakaan extends CI_Model{
 	{
 	return $this->db->get('tabel_anggota')->num_rows();
 	}
+	public function total_peminjaman()
+	{
+        $nextN = mktime(0, 0, 0, date("Y"), date("m"), date("d"));
+		$array = array('status' => 'DIPINJAM', 'tgl_pinjaman' => date('Y-m-d'));
+		return $this->db->where($array)->get('tabel_pinjaman')->num_rows();
+	}
+	public function total_pengembalian()
+	{
+        $nextN = mktime(0, 0, 0, date("Y"), date("m"), date("d"));
+		$array = array('status' => 'DIKEMBALIKAN', 'tgl_kembali' => date('Y-m-d'));
+		return $this->db->where($array)->get('tabel_pinjaman')->num_rows();
+	}
     
 //==============================================RAK BUKU===========================================================
     public function get_all_data_rak_buku()
