@@ -276,6 +276,16 @@ class M_akademik extends CI_Model{
 	{
 		return $this->db->where('diterima','P')->get('tabel_daftar')->result();
 	}
+    public function insert_batch($data){
+		$this->db->insert_batch('tabel_daftar',$data);
+		if($this->db->affected_rows()>0)
+		{
+			return 1;
+		}
+		else{
+			return 0;
+		}
+	}
     public function insert($data){
 		$insert = $this->db->insert_batch('tabel_daftar', $data);
 		if($insert){

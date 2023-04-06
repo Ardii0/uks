@@ -88,6 +88,12 @@ class M_perpustakaan extends CI_Model{
 		return $this->db->where('del_flag','1')->get('table_buku')->result();
 	}
 
+    public function get_buku_tersedia()
+	{
+		$query = $this->db->query('SELECT * from table_buku where del_flag = 1 AND stok > 0');
+		return $query->result();
+	}
+
 	public function get_all_detail_index_buku($tabel, $id_buku)
   	{
     	$data=$this->db->where('id_buku', $id_buku)->get($tabel);

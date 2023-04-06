@@ -58,8 +58,7 @@
                                         data-dropdown-css-class="select2-info" style="width: 100%;">
                                         <option selected="selected">Pilih Anggota</option>
                                         <?php $id = 0; foreach ($data_anggota as $data): $id++ ?>
-                                        <option value="<?php echo $data->id_anggota ?>">
-                                            <?php echo tampil_namadaftar_ByIdSiswa($data->id_siswa) ?></option>
+                                            <option value="<?php echo $data->id_anggota ?>"><?php echo tampil_namadaftar_ByIdSiswa($data->id_siswa) ?></option>
                                         <?php endforeach ?>
                                     </select>
                                 </div>
@@ -77,17 +76,18 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" hidden>
                                 <label class="control-label">Index Buku</label>
                                 <div class="">
+                                    <!-- <input id="idx-buku" type="text" name="id_index_buku" value="<?php echo $index_buku[0]->id_stok ?>"> -->
                                     <select id="idx-buku" name="id_index_buku" class="form-control select2 select2-info"
                                         data-dropdown-css-class="select2-info" style="width: 100%;">
-                                        <option selected="selected">Pilih Index Buku</option>
+                                        <!-- <option selected="selected">Pilih Index Buku</option>
                                         <?php $id = 0; foreach ($index_buku as $data): $id++ ?>
                                         <option value="<?php echo $data->id_stok ?>">
                                             <?php echo $data->id_detail_index_buku ?>
                                         </option>
-                                        <?php endforeach; ?>
+                                        <?php endforeach; ?> -->
                                     </select>
                                 </div>
                             </div>
@@ -95,10 +95,6 @@
                         <!-- /.box-body -->
 
                         <div class="box-footer d-flex justify-content-end">
-                            <!-- <div class="d-flex align-items-center">
-                                <label class="control-label" style="width: 180px;">Tanggal Pinjam</label>
-                                <input type="date" name="tgl_pinjaman" class="form-control">
-                            </div> -->
                             <div>
                                 <button type="submit" class="btn btn-primary ml-2">Simpan</button>
                             </div>
@@ -125,11 +121,7 @@
 
                     var html = '';
                     var i;
-                    html += '<option>Pilih Index Buku</option>';
-                    for (i = 0; i < data.length; i++) {
-                        html += '<option value=' + data[i].id_stok + '>' + data[i]
-                            .id_detail_index_buku + '</option>';
-                    }
+                        html += '<option value=' + data[0].id_stok + '>' + data[0].id_detail_index_buku + '</option>';
                     $('#idx-buku').html(html);
 
                 }

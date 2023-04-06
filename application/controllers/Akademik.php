@@ -8,7 +8,6 @@ class Akademik extends CI_Controller {
         parent::__construct();
         $this->load->model('m_akademik');
         $this->load->helpers('my_helper');
-        // $this->load->library('PhpSpreadsheet/Spreadsheet');
         if ($this->session->userdata('status_akademik')!='login') {
             redirect(base_url());
         }
@@ -665,57 +664,170 @@ class Akademik extends CI_Controller {
         }
     }
 
-    public function import_excel(){
-        $this->load->library('excel');
-		if (isset($_FILES["fileExcel"]["name"])) {
-			$path = $_FILES["fileExcel"]["tmp_name"];
-			$object = PHPExcel_IOFactory::load($path);
-            $date = date('Y-m-d');
-			foreach($object->getWorksheetIterator() as $worksheet)
-			{
-				$highestRow = $worksheet->getHighestRow();
-				$highestColumn = $worksheet->getHighestColumn();	
-				for($row=2; $row<=$highestRow; $row++)
-				{
-					$nama = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
-					$agama = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
-					$nisn = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
-					$telepon = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
-					$alamat = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
-					$tempat_lahir = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
-					$anak_ke = $worksheet->getCellByColumnAndRow(6, $row)->getValue();
-					$saudara_kandung = $worksheet->getCellByColumnAndRow(7, $row)->getValue();
-					$saudara_angkat = $worksheet->getCellByColumnAndRow(8, $row)->getValue();
-					$tgl_lahir = $worksheet->getCellByColumnAndRow(9, $row)->getValue();
-					$jekel = $worksheet->getCellByColumnAndRow(10, $row)->getValue();
-					$warga_negara = $worksheet->getCellByColumnAndRow(11, $row)->getValue();
-					$temp_data[] = array(
-                        'nama'	=> $nama,
-						'agama'	=> $agama,
-						'nisn'	=> $nisn,
-						'telepon'	=> $telepon,
-						'alamat'	=> $alamat,
-						'tempat_lahir'	=> $tempat_lahir,
-						'anak_ke'	=> $anak_ke,
-						'saudara_kandung'	=> $saudara_kandung,
-						'saudara_angkat'	=> $saudara_angkat,
-						'tgl_lahir'	=> $tgl_lahir,
-						'jekel'	=> $jekel,
-						'warga_negara'	=> $warga_negara,
-						'no_reg'	=> 'REG'.'-'.$this->acak(6),
-						'foto'	=> null,
-						'id_angkatan'	=> $this->input->post('id_angkatan'),
-						'id_jenjang'	=> $this->input->post('id_jenjang'),
-						'tgl_daftar'	=> $date,
-					); 	
-				}
-			}
-            $this->load->library('excel');
-			$this->m_akademik->insert($temp_data);
-			$this->session->set_flashdata('sukses', 'berhasil');
-            redirect(base_url('Akademik/siswa_pendaftaran'));
-        }
-	}
+    public function import_excel(){    
+        // ---------------------------------------------------------------------------------------------------------//     
+               // $date = date('Y-m-d');
+               // $upload_file=$_FILES['upload_file']['name'];
+               // $extension=pathinfo($upload_file,PATHINFO_EXTENSION);
+               // if($extension=='csv')
+               // {
+               // 	$reader= new \PhpOffice\PhpSpreadsheet\Reader\Csv();
+               // } else if($extension=='xls')
+               // {
+               // 	$reader= new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+               // } else
+               // {
+               // 	$reader= new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+               // }
+               // $spreadsheet=$reader->load($_FILES['upload_file']['tmp_name']);
+               // $sheetdata=$spreadsheet->getActiveSheet()->toArray();
+               // $sheetcount=count($sheetdata);
+               // if($sheetcount>1)
+               // {
+               // 	$data=array();
+               // 	for ($i=1; $i < $sheetcount; $i++) { 
+               // 		$nama=$sheetdata[$i][1];
+               // 		$agama=$sheetdata[$i][2];
+               // 		$nisn=$sheetdata[$i][3];
+               // 		$telepon=$sheetdata[$i][4];
+               // 		$alamat=$sheetdata[$i][5];
+               // 		$tempat_lahir=$sheetdata[$i][6];
+               // 		$anak_ke=$sheetdata[$i][7];
+               // 		$saudara_kandung=$sheetdata[$i][8];
+               // 		$saudara_angkat=$sheetdata[$i][9];
+               // 		$tgl_lahir=$sheetdata[$i][10];
+               // 		$jekel=$sheetdata[$i][11];
+               // 		$warga_negara=$sheetdata[$i][12];
+               // 		$data[]=array(
+               // 			'nama'=>$nama,
+               // 			'agama'=>$agama,
+               // 			'telepon'=>$telepon,
+               // 			'alamat'=>$alamat,
+               // 			'tempat_lahir'=>$tempat_lahir,
+               // 			'anak_ke'=>$anak_ke,
+               // 			'saudara_kandung'=>$saudara_kandung,
+               // 			'saudara_angkat'=>$saudara_angkat,
+               // 			'tgl_lahir'=>$tgl_lahir,
+               // 			'jekel'=>$jekel,
+               // 			'warga_negara'=>$warga_negara,
+               //             'no_reg'	=> 'REG'.'-'.$this->acak(6),
+               // 			'foto'	=> null,
+               // 			'id_angkatan'	=> $this->input->post('id_angkatan'),
+               // 			'id_jenjang'	=> $this->input->post('id_jenjang'),
+               // 			'tgl_daftar'	=> $date,
+               // 		);
+               // 	}
+               // 	$inserdata=$this->m_akademik->insert_batch($data);
+               // 	if($inserdata)
+               // 	{
+               // 		redirect(base_url('Akademik/siswa_pendaftaran'));
+               // 	} else {
+               // 		redirect(base_url('Akademik/siswa_pendaftaran'));
+               // 	}
+               // }
+        // ---------------------------------------------------------------------------------------------------------//
+               // $file = $this->request->getFile('fileexcel');
+               // if($file){
+               // 	$excelReader  = $this->load->library('excel');
+               // 	//mengambil lokasi temp file
+               // 	$fileLocation = $file->getTempName();
+               // 	//baca file
+               // 	$objPHPExcel = PHPExcel_IOFactory::load($fileLocation);
+               // 	//ambil sheet active
+               // 	$sheet	= $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+               // 	//looping untuk mengambil data
+               // 	foreach ($sheet as $idx => $data) {
+               // 		//skip index 1 karena title excel
+               // 		if($idx==1){
+               // 			continue;
+               // 		}
+               // 		$nama = $data['A'];
+               // 		$agama = $data['B'];
+               // 		$nisn = $data['C'];
+               // 		$telepon = $data['D'];
+               // 		$alamat = $data['E'];
+               // 		$tempat_lahir = $data['F'];
+               // 		$anak_ke = $data['G'];
+               // 		$saudara_kandung = $data['H'];
+               // 		$saudara_angkat = $data['I'];
+               // 		$tgl_lahir = $data['J'];
+               // 		$jekel = $data['K'];
+               // 		$warga_negara = $data['L'];
+               // 		// insert data
+               // 		$this->db->insert([
+               //             'nama'	=> $nama,
+               //             'agama'	=> $agama,
+               //             'nisn'	=> $nisn,
+               //             'telepon'	=> $telepon,
+               //             'alamat'	=> $alamat,
+               //             'tempat_lahir'	=> $tempat_lahir,
+               //             'anak_ke'	=> $anak_ke,
+               //             'saudara_kandung'	=> $saudara_kandung,
+               //             'saudara_angkat'	=> $saudara_angkat,
+               //             'tgl_lahir'	=> $tgl_lahir,
+               //             'jekel'	=> $jekel,
+               //             'warga_negara'	=> $warga_negara,
+               //             'no_reg'	=> 'REG'.'-'.$this->acak(6),
+               //             'foto'	=> null,
+               //             'id_angkatan'	=> $this->input->post('id_angkatan'),
+               //             'id_jenjang'	=> $this->input->post('id_jenjang'),
+               //             'tgl_daftar'	=> $date,
+               // 		]);
+               // 	}
+               // }
+               // session()->setFlashdata('message','Berhasil import excel');
+               // return redirect(base_url('Akademik/siswa_pendaftaran'));
+        // ---------------------------------------------------------------------------------------------------------//
+               $this->load->library('excel');
+               if (isset($_FILES["fileExcel"]["name"])) {
+                   $path = $_FILES["fileExcel"]["tmp_name"];
+                   $object = PHPExcel_IOFactory::load($path);
+                   $date = date('Y-m-d');
+                   foreach($object->getWorksheetIterator() as $worksheet)
+                   {
+                       $highestRow = $worksheet->getHighestRow();
+                       $highestColumn = $worksheet->getHighestColumn();	
+                       for($row=2; $row<=$highestRow; $row++)
+                       {
+                           $nama = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+                           $agama = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+                           $nisn = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+                           $telepon = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+                           $alamat = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
+                           $tempat_lahir = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
+                           $anak_ke = $worksheet->getCellByColumnAndRow(6, $row)->getValue();
+                           $saudara_kandung = $worksheet->getCellByColumnAndRow(7, $row)->getValue();
+                           $saudara_angkat = $worksheet->getCellByColumnAndRow(8, $row)->getValue();
+                           $tgl_lahir = $worksheet->getCellByColumnAndRow(9, $row)->getValue();
+                           $jekel = $worksheet->getCellByColumnAndRow(10, $row)->getValue();
+                           $warga_negara = $worksheet->getCellByColumnAndRow(11, $row)->getValue();
+                           $temp_data[] = array(
+                               'nama'	=> $nama,
+                               'agama'	=> $agama,
+                               'nisn'	=> $nisn,
+                               'telepon'	=> $telepon,
+                               'alamat'	=> $alamat,
+                               'tempat_lahir'	=> $tempat_lahir,
+                               'anak_ke'	=> $anak_ke,
+                               'saudara_kandung'	=> $saudara_kandung,
+                               'saudara_angkat'	=> $saudara_angkat,
+                               'tgl_lahir'	=> $tgl_lahir,
+                               'jekel'	=> $jekel,
+                               'warga_negara'	=> $warga_negara,
+                               'no_reg'	=> 'REG'.'-'.$this->acak(6),
+                               'foto'	=> null,
+                               'id_angkatan'	=> $this->input->post('id_angkatan'),
+                               'id_jenjang'	=> $this->input->post('id_jenjang'),
+                               'tgl_daftar'	=> $date,
+                           ); 	
+                       }
+                   }
+                   $this->load->library('excel');
+                   $this->m_akademik->insert($temp_data);
+                   $this->session->set_flashdata('sukses', 'berhasil');
+                   redirect(base_url('Akademik/siswa_pendaftaran'));
+               }
+           }
 
     public function export_to_excel()
     {
@@ -864,35 +976,7 @@ class Akademik extends CI_Controller {
         }
         }
     }
-
-    // public function update_pendaftaran()
-    // {
-    //     $data = array (
-    //         "nisn" => $this->input->post("nisn"),
-    //         "nama" => $this->input->post("nama"),
-    //         "tempat_lahir" => $this->input->post("tempat_lahir"),
-    //         "tgl_lahir" => $this->input->post("tgl_lahir"),
-    //         "agama" => $this->input->post("agama"),
-    //         "alamat" => $this->input->post("alamat"),
-    //         "telepon" => $this->input->post("telepon"),
-    //         'anak_ke' => $this->input->post('anak_ke'),
-    //         'saudara_kandung' => $this->input->post('saudara_kandung'),
-    //         'saudara_angkat' => $this->input->post('saudara_angkat'),
-    //         "diterima" => "P",
-    //     );
-    //     $masuk = $this->m_akademik->ubah_pendaftaran("tabel_daftar", $data, array("id_daftar" => $this->input->post("id_daftar")));
-    //     if ($masuk)
-    //     {
-    //         $this->session->set_flashdata('sukses', 'berhasil');
-    //         redirect(base_url('Akademik/siswa_pendaftaran'));
-    //     }
-    //     else
-    //     {
-    //         $this->session->set_flashdata('error', 'gagal..');
-    //         redirect(base_url('Akademik/edit_pendaftaran/'.$this->input->post('id_daftar')));
-    //     }
-    // }
-
+    
     public function hapus_pendaftaran($id_daftar)
     {
         $hapus=$this->m_akademik->hapus_pendaftaran('tabel_daftar', 'id_daftar', $id_daftar);

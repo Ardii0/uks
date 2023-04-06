@@ -591,7 +591,7 @@ class Perpustakaan extends CI_Controller {
             'menu_admin' => 'perpustakaan',
             'submenu_admin'=> 'pinjam'
         ];
-        $buku['data_buku'] = $this->m_perpustakaan->get_all_data_buku('data_buku');
+        $buku['data_buku'] = $this->m_perpustakaan->get_buku_tersedia('data_buku');
         $buku['index_buku'] = $this->m_perpustakaan->get_index_buku('index_buku');
         $anggota['data_anggota'] = $this->m_perpustakaan->get_anggota('data_anggota');
         $this->load->view('perpustakaan/peminjaman/input_peminjaman', $buku + $anggota + $data);
