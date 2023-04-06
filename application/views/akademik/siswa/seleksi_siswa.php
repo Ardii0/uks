@@ -40,7 +40,7 @@
                         <div style="width: 175px; height: 40px" class="">
                             <a href="<?php echo base_url('Akademik/siswa_pembagian_kelas') ;?>" class="btn w-100 h-100 p-2 btn-success btn-sm">
                                 <i class="fa fa- fa-arrow-right">
-                               Pembagian Kelass
+                                    Pembagian Kelas
                                 </i>
                             </a>
                         </div>

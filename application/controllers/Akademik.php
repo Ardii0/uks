@@ -510,6 +510,7 @@ class Akademik extends CI_Controller {
     public function hapus_guru($kode_guru)
     {
         $this->m_akademik->hapus_guru('tabel_guru', 'kode_guru', $kode_guru);
+        $this->m_akademik->hapus_guru('tabel_level', 'kode_guru', $kode_guru);
         redirect(base_url('Akademik/guru'));
     }
     
@@ -1296,7 +1297,7 @@ class Akademik extends CI_Controller {
         }
     }
 
-    //Mutasi
+ //Mutasi
     public function siswa_mutasi()
     {
         $data = [
@@ -1409,7 +1410,7 @@ class Akademik extends CI_Controller {
                 foreach ($id_daftar as $key => $value) { 
                     $this->m_akademik->ubah_pendaftaran('tabel_daftar', array( 
                         'id_daftar' => $key, 
-                        'diterima' => "L", 
+                        'diterima' => "G", 
                     ), array( 
                         'id_daftar' => $key 
                     )); 

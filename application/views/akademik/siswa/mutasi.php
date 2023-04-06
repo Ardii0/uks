@@ -190,7 +190,7 @@
                                         placeholder="Masukan Tanggal Lulus">
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Ubah</button>
+                            <button type="submit" class="btn btn-primary mt-1">Ubah</button>
                         </div>
                     </div> <!-- row -->
                     </form>

@@ -24,16 +24,18 @@ CREATE TABLE `data_diri` (
   `id_data_diri` int NOT NULL AUTO_INCREMENT,
   `id_level` int NOT NULL,
   `id_daftar` int NOT NULL,
-  `jurusan_sekolah` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `nik` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
-  `alamat` text CHARACTER SET latin1,
-  `no_telp` varchar(12) CHARACTER SET latin1 DEFAULT NULL,
-  `tahun_lulus` year DEFAULT NULL,
-  `status` varchar(20) CHARACTER SET latin1 DEFAULT NULL,
+  `jurusan_sekolah` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `nik` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `alamat` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `no_telp` varchar(12) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `tahun_lulus` year NOT NULL,
+  `status` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `deskripsi_status` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
   `nama_instansi` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
   `jabatan` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
   `tanggal_kerja` date DEFAULT NULL,
+  `bidang_instansi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `lokasi_instansi` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `nama_instansi2` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `jabatan2` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `tanggal_kerja2` date DEFAULT NULL,
@@ -43,7 +45,7 @@ CREATE TABLE `data_diri` (
   `nama_perguruan_tinggi` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `jurusan` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `tahun_perguruan_tinggi` varchar(10) CHARACTER SET latin1 DEFAULT NULL,
-  `timestamp` timestamp NULL DEFAULT NULL,
+  `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_data_diri`),
   KEY `id_user` (`id_level`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -234,16 +236,16 @@ CREATE TABLE `tabel_daftar` (
 /*Data for the table `tabel_daftar` */
 
 insert  into `tabel_daftar`(`id_daftar`,`no_reg`,`id_angkatan`,`id_jenjang`,`tgl_daftar`,`nisn`,`nama`,`jekel`,`tempat_lahir`,`anak_ke`,`saudara_kandung`,`saudara_angkat`,`tgl_lahir`,`agama`,`alamat`,`telepon`,`foto`,`warga_negara`,`diterima`) values 
-(1,'REG-A724E5',1,1,'2023-03-28','234','t','L','t',2,'2','31','0000-00-00','Islam','t','975',NULL,'WNI','M'),
-(2,'REG-8IL92S',1,1,'2023-03-28','234','t','L','t',2,'2','31','0000-00-00','Islam','t','975',NULL,'WNI','G'),
-(3,'REG-6SBG5K',1,1,'2023-03-28','234','t','L','t',2,'2','31','0000-00-00','Islam','t','975',NULL,'WNI','A'),
+(1,'REG-A724E5',1,1,'2023-03-28','234','1','L','t',2,'2','31','0000-00-00','Islam','t','975',NULL,'WNI','M'),
+(2,'REG-8IL92S',1,1,'2023-03-28','234','2','L','Jawa Tengah',2,'2','31','0000-00-00','Islam','t','975',NULL,'WNI','G'),
+(3,'REG-6SBG5K',1,1,'2023-03-28','234','3','L','t',2,'2','31','0000-00-00','Islam','t','975',NULL,'WNI','A'),
 (4,'REG-DQRHL3',1,1,'2023-03-28','12345789 0','Ahmad A. Bahar','L','Semarang',1,'2','0','0000-00-00','Islam','Jl. Melati 1','0812346789 0',NULL,'WNI','A'),
 (5,'REG-AZ41WL',1,1,'2023-03-28','12345789 1','Ahmad B. Bahar','L','Semarang',1,'3','0','0000-00-00','Islam','Jl. Melati 2','0812346789 1',NULL,'WNI','A'),
 (6,'REG-QNXVCR',1,1,'2023-03-28','12345789 2','Ahmad C. Bahar','L','Semarang',1,'2','0','0000-00-00','Islam','Jl. Melati 3','0812346789 2',NULL,'WNI','A'),
 (7,'REG-TRI2KM',1,1,'2023-03-28','12345789 3','Ahmad D. Bahar','L','Semarang',1,'2','0','0000-00-00','Islam','Jl. Melati 4','0812346789 3',NULL,'WNI','A'),
 (8,'REG-KUJDCX',1,1,'2023-03-28','12345789 4','Ahmad E. Bahar','L','Semarang',1,'2','0','0000-00-00','Islam','Jl. Melati 5','0812346789 4',NULL,'WNI','A'),
 (9,'REG-F9T1CP',1,1,'2023-03-28','12345789 5','Ahmad F. Bahar','L','Semarang',1,'2','0','0000-00-00','Islam','Jl. Melati 6','0812346789 5',NULL,'WNI','G'),
-(10,'REG-DV2WRJ',1,1,'2023-03-28','12345789 6','Ahmad G. Bahar','L','Jakarta',1,'2','0','0000-00-00','Islam','Jl. Melati 7','0812346789 6',NULL,'WNI','P'),
+(10,'REG-DV2WRJ',1,1,'2023-03-28','12345789 6','Ahmad G. Bahar','L','Jakarta',1,'2','0','0000-00-00','Islam','Jl. Melati 7','0812346789 6',NULL,'WNI','G'),
 (11,'REG-TPKNI7',1,1,'2023-03-28','12345789 7','Ahmad H. Bahar','L','Jakarta',1,'2','0','0000-00-00','Islam','Jl. Melati 8','0812346789 7',NULL,'WNI','P'),
 (12,'REG-DS0KXV',1,1,'2023-03-28','12345789 8','Ahmad I. Bahar','L','Jakarta',1,'2','0','0000-00-00','Islam','Jl. Melati 9','0812346789 8',NULL,'WNI','P'),
 (13,'REG-CVHZ1P',1,1,'2023-03-28','12345789 9','Ahmad J. Bahar','P','Jakarta',1,'2','0','0000-00-00','Islam','Jl. Melati 10','0812346789 9',NULL,'WNI','P'),
@@ -481,12 +483,13 @@ CREATE TABLE `tabel_lulus` (
   `id_rombel` int DEFAULT NULL,
   `tanggal_lulus` date DEFAULT NULL,
   PRIMARY KEY (`id_lulus`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `tabel_lulus` */
 
 insert  into `tabel_lulus`(`id_lulus`,`id_daftar`,`id_rombel`,`tanggal_lulus`) values 
-(1,2,0,'2023-03-28');
+(1,2,0,'2023-03-28'),
+(2,10,0,'2023-04-03');
 
 /*Table structure for table `tabel_mapel` */
 
@@ -744,7 +747,7 @@ CREATE TABLE `tabel_siswa` (
   KEY `id_rombel` (`id_rombel`),
   CONSTRAINT `tabel_siswa_to_daftar_ibfk_1` FOREIGN KEY (`id_daftar`) REFERENCES `tabel_daftar` (`id_daftar`),
   CONSTRAINT `tabel_siswa_to_rombel_ibfk_1` FOREIGN KEY (`id_rombel`) REFERENCES `tabel_rombel` (`id_rombel`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tabel_siswa` */
 
@@ -779,6 +782,19 @@ insert  into `tabel_tahunajaran`(`id_angkatan`,`kd_angkatan`,`nama_angkatan`,`ke
 (3,'TA2020/2021','TA 2020/2021','','2020-01-28','2021-01-28',0,'AKTIF'),
 (4,'TA2021/2022','TA 2021/2022','','2021-01-28','2022-01-28',1,'AKTIF'),
 (5,'TA2022/2023','TA 2022/2023','','2022-01-28','2023-01-28',0,'NONAKTIF');
+
+/*Table structure for table `tabel_testimoni` */
+
+DROP TABLE IF EXISTS `tabel_testimoni`;
+
+CREATE TABLE `tabel_testimoni` (
+  `id_testimoni` int DEFAULT NULL,
+  `id_alumni` int DEFAULT NULL,
+  `pesan` varchar(765) DEFAULT NULL,
+  `tampil` varchar(765) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*Data for the table `tabel_testimoni` */
 
 /*Table structure for table `tabel_transaksi` */
 

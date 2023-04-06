@@ -37,11 +37,6 @@ class M_alumni extends CI_Model{
 	}
 
 // Data Diri
-    function get_rombelByIdKelas($id_kelas){
-        $query = $this->db->get_where('tabel_rombel', array('id_kelas' => $id_kelas));
-        return $query;
-    }
-
 
 //
 	public function tambah_testimoni($tabel, $data)

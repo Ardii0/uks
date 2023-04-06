@@ -26,7 +26,7 @@
                             <div class="box">
                                 <div class="d-flex justify-content-between">
                                     <div>
-                                        <p style="font-size: 2rem">Data kategori Buku</p>
+                                        <p style="font-size: 2rem">Data Kategori Buku</p>
                                     </div>
                                     <div class="p-2 d-flex align-items-center gap-3">
                                         <div class="grid gap-3">
