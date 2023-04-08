@@ -7,6 +7,7 @@ class PetugasAlumni extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('m_alumni');
+        $this->load->model('m_petugasalumni');
         $this->load->helpers('my_helper');
         if ($this->session->userdata('status_petugasalumni')!='login') {
             redirect(base_url());
@@ -19,7 +20,7 @@ class PetugasAlumni extends CI_Controller {
     }
 
     
-    //Event
+//Event
     public function event()
     {
         $this->load->model('M_alumni');
@@ -145,5 +146,168 @@ class PetugasAlumni extends CI_Controller {
         }
     }
 
+// Bursa Kerja
+    public function upload_img($value)
+    {
+        $kode = round(microtime(true) * 1000);
+        $config['upload_path'] = './uploads/petugas_alumni/bursa_kerja/';
+        $config['allowed_types'] = 'jpg|png|jpeg';
+        $config['max_size'] = '100000';
+        $config['file_name'] = $kode;
+        $this->upload->initialize($config);
+        if (!$this->upload->do_upload($value))
+        {
+            return array( false, '' );
+        }
+        else
+        {
+            $fn = $this->upload->data();
+            $nama = $fn['file_name'];
+            return array( true, $nama );
+        }
+    }
+    
+    public function bursa_kerja()
+    {
+        $data['bursa_kerja'] = $this->m_petugasalumni->get('tabel_lowongan')->result();
+        $this->load->view('petugasalumni/bursa_kerja/bursa_kerja', $data);
+    }
+
+    public function tambah_bursa_kerja()
+    {
+        $data['dt'] = $this->m_petugasalumni->getwhere('tabel_level',array('id_level'=>$this->session->userdata('id_level')))->row();
+        $this->load->view('petugasalumni/bursa_kerja/tambah_bursa_kerja', $data);
+    }
+
+    public function aksi_tambah_bursa_kerja()
+    {
+        $gambar = $this->upload_img('gambar');
+        if($gambar[0]==false)
+        {
+            $data = array
+            (
+                'gambar' => null,
+                'id_user' => $this->input->post('id_user'),
+                'nama_perusahaan' => $this->input->post('nama_perusahaan'),
+                'bidang_usaha' => $this->input->post('bidang_usaha'),
+                'job_title' => $this->input->post('job_title'),
+                'deskripsi' => $this->input->post('deskripsi'),
+                'akhir_waktu' => $this->input->post('akhir_waktu'),
+                'is_tampil' => $this->input->post('is_tampil'),
+            );
+
+
+            $masuk=$this->m_petugasalumni->input_data('tabel_lowongan', $data);
+            if($masuk)
+            {
+                $this->session->set_flashdata('sukses', 'berhasil');
+                redirect(base_url('PetugasAlumni/bursa_kerja'));
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'gagal..');
+                redirect(base_url('PetugasAlumni/tambah_bursa_kerja'));
+            }
+        }
+        else
+        {
+            $data = array
+            (
+                'gambar' => $gambar[1],
+                'id_user' => $this->input->post('id_user'),
+                'nama_perusahaan' => $this->input->post('nama_perusahaan'),
+                'bidang_usaha' => $this->input->post('bidang_usaha'),
+                'job_title' => $this->input->post('job_title'),
+                'deskripsi' => $this->input->post('deskripsi'),
+                'akhir_waktu' => $this->input->post('akhir_waktu'),
+                'is_tampil' => $this->input->post('is_tampil'),
+            );
+
+
+            $masuk=$this->m_petugasalumni->input_data('tabel_lowongan', $data);
+            if($masuk)
+            {
+                $this->session->set_flashdata('sukses', 'berhasil');
+                redirect(base_url('PetugasAlumni/bursa_kerja'));
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'gagal..');
+                redirect(base_url('PetugasAlumni/tambah_bursa_kerja'));
+            }
+        }
+    }
+
+    public function edit_bursa_kerja($id_lowongan)
+    {
+        $data['dt'] = $this->m_petugasalumni->getwhere('tabel_level',array('id_level'=>$this->session->userdata('id_level')))->row();
+        $data['bursa_kerja'] = $this->m_petugasalumni->get_data_id('tabel_lowongan', 'id_lowongan', $id_lowongan)->result();
+        $this->load->view('petugasalumni/bursa_kerja/edit_bursa_kerja', $data);
+    }
+
+    public function aksi_edit_bursa_kerja()
+    {
+        $gambar = $this->upload_img('gambar');
+        if($gambar[0]==false)
+        {
+            $data = array
+            (
+                'gambar' => null,
+                'id_user' => $this->input->post('id_user'),
+                'nama_perusahaan' => $this->input->post('nama_perusahaan'),
+                'bidang_usaha' => $this->input->post('bidang_usaha'),
+                'job_title' => $this->input->post('job_title'),
+                'deskripsi' => $this->input->post('deskripsi'),
+                'akhir_waktu' => $this->input->post('akhir_waktu'),
+                'is_tampil' => $this->input->post('is_tampil'),
+            );
+
+
+            $masuk=$this->m_petugasalumni->edit_data('tabel_lowongan', $data, array('id_lowongan'=>$this->input->post('id_lowongan')));
+            if($masuk)
+            {
+                $this->session->set_flashdata('sukses', 'berhasil');
+                redirect(base_url('PetugasAlumni/bursa_kerja'));
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'gagal..');
+                redirect(base_url('PetugasAlumni/tambah_bursa_kerja'));
+            }
+        }
+        else
+        {
+            $data = array
+            (
+                'gambar' => $gambar[1],
+                'id_user' => $this->input->post('id_user'),
+                'nama_perusahaan' => $this->input->post('nama_perusahaan'),
+                'bidang_usaha' => $this->input->post('bidang_usaha'),
+                'job_title' => $this->input->post('job_title'),
+                'deskripsi' => $this->input->post('deskripsi'),
+                'akhir_waktu' => $this->input->post('akhir_waktu'),
+                'is_tampil' => $this->input->post('is_tampil'),
+            );
+
+
+            $masuk=$this->m_petugasalumni->edit_data('tabel_lowongan', $data, array('id_lowongan'=>$this->input->post('id_lowongan')));
+            if($masuk)
+            {
+                $this->session->set_flashdata('sukses', 'berhasil');
+                redirect(base_url('PetugasAlumni/bursa_kerja'));
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'gagal..');
+                redirect(base_url('PetugasAlumni/tambah_bursa_kerja'));
+            }
+        }
+    }
+
+    public function hapus_bursa_kerja($id_lowongan)
+    {
+        $this->m_petugasalumni->delete_data('tabel_lowongan', 'id_lowongan', $id_lowongan);
+        redirect(base_url('PetugasAlumni/bursa_kerja'));
+    }
 
 }

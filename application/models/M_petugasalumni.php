@@ -12,6 +12,12 @@ class M_petugasalumni extends CI_Model{
 		return $this->db->get_where($table,$where);
 	}
 
+	public function get_data_id($tabel, $where, $id_data)
+    {
+        $data=$this->db->where($where, $id_data)->get($tabel);
+        return $data;
+    }
+
     public function input_data($tabel, $data)
 	{
         $this->db->insert($tabel, $data);
