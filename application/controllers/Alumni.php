@@ -34,7 +34,35 @@ class Alumni extends CI_Controller {
         $data['data'] = $this->m_alumni->getwhere('tabel_daftar', array('diterima' => 'G'))->result();
         $data['user'] = $this->m_alumni->getwhere('tabel_level', array('id_level' => $this->session->userdata('id_level')))->result();
         $data['readydata'] = $this->m_alumni->getwhere('data_diri', array('id_level' => $this->session->userdata('id_level')))->result();
+        $data['readystatus'] = $this->m_alumni->getwhere('data_diri', array('id_level' => $this->session->userdata('id_level'), 'status' => 'Bekerja'))->result();
         $this->load->view('alumni/data_diri/bekerja/bekerja', $data);
+    }
+
+    public function wirausaha()
+    {
+        $data['data'] = $this->m_alumni->getwhere('tabel_daftar', array('diterima' => 'G'))->result();
+        $data['user'] = $this->m_alumni->getwhere('tabel_level', array('id_level' => $this->session->userdata('id_level')))->result();
+        $data['readydata'] = $this->m_alumni->getwhere('data_diri', array('id_level' => $this->session->userdata('id_level')))->result();
+        $data['readystatus'] = $this->m_alumni->getwhere('data_diri', array('id_level' => $this->session->userdata('id_level'), 'status' => 'Wirausaha'))->result();
+        $this->load->view('alumni/data_diri/wirausaha/wirausaha', $data);
+    }
+
+    public function kuliah()
+    {
+        $data['data'] = $this->m_alumni->getwhere('tabel_daftar', array('diterima' => 'G'))->result();
+        $data['user'] = $this->m_alumni->getwhere('tabel_level', array('id_level' => $this->session->userdata('id_level')))->result();
+        $data['readydata'] = $this->m_alumni->getwhere('data_diri', array('id_level' => $this->session->userdata('id_level')))->result();
+        $data['readystatus'] = $this->m_alumni->getwhere('data_diri', array('id_level' => $this->session->userdata('id_level'), 'status' => 'Kuliah'))->result();
+        $this->load->view('alumni/data_diri/kuliah/kuliah', $data);
+    }
+
+    public function lainnya()
+    {
+        $data['data'] = $this->m_alumni->getwhere('tabel_daftar', array('diterima' => 'G'))->result();
+        $data['user'] = $this->m_alumni->getwhere('tabel_level', array('id_level' => $this->session->userdata('id_level')))->result();
+        $data['readydata'] = $this->m_alumni->getwhere('data_diri', array('id_level' => $this->session->userdata('id_level')))->result();
+        $data['readystatus'] = $this->m_alumni->getwhere('data_diri', array('id_level' => $this->session->userdata('id_level'), 'status' => 'Lainnya'))->result();
+        $this->load->view('alumni/data_diri/lainnya/lainnya', $data);
     }
 
     public function tambah_datadiri()
@@ -48,7 +76,6 @@ class Alumni extends CI_Controller {
             'no_telp' => $this->input->post('no_telp'),
             'tahun_lulus' => $this->input->post('tahun_lulus'),
             'status' => $this->input->post('status'),
-            'deskripsi_status' => $this->input->post('deskripsi_status'),
             'nama_instansi' => $this->input->post('nama_instansi'),
             'jabatan' => $this->input->post('jabatan'),
             'tanggal_kerja' => $this->input->post('tanggal_kerja'),
@@ -57,9 +84,15 @@ class Alumni extends CI_Controller {
             'nama_instansi2' => $this->input->post('nama_instansi2'),
             'jabatan2' => $this->input->post('jabatan2'),
             'tanggal_kerja2' => $this->input->post('tanggal_kerja2'),
+            'nama_usaha' => $this->input->post('nama_usaha'),
+            'jenis_usaha' => $this->input->post('jenis_usaha'),
+            'tahun_usaha' => $this->input->post('tahun_usaha'),
+            'nama_perguruan' => $this->input->post('nama_perguruan'),
+            'jurusan' => $this->input->post('jurusan'),
+            'tahun_perguruan' => $this->input->post('tahun_perguruan'),
         ];
         $this->m_alumni->input_data('data_diri', $data);
-        redirect(base_url('Alumni/data_diri'));
+        redirect($_SERVER['HTTP_REFERER']);
     }
 
     public function update_datadiri()
@@ -71,7 +104,6 @@ class Alumni extends CI_Controller {
             'no_telp' => $this->input->post('no_telp'),
             'tahun_lulus' => $this->input->post('tahun_lulus'),
             'status' => $this->input->post('status'),
-            'deskripsi_status' => $this->input->post('deskripsi_status'),
             'nama_instansi' => $this->input->post('nama_instansi'),
             'jabatan' => $this->input->post('jabatan'),
             'tanggal_kerja' => $this->input->post('tanggal_kerja'),
@@ -80,119 +112,18 @@ class Alumni extends CI_Controller {
             'nama_instansi2' => $this->input->post('nama_instansi2'),
             'jabatan2' => $this->input->post('jabatan2'),
             'tanggal_kerja2' => $this->input->post('tanggal_kerja2'),
+            'nama_usaha' => $this->input->post('nama_usaha'),
+            'jenis_usaha' => $this->input->post('jenis_usaha'),
+            'tahun_usaha' => $this->input->post('tahun_usaha'),
+            'nama_perguruan' => $this->input->post('nama_perguruan'),
+            'jurusan' => $this->input->post('jurusan'),
+            'tahun_perguruan' => $this->input->post('tahun_perguruan'),
         );
         $this->m_alumni->edit_data('data_diri', $data, array('id_level' => $this->session->userdata('id_level')));
-        redirect(base_url('Alumni/bekerja/'));
+        redirect($_SERVER['HTTP_REFERER']);
     }
 
 //Event
-    public function event()
-    {
-        $this->load->model('M_alumni');
-        $data['data_event'] = $this->m_alumni->get_data('tabel_event');
-        $this->load->view('alumni/event/event', $data);
-    }
-
-    public function upload_img_event($value)
-    {
-        $kode = round(microtime(true) * 1000);
-        $config['upload_path'] = './uploads/alumni/event/';
-        $config['allowed_types'] = 'jpg|png|jpeg';
-        $config['max_size'] = '100000';
-        $config['file_name'] = $kode;
-        $this->upload->initialize($config);
-        if (!$this->upload->do_upload($value))
-        {
-            return array( false, '' );
-        }
-        else
-        {
-            $fn = $this->upload->data();
-            $nama = $fn['file_name'];
-            return array( true, $nama );
-        }
-    }
-
-    public function aksi_tambah_event()
-    {
-        $gambar = $this->upload_img_event('gambar');
-        if($gambar[0]==false)
-        {
-            //$this->upload->display_errors();
-            $this->session->set_flashdata('error', 'gagal upload gambar.');
-            redirect(base_url('Alumni/event'));
-        }
-        else {
-        $data = array
-        (
-            'id_user' => $this->input->post('id_user'),
-            'event_title' => $this->input->post('event_title'),
-            'event_slug' => strtolower($this->input->post('event_title')),
-            'deskripsi' => $this->input->post('deskripsi'),
-            'tanggal_event' => $this->input->post('tanggal_event'),
-            'tanggal_posting' => date("Y-m-d H:i:s"),
-            'gambar' => $gambar[1]
-        );
-        $event = $this->m_alumni->input_data('tabel_event', $data);
-        if ($event) {
-            $this->session->set_flashdata('sukses', 'berhasil');
-            redirect(base_url('alumni/event/event'));
-        } else {
-            $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('alumni/event/tambah_event'));
-        }
-    }
-    }
-
-    public function aksi_edit_event()
-    {
-        // echo '<script>console.log("Hola")</script>';
-        $gambar = $this->upload_img_event('gambar');
-        if($gambar[0]==false)
-        {
-            //$this->upload->display_errors();
-            $this->session->set_flashdata('error', 'gagal upload gambar.');
-            redirect(base_url('Alumni/event'));
-        }
-        else {
-        $data = array
-        (
-            'id_user' => $this->input->post('id_user'),
-            'event_title' => $this->input->post('event_title'),
-            'event_slug' => strtolower($this->input->post('event_title')),
-            'deskripsi' => $this->input->post('deskripsi'),
-            'tanggal_event' => $this->input->post('tanggal_event'),
-            'tanggal_posting' => date("Y-m-d H:i:s"),
-            'gambar' => $gambar[1]
-        );
-        $event=$this->m_alumni->edit_data('tabel_event', $data, array('id_event'=>$this->input->post('id_event')));
-        if($event)
-        {
-            $this->session->set_flashdata('sukses', 'berhasil');
-            redirect(base_url('alumni/event/event'));
-        }
-        else
-        {
-            $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('alumni/event/edit_event'.$this->input->post('id_event')));
-        }
-    }
-    }
-
-    public function hapus_event($id_event)
-    {
-        $hapus=$this->m_alumni->delete_data('tabel_event', 'id_event', $id_event);
-        if($hapus)
-        {
-            $this->session->set_flashdata('sukses', 'berhasil');
-            redirect(base_url('alumni/event/event'));
-        }
-        else
-        {
-            $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('alumni/event/event/'.$this->input->post('id_event')));
-        }
-    }
 
 //
     public function testimoni()

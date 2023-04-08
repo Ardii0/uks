@@ -56,7 +56,7 @@
                             <div class="border-top my-3"></div>
                         </div>
                         <div class="col-12">
-                            <?php $this->load->view('alumni/data_diri/bekerja/form')?>
+                            <?php $this->load->view('alumni/data_diri/lainnya/form')?>
                         </div>
                         <div class="col-12 mb-3">
                             <div class="row clearfix">

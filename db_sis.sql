@@ -30,7 +30,6 @@ CREATE TABLE `data_diri` (
   `no_telp` varchar(12) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `tahun_lulus` year NOT NULL,
   `status` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `deskripsi_status` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
   `nama_instansi` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
   `jabatan` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
   `tanggal_kerja` date DEFAULT NULL,
@@ -42,15 +41,18 @@ CREATE TABLE `data_diri` (
   `nama_usaha` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `jenis_usaha` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `tahun_usaha` varchar(10) CHARACTER SET latin1 DEFAULT NULL,
-  `nama_perguruan_tinggi` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `nama_perguruan` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `jurusan` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
-  `tahun_perguruan_tinggi` varchar(10) CHARACTER SET latin1 DEFAULT NULL,
+  `tahun_perguruan` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_data_diri`),
   KEY `id_user` (`id_level`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `data_diri` */
+
+insert  into `data_diri`(`id_data_diri`,`id_level`,`id_daftar`,`jurusan_sekolah`,`nik`,`alamat`,`no_telp`,`tahun_lulus`,`status`,`nama_instansi`,`jabatan`,`tanggal_kerja`,`bidang_instansi`,`lokasi_instansi`,`nama_instansi2`,`jabatan2`,`tanggal_kerja2`,`nama_usaha`,`jenis_usaha`,`tahun_usaha`,`nama_perguruan`,`jurusan`,`tahun_perguruan`,`timestamp`) values 
+(1,6,2,'TKJ','1111111111','Jl. Pemirsa','0839479422',2021,'Lainnya',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2023-04-06 11:52:42');
 
 /*Table structure for table `kembalikan` */
 
@@ -474,6 +476,32 @@ insert  into `tabel_level`(`id_level`,`username`,`email`,`password`,`level`,`kod
 (25,'Ahmad T. Marcel','Ahmad T. Marcel@gmail.com','cf431efa0b9f27f436d284cb59cb2f83','Guru','KG-IVWC3I',5),
 (26,'Siti Nur','Siti Nur@gmail.com','b9f9ea70f5102a12d83c163ae6e5552d','Guru','KG-SGMGVA',5),
 (32,'Alumni2','alumnmi2@gmail.com','202cb962ac59075b964b07152d234b70','Alumni',NULL,NULL);
+
+/*Table structure for table `tabel_lowongan` */
+
+DROP TABLE IF EXISTS `tabel_lowongan`;
+
+CREATE TABLE `tabel_lowongan` (
+  `id_lowongan` int DEFAULT NULL,
+  `id_user` int DEFAULT NULL,
+  `nama_perusahaan` varchar(150) DEFAULT NULL,
+  `bidang_usaha` varchar(150) DEFAULT NULL,
+  `job_title` varchar(150) DEFAULT NULL,
+  `job_slug` varchar(180) DEFAULT NULL,
+  `deskripsi` text,
+  `akhir_waktu` date DEFAULT NULL,
+  `tanggal_posting` timestamp NULL DEFAULT NULL,
+  `gambar` varchar(300) DEFAULT NULL,
+  `is_tampil` varchar(15) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*Data for the table `tabel_lowongan` */
+
+insert  into `tabel_lowongan`(`id_lowongan`,`id_user`,`nama_perusahaan`,`bidang_usaha`,`job_title`,`job_slug`,`deskripsi`,`akhir_waktu`,`tanggal_posting`,`gambar`,`is_tampil`) values 
+(1,1,'Excellent Komputer','Komputer','Loker Excellent','loker-excellent','<p>excellent computer adalah sebuah toko komputer semarang yang memberikan layanan dan produk yang terbaik untuk para pelanggan kami, kami menyediakan produk komputer/laptop/printer dengan kualitas terbaik, dan juga kami menjadi IT Consultant, App Developer, Service Hardware. Pengumuman loker ini dibutuhkan segera. Bagi pelamar yang memenuhi kualifikasi, dapat mengumpulkan berkas lamaran. PELAMAR TIDAK DIPUNGUT BIAYA (GRATIS). </p>','2023-04-06','2023-04-03 14:57:23','https://mir-s3-cdn-cf.behance.net/user/276/5437bc435409357.5db66a8ec2332.png','YA'),
+(2,2,'G2 Academy','Coding','Loker G2Academy','loker-g2','<p>Pengumuman loker ini dibutuhkan segera. Bagi pelamar yang memenuhi kualifikasi, dapat mengumpulkan berkas lamaran. PELAMAR TIDAK DIPUNGUT BIAYA (GRATIS). </p>','2023-04-06','2023-04-04 15:13:37','https://i.ytimg.com/vi/zCLy-sh9T84/maxresdefault.jpg','YA'),
+(3,3,'Win\'s Computer','Desain','Loker Win\'s','loker-win\'s','Pengumuman loker ini dibutuhkan segera. Bagi pelamar yang memenuhi kualifikasi, dapat mengumpulkan berkas lamaran. PELAMAR TIDAK DIPUNGUT BIAYA (GRATIS). ','2023-04-06','2023-04-05 10:56:41','https://www.logovector.org/wp-content/uploads/2016/12/wins.png','TIDAK'),
+(4,4,'Dinar Tech Syar\'i','Komputer','Loker Dinar Tech','loker-dinar ','Pengumuman loker ini dibutuhkan segera. Bagi pelamar yang memenuhi kualifikasi, dapat mengumpulkan berkas lamaran. PELAMAR TIDAK DIPUNGUT BIAYA (GRATIS). ','2023-04-03','2023-04-05 13:25:30','https://i1.wp.com/semaker.id/wp-content/uploads/2018/02/PT.-Dinar-Tech.jpg?fit=438%2C277&ssl=1','TIDAK');
 
 /*Table structure for table `tabel_lulus` */
 
