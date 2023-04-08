@@ -464,6 +464,7 @@ insert  into `tabel_level`(`id_level`,`username`,`email`,`password`,`level`,`kod
 (6,'Alumni','alumnmi@gmail.com','202cb962ac59075b964b07152d234b70','Alumni',NULL,NULL),
 (7,'Shelby','Shelby@gmail.com','698d51a19d8a121ce581499d7b701668','Guru','KG-330OSN',5),
 (8,'Ahmad','Ahmad@gmail.com','bcbe3365e6ac95ea2c0343a2395834dd','Guru',NULL,5),
+(9,'PetugasAlumni','adminalumnmi@gmail.com','202cb962ac59075b964b07152d234b70','PetugasAlumni',NULL,NULL),
 (19,'Arga','Arga@gmail.com','a01610228fe998f515a72dd730294d87','Guru','KG-LVUMAY',5),
 (20,'ar','ar@gmail.com','c20ad4d76fe97759aa27a0c99bff6710','Guru','KG-TEFKZU',5),
 (21,'Test23','Test23@gmail.com','ec43638b66e16a5bbede9b710b12b0c7','Guru','KG-8GVW0P',5),
