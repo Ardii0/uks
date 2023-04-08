@@ -1,8 +1,7 @@
 <?php
 
 class M_alumni extends CI_Model{
- 
-    //General Controllers
+//General Models ----CRUD NORMAL USE THIS SECTION! DONT MAKE A DUPLICATE CODE!----
     public function get_data($tabel)
 	{
 		return $this->db->get($tabel)->result();

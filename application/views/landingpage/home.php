@@ -284,14 +284,14 @@
             </div>
         </div>
     </header>
-    <div class="testimoni">
+    <!-- <div class="testimoni">
         <p class="judul-testimoni">APA KATA ALUMNI</p>
         <div class="container-fluid px-2 px-md-4 mx-auto">
             <div class="row d-flex justify-content-center">
                 <div class="col-md-10 col-lg-9 col-xl-8">
                     <div class="card card-main shadow-none text-center">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                            <!-- <ol class="carousel-indicators">
+                            <ol class="carousel-indicators">
                                 <?php
                                 $count = 0; foreach($testimoni as $row ) {
                                     $count++;
@@ -303,7 +303,7 @@
                                 echo '<li data-target="#carouselExampleIndicators" data-slide-to="<?php echo $count?>"
                                 class="' . $class . '">'; ?>
                                 <?php } ?>
-                            </ol> -->
+                            </ol>
                             <div class="carousel-inner">
                                 <?php
                                 $count = 0; foreach($testimoni as $row ) {
@@ -314,7 +314,6 @@
                                     $class = '';
                                 }
                                 echo '<div class="carousel-item ' . $class . '">'; ?>
-                                <!-- <div class="carousel-item active"> -->
                                 <div class="card border-0 card-0">
                                     <div class="card profile py-3 px-4">
                                         <div class="text-center">
@@ -338,7 +337,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <div class="footer-atas text-white">
         <div class="container">
             <div class="row py-4">
@@ -375,7 +374,7 @@
         </div>
     </div>
     <div class="footer-bawah py-3 text-white text-center">
-        © 2023 Copyright: Siapa Ya Bang
+        © 2023 Copyright: Bina Nusantara SMG
     </div>
     <?php $this->load->view('landingpage/style/js')?>
 </body>

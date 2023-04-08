@@ -39,15 +39,15 @@
                     <div class="row mx-2 pt-3 d-flex justify-content-between">
                         <div>
                         </div>
-                        <div class="col-md-3 d-flex justify-content-end align-self-start">
+                        <div class="d-flex justify-content-end align-self-start">
                             <button type="button" data-toggle="modal" data-target="#modal_import_pendaftaran"
-                                class="btn btn-success mr-1"><i class="fa fa-upload pr-2"></i>Upload</button>
+                                class="btn btn-success mr-1" style="width: 150px"><i class="fa fa-upload pr-2"></i>Upload</button>
                             <a href="<?php echo base_url('Akademik/export_to_excel'); ?>">
-                                <button type="button" class="btn btn-success mr-1"><i
+                                <button type="button" class="btn btn-success mr-1" style="width: 150px"><i
                                         class="fa fa-download pr-2"></i>Export</button>
                             </a>
                             <a href="<?php echo base_url('Akademik/form_pendaftaran'); ?>">
-                                <button type="button" class="btn btn-success"><i
+                                <button type="button" class="btn btn-success" style="width: 150px"><i
                                         class="fa fa-plus pr-2"></i>Tambah</button>
                             </a>
                         </div>
@@ -58,19 +58,19 @@
                                 <table id="akademik-table" class="table table-bordered table-striped">
                                     <thead>
                                         <tr class="text-center">
-                                            <th>No</th>
+                                            <th style="width: 5%">No</th>
                                             <th>Foto</th>
                                             <th>No Reg</th>
                                             <th>Nama</th>
                                             <th>Tahun Ajaran</th>
                                             <th>Jenjang</th>
-                                            <th>Aksi</th>
+                                            <th style="width: 90px">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php $id=0; foreach($data_siswa_daftar as $row ): $id++; ?>
                                         <tr>
-                                            <td><?php
+                                            <td class="text-center"><?php
                                                  echo $id 
                                                  ?></td>
                                             <td class="d-flex justify-content-center">

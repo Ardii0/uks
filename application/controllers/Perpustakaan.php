@@ -424,7 +424,7 @@ class Perpustakaan extends CI_Controller {
     public function delete_detail_index_buku($id_stok)
     {
         $this->m_perpustakaan->delete_detail_index_buku('table_detail_index_buku', 'id_stok', $id_stok);
-        redirect(base_url('Perpustakaan/data_buku/detail_index_buku'));
+        redirect($_SERVER['HTTP_REFERER']);
     }
 
     public function upload_img_buku($value)
