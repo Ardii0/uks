@@ -5,15 +5,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Alumni</title>
-    <?php $this->load->view('alumni/style/head') ?>
+    <?php $this->load->view('petugasalumni/style/head') ?>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-        <?php $this->load->view('alumni/style/navbar') ?>
-        <?php $this->load->view('alumni/style/sidebar') ?>
+        <?php $this->load->view('petugasalumni/style/navbar') ?>
+        <?php $this->load->view('petugasalumni/style/sidebar') ?>
 
         <div class="content-wrapper">
             <section class="content-header">
@@ -63,7 +63,7 @@
                                                 <td>
                                                     <img src="<?php $img = $data->gambar == null ? base_url('uploads/akademik/default_profile/User.png') : base_url('uploads/alumni/event') . "/" . $data->gambar;
                                                     echo $img ?>"
-                                                        alt="" srcset="">
+                                                        alt="" srcset="" style="max-width: 100%">
                                                 </td>
                                                 <td>
                                                     Nama Event : <span style="font-weight: bold;">
@@ -83,14 +83,14 @@
                                                     <?php echo $data->deskripsi ?>
                                                 </td>
                                                 <td class="text-center">
-                                                    <a href="#myModal" class="trash " data-id="1">
+                                                        <a href="#myModal" class="trash " data-id="1">
                                                         <button class="btn btn-primary btn-sm" type="button"
                                                             class="btn btn-success" data-toggle="modal"
                                                             data-target="#modal_event<?php echo $data->id_event ?>">
                                                             <i class="fa fa-edit"></i>
                                                         </button>
                                                     </a>
-                                                    <button class='btn btn-danger btn-sm'
+                                                    <button class='btn btn-danger btn-sm' 
                                                         onClick="hapus_event(<?php echo $data->id_event ?>)">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
@@ -147,7 +147,7 @@
                                         <div class="">
                                             <input type="file" name="gambar" class="form-control"
                                                 onchange="readURL(this);"><br>
-                                            <img id="blah" style="width: 110px; hight:200px" class="mt-3" />
+                                            <img id="blah" style="max-width: 100%" class="mt-3" />
                                         </div>
                                     </div>
                                     <input type="hidden" name="id_user"
@@ -210,13 +210,16 @@
                                         <div class="form-group ">
                                         <label class="control-label">Thumbnail</label>
                                         <div class="">
-                                            <input type="file" name="gambar" class="form-control"
-                                                onchange="readURL(this);"><br>
-                                            <img id="blah" style="width: 110px; hight:200px" class="mt-3" />
+                                        <img src="<?php $img = $data->gambar == null ? base_url('uploads/akademik/default_profile/User.png') : base_url('uploads/alumni/event') . "/" . $data->gambar;
+                                                    echo $img ?>" style="max-width: 100%">
+                                        <input type="file" name="gambar" class="form-control"
+                                            onchange="readURL(this);"><br>
                                         </div>
                                     </div>
                                     <input type="hidden" name="id_user"
                                         value="<?php echo $this->session->userdata('id_level') ?>">
+                                    <input type="hidden" name="id_event"
+                                        value="<?php echo $data->id_event ?>">
                                     </div>
                                 </div>
                             </div>
