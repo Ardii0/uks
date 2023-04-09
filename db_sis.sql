@@ -493,7 +493,7 @@ CREATE TABLE `tabel_lowongan` (
   `tanggal_posting` timestamp NULL DEFAULT NULL,
   `gambar` varchar(300) DEFAULT NULL,
   `is_tampil` varchar(15) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `tabel_lowongan` */
 
@@ -822,7 +822,7 @@ CREATE TABLE `tabel_testimoni` (
   `id_alumni` int DEFAULT NULL,
   `pesan` varchar(765) DEFAULT NULL,
   `tampil` varchar(765) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `tabel_testimoni` */
 

@@ -19,8 +19,56 @@ class PetugasAlumni extends CI_Controller {
         $this->load->view('petugasalumni/dashboard');
     }
 
-    
-//Event
+// Data Angkatan
+    public function data_angkatan()
+    {
+        $data['tahun_lulus'] = $this->m_alumni->count_group_by('tahun_lulus, COUNT(tahun_lulus) AS jumlah_lulusan', 'tahun_lulus', 'data_diri')->result();
+        $this->load->view('petugasalumni/data_angkatan/data_angkatan', $data);
+    }
+
+    public function detail_data_angkatan($id)
+    {
+        $where = array('tahun_lulus' => $id);
+        $row = $this->m_alumni->where_orderby_data('jurusan_sekolah DESC', $where, 'data_diri')->row_array();
+        if (isset($row['tahun_lulus'])) {
+            $data['user'] = $this->m_alumni->query_single_join('data_diri', 'tabel_level', 'id_level', 'id_level', 'id_data_diri', 'Desc', $where)->result();
+            
+            $this->load->view('petugasalumni/data_angkatan/detail_angkatan', $data);
+        }
+    }
+
+    public function detail_alumni($id)
+    {
+        $where = array('id_data_diri' => $id);
+        $row = $this->m_alumni->getwhere('data_diri', $where)->row_array();
+
+        if (isset($row['id_level'])) {
+            $data['jurusan_sekolah']  = set_value('jurusan_sekolah', $row['jurusan_sekolah']);
+            $data['id_daftar']        = set_value('id_daftar', $row['id_daftar']);
+            $data['nik']              = set_value('nik', $row['nik']);
+            $data['alamat']           = set_value('alamat', $row['alamat']);
+            $data['no_telp']          = set_value('no_telp', $row['no_telp']);
+            $data['tahun_lulus']      = set_value('tahun_lulus', $row['tahun_lulus']);
+            $data['status']           = set_value('status', $row['status']);
+            $data['nama_instansi']    = set_value('nama_instansi', $row['nama_instansi']);
+            $data['jabatan']          = set_value('jabatan', $row['jabatan']);
+            $data['tanggal_kerja']    = set_value('tanggal_kerja', $row['tanggal_kerja']);
+            $data['nama_instansi2']   = set_value('nama_instansi2', $row['nama_instansi2']);
+            $data['jabatan2']         = set_value('jabatan2', $row['jabatan2']);
+            $data['tanggal_kerja2']   = set_value('tanggal_kerja2', $row['tanggal_kerja2']);
+            $data['nama_usaha']       = set_value('nama_usaha', $row['nama_usaha']);
+            $data['jenis_usaha']      = set_value('jenis_usaha', $row['jenis_usaha']);
+            $data['tahun_usaha']      = set_value('tahun_usaha', $row['tahun_usaha']);
+            $data['nama_perguruan']   = set_value('nama_perguruan', $row['nama_perguruan']);
+            $data['jurusan']          = set_value('jurusan', $row['jurusan']);
+            $data['tahun_perguruan']  = set_value('tahun_perguruan', $row['tahun_perguruan']);
+            $data['id_data_diri']     = set_value('id_data_diri', $row['id_data_diri']);
+
+            $this->load->view('petugasalumni/data_angkatan/detail_alumni', $data);
+        }
+    }
+
+// Event
     public function event()
     {
         $this->load->model('M_alumni');

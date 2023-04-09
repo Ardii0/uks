@@ -1,7 +1,7 @@
 <?php
 
 class M_alumni extends CI_Model{
-//General Models ----CRUD NORMAL USE THIS SECTION! DONT MAKE A DUPLICATE CODE!----
+//General Models ----COMMON CRUD USE THIS SECTION! DONT MAKE A DUPLICATE CODE!----
     public function get_data($tabel)
 	{
 		return $this->db->get($tabel)->result();
@@ -34,6 +34,32 @@ class M_alumni extends CI_Model{
   	{
 		return $this->db->get_where($table,$where);
 	}
+
+    function where_orderby_data($order, $where, $table)
+    {
+        $this->db->where($where);
+        $this->db->order_by($order);
+        return $this->db->get($table);
+    }
+
+    public function count_group_by($select, $group_by, $table)
+    {
+        $this->db->select($select);
+        $this->db->from($table);
+        $this->db->group_by($group_by);
+        return $this->db->get();
+    }
+
+    public function query_single_join($table1, $table2, $field1, $field2, $order, $ordering, $where)
+    {
+        //for join 1 table
+        $this->db->select('*');
+        $this->db->from($table1);
+        $this->db->join($table2, $table1 . '.' . $field1 . '=' . $table2 . '.' . $field2);
+        $this->db->where($where);
+        $this->db->order_by($order, $ordering);
+        return $this->db->get();
+    }
 
 // Data Diri
 
