@@ -439,6 +439,21 @@ insert  into `tabel_kelas`(`id_kelas`,`id_jenjang`,`nama_kelas`,`keterangan`,`st
 (3,1,'XI TKJ ','','AKTIF'),
 (4,1,'XII TKJ ','','AKTIF');
 
+CREATE TABLE `tabel_kritik` (
+  `id_kritik` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_user` int(11) unsigned NOT NULL,
+  `kritik` text NOT NULL,
+  `tanggal_posting` timestamp NULL DEFAULT NULL,
+  `tanggal_respon` timestamp NULL DEFAULT NULL,
+  `respon` text NOT NULL,
+  PRIMARY KEY (`id_kritik`),
+  KEY `id_user` (`id_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+INSERT INTO `tabel_kritik` (`id_kritik`, `id_user`, `kritik`, `tanggal_posting`, `tanggal_respon`, `respon`) VALUES
+(1, 6, 'Bismillah', '2023-04-09 21:29:53', '2023-04-11 02:30:31', 'Ayo Semangat'),
+(2, 6, '<p>Maju Maju Maju klitak!~~ Aku Butuh Senapan :b</p>\r\n', '2023-04-10 02:15:07', NULL, '');
+
 /*Table structure for table `tabel_level` */
 
 DROP TABLE IF EXISTS `tabel_level`;
@@ -451,6 +466,7 @@ CREATE TABLE `tabel_level` (
   `level` varchar(20) NOT NULL,
   `kode_guru` varchar(255) DEFAULT NULL,
   `id_hak_akses` int DEFAULT NULL,
+  `foto` text DEFAULT NULL,
   PRIMARY KEY (`id_level`),
   KEY `tabel_level_to_guru` (`kode_guru`)
 ) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
@@ -725,6 +741,22 @@ insert  into `tabel_rombel`(`id_rombel`,`id_kelas`,`nama_rombel`,`kode_guru`,`ku
 (5,3,'XI TKJ 2','KG-QUC568',20,'AKTIF'),
 (6,4,'XII TKJ 1 ','KG-SGMGVA',20,'AKTIF'),
 (7,4,'XII TKJ 2','KG-SGMGVA',20,'AKTIF');
+
+CREATE TABLE `tabel_saran` (
+  `id_saran` int(10) NOT NULL AUTO_INCREMENT,
+  `id_user` int(11) NOT NULL,
+  `saran` text NOT NULL,
+  `tanggal_posting` timestamp NOT NULL DEFAULT current_timestamp(),
+  `tanggal_respon` timestamp NULL DEFAULT NULL,
+  `respon` text NOT NULL,
+  PRIMARY KEY (`id_saran`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `tabel_saran` (`id_saran`, `id_user`, `saran`, `tanggal_posting`, `tanggal_respon`, `respon`) VALUES
+(1, 6, '<p><big>AKU BUTUH MEDKIT!</big></p>\r\n', '2023-04-10 02:13:13', NULL, ''),
+(2, 6, '<p>Kerja <var><strong>Bagus</strong></var></p>\r\n', '2023-04-10 02:19:39', NULL, ''),
+(3, 6, '<p>Sebaik Jangan <cite><s>Gegabah</s></cite></p>\r\n', '2023-04-10 02:20:09', '2023-04-11 07:20:35', 'Baiklah'),
+(4, 6, '<p>halo kawan</p>\r\n', '2023-04-10 03:26:03', NULL, '');
 
 /*Table structure for table `tabel_sekolah` */
 
