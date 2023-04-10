@@ -15,6 +15,7 @@ class LandingPage extends CI_Controller {
 
     public function index()
     {
+        $data['total_testimoni_yes'] = $this->m_landingpage->total_testimoni_yes();
         $data['testimoni'] = $this->m_alumni->get('tabel_testimoni', array('tampil' => 'yes'))->result();
         $this->load->view('landingpage/home', $data);
     }

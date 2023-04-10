@@ -74,7 +74,6 @@ class Admin extends CI_Controller {
             'alamat' => $this->input->post('alamat'),
             'email_sekolah' => $this->input->post('email_sekolah'),
             );
-            // $masuk=$this->m_akademik->ubah_setting_sekolah('tabel_sekolah', $data);
             $masuk=$this->M_admin->ubah_setting_sekolah('tabel_sekolah', $data, array('id_sekolah'=>$this->input->post('id_sekolah')));
             if($masuk)
             {

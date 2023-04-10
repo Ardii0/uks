@@ -1737,6 +1737,87 @@ class Akademik extends CI_Controller {
             }
             redirect(base_url('Akademik/alokasi_mapel/'.$this->input->post('id_mapel')));
         }
-    
 
+        // Akun
+        public function akun()
+        {
+            $data = [
+                'judul' => '',
+                'page' => '',
+                'menu' => '',
+                'submenu'=>'',
+                'menu_submenu_admin'=>'',
+                'menu_admin' => '',
+                'submenu_admin'=>'',
+            ];
+            $data['user']=$this->m_akademik->get_userByLogin('tabel_level')->result();
+            $this->load->view('akademik/akun/akun', $data);
+        }
+
+        public function update_akun()
+        {
+            $email = $this->input->post('email');
+            $username = $this->input->post('username');
+            $password_baru = $this->input->post('password_baru');
+            $password_baru2 = $this->input->post('password_baru2');
+            if ($password_baru == null) {
+                $data = array
+                    (
+                    'email' => $this->input->post('email'),
+                    'username' => $this->input->post('username'),
+                    );
+                    $masuk=$this->m_akademik->edit_data('tabel_level', $data, array('id_level'=>$this->input->post('id_level')));
+                    if($masuk)
+                    {
+                        $this->session->set_flashdata('sukses', 'berhasil update email dan username');
+                        redirect(base_url('Akademik/akun'));
+                    }
+                    else
+                    {
+                        $this->session->set_flashdata('error', 'gagal..');
+                        redirect(base_url('Akademik/akun'));
+                    }
+            }else if($password_baru !== null){
+                if($password_baru !== $password_baru2){
+                    $this->session->set_flashdata('message', 'Password baru dan konfirmasi password harus sama');
+                    redirect(base_url('Akademik/akun'));
+                }else{
+                    $data = array
+                    (
+                    'email' => $this->input->post('email'),
+                    'username' => $this->input->post('username'),
+                    'password' => md5($this->input->post('password_baru')),
+                    );
+                    $masuk=$this->m_akademik->edit_data('tabel_level', $data, array('id_level'=>$this->input->post('id_level')));
+                    if($masuk)
+                    {
+                        $this->session->set_flashdata('sukses', 'berhasil update email, username, dan password');
+                        redirect(base_url('Akademik/akun'));
+                    }
+                    else
+                    {
+                        $this->session->set_flashdata('error', 'gagal update email, username, dan password');
+                        redirect(base_url('Akademik/akun'));
+                    }
+                }
+            }else {
+                    $data = array
+                    (
+                    'email' => $this->input->post('email'),
+                    'username' => $this->input->post('username'),
+                    'password' => md5($this->input->post('password_baru')),
+                    );
+                    $masuk=$this->m_akademik->edit_data('tabel_level', $data, array('id_level'=>$this->input->post('id_level')));
+                    if($masuk)
+                    {
+                        $this->session->set_flashdata('sukses', 'berhasil update akun');
+                        redirect(base_url('Akademik/akun'));
+                    }
+                    else
+                    {
+                        $this->session->set_flashdata('error', 'gagal update akun');
+                        redirect(base_url('Akademik/akun'));
+                    }
+            }
+        }
 }

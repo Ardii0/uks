@@ -479,5 +479,15 @@ class M_akademik extends CI_Model{
         return $data;
     }
 
- 
+    // Akun
+	public function get_userByLogin($table)
+	{
+		$data = $this->db->get_where('tabel_level', array('id_level' => $this->session->userdata('id_level')));
+		return $data;
+	}
+    public function edit_data($tabel, $data, $where)
+    {
+        $data=$this->db->update($tabel, $data, $where);
+        return $this->db->affected_rows();
+    }
 }
