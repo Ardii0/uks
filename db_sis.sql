@@ -482,17 +482,17 @@ insert  into `tabel_level`(`id_level`,`username`,`email`,`password`,`level`,`kod
 DROP TABLE IF EXISTS `tabel_lowongan`;
 
 CREATE TABLE `tabel_lowongan` (
-  `id_lowongan` int DEFAULT NULL,
-  `id_user` int DEFAULT NULL,
-  `nama_perusahaan` varchar(150) DEFAULT NULL,
-  `bidang_usaha` varchar(150) DEFAULT NULL,
-  `job_title` varchar(150) DEFAULT NULL,
-  `job_slug` varchar(180) DEFAULT NULL,
-  `deskripsi` text,
-  `akhir_waktu` date DEFAULT NULL,
-  `tanggal_posting` timestamp NULL DEFAULT NULL,
+  `id_lowongan` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `nama_perusahaan` varchar(150) NOT NULL,
+  `bidang_usaha` varchar(150) NOT NULL,
+  `job_title` varchar(150) NOT NULL,
+  `deskripsi` text NOT NULL,
+  `akhir_waktu` date NOT NULL,
+  `tanggal_posting` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `gambar` varchar(300) DEFAULT NULL,
-  `is_tampil` varchar(15) DEFAULT NULL
+  `is_tampil` varchar(15) NOT NULL,
+  PRIMARY KEY (`id_lowongan`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `tabel_lowongan` */

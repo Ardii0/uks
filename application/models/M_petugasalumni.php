@@ -6,6 +6,11 @@ class M_petugasalumni extends CI_Model{
   	{
 		return $this->db->get($table);
 	}
+
+    function get_filter_data($field, $filter, $table)
+  	{
+		return $this->db->order_by($field, $filter)->get($table);
+	}
     
     function getwhere($table,$where)
   	{

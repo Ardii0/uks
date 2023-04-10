@@ -99,12 +99,12 @@
                                         class="form-control">
                                 </div>
                             </div>
-                            <div class="row align-items-center mt-4">
+                            <div class="row mt-4">
                                 <div class="col-2">
                                     <label class="control-label">Deskripsi</label>
                                 </div>
                                 <div class="col">
-                                    <textarea name="deskripsi" class="form-control"
+                                    <textarea name="deskripsi" id="ckeditor" class="form-control"
                                         placeholder="Masukan Deskripsi*"><?php echo $data->deskripsi ?></textarea>
                                 </div>
                             </div>
@@ -128,8 +128,10 @@
                                     style="width: 150px; margin-right: 12px;">Kembali</button>
                             </div>
                             <div class="">
-                                <input type="text" value="<?php echo $data->id_lowongan ?>" name="id_lowongan" class="form-control" hidden>
-                                <input type="text" value="<?php echo $dt->id_level ?>" name="id_user" class="form-control" hidden>
+                                <input type="text" value="<?php echo $data->id_lowongan ?>" name="id_lowongan"
+                                    class="form-control" hidden>
+                                <input type="text" value="<?php echo $dt->id_level ?>" name="id_user"
+                                    class="form-control" hidden>
                                 <button type="submit" class="btn btn-success"
                                     style="width: 150px; margin-right: 12px;">Simpan</button>
                             </div>
@@ -141,23 +143,23 @@
         </div>
     </div>
 
-    <?php $this->load->view('alumni/style/js')?>
+    <?php $this->load->view('petugasalumni/style/js')?>
     <script>
     function kembali() {
         window.history.go(-1);
     }
 
     function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
 
-                reader.onload = function(e) {
-                    $('#blah').attr('src', e.target.result);
-                }
-
-                reader.readAsDataURL(input.files[0]);
+            reader.onload = function(e) {
+                $('#blah').attr('src', e.target.result);
             }
+
+            reader.readAsDataURL(input.files[0]);
         }
+    }
     </script>
 </body>
 

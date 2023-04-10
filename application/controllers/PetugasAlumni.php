@@ -217,7 +217,7 @@ class PetugasAlumni extends CI_Controller {
     
     public function bursa_kerja()
     {
-        $data['bursa_kerja'] = $this->m_petugasalumni->get('tabel_lowongan')->result();
+        $data['bursa_kerja'] = $this->m_petugasalumni->get_filter_data('tanggal_posting', 'DESC', 'tabel_lowongan')->result();
         $this->load->view('petugasalumni/bursa_kerja/bursa_kerja', $data);
     }
 
@@ -320,7 +320,7 @@ class PetugasAlumni extends CI_Controller {
             else
             {
                 $this->session->set_flashdata('error', 'gagal..');
-                redirect(base_url('PetugasAlumni/tambah_bursa_kerja'));
+                redirect(base_url('PetugasAlumni/edit_bursa_kerja/').$this->input->post('id_lowongan'));
             }
         }
         else

@@ -84,12 +84,12 @@
                                     <input type="date" name="akhir_waktu" class="form-control">
                                 </div>
                             </div>
-                            <div class="row align-items-center mt-4">
+                            <div class="row mt-4">
                                 <div class="col-2">
                                     <label class="control-label">Deskripsi</label>
                                 </div>
                                 <div class="col">
-                                    <textarea name="deskripsi" class="form-control"
+                                    <textarea name="deskripsi" id="ckeditor" class="form-control"
                                         placeholder="Masukan Deskripsi*"></textarea>
                                 </div>
                             </div>
@@ -123,7 +123,7 @@
         </div>
     </div>
 
-    <?php $this->load->view('alumni/style/js')?>
+    <?php $this->load->view('petugasalumni/style/js')?>
     <script>
         function kembali() {
             window.history.go(-1);
