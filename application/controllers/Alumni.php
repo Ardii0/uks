@@ -170,4 +170,136 @@ class Alumni extends CI_Controller {
         }
     }
 
+    // Akun
+    public function akun()
+    {
+        $data['user']=$this->m_alumni->get_userByLogin('tabel_level')->result();
+        $this->load->view('alumni/akun/akun', $data);
+    }
+
+    public function upload_image($value)
+    {
+        $kode = round(microtime(true) * 1000);
+        $config['upload_path'] = './uploads/alumni/akun/';
+        $config['allowed_types'] = 'jpg|png|jpeg';
+        $config['max_size'] = '30000';
+        $config['file_name'] = $kode;
+        $this->upload->initialize($config);
+        if (!$this->upload->do_upload($value))
+        {
+            return array( false, '' );
+        }
+        else
+        {
+            $fn = $this->upload->data();
+            $nama = $fn['file_name'];
+            return array( true, $nama );
+        }
+    }
+
+    public function update_akun()
+    {
+        $email = $this->input->post('email');
+        $username = $this->input->post('username');
+        $password_baru = $this->input->post('password_baru');
+        $password_baru2 = $this->input->post('password_baru2');
+        $foto = $this->upload_image('foto');
+        if ($password_baru == null && $foto[0] == false) {
+            $data = array
+                (
+                'email' => $this->input->post('email'),
+                'username' => $this->input->post('username'),
+                );
+                $masuk=$this->m_alumni->edit_data('tabel_level', $data, array('id_level'=>$this->input->post('id_level')));
+                if($masuk)
+                {
+                    $this->session->set_flashdata('sukses', 'berhasil update email dan username');
+                    redirect(base_url('Alumni/akun'));
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'gagal..');
+                    redirect(base_url('Alumni/akun'));
+                }
+        }else if($password_baru !== null && $foto[0] == false){
+            if($password_baru !== $password_baru2){
+                $this->session->set_flashdata('message', 'Password baru dan konfirmasi password harus sama');
+                redirect(base_url('Alumni/akun'));
+            }else{
+                $data = array
+                (
+                'email' => $this->input->post('email'),
+                'username' => $this->input->post('username'),
+                'password' => md5($this->input->post('password_baru')),
+                );
+                $masuk=$this->m_alumni->edit_data('tabel_level', $data, array('id_level'=>$this->input->post('id_level')));
+                if($masuk)
+                {
+                    $this->session->set_flashdata('sukses', 'berhasil update email, username, dan password');
+                    redirect(base_url('Alumni/akun'));
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'gagal update email, username, dan password');
+                    redirect(base_url('Alumni/akun'));
+                }
+            }
+        }else if($password_baru == null && $foto[0] == true){
+            $foto = $this->upload_image('foto');
+            if($foto[0]==false)
+            {
+                $this->session->set_flashdata('error', 'gagal upload foto.');
+                redirect(base_url('Alumni/akun'));
+            }
+            else
+            {
+                $data = array
+                (
+                'foto' => $foto[1],
+                'email' => $this->input->post('email'),
+                'username' => $this->input->post('username'),
+                );
+                $masuk=$this->m_alumni->edit_data('tabel_level', $data, array('id_level'=>$this->input->post('id_level')));
+                if($masuk)
+                {
+                    $this->session->set_flashdata('sukses', 'berhasil update foto');
+                    redirect(base_url('Alumni/akun'));
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'gagal update foto');
+                    redirect(base_url('Alumni/akun'));
+                }
+            }
+        }else {
+            $foto = $this->upload_image('foto');
+            if($foto[0]==false)
+            {
+                $this->session->set_flashdata('error', 'gagal upload foto.');
+                redirect(base_url('Alumni/akun'));
+            }
+            else
+            {
+                $data = array
+                (
+                'foto' => $foto[1],
+                'email' => $this->input->post('email'),
+                'username' => $this->input->post('username'),
+                'password' => md5($this->input->post('password_baru')),
+                );
+                $masuk=$this->m_alumni->edit_data('tabel_level', $data, array('id_level'=>$this->input->post('id_level')));
+                if($masuk)
+                {
+                    $this->session->set_flashdata('sukses', 'berhasil update akun');
+                    redirect(base_url('Alumni/akun'));
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'gagal update akun');
+                    redirect(base_url('Alumni/akun'));
+                }
+            }
+        }
+    }
+
 }

@@ -39,7 +39,7 @@
                             </ol>
                         </div>
                     </div>
-                    <div class="bg-white container px-5 py-3 rounded-lg">
+                    <div class="bg-white shadow container px-5 py-3 rounded-lg">
                         <div class="text-center h3">
                             TESTIMONIAL
                         </div>

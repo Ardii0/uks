@@ -262,12 +262,6 @@
                     <img src="<?php echo base_url('assets/dist/img/logo-login.png'); ?>" width="182" height="159"
                         class="d-inline-block align-text-top me-3">
                     <h3 class="sub-judul">Sistem Informasi Sekolah</h3>
-                    <!-- <p class="isi">
-                        Sistem Informasi Sekolah adalah sebuah sarana atau alat yang bisa digunakan oleh
-                        sekolah untuk meningkatkan pelayanan dan kualitas sekolah. Melalui sistem ini, pihak sekolah
-                        bisa berinteraksi dengan banyak pihak terkait. Seperti calon siswa, masyarakat, siswa, orang
-                        tua, dan lain-lain
-                    </p> -->
                     <hr class="hr-hide">
                     <hr class="hr">
                     <p class="isi">SMK Bina Nusantara Semarang</p>
@@ -284,26 +278,15 @@
             </div>
         </div>
     </header>
-    <!-- <div class="testimoni">
+    <!-- <?php if ( $total_testimoni_yes === 0 ) : ?>
+    <?php else : ?>
+    <div class="testimoni">
         <p class="judul-testimoni">APA KATA ALUMNI</p>
         <div class="container-fluid px-2 px-md-4 mx-auto">
             <div class="row d-flex justify-content-center">
                 <div class="col-md-10 col-lg-9 col-xl-8">
                     <div class="card card-main shadow-none text-center">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                <?php
-                                $count = 0; foreach($testimoni as $row ) {
-                                    $count++;
-                                    if ($count === 1) {
-                                    $class = 'active';
-                                    } else {
-                                    $class = '';
-                                }
-                                echo '<li data-target="#carouselExampleIndicators" data-slide-to="<?php echo $count?>"
-                                class="' . $class . '">'; ?>
-                                <?php } ?>
-                            </ol>
                             <div class="carousel-inner">
                                 <?php
                                 $count = 0; foreach($testimoni as $row ) {
@@ -337,7 +320,8 @@
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
+    <?php endif; ?> -->
     <div class="footer-atas text-white">
         <div class="container">
             <div class="row py-4">
