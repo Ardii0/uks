@@ -28,6 +28,14 @@
                 </p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url('PetugasAlumni/data_angkatan') ;?>"  class="nav-link">
+                <i class="nav-icon fas fa-users fa-pulse" style="color: #ff52d1;"></i>
+                <p>
+                  Data Angkatan
+                </p>
+              </a>
+            </li>
             <li class="nav-item logout">
               <a href="<?php echo base_url('Login/logout');?>" class="nav-link">
                 <i class="nav-icon far fa-circle text-danger"></i>

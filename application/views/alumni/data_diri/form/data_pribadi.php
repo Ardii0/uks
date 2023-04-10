@@ -51,7 +51,7 @@
                         <div class="form-line">
                             <select id="enter" name="id_daftar" class="form-control select2" required="">
                                 <option selected value="<?php echo $ready->id_daftar ?>">
-                                    <?php echo $ready->id_daftar ?>
+                                    <?php echo tampil_nisn_siswa_byid($ready->id_daftar) ?>
                                 </option>
                                 <?php foreach($data as $data):?>
                                     <option value="<?php echo $data->id_daftar ?>" required><?php echo $data->nisn?></option>
@@ -84,8 +84,10 @@
                                 <option selected value="<?php echo $ready->jurusan_sekolah ?>">
                                     <?php echo $ready->jurusan_sekolah ?>
                                 </option>
-                                <option value="Akl">Akl</option>
-                                <option value="Tkj">Tkj</option>
+                                <option value="AKL">AKL</option>
+                                <option value="TKJ">TKJ</option>
+                                <option value="TB">TB</option>
+                                <option value="TBSM">TBSM</option>
                             </select>
                         </div>
                     </div>
@@ -264,8 +266,10 @@
                             <option selected disabled>
                                 Pilih Jurusan
                             </option>
-                            <option value="Akl">Akl</option>
-                            <option value="Tkj">Tkj</option>
+                            <option value="AKL">AKL</option>
+                            <option value="TKJ">TKJ</option>
+                            <option value="TB">TB</option>
+                            <option value="TBSM">TBSM</option>
                         </select>
                     </div>
                 </div>
