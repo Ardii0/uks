@@ -24,7 +24,7 @@
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="<?php echo base_url('Alumni/') ?>"><?php echo $this->session->userdata('level') ?></a></li>
+                                <li class="breadcrumb-item"><a href="<?php echo base_url('petugasAlumni/') ?>"><?php echo $this->session->userdata('level') ?></a></li>
                                 <li class="breadcrumb-item active">Event</li>
                             </ol>
                         </div>
@@ -83,6 +83,10 @@
                                                     <?php echo $data->deskripsi ?>
                                                 </td>
                                                 <td class="text-center">
+                                                <button class='btn btn-info btn-sm' 
+                                                        onClick="show(<?php echo $data->id_event ?>)">
+                                                        Tampilkan
+                                                    </button>
                                                         <a href="#myModal" class="trash " data-id="1">
                                                         <button class="btn btn-primary btn-sm" type="button"
                                                             class="btn btn-success" data-toggle="modal"
@@ -109,7 +113,7 @@
         <div class="modal fade" id="modal_tambah_event" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <form action="<?php echo base_url('alumni/aksi_tambah_event') ?>" enctype="multipart/form-data"
+                <form action="<?php echo base_url('petugasalumni/aksi_tambah_event') ?>" enctype="multipart/form-data"
                     method="post">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -170,7 +174,7 @@
             <div class="modal fade" id="modal_event<?php echo $data->id_event ?>" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <form action="<?php echo base_url('alumni/aksi_edit_event') ?>" enctype="multipart/form-data"
+                    <form action="<?php echo base_url('petugasalumni/aksi_edit_event') ?>" enctype="multipart/form-data"
                         method="post">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -210,7 +214,7 @@
                                         <div class="form-group ">
                                         <label class="control-label">Thumbnail</label>
                                         <div class="">
-                                        <img src="<?php $img = $data->gambar == null ? base_url('uploads/akademik/default_profile/User.png') : base_url('uploads/alumni/event') . "/" . $data->gambar;
+                                        <img src="<?php $img = $data->gambar == null ? base_url('uploads/akademik/default_profile/User.png') : base_url('uploads/petugasalumni/event') . "/" . $data->gambar;
                                                     echo $img ?>" style="max-width: 100%">
                                         <input type="file" name="gambar" class="form-control"
                                             onchange="readURL(this);"><br>
@@ -237,7 +241,7 @@
         </section>
     </div>
     </div>
-    <?php $this->load->view('alumni/style/js') ?>
+    <?php $this->load->view('petugasalumni/style/js') ?>
     <script>
             $('.trash').click(function() {
         var id = $(this).data('id');
@@ -248,7 +252,14 @@
         function hapus_event(id) {
             var yes = confirm('Yakin Di Hapus?');
             if (yes == true) {
-                window.location.href = "<?php echo base_url('Alumni/hapus_event/') ?>" + id;
+                window.location.href = "<?php echo base_url('petugasalumni/hapus_event/') ?>" + id;
+            }
+        }
+
+        function show(id) {
+            var yes = confirm('Yakin Di Tampilkan?');
+            if (yes == true) {
+                window.location.href = "<?php echo base_url('petugasalumni/hapus_event/') ?>" + id;
             }
         }
         function readURL(input) {

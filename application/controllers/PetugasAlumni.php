@@ -30,7 +30,7 @@ class PetugasAlumni extends CI_Controller {
     public function upload_img_event($value)
     {
         $kode = round(microtime(true) * 1000);
-        $config['upload_path'] = './uploads/petugasalumni/event/';
+        $config['upload_path'] = './uploads/alumni/event/';
         $config['allowed_types'] = 'jpg|png|jpeg';
         $config['max_size'] = '100000';
         $config['file_name'] = $kode;
@@ -65,6 +65,7 @@ class PetugasAlumni extends CI_Controller {
             'deskripsi' => $this->input->post('deskripsi'),
             'tanggal_event' => $this->input->post('tanggal_event'),
             'tanggal_posting' => date("Y-m-d H:i:s"),
+            'status' => 'aktif',
             'gambar' => $gambar[1]
         );
         $event = $this->m_alumni->input_data('tabel_event', $data);
@@ -146,4 +147,31 @@ class PetugasAlumni extends CI_Controller {
     }
 
 
+    public function show_event($id_event)
+    {
+        $data = "";
+        if ($data->status == 'aktif') {
+            $data = array
+            (
+                'status' => "nonaktif",
+            );
+        } elseif ($data->status == 'nonaktif') {
+            $data = array
+            (
+                'status' => "aktif",
+            );
+        }
+
+        $show=$this->m_alumni->edit_data('tabel_event', $data, array('id_event'=>$this->input->post('id_event')));
+        if($show)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('petugasalumni/event/event'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('petugasalumni/event/event/'.$this->input->post('id_event')));
+        }
+    }
 }
