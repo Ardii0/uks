@@ -302,4 +302,96 @@ class Alumni extends CI_Controller {
         }
     }
 
+    //kritik & saran
+ //kritik
+  public function user_kritik()
+  {
+      $data['kritik']=$this->m_alumni->get_kritik_ByUser('tabel_kritik')->result();
+      $this->load->view('alumni/kritik/daf_kritik', $data);
+  }
+
+  public function form_kritik()
+  {
+      $this->load->view('alumni/kritik/tambah_kritik');
+  }
+
+  public function aksi_add_kritik()
+  {
+      $date = date('Y-m-d H:i:s');
+      $data = [
+          'kritik' => $this->input->post('kritik'),
+          'id_user' => $this->input->post('id_user'),
+          'tanggal_posting' => $date,
+      ];
+      $this->m_alumni->tambah_kritik('tabel_kritik', $data);
+      redirect(base_url('alumni/user_kritik'));
+  }
+  
+  public function detail_kritik($id_kritik) 
+  {
+      $data['detail']=$this->m_alumni->get_detail_kritik('tabel_kritik', $id_kritik)->result();
+      $this->load->view('alumni/kritik/detail_kritik', $data);
+  }
+  
+  public function hapus_kritik($id_kritik)
+  {
+      $hapus=$this->m_alumni->delete_kritik('tabel_kritik', 'id_kritik', $id_kritik);
+      if($hapus)
+      {
+          $this->session->set_flashdata('sukses', 'Berhasil..');
+          redirect(base_url('Alumni/user_kritik'));
+      }
+      else
+      {
+          $this->session->set_flashdata('error', 'gagal..');
+          redirect(base_url('Alumni/kritik/error'));
+      }
+  }
+
+ //saran
+ 
+  
+  public function user_saran()
+  {
+    $data['saran']=$this->m_alumni->get_saran_ByUser('tabel_saran')->result();
+    $this->load->view('alumni/saran/daf_saran', $data);
+  }
+
+  public function form_saran()
+  {
+      $this->load->view('alumni/saran/tambah_saran');
+  }
+
+  public function aksi_add_saran()
+  {
+      $date = date('Y-m-d H:i:s');
+      $data = [
+          'saran' => $this->input->post('saran'),
+          'id_user' => $this->input->post('id_user'),
+          'tanggal_posting' => $date,
+      ];
+      $this->m_alumni->tambah_saran('tabel_saran', $data);
+      redirect(base_url('alumni/user_saran/'));
+  }
+
+  public function detail_saran($id_saran) 
+  {
+      $data['detail']=$this->m_alumni->get_detail_saran('tabel_saran', $id_saran)->result();
+      $this->load->view('alumni/saran/detail_saran', $data);
+  }
+
+  public function hapus_saran($id_saran)
+  {
+      $hapus=$this->m_alumni->delete_saran('tabel_saran', 'id_saran', $id_saran);
+      if($hapus)
+      {
+          $this->session->set_flashdata('sukses', 'Berhasil..');
+          redirect(base_url('Alumni/user_saran'));
+      }
+      else
+      {
+          $this->session->set_flashdata('error', 'gagal..');
+          redirect(base_url('Alumni/saran/error'));
+      }
+  }
 }

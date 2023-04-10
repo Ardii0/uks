@@ -95,4 +95,67 @@ class M_alumni extends CI_Model{
 		$data = $this->db->get_where('tabel_level', array('id_level' => $this->session->userdata('id_level')));
 		return $data;
 	}
+    //kritik&saran
+    public function count_field($where, $table)
+    {
+        $this->db->select('COUNT(*)');
+        $this->db->from($table);
+        $this->db->where($where);
+        return $this->db->count_all_results();
+    }
+
+    public function count_all($table)
+    {
+        return $this->db->count_all($table);
+    }
+ //kritik
+  public function get_kritik($tabel) 
+  {
+      return $this->db->get($tabel);
+  }
+public function get_kritik_ByUser($table)
+  {
+    $data = $this->db->get_where('tabel_kritik', array('id_user' => $this->session->userdata('id_level')));
+    return $data;
+  }
+public function tambah_kritik($tabel, $data)
+  {
+      $this->db->insert($tabel, $data);
+      return $this->db->insert_id();
+  }
+public function get_detail_kritik($tabel, $id_kritik)
+{
+  $data=$this->db->where('id_kritik', $id_kritik)->get($tabel);
+  return $data;
+}
+public function delete_kritik($tabel, $field, $id_kritik)
+  {
+    $data=$this->db->delete($tabel, array($field => $id_kritik));
+    return $data;
+  }
+//saran
+public function get_saran($tabel) 
+{
+   return $this->db->get($tabel);
+}
+public function get_saran_ByUser($table)
+{
+ $data = $this->db->get_where('tabel_saran', array('id_user' => $this->session->userdata('id_level')));
+ return $data;
+}
+public function tambah_saran($tabel, $data)
+    {
+        $this->db->insert($tabel, $data);
+        return $this->db->insert_id();
+    }
+public function get_detail_saran($tabel, $id_saran)
+    {
+      $data=$this->db->where('id_saran', $id_saran)->get($tabel);
+      return $data;
+    }
+public function delete_saran($tabel, $field, $id_saran)
+  {
+    $data=$this->db->delete($tabel, array($field => $id_saran));
+    return $data;
+  }
 }

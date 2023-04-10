@@ -30,7 +30,7 @@
             </li>
             <li class="nav-item">
               <a href="<?php echo base_url('PetugasAlumni/data_angkatan') ;?>"  class="nav-link">
-                <i class="nav-icon fas fa-users fa-pulse" style="color: #ff52d1;"></i>
+                <i class="nav-icon fas fa-users"></i>
                 <p>
                   Data Angkatan
                 </p>

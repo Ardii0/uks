@@ -36,38 +36,6 @@ class Login extends CI_Controller {
   {
     $this->load->view('petugas/login_email');
   }
-//======Reset Password=====
-  public function lupa_password()
-  {
-    $this->load->view('reset_password');
-  }
-
-  public function reset_phone()
-  {
-    $where = array(
-    'no_hp' => $this->input->post('telp'),
-    );
-    $row1 = $this->M_login->cek("tabel_user",$where)->row();
-
-    if ($row1) {
-      $key = random_string('alnum', 64);
-      $pass = substr($key,0,8);
-      $update_key = array(
-          'password' => md5($pass),
-          'username' => $row1->no_hp,
-      );
-      $where  = array('id_user' => $row1->id_user);
-      $this->M_login->update('tabel_user',$update_key,$where);
-      $pesan ="Dari Klinik username :".$row1->no_hp." password :".$pass;
-      $url="https://reguler.zenziva.net/apps/smsapi.php?userkey=2w4myk&passkey=kuvukiland&nohp=".$row1->no_hp."&pesan=".$pesan;
-      $this->session->set_flashdata('send', "reset('$url');");
-
-      redirect(base_url("Login/lupa_password"));
-    }else {
-      $this->session->set_flashdata('message', 'alert("Nomor tidak terdaftar.");');
-        redirect(base_url("Login/lupa_password"));
-    }
-  }
 
 //=====Aksi Login======
   function aksi_login(){

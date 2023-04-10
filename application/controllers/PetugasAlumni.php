@@ -351,4 +351,43 @@ class PetugasAlumni extends CI_Controller
         $this->m_petugasalumni->delete_data('tabel_lowongan', 'id_lowongan', $id_lowongan);
         redirect(base_url('PetugasAlumni/bursa_kerja'));
     }
+//KRITIK
+public function admin_kritik()
+{
+    $data['count_belum_ditanggapi'] = $this->m_alumni->count_field('tanggal_respon =' . NULL, 'tabel_kritik');
+    $data['count_ditanggapi'] = $this->m_alumni->count_field('tanggal_respon !=' . NULL, 'tabel_kritik');
+    $data['count_all'] = $this->m_alumni->count_all('tabel_kritik');
+    $data['kritik']=$this->m_alumni->get_kritik('tabel_kritik')->result();
+    $this->load->view('PetugasAlumni/kritik/adm_kritik', $data);
+}
+public function detail_kritik($id_kritik) 
+  {
+      $data['detail']=$this->m_alumni->get_detail_kritik('tabel_kritik', $id_kritik)->result();
+      $this->load->view('PetugasAlumni/kritik/detail_kritik', $data);
+  }
+  public function tanggapan_kritik($id_kritik) 
+  {
+    $data['detail']=$this->m_alumni->get_detail_kritik('tabel_kritik', $id_kritik)->result();
+    $this->load->view('PetugasAlumni/kritik/tang_kritik', $data);
+  }
+//SARAN
+public function admin_saran()
+  {
+    $data['count_belum_ditanggapi'] = $this->m_alumni->count_field('tanggal_respon =' . NULL, 'tabel_saran');
+    $data['count_ditanggapi'] = $this->m_alumni->count_field('tanggal_respon !=' . NULL, 'tabel_saran');
+    $data['count_all'] = $this->m_alumni->count_all('tabel_saran');
+    $data['saran']=$this->m_alumni->get_saran('tabel_saran')->result();
+    $this->load->view('PetugasAlumni/saran/adm_saran', $data);
+  }
+  public function detail_saran($id_saran) 
+  {
+      $data['detail']=$this->m_alumni->get_detail_saran('tabel_saran', $id_saran)->result();
+      $this->load->view('PetugasAlumni/saran/detail_saran', $data);
+  }
+
+  public function tanggapan_saran($id_saran) 
+  {
+    $data['detail']=$this->m_alumni->get_detail_saran('tabel_saran', $id_saran)->result();
+    $this->load->view('PetugasAlumni/saran/tang_saran', $data);
+  }
 }
