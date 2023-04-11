@@ -17,6 +17,15 @@ class Alumni extends CI_Controller {
 
     public function index()
     {
+        $data = [
+            'judul' => 'alumni',
+            'page' => 'alumni',
+            'menu' => 'alumni',
+            'submenu'=>'alumni',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'alumni',
+            'submenu_admin'=> 'alumni'
+            ];
         $query_event = "SELECT * from tabel_event where status = 'aktif' AND DATE(tanggal_event) >= DATE(NOW()) ORDER BY tanggal_posting DESC";
         $query_lowongan = "SELECT * from tabel_lowongan where is_tampil = 'Ya' AND DATE(akhir_waktu) >= DATE(NOW()) ORDER BY tanggal_posting DESC";
         $data['count_alumni'] = $this->m_petugasalumni->get_num_row_data('level', 'Alumni', 'tabel_level');
@@ -29,7 +38,16 @@ class Alumni extends CI_Controller {
 // Data Diri
     public function data_diri()
     {
-        $this->load->view('alumni/data_diri/data_diri');
+        $data = [
+            'judul' => 'alumni',
+            'page' => 'alumni',
+            'menu' => 'data_diri',
+            'submenu'=>'data_diri',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'data_diri',
+            'submenu_admin'=> 'data_diri'
+            ];
+        $this->load->view('alumni/data_diri/data_diri', $data);
     }
 
     public function get_daftarByNisn(){
@@ -40,6 +58,15 @@ class Alumni extends CI_Controller {
 
     public function bekerja()
     {
+        $data = [
+            'judul' => 'alumni',
+            'page' => 'alumni',
+            'menu' => 'data_diri',
+            'submenu'=>'data_diri',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'data_diri',
+            'submenu_admin'=> 'data_diri'
+            ];
         $data['data'] = $this->m_alumni->getwhere('tabel_daftar', array('diterima' => 'G'))->result();
         $data['user'] = $this->m_alumni->getwhere('tabel_level', array('id_level' => $this->session->userdata('id_level')))->result();
         $data['readydata'] = $this->m_alumni->getwhere('data_diri', array('id_level' => $this->session->userdata('id_level')))->result();
@@ -49,6 +76,15 @@ class Alumni extends CI_Controller {
 
     public function wirausaha()
     {
+        $data = [
+            'judul' => 'alumni',
+            'page' => 'alumni',
+            'menu' => 'data_diri',
+            'submenu'=>'data_diri',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'data_diri',
+            'submenu_admin'=> 'data_diri'
+            ];
         $data['data'] = $this->m_alumni->getwhere('tabel_daftar', array('diterima' => 'G'))->result();
         $data['user'] = $this->m_alumni->getwhere('tabel_level', array('id_level' => $this->session->userdata('id_level')))->result();
         $data['readydata'] = $this->m_alumni->getwhere('data_diri', array('id_level' => $this->session->userdata('id_level')))->result();
@@ -58,6 +94,15 @@ class Alumni extends CI_Controller {
 
     public function kuliah()
     {
+        $data = [
+            'judul' => 'alumni',
+            'page' => 'alumni',
+            'menu' => 'data_diri',
+            'submenu'=>'data_diri',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'data_diri',
+            'submenu_admin'=> 'data_diri'
+            ];
         $data['data'] = $this->m_alumni->getwhere('tabel_daftar', array('diterima' => 'G'))->result();
         $data['user'] = $this->m_alumni->getwhere('tabel_level', array('id_level' => $this->session->userdata('id_level')))->result();
         $data['readydata'] = $this->m_alumni->getwhere('data_diri', array('id_level' => $this->session->userdata('id_level')))->result();
@@ -67,6 +112,15 @@ class Alumni extends CI_Controller {
 
     public function lainnya()
     {
+        $data = [
+            'judul' => 'alumni',
+            'page' => 'alumni',
+            'menu' => 'data_diri',
+            'submenu'=>'data_diri',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'data_diri',
+            'submenu_admin'=> 'data_diri'
+            ];
         $data['data'] = $this->m_alumni->getwhere('tabel_daftar', array('diterima' => 'G'))->result();
         $data['user'] = $this->m_alumni->getwhere('tabel_level', array('id_level' => $this->session->userdata('id_level')))->result();
         $data['readydata'] = $this->m_alumni->getwhere('data_diri', array('id_level' => $this->session->userdata('id_level')))->result();
@@ -139,11 +193,11 @@ class Alumni extends CI_Controller {
             'judul' => 'alumni',
             'page' => 'alumni',
             'menu' => 'bursa_kerja',
-            'submenu'=>'',
+            'submenu'=>'bursa_kerja',
             'menu_submenu_admin'=>'',
-            'menu_admin' => 'alumni',
-            'submenu_admin'=>'bursa_kerja'
-        ];
+            'menu_admin' => 'bursa_kerja',
+            'submenu_admin'=> 'bursa_kerja'
+            ];
         $this->load->model('M_alumni');
         $data['bursakerja'] = $this->m_alumni->get_bursa_kerja('bursakerja');
         $this->load->view('alumni/bursa_kerja/bursa_kerja', $data);
@@ -151,15 +205,15 @@ class Alumni extends CI_Controller {
 
     public function detail_bursaKerja($id_lowongan)
     {
-      $data = [
-          'judul' => 'alumni',
-          'page' => 'alumni',
-          'menu' => 'bursa_kerja',
-          'submenu'=>'',
-          'menu_submenu_admin'=>'',
-          'menu_admin' => 'alumni',
-          'submenu_admin'=>'bursa_kerja'
-      ];
+        $data = [
+            'judul' => 'alumni',
+            'page' => 'alumni',
+            'menu' => 'bursa_kerja',
+            'submenu'=>'bursa_kerja',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'bursa_kerja',
+            'submenu_admin'=> 'bursa_kerja'
+            ];
         $data['lowongan']=$this->m_alumni->get_bursaById('tabel_lowongan', $id_lowongan)->result();
         $bursaKerja['bursaKerja'] = $this->m_alumni->get_bursa_kerja('bursaKerja');
         $this->load->view('alumni/bursa_kerja/bursakerja_detail', $data + $bursaKerja);
@@ -169,15 +223,15 @@ class Alumni extends CI_Controller {
   //  Events
   public function event()
   {
-      $data = [
-          'judul' => 'alumni',
-          'page' => 'alumni',
-          'menu' => 'event',
-          'submenu'=>'',
-          'menu_submenu_admin'=>'',
-          'menu_admin' => 'alumni',
-          'submenu_admin'=>'event'
-      ];
+        $data = [
+            'judul' => 'alumni',
+            'page' => 'alumni',
+            'menu' => 'event',
+            'submenu'=>'event',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'event',
+            'submenu_admin'=> 'event'
+            ];
       $this->load->model('M_alumni');
       $data['event'] = $this->m_alumni->get_event('event');
       $this->load->view('alumni/event/event', $data);
@@ -185,15 +239,15 @@ class Alumni extends CI_Controller {
 
   public function detail_event($id_event)
   {
-    $data = [
-        'judul' => 'alumni',
-        'page' => 'alumni',
-        'menu' => 'event',
-        'submenu'=>'',
-        'menu_submenu_admin'=>'',
-        'menu_admin' => 'alumni',
-        'submenu_admin'=>'event'
-    ];
+        $data = [
+            'judul' => 'alumni',
+            'page' => 'alumni',
+            'menu' => 'event',
+            'submenu'=>'event',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'event',
+            'submenu_admin'=> 'event'
+            ];
       $data['event']=$this->m_alumni->get_eventById('tabel_event', $id_event)->result();
       $events['events'] = $this->m_alumni->get_event('events');
       $this->load->view('alumni/event/event_detail', $data + $events);
@@ -202,6 +256,15 @@ class Alumni extends CI_Controller {
 // Testimoni
     public function testimoni()
     {
+        $data = [
+            'judul' => 'alumni',
+            'page' => 'alumni',
+            'menu' => 'testimoni',
+            'submenu'=>'testimoni',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'testimoni',
+            'submenu_admin'=> 'testimoni'
+            ];
         $data['testimoni']=$this->m_alumni->get_testimoni_byId('tabel_testimoni')->result();
         $this->load->view('alumni/testimoni/testimoni', $data);
     }
@@ -380,13 +443,31 @@ class Alumni extends CI_Controller {
  //kritik
   public function user_kritik()
   {
+        $data = [
+            'judul' => 'petugasAlumni',
+            'page' => 'petugasAlumni',
+            'menu' => 'ks',
+            'submenu'=>'kritik',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'ks',
+            'submenu_admin'=> 'kritik'
+            ];
       $data['kritik']=$this->m_alumni->get_kritik_ByUser('tabel_kritik')->result();
       $this->load->view('alumni/kritik/daf_kritik', $data);
   }
 
   public function form_kritik()
   {
-      $this->load->view('alumni/kritik/tambah_kritik');
+        $data = [
+            'judul' => 'petugasAlumni',
+            'page' => 'petugasAlumni',
+            'menu' => 'ks',
+            'submenu'=>'kritik',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'ks',
+            'submenu_admin'=> 'kritik'
+            ];
+      $this->load->view('alumni/kritik/tambah_kritik', $data);
   }
 
   public function aksi_add_kritik()
@@ -403,6 +484,15 @@ class Alumni extends CI_Controller {
   
   public function detail_kritik($id_kritik) 
   {
+        $data = [
+            'judul' => 'petugasAlumni',
+            'page' => 'petugasAlumni',
+            'menu' => 'ks',
+            'submenu'=>'kritik',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'ks',
+            'submenu_admin'=> 'kritik'
+            ];
       $data['detail']=$this->m_alumni->get_detail_kritik('tabel_kritik', $id_kritik)->result();
       $this->load->view('alumni/kritik/detail_kritik', $data);
   }
@@ -427,13 +517,31 @@ class Alumni extends CI_Controller {
   
   public function user_saran()
   {
+        $data = [
+            'judul' => 'petugasAlumni',
+            'page' => 'petugasAlumni',
+            'menu' => 'ks',
+            'submenu'=>'saran',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'ks',
+            'submenu_admin'=> 'saran'
+            ];
     $data['saran']=$this->m_alumni->get_saran_ByUser('tabel_saran')->result();
     $this->load->view('alumni/saran/daf_saran', $data);
   }
 
   public function form_saran()
   {
-      $this->load->view('alumni/saran/tambah_saran');
+        $data = [
+            'judul' => 'petugasAlumni',
+            'page' => 'petugasAlumni',
+            'menu' => 'ks',
+            'submenu'=>'saran',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'ks',
+            'submenu_admin'=> 'saran'
+            ];
+      $this->load->view('alumni/saran/tambah_saran', $data);
   }
 
   public function aksi_add_saran()
@@ -450,6 +558,15 @@ class Alumni extends CI_Controller {
 
   public function detail_saran($id_saran) 
   {
+        $data = [
+            'judul' => 'petugasAlumni',
+            'page' => 'petugasAlumni',
+            'menu' => 'ks',
+            'submenu'=>'saran',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'ks',
+            'submenu_admin'=> 'saran'
+            ];
       $data['detail']=$this->m_alumni->get_detail_saran('tabel_saran', $id_saran)->result();
       $this->load->view('alumni/saran/detail_saran', $data);
   }

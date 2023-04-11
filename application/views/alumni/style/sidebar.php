@@ -22,7 +22,8 @@
                 <ul class="nav nav-pills nav-sidebar nav-child-indent flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
                     <li class="nav-item">
-                        <a href="<?php echo base_url('Alumni/') ;?>" class="nav-link">
+                        <a href="<?php echo base_url('Alumni/') ;?>"
+                            class="nav-link <?=$submenu == 'alumni' ? 'active' :'' ?>">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Dashboard Alumni
@@ -30,7 +31,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url('Alumni/data_diri') ;?>" class="nav-link">
+                        <a href="<?php echo base_url('Alumni/data_diri') ;?>"
+                            class="nav-link <?=$submenu == 'data_diri' ? 'active' :'' ?>">
                             <i class="nav-icon fas fa-graduation-cap"></i>
                             <p>
                                 Data Diri
@@ -38,7 +40,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url('Alumni/bursa_kerja') ;?>" class="nav-link">
+                        <a href="<?php echo base_url('Alumni/bursa_kerja') ;?>"
+                            class="nav-link <?=$submenu == 'bursa_kerja' ? 'active' :'' ?>">
                             <i class="nav-icon fas fa-suitcase"></i>
                             <p>
                                 Bursa Kerja
@@ -46,7 +49,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url('Alumni/event') ;?>" class="nav-link">
+                        <a href="<?php echo base_url('Alumni/event') ;?>"
+                            class="nav-link <?=$submenu == 'event' ? 'active' :'' ?>">
                             <i class="nav-icon fas fa-calendar-day"></i>
                             <p>
                                 Event
@@ -54,15 +58,16 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url('Alumni/testimoni') ;?>" class="nav-link">
+                        <a href="<?php echo base_url('Alumni/testimoni') ;?>"
+                            class="nav-link <?=$submenu == 'testimoni' ? 'active' :'' ?>">
                             <i class="nav-icon fas fa-users"></i>
                             <p>
                                 Testimoni
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link">
+                    <li class="nav-item <?=$menu == 'ks' ? 'menu-open' :'' ?>">
+                        <a class="nav-link <?=$menu == 'ks' ? 'active' :'' ?>">
                             <i class="nav-icon fas fa-comment-dots"></i>
                             <p>
                                 Kritik & Saran
@@ -71,27 +76,20 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="<?php echo base_url('Alumni/user_kritik') ?>" class="nav-link">
+                                <a href="<?php echo base_url('Alumni/user_kritik') ?>"
+                                    class="nav-link <?=$submenu == 'kritik' ? 'active' :'' ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Kritik</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('Alumni/user_saran') ?>" class="nav-link">
+                                <a href="<?php echo base_url('Alumni/user_saran') ?>"
+                                    class="nav-link <?=$submenu == 'saran' ? 'active' :'' ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Saran</p>
                                 </a>
                             </li>
                         </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="<?php echo base_url('Alumni/akun') ;?>" class="nav-link">
-                            <i class="nav-icon fas fa-user"></i>
-                            <p>
-                                Akun
-                            </p>
-                        </a>
-                    </li>
                     <li class="nav-item logout">
                         <a href="<?php echo base_url('Login/logout');?>" class="nav-link">
                             <i class="nav-icon far fa-circle text-danger"></i>
