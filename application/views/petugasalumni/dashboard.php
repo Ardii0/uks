@@ -89,6 +89,7 @@
                                     <strong class="h2">EVENT AKTIF</strong>
                                 </div>
                                 <div class="px-4 py-2 mt-3 anyClass" style="">
+                                <?php if($count_event > 0): ?>
                                     <table class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
@@ -107,9 +108,19 @@
                                             <?php endforeach ?>
                                         </tbody>
                                     </table>
+                                    <?php else: ?>
+                                    <div class="row" style="margin-top: 45px">
+                                        <div class="icon col-12 row align-items-center justify-content-center">
+                                            <i style="font-size: 100px" class="fas fa-calendar-alt"></i>
+                                        </div>
+                                        <div class="col-12 row align-items-center justify-content-center">
+                                            <h1>Event Tidak Tersedia</h1>
+                                        </div>
+                                    </div>
+                                    <?php endif; ?>
                                 </div>
                                 <div class="bg-info p-2 text-center" style="border-radius: 0px 0px 15px 15px;">
-                                    <a href="<?php echo base_url('PetugasAlumni/event') ?>" class="">More info
+                                    <a href="<?php echo base_url('Alumni/event') ?>" class="">More info
                                         <i class="fa fa-arrow-circle-right"></i>
                                     </a>
                                 </div>
@@ -121,6 +132,7 @@
                                     <strong class="h2">LOWONGAN KERJA AKTIF</strong>
                                 </div>
                                 <div class="px-4 py-2 mt-3 anyClass" style="">
+                                    <?php if($count_lowker > 0): ?>
                                     <table class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
@@ -141,9 +153,19 @@
                                             <?php endforeach ?>
                                         </tbody>
                                     </table>
+                                    <?php else: ?>
+                                    <div class="row" style="margin-top: 45px">
+                                        <div class="icon col-12 row align-items-center justify-content-center">
+                                            <i style="font-size: 100px" class="fas fa-bullhorn"></i>
+                                        </div>
+                                        <div class="col-12 row align-items-center justify-content-center">
+                                            <h1>Lowongan Kerja Tidak Tersedia</h1>
+                                        </div>
+                                    </div>
+                                    <?php endif; ?>
                                 </div>
                                 <div class="bg-info p-2 text-center" style="border-radius: 0px 0px 15px 15px;">
-                                    <a href="<?php echo base_url('PetugasAlumni/bursa_kerja') ?>" class="">More info
+                                    <a href="<?php echo base_url('Alumni/bursa_kerja') ?>" class="">More info
                                         <i class="fa fa-arrow-circle-right"></i>
                                     </a>
                                 </div>

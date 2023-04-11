@@ -379,6 +379,15 @@ class PetugasAlumni extends CI_Controller
 
     public function edit_bursa_kerja($id_lowongan)
     {
+        $data = [
+            'judul' => 'petugasAlumni',
+            'page' => 'petugasAlumni',
+            'menu' => 'manajement',
+            'submenu'=>'bursa_kerja',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'manajement',
+            'submenu_admin'=> 'bursa_kerja'
+            ];
         $data['dt'] = $this->m_petugasalumni->getwhere('tabel_level', array('id_level' => $this->session->userdata('id_level')))->row();
         $data['bursa_kerja'] = $this->m_petugasalumni->get_data_id('tabel_lowongan', 'id_lowongan', $id_lowongan)->result();
         $this->load->view('petugasalumni/bursa_kerja/edit_bursa_kerja', $data);
@@ -390,7 +399,6 @@ class PetugasAlumni extends CI_Controller
         if ($gambar[0] == false) {
             $data = array
             (
-                'gambar' => null,
                 'id_user' => $this->input->post('id_user'),
                 'nama_perusahaan' => $this->input->post('nama_perusahaan'),
                 'bidang_usaha' => $this->input->post('bidang_usaha'),

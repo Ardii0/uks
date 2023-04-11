@@ -9,6 +9,7 @@ class Alumni extends CI_Controller {
         $this->load->model('m_alumni');
         $this->load->model('m_petugasalumni');
         $this->load->helpers('my_helper');
+        $this->load->helper('text');
         if ($this->session->userdata('status_alumni')!='login') {
             redirect(base_url());
         }
@@ -131,9 +132,74 @@ class Alumni extends CI_Controller {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-//Event
+    //  Bursa Kerja
+    public function bursa_kerja()
+    {
+        $data = [
+            'judul' => 'alumni',
+            'page' => 'alumni',
+            'menu' => 'bursa_kerja',
+            'submenu'=>'',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'alumni',
+            'submenu_admin'=>'bursa_kerja'
+        ];
+        $this->load->model('M_alumni');
+        $data['bursakerja'] = $this->m_alumni->get_bursa_kerja('bursakerja');
+        $this->load->view('alumni/bursa_kerja/bursa_kerja', $data);
+    }
 
-//
+    public function detail_bursaKerja($id_lowongan)
+    {
+      $data = [
+          'judul' => 'alumni',
+          'page' => 'alumni',
+          'menu' => 'bursa_kerja',
+          'submenu'=>'',
+          'menu_submenu_admin'=>'',
+          'menu_admin' => 'alumni',
+          'submenu_admin'=>'bursa_kerja'
+      ];
+        $data['lowongan']=$this->m_alumni->get_bursaById('tabel_lowongan', $id_lowongan)->result();
+        $bursaKerja['bursaKerja'] = $this->m_alumni->get_bursa_kerja('bursaKerja');
+        $this->load->view('alumni/bursa_kerja/bursakerja_detail', $data + $bursaKerja);
+    }
+
+
+  //  Events
+  public function event()
+  {
+      $data = [
+          'judul' => 'alumni',
+          'page' => 'alumni',
+          'menu' => 'event',
+          'submenu'=>'',
+          'menu_submenu_admin'=>'',
+          'menu_admin' => 'alumni',
+          'submenu_admin'=>'event'
+      ];
+      $this->load->model('M_alumni');
+      $data['event'] = $this->m_alumni->get_event('event');
+      $this->load->view('alumni/event/event', $data);
+  }
+
+  public function detail_event($id_event)
+  {
+    $data = [
+        'judul' => 'alumni',
+        'page' => 'alumni',
+        'menu' => 'event',
+        'submenu'=>'',
+        'menu_submenu_admin'=>'',
+        'menu_admin' => 'alumni',
+        'submenu_admin'=>'event'
+    ];
+      $data['event']=$this->m_alumni->get_eventById('tabel_event', $id_event)->result();
+      $events['events'] = $this->m_alumni->get_event('events');
+      $this->load->view('alumni/event/event_detail', $data + $events);
+  }
+
+// Testimoni
     public function testimoni()
     {
         $data['testimoni']=$this->m_alumni->get_testimoni_byId('tabel_testimoni')->result();

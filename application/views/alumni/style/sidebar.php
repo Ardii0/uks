@@ -38,7 +38,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url('Alumni/') ;?>" class="nav-link">
+                        <a href="<?php echo base_url('Alumni/bursa_kerja') ;?>" class="nav-link">
                             <i class="nav-icon fas fa-suitcase"></i>
                             <p>
                                 Bursa Kerja
@@ -46,7 +46,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url('Alumni/') ;?>" class="nav-link">
+                        <a href="<?php echo base_url('Alumni/event') ;?>" class="nav-link">
                             <i class="nav-icon fas fa-calendar-day"></i>
                             <p>
                                 Event

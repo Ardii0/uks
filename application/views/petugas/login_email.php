@@ -11,10 +11,10 @@
 </head>
 
 <body>
-<section class="min-vh-100" style="background-color: #4169e1;">
+    <section class="min-vh-100" style="background-color: #4169e1;">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-md-6 col-lg-7 ">
+                <div class="col-md-6 col-lg-7 ">
                     <div class="card" style="border-radius: 1rem;">
                         <div class="">
                             <div class="d-flex align-items-center">
@@ -27,7 +27,8 @@
                                             <div class="h2 mt-1 fw-bold mb-0 mx-2">Sistem Informasi Sekolah</div>
                                         </div>
 
-                                        <h5 class="fw-normal mb-1 pb-3" style="letter-spacing: 1px;">Login menggunakan email anda</h5>
+                                        <h5 class="fw-normal mb-1 pb-3" style="letter-spacing: 1px;">Login menggunakan
+                                            email anda</h5>
                                         <div class="form-outline mb-2">
                                             <label class="form-label" for="form2Example17">Email</label>
                                             <input id="form2Example17" type="full name" name="email"
@@ -43,7 +44,16 @@
                                                 oninvalid="this.setCustomValidity('Tidak boleh kosong')"
                                                 oninput="setCustomValidity('')" />
                                         </div>
-                                        <a href="<?php echo base_url('login'); ?>">Login menggunakan Username</a>
+
+                                        <div class="d-flex justify-content-between">
+                                            <div class="">
+                                                <a href="<?php echo base_url('login'); ?>">Login menggunakan Username</a>
+                                            </div>
+                                            <div class="">
+                                                <a href="<?php echo base_url('Register'); ?>">Daftar Sekarang!</a>
+                                            </div>
+                                        </div>
+
                                         <div class="pt-2 mb-4">
                                             <button class="btn btn-dark btn-lg btn-block" type="submit">Login</button>
                                         </div>

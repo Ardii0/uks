@@ -174,4 +174,31 @@ class M_alumni extends CI_Model{
     $data=$this->db->delete($tabel, array($field => $id_saran));
     return $data;
   }
+  // Bursa Kerja
+public function get_bursa_kerja()
+{
+    $tglNow = date('Y-m-d');
+    $where = "SELECT * FROM tabel_lowongan WHERE is_tampil = 'Ya' AND  akhir_waktu >= '$tglNow' ORDER BY tanggal_posting DESC";
+    $data = $this->db->query($where);
+    return $data->result();
+}
+
+public function get_bursaById($tabel, $id_lowongan)
+    {
+        $data=$this->db->where('id_lowongan', $id_lowongan)->get($tabel);
+        return $data;
+    }
+
+    // Event
+    public function get_event()
+    {
+
+        return $this->db->get('tabel_event')->result();
+    }
+
+    public function get_eventById($tabel, $id_event)
+    {
+        $data=$this->db->where('id_event', $id_event)->get($tabel);
+        return $data;
+    }
 }
