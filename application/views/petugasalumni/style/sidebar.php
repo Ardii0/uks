@@ -63,7 +63,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="<?php echo base_url('PetugasAlumni/testimoni') ?>" class="nav-link <?=$submenu == 'testimoni' ? 'active' :'' ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Testimoni</p>
                                 </a>

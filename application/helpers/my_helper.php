@@ -1084,7 +1084,7 @@ $result = $ci->db->where('id_level',$id)->get('tabel_level');
     {
      $ci =& get_instance();
      $ci->load->database();
-     $result = $ci->db->where('id_alumni',$id)->get('tabel_testimoni');
+     $result = $ci->db->where('id_level',$id)->get('tabel_testimoni');
       foreach ($result->result() as $c) {
       $stmt= $c->pesan;
       return $stmt;

@@ -439,46 +439,47 @@ class PetugasAlumni extends CI_Controller
         $this->m_petugasalumni->delete_data('tabel_lowongan', 'id_lowongan', $id_lowongan);
         redirect(base_url('PetugasAlumni/bursa_kerja'));
     }
-//KRITIK
-public function admin_kritik()
-{
-    $data = [
-        'judul' => 'petugasAlumni',
-        'page' => 'petugasAlumni',
-        'menu' => 'manajement',
-        'submenu'=>'kritik',
-        'menu_submenu_admin'=>'',
-        'menu_admin' => 'manajement',
-        'submenu_admin'=> 'kritik'
-        ];
-    $data['count_belum_ditanggapi'] = $this->m_alumni->count_field('tanggal_respon =' . NULL, 'tabel_kritik');
-    $data['count_ditanggapi'] = $this->m_alumni->count_field('tanggal_respon !=' . NULL, 'tabel_kritik');
-    $data['count_all'] = $this->m_alumni->count_all('tabel_kritik');
-    $data['kritik']=$this->m_alumni->get_kritik('tabel_kritik')->result();
-    $this->load->view('PetugasAlumni/kritik/adm_kritik', $data);
-}
-public function tanggapan_kritik($id_kritik) 
-  {
-    $data = [
-        'judul' => 'petugasAlumni',
-        'page' => 'petugasAlumni',
-        'menu' => 'manajement',
-        'submenu'=>'kritik',
-        'menu_submenu_admin'=>'',
-        'menu_admin' => 'manajement',
-        'submenu_admin'=> 'kritik'
+
+    //KRITIK
+    public function admin_kritik()
+    {
+        $data = [
+            'judul' => 'petugasAlumni',
+            'page' => 'petugasAlumni',
+            'menu' => 'manajement',
+            'submenu'=>'kritik',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'manajement',
+            'submenu_admin'=> 'kritik'
+            ];
+        $data['count_belum_ditanggapi'] = $this->m_alumni->count_field('tanggal_respon =' . NULL, 'tabel_kritik');
+        $data['count_ditanggapi'] = $this->m_alumni->count_field('tanggal_respon !=' . NULL, 'tabel_kritik');
+        $data['count_all'] = $this->m_alumni->count_all('tabel_kritik');
+        $data['kritik']=$this->m_alumni->get_kritik('tabel_kritik')->result();
+        $this->load->view('PetugasAlumni/kritik/adm_kritik', $data);
+    }
+    public function tanggapan_kritik($id_kritik) 
+    {
+        $data = [
+            'judul' => 'petugasAlumni',
+            'page' => 'petugasAlumni',
+            'menu' => 'manajement',
+            'submenu'=>'kritik',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'manajement',
+            'submenu_admin'=> 'kritik'
         ];
         $data['dt'] = $this->m_petugasalumni->getwhere('tabel_level', array('id_level' => $this->session->userdata('id_level')))->row();
         $data['detail']=$this->m_alumni->get_detail_kritik('tabel_kritik', $id_kritik)->result();
         $this->load->view('PetugasAlumni/kritik/tang_kritik', $data);
-  }
-  public function aksi_tanggapan_kritik()
+    }
+    public function aksi_tanggapan_kritik()
     {
         $date = date('Y-m-d H:i:s');
         $data = array (
             'tanggal_respon' => $date,
             'respon' => $this->input->post('respon'),
-           
+        
         );
         $masuk=$this->m_petugasalumni->edit_data('tabel_kritik', $data, array('id_kritik'=>$this->input->post('id_kritik')));
         if($masuk)
@@ -492,41 +493,42 @@ public function tanggapan_kritik($id_kritik)
             redirect(base_url('PetugasAlumni/kritik/tang_kritik'.$this->input->post('id_kritik')));
         }
     }
-//SARAN
-public function admin_saran()
-  {
-    $data = [
-        'judul' => 'petugasAlumni',
-        'page' => 'petugasAlumni',
-        'menu' => 'manajement',
-        'submenu'=>'saran',
-        'menu_submenu_admin'=>'',
-        'menu_admin' => 'manajement',
-        'submenu_admin'=> 'saran'
+
+    //SARAN
+    public function admin_saran()
+    {
+        $data = [
+            'judul' => 'petugasAlumni',
+            'page' => 'petugasAlumni',
+            'menu' => 'manajement',
+            'submenu'=>'saran',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'manajement',
+            'submenu_admin'=> 'saran'
         ];
-    $data['count_belum_ditanggapi'] = $this->m_alumni->count_field('tanggal_respon =' . NULL, 'tabel_saran');
-    $data['count_ditanggapi'] = $this->m_alumni->count_field('tanggal_respon !=' . NULL, 'tabel_saran');
-    $data['count_all'] = $this->m_alumni->count_all('tabel_saran');
-    $data['saran']=$this->m_alumni->get_saran('tabel_saran')->result();
-    $this->load->view('PetugasAlumni/saran/adm_saran', $data);
-  }
-  public function tanggapan_saran($id_saran) 
-  {
-    $data = [
-        'judul' => 'petugasAlumni',
-        'page' => 'petugasAlumni',
-        'menu' => 'manajement',
-        'submenu'=>'saran',
-        'menu_submenu_admin'=>'',
-        'menu_admin' => 'manajement',
-        'submenu_admin'=> 'saran'
+        $data['count_belum_ditanggapi'] = $this->m_alumni->count_field('tanggal_respon =' . NULL, 'tabel_saran');
+        $data['count_ditanggapi'] = $this->m_alumni->count_field('tanggal_respon !=' . NULL, 'tabel_saran');
+        $data['count_all'] = $this->m_alumni->count_all('tabel_saran');
+        $data['saran']=$this->m_alumni->get_saran('tabel_saran')->result();
+        $this->load->view('PetugasAlumni/saran/adm_saran', $data);
+    }
+    public function tanggapan_saran($id_saran) 
+    {
+        $data = [
+            'judul' => 'petugasAlumni',
+            'page' => 'petugasAlumni',
+            'menu' => 'manajement',
+            'submenu'=>'saran',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'manajement',
+            'submenu_admin'=> 'saran'
         ];
         $data['dt'] = $this->m_petugasalumni->getwhere('tabel_level', array('id_level' => $this->session->userdata('id_level')))->row();
         $data['detail']=$this->m_alumni->get_detail_saran('tabel_saran', $id_saran)->result();
         $this->load->view('PetugasAlumni/saran/tang_saran', $data);
-  }
+    }
 
-  public function aksi_tanggapan_saran()
+    public function aksi_tanggapan_saran()
     {
         $date = date('Y-m-d H:i:s');
         $data = array (
@@ -546,86 +548,128 @@ public function admin_saran()
             redirect(base_url('PetugasAlumni/saran/tang_saran'.$this->input->post('id_saran')));
         }
     }
-  // Akun
-  public function akun()
-  {
-    $data = [
-        'judul' => '',
-        'page' => '',
-        'menu' => '',
-        'submenu'=>'',
-        'menu_submenu_admin'=>'',
-        'menu_admin' => '',
-        'submenu_admin'=> ''
-        ];
-      $data['user']=$this->m_alumni->get_userByLogin('tabel_level')->result();
-      $this->load->view('PetugasAlumni/akun/akun', $data);
-  }
 
-  public function update_akun()
-  {
-      $email = $this->input->post('email');
-      $username = $this->input->post('username');
-      $password_baru = $this->input->post('password_baru');
-      $password_baru2 = $this->input->post('password_baru2');
-      if ($password_baru == null) {
-          $data = array
-              (
-              'email' => $this->input->post('email'),
-              'username' => $this->input->post('username'),
-              );
-              $masuk=$this->m_alumni->edit_data('tabel_level', $data, array('id_level'=>$this->input->post('id_level')));
-              if($masuk)
-              {
-                  $this->session->set_flashdata('sukses', 'berhasil update email dan username');
-                  redirect(base_url('PetugasAlumni/akun'));
-              }
-              else
-              {
-                  $this->session->set_flashdata('error', 'gagal..');
-                  redirect(base_url('PetugasAlumni/akun'));
-              }
-      }else if($password_baru !== null){
-          if($password_baru !== $password_baru2){
-              $this->session->set_flashdata('message', 'Password baru dan konfirmasi password harus sama');
-              redirect(base_url('PetugasAlumni/akun'));
-          }else{
-              $data = array
-              (
-              'email' => $this->input->post('email'),
-              'username' => $this->input->post('username'),
-              'password' => md5($this->input->post('password_baru')),
-              );
-              $masuk=$this->m_alumni->edit_data('tabel_level', $data, array('id_level'=>$this->input->post('id_level')));
-              if($masuk)
-              {
-                  $this->session->set_flashdata('sukses', 'berhasil update email, username, dan password');
-                  redirect(base_url('PetugasAlumni/akun'));
-              }
-              else
-              {
-                  $this->session->set_flashdata('error', 'gagal update email, username, dan password');
-                  redirect(base_url('PetugasAlumni/akun'));
-              }
-          }
-      }else {
-              $data = array
-              (
-              'email' => $this->input->post('email'),
-              'username' => $this->input->post('username'),
-              'password' => md5($this->input->post('password_baru')),
-              );
-              $masuk=$this->m_alumni->edit_data('tabel_level', $data, array('id_level'=>$this->input->post('id_level')));
-              if($masuk)
-              {
-                  $this->session->set_flashdata('sukses', 'berhasil update akun');
-                  redirect(base_url('PetugasAlumni/akun'));
-              }
-              else
-              {
-                  $this->session->set_flashdata('error', 'gagal update akun');
-                  redirect(base_url('PetugasAlumni/akun'));
-              }
-      }
-  }
+    // Akun
+    public function akun()
+    {
+        $data = [
+            'judul' => '',
+            'page' => '',
+            'menu' => '',
+            'submenu'=>'',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => '',
+            'submenu_admin'=> ''
+            ];
+        $data['user']=$this->m_alumni->get_userByLogin('tabel_level')->result();
+        $this->load->view('PetugasAlumni/akun/akun', $data);
+    }
+
+    public function update_akun()
+    {
+        $email = $this->input->post('email');
+        $username = $this->input->post('username');
+        $password_baru = $this->input->post('password_baru');
+        $password_baru2 = $this->input->post('password_baru2');
+        if ($password_baru == null) {
+            $data = array
+            (
+            'email' => $this->input->post('email'),
+            'username' => $this->input->post('username'),
+            );
+            $masuk=$this->m_alumni->edit_data('tabel_level', $data, array('id_level'=>$this->input->post('id_level')));
+            if($masuk)
+            {
+                $this->session->set_flashdata('sukses', 'berhasil update email dan username');
+                redirect(base_url('PetugasAlumni/akun'));
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'gagal..');
+                redirect(base_url('PetugasAlumni/akun'));
+            }
+        }else if($password_baru !== null){
+            if($password_baru !== $password_baru2){
+                $this->session->set_flashdata('message', 'Password baru dan konfirmasi password harus sama');
+                redirect(base_url('PetugasAlumni/akun'));
+            }else{
+                $data = array
+                (
+                'email' => $this->input->post('email'),
+                'username' => $this->input->post('username'),
+                'password' => md5($this->input->post('password_baru')),
+                );
+                $masuk=$this->m_alumni->edit_data('tabel_level', $data, array('id_level'=>$this->input->post('id_level')));
+                if($masuk)
+                {
+                    $this->session->set_flashdata('sukses', 'berhasil update email, username, dan password');
+                    redirect(base_url('PetugasAlumni/akun'));
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'gagal update email, username, dan password');
+                    redirect(base_url('PetugasAlumni/akun'));
+                }
+            }
+        }else {
+            $data = array
+            (
+            'email' => $this->input->post('email'),
+            'username' => $this->input->post('username'),
+            'password' => md5($this->input->post('password_baru')),
+            );
+            $masuk=$this->m_alumni->edit_data('tabel_level', $data, array('id_level'=>$this->input->post('id_level')));
+            if($masuk)
+            {
+                $this->session->set_flashdata('sukses', 'berhasil update akun');
+                redirect(base_url('PetugasAlumni/akun'));
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'gagal update akun');
+                redirect(base_url('PetugasAlumni/akun'));
+            }
+        }
+    }
+
+    // Testimoni 
+    public function testimoni() 
+    { 
+        $data = [
+            'judul' => 'petugasAlumni',
+            'page' => 'petugasAlumni',
+            'menu' => 'manajement',
+            'submenu'=>'testimoni',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'manajement',
+            'submenu_admin'=> 'testimoni'
+        ];
+        $data['dt'] = $this->m_petugasalumni->getwhere('tabel_level', array('id_level' => $this->session->userdata('id_level')))->row();
+        $data['testimoni'] = $this->m_alumni->get_testimoni('testimoni'); 
+        $this->load->view('petugasalumni/testimoni/testimoni', $data); 
+    } 
+   
+    public function active($id_testimoni) 
+    { 
+        $req=[ 
+            'tampil'=> 'YES' 
+        ]; 
+        $this->m_alumni->update_status('tabel_testimoni', $req, array('id_testimoni'=>$id_testimoni)); 
+        redirect(base_url('PetugasAlumni/testimoni')); 
+    } 
+
+    public function nonactive($id_testimoni) 
+    {
+        $req=[ 
+            'tampil'=> 'NO' 
+        ]; 
+        $this->m_alumni->update_status('tabel_testimoni', $req, array('id_testimoni'=>$id_testimoni)); 
+        redirect(base_url('PetugasAlumni/testimoni')); 
+    } 
+
+    public function hapus_testimoni($id_testimoni) 
+    { 
+        $this->m_alumni->hapus_testimoni('tabel_testimoni', 'id_testimoni', $id_testimoni); 
+        redirect(base_url('PetugasAlumni/testimoni')); 
+    }
 }

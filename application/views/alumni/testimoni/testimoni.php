@@ -51,7 +51,7 @@
                                 <label for="email">Email</label>
                                 <input type="email" class="form-control" id="email"
                                     value="<?php echo $this->session->userdata('email'); ?>" disabled>
-                                <input type="hidden" class="form-control" name="id_alumni"
+                                <input type="hidden" class="form-control" name="id_level"
                                     value="<?php echo $this->session->userdata('id_level'); ?>">
                             </div>
                             <div class="form-group col-6">
