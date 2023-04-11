@@ -18,14 +18,6 @@
             <section class="content-header">
                 <div class="container-fluid pl-4">
                     <div class="bg-white">
-                        <div class="border-bottom">
-                            <div class="p-3">
-                                <a href="<?php echo base_url('alumni/user_saran') ?>">
-                                    <button class="btn btn-info"><i class="fa fa-arrow-left"></i>
-                                        <b>Kembali</b></button>
-                                </a>
-                            </div>
-                        </div>
                         <div>
                             <div class="p-3">
                                 <div class="bg-warning p-2 d-flex justify-content-center" style="width: 85px">
@@ -59,6 +51,12 @@
                                 <?php endforeach;?>
                             </div>
                         </div>
+                        <div class="p-3">
+                                <a href="<?php echo base_url('alumni/user_saran') ?>">
+                                    <button class="btn btn-info"><i class="fa fa-arrow-left"></i>
+                                        <b>Kembali</b></button>
+                                </a>
+                            </div>
                     </div>
                 </div>
         </div>
