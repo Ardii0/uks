@@ -672,4 +672,92 @@ class PetugasAlumni extends CI_Controller
         $this->m_alumni->hapus_testimoni('tabel_testimoni', 'id_testimoni', $id_testimoni); 
         redirect(base_url('PetugasAlumni/testimoni')); 
     }
+
+    //Pengguna
+
+
+    public function pengguna()
+ {
+    $data = [
+        'judul' => 'petugasAlumni',
+        'page' => 'petugasAlumni',
+        'menu' => 'manajement',
+        'submenu'=>'pengguna',
+        'menu_submenu_admin'=>'',
+        'menu_admin' => 'manajement',
+        'submenu_admin'=> 'pengguna'
+        ];
+        $this->load->model( 'M_alumni' );
+        $data[ 'pengguna' ] = $this->m_alumni->get_data( 'tabel_level' );
+        $this->load->view( 'petugasalumni/pengguna/pengguna', $data );
+    }
+
+    public function tambah_pengguna()
+ {
+    $data = [
+        'judul' => 'petugasAlumni',
+        'page' => 'petugasAlumni',
+        'menu' => 'manajement',
+        'submenu'=>'pengguna',
+        'menu_submenu_admin'=>'',
+        'menu_admin' => 'manajement',
+        'submenu_admin'=> 'pengguna'
+        ];
+        $this->load->view( 'petugasalumni/pengguna/tambah_pengguna', $data);
+    }
+
+    public function aksi_tambah_pengguna() 
+ {
+        $data = array
+        (
+            'username' => $this->input->post( 'username' ),
+            'email' => $this->input->post( 'email' ),
+            'password' => md5( $this->input->post( 'password' ) ),
+            'level' => $this->input->post( 'level' ),
+            'id_hak_akses' => $this->input->post( 'id_hak_akses' ),
+        );
+        $masuk = $this->m_petugasalumni->input_data( 'tabel_level', $data );
+        if ( $masuk )
+ {
+            $this->session->set_flashdata( 'sukses', 'berhasil' );
+            redirect( base_url( 'PetugasAlumni/pengguna' ) );
+        } else {
+            $this->session->set_flashdata( 'error', 'gagal..' );
+            redirect( base_url( 'PetugasAlumni/pengguna' ) );
+        }
+    }
+
+    public function edit_pengguna( $id )
+ {
+        $this->load->model( 'M_petugasalumni' );
+        $data[ 'pengguna' ] = $this->m_petugasalumni->get_data_id( 'tabel_level', 'id_level', $id )->result();
+        $this->load->view( 'petugasalumni/pengguna/edit_pengguna', $data );
+    }
+
+    public function aksi_edit_pengguna() 
+    {
+           $data = array
+           (
+               'username' => $this->input->post( 'username' ),
+               'email' => $this->input->post( 'email' ),
+               'password' => md5( $this->input->post( 'password' ) ),
+               'level' => $this->input->post( 'level' ),
+               'id_hak_akses' => $this->input->post( 'id_hak_akses' ),
+           );
+           $masuk = $this->m_alumni->edit_data( 'tabel_level', $data, array( 'id_level' => $this->input->post( 'id_level' ) ) );
+           if ( $masuk )
+    {
+               $this->session->set_flashdata( 'sukses', 'berhasil' );
+               redirect( base_url( 'PetugasAlumni/pengguna' ) );
+           } else {
+               $this->session->set_flashdata( 'error', 'gagal..' );
+               redirect( base_url( 'PetugasAlumni/pengguna' ) );
+           }
+       }
+
+       public function hapus_pengguna( $id_level )
+       {
+              $this->m_petugasalumni->delete_data( 'tabel_level', 'id_level', $id_level );
+              redirect( base_url( 'PetugasAlumni/pengguna' ) );
+          }
 }

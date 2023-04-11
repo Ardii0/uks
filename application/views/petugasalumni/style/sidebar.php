@@ -83,7 +83,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="<?php echo base_url('PetugasAlumni/pengguna') ?>" class="nav-link <?=$submenu == 'pengguna' ? 'active' :'' ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Pengguna</p>
                                 </a>
