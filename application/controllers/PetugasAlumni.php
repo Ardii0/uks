@@ -457,7 +457,7 @@ public function admin_kritik()
     $data['kritik']=$this->m_alumni->get_kritik('tabel_kritik')->result();
     $this->load->view('PetugasAlumni/kritik/adm_kritik', $data);
 }
-public function detail_kritik($id_kritik) 
+public function tanggapan_kritik($id_kritik) 
   {
     $data = [
         'judul' => 'petugasAlumni',
@@ -468,14 +468,30 @@ public function detail_kritik($id_kritik)
         'menu_admin' => 'manajement',
         'submenu_admin'=> 'kritik'
         ];
-      $data['detail']=$this->m_alumni->get_detail_kritik('tabel_kritik', $id_kritik)->result();
-      $this->load->view('PetugasAlumni/kritik/detail_kritik', $data);
+        $data['dt'] = $this->m_petugasalumni->getwhere('tabel_level', array('id_level' => $this->session->userdata('id_level')))->row();
+        $data['detail']=$this->m_alumni->get_detail_kritik('tabel_kritik', $id_kritik)->result();
+        $this->load->view('PetugasAlumni/kritik/tang_kritik', $data);
   }
-  public function tanggapan_kritik($id_kritik) 
-  {
-    $data['detail']=$this->m_alumni->get_detail_kritik('tabel_kritik', $id_kritik)->result();
-    $this->load->view('PetugasAlumni/kritik/tang_kritik', $data);
-  }
+  public function aksi_tanggapan_kritik()
+    {
+        $date = date('Y-m-d H:i:s');
+        $data = array (
+            'tanggal_respon' => $date,
+            'respon' => $this->input->post('respon'),
+           
+        );
+        $masuk=$this->m_petugasalumni->edit_data('tabel_kritik', $data, array('id_kritik'=>$this->input->post('id_kritik')));
+        if($masuk)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('PetugasAlumni/admin_kritik'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('PetugasAlumni/kritik/tang_kritik'.$this->input->post('id_kritik')));
+        }
+    }
 //SARAN
 public function admin_saran()
   {
@@ -494,21 +510,6 @@ public function admin_saran()
     $data['saran']=$this->m_alumni->get_saran('tabel_saran')->result();
     $this->load->view('PetugasAlumni/saran/adm_saran', $data);
   }
-  public function detail_saran($id_saran) 
-  {
-    $data = [
-        'judul' => 'petugasAlumni',
-        'page' => 'petugasAlumni',
-        'menu' => 'manajement',
-        'submenu'=>'saran',
-        'menu_submenu_admin'=>'',
-        'menu_admin' => 'manajement',
-        'submenu_admin'=> 'saran'
-        ];
-      $data['detail']=$this->m_alumni->get_detail_saran('tabel_saran', $id_saran)->result();
-      $this->load->view('PetugasAlumni/saran/detail_saran', $data);
-  }
-
   public function tanggapan_saran($id_saran) 
   {
     $data = [
@@ -520,9 +521,31 @@ public function admin_saran()
         'menu_admin' => 'manajement',
         'submenu_admin'=> 'saran'
         ];
-    $data['detail']=$this->m_alumni->get_detail_saran('tabel_saran', $id_saran)->result();
-    $this->load->view('PetugasAlumni/saran/tang_saran', $data);
+        $data['dt'] = $this->m_petugasalumni->getwhere('tabel_level', array('id_level' => $this->session->userdata('id_level')))->row();
+        $data['detail']=$this->m_alumni->get_detail_saran('tabel_saran', $id_saran)->result();
+        $this->load->view('PetugasAlumni/saran/tang_saran', $data);
   }
+
+  public function aksi_tanggapan_saran()
+    {
+        $date = date('Y-m-d H:i:s');
+        $data = array (
+            'tanggal_respon' => $date,
+            'respon' => $this->input->post('respon'),
+           
+        );
+        $masuk=$this->m_petugasalumni->edit_data('tabel_saran', $data, array('id_saran'=>$this->input->post('id_saran')));
+        if($masuk)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('PetugasAlumni/admin_saran'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('PetugasAlumni/saran/tang_saran'.$this->input->post('id_saran')));
+        }
+    }
   // Akun
   public function akun()
   {

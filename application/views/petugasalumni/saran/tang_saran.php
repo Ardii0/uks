@@ -18,9 +18,6 @@
             <section class="content-header">
                 <div class="container-fluid pl-4">
                     <div class="bg-white">
-                        <div class="border-bottom">
-                           
-                        </div>
                         <div>
                             <div class="p-3">
                                 <form action="<?php echo base_url('PetugasAlumni/aksi_tanggapan_saran') ?>"
@@ -42,7 +39,7 @@
                                             <h5><?php echo $data->saran ?></h5>
                                         </div>
 
-                                        <div class="bg-primary mt-3 p-2 d-flex justify-content-center"
+                                        <div class="bg-primary my-3 p-2 d-flex justify-content-center"
                                             style="width: 90px">
                                             <div class="text-white text-lg text-bold">
                                                 Respon
