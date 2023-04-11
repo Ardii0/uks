@@ -6,13 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin-Kritik</title>
-    <?php $this->load->view('alumni/style/head')?>
+    <?php $this->load->view('petugasalumni/style/head')?>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-        <?php $this->load->view('alumni/style/navbar') ?>
-        <?php $this->load->view('alumni/style/sidebar') ?>
+        <?php $this->load->view('petugasalumni/style/navbar') ?>
+        <?php $this->load->view('petugasalumni/style/sidebar') ?>
 
         <div class="content-wrapper">
             <section class="content-header">
@@ -34,7 +34,8 @@
 
                                 <div class="info-box-content">
                                     <span class=" text-bold" style="font-size: 15px">DITANGGAPI</span>
-                                    <span class="text-bold" style="font-size: 24px"><?php echo $count_ditanggapi; ?></span>
+                                    <span class="text-bold"
+                                        style="font-size: 24px"><?php echo $count_ditanggapi; ?></span>
                                 </div>
                             </div>
                         </div>
@@ -45,7 +46,8 @@
 
                                 <div class="info-box-content">
                                     <span class=" text-bold" style="font-size: 15px">BELUM DITANGGAPI</span>
-                                    <span class="text-bold" style="font-size: 24px"><?php echo $count_belum_ditanggapi; ?></span>
+                                    <span class="text-bold"
+                                        style="font-size: 24px"><?php echo $count_belum_ditanggapi; ?></span>
                                 </div>
                             </div>
                         </div>
@@ -55,7 +57,8 @@
 
                                 <div class="info-box-content">
                                     <span class=" text-bold" style="font-size: 15px">TOTAL ALUMNI</span>
-                                    <span class="text-bold" style="font-size: 24px"><?php echo $count_belum_ditanggapi; ?></span>
+                                    <span class="text-bold"
+                                        style="font-size: 24px"><?php echo $count_belum_ditanggapi; ?></span>
                                 </div>
                             </div>
                         </div>
@@ -95,11 +98,12 @@
                                         </div>'); ?>
                                             </td>
                                             <td class="d-flex ">
-                                            <div>
-                                                    <a href="<?php echo base_url('Petugasalumni/tanggapan_kritik/'.$data->id_kritik)?>" class="btn btn-primary btn-sm">
+                                                <div>
+                                                    <a href="<?php echo base_url('Petugasalumni/tanggapan_kritik/'.$data->id_kritik)?>"
+                                                        class="btn btn-primary btn-sm">
                                                         <i class="fas fa-comments"></i> <b> Tanggapi </b></a>
                                                 </div>
-                                                
+
                                             </td>
                                         </tr>
                                         <?php endforeach;?>
@@ -113,7 +117,7 @@
         </div>
     </div>
 </body>
-<?php $this->load->view('alumni/style/js')?>
+<?php $this->load->view('petugasalumni/style/js')?>
 <script>
 function hapus(id_saran) {
     var yes = confirm('Yakin Di Hapus?');

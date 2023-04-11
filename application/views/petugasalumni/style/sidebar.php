@@ -22,7 +22,8 @@
                 <ul class="nav nav-pills nav-sidebar nav-child-indent flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
                     <li class="nav-item">
-                        <a href="<?php echo base_url('PetugasAlumni/') ;?>" class="nav-link">
+                        <a href="<?php echo base_url('PetugasAlumni/') ;?>"
+                            class="nav-link <?=$submenu == 'petugasAlumni' ? 'active' :'' ?>">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Dashboard Petugas
@@ -30,15 +31,16 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url('PetugasAlumni/data_angkatan') ;?>" class="nav-link">
+                        <a href="<?php echo base_url('PetugasAlumni/data_angkatan') ;?>"
+                            class="nav-link <?=$submenu == 'data_angkatan' ? 'active' :'' ?>">
                             <i class="nav-icon fas fa-users"></i>
                             <p>
                                 Data Angkatan
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link">
+                    <li class="nav-item <?=$menu == 'manajement' ? 'menu-open' :'' ?>">
+                        <a class="nav-link <?=$menu == 'manajement' ? 'active' :'' ?>">
                             <i class="nav-icon fas fa-cog"></i>
                             <p>
                                 Manajement
@@ -47,13 +49,15 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="<?php echo base_url('PetugasAlumni/admin_kritik') ?>"
+                                    class="nav-link <?=$submenu == 'kritik' ? 'active' :'' ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Kritik</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="<?php echo base_url('PetugasAlumni/admin_saran') ?>"
+                                    class="nav-link <?=$submenu == 'saran' ? 'active' :'' ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Saran</p>
                                 </a>
@@ -65,13 +69,15 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('PetugasAlumni/bursa_kerja') ?>" class="nav-link">
+                                <a href="<?php echo base_url('PetugasAlumni/bursa_kerja') ?>"
+                                    class="nav-link <?=$submenu == 'bursa_kerja' ? 'active' :'' ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Bursa Kerja</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('PetugasAlumni/event') ?>" class="nav-link">
+                                <a href="<?php echo base_url('PetugasAlumni/event') ?>"
+                                    class="nav-link <?=$submenu == 'event' ? 'active' :'' ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Event</p>
                                 </a>
@@ -83,14 +89,6 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-user"></i>
-                            <p>
-                                Akun
-                            </p>
-                        </a>
                     </li>
                     <li class="nav-item logout">
                         <a href="<?php echo base_url('Login/logout');?>" class="nav-link">

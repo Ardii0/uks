@@ -17,6 +17,15 @@ class PetugasAlumni extends CI_Controller
 
     public function index()
     {
+        $data = [
+            'judul' => 'petugasAlumni',
+            'page' => 'petugasAlumni',
+            'menu' => 'petugasAlumni',
+            'submenu'=>'petugasAlumni',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'petugasAlumni',
+            'submenu_admin'=> 'petugasAlumni'
+            ];
         $query_event = "SELECT * from tabel_event where status = 'aktif' AND DATE(tanggal_event) >= DATE(NOW()) ORDER BY tanggal_posting DESC";
         $query_lowongan = "SELECT * from tabel_lowongan where is_tampil = 'Ya' AND DATE(akhir_waktu) >= DATE(NOW()) ORDER BY tanggal_posting DESC";
         $data['count_alumni'] = $this->m_petugasalumni->get_num_row_data('level', 'Alumni', 'tabel_level');
@@ -30,12 +39,30 @@ class PetugasAlumni extends CI_Controller
     // Data Angkatan
     public function data_angkatan()
     {
+        $data = [
+            'judul' => 'petugasAlumni',
+            'page' => 'petugasAlumni',
+            'menu' => 'data_angkatan',
+            'submenu'=>'data_angkatan',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'data_angkatan',
+            'submenu_admin'=> 'data_angkatan'
+            ];
         $data['tahun_lulus'] = $this->m_alumni->count_group_by('tahun_lulus, COUNT(tahun_lulus) AS jumlah_lulusan', 'tahun_lulus', 'data_diri')->result();
         $this->load->view('petugasalumni/data_angkatan/data_angkatan', $data);
     }
 
     public function detail_data_angkatan($id)
     {
+        $data = [
+            'judul' => 'petugasAlumni',
+            'page' => 'petugasAlumni',
+            'menu' => 'data_angkatan',
+            'submenu'=>'data_angkatan',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'data_angkatan',
+            'submenu_admin'=> 'data_angkatan'
+            ];
         $where = array('tahun_lulus' => $id);
         $row = $this->m_alumni->where_orderby_data('jurusan_sekolah DESC', $where, 'data_diri')->row_array();
         if (isset($row['tahun_lulus'])) {
@@ -47,6 +74,15 @@ class PetugasAlumni extends CI_Controller
 
     public function detail_alumni($id)
     {
+        $data = [
+            'judul' => 'petugasAlumni',
+            'page' => 'petugasAlumni',
+            'menu' => 'data_angkatan',
+            'submenu'=>'data_angkatan',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'data_angkatan',
+            'submenu_admin'=> 'data_angkatan'
+            ];
         $where = array('id_data_diri' => $id);
         $row = $this->m_alumni->getwhere('data_diri', $where)->row_array();
 
@@ -79,6 +115,15 @@ class PetugasAlumni extends CI_Controller
     // Event
     public function event()
     {
+        $data = [
+            'judul' => 'petugasAlumni',
+            'page' => 'petugasAlumni',
+            'menu' => 'manajement',
+            'submenu'=>'event',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'manajement',
+            'submenu_admin'=> 'event'
+            ];
         $this->load->model('M_alumni');
         $data['data_event'] = $this->m_alumni->get_data('tabel_event');
         $this->load->view('petugasalumni/event/event', $data);
@@ -86,7 +131,16 @@ class PetugasAlumni extends CI_Controller
 
     public function tambah_event()
     {
-        $this->load->view('petugasalumni/event/tambah_event', );
+        $data = [
+            'judul' => 'petugasAlumni',
+            'page' => 'petugasAlumni',
+            'menu' => 'manajement',
+            'submenu'=>'event',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'manajement',
+            'submenu_admin'=> 'event'
+            ];
+        $this->load->view('petugasalumni/event/tambah_event', $data);
     }
 
     public function upload_img_event($value)
@@ -138,6 +192,15 @@ class PetugasAlumni extends CI_Controller
 
     public function edit_event($id)
     {
+        $data = [
+            'judul' => 'petugasAlumni',
+            'page' => 'petugasAlumni',
+            'menu' => 'manajement',
+            'submenu'=>'event',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'manajement',
+            'submenu_admin'=> 'event'
+            ];
         $this->load->model('M_petugasalumni');
         $data['data_event'] = $this->m_petugasalumni->get_data_id('tabel_event', 'id_event', $id)->result();
         $this->load->view('petugasalumni/event/edit_event', $data);
@@ -236,12 +299,30 @@ class PetugasAlumni extends CI_Controller
 
     public function bursa_kerja()
     {
+    $data = [
+        'judul' => 'petugasAlumni',
+        'page' => 'petugasAlumni',
+        'menu' => 'manajement',
+        'submenu'=>'bursa_kerja',
+        'menu_submenu_admin'=>'',
+        'menu_admin' => 'manajement',
+        'submenu_admin'=> 'bursa_kerja'
+        ];
         $data['bursa_kerja'] = $this->m_petugasalumni->get_filter_data('tanggal_posting', 'DESC', 'tabel_lowongan')->result();
         $this->load->view('petugasalumni/bursa_kerja/bursa_kerja', $data);
     }
 
     public function tambah_bursa_kerja()
     {
+    $data = [
+        'judul' => 'petugasAlumni',
+        'page' => 'petugasAlumni',
+        'menu' => 'manajement',
+        'submenu'=>'bursa_kerja',
+        'menu_submenu_admin'=>'',
+        'menu_admin' => 'manajement',
+        'submenu_admin'=> 'bursa_kerja'
+        ];
         $data['dt'] = $this->m_petugasalumni->getwhere('tabel_level', array('id_level' => $this->session->userdata('id_level')))->row();
         $this->load->view('petugasalumni/bursa_kerja/tambah_bursa_kerja', $data);
     }
@@ -361,6 +442,15 @@ class PetugasAlumni extends CI_Controller
 //KRITIK
 public function admin_kritik()
 {
+    $data = [
+        'judul' => 'petugasAlumni',
+        'page' => 'petugasAlumni',
+        'menu' => 'manajement',
+        'submenu'=>'kritik',
+        'menu_submenu_admin'=>'',
+        'menu_admin' => 'manajement',
+        'submenu_admin'=> 'kritik'
+        ];
     $data['count_belum_ditanggapi'] = $this->m_alumni->count_field('tanggal_respon =' . NULL, 'tabel_kritik');
     $data['count_ditanggapi'] = $this->m_alumni->count_field('tanggal_respon !=' . NULL, 'tabel_kritik');
     $data['count_all'] = $this->m_alumni->count_all('tabel_kritik');
@@ -369,6 +459,15 @@ public function admin_kritik()
 }
 public function detail_kritik($id_kritik) 
   {
+    $data = [
+        'judul' => 'petugasAlumni',
+        'page' => 'petugasAlumni',
+        'menu' => 'manajement',
+        'submenu'=>'kritik',
+        'menu_submenu_admin'=>'',
+        'menu_admin' => 'manajement',
+        'submenu_admin'=> 'kritik'
+        ];
       $data['detail']=$this->m_alumni->get_detail_kritik('tabel_kritik', $id_kritik)->result();
       $this->load->view('PetugasAlumni/kritik/detail_kritik', $data);
   }
@@ -380,6 +479,15 @@ public function detail_kritik($id_kritik)
 //SARAN
 public function admin_saran()
   {
+    $data = [
+        'judul' => 'petugasAlumni',
+        'page' => 'petugasAlumni',
+        'menu' => 'manajement',
+        'submenu'=>'saran',
+        'menu_submenu_admin'=>'',
+        'menu_admin' => 'manajement',
+        'submenu_admin'=> 'saran'
+        ];
     $data['count_belum_ditanggapi'] = $this->m_alumni->count_field('tanggal_respon =' . NULL, 'tabel_saran');
     $data['count_ditanggapi'] = $this->m_alumni->count_field('tanggal_respon !=' . NULL, 'tabel_saran');
     $data['count_all'] = $this->m_alumni->count_all('tabel_saran');
@@ -388,13 +496,113 @@ public function admin_saran()
   }
   public function detail_saran($id_saran) 
   {
+    $data = [
+        'judul' => 'petugasAlumni',
+        'page' => 'petugasAlumni',
+        'menu' => 'manajement',
+        'submenu'=>'saran',
+        'menu_submenu_admin'=>'',
+        'menu_admin' => 'manajement',
+        'submenu_admin'=> 'saran'
+        ];
       $data['detail']=$this->m_alumni->get_detail_saran('tabel_saran', $id_saran)->result();
       $this->load->view('PetugasAlumni/saran/detail_saran', $data);
   }
 
   public function tanggapan_saran($id_saran) 
   {
+    $data = [
+        'judul' => 'petugasAlumni',
+        'page' => 'petugasAlumni',
+        'menu' => 'manajement',
+        'submenu'=>'saran',
+        'menu_submenu_admin'=>'',
+        'menu_admin' => 'manajement',
+        'submenu_admin'=> 'saran'
+        ];
     $data['detail']=$this->m_alumni->get_detail_saran('tabel_saran', $id_saran)->result();
     $this->load->view('PetugasAlumni/saran/tang_saran', $data);
+  }
+  // Akun
+  public function akun()
+  {
+    $data = [
+        'judul' => '',
+        'page' => '',
+        'menu' => '',
+        'submenu'=>'',
+        'menu_submenu_admin'=>'',
+        'menu_admin' => '',
+        'submenu_admin'=> ''
+        ];
+      $data['user']=$this->m_alumni->get_userByLogin('tabel_level')->result();
+      $this->load->view('PetugasAlumni/akun/akun', $data);
+  }
+
+  public function update_akun()
+  {
+      $email = $this->input->post('email');
+      $username = $this->input->post('username');
+      $password_baru = $this->input->post('password_baru');
+      $password_baru2 = $this->input->post('password_baru2');
+      if ($password_baru == null) {
+          $data = array
+              (
+              'email' => $this->input->post('email'),
+              'username' => $this->input->post('username'),
+              );
+              $masuk=$this->m_alumni->edit_data('tabel_level', $data, array('id_level'=>$this->input->post('id_level')));
+              if($masuk)
+              {
+                  $this->session->set_flashdata('sukses', 'berhasil update email dan username');
+                  redirect(base_url('PetugasAlumni/akun'));
+              }
+              else
+              {
+                  $this->session->set_flashdata('error', 'gagal..');
+                  redirect(base_url('PetugasAlumni/akun'));
+              }
+      }else if($password_baru !== null){
+          if($password_baru !== $password_baru2){
+              $this->session->set_flashdata('message', 'Password baru dan konfirmasi password harus sama');
+              redirect(base_url('PetugasAlumni/akun'));
+          }else{
+              $data = array
+              (
+              'email' => $this->input->post('email'),
+              'username' => $this->input->post('username'),
+              'password' => md5($this->input->post('password_baru')),
+              );
+              $masuk=$this->m_alumni->edit_data('tabel_level', $data, array('id_level'=>$this->input->post('id_level')));
+              if($masuk)
+              {
+                  $this->session->set_flashdata('sukses', 'berhasil update email, username, dan password');
+                  redirect(base_url('PetugasAlumni/akun'));
+              }
+              else
+              {
+                  $this->session->set_flashdata('error', 'gagal update email, username, dan password');
+                  redirect(base_url('PetugasAlumni/akun'));
+              }
+          }
+      }else {
+              $data = array
+              (
+              'email' => $this->input->post('email'),
+              'username' => $this->input->post('username'),
+              'password' => md5($this->input->post('password_baru')),
+              );
+              $masuk=$this->m_alumni->edit_data('tabel_level', $data, array('id_level'=>$this->input->post('id_level')));
+              if($masuk)
+              {
+                  $this->session->set_flashdata('sukses', 'berhasil update akun');
+                  redirect(base_url('PetugasAlumni/akun'));
+              }
+              else
+              {
+                  $this->session->set_flashdata('error', 'gagal update akun');
+                  redirect(base_url('PetugasAlumni/akun'));
+              }
+      }
   }
 }

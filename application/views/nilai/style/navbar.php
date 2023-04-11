@@ -6,7 +6,7 @@
     </ul>
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-            <a href="profile" class="text-dark"><i class="far fa-user mr-3"></i></a>
+            <a href="akun" class="text-dark"><i class="far fa-user mr-3"></i></a>
         </li>
     </ul>
 </nav>

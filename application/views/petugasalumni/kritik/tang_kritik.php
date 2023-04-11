@@ -6,13 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tanggapan Kritik</title>
-    <?php $this->load->view('alumni/style/head')?>
+    <?php $this->load->view('petugasalumni/style/head')?>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-        <?php $this->load->view('alumni/style/navbar') ?>
-        <?php $this->load->view('alumni/style/sidebar') ?>
+        <?php $this->load->view('petugasalumni/style/navbar') ?>
+        <?php $this->load->view('petugasalumni/style/sidebar') ?>
 
         <div class="content-wrapper">
             <section class="content-header">
@@ -44,21 +44,21 @@
                                         <h5><?php echo $data->kritik ?></h5>
                                     </div>
                                     <div class="bg-primary mt-3 p-2 d-flex justify-content-center" style="width: 90px">
-                                            <div class="text-white text-lg text-bold">
-                                                Respon
-                                            </div>
+                                        <div class="text-white text-lg text-bold">
+                                            Respon
                                         </div>
-                                        <textarea class="" name="kritik" id="ckeditor" required=""></textarea>
-                                <?php endforeach;?>
+                                    </div>
+                                    <textarea class="" name="kritik" id="ckeditor" required=""></textarea>
+                                    <?php endforeach;?>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </section>
         </div>
-        </section>
-    </div>
     </div>
 </body>
-<?php $this->load->view('alumni/style/js')?>
+<?php $this->load->view('petugasalumni/style/js')?>
 
 </html>

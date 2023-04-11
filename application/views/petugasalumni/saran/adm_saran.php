@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin-Saran</title>
-    <?php $this->load->view('alumni/style/head')?>
+    <?php $this->load->view('petugasalumni/style/head')?>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-        <?php $this->load->view('alumni/style/navbar') ?>
-        <?php $this->load->view('alumni/style/sidebar') ?>
+        <?php $this->load->view('petugasalumni/style/navbar') ?>
+        <?php $this->load->view('petugasalumni/style/sidebar') ?>
 
         <div class="content-wrapper">
             <section class="content-header">
                 <div class="container-fluid pl-4">
-                <div class="row">
+                    <div class="row">
                         <div class="col-md-3 col-sm-6 col-12">
                             <div class="info-box ">
                                 <span class="info-box-icon bg-danger" style="background-color:;"><i
@@ -34,7 +34,8 @@
 
                                 <div class="info-box-content">
                                     <span class=" text-bold" style="font-size: 15px">DITANGGAPI</span>
-                                    <span class="text-bold" style="font-size: 24px"><?php echo $count_ditanggapi; ?></span>
+                                    <span class="text-bold"
+                                        style="font-size: 24px"><?php echo $count_ditanggapi; ?></span>
                                 </div>
                             </div>
                         </div>
@@ -45,7 +46,8 @@
 
                                 <div class="info-box-content">
                                     <span class=" text-bold" style="font-size: 15px">BELUM DITANGGAPI</span>
-                                    <span class="text-bold" style="font-size: 24px"><?php echo $count_belum_ditanggapi; ?></span>
+                                    <span class="text-bold"
+                                        style="font-size: 24px"><?php echo $count_belum_ditanggapi; ?></span>
                                 </div>
                             </div>
                         </div>
@@ -55,7 +57,8 @@
 
                                 <div class="info-box-content">
                                     <span class=" text-bold" style="font-size: 15px">TOTAL ALUMNI</span>
-                                    <span class="text-bold" style="font-size: 24px"><?php echo $count_belum_ditanggapi; ?></span>
+                                    <span class="text-bold"
+                                        style="font-size: 24px"><?php echo $count_belum_ditanggapi; ?></span>
                                 </div>
                             </div>
                         </div>
@@ -95,9 +98,10 @@
                                         </div>'); ?>
                                             </td>
                                             <td class="d-flex ">
-                                            <div>
-                                                    <a href="<?php echo base_url('Petugasalumni/tanggapan_saran/'.$data->id_saran)?>" class="btn btn-primary btn-sm">
-                                                    <i class="fas fa-comments"></i> <b> Tanggapi </b></a>
+                                                <div>
+                                                    <a href="<?php echo base_url('Petugasalumni/tanggapan_saran/'.$data->id_saran)?>"
+                                                        class="btn btn-primary btn-sm">
+                                                        <i class="fas fa-comments"></i> <b> Tanggapi </b></a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -112,13 +116,14 @@
         </div>
     </div>
 </body>
-<?php $this->load->view('alumni/style/js')?>
+<?php $this->load->view('petugasalumni/style/js')?>
 <script>
-    function hapus(id_saran) {
-        var yes = confirm('Yakin Di Hapus?');
-        if (yes == true) {
-            window.location.href = "<?php echo base_url('Alumni/hapus_saran/')?>" + id_saran;
-        }
+function hapus(id_saran) {
+    var yes = confirm('Yakin Di Hapus?');
+    if (yes == true) {
+        window.location.href = "<?php echo base_url('Alumni/hapus_saran/')?>" + id_saran;
     }
-    </script>
+}
+</script>
+
 </html>
