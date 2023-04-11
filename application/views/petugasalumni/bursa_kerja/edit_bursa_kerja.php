@@ -124,7 +124,7 @@
                         </div>
                         <div class="row d-flex justify-content-between mt-4">
                             <div class="">
-                                <button type="button" onClick="kembali()" class="btn btn-danger"
+                                <button type="button" onClick="kembali()" class="btn bg-gray"
                                     style="width: 150px; margin-right: 12px;">Kembali</button>
                             </div>
                             <div class="">
@@ -132,7 +132,7 @@
                                     class="form-control" hidden>
                                 <input type="text" value="<?php echo $dt->id_level ?>" name="id_user"
                                     class="form-control" hidden>
-                                <button type="submit" class="btn btn-success"
+                                <button type="submit" class="btn bg-blue"
                                     style="width: 150px; margin-right: 12px;">Simpan</button>
                             </div>
                         </div>

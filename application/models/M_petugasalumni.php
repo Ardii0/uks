@@ -41,5 +41,17 @@ class M_petugasalumni extends CI_Model{
 		return $data;
 	}
 
+    public function get_num_row_data($field, $status, $tabel)
+    {
+        return $this->db->where($field, $status)->get($tabel)->num_rows();
+    }
+
+    public function count_field($where, $table)
+    {
+        $this->db->select('COUNT(*)');
+        $this->db->from($table);
+        $this->db->where($where);
+        return $this->db->count_all_results();
+    }
 
 }

@@ -17,7 +17,14 @@ class PetugasAlumni extends CI_Controller
 
     public function index()
     {
-        $this->load->view('petugasalumni/dashboard');
+        $query_event = "SELECT * from tabel_event where status = 'aktif' AND DATE(tanggal_event) >= DATE(NOW()) ORDER BY tanggal_posting DESC";
+        $query_lowongan = "SELECT * from tabel_lowongan where is_tampil = 'Ya' AND DATE(akhir_waktu) >= DATE(NOW()) ORDER BY tanggal_posting DESC";
+        $data['count_alumni'] = $this->m_petugasalumni->get_num_row_data('level', 'Alumni', 'tabel_level');
+        $data['count_event'] = $this->db->query($query_event)->num_rows();
+        $data['count_lowker'] = $this->db->query($query_lowongan)->num_rows();
+        $data['event'] = $this->db->query($query_event)->result();
+        $data['bursa_kerja'] = $this->db->query($query_lowongan)->result();
+        $this->load->view('petugasalumni/dashboard', $data);
     }
 
     // Data Angkatan
