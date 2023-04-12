@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Alumni</title>
-    <?php $this->load->view('petugasalumni/style/head')?>
+    <?php $this->load->view('alumni/style/head')?>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
@@ -49,7 +49,7 @@
                                 <div class="icon">
                                     <i class="fas fa-users"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">More
+                                <a href="<?php echo base_url('Alumni/data_diri') ?>" class="small-box-footer">More
                                     info
                                     <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
@@ -63,7 +63,7 @@
                                 <div class="icon">
                                     <i class="fas fa-calendar-alt"></i>
                                 </div>
-                                <a href="<?php echo base_url('PetugasAlumni/event') ?>" class="small-box-footer">More
+                                <a href="<?php echo base_url('Alumni/event') ?>" class="small-box-footer">More
                                     info
                                     <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
@@ -77,8 +77,8 @@
                                 <div class="icon">
                                     <i class="fas fa-bullhorn"></i>
                                 </div>
-                                <a href="<?php echo base_url('PetugasAlumni/bursa_kerja') ?>"
-                                    class="small-box-footer">More info
+                                <a href="<?php echo base_url('Alumni/bursa_kerja') ?>" class="small-box-footer">More
+                                    info
                                     <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
