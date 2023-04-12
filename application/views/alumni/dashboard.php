@@ -12,7 +12,7 @@
 
 <style>
 .anyClass {
-    height: 300px;
+    height: 230px;
     max-height: 300px;
     overflow-y: auto;
 }
@@ -87,11 +87,11 @@
                     <div class="row">
                         <div class="col-lg-6 col-12">
                             <div class="bg-white shadow" style="border-radius: 15px 15px 15px 15px;">
-                                <div class="bg-info p-2 text-center" style="border-radius: 15px 15px 0px 0px;">
-                                    <strong class="h2">EVENT AKTIF</strong>
+                                <div class="bg-info p-2 text-center" style="border-radius: 5px 5px 0px 0px;">
+                                    <strong class="h3">EVENT AKTIF</strong>
                                 </div>
                                 <div class="px-4 py-2 mt-3 anyClass" style="">
-                                <?php if($count_event > 0): ?>
+                                    <?php if($count_event > 0): ?>
                                     <table class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
@@ -111,17 +111,17 @@
                                         </tbody>
                                     </table>
                                     <?php else: ?>
-                                    <div class="row" style="margin-top: 45px">
+                                    <div class="row mt-4 py-2">
                                         <div class="icon col-12 row align-items-center justify-content-center">
-                                            <i style="font-size: 100px" class="fas fa-calendar-alt"></i>
+                                            <i style="font-size: 80px" class="fas fa-calendar-alt"></i>
                                         </div>
-                                        <div class="col-12 row align-items-center justify-content-center">
-                                            <h1>Event Tidak Tersedia</h1>
+                                        <div class="col-12 row align-items-center justify-content-center mt-3">
+                                            <h4>Event Tidak Tersedia</h4>
                                         </div>
                                     </div>
                                     <?php endif; ?>
                                 </div>
-                                <div class="bg-info p-2 text-center" style="border-radius: 0px 0px 15px 15px;">
+                                <div class="bg-info p-2 text-center" style="border-radius: 0px 0px 5px 5px;">
                                     <a href="<?php echo base_url('Alumni/event') ?>" class="">More info
                                         <i class="fa fa-arrow-circle-right"></i>
                                     </a>
@@ -130,8 +130,8 @@
                         </div>
                         <div class="col-lg-6 col-12">
                             <div class="bg-white shadow" style="border-radius: 15px 15px 15px 15px;">
-                                <div class="bg-info p-2 text-center" style="border-radius: 15px 15px 0px 0px;">
-                                    <strong class="h2">LOWONGAN KERJA AKTIF</strong>
+                                <div class="bg-info p-2 text-center" style="border-radius: 5px 5px 0px 0px;">
+                                    <strong class="h3">LOWONGAN KERJA AKTIF</strong>
                                 </div>
                                 <div class="px-4 py-2 mt-3 anyClass" style="">
                                     <?php if($count_lowker > 0): ?>
@@ -166,7 +166,7 @@
                                     </div>
                                     <?php endif; ?>
                                 </div>
-                                <div class="bg-info p-2 text-center" style="border-radius: 0px 0px 15px 15px;">
+                                <div class="bg-info p-2 text-center" style="border-radius: 0px 0px 5px 5px;">
                                     <a href="<?php echo base_url('Alumni/bursa_kerja') ?>" class="">More info
                                         <i class="fa fa-arrow-circle-right"></i>
                                     </a>
