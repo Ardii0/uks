@@ -607,10 +607,11 @@ $result = $ci->db->where('id_level',$id)->get('tabel_level');
     $result = $ci->db->select('*')
                       ->from('table_detail_index_buku')
                       ->join('table_buku','table_detail_index_buku.id_buku = table_buku.id_buku')
+                      ->join('table_kategori_buku','table_buku.kategori_id = table_kategori_buku.id_kategori_buku')
                       ->where('table_detail_index_buku.id_stok',$id)
                       ->get();
       foreach ($result->result() as $c) {
-      $stmt= $c->kategori_id;
+      $stmt= $c->nama_kategori_buku;
       $namabuku= $namabuku.$stmt.'<br>';
       }
       return $namabuku;

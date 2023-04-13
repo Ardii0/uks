@@ -71,14 +71,7 @@
                                             <td><?php echo $data->no_pinjaman ?></td>
                                             <td><?php echo tampil_namadaftar_ByIdAnggota($data->id_anggota) ?></td>
                                             <td>
-                                                <div class="d-flex">
-                                                    <div class="pr-1">
-                                                        <?php echo tampil_kelasdaftar_ByIdAnggota($data->id_anggota) ?>
-                                                    </div>
-                                                    <div class="d-flex">
-                                                        <?php echo tampil_rombeldaftar_ByIdAnggota($data->id_anggota) ?>
-                                                    </div>
-                                                </div>
+                                                <?php echo tampil_rombeldaftar_ByIdAnggota($data->id_anggota) ?>
                                             </td>
                                             <td><?php echo $data->tgl_pinjaman ?></td>
                                             <td><?php echo $data->tgl_kembali ?></td>

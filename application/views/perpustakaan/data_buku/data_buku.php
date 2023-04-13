@@ -64,7 +64,7 @@
                                                 <td class="text-left"><?php echo $row->penulis_buku?></td>
                                                 <td class="text-left"><?php echo $row->penerbit_buku?></td>
                                                 <td><?php echo $row->tahun_terbit?></td>
-                                                <td><?php echo $row->kategori_id?></td>
+                                                <td><?php echo namakategori($row->kategori_id)?></td>
                                                 <td><?php echo $row->rak_buku_id?></td>
                                                 <td>
                                                     <a href="<?php echo base_url('Perpustakaan/detail_index_buku/'.$row->id_buku)?>"

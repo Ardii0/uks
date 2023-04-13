@@ -197,8 +197,8 @@ class Perpustakaan extends CI_Controller {
             'menu_admin' => 'perpustakaan',
             'submenu_admin'=> 'form_anggota'
         ];
-        $this->load->model('m_perpustakaan');
-        $data['siswa'] = $this->m_perpustakaan->get_siswa('siswa');
+        $this->load->model('m_akademik');
+        $data['siswa'] = $this->m_akademik->get_siswa('siswa');
         $this->load->view('perpustakaan/anggota/form_anggota', $data);
     }
 

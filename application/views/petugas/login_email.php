@@ -49,9 +49,9 @@
                                             <div class="">
                                                 <a href="<?php echo base_url('login'); ?>">Login menggunakan Username</a>
                                             </div>
-                                            <div class="">
+                                            <!-- <div class="">
                                                 <a href="<?php echo base_url('Register'); ?>">Daftar Sekarang!</a>
-                                            </div>
+                                            </div> -->
                                         </div>
 
                                         <div class="pt-2 mb-4">

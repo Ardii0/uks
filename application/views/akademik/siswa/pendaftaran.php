@@ -40,8 +40,8 @@
                         <div>
                         </div>
                         <div class="d-flex justify-content-end align-self-start">
-                            <button type="button" data-toggle="modal" data-target="#modal_import_pendaftaran"
-                                class="btn btn-success mr-1" style="width: 150px"><i class="fa fa-upload pr-2"></i>Upload</button>
+                            <!-- <button type="button" data-toggle="modal" data-target="#modal_import_pendaftaran"
+                                class="btn btn-success mr-1" style="width: 150px"><i class="fa fa-upload pr-2"></i>Upload</button> -->
                             <a href="<?php echo base_url('Akademik/export_to_excel'); ?>">
                                 <button type="button" class="btn btn-success mr-1" style="width: 150px"><i
                                         class="fa fa-download pr-2"></i>Export</button>
