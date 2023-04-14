@@ -109,42 +109,42 @@
                                             <?php if($this->session->userdata('level') === 'Nilai') {?>
                                                 <div class="col-6 mt-3">
                                                     <div class="form-group">
-                                                        <label class="control-label">NUH1</label>
+                                                        <label class="control-label">NUH1 (Nilai Harian 1)</label>
                                                         <div>
                                                             <input type="number" name="nuh1" class="form-control"
                                                             placeholder="Masukan Nilai Ulangan Harian 1" value="<?php echo $edit->nuh1?>"><br>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="control-label">NUH2</label>
+                                                        <label class="control-label">NUH2 (Nilai Harian 2)</label>
                                                         <div>
                                                             <input type="number" name="nuh2" class="form-control"
                                                             placeholder="Masukan Nilai Ulangan Harian 2" value="<?php echo $edit->nuh2?>"><br>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="control-label">NUH3</label>
+                                                        <label class="control-label">NUH3 (Nilai Harian 3)</label>
                                                         <div>
                                                             <input type="number" name="nuh3" class="form-control"
                                                             placeholder="Masukan Nilai Ulangan Harian 3" value="<?php echo $edit->nuh3?>"><br>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="control-label">MID</label>
+                                                        <label class="control-label">MID (Nilai Ujian Tengah Semester)</label>
                                                         <div>
                                                             <input type="number" name="mid" class="form-control"
                                                             placeholder="Masukan Nilai Ujian Tengah Semester"  value="<?php echo $edit->mid?>"><br>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="control-label">RNUH</label>
+                                                        <label class="control-label">RNUH (Rata-Rata Nilai Harian)</label>
                                                         <div>
                                                             <input type="number" name="rnuh" class="form-control"
                                                             placeholder="Nilai Rata-Rata Ulangan Harian" disabled  value="<?php echo $edit->rnuh?>"><br>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="control-label">NH</label>
+                                                        <label class="control-label">NH (Rata-Rata Nilai Tugas dan Ulangan Harian)</label>
                                                         <div>
                                                             <input type="number" name="nh" class="form-control"
                                                             placeholder="Rata-Rata Tugas dan Ulangan Harian" disabled value="<?php echo $edit->nh?>"><br>
@@ -154,42 +154,42 @@
                                                 </div>
                                                 <div class="col-6 mt-3">
                                                     <div class="form-group">
-                                                        <label class="control-label">NT1</label>
+                                                        <label class="control-label">NT1 (Nilai Tugas 1)</label>
                                                         <div>
                                                             <input type="number" name="nt1" class="form-control"
                                                             placeholder="Masukan Nilai Tugas 1" value="<?php echo $edit->nt1?>"><br>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="control-label">NT2</label>
+                                                        <label class="control-label">NT2 (Nilai Tugas 2)</label>
                                                         <div>
                                                             <input type="number" name="nt2" class="form-control"
                                                             placeholder="Masukan Nilai Tugas 2" value="<?php echo $edit->nt2?>"><br>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="control-label">NT3</label>
+                                                        <label class="control-label">NT3 (Nilai Tugas 3)</label>
                                                         <div>
                                                             <input type="number" name="nt3" class="form-control"
                                                             placeholder="Masukan Nilai Tugas 3" value="<?php echo $edit->nt3?>"><br>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="control-label">SMT</label>
+                                                        <label class="control-label">SMT (Ulangan Akhir Semester)</label>
                                                         <div>
                                                             <input type="number" name="smt" class="form-control"
                                                             placeholder="Masukan Nilai Ujian Akhir Semester" value="<?php echo $edit->smt?>"><br>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="control-label">RNT</label>
+                                                        <label class="control-label">RNT (Rata-Rata Nilai Tugas)</label>
                                                         <div>
                                                             <input type="number" name="rnt" class="form-control"
                                                             placeholder="Nilai Rata-Rata Tugas" disabled  value="<?php echo $edit->rnt?>"><br>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="control-label">NAR</label>
+                                                        <label class="control-label">NAR (Nilai Keseluruhan)</label>
                                                         <div>
                                                             <input type="number" name="nar" class="form-control"
                                                             placeholder="Nilai Keseluruhan" disabled value="<?php echo $edit->nar?>"><br>
@@ -225,42 +225,42 @@
                                         <?php if($this->session->userdata('level') === 'Nilai') {?>
                                             <div class="col-6 mt-3">
                                                 <div class="form-group">
-                                                    <label class="control-label">NUH1</label>
+                                                    <label class="control-label">NUH1 (Nilai Harian 1)</label>
                                                     <div>
                                                         <input type="number" name="nuh1" class="form-control"
                                                             placeholder="Masukan Nilai Ulangan Harian 1"><br>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="control-label">NUH2</label>
+                                                    <label class="control-label">NUH2 (Nilai Harian 2)</label>
                                                     <div>
                                                         <input type="number" name="nuh2" class="form-control"
                                                             placeholder="Masukan Nilai Ulangan Harian 2"><br>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="control-label">NUH3</label>
+                                                    <label class="control-label">NUH3 (Nilai Harian 3)</label>
                                                     <div>
                                                         <input type="number" name="nuh3" class="form-control"
                                                             placeholder="Masukan Nilai Ulangan Harian 3"><br>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="control-label">MID</label>
+                                                    <label class="control-label">MID (Nilai Ujian Tengah Semester)</label>
                                                     <div>
                                                         <input type="number" name="mid" class="form-control"
                                                             placeholder="Masukan Nilai Ujian Tengah Semester"><br>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="control-label">RNUH</label>
+                                                    <label class="control-label">RNUH (Rata-Rata Nilai Harian)</label>
                                                     <div>
                                                         <input type="number" name="rnuh" class="form-control"
                                                             placeholder="Nilai Rata-Rata Ulangan Harian" disabled><br>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="control-label">NH</label>
+                                                    <label class="control-label">NH (Rata-Rata Nilai Tugas dan Ulangan Harian)</label>
                                                     <div>
                                                         <input type="number" name="nh" class="form-control"
                                                             placeholder="Rata-Rata Tugas dan Ulangan Harian" disabled><br>
@@ -270,42 +270,42 @@
                                             </div>
                                             <div class="col-6 mt-3">
                                                 <div class="form-group">
-                                                    <label class="control-label">NT1</label>
+                                                    <label class="control-label">NT1 (Nilai Tugas 1)</label>
                                                     <div>
                                                         <input type="number" name="nt1" class="form-control"
                                                             placeholder="Masukan Nilai Tugas 1"><br>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="control-label">NT2</label>
+                                                    <label class="control-label">NT2 (Nilai Tugas 2)</label>
                                                     <div>
                                                         <input type="number" name="nt2" class="form-control"
                                                             placeholder="Masukan Nilai Tugas 2"><br>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="control-label">NT3</label>
+                                                    <label class="control-label">NT3 (Nilai Tugas 3)</label>
                                                     <div>
                                                         <input type="number" name="nt3" class="form-control"
                                                             placeholder="Masukan Nilai Tugas 3"><br>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="control-label">SMT</label>
+                                                    <label class="control-label">SMT (Ulangan Akhir Semester)</label>
                                                     <div>
                                                         <input type="number" name="smt" class="form-control"
                                                             placeholder="Masukan Nilai Ujian Akhir Semester"><br>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="control-label">RNT</label>
+                                                    <label class="control-label">RNT (Rata-Rata Nilai Tugas)</label>
                                                     <div>
                                                         <input type="number" name="rnt" class="form-control"
                                                             placeholder="Nilai Rata-Rata Tugas" disabled><br>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="control-label">NAR</label>
+                                                    <label class="control-label">NAR (Nilai Keseluruhan)</label>
                                                     <div>
                                                         <input type="number" name="nar" class="form-control"
                                                             placeholder="Nilai Keseluruhan" disabled><br>

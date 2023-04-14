@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,12 +19,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Rombongan Belajar</h1>
+                            <h1>Tingkat</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="<?php echo base_url('Akademik/') ?>"><?php echo $this->session->userdata('level') ?></a></li>
-                                <li class="breadcrumb-item active">Rombongan Belajar</li>
+                                <li class="breadcrumb-item active">Tingkat</li>
                             </ol>
                         </div>
                     </div>
@@ -38,12 +37,12 @@
                         <div class="col-2 col-sm-6 ">
                             <div class="form-group d-flex flex-row " style="width: fit-content;">
                                 <div class="mt-2 mx-1">
-                                    <h4>Data Rombongan Belajar</h4>
+                                    <h4>Data Tingkat</h4>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3 d-flex justify-content-end align-self-start">
-                            <a href="<?php echo base_url('Akademik/rombel_form'); ?>">
+                            <a href="<?php echo base_url('Akademik/tingkat_form'); ?>">
                                 <button type="button" class="btn btn-success">
                                     <i class="fa fa-plus pr-2"></i>Tambah
                                 </button>
@@ -57,33 +56,29 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama Rombongan Belajar</th>
-                                            <th>Nama Kelas</th>
-                                            <th>Nama Jenjang</th>
-                                            <th>Kuota</th>
-                                            <th>Wali Kelas</th>
+                                            <th>Nama Tingkat</th>
+                                            <th>Jenjang</th>
+                                            <th>Keterangan</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $id=0; foreach($rombongan_belajar as $data ): $id++;?>
+                                        <?php $id=0; foreach($tingkat as $data): $id++;?>
                                         <tr>
                                             <td><?php echo $id?></td>
-                                            <td><?php echo $data->nama_rombel?></td>
-                                            <td><?php echo tampil_kelas_byid($data->id_kelas)?></td>
+                                            <td><?php echo $data->nama_tingkat?></td>
                                             <td><?php echo tampil_namajenjang_byid($data->id_jenjang)?></td>
-                                            <td>0/<?php echo $data->kuota?></td>
-                                            <td><?php echo tampil_guru_byid($data->id_guru)?></td>
+                                            <td><?php echo $data->keterangan?></td>
                                             <td class="text-center">
-                                                <a href="#"
+                                                <a href="<?php echo base_url('Akademik/edit_tingkat/'.$data->id_tingkat)?>"
                                                     class="btn btn-primary btn-sm">
-                                                    <i class="fa fa-edit"></i></a>
-                                                    <a href="#"
-                                                    class="btn btn-success btn-sm">
-                                                    <i class="fa fa-eye"></i></a>
-                                                <button onclick="hapus(<?php echo $data->id_rombel ;?>)"
-                                                    class="btn btn-danger btn-sm">
-                                                    <i class="fa fa-trash"></i></button>
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <?php if(!$this->db->where('id_tingkat',$data->id_tingkat)->get('tabel_kelas')->result()) {?>
+                                                    <button onclick='hapus(<?php echo $data->id_tingkat?>)' class='btn btn-danger btn-sm'>
+                                                        <i class='fa fa-trash'></i>
+                                                    </button>
+                                                <?php }?>
                                             </td>
                                         </tr>
                                         <?php endforeach;?>
@@ -102,7 +97,7 @@
         function hapus(id) {
             var yes = confirm('Yakin Di Hapus?');
             if (yes == true) {
-                window.location.href = "<?php echo base_url('Akademik/hapus_kelas/') ?>" + id;
+                window.location.href = "<?php echo base_url('Akademik/hapus_tingkat/') ?>" + id;
             }
         }
     </script>

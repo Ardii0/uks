@@ -705,6 +705,7 @@ class Keuangan extends CI_Controller
         $data = [
             'id_invoice' => $this->input->post('id_invoice'),
             'id_siswa' => $this->input->post('id_siswa'),
+            'date' => date('y-m-d'),
             'id_ta' => $this->input->post('id_ta'),
             'id_level' => $this->input->post('id_level'),
             'cek_p' => '1',

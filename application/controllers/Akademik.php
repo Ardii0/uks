@@ -236,7 +236,91 @@ class Akademik extends CI_Controller {
         $this->m_akademik->hapus_jenjang('tabel_jenjang', 'id_jenjang', $id_jenjang);
         redirect(base_url('Akademik/jenjang'));
     }
-    
+
+// Tingkat
+    public function tingkat()
+    {
+        $data = [
+            'judul' => 'akademik',
+            'page' => 'akademik',
+            'menu' => 'kelas',
+            'submenu'=>'tingkat',
+            'menu_submenu_admin'=>'kelas',
+            'menu_admin' => 'akademik',
+            'submenu_admin'=>'tingkat',
+        ];
+        $data['tingkat'] = $this->m_akademik->get('tabel_tingkat');
+        $this->load->view('akademik/tingkat/tingkat', $data);
+    }
+
+    public function tingkat_form()
+    {
+        $data = [
+            'judul' => 'akademik',
+            'page' => 'akademik',
+            'menu' => 'kelas',
+            'submenu'=>'tingkat',
+            'menu_submenu_admin'=>'kelas',
+            'menu_admin' => 'akademik',
+            'submenu_admin'=>'tingkat',
+        ];
+        $this->load->view('akademik/tingkat/form_tingkat', $data);
+    }
+
+    public function tambah_tingkat()
+    {
+        $data = [
+            'nama_tingkat' => $this->input->post('nama_tingkat'),
+            'keterangan' => $this->input->post('keterangan'),
+            'id_jenjang' => $this->m_akademik->getone('tabel_jenjang', 'id_jenjang'),
+        ];
+        $this->m_akademik->add('tabel_tingkat', $data);
+        redirect(base_url('Akademik/tingkat'));
+    }
+
+    public function edit_tingkat($id)
+    {
+        $data = [
+            'judul' => 'akademik',
+            'page' => 'akademik',
+            'menu' => 'kelas',
+            'submenu'=>'tingkat',
+            'menu_submenu_admin'=>'kelas',
+            'menu_admin' => 'akademik',
+            'submenu_admin'=>'tingkat',
+        ];
+        $data['tingkat']=$this->m_akademik->getwhere('tabel_tingkat', array('id_tingkat'=> $id))->result();
+        $data['kelas'] = $this->m_akademik->get('tabel_kelas');
+        $data['guru'] = $this->m_akademik->get('tabel_guru');
+        $data['jenjang'] = $this->m_akademik->get('tabel_jenjang');
+        $this->load->view('akademik/tingkat/edit_tingkat', $data);
+    }
+
+    public function update_tingkat()
+    {
+        $data =  [
+            'nama_tingkat' => $this->input->post('nama_tingkat'),
+            'keterangan' => $this->input->post('keterangan'),
+        ];
+        $logged=$this->m_akademik->update('tabel_tingkat', $data, array('id_tingkat'=>$this->input->post('id_tingkat')));
+        if($logged)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('Akademik/tingkat'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Akademik/tingkat/edit_ta/'.$this->input->post('id_tingkat')));
+        }
+    }
+
+    public function hapus_tingkat($id)
+    {
+        $this->m_akademik->delete('tabel_tingkat', 'id_tingkat', $id);
+        redirect(base_url('Akademik/tingkat'));
+    }
+
 // Kelas
     public function kelas()
     {
@@ -249,8 +333,7 @@ class Akademik extends CI_Controller {
             'menu_admin' => 'akademik',
             'submenu_admin'=>'kelas',
         ];
-        $this->load->model('M_akademik');
-        $data['kelas'] = $this->m_akademik->get_kelas('kelas');
+        $data['kelas'] = $this->m_akademik->get('tabel_kelas');
         $this->load->view('akademik/kelas/kelas', $data);
     }
 
@@ -265,8 +348,7 @@ class Akademik extends CI_Controller {
             'menu_admin' => 'akademik',
             'submenu_admin'=>'kelas',
         ];
-        $this->load->model('M_akademik');
-        $data['jenjang'] = $this->m_akademik->get_jenjang('jenjang');
+        $data['tingkat'] = $this->m_akademik->get('tabel_tingkat');
         $this->load->view('akademik/kelas/form_kelas', $data);
     }
 
@@ -274,10 +356,10 @@ class Akademik extends CI_Controller {
     {
         $data = [
             'nama_kelas' => $this->input->post('nama_kelas'),
-            'id_jenjang' => $this->input->post('id_jenjang'),
+            'id_tingkat' => $this->input->post('id_tingkat'),
             'keterangan' => $this->input->post('keterangan'),
         ];
-        $this->m_akademik->tambah_kelas('tabel_kelas', $data);
+        $this->m_akademik->add('tabel_kelas', $data);
         redirect(base_url('Akademik/kelas'));
     }
 
@@ -292,126 +374,26 @@ class Akademik extends CI_Controller {
             'menu_admin' => 'akademik',
             'submenu_admin'=>'kelas',
         ];
-        $data['kelas']=$this->m_akademik->get_kelasById('tabel_kelas', $id_kelas)->result();
-        $jenjang['jenjang'] = $this->m_akademik->get_jenjang('jenjang');
-        $this->load->view('akademik/kelas/edit_kelas', $data + $jenjang);
+        $data['kelas']=$this->m_akademik->getwhere('tabel_kelas', array('id_kelas' => $id_kelas))->result();
+        $data['tingkat'] = $this->m_akademik->get('tabel_tingkat');
+        $this->load->view('akademik/kelas/edit_kelas', $data);
     }
 
     public function update_kelas()
     {
         $data =  [
             'nama_kelas' => $this->input->post('nama_kelas'),
-            'id_jenjang' => $this->input->post('id_jenjang'),
+            'id_tingkat' => $this->input->post('id_tingkat'),
             'keterangan' => $this->input->post('keterangan'),
         ];
-        $logged=$this->m_akademik->ubah_kelas('tabel_kelas', $data, array('id_kelas'=>$this->input->post('id_kelas')));
-        if($logged)
-        {
-            $this->session->set_flashdata('sukses', 'berhasil');
-            redirect(base_url('Akademik/kelas'));
-        }
-        else
-        {
-            $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Akademik/kelas/edit_ta/'.$this->input->post('id_kelas')));
-        }
-    }
-    
-    public function hapus_kelas($id_kelas)
-    {
-        $this->m_akademik->hapus_kelas('tabel_kelas', 'id_kelas', $id_kelas);
+        $this->m_akademik->update('tabel_kelas', $data, array('id_kelas'=>$this->input->post('id_kelas')));
         redirect(base_url('Akademik/kelas'));
     }
-
-// Rombel
-    public function rombel()
+    
+    public function hapus_kelas($id)
     {
-        $data = [
-            'judul' => 'akademik',
-            'page' => 'akademik',
-            'menu' => 'kelas',
-            'submenu'=>'rombel',
-            'menu_submenu_admin'=>'kelas',
-            'menu_admin' => 'akademik',
-            'submenu_admin'=>'rombel',
-        ];
-        $this->load->model('M_akademik');
-        $data['rombel'] = $this->m_akademik->get_rombel('rombel');
-        $this->load->view('akademik/rombel/rombel', $data);
-    }
-
-    public function rombel_form()
-    {
-        $data = [
-            'judul' => 'akademik',
-            'page' => 'akademik',
-            'menu' => 'kelas',
-            'submenu'=>'rombel',
-            'menu_submenu_admin'=>'kelas',
-            'menu_admin' => 'akademik',
-            'submenu_admin'=>'rombel',
-        ];
-        $this->load->model('M_akademik');
-        $data['kelas'] = $this->m_akademik->get_kelas('kelas');
-        $data['guru'] = $this->m_akademik->get_guru('guru');
-        $this->load->view('akademik/rombel/form_rombel', $data);
-    }
-
-    public function tambah_rombel()
-    {
-        $data = [
-            'nama_rombel' => $this->input->post('nama_rombel'),
-            'kode_guru' => $this->input->post('kode_guru'),
-            'id_kelas' => $this->input->post('id_kelas'),
-            'kuota' => $this->input->post('kuota'),
-        ];
-        $this->m_akademik->tambah_rombel('tabel_rombel', $data);
-        redirect(base_url('Akademik/rombel'));
-    }
-
-    public function edit_rombel($id_rombel)
-    {
-        $data = [
-            'judul' => 'akademik',
-            'page' => 'akademik',
-            'menu' => 'kelas',
-            'submenu'=>'rombel',
-            'menu_submenu_admin'=>'kelas',
-            'menu_admin' => 'akademik',
-            'submenu_admin'=>'rombel',
-        ];
-        $data['rombel']=$this->m_akademik->get_rombelById('tabel_rombel', $id_rombel)->result();
-        $kelas['kelas'] = $this->m_akademik->get_kelas('kelas');
-        $guru['guru'] = $this->m_akademik->get_guru('guru');
-        $jenjang['jenjang'] = $this->m_akademik->get_jenjang('jenjang');
-        $this->load->view('akademik/rombel/edit_rombel', $data + $kelas + $guru + $jenjang);
-    }
-
-    public function update_rombel()
-    {
-        $data =  [
-            'nama_rombel' => $this->input->post('nama_rombel'),
-            'kode_guru' => $this->input->post('kode_guru'),
-            'id_kelas' => $this->input->post('id_kelas'),
-            'kuota' => $this->input->post('kuota'),
-        ];
-        $logged=$this->m_akademik->ubah_rombel('tabel_rombel', $data, array('id_rombel'=>$this->input->post('id_rombel')));
-        if($logged)
-        {
-            $this->session->set_flashdata('sukses', 'berhasil');
-            redirect(base_url('Akademik/rombel'));
-        }
-        else
-        {
-            $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Akademik/rombel/edit_ta/'.$this->input->post('id_rombel')));
-        }
-    }
-
-    public function hapus_rombel($id_rombel)
-    {
-        $this->m_akademik->hapus_rombel('tabel_rombel', 'id_rombel', $id_rombel);
-        redirect(base_url('Akademik/rombel'));
+        $this->m_akademik->delete('tabel_kelas', 'id_kelas', $id);
+        redirect(base_url('Akademik/kelas'));
     }
 
 // Guru

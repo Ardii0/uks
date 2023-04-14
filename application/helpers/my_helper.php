@@ -84,13 +84,13 @@ $result = $ci->db->where('id_level',$id)->get('tabel_level');
     }
   }
 
-  function tampil_namarombel_byid($id)
+  function tampil_namatingkat_ById($id)
   {
   $ci =& get_instance();
   $ci->load->database();
-  $result = $ci->db->where('id_rombel',$id)->get('tabel_rombel');
+  $result = $ci->db->where('id_tingkat',$id)->get('tabel_tingkat');
     foreach ($result->result() as $c) {
-    $stmt= $c->nama_rombel;
+    $stmt= $c->nama_tingkat;
     return $stmt;
     }
   }
@@ -106,21 +106,21 @@ $result = $ci->db->where('id_level',$id)->get('tabel_level');
     }
   }
 
-  function tampil_namajenjang_ByIdKelas($id)
+  function tampil_namajenjang_ByIdTingkat($id)
   {
   $ci =& get_instance();
   $ci->load->database();
-  $namadaftar = '';
+  $namajenjang = '';
   $result = $ci->db->select('*')
-                    ->from('tabel_kelas')
-                    ->join('tabel_jenjang','tabel_kelas.id_jenjang = tabel_jenjang.id_jenjang')
-                    ->where('tabel_kelas.id_kelas',$id)
+                    ->from('tabel_tingkat')
+                    ->join('tabel_jenjang','tabel_tingkat.id_jenjang = tabel_jenjang.id_jenjang')
+                    ->where('tabel_tingkat.id_tingkat',$id)
                     ->get();
     foreach ($result->result() as $c) {
     $stmt= $c->nama_jenjang;
-    $namadaftar= $namadaftar.$stmt.'<br>';
+    $namajenjang= $namajenjang.$stmt.'<br>';
     }
-    return $namadaftar;
+    return $namajenjang;
   }
 
   function tampil_namajenjang_ByIdSiswa($id)

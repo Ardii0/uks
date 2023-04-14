@@ -57,6 +57,7 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
+                                            <th>Tingkat</th>
                                             <th>Nama Kelas</th>
                                             <th>Jenjang</th>
                                             <th>Keterangan</th>
@@ -64,23 +65,25 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $id=0; foreach($kelas as $data ): $id++;?>
+                                        <?php $id=0; foreach($kelas as $data): $id++;?>
                                         <tr>
                                             <td><?php echo $id?></td>
+                                            <td><?php echo tampil_namatingkat_ById($data->id_tingkat)?></td>
                                             <td><?php echo $data->nama_kelas?></td>
-                                            <td><?php echo tampil_namajenjang_byid($data->id_jenjang)?></td>
+                                            <td><?php echo tampil_namajenjang_ByIdTingkat($data->id_tingkat)?></td>
                                             <td><?php echo $data->keterangan?></td>
                                             <td class="text-center">
                                                 <a href="<?php echo base_url('Akademik/edit_kelas/'.$data->id_kelas)?>"
                                                     class="btn btn-primary btn-sm">
-                                                    <i class="fa fa-edit"></i></a>
-                                                    <?php 
-                                                    $find = find_idrombel($data->id_kelas);
-                                                    if($find == null) echo "                                                
-                                                    <button onclick='hapus($data->id_kelas)'
-                                                    class='btn btn-danger btn-sm'>
-                                                    <i class='fa fa-trash'></i></button>"; 
-                                                    else echo ""?>
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <?php if(!$this->db->where('id_kelas',$data->id_kelas)->get('tabel_siswa')->result() &&
+                                                         !$this->db->where('id_kelas',$data->id_kelas)->get('tabel_alokasimapel')->result()) {?>
+                                                    <button onclick='hapus(<?php echo $data->id_kelas ?>)'
+                                                        class='btn btn-danger btn-sm'>
+                                                        <i class='fa fa-trash'></i>
+                                                    </button>
+                                                <?php }?>
                                             </td>
                                         </tr>
                                         <?php endforeach;?>
@@ -97,7 +100,7 @@
     <?php $this->load->view('akademik/style/js') ?>
     <script>
         function hapus(id) {
-            var yes = confirm('Yakin Di Hapus?');
+            var yes = confirm('Anda Yakin Untuk Menghapus?');
             if (yes == true) {
                 window.location.href = "<?php echo base_url('Akademik/hapus_kelas/') ?>" + id;
             }

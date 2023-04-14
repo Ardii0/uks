@@ -59,7 +59,7 @@
                                     <div class="col-8">
                                         <?php echo tampil_namadaftar_ByIdSiswa($data->id_siswa) ;?>
                                         <input type="hidden" name="id_siswa" value="<?php echo $data->id_siswa ;?>">
-                                        <input type="hidden" name="id_ta" value="<?php echo tampil_idta_ByIdSiswa($data->id_daftar) ;?>">
+                                        <input type="hidden" name="id_ta" value="<?php echo tampil_idta_ByIdSiswa($data->id_siswa) ;?>">
                                         <input type="hidden" name="id_level" value="<?php echo $dt->id_level ;?>">
                                     </div>
                                 </div>

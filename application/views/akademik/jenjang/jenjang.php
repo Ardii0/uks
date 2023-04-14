@@ -47,7 +47,7 @@
                         <div class="col-md-4 d-flex justify-content-end align-self-start">
                             <div class="mx-1">
                                 <button type="button" class="btn btn-success" data-toggle="modal"
-                                    data-target="#modal_tambah_rak">
+                                    data-target="#paketjenjang">
                                     <i class="fa fa-plus pr-2"></i>Paket Jenjang</button>
                             </div>
                             <a href="<?php echo base_url('Akademik/jenjang_form'); ?>">
@@ -96,7 +96,7 @@
                                                     class="btn btn-primary btn-sm">
                                                     <i class="fa fa-edit"></i></a>
                                                 <?php if(!$this->db->where('id_jenjang',$data->id_jenjang)->get('tabel_daftar')->result() &&
-                                                             !$this->db->where('id_jenjang',$data->id_jenjang)->get('tabel_kelas')->result()) {?>
+                                                         !$this->db->where('id_jenjang',$data->id_jenjang)->get('tabel_tingkat')->result()) {?>
                                                 <button onclick="hapus(<?php echo $data->id_jenjang ?>)"
                                                     class='btn btn-danger btn-sm'>
                                                     <i class='fa fa-trash'></i></button>
@@ -112,14 +112,14 @@
                 </div>
         </div>
         </section>
-        <div class="modal fade" id="modal_tambah_rak" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="paketjenjang" tabindex="-1" role="dialog" aria-labelledby="modalPaketJenjang"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <form action="<?php echo base_url('Akademik/tambah_paketjenjang') ?>" enctype="multipart/form-data"
                     method="post">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Paket Jenjang</h5>
+                            <h5 class="modal-title" id="modalPaketJenjang">Paket Jenjang</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
