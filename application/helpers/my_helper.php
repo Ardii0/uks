@@ -49,6 +49,17 @@ $result = $ci->db->where('id_level',$id)->get('tabel_level');
     return $stmt;
     }
   }
+  
+  function tampil_fotolevelById($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_level',$id)->get('tabel_level');
+    foreach ($result->result() as $c) {
+    $stmt= $c->foto;
+    return $stmt;
+    }
+  }
 
 // Akademik
   function find_idjenjang($id)
