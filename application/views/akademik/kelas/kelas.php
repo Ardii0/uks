@@ -60,7 +60,8 @@
                                             <th>Tingkat</th>
                                             <th>Nama Kelas</th>
                                             <th>Jenjang</th>
-                                            <th>Keterangan</th>
+                                            <th>Kuota</th>
+                                            <th>Wali Kelas</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -71,7 +72,8 @@
                                             <td><?php echo tampil_namatingkat_ById($data->id_tingkat)?></td>
                                             <td><?php echo $data->nama_kelas?></td>
                                             <td><?php echo tampil_namajenjang_ByIdTingkat($data->id_tingkat)?></td>
-                                            <td><?php echo $data->keterangan?></td>
+                                            <td><?php echo $data->kuota?></td>
+                                            <td><?php echo tampil_guruById($data->kode_guru)?></td>
                                             <td class="text-center">
                                                 <a href="<?php echo base_url('Akademik/edit_kelas/'.$data->id_kelas)?>"
                                                     class="btn btn-primary btn-sm">

@@ -49,6 +49,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="control-label">Kuota</label>
+                                    <div class="">
+                                        <input type="text" name="kuota" class="form-control"
+                                            placeholder="Masukan Kuota">
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="control-label">Keterangan</label>
                                     <div class="">
                                         <textarea class="form-control" name="keterangan"
@@ -60,12 +67,25 @@
                                 <div class="form-group">
                                     <label class="control-label">Tingkat</label>
                                     <div class="">
-                                        <select name="id_tingkat" class="form-control form-select px-2 py-1" aria-label="tingkat">
+                                        <select name="id_tingkat" class="form-control form-select px-2 py-1 select2" aria-label="tingkat">
                                         <option style="display: none;">
                                         Pilih Tingkat
                                         </option>
                                         <?php foreach($tingkat as $data): ?>
                                             <option value="<?php echo $data->id_tingkat ?>"><?php echo $data->nama_tingkat ?></option>
+                                            <?php endforeach;?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Kode Guru</label>
+                                    <div class="">
+                                        <select name="kode_guru" class="form-control form-select px-2 py-1 select2" aria-label="guru">
+                                        <option style="display: none;">
+                                        Pilih Kode Guru
+                                        </option>
+                                        <?php foreach($guru as $data): ?>
+                                            <option value="<?php echo $data->kode_guru ?>"><?php echo $data->nama_guru ?></option>
                                             <?php endforeach;?>
                                         </select>
                                     </div>

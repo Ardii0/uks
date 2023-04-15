@@ -349,6 +349,7 @@ class Akademik extends CI_Controller {
             'submenu_admin'=>'kelas',
         ];
         $data['tingkat'] = $this->m_akademik->get('tabel_tingkat');
+        $data['guru'] = $this->m_akademik->get('tabel_guru');
         $this->load->view('akademik/kelas/form_kelas', $data);
     }
 
@@ -357,6 +358,8 @@ class Akademik extends CI_Controller {
         $data = [
             'nama_kelas' => $this->input->post('nama_kelas'),
             'id_tingkat' => $this->input->post('id_tingkat'),
+            'kuota' => $this->input->post('kuota'),
+            'kode_guru' => $this->input->post('kode_guru'),
             'keterangan' => $this->input->post('keterangan'),
         ];
         $this->m_akademik->add('tabel_kelas', $data);
@@ -376,6 +379,7 @@ class Akademik extends CI_Controller {
         ];
         $data['kelas']=$this->m_akademik->getwhere('tabel_kelas', array('id_kelas' => $id_kelas))->result();
         $data['tingkat'] = $this->m_akademik->get('tabel_tingkat');
+        $data['guru'] = $this->m_akademik->get('tabel_guru');
         $this->load->view('akademik/kelas/edit_kelas', $data);
     }
 
@@ -384,6 +388,8 @@ class Akademik extends CI_Controller {
         $data =  [
             'nama_kelas' => $this->input->post('nama_kelas'),
             'id_tingkat' => $this->input->post('id_tingkat'),
+            'kuota' => $this->input->post('kuota'),
+            'kode_guru' => $this->input->post('kode_guru'),
             'keterangan' => $this->input->post('keterangan'),
         ];
         $this->m_akademik->update('tabel_kelas', $data, array('id_kelas'=>$this->input->post('id_kelas')));

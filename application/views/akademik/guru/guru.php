@@ -95,7 +95,7 @@
                                                         class="btn btn-primary btn-sm">
                                                         <i class="fa fa-edit"></i></a>
                                                     <?php 
-                                                    if(!$this->db->where('kode_guru',$data->kode_guru)->get('tabel_rombel')->result() &&
+                                                    if(!$this->db->where('kode_guru',$data->kode_guru)->get('tabel_kelas')->result() &&
                                                        !$this->db->where('kode_guru',$data->kode_guru)->get('tabel_alokasiguru')->result()) {?>
                                                     <button onclick="hapus('<?php echo $data->kode_guru ?>')"
                                                         class='btn btn-danger btn-sm'>
