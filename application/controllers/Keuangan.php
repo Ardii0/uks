@@ -923,4 +923,41 @@ class Keuangan extends CI_Controller
                 }
         }
     }
+
+// rekap Denda Perpus
+public function rekap_denda()
+{
+    $data = [
+        'judul' => 'keuangan',
+        'page' => 'keuangan',
+        'menu' => 'denda_perpus',
+        'submenu'=>'rekap_denda',
+        'menu_submenu_admin'=>'',
+        'menu_admin' => 'keuangan',
+        'submenu_admin'=> 'rekap_denda'
+    ];
+    $peminjam['peminjam'] = $this->m_keuangan->get_denda('data_peminjam');
+    $this->load->view('keuangan/denda_perpus/rekap_denda',$peminjam + $data);
+}
+
+public function filter_tglrekap()
+   {
+    $data = [
+        'judul' => 'keuangan',
+        'page' => 'keuangan',
+        'menu' => 'denda_perpus',
+        'submenu'=>'rekap_denda',
+        'menu_submenu_admin'=>'',
+        'menu_admin' => 'keuangan',
+        'submenu_admin'=> 'rekap_denda'
+    ];
+      $tanggalawal = $this->input->post('tanggalawal');
+      $tanggalakhir = $this->input->post('tanggalakhir');
+      $lapjurnal = $this->input->post('lapjurnal');
+
+      if($lapjurnal = 1) {
+        $peminjam['peminjam'] = $this->m_keuangan->filter_rekap($tanggalawal,$tanggalakhir);
+        $this->load->view('keuangan/denda_perpus/filter_denda',$peminjam + $data);
+      }
+   }
 }

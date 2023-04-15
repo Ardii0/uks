@@ -52,10 +52,10 @@
                                     </div>
                                     <div class="mt-3 d-flex justify-content-between">
                                         <div>
-                                            <a href="<?php echo base_url('PetugasAlumni/admin_kritik') ?>">
-                                                <button class="btn btn-info"><i class="fa fa-arrow-left"></i>
-                                                    <b>Kembali</b></button>
-                                            </a>
+                                        <button class="btn btn-info" onclick=kembali()>
+                                        <i class="fa fa-arrow-left"></i>
+                                        <b>Kembali</b>
+                                    </button>
                                         </div>
                                         <div>
                                             <input type="text" value="<?php echo $data->id_kritik ?>" name="id_kritik"
@@ -84,6 +84,9 @@ $("form").submit(function(e) {
         e.preventDefault();
     }
 });
+function kembali() {
+    window.history.go(-1);
+}
 </script>
 
 </html>
