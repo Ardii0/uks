@@ -278,15 +278,15 @@
             </div>
         </div>
     </header>
-    <!-- <?php if ( $total_testimoni_yes === 0 ) : ?>
+    <?php if ( $total_testimoni_yes === 0 ) : ?>
     <?php else : ?>
-    <div class="testimoni">
-        <p class="judul-testimoni">APA KATA ALUMNI</p>
+    <div class="testimoni mt-4">
+        <p class="judul-testimoni mb-4">Apa Kata Alumni</p>
         <div class="container-fluid px-2 px-md-4 mx-auto">
             <div class="row d-flex justify-content-center">
                 <div class="col-md-10 col-lg-9 col-xl-8">
                     <div class="card card-main shadow-none text-center">
-                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <div class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
                                 <?php
                                 $count = 0; foreach($testimoni as $row ) {
@@ -300,16 +300,16 @@
                                 <div class="card border-0 card-0">
                                     <div class="card profile py-3 px-4">
                                         <div class="text-center">
-                                            <img src="https://i.imgur.com/gazoShk.jpg"
+                                            <img src="<?php echo base_url('uploads/alumni/akun')."/".tampil_fotolevelById($row->id_level);?>"
                                                 class="img-fluid profile-pic rounded-circle">
                                         </div>
-                                        <h6 class="mb-0 mt-2"><?php echo tampil_usernamelevelById($row->id_alumni)?>
+                                        <h6 class="mb-0 mt-2"><?php echo tampil_usernamelevelById($row->id_level)?>
                                         </h6>
-                                        <small><?php echo tampil_emaillevelById($row->id_alumni)?></small>
+                                        <small><?php echo tampil_emaillevelById($row->id_level)?></small>
                                     </div>
                                     <img class="img-fluid open-quotes" src="https://i.imgur.com/Hp91vdT.png" width="20"
                                         height="20">
-                                    <p class="content mb-0"><?php echo $row->pesan?></p>
+                                    <h3 class="content mb-0"><?php echo $row->pesan?></h3>
                                     <img class="img-fluid close-quotes ml-auto" src="https://i.imgur.com/iPcHyJK.png"
                                         width="20" height="20">
                                 </div>
@@ -321,7 +321,7 @@
             </div>
         </div>
     </div>
-    <?php endif; ?> -->
+    <?php endif; ?>
     <div class="footer-atas text-white">
         <div class="container">
             <div class="row py-4">

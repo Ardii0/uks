@@ -1,6 +1,46 @@
 <?php
 
 class M_akademik extends CI_Model{
+// Global Model
+    public function get($table)
+    {
+        return $this->db->get($table)->result();
+    }
+
+    public function getwhere($table, $where)
+    {
+        $data=$this->db->where($where)->get($table);
+        return $data;
+    }
+
+    public function getone($table, $data)
+    {
+        $this->db->select($data);
+        $this->db->from($table);
+        $this->db->limit(1);
+        $query = $this->db->get();
+        $result = $query->num_rows();
+        return $result;
+    }
+
+    public function add($table, $data)
+    {
+        $this->db->insert($table, $data);
+        return $this->db->insert_id();
+    }
+
+    public function update($table, $data, $where)
+    {
+        $data=$this->db->update($table, $data, $where);
+        return $this->db->affected_rows();
+    }
+
+    public function delete($table, $field, $id_kelas)
+    {
+        $data=$this->db->delete($table, array($field => $id_kelas));
+        return $data;
+    }
+
 // Home Dashboard
     public function total_kelas()
   {
@@ -91,67 +131,6 @@ class M_akademik extends CI_Model{
         $data=$this->db->delete($tabel, array($field => $id_jenjang));
         return $data;
     }
-
-// Kelas
-    public function get_kelas()
-	{
-		return $this->db->get('tabel_kelas')->result();
-	}
-
-    public function get_kelasById($tabel, $id_kelas)
-    {
-        $data=$this->db->where('id_kelas', $id_kelas)->get($tabel);
-        return $data;
-    }
-
-    public function tambah_kelas($tabel, $data)
-    {
-        $this->db->insert($tabel, $data);
-        return $this->db->insert_id();
-    }
-
-    public function ubah_kelas($tabel, $data, $where)
-    {
-        $data=$this->db->update($tabel, $data, $where);
-        return $this->db->affected_rows();
-    }
-
-    public function hapus_kelas($tabel, $field, $id_kelas)
-    {
-        $data=$this->db->delete($tabel, array($field => $id_kelas));
-        return $data;
-    }
-
-// Rombel
-    public function get_rombel()
-	{
-		return $this->db->get('tabel_rombel')->result();
-	}
-
-    public function get_rombelById($tabel, $id_rombel)
-    {
-        $data=$this->db->where('id_rombel', $id_rombel)->get($tabel);
-        return $data;
-    }
-
-    public function tambah_rombel($tabel, $data)
-    {
-        $this->db->insert($tabel, $data);
-        return $this->db->insert_id();
-    }
-
-    public function ubah_rombel($tabel, $data, $where)
-    {
-        $data=$this->db->update($tabel, $data, $where);
-        return $this->db->affected_rows();
-    }
-
-    public function hapus_rombel($tabel, $field, $id_rombel)
-    {
-        $data=$this->db->delete($tabel, array($field => $id_rombel));
-        return $data;
-    }
-
 
 // Guru
     public function get_guru()

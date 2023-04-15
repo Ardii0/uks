@@ -177,25 +177,15 @@ DROP TABLE IF EXISTS `tabel_alokasimapel`;
 CREATE TABLE `tabel_alokasimapel` (
   `id_alokasimapel` int NOT NULL AUTO_INCREMENT,
   `id_mapel` int NOT NULL,
-  `id_rombel` int NOT NULL,
-  PRIMARY KEY (`id_alokasimapel`),
-  KEY `id_rombel` (`id_rombel`),
+  `id_kelas` int NOT NULL,
+  PRIMARY KEY (`id_alokasimapel`,`id_mapel`,`id_kelas`),
   KEY `id_mapel` (`id_mapel`),
-  CONSTRAINT `tabel_alokasimapel_to_mapel` FOREIGN KEY (`id_mapel`) REFERENCES `tabel_mapel` (`id_mapel`),
-  CONSTRAINT `tabel_alokasimapel_to_rombel` FOREIGN KEY (`id_rombel`) REFERENCES `tabel_rombel` (`id_rombel`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+  KEY `id_kelas` (`id_kelas`),
+  CONSTRAINT `tabel_alokasimapel_to_kelas` FOREIGN KEY (`id_kelas`) REFERENCES `tabel_kelas` (`id_kelas`),
+  CONSTRAINT `tabel_alokasimapel_to_mapel` FOREIGN KEY (`id_mapel`) REFERENCES `tabel_mapel` (`id_mapel`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `tabel_alokasimapel` */
-
-insert  into `tabel_alokasimapel`(`id_alokasimapel`,`id_mapel`,`id_rombel`) values 
-(21,8,8),
-(22,8,9),
-(23,9,8),
-(24,9,9),
-(25,10,8),
-(26,10,9),
-(27,11,8),
-(28,12,9);
 
 /*Table structure for table `tabel_anggota` */
 
@@ -211,10 +201,6 @@ CREATE TABLE `tabel_anggota` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `tabel_anggota` */
-
-insert  into `tabel_anggota`(`id_anggota`,`id_siswa`,`date`,`status`) values 
-(95774,10,'2023-04-12 10:05:31',1),
-(9980,11,'2023-04-12 10:19:32',1);
 
 /*Table structure for table `tabel_daftar` */
 
@@ -274,12 +260,6 @@ CREATE TABLE `tabel_event` (
   KEY `id_user` (`id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-/*Data for the table `tabel_event` */
-
-insert  into `tabel_event`(`id_event`,`id_user`,`event_title`,`event_slug`,`deskripsi`,`tanggal_event`,`tanggal_posting`,`gambar`,`status`) values 
-(4,6,'Event WMD','event wmd','Event WMD','2023-04-22','2023-04-10 03:44:36','1680938772594.jpg','nonaktif'),
-(5,9,'Event Musiks','event musiks','                                        Event Musik Boss','2023-04-14','2023-04-09 23:07:35','1681099478378.png','aktif');
-
 /*Table structure for table `tabel_guru` */
 
 DROP TABLE IF EXISTS `tabel_guru`;
@@ -331,7 +311,7 @@ DROP TABLE IF EXISTS `tabel_invoice`;
 CREATE TABLE `tabel_invoice` (
   `id_invoice` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `id_siswa` int NOT NULL,
-  `date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `date` date DEFAULT NULL,
   `id_level` int NOT NULL,
   `id_ta` int DEFAULT NULL,
   `cek_p` int DEFAULT '0'
@@ -374,6 +354,10 @@ CREATE TABLE `tabel_jenisbayar` (
 
 /*Data for the table `tabel_jenisbayar` */
 
+insert  into `tabel_jenisbayar`(`id_jenis`,`kode_jenis`,`nama_jenis`,`tipe_jenis`,`keterangan`,`status`) values 
+(1,'SPP','SPP',1,'Pembayaran SPP',1),
+(2,'UKT','UKT',2,'Pembayaran UKT',1);
+
 /*Table structure for table `tabel_jenismapel` */
 
 DROP TABLE IF EXISTS `tabel_jenismapel`;
@@ -408,7 +392,7 @@ CREATE TABLE `tabel_jenjang` (
   KEY `id_jenjang` (`id_jenjang`),
   KEY `tabel_jenjang_to_paketjenjang` (`id_paket`),
   CONSTRAINT `tabel_jenjang_to_paketjenjang` FOREIGN KEY (`id_paket`) REFERENCES `tabel_paketjenjang` (`id_paket`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tabel_jenjang` */
 
@@ -421,21 +405,21 @@ DROP TABLE IF EXISTS `tabel_kelas`;
 
 CREATE TABLE `tabel_kelas` (
   `id_kelas` int NOT NULL AUTO_INCREMENT,
-  `id_jenjang` int NOT NULL,
+  `id_tingkat` int NOT NULL,
   `nama_kelas` varchar(50) NOT NULL,
   `keterangan` text,
   `status` enum('AKTIF','NONAKTIF','','') NOT NULL DEFAULT 'AKTIF',
-  PRIMARY KEY (`id_kelas`),
-  KEY `id_jenjang` (`id_jenjang`),
-  CONSTRAINT `tabel_kelas_ibfk_1` FOREIGN KEY (`id_jenjang`) REFERENCES `tabel_jenjang` (`id_jenjang`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id_kelas`,`id_tingkat`),
+  KEY `id_tingkat` (`id_tingkat`),
+  CONSTRAINT `tabel_kelas_to_tingkat` FOREIGN KEY (`id_tingkat`) REFERENCES `tabel_tingkat` (`id_tingkat`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tabel_kelas` */
 
-insert  into `tabel_kelas`(`id_kelas`,`id_jenjang`,`nama_kelas`,`keterangan`,`status`) values 
-(5,1,'X TKJ','Kelas 10 Teknik Komputer dan Jaringan','AKTIF'),
-(6,1,'X AKL','Kelas 10 Akuntansi dan  Lembaga','AKTIF'),
-(7,1,'X TBSM','Kelas 10 Teknik Bisnis dan Sepeda Motor','AKTIF');
+insert  into `tabel_kelas`(`id_kelas`,`id_tingkat`,`nama_kelas`,`keterangan`,`status`) values 
+(1,1,'TKJ I','Teknik Komputer dan Jaringan','AKTIF'),
+(2,2,'AKL','Akuntansi dan  Lembaga','AKTIF'),
+(3,3,'TBSM','Teknik Bisnis dan Sepeda Motor','AKTIF');
 
 /*Table structure for table `tabel_level` */
 
@@ -486,8 +470,9 @@ CREATE TABLE `tabel_lowongan` (
   `akhir_waktu` date DEFAULT NULL,
   `tanggal_posting` timestamp NULL DEFAULT NULL,
   `gambar` varchar(300) DEFAULT NULL,
-  `is_tampil` varchar(15) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `is_tampil` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`id_lowongan`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `tabel_lowongan` */
 
@@ -560,13 +545,9 @@ CREATE TABLE `tabel_nilai` (
   CONSTRAINT `tabel_nilai_to_mapel` FOREIGN KEY (`id_mapel`) REFERENCES `tabel_mapel` (`id_mapel`),
   CONSTRAINT `tabel_nilai_to_semester` FOREIGN KEY (`id_semester`) REFERENCES `tabel_semester` (`id_semester`),
   CONSTRAINT `tabel_nilai_to_siswa` FOREIGN KEY (`id_siswa`) REFERENCES `tabel_siswa` (`id_siswa`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `tabel_nilai` */
-
-insert  into `tabel_nilai`(`id_nilai`,`id_rombel`,`id_siswa`,`id_mapel`,`id_semester`,`nuh1`,`nuh2`,`nuh3`,`nt1`,`nt2`,`nt3`,`mid`,`smt`,`rnuh`,`rnt`,`nh`,`nar`) values 
-(10,8,10,8,1,87,85,89,50,70,65,90,95,'87','62','75','87'),
-(11,9,11,8,1,87,84,80,80,88,84,90,95,'84','84','84','90');
 
 /*Table structure for table `tabel_paketjenjang` */
 
@@ -664,31 +645,6 @@ CREATE TABLE `tabel_rencana_anggaran` (
 
 /*Data for the table `tabel_rencana_anggaran` */
 
-/*Table structure for table `tabel_rombel` */
-
-DROP TABLE IF EXISTS `tabel_rombel`;
-
-CREATE TABLE `tabel_rombel` (
-  `id_rombel` int NOT NULL AUTO_INCREMENT,
-  `id_kelas` int NOT NULL,
-  `nama_rombel` varchar(100) NOT NULL,
-  `kode_guru` varchar(255) NOT NULL,
-  `kuota` int NOT NULL,
-  `status` enum('AKTIF','NONAKTIF') NOT NULL DEFAULT 'AKTIF',
-  PRIMARY KEY (`id_rombel`),
-  KEY `id_kelas` (`id_kelas`),
-  KEY `kode_guru` (`kode_guru`),
-  CONSTRAINT `tabel_kelas_1` FOREIGN KEY (`id_kelas`) REFERENCES `tabel_kelas` (`id_kelas`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
-
-/*Data for the table `tabel_rombel` */
-
-insert  into `tabel_rombel`(`id_rombel`,`id_kelas`,`nama_rombel`,`kode_guru`,`kuota`,`status`) values 
-(8,5,'X TKJ I','KG-VNKIWZ',31,'AKTIF'),
-(9,5,'X TKJ 2','KG-Z4XFYE',10,'AKTIF'),
-(10,6,'X AKL','KG-72IIMM',23,'AKTIF'),
-(11,7,'X TBSM','KG-AH9TQ4',23,'AKTIF');
-
 /*Table structure for table `tabel_sekolah` */
 
 DROP TABLE IF EXISTS `tabel_sekolah`;
@@ -729,21 +685,17 @@ DROP TABLE IF EXISTS `tabel_siswa`;
 CREATE TABLE `tabel_siswa` (
   `id_siswa` int NOT NULL AUTO_INCREMENT,
   `id_daftar` int NOT NULL,
-  `id_rombel` int DEFAULT NULL,
+  `id_kelas` int DEFAULT NULL,
   `saldo_tabungan` int NOT NULL,
   `nama` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id_siswa`),
   KEY `id_daftar` (`id_daftar`),
-  KEY `id_rombel` (`id_rombel`),
+  KEY `id_kelas` (`id_kelas`),
   CONSTRAINT `tabel_siswa_to_daftar_ibfk_1` FOREIGN KEY (`id_daftar`) REFERENCES `tabel_daftar` (`id_daftar`),
-  CONSTRAINT `tabel_siswa_to_rombel_ibfk_1` FOREIGN KEY (`id_rombel`) REFERENCES `tabel_rombel` (`id_rombel`)
+  CONSTRAINT `tabel_siswa_to_kelas` FOREIGN KEY (`id_kelas`) REFERENCES `tabel_kelas` (`id_kelas`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tabel_siswa` */
-
-insert  into `tabel_siswa`(`id_siswa`,`id_daftar`,`id_rombel`,`saldo_tabungan`,`nama`) values 
-(10,24,8,0,'Irvanda Ibrahim'),
-(11,27,9,0,'Azizi Khoiri');
 
 /*Table structure for table `tabel_tahunajaran` */
 
@@ -782,6 +734,28 @@ CREATE TABLE `tabel_testimoni` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `tabel_testimoni` */
+
+/*Table structure for table `tabel_tingkat` */
+
+DROP TABLE IF EXISTS `tabel_tingkat`;
+
+CREATE TABLE `tabel_tingkat` (
+  `id_tingkat` int NOT NULL AUTO_INCREMENT,
+  `nama_tingkat` varchar(255) NOT NULL,
+  `id_jenjang` int NOT NULL,
+  `keterangan` text,
+  `status` enum('AKTIF','NONAKTIF') NOT NULL DEFAULT 'AKTIF',
+  PRIMARY KEY (`id_tingkat`,`id_jenjang`),
+  KEY `id_jenjang` (`id_jenjang`),
+  CONSTRAINT `tabel_tingkat_to_jenjang` FOREIGN KEY (`id_jenjang`) REFERENCES `tabel_jenjang` (`id_jenjang`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+
+/*Data for the table `tabel_tingkat` */
+
+insert  into `tabel_tingkat`(`id_tingkat`,`nama_tingkat`,`id_jenjang`,`keterangan`,`status`) values 
+(1,'X',1,'Tingkat X','AKTIF'),
+(2,'XI',1,'Tingkat XI','AKTIF'),
+(3,'XII',1,'Tingkat XII','AKTIF');
 
 /*Table structure for table `tabel_transaksi` */
 

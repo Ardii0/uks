@@ -58,14 +58,14 @@
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <label class="control-label">Jenjang</label>
+                                    <label class="control-label">Tingkat</label>
                                     <div class="">
-                                        <select name="id_jenjang" class="form-control form-select px-2 py-1" aria-label="jenjang">
+                                        <select name="id_tingkat" class="form-control form-select px-2 py-1" aria-label="tingkat">
                                         <option style="display: none;">
-                                        Pilih Jenjang
+                                        Pilih Tingkat
                                         </option>
-                                        <?php foreach($jenjang as $jenis): ?>
-                                            <option value="<?php echo $jenis->id_jenjang ?>"><?php echo $jenis->nama_jenjang ?></option>
+                                        <?php foreach($tingkat as $data): ?>
+                                            <option value="<?php echo $data->id_tingkat ?>"><?php echo $data->nama_tingkat ?></option>
                                             <?php endforeach;?>
                                         </select>
                                     </div>

@@ -59,13 +59,14 @@
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <label class="control-label">Jenjang</label>
+                                    <label class="control-label">Tingkat</label>
                                     <div class="">
-                                        <select class="form-control form-select px-2 py-1" name="id_jenjang" aria-label="idjenjang">
-                                            <option name="id_jenjang" value="<?php echo $data->id_jenjang?>" style="display: none;">
-                                            <?php echo tampil_namajenjang_byid($data->id_jenjang)?></option>
-                                            <?php $id = 0;foreach ($jenjang as $datajenjang): $id++;?>
-                                                <option name="id_jenjang" value="<?php echo $datajenjang->id_jenjang ?>"><?php echo $datajenjang->nama_jenjang ?></option>
+                                        <select class="form-control form-select px-2 py-1" name="id_tingkat" aria-label="tingkat">
+                                            <option name="id_tingkat" value="<?php echo $data->id_tingkat?>" style="display: none;">
+                                                <?php echo tampil_namatingkat_ById($data->id_tingkat)?>
+                                            </option>
+                                            <?php $id = 0;foreach ($tingkat as $tingkat): $id++;?>
+                                                <option name="id_tingkat" value="<?php echo $tingkat->id_tingkat ?>"><?php echo $tingkat->nama_tingkat ?></option>
                                             <?php endforeach;?>
                                         </select>
                                     </div>

@@ -62,15 +62,15 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="<?php echo base_url('Akademik/kelas'); ?>" class="nav-link  <?=$submenu == 'kelas' ? 'active' :'' ?>">
+                  <a href="<?php echo base_url('Akademik/tingkat'); ?>" class="nav-link <?=$submenu == 'tingkat' ? 'active' : '' ?>">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Kelas Utama</p>
+                    <p>Tingkat</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="<?php echo base_url('Akademik/rombel') ;?>" class="nav-link  <?=$submenu == 'rombel' ? 'active' :'' ?>">
+                  <a href="<?php echo base_url('Akademik/kelas') ;?>" class="nav-link <?=$submenu == 'kelas' ? 'active' : '' ?>">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Rombongan Belajar</p>
+                    <p>Kelas</p>
                   </a>
                 </li>
               </ul>
