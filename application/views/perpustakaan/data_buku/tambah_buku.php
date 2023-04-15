@@ -22,112 +22,133 @@
             <div class="container-fluid">
                 <section class="content">
                     <div class="row px-3">
-                        <div class="col-sm-12 p-5">
+                        <div class="col-sm-12 p-1">
                             <div class="box">
-                                <div class="box-header">
-                                    <center><b>
-                                            <h3 class="box-title">Form Tambah Buku</h3>
-                                        </b></center>
-                                </div>
+                                <section class="content-header">
+                                    <div class="container-fluid">
+                                        <div class="row mb-2">
+                                            <div class="col-sm-6">
+                                                <h1>Tambah Buku</h1>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <ol class="breadcrumb float-sm-right">
+                                                    <li class="breadcrumb-item"><a
+                                                            href="<?php echo base_url('Perpustakaan/') ?>"><?php echo $this->session->userdata('level') ?></a>
+                                                    </li>
+                                                    <li class="breadcrumb-item"><a
+                                                            href="<?php echo base_url('Perpustakaan/data_buku') ?>">Data
+                                                            Buku</a>
+                                                    </li>
+                                                    <li class="breadcrumb-item active">Tambah Buku</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
                                 <!-- /.box-header -->
-                                <form action="<?php echo base_url('Perpustakaan/aksi_tambah_buku') ?>"
-                                    enctype="multipart/form-data" method="post">
-                                    <div class="box-body">
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Judul Buku</label>
-                                            <div class="">
-                                                <input type="text" name="judul_buku" class="form-control"
-                                                    placeholder="Masukan Judul Buku"><br>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="form-group ">
-                                                    <label class=" control-label">Rak Buku</label>
-                                                    <div class="">
-                                                    <select name="rak_buku_id"
-                                                            class="custom-select custom-select-md mb-3">
-                                                            <option selected>-- Pilih Rak --</option>
-                                                            <?php $no = 0;foreach ($data_rak_buku as $row): $no++;?>
-                                                            <option value="<?php echo $row->nama_rak_buku ?>">
-                                                                <?php echo $row->nama_rak_buku ?> <?php echo $row->keterangan_rak_buku ?></option>
-                                                                
-                                                            <?php endforeach;?>
-                                                        </select>
-                                                    </div>
+                                <section class="content bg-white p-3 rounded">
+                                    <form action="<?php echo base_url('Perpustakaan/aksi_tambah_buku') ?>"
+                                        enctype="multipart/form-data" method="post">
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Judul Buku</label>
+                                                <div class="">
+                                                    <input type="text" name="judul_buku" class="form-control"
+                                                        placeholder="Masukan Judul Buku"><br>
                                                 </div>
                                             </div>
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <label class=" control-label">Kategori Buku</label>
-                                                    <div class="">
-                                                        <select name="kategori_id"
-                                                            class="custom-select custom-select-md mb-3">
-                                                            <option selected>-- Pilih Kategori --</option>
-                                                            <?php $no = 0;foreach ($data_kategori_buku as $row): $no++;?>
-                                                            <option value="<?php echo $row->id_kategori_buku ?>">
-                                                                <?php echo $row->nama_kategori_buku ?></option>
-                                                            <?php endforeach;?>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                          <div class="col">
-                                          <div class="form-group ">
-                                            <label class="control-label">Penerbit</label>
-                                            <div class="">
-                                                <input type="text" name="penerbit_buku" class="form-control"
-                                                    placeholder="Masukan Penerbit Buku"><br>
-                                            </div>
-                                        </div>
-                                          </div>
-                                          <div class="col">
-                                          <div class="form-group ">
-                                            <label class="control-label">Penulis</label>
-                                            <div class="">
-                                                <input type="text" name="penulis_buku" class="form-control"
-                                                    placeholder="Masukan Penulis Buku"><br>
-                                            </div>
-                                        </div>
-                                          </div>
-                                          <div class="col">
-                                          <div class="form-group ">
-                                            <label class="control-label">Tahun Terbit</label>
-                                            <div class="">
-                                                <input type="number" name="tahun_terbit" class="form-control"
-                                                    placeholder="Masukan Tahun Terbit"><br>
-                                            </div>
-                                        </div>
-                                          </div>
-                                        </div>
-                                      
-                                        <div class="row">
-                                        <div class="col form-group">
-                                            <label class="control-label">Keterangan</label>
-                                            <div class="">
-                                                <input type="text" name="keterangan" class="form-control"
-                                                    placeholder="Masukan Keterangan"><br>
-                                            </div>
-                                        </div>
-                                        <div class="col form-group">
-                                            <label class="control-label">Cover</label>
-                                            <div class="mt-1">
-                                                <input type="file" name="foto" onchange="readURL(this);" />
-                                            </div>
-                                            <div>
-                                                <img id="blah" style="width: 110px; hight:200px" class="mt-3" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.box-body -->
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="form-group ">
+                                                        <label class=" control-label">Rak Buku</label>
+                                                        <div class="">
+                                                            <select name="rak_buku_id"
+                                                                class="custom-select custom-select-md mb-3">
+                                                                <option selected>-- Pilih Rak --</option>
+                                                                <?php $no = 0;foreach ($data_rak_buku as $row): $no++;?>
+                                                                <option value="<?php echo $row->nama_rak_buku ?>">
+                                                                    <?php echo $row->nama_rak_buku ?>
+                                                                    <?php echo $row->keterangan_rak_buku ?></option>
 
-                                    <div class="box-footer d-flex justify-content-between">
-                                      <button type="button" class="w-25 btn btn-secondary" onclick="kembali()">Kembali</button>
-                                      <button type="submit" class="w-25 btn btn-primary">Simpan</button>
-                                    </div>
-                                </form>
+                                                                <?php endforeach;?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label class=" control-label">Kategori Buku</label>
+                                                        <div class="">
+                                                            <select name="kategori_id"
+                                                                class="custom-select custom-select-md mb-3">
+                                                                <option selected>-- Pilih Kategori --</option>
+                                                                <?php $no = 0;foreach ($data_kategori_buku as $row): $no++;?>
+                                                                <option value="<?php echo $row->id_kategori_buku ?>">
+                                                                    <?php echo $row->nama_kategori_buku ?></option>
+                                                                <?php endforeach;?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="form-group ">
+                                                        <label class="control-label">Penerbit</label>
+                                                        <div class="">
+                                                            <input type="text" name="penerbit_buku" class="form-control"
+                                                                placeholder="Masukan Penerbit Buku"><br>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group ">
+                                                        <label class="control-label">Penulis</label>
+                                                        <div class="">
+                                                            <input type="text" name="penulis_buku" class="form-control"
+                                                                placeholder="Masukan Penulis Buku"><br>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group ">
+                                                        <label class="control-label">Tahun Terbit</label>
+                                                        <div class="">
+                                                            <input type="number" name="tahun_terbit"
+                                                                class="form-control"
+                                                                placeholder="Masukan Tahun Terbit"><br>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col form-group">
+                                                    <label class="control-label">Keterangan</label>
+                                                    <div class="">
+                                                        <input type="text" name="keterangan" class="form-control"
+                                                            placeholder="Masukan Keterangan"><br>
+                                                    </div>
+                                                </div>
+                                                <div class="col form-group">
+                                                    <label class="control-label">Cover</label>
+                                                    <div class="mt-1">
+                                                        <input type="file" name="foto" onchange="readURL(this);" />
+                                                    </div>
+                                                    <div>
+                                                        <img id="blah" style="width: 110px; hight:200px" class="mt-3" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.box-body -->
+
+                                            <div class="box-footer d-flex justify-content-between">
+                                                <button type="button" class="w-25 btn btn-secondary"
+                                                    onclick="kembali()">Kembali</button>
+                                                <button type="submit" class="w-25 btn btn-primary">Simpan</button>
+                                            </div>
+                                    </form>
+                                </section>
                                 <!-- /.box-body -->
                             </div>
                         </div>
@@ -141,17 +162,18 @@
         function kembali() {
             window.history.go(-1);
         }
+
         function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
 
-            reader.onload = function(e) {
-                $('#blah').attr('src', e.target.result);
+                reader.onload = function(e) {
+                    $('#blah').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
             }
-
-            reader.readAsDataURL(input.files[0]);
         }
-    }
         </script>
 
 </body>

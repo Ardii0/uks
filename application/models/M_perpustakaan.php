@@ -197,6 +197,12 @@ class M_perpustakaan extends CI_Model{
 		return $this->db->get('tabel_pinjaman')->result();
 	}
 
+	public function get_setting_perpus($table)
+    {
+        $data=$this->db->where('id_setting_perpus', '1')->get($table);
+        return $data;
+    }
+
 	public function get_buku_dipinjam()
 	{
 		return $this->db->where('status', 'DIPINJAM')->order_by('tgl_pinjaman', 'desc')->get('tabel_pinjaman')->result();

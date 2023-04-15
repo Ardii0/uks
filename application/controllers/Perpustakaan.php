@@ -596,6 +596,7 @@ class Perpustakaan extends CI_Controller {
         $buku['data_buku'] = $this->m_perpustakaan->get_buku_tersedia('data_buku');
         $buku['index_buku'] = $this->m_perpustakaan->get_index_buku('index_buku');
         $anggota['data_anggota'] = $this->m_perpustakaan->get_anggota('data_anggota');
+        $data['denda']=$this->m_perpustakaan->get_setting_perpus('setting_perpustakaan')->result();
         $this->load->view('perpustakaan/peminjaman/input_peminjaman', $buku + $anggota + $data);
     }
 
@@ -612,7 +613,9 @@ class Perpustakaan extends CI_Controller {
 
     public function aksi_input_peminjaman()
     {
+        $tanggal_jatuh_tempo = $this->input->post('tanggal_jatuh_tempo');
         $date = date('Y-m-d');
+        $nextN = mktime(0, 0, 0, date("m"), date("d") + $tanggal_jatuh_tempo, date("Y"));
         $data = array
         (
             'no_pinjaman' => 'PMJ'.'-'.$this->acak(6),
@@ -621,6 +624,7 @@ class Perpustakaan extends CI_Controller {
             'tgl_pinjaman' => $date,
             'tgl_kembali' => "0000-00-00",
             'status' => 'DIPINJAM',
+            'jatuh_tempo' => date('Y-m-d', $nextN),
         );
 
         $status = array
@@ -661,6 +665,17 @@ class Perpustakaan extends CI_Controller {
         ];
         $peminjam['data_peminjam']=$this->m_perpustakaan->edit_pinjaman('tabel_pinjaman', $id_pinjaman)->result();
         $this->load->view('perpustakaan/peminjaman/detail_peminjaman', $peminjam + $data);
+    }
+
+    public function cetak_bukti_peminjaman($id_pinjaman)
+    {
+            $cek = $this->m_perpustakaan->edit_pinjaman('tabel_pinjaman', $id_pinjaman)->result();
+            $data['data'] = $this->m_perpustakaan->edit_pinjaman('tabel_pinjaman', $id_pinjaman)->result();
+            $this->load->library('pdf');
+            $this->pdf->load_view('perpustakaan/peminjaman/cetak_peminjaman', $data);
+            $this->pdf->render();
+            $this->pdf->stream(" Bukti Peminjaman ".$id_pinjaman.".pdf", array("Attachment" => false));		
+            
     }
 
     public function hapus_peminjaman_id($id_pinjaman)

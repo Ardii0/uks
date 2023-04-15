@@ -29,6 +29,17 @@
             <section class="content mt-4">
                 <div class="container-fluid bg-white shadow p-4">
                     <?php foreach($data_peminjam as $data ):?>
+                    <div class="alert alert-danger d-flex justify-content-between" role="alert">
+                        <div>
+                            <i class="fas fa-danger -circle"></i> Jika buku tidak dikembalikan sesuai jatuh tempo maka
+                            akan
+                            dikenakan denda
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i style="cursor: pointer;" class="fas fa-times" data-dismiss="alert"
+                                aria-label="Close"></i>
+                        </div>
+                    </div>
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Detail Peminjaman Buku</h5>
                     </div>
@@ -49,7 +60,13 @@
                                         </tr>
                                         <tr>
                                             <th class="px-2">Denda</th>
-                                            <td class="px-2"><?php echo $data->denda ?></td>
+                                            <td class="px-2">
+                                                <?php if ( $data->denda === null ) : ?>
+                                                -
+                                                <?php else : ?>
+                                                <?php echo $data->denda ?>
+                                                <?php endif; ?>
+                                            </td>
                                         </tr>
                                     </table>
                                 </div>
@@ -64,8 +81,8 @@
                                             <td class="px-2"><?php echo $data->tgl_pinjaman ?></td>
                                         </tr>
                                         <tr>
-                                            <th class="px-2">Tanggal Kembali</th>
-                                            <td class="px-2"><?php echo $data->tgl_kembali ?></td>
+                                            <th class="px-2">Jatuh Tempo</th>
+                                            <td class="px-2"><?php echo $data->jatuh_tempo ?></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -97,6 +114,10 @@
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-end">
+                        <a href="<?php echo base_url('Perpustakaan/cetak_bukti_peminjaman/'.$data->id_pinjaman.'/pdf')?>"
+                            class="btn btn-primary">
+                            Cetak Bukti Peminjaman
+                        </a>
                         <button type="button" onClick="kembali()" class="btn btn-danger">
                             Kembali
                         </button>
