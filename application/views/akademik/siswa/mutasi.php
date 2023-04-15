@@ -44,11 +44,11 @@
                                     <p style="font-weight: bold">Pilih Kelas</p>
                                 </div>
                                 <div class="mx-1">
-                                    <select name="id_rombel" id="id_rombel" class="form-control select2 select2-info"
+                                    <select name="id_kelas" id="id_kelas" class="form-control select2 select2-info"
                                             data-dropdown-css-class="select2-info">
                                             <option selected="selected">Pilih Kelas</option>
                                             <?php $id = 0; foreach ($rombel as $data): $id++; ?>
-                                                <option value="<?php echo $data->id_rombel ?>"><?php echo $data->nama_rombel ?></option>
+                                                <option value="<?php echo $data->id_kelas ?>"><?php echo $data->nama_kelas ?></option>
                                             <?php endforeach ?>
                                         </select>
                                 </div>
@@ -62,7 +62,7 @@
                             <div class="form-group">
                             <form action="<?php echo base_url('akademik/tampil_data_mutasi/') ?>" method="post">
                             <div class="mx-1">
-                                    <select name="id_rombel" id="id_rombel" class="form-control bg-success" onchange="this.form.submit();">
+                                    <select name="id_kelas" id="id_kelas" class="form-control bg-success" onchange="this.form.submit();">
                                             <option value="0">Lihat Data</option>
                                             <option value="1">Pindah</option>
                                             <option value="2">Lulus</option>
@@ -100,7 +100,7 @@
                                                         name="id_daftar[<?php echo $data->id_daftar ?>]" id="id_siswa_boss">
                                                 </td>
                                                 <td>
-                                                    <?php echo tampil_rombel_byid($data->id_rombel) ?>
+                                                    <?php echo tampil_rombel_byid($data->id_kelas) ?>
                                                 </td>
                                                 <td>
                                                     <?php echo tampil_nisn_siswa_byid($data->id_daftar) ?>
@@ -148,12 +148,12 @@
                                         <p style="font-weight: bold">Kelas</p>
                                     </div>
                                     <div class="mx-1">
-                                        <select name="id_rombel2" class="form-control select2 select2-info"
+                                        <select name="id_kelas2" class="form-control select2 select2-info"
                                             data-dropdown-css-class="select2-info">
                                             <option selected="selected">Pilih Kelas</option>
                                             <?php $id = 0; foreach ($rombel2 as $data):
                                                 $id++; ?>
-                                                <option value="<?php echo $data->id_rombel ?>"><?php echo $data->nama_rombel ?></option>
+                                                <option value="<?php echo $data->id_kelas ?>"><?php echo $data->nama_kelas ?></option>
                                             <?php endforeach ?>
                                         </select>
                                     </div>
@@ -165,12 +165,12 @@
                                         <p style="font-weight: bold">Kelas</p>
                                     </div>
                                     <div class="mx-1">
-                                        <select name="id_rombel" class="form-control select2 select2-info"
+                                        <select name="id_kelas" class="form-control select2 select2-info"
                                             data-dropdown-css-class="select2-info">
                                             <option selected="selected">Pilih Rombel</option>
                                             <?php $id = 0; foreach ($rombel as $data):
                                                 $id++; ?>
-                                                <option value="<?php echo $data->id_rombel ?>"><?php echo $data->nama_rombel ?></option>
+                                                <option value="<?php echo $data->id_kelas ?>"><?php echo $data->nama_kelas ?></option>
                                             <?php endforeach ?>
                                         </select>
                                     </div>

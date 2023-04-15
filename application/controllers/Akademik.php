@@ -1167,7 +1167,7 @@ class Akademik extends CI_Controller {
         if($nilaifilter = 1) {
             $data['rombel'] = $this->m_akademik->get_rombel('rombel');
             $data['siswa'] = $this->m_akademik->filterByRombel($id_rombel);
-            $data['filter']=$this->m_akademik->get_filter_rombel('tabel_rombel', $id_rombel)->result();
+            $data['filter']=$this->m_akademik->get_filter_rombel('tabel_kelas', $id_rombel)->result();
             
             $this->load->view('akademik/siswa/filter/filter_by_rombel_siswa', $data);
         }
@@ -1298,10 +1298,10 @@ class Akademik extends CI_Controller {
             'submenu_admin'=>'mutasi',
         ];
         $this->load->model('M_akademik');
-        $data['siswa'] = $this->m_akademik->get_siswa('siswa');
-        $data['rombel'] = $this->m_akademik->get_rombel('rombel');
-        $data['rombel2'] = $this->m_akademik->get_rombel('rombel2');
-        $data['kelas'] = $this->m_akademik->get_kelas('kelas');
+        $data['siswa'] = $this->m_akademik->get('tabel_siswa');
+        $data['rombel'] = $this->m_akademik->get('tabel_kelas');
+        $data['rombel2'] = $this->m_akademik->get('tabel_kelas');
+        $data['kelas'] = $this->m_akademik->get('tabel_kelas');
         $this->load->view('akademik/siswa/mutasi', $data);
     }
 
@@ -1454,8 +1454,8 @@ class Akademik extends CI_Controller {
     
 
         $data['siswa'] = $this->m_akademik->get_siswaperkelas('tabel_siswa', $id_rombel)->result();
-        $data['rombel'] = $this->m_akademik->get_rombel('rombel');
-        $data['kelas'] = $this->m_akademik->get_kelas('kelas');
+        $data['rombel'] = $this->m_akademik->get('tabel_kelas');
+        $data['kelas'] = $this->m_akademik->get('tabel_kelas');
         $this->load->view('akademik/siswa/mutasi', $data);
     }
 
@@ -1474,8 +1474,8 @@ class Akademik extends CI_Controller {
         $id = $this->input->post('id_rombel');
         $this->session->set_userdata('id_select', $id);
         $this->load->model('M_akademik');
-        $data['rombel'] = $this->m_akademik->get_rombel('rombel');
-        $data['kelas'] = $this->m_akademik->get_kelas('kelas');
+        $data['rombel'] = $this->m_akademik->get('tabel_kelas');
+        $data['kelas'] = $this->m_akademik->get('tabel_kelas');
 
         if ($id == 1) {
             $data['siswa'] = $this->m_akademik->get_pindah('siswa');
