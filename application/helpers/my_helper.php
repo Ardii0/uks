@@ -243,13 +243,13 @@ $result = $ci->db->where('id_level',$id)->get('tabel_level');
     }
   }
 
-  function tampil_jenismapelById($id)
+  function tampil_kurikulum_jenismapelById($id)
   {
   $ci =& get_instance();
   $ci->load->database();
   $result = $ci->db->where('id_jenismapel',$id)->get('tabel_jenismapel');
     foreach ($result->result() as $c) {
-    $stmt= $c->nama_jenismapel;
+    $stmt= $c->kurikulum;
     return $stmt;
     }
   }

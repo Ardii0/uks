@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2023 at 04:21 AM
+-- Generation Time: Apr 15, 2023 at 10:48 AM
 -- Server version: 8.0.29
 -- PHP Version: 8.0.25
 
@@ -209,6 +209,7 @@ CREATE TABLE `tabel_akun` (
 CREATE TABLE `tabel_alokasiguru` (
   `id_alokasiguru` int NOT NULL,
   `kode_guru` varchar(255) NOT NULL,
+  `jam_mengajar` varchar(255) DEFAULT NULL,
   `id_mapel` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -216,14 +217,16 @@ CREATE TABLE `tabel_alokasiguru` (
 -- Dumping data for table `tabel_alokasiguru`
 --
 
-INSERT INTO `tabel_alokasiguru` (`id_alokasiguru`, `kode_guru`, `id_mapel`) VALUES
-(8, 'KG-VNKIWZ', 8),
-(9, 'KG-VNKIWZ', 9),
-(10, 'KG-VNKIWZ', 10),
-(11, 'KG-VNKIWZ', 11),
-(12, 'KG-VNKIWZ', 12),
-(13, 'KG-VNKIWZ', 13),
-(14, 'KG-VNKIWZ', 14);
+INSERT INTO `tabel_alokasiguru` (`id_alokasiguru`, `kode_guru`, `jam_mengajar`, `id_mapel`) VALUES
+(8, 'KG-VNKIWZ', '2', 8),
+(9, 'KG-VNKIWZ', NULL, 9),
+(10, 'KG-VNKIWZ', NULL, 10),
+(11, 'KG-VNKIWZ', NULL, 11),
+(12, 'KG-VNKIWZ', NULL, 12),
+(13, 'KG-VNKIWZ', NULL, 13),
+(14, 'KG-VNKIWZ', NULL, 14),
+(22, 'KG-Z4XFYE', '32', 11),
+(23, 'KG-Z4XFYE', '242', 11);
 
 -- --------------------------------------------------------
 
@@ -261,20 +264,26 @@ CREATE TABLE `tabel_daftar` (
   `no_reg` varchar(100) NOT NULL,
   `id_angkatan` int DEFAULT NULL,
   `id_jenjang` int NOT NULL,
+  `asal_sekolah` varchar(255) DEFAULT NULL,
   `tgl_daftar` date NOT NULL,
   `nisn` varchar(10) NOT NULL,
   `nama` varchar(255) NOT NULL,
+  `ayah` varchar(255) DEFAULT NULL,
+  `pekerjaan_ayah` varchar(255) DEFAULT NULL,
+  `gaji_ayah` varchar(255) DEFAULT NULL,
+  `ibu` varchar(255) DEFAULT NULL,
+  `pekerjaan_ibu` varchar(255) DEFAULT NULL,
+  `gaji_ibu` varchar(255) DEFAULT NULL,
+  `nik` longtext NOT NULL,
+  `kk` longtext NOT NULL,
   `jekel` varchar(255) NOT NULL,
   `tempat_lahir` varchar(255) NOT NULL,
   `anak_ke` int DEFAULT NULL,
-  `saudara_kandung` varchar(255) DEFAULT NULL,
-  `saudara_angkat` varchar(255) DEFAULT NULL,
   `tgl_lahir` date DEFAULT NULL,
   `agama` varchar(50) NOT NULL,
   `alamat` text NOT NULL,
   `telepon` varchar(255) NOT NULL,
   `foto` varchar(255) DEFAULT NULL,
-  `warga_negara` varchar(255) DEFAULT NULL,
   `diterima` varchar(1) NOT NULL DEFAULT 'P'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -282,12 +291,10 @@ CREATE TABLE `tabel_daftar` (
 -- Dumping data for table `tabel_daftar`
 --
 
-INSERT INTO `tabel_daftar` (`id_daftar`, `no_reg`, `id_angkatan`, `id_jenjang`, `tgl_daftar`, `nisn`, `nama`, `jekel`, `tempat_lahir`, `anak_ke`, `saudara_kandung`, `saudara_angkat`, `tgl_lahir`, `agama`, `alamat`, `telepon`, `foto`, `warga_negara`, `diterima`) VALUES
-(24, 'REG-BEIJXD', 4, 1, '2021-06-21', '856936', 'Irvanda Ibrahim', 'L', 'Tambak Haji ', 2, '4', '0', '2005-05-03', 'Islam', 'Jl. Puncak Sari RT02/RW13', '089646344200', '1681267504461.jpg', 'WNI', 'A'),
-(25, 'REG-CZ173Q', 4, 1, '2021-06-30', '768592', 'Helmi Abdillah', 'L', 'Semarang', 2, '2', '0', '2005-10-19', 'Islam', 'Jl.Tamai Raya', '08747475757', '1681267415133.jpg', 'WNI', 'S'),
-(27, 'REG-DQRHL3', 4, 1, '2021-06-30', '768592', 'Azizi Khoiri', 'L', 'Semarang', 2, '2', '0', '2005-10-19', 'Islam', 'Jl.Tamai Raya', '08747475757', '1681267388095.jpg', 'WNI', 'A'),
-(28, 'REG-AZ41WL', 4, 1, '2021-06-30', '768592', 'Secondta Ardiansyah Wicaksono', 'L', 'Semarang', 2, '2', '0', '2005-10-19', 'Islam', 'Jl.Tamai Raya', '08747475757', '1681267457650.jpg', 'WNI', 'P'),
-(29, 'REG-QNXVCR', 4, 1, '2021-06-30', '768592', 'Muhammad Ardi Setiawan', 'L', 'Semarang', 2, '2', '0', '2005-10-19', 'Islam', 'Jl.Tamai Raya', '08747475757', '1681267487051.jpg', 'WNI', 'P');
+INSERT INTO `tabel_daftar` (`id_daftar`, `no_reg`, `id_angkatan`, `id_jenjang`, `asal_sekolah`, `tgl_daftar`, `nisn`, `nama`, `ayah`, `pekerjaan_ayah`, `gaji_ayah`, `ibu`, `pekerjaan_ibu`, `gaji_ibu`, `nik`, `kk`, `jekel`, `tempat_lahir`, `anak_ke`, `tgl_lahir`, `agama`, `alamat`, `telepon`, `foto`, `diterima`) VALUES
+(1, 'REG-DKBATG', 5, 1, 'SMP HASANUDDIN 6', '2023-04-15', '12345678', 'Rizqi Ramandika', 'King', NULL, NULL, 'Queen', NULL, NULL, '12345678', '12345678', 'L', 'Semarang', 2, '2023-04-15', 'Islam', 'Mangkang', '12345678', '1681528125418.png', 'A'),
+(2, 'REG-Z3QDQT', 5, 1, 'SMP HASANUDDIN 6', '2023-04-15', '123', 'Cilla', 'King', NULL, NULL, 'Queen', NULL, NULL, '123', '123', 'P', 'Semarang', 2, '2023-04-15', 'Islam', 'Mangkang', '123', '1681529321503.png', 'A'),
+(3, 'REG-FBXJEG', 5, 1, 'SMP HASANUDDIN 6', '2023-04-15', '123', 'Saputra', 'King', 'Guru', '4jt - 5jt', 'Queen', 'ART', '2jt - 3jt', '123', '123', 'L', 'Semarang', 2, '2005-04-15', 'Islam', 'Mangkang', '123', '1681534352848.png', 'P');
 
 -- --------------------------------------------------------
 
@@ -305,7 +312,7 @@ CREATE TABLE `tabel_event` (
   `tanggal_posting` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `gambar` varchar(200) NOT NULL,
   `status` enum('aktif','nonaktif') DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tabel_event`
@@ -323,10 +330,15 @@ INSERT INTO `tabel_event` (`id_event`, `id_user`, `event_title`, `event_slug`, `
 
 CREATE TABLE `tabel_guru` (
   `kode_guru` varchar(255) DEFAULT NULL,
-  `nip` varchar(10) NOT NULL,
   `nama_guru` varchar(50) NOT NULL,
+  `nip` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `nik` int NOT NULL,
   `jekel` enum('L','P') DEFAULT NULL,
   `no_hp` varchar(14) DEFAULT NULL,
+  `jabatan` varchar(255) DEFAULT NULL,
+  `tmt` date DEFAULT NULL,
+  `no_sk` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `tgl_sk` date DEFAULT NULL,
   `alamat` text,
   `status` enum('AKTIF','NONAKTIF') DEFAULT 'AKTIF'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -335,14 +347,14 @@ CREATE TABLE `tabel_guru` (
 -- Dumping data for table `tabel_guru`
 --
 
-INSERT INTO `tabel_guru` (`kode_guru`, `nip`, `nama_guru`, `jekel`, `no_hp`, `alamat`, `status`) VALUES
-('KG-Z4XFYE', '324123', 'Raga Suci Al-Ghali', 'L', '085875258684', '                                            Jl. Pudakpayung 07 RT03/RW01                                        ', 'AKTIF'),
-('KG-K5AIDV', '312312', 'Arga Dian Setyo Wicaksono', 'L', '085801565981', '                                                                                                                                    Jl. Tanahmas RT02/RW06                                                                                                                        ', 'AKTIF'),
-('KG-72IIMM', '441234', 'Ida Fahru Roziyah', 'P', '082584778212', '                                                                                                                                    Jl. Kumambang Raya 01 RT12/RW02                                                                                                                        ', 'AKTIF'),
-('KG-VNKIWZ', '312312', 'Soimatun', 'P', '084312762267', '                                                                                                                                    Jl. Kembang Raya 09 RT04/RW03                                                                                                                        ', 'AKTIF'),
-('KG-RP3X25', '884564', 'Riyan Suryo Andono', 'L', '084312762233', 'Jl. Kalibanteng Kidul 08 RT01/RW02', 'AKTIF'),
-('KG-V6Y488', '782514', 'Tito Dwi Yulianto', 'L', '08238475223', '                                                                                        Jl. Palangkaraya 12 RT08/RW12                                                                                                                                                                ', 'AKTIF'),
-('KG-AH9TQ4', '345632', 'Ade Sucipto', 'L', '089453725173', 'Jl. Mangkang Raya 09 RT07/RW02', 'AKTIF');
+INSERT INTO `tabel_guru` (`kode_guru`, `nama_guru`, `nip`, `nik`, `jekel`, `no_hp`, `jabatan`, `tmt`, `no_sk`, `tgl_sk`, `alamat`, `status`) VALUES
+('KG-Z4XFYE', 'Raga Suci Al-Ghali', '324123', 0, 'L', '085875258684', NULL, NULL, NULL, NULL, 'Jl. Pudakpayung 07 RT03/RW01                                        ', 'AKTIF'),
+('KG-K5AIDV', 'Arga Dian Setyo Wicaksono', '312312', 0, 'L', '085801565981', NULL, NULL, NULL, NULL, 'Jl. Tanahmas RT02/RW06                                                                                                                        ', 'AKTIF'),
+('KG-72IIMM', 'Ida Fahru Roziyah', '441234', 0, 'P', '082584778212', NULL, NULL, NULL, NULL, 'Jl. Kumambang Raya 01 RT12/RW02', 'AKTIF'),
+('KG-VNKIWZ', 'Soimatun', '312312', 0, 'P', '084312762267', NULL, NULL, NULL, NULL, 'Jl. Kembang Raya 09 RT04/RW03', 'AKTIF'),
+('KG-RP3X25', 'Riyan Suryo Andono', '884564', 0, 'L', '084312762233', NULL, NULL, NULL, NULL, 'Jl. Kalibanteng Kidul 08 RT01/RW02', 'AKTIF'),
+('KG-V6Y488', 'Tito Dwi Yulianto', '782514', 0, 'L', '08238475223', NULL, NULL, NULL, NULL, 'Jl. Palangkaraya 12 RT08/RW12', 'AKTIF'),
+('KG-AH9TQ4', 'Ade Sucipto', '345632', 0, 'L', '089453725173', NULL, NULL, NULL, NULL, 'Jl. Mangkang Raya 09 RT07/RW02', 'AKTIF');
 
 -- --------------------------------------------------------
 
@@ -389,7 +401,7 @@ CREATE TABLE `tabel_invoice` (
 INSERT INTO `tabel_invoice` (`id_invoice`, `id_siswa`, `date`, `id_level`, `id_ta`, `cek_p`) VALUES
 ('INV0414SRQ4336', 11, '2023-04-14', 5, 0, 1),
 ('INV0414RN30711', 10, '2023-04-14', 5, 0, 1),
-('INV04140D21045', 10, '2023-04-14', 5, 4, 1);
+('INV04140D21045', 10, '2023-04-15', 5, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -423,7 +435,7 @@ INSERT INTO `tabel_jenisbayar` (`id_jenis`, `kode_jenis`, `nama_jenis`, `tipe_je
 CREATE TABLE `tabel_jenismapel` (
   `id_jenismapel` int NOT NULL,
   `nama_jenismapel` varchar(100) NOT NULL,
-  `keterangan` text NOT NULL,
+  `kurikulum` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `status` enum('AKTIF','NONAKTIF') NOT NULL DEFAULT 'AKTIF'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -431,9 +443,9 @@ CREATE TABLE `tabel_jenismapel` (
 -- Dumping data for table `tabel_jenismapel`
 --
 
-INSERT INTO `tabel_jenismapel` (`id_jenismapel`, `nama_jenismapel`, `keterangan`, `status`) VALUES
-(3, 'Wajib', 'Jenis Mata Pelajaran Wajib', 'AKTIF'),
-(4, 'Kejurusan', 'Jenis Mata Pelajaran Kejurusan', 'AKTIF');
+INSERT INTO `tabel_jenismapel` (`id_jenismapel`, `nama_jenismapel`, `kurikulum`, `status`) VALUES
+(3, 'Wajib', 'Mateo 2005', 'AKTIF'),
+(4, 'Kejurusan', 'Merdeka', 'AKTIF');
 
 -- --------------------------------------------------------
 
@@ -555,7 +567,7 @@ CREATE TABLE `tabel_lowongan` (
   `tanggal_posting` timestamp NULL DEFAULT NULL,
   `gambar` varchar(300) DEFAULT NULL,
   `is_tampil` varchar(15) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -566,7 +578,7 @@ CREATE TABLE `tabel_lowongan` (
 CREATE TABLE `tabel_lulus` (
   `id_lulus` int NOT NULL,
   `id_daftar` int DEFAULT NULL,
-  `id_rombel` int DEFAULT NULL,
+  `id_kelas` int DEFAULT NULL,
   `tanggal_lulus` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -671,7 +683,7 @@ CREATE TABLE `tabel_pembayaran` (
 CREATE TABLE `tabel_pindah` (
   `id_pindah` int NOT NULL,
   `id_daftar` int DEFAULT NULL,
-  `id_rombel` int DEFAULT NULL,
+  `id_kelas` int DEFAULT NULL,
   `nama_sekolah` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -806,7 +818,7 @@ CREATE TABLE `tabel_testimoni` (
   `id_alumni` int DEFAULT NULL,
   `pesan` varchar(765) DEFAULT NULL,
   `tampil` varchar(765) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1087,7 +1099,9 @@ ALTER TABLE `tabel_level`
 -- Indexes for table `tabel_lulus`
 --
 ALTER TABLE `tabel_lulus`
-  ADD PRIMARY KEY (`id_lulus`);
+  ADD PRIMARY KEY (`id_lulus`),
+  ADD KEY `tabel_lulus_to_daftar` (`id_daftar`),
+  ADD KEY `tabel_lulus_to_kelas` (`id_kelas`);
 
 --
 -- Indexes for table `tabel_mapel`
@@ -1123,7 +1137,9 @@ ALTER TABLE `tabel_pembayaran`
 -- Indexes for table `tabel_pindah`
 --
 ALTER TABLE `tabel_pindah`
-  ADD PRIMARY KEY (`id_pindah`);
+  ADD PRIMARY KEY (`id_pindah`),
+  ADD KEY `tabel_pindah_to_daftar` (`id_daftar`),
+  ADD KEY `tabel_pindah_to_kelas` (`id_kelas`);
 
 --
 -- Indexes for table `tabel_pinjaman`
@@ -1154,8 +1170,8 @@ ALTER TABLE `tabel_semester`
 --
 ALTER TABLE `tabel_siswa`
   ADD PRIMARY KEY (`id_siswa`),
-  ADD KEY `id_daftar` (`id_daftar`),
-  ADD KEY `id_kelas` (`id_kelas`);
+  ADD KEY `id_kelas` (`id_kelas`),
+  ADD KEY `id_daftar` (`id_daftar`);
 
 --
 -- Indexes for table `tabel_tahunajaran`
@@ -1239,7 +1255,7 @@ ALTER TABLE `tabel_akun`
 -- AUTO_INCREMENT for table `tabel_alokasiguru`
 --
 ALTER TABLE `tabel_alokasiguru`
-  MODIFY `id_alokasiguru` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_alokasiguru` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `tabel_alokasimapel`
@@ -1251,7 +1267,7 @@ ALTER TABLE `tabel_alokasimapel`
 -- AUTO_INCREMENT for table `tabel_daftar`
 --
 ALTER TABLE `tabel_daftar`
-  MODIFY `id_daftar` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_daftar` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tabel_event`
@@ -1299,7 +1315,7 @@ ALTER TABLE `tabel_level`
 -- AUTO_INCREMENT for table `tabel_lulus`
 --
 ALTER TABLE `tabel_lulus`
-  MODIFY `id_lulus` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_lulus` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tabel_mapel`
@@ -1329,7 +1345,7 @@ ALTER TABLE `tabel_pembayaran`
 -- AUTO_INCREMENT for table `tabel_pindah`
 --
 ALTER TABLE `tabel_pindah`
-  MODIFY `id_pindah` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pindah` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tabel_pinjaman`
@@ -1359,7 +1375,7 @@ ALTER TABLE `tabel_semester`
 -- AUTO_INCREMENT for table `tabel_siswa`
 --
 ALTER TABLE `tabel_siswa`
-  MODIFY `id_siswa` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_siswa` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tabel_tahunajaran`
@@ -1371,7 +1387,7 @@ ALTER TABLE `tabel_tahunajaran`
 -- AUTO_INCREMENT for table `tabel_tingkat`
 --
 ALTER TABLE `tabel_tingkat`
-  MODIFY `id_tingkat` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_tingkat` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `tabel_transaksi`
@@ -1446,6 +1462,13 @@ ALTER TABLE `tabel_kelas`
   ADD CONSTRAINT `tabel_kelas_to_tingkat` FOREIGN KEY (`id_tingkat`) REFERENCES `tabel_tingkat` (`id_tingkat`);
 
 --
+-- Constraints for table `tabel_lulus`
+--
+ALTER TABLE `tabel_lulus`
+  ADD CONSTRAINT `tabel_lulus_to_daftar` FOREIGN KEY (`id_daftar`) REFERENCES `tabel_daftar` (`id_daftar`),
+  ADD CONSTRAINT `tabel_lulus_to_kelas` FOREIGN KEY (`id_kelas`) REFERENCES `tabel_kelas` (`id_kelas`);
+
+--
 -- Constraints for table `tabel_mapel`
 --
 ALTER TABLE `tabel_mapel`
@@ -1467,10 +1490,17 @@ ALTER TABLE `tabel_pembayaran`
   ADD CONSTRAINT `tabel_pembayaran_to_siswa` FOREIGN KEY (`id_siswa`) REFERENCES `tabel_siswa` (`id_siswa`);
 
 --
+-- Constraints for table `tabel_pindah`
+--
+ALTER TABLE `tabel_pindah`
+  ADD CONSTRAINT `tabel_pindah_to_daftar` FOREIGN KEY (`id_daftar`) REFERENCES `tabel_daftar` (`id_daftar`),
+  ADD CONSTRAINT `tabel_pindah_to_kelas` FOREIGN KEY (`id_kelas`) REFERENCES `tabel_kelas` (`id_kelas`);
+
+--
 -- Constraints for table `tabel_siswa`
 --
 ALTER TABLE `tabel_siswa`
-  ADD CONSTRAINT `tabel_siswa_to_daftar_ibfk_1` FOREIGN KEY (`id_daftar`) REFERENCES `tabel_daftar` (`id_daftar`),
+  ADD CONSTRAINT `tabel_siswa_from_daftar` FOREIGN KEY (`id_daftar`) REFERENCES `tabel_daftar` (`id_daftar`),
   ADD CONSTRAINT `tabel_siswa_to_kelas` FOREIGN KEY (`id_kelas`) REFERENCES `tabel_kelas` (`id_kelas`);
 
 --

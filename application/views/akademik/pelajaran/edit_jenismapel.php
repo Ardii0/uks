@@ -52,10 +52,10 @@
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <label class="control-label">Keterangan</label>
+                                    <label class="control-label">Kurikulum</label>
                                     <div class="">
-                                        <input type="text" name="keterangan" class="form-control"
-                                            placeholder="Masukan Keterangan" value="<?php echo $data->keterangan ?>">
+                                        <input type="text" name="kurikulum" class="form-control"
+                                            placeholder="Masukan Kurikulum" value="<?php echo $data->kurikulum ?>">
                                     </div>
                                 </div>
                             </div>

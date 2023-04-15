@@ -1671,7 +1671,7 @@ class Akademik extends CI_Controller {
     {
         $data = [
             'nama_jenismapel' => $this->input->post('nama_jenismapel'),
-            'keterangan' => $this->input->post('keterangan'),
+            'kurikulum' => $this->input->post('kurikulum'),
         ];
         $this->m_akademik->tambah_jenismapel('tabel_jenismapel', $data);
         redirect(base_url('Akademik/jenis_pelajaran'));
@@ -1696,7 +1696,7 @@ class Akademik extends CI_Controller {
     {
         $data =  [
             'nama_jenismapel' => $this->input->post('nama_jenismapel'),
-            'keterangan' => $this->input->post('keterangan'),
+            'kurikulum' => $this->input->post('kurikulum'),
         ];
         $logged=$this->m_akademik->ubah_jenismapel('tabel_jenismapel', $data, array('id_jenismapel'=>$this->input->post('id_jenismapel')));
         if($logged)
@@ -1758,6 +1758,16 @@ class Akademik extends CI_Controller {
         redirect(base_url('Akademik/alokasi_guru/'.$this->input->post('kode_guru')));
     }
     
+    public function tambah_jam_mengajar()
+    {
+        $data =  [
+            'id_mapel' => $this->input->post('id_mapel'),
+            'jam_mengajar' => $this->input->post('jam_mengajar'),
+        ];
+        $this->m_akademik->update('tabel_alokasiguru', $data, array('id_alokasiguru'=>$this->input->post('id_alokasiguru')));
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
  // Alok Mapel
     public function alokasi_mapel($id_mapel)
         {

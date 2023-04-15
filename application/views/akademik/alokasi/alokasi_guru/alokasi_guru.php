@@ -117,10 +117,21 @@
                                                         <input type="checkbox" class="deleteAll">
                                                     </th>
                                                     <th>Nama Mapel</th>
-                                                    <th>Keterangan</th>
+                                                    <th style="width: 120px;">Waktu Mengajar</th>
+                                                    <th style="width: 150px;">Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <!-- <tr>
+                                                    <td>
+                                                    </td>
+                                                    <td>
+                                                    </td>
+                                                    <td>
+                                                    </td>
+                                                    <td class="text-center">
+                                                    </td>
+                                                </tr> -->
                                                 <?php foreach ($alokasiguru as $datamapel): ?>
                                                 <tr>
                                                     <td>
@@ -130,7 +141,21 @@
                                                         <?php echo tampil_mapelById($datamapel->id_mapel) ?>
                                                     </td>
                                                     <td>
-                                                        <?php echo tampil_ket_mapelById($datamapel->id_mapel) ?>
+                                                        <?php echo $datamapel->jam_mengajar ?>
+                                                    </td>
+                                                        <input type="hidden" class="">
+                                                    <td class="text-center">
+                                                        <form action="<?php echo base_url('Akademik/tambah_jam_mengajar'); ?>" enctype="multipart/form-data" method="post" class="row">
+                                                            <input type="number" class="form-control col-6" name="jam_mengajar" <?php if($datamapel->jam_mengajar) { echo 'value="'.$datamapel->jam_mengajar.'"';}?>>
+                                                            <input type="hidden" class="form-control col-6" name="id_alokasiguru" value="<?php echo $datamapel->id_alokasiguru ?>">
+                                                            <input type="hidden" class="form-control col-6" name="id_mapel" value="<?php echo $datamapel->id_mapel ?>">
+                                                            <button type="submit" class="btn btn-info col-6">
+                                                                <i class="fa fa-check"></i>
+                                                            </button>
+                                                        </form>
+                                                        <!-- <a href="" class="btn btn-info">
+                                                            Beri Waktu Mengajar
+                                                        </a> -->
                                                     </form>
                                                     </td>
                                                 </tr>

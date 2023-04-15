@@ -58,7 +58,7 @@
                                             <th>No</th>
                                             <th>Nama Mata Pelajaran</th>
                                             <th>Jenis Mapel</th>
-                                            <th>Keterangan</th>
+                                            <th>Kurikulum</th>
                                             <th style="width: 100px;">Aksi</th>
                                         </tr>
                                     </thead>
@@ -77,7 +77,7 @@
                                                     <?php echo tampil_jenismapelById($data->id_jenismapel) ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $data->keterangan ?>
+                                                    <?php echo tampil_kurikulum_jenismapelById($data->id_jenismapel) ?>
                                                 </td>
                                                 <td class="text-center">
                                                     <a href="<?php echo base_url('Akademik/alokasi_mapel/'.$data->id_mapel) ?>"

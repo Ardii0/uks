@@ -612,8 +612,8 @@ class Keuangan extends CI_Controller
             'submenu_admin'=> 'pembayaran'
         ];
         $this->load->model('m_akademik');
-        $data['kelas'] = $this->m_akademik->get_kelas();
-        $data['rombel'] = $this->m_akademik->get_rombel();
+        $data['kelas'] = $this->m_akademik->get('tabel_tingkat');
+        $data['rombel'] = $this->m_akademik->get('tabel_kelas');
         $data['siswa'] = $this->m_akademik->get_siswa();
         $this->load->view('keuangan/pembayaran/tambah_pembayaran', $data);
     }

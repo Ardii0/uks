@@ -55,8 +55,8 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Nama Jenis Mata Pelajaran</th>
-                                            <th>Keterangan</th>
-                                            <th>Aksi</th>
+                                            <th>Kurikulum</th>
+                                            <th style="width: 100px;">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -64,7 +64,7 @@
                                         <tr>
                                             <td><?php echo $id?></td>
                                             <td><?php echo $data->nama_jenismapel?></td>
-                                            <td><?php echo $data->keterangan?></td>
+                                            <td><?php echo $data->kurikulum?></td>
                                             <td class="text-center">
                                                 <a href="<?php echo base_url('Akademik/edit_jenismapel/'.$data->id_jenismapel)?>"
                                                     class="btn btn-primary btn-sm">
