@@ -148,6 +148,17 @@ $result = $ci->db->where('id_level',$id)->get('tabel_level');
     return $addrs;
   }
 
+  function tampil_id_siswa_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_daftar',$id)->get('tabel_siswa');
+    foreach ($result->result() as $c) {
+    $stmt= $c->id_siswa;
+    return $stmt;
+    }
+  }
+
   function tampil_idta_ByIdSiswa($id)
   {
   $ci =& get_instance();

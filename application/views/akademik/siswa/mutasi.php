@@ -97,7 +97,7 @@
                                             <tr>
                                                 <td>
                                                     <input type="checkbox"
-                                                        name="id_daftar[<?php echo $data->id_daftar ?>]" id="">
+                                                        name="id_daftar[<?php echo $data->id_daftar ?>]" id="id_siswa_boss">
                                                 </td>
                                                 <td>
                                                     <?php echo tampil_rombel_byid($data->id_rombel) ?>

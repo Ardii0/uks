@@ -1383,7 +1383,11 @@ class Akademik extends CI_Controller {
             }
 
             foreach ($id_daftar as $key => $value) { 
-                $this->m_akademik->hapus_siswa('tabel_siswa', 'id_daftar', $key);
+                $id_siswas = tampil_id_siswa_byid($key);
+                $this->m_akademik->hapus_siswa('tabel_anggota', 'id_siswa', $id_siswas);
+                $this->m_akademik->hapus_siswa('tabel_pembayaran', 'id_siswa', $id_siswas);
+                $this->m_akademik->hapus_siswa('tabel_nilai', 'id_siswa', $id_siswas);
+                $this->m_akademik->hapus_siswa('tabel_siswa', 'id_siswa', $id_siswas);
             }
             }
     
@@ -1416,7 +1420,11 @@ class Akademik extends CI_Controller {
                     )); 
                 }
                 foreach ($id_daftar as $key => $value) { 
-                    $this->m_akademik->hapus_siswa('tabel_siswa', 'id_daftar', $key);
+                    $id_siswas = tampil_id_siswa_byid($key);
+                    $this->m_akademik->hapus_siswa('tabel_anggota', 'id_siswa', $id_siswas);
+                    $this->m_akademik->hapus_siswa('tabel_pembayaran', 'id_siswa', $id_siswas);
+                    $this->m_akademik->hapus_siswa('tabel_nilai', 'id_siswa', $id_siswas);
+                    $this->m_akademik->hapus_siswa('tabel_siswa', 'id_siswa', $id_siswas);
                 }
             }
     
