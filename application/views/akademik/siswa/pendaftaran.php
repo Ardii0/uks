@@ -20,14 +20,14 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Pendaftaran Siswa</h1>
+                            <h1>Pendaftaran Peserta Didik Baru</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a
                                         href="<?php echo base_url('Akademik/') ?>"><?php echo $this->session->userdata('level') ?></a>
                                 </li>
-                                <li class="breadcrumb-item active">Pendaftaran</li>
+                                <li class="breadcrumb-item active">Pendaftaran Peserta Didik Baru</li>
                             </ol>
                         </div>
                     </div>
@@ -62,6 +62,7 @@
                                             <th>Foto</th>
                                             <th>No Reg</th>
                                             <th>Nama</th>
+                                            <th>Asal Sekolah</th>
                                             <th>Tahun Ajaran</th>
                                             <th>Jenjang</th>
                                             <th style="width: 90px">Aksi</th>
@@ -83,6 +84,9 @@
                                              ?></td>
                                             <td class="text-truncate" style="max-width: 150px;"><?php
                                              echo $row->nama 
+                                             ?></td>
+                                            <td class="text-truncate" style="max-width: 150px;"><?php
+                                             echo $row->asal_sekolah 
                                              ?></td>
                                             <td class="text-center"><?php
                                              echo tampil_tahunangkatan_byid($row->id_angkatan) 

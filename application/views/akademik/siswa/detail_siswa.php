@@ -52,14 +52,14 @@
                                 <div class="card-body">
                                     <div class="d-flex flex-column align-items-center text-center">
                                         <img style="width: 150px; height:150px;"
-                                            src="<?php $img = tampil_foto_siswa_byid($data->id_daftar) == null ? base_url('uploads/akademik/default_profile/User.png') : base_url('uploads/akademik/pendaftaran_siswa')."/".tampil_foto_siswa_byid($data->id_daftar); echo $img?>"
+                                            src="<?php $img = tampil_foto_siswa_byid($data->id_siswa) == null ? base_url('uploads/akademik/default_profile/User.png') : base_url('uploads/akademik/pendaftaran_siswa')."/".tampil_foto_siswa_byid($data->id_siswa); echo $img?>"
                                             alt="Foto Siswa" class="rounded-circle" width="150">
                                         <div class="mt-3">
-                                            <h4><?php echo tampil_nama_siswa_byid($data->id_daftar)?></h4>
+                                            <h4><?php echo tampil_nama_siswa_byid($data->id_siswa)?></h4>
                                             <p class="text-secondary mb-1">
-                                                <?php echo tampil_rombel_byid($data->id_rombel)?></p>
+                                                <?php echo tampil_kelas_byid($data->id_kelas)?></p>
                                             <p class="text-muted font-size-sm">
-                                                <?php echo tampil_alamat_siswa_byid($data->id_daftar)?></p>
+                                                <?php echo tampil_alamat_siswa_byid($data->id_siswa)?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -72,25 +72,25 @@
                                                 <h6 class="mb-0">Anak Ke</h6>
                                             </div>
                                             <div class="col-sm-4 text-secondary">
-                                                <?php echo tampil_anak_ke_siswa_byid($data->id_daftar)?>
+                                                <?php echo tampil_anak_ke_siswa_byid($data->id_siswa)?>
                                             </div>
                                         </div>
                                         <hr>
                                         <div class="row">
                                             <div class="col-sm-8">
-                                                <h6 class="mb-0">Jumlah Saudara (Kandung)</h6>
+                                                <h6 class="mb-0">Nama Ayah</h6>
                                             </div>
                                             <div class="col-sm-4 text-secondary">
-                                                <?php echo tampil_saudara_kandung_siswa_byid($data->id_daftar)?>
+                                            <?php echo tampil_nama_ayah_siswa_byid($data->id_siswa)?>
                                             </div>
                                         </div>
                                         <hr>
                                         <div class="row">
                                             <div class="col-sm-8">
-                                                <h6 class="mb-0">Jumlah Saudara (Angkat)</h6>
+                                                <h6 class="mb-0">Nama Ibu</h6>
                                             </div>
                                             <div class="col-sm-4 text-secondary">
-                                                <?php echo tampil_saudara_angkat_siswa_byid($data->id_daftar)?>
+                                            <?php echo tampil_nama_ibu_siswa_byid($data->id_siswa)?>
                                             </div>
                                         </div>
                                         <hr>
@@ -102,12 +102,39 @@
                         <div class="col-md-8">
                             <div class="card mb-3">
                                 <div class="card-body">
+                                <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">No.NIK</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                        <?php echo tampil_nik_siswa_byid($data->id_siswa)?>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">No.KK</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                        <?php echo tampil_kk_siswa_byid($data->id_siswa)?>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Asal Sekolah</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                        <?php echo tampil_asal_sekolah_siswa_byid($data->id_siswa)?>
+                                        </div>
+                                    </div>
+                                    <hr>
                                     <div class="row">
                                         <div class="col-sm-3">
                                             <h6 class="mb-0">NISN</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <?php echo tampil_nisn_siswa_byid($data->id_daftar)?>
+                                            <?php echo tampil_nisn_siswa_byid($data->id_siswa)?>
                                         </div>
                                     </div>
                                     <hr>
@@ -116,7 +143,7 @@
                                             <h6 class="mb-0">No Telepon</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <?php echo tampil_telepon_siswa_byid($data->id_daftar)?>
+                                            <?php echo tampil_telepon_siswa_byid($data->id_siswa)?>
                                         </div>
                                     </div>
                                     <hr>
@@ -125,8 +152,8 @@
                                             <h6 class="mb-0">Tempat / Tanggal Lahir</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <?php echo tampil_tempat_lahir_siswa_byid($data->id_daftar)?> /
-                                            <?php echo tampil_tanggal_lahir_siswa_byid($data->id_daftar)?>
+                                            <?php echo tampil_tempat_lahir_siswa_byid($data->id_siswa)?> /
+                                            <?php echo tampil_tanggal_lahir_siswa_byid($data->id_siswa)?>
                                         </div>
                                     </div>
                                     <hr>
@@ -135,16 +162,7 @@
                                             <h6 class="mb-0">Agama</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <?php echo tampil_agama_siswa_byid($data->id_daftar)?>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0">Kewarganegaraan</h6>
-                                        </div>
-                                        <div class="col-sm-9 text-secondary">
-                                            <?php echo tampil_warga_negara_siswa_byid($data->id_daftar)?>
+                                            <?php echo tampil_agama_siswa_byid($data->id_siswa)?>
                                         </div>
                                     </div>
                                     <hr>
@@ -153,18 +171,18 @@
                                             <h6 class="mb-0">Jenis Kelamin</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <?php echo tampil_jekel_siswa_byid($data->id_daftar)?>
+                                            <?php echo tampil_jekel_siswa_byid($data->id_siswa)?>
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <a class="btn btn-info"
-                                                href="<?php echo base_url('Akademik/edit_siswa/'.$data->id_daftar)?>">Edit
+                                                href="<?php echo base_url('Akademik/edit_siswa/'.$data->id_siswa)?>">Edit
                                                 Data Pribadi Siswa</a>
                                             <a class="btn btn-info"
-                                                href="<?php echo base_url('Akademik/edit_siswa_rombel/'.$data->id_siswa)?>">Edit
-                                                Rombel Siswa</a>
+                                                href="<?php echo base_url('Akademik/edit_siswa_kelas/'.$data->id_siswa)?>">Edit
+                                                Kelas Siswa</a>
                                         </div>
                                     </div>
                                 </div>

@@ -43,7 +43,7 @@
                             <div class="form-group">
                             <form action="<?php echo base_url('akademik/tampil_data_mutasi/') ?>" method="post">
                             <div class="mx-1">
-                                    <select name="id_rombel" id="id_rombel" class="form-control bg-success" onchange="this.form.submit();">
+                                    <select name="id_kelas" id="id_kelas" class="form-control bg-success" onchange="this.form.submit();">
                                             <option value="0">Lihat Data</option>
                                             <option value="1">Pindah</option>
                                             <option value="2">Lulus</option>
@@ -65,6 +65,7 @@
                                             </th>
                                             <th>NIS</th>
                                             <th>Nama</th>
+                                            <th>Kelas</th>
                                             <th>Jekel</th>
                                             <th>TTL</th>
                                             <th>Alamat</th>
@@ -89,6 +90,9 @@
                                                 </td>
                                                 <td>
                                                     <?php echo tampil_nama_siswa_byid($data->id_daftar) ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo tampil_kelas_byid($data->id_kelas) ?>
                                                 </td>
                                                 <td> 
                                                     <?php echo tampil_jekel_siswa_byid($data->id_daftar) ?>

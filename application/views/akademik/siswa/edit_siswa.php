@@ -48,8 +48,8 @@
                 <?php foreach($data_siswa_daftar as $row ):?>
                 <form action="<?php echo base_url('Akademik/update_siswa') ?>" enctype="multipart/form-data"
                     method="post">
-                    <div class="container-fluid">
-                        <div class="row p-1">
+                    <div class="container-fluid p-3 bg-white">
+                        <div class="row">
                             <div class="col-3">
                                 <div>
                                     <label for="id-daftar" class="mr-3">
@@ -57,30 +57,9 @@
                                     </label>
                                 </div>
                                 <div>
-                                    <input type="text" value="TA 2023/2024" class="form-control"
-                                        placeholder="Tahun Ajaran" disabled>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div>
-                                    <label for="jenjang" class="mr-3">
-                                        Jenjang
-                                    </label>
-                                </div>
-                                <div>
-                                    <input type="text" value="<?php echo tampil_namajenjang_byid($row->id_jenjang)?>"
+                                <input type="text" value="<?php echo tampil_tahunangkatan_byid($row->id_angkatan)?>"
                                         placeholder="ID Registrasi" class="form-control" disabled>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div>
-                                    <label for="id-daftar" class="mr-3">
-                                        ID Registrasi
-                                    </label>
-                                </div>
-                                <div>
-                                    <input type="number" value="<?php echo $row->no_reg?>" placeholder="ID Registrasi"
-                                        class="form-control" disabled>
+                                    <input type="number" name="id_angkatan" value="<?php echo $row->id_angkatan ?>" class="form-control" hidden>
                                 </div>
                             </div>
                             <div class="col-3">
@@ -90,14 +69,37 @@
                                     </label>
                                 </div>
                                 <div>
-                                    <input type="date" value="<?php echo $row->tgl_daftar?>" name="tgl_daftar"
-                                        class="form-control" placeholder="Tahun Ajaran">
+                                <input type="date" value="<?php echo $row->tgl_daftar?>" class="form-control" disabled>
+                                <input type="date" value="<?php echo $row->tgl_daftar?>" name="tgl_daftar" class="form-control" hidden>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div>
+                                    <label for="jenjang" class="mr-3">
+                                        Jenjang
+                                    </label>
+                                </div>
+                                <div>
+                                    <input type="text" name="id_jenjang" value="<?php echo tampil_namajenjang_byid($row->id_jenjang)?>"
+                                        placeholder="ID Registrasi" class="form-control" disabled>
+                                    <input type="number" name="id_jenjang" value="<?php echo $row->id_jenjang ?>" class="form-control" hidden>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div>
+                                    <label for="asal_sekolah" class="mr-3">
+                                        Asal Sekolah
+                                    </label>
+                                </div>
+                                <div>
+                                    <input id="asal_sekolah" type="text" value="<?php echo $row->asal_sekolah?>"
+                                        name="asal_sekolah" class="form-control" placeholder="Asal Sekolah">
                                 </div>
                             </div>
                         </div>
                         <hr />
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-4">
                                 <div>
                                     <label for="nama-lengkap" class="mr-3">
                                         Nama Lengkap
@@ -108,73 +110,67 @@
                                         class="form-control" placeholder="Nama Lengkap">
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-4">
                                 <div>
                                     <label for="jenjang" class="mr-3">
                                         Agama
                                     </label>
                                 </div>
                                 <div>
-                                    <select id="agama" value="<?php echo $row->agama?>" name="agama"
-                                        class="form-control form-select px-2 py-1" aria-label="Default select example">
+                                    <select id="agama" name="agama" value="<?php echo $row->agama?>"
+                                        class="form-control select2 select2-info"
+                                        data-dropdown-css-class="select2-info">
                                         <option value="Islam">Islam</option>
                                         <option value="Kristen">Kristen</option>
+                                        <option value="Katolik">Katolik</option>
+                                        <option value="Konghucu">Konghucu</option>
+                                        <option value="Hindu">Hindu</option>
+                                        <option value="Budha">Budha</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-6 mt-2">
+                            <div class="col-4">
                                 <div>
                                     <label for="nisn" class="mr-3">
                                         NISN
                                     </label>
                                 </div>
                                 <div>
-                                    <input id="nisn" value="<?php echo $row->nisn?>" type="text" name="nisn"
+                                    <input id="nisn" type="number" name="nisn" value="<?php echo $row->nisn?>"
                                         class="form-control" placeholder="NISN">
                                 </div>
                             </div>
-                            <div class="col-6 mt-2">
+                            <div class="col-4 mt-2">
+                                <div>
+                                    <label for="nik" class="mr-3">
+                                        No. NIK
+                                    </label>
+                                </div>
+                                <div>
+                                    <input id="nik" type="number" name="nik" value="<?php echo $row->nik?>"
+                                        class="form-control" placeholder="NIK Siswa">
+                                </div>
+                            </div>
+                            <div class="col-4 mt-2">
+                                <div>
+                                    <label for="kk" class="mr-3">
+                                        No. KK
+                                    </label>
+                                </div>
+                                <div>
+                                    <input id="kk" type="number" name="kk" value="<?php echo $row->kk?>"
+                                        class="form-control" placeholder="No KK">
+                                </div>
+                            </div>
+                            <div class="col-4 mt-2">
                                 <div>
                                     <label for="tlpn" class="mr-3">
                                         No Telepon
                                     </label>
                                 </div>
                                 <div>
-                                    <input id="tlpn" type="text" value="<?php echo $row->telepon?>" name="telepon"
+                                    <input id="tlpn" type="number" name="telepon" value="<?php echo $row->telepon?>"
                                         class="form-control" placeholder="No Telepon">
-                                </div>
-                            </div>
-                            <div class="col-4 mt-2">
-                                <div>
-                                    <label for="angkat" class="mr-3">
-                                        Anak Ke
-                                    </label>
-                                </div>
-                                <div>
-                                    <input id="tlpn" type="number" value="<?php echo $row->anak_ke?>" name="anak_ke"
-                                        class="form-control" placeholder="Anak Ke">
-                                </div>
-                            </div>
-                            <div class="col-4 mt-2">
-                                <div>
-                                    <label for="kandung" class="mr-3">
-                                        Saudara Kandung
-                                    </label>
-                                </div>
-                                <div>
-                                    <input id="tlpn" type="text" value="<?php echo $row->saudara_kandung?>"
-                                        name="saudara_kandung" class="form-control" placeholder="Saudara Kandung">
-                                </div>
-                            </div>
-                            <div class="col-4 mt-2">
-                                <div>
-                                    <label for="angkat" class="mr-3">
-                                        Saudara Angkat
-                                    </label>
-                                </div>
-                                <div>
-                                    <input id="tlpn" type="text" value="<?php echo $row->saudara_angkat?>"
-                                        name="saudara_angkat" class="form-control" placeholder="Saudara Angkat">
                                 </div>
                             </div>
                             <div class="col-4 mt-2">
@@ -184,7 +180,7 @@
                                     </label>
                                 </div>
                                 <div>
-                                    <input id="alamat" type="text" value="<?php echo $row->alamat?>" name="alamat"
+                                    <input id="alamat" type="text" name="alamat" value="<?php echo $row->alamat?>"
                                         class="form-control" placeholder="Alamat">
                                 </div>
                             </div>
@@ -195,8 +191,60 @@
                                     </label>
                                 </div>
                                 <div>
-                                    <input id="tempat-lahir" type="text" value="<?php echo $row->tempat_lahir?>"
-                                        name="tempat_lahir" class="form-control" placeholder="Tempat Lahir">
+                                    <input id="tempat-lahir" type="text" name="tempat_lahir"
+                                        value="<?php echo $row->tempat_lahir?>" class="form-control"
+                                        placeholder="Tempat Lahir">
+                                </div>
+                            </div>
+                            <div class="col-4 mt-2">
+                                <div>
+                                    <label for="anak" class="mr-3">
+                                        Anak Ke
+                                    </label>
+                                </div>
+                                <div>
+                                    <input id="anak" type="number" name="anak_ke" value="<?php echo $row->anak_ke?>"
+                                        class="form-control" placeholder="Anak Ke">
+                                </div>
+                            </div>
+                            <div class="col-4 mt-2">
+                                <div>
+                                    <label for="ayah" class="mr-3">
+                                        Nama Ayah
+                                    </label>
+                                </div>
+                                <div>
+                                    <input id="ayah" type="text" name="ayah" value="<?php echo $row->ayah?>"
+                                        class="form-control" placeholder="Nama Ayah">
+                                </div>
+                            </div>
+                            <div class="col-4 mt-2">
+                                <div>
+                                    <label for="ibu" class="mr-3">
+                                        Nama Ibu
+                                    </label>
+                                </div>
+                                <div>
+                                    <input id="ibu" type="text" name="ibu" class="form-control"
+                                        value="<?php echo $row->ibu?>" placeholder="Nama Ibu">
+                                </div>
+                            </div>
+                            <div class="col-4 mt-2">
+                                <div>
+                                    <label for="jenjang" class="mr-3">
+                                        Gaji Orang Tua
+                                    </label>
+                                </div>
+                                <div>
+                                    <select id="gaji_ortu" name="gaji_ortu"
+                                        class="form-control">
+                                        <option value="<?php echo $row->gaji_ortu ?>"><?php echo $row->gaji_ortu ?></option>
+                                        <option value="kurang dari 1jt">kurang dari 1jt</option>
+                                        <option value="1jt - 2jt">1jt - 2jt</option>
+                                        <option value="2jt - 3jt">2jt - 3jt</option>
+                                        <option value="3jt - 4jt">3jt - 4jt</option>
+                                        <option value="4jt - 5jt">4jt - 5jt</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-4 mt-2">
@@ -206,18 +254,39 @@
                                     </label>
                                 </div>
                                 <div>
-                                    <input id="tanggal-lahir" value="<?php echo $row->tgl_lahir?>" name="tgl_lahir"
+                                    <input id="tanggal-lahir" name="tgl_lahir" value="<?php echo $row->tgl_lahir?>"
                                         type="date" class="form-control">
                                 </div>
                             </div>
-                            <div class="col-12 mt-2">
-                                <div class="form-group col-sm-4">
+                            <div class="col-4 mt-2">
+                                <div>
+                                    <label class="mr-3">
+                                        Jenis Kelamin
+                                    </label>
+                                </div>
+                                <div class="d-flex mt-2">
+                                    <div class="form-check mr-3">
+                                        <input class="form-check-input" value="L" type="radio" name="jekel" <?php if($row->jekel=='L') echo "checked='checked'"; ?> id="jekel">
+                                        <label class="form-check-label" for="jekel">
+                                            Laki-Laki
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" value="P" type="radio" name="jekel" <?php if($row->jekel=='P') echo "checked='checked'"; ?> id="jekel1">
+                                        <label class="form-check-label" for="jekel1">
+                                            Perempuan
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 mt-2">
+                                <div class="form-group col-sm-12">
                                     <label class="control-label">Foto</label>
-                                    <div class="col-sm-12">
+                                    <div class="col-12">
                                         <div class="mt-1">
                                             <input type="file" name="foto" onchange="readURL(this);" />
                                         </div>
-                                        <div class="row">
+                                        <div class="row mt-2">
                                             <div class="col-6">
                                                 <div>Foto Sebelum :</div>
                                                 <img src="<?php $data = $row->foto == null ? base_url('uploads/akademik/default_profile/User.png') : base_url('uploads/akademik/pendaftaran_siswa')."/".$row->foto; echo $data ?>"

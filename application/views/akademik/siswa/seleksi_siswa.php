@@ -38,7 +38,8 @@
                 <div class="container-fluid bg-white">
                     <div class="d-flex p-3 justify-content-end">
                         <div style="width: 175px; height: 40px" class="">
-                            <a href="<?php echo base_url('Akademik/siswa_pembagian_kelas') ;?>" class="btn w-100 h-100 p-2 btn-success btn-sm">
+                            <a href="<?php echo base_url('Akademik/siswa_pembagian_kelas') ;?>"
+                                class="btn w-100 h-100 p-2 btn-success btn-sm">
                                 <i class="fa fa- fa-arrow-right">
                                     Pembagian Kelas
                                 </i>
@@ -47,90 +48,112 @@
                     </div>
                     <div class="row px-1 pt-5">
                         <div class="col">
-                            <div class="text-center" style="border-bottom: solid 2px; border-color: #">
-                                <h3 class="">DATA PENDAFTAR</h3>
-                            </div>
-                            <div class="card-body">
-                                <table id="akademik-table" class="table table-bordered table-striped">
-                                    <thead class="bg-info">
-                                        <tr>
-                                            <th>No</th>
-                                            <th>No Reg</th>
-                                            <th>Nama</th>
-                                            <th>Jenjang</th>
-                                            <th>Aksi</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php $id=0; foreach($data_siswa_daftar as $data ): $id++; ?>
+                            <form action="<?php echo base_url('Akademik/terima_all') ?>" method="post">
+                                <div class="d-flex justify-content-between px-2 py-2"
+                                    style="border-bottom: solid 2px; border-color: #">
+                                    <div>
+                                        <h3 class="">DATA SISWA PPDB</h3>
+                                    </div>
+                                    <div>
+                                        <button type="submit" class="btn p-2 btn-success btn-sm" style="width: 150px;">
+                                            <i class="fa fa-arrow-right">
+                                                Simpan
+                                            </i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <table id="akademik-table" class="table table-bordered table-striped">
+                                        <thead class="bg-info">
                                             <tr>
-                                                <td><?php echo $id ?></td>
+                                                <th><input type="checkbox" class="checkAll"></th>
+                                                <th>No Reg</th>
+                                                <th>Nama</th>
+                                                <th>Jenjang</th>
+                                                <th>Aksi</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $id=0; foreach($data_siswa_daftar as $data ): $id++; ?>
+                                            <tr>
+                                                <td><input type="checkbox" class="check"
+                                                        name="id_daftar[<?php echo $data->id_daftar ?>]"></td>
                                                 <td><?php echo $data->no_reg ?></td>
-                                                <td><?php echo $data->nama ?></td>
+                                                <td class="text-truncate" style="max-width: 150px;"><?php echo $data->nama ?></td>
                                                 <td><?php echo tampil_namajenjang_byid($data->id_jenjang) ?></td>
-                                                <td class="d-flex">
-                                                    <form action="<?php echo base_url('Akademik/tolak_siswa') ?>" method="post" class="mr-1">
-                                                        <input type="hidden" value="<?php echo $data->id_daftar ?>" name="id_daftar">
-                                                        <button type="submit" class="btn btn-danger btn-sm">
-                                                            <i class="fa fa-eject"></i>
-                                                        </button>
-                                                    </form>
-                                                    <a href="<?php echo base_url('Akademik/detail_pendaftaran/'.$data->id_daftar) ?>" class="btn btn-info btn-sm">
+                                                <td class="d-flex justify-content-center">
+                                                    <a href="<?php echo base_url('Akademik/tolak_siswa/').$data->id_daftar ?>"
+                                                        class="btn btn-danger btn-sm">
+                                                        <i class="fa fa- fa-eject"></i>
+                                                    </a>
+                                                    <a href="<?php echo base_url('Akademik/detail_pendaftaran/'.$data->id_daftar) ?>"
+                                                        class="btn btn-info btn-sm mx-1">
                                                         <i class="fas fa-eye"></i>
                                                     </a>
-                                                    <form action="<?php echo base_url('Akademik/terima_siswa') ?>" method="post" class="ml-1">
-                                                        <input type="hidden" value="<?php echo $data->id_daftar ?>" name="id_daftar">
-                                                        <button type="submit" class="btn btn-success btn-sm">
-                                                            <i class="fa fa- fa-arrow-right"></i>
-                                                        </button>
-                                                    </form>
+                                                    <a href="<?php echo base_url('Akademik/terima_siswa/').$data->id_daftar ?>"
+                                                        class="btn btn-success btn-sm">
+                                                        <i class="fa fa- fa-arrow-right"></i>
+                                                    </a>
                                                 </td>
                                             </tr>
-                                        <?php endforeach ?>
-                                    </tbody>
-                                </table>
-                            </div>
+                                            <?php endforeach ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </form>
                         </div>
                         <div class="col">
-                            <div class="text-center" style="border-bottom: solid 2px; border-color: #">
-                                <h3 class="">DATA SELEKSI</h3>
-                            </div>
-                            <div class="card-body">
-                                <table id="akademik-table2" class="table table-bordered table-striped">
-                                <thead class="bg-info">
-                                        <tr>
-                                            <th>No</th>
-                                            <th>No Reg</th>
-                                            <th>Nama</th>
-                                            <th>Jenjang</th>
-                                            <th>Aksi</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?php $id=0; foreach($siswa_diterima as $data ): $id++; ?>
+                            <form action="<?php echo base_url('Akademik/kembalikan_all') ?>" method="post">
+                                <div class="d-flex justify-content-between px-2 py-2"
+                                    style="border-bottom: solid 2px; border-color: #">
+                                    <div>
+                                        <h3 class="">DATA TER-SELEKSI</h3>
+                                    </div>
+                                    <div>
+                                        <button class="btn p-2 btn-danger btn-sm" style="width: 150px;">
+                                            <i class="fa fa-arrow-left">
+                                                Kembalikan
+                                            </i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <table id="akademik-table2" class="table table-bordered table-striped">
+                                        <thead class="bg-info">
                                             <tr>
-                                                <td><?php echo $id ?></td>
+                                                <th><input type="checkbox" class="checkAllForDelete"></th>
+                                                <th>No Reg</th>
+                                                <th>Nama</th>
+                                                <th>Jenjang</th>
+                                                <th>Aksi</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $id=0; foreach($siswa_diterima as $data ): $id++; ?>
+                                            <tr>
+                                                <td><input type="checkbox" class="checkDelete"
+                                                        name="id_daftar[<?php echo $data->id_daftar ?>]"></td>
                                                 <td><?php echo $data->no_reg ?></td>
-                                                <td><?php echo $data->nama ?></td>
+                                                <td class="text-truncate" style="max-width: 150px;"><?php echo $data->nama ?></td>
                                                 <td><?php echo tampil_namajenjang_byid($data->id_jenjang) ?></td>
-                                                <td class="d-flex">
-                                                    <a href="<?php echo base_url('Akademik/detail_pendaftaran/'.$data->id_daftar) ?>" class="btn btn-info btn-sm">
+                                                <td class="d-flex justify-content-center">
+                                                    <a href="<?php echo base_url('Akademik/detail_pendaftaran/'.$data->id_daftar) ?>"
+                                                        class="btn btn-info btn-sm">
                                                         <i class="fas fa-eye"></i>
                                                     </a>
-                                                    <form action="<?php echo base_url('Akademik/kembalikan_siswa') ?>" method="post" class="ml-1">
-                                                        <input type="hidden" value="<?php echo $data->id_daftar ?>" name="id_daftar">
-                                                        <button type="submit" class="btn btn-success btn-sm">
-                                                            <i class="fa fa- fa-arrow-left"></i>
-                                                        </button>
-                                                    </form>
+                                                    <a href="<?php echo base_url('Akademik/kembalikan_siswa/').$data->id_daftar ?>"
+                                                        class="btn btn-success btn-sm ml-1">
+                                                        <i class="fa fa- fa-arrow-left"></i>
+                                                    </a>
                                                 </td>
                                             </tr>
-                                        <?php endforeach ?>
-                                    </tbody>
-                                </table>
-                            </div>
+                                            <?php endforeach ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -140,6 +163,22 @@
     </div>
 
     <?php $this->load->view('akademik/style/js')?>
+    <script>
+    $('.checkAll').click(function() {
+        if ($(this).is(':checked')) {
+            $('.check').attr('checked', true);
+        } else {
+            $('.check').attr('checked', false);
+        }
+    });
+    $('.checkAllForDelete').click(function() {
+        if ($(this).is(':checked')) {
+            $('.checkDelete').attr('checked', true);
+        } else {
+            $('.checkDelete').attr('checked', false);
+        }
+    });
+    </script>
 </body>
 
 </html>

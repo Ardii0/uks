@@ -47,7 +47,7 @@
                                     <select name="id_kelas" id="id_kelas" class="form-control select2 select2-info"
                                             data-dropdown-css-class="select2-info">
                                             <option selected="selected">Pilih Kelas</option>
-                                            <?php $id = 0; foreach ($rombel as $data): $id++; ?>
+                                            <?php $id = 0; foreach ($kelas as $data): $id++; ?>
                                                 <option value="<?php echo $data->id_kelas ?>"><?php echo $data->nama_kelas ?></option>
                                             <?php endforeach ?>
                                         </select>
@@ -82,7 +82,7 @@
                                             <th>
                                                 <input type="checkbox" name="sample" class="selectall"/>
                                             </th>
-                                            <th>Rombel</th>
+                                            <th>Kelas</th>
                                             <th>NIS</th>
                                             <th>Nama</th>
                                             <th>Jekel</th>
@@ -100,7 +100,7 @@
                                                         name="id_daftar[<?php echo $data->id_daftar ?>]" id="id_siswa_boss">
                                                 </td>
                                                 <td>
-                                                    <?php echo tampil_rombel_byid($data->id_kelas) ?>
+                                                    <?php echo tampil_kelas_byid($data->id_kelas) ?>
                                                 </td>
                                                 <td>
                                                     <?php echo tampil_nisn_siswa_byid($data->id_daftar) ?>
@@ -151,7 +151,7 @@
                                         <select name="id_kelas2" class="form-control select2 select2-info"
                                             data-dropdown-css-class="select2-info">
                                             <option selected="selected">Pilih Kelas</option>
-                                            <?php $id = 0; foreach ($rombel2 as $data):
+                                            <?php $id = 0; foreach ($kelas2 as $data):
                                                 $id++; ?>
                                                 <option value="<?php echo $data->id_kelas ?>"><?php echo $data->nama_kelas ?></option>
                                             <?php endforeach ?>
@@ -167,8 +167,8 @@
                                     <div class="mx-1">
                                         <select name="id_kelas" class="form-control select2 select2-info"
                                             data-dropdown-css-class="select2-info">
-                                            <option selected="selected">Pilih Rombel</option>
-                                            <?php $id = 0; foreach ($rombel as $data):
+                                            <option selected="selected">Pilih Kelas</option>
+                                            <?php $id = 0; foreach ($kelas as $data):
                                                 $id++; ?>
                                                 <option value="<?php echo $data->id_kelas ?>"><?php echo $data->nama_kelas ?></option>
                                             <?php endforeach ?>

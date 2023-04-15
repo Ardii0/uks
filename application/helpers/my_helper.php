@@ -170,6 +170,17 @@ $result = $ci->db->where('id_level',$id)->get('tabel_level');
     }
   }
 
+  function tampil_id_kelas_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_daftar',$id)->get('tabel_siswa');
+    foreach ($result->result() as $c) {
+    $stmt= $c->id_kelas;
+    return $stmt;
+    }
+  }
+
   function tampil_idta_ByIdSiswa($id)
   {
   $ci =& get_instance();
@@ -291,9 +302,9 @@ $result = $ci->db->where('id_level',$id)->get('tabel_level');
   {
   $ci =& get_instance();
   $ci->load->database();
-  $result = $ci->db->where('id_rombel',$id)->get('tabel_rombel');
+  $result = $ci->db->where('id_kelas',$id)->get('tabel_kelas');
     foreach ($result->result() as $c) {
-    $stmt= $c->nama_rombel;
+    $stmt= $c->nama_kelas;
     return $stmt;
     }
   }
@@ -442,23 +453,53 @@ $result = $ci->db->where('id_level',$id)->get('tabel_level');
     return $stmt;
     }
   }
-  function tampil_saudara_kandung_siswa_byid($id)
+  function tampil_nama_ayah_siswa_byid($id)
   {
   $ci =& get_instance();
   $ci->load->database();
   $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
     foreach ($result->result() as $c) {
-    $stmt= $c->saudara_kandung;
+    $stmt= $c->ayah;
     return $stmt;
     }
   }
-  function tampil_saudara_angkat_siswa_byid($id)
+  function tampil_nama_ibu_siswa_byid($id)
   {
   $ci =& get_instance();
   $ci->load->database();
   $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
     foreach ($result->result() as $c) {
-    $stmt= $c->saudara_angkat;
+    $stmt= $c->ibu;
+    return $stmt;
+    }
+  }
+  function tampil_nik_siswa_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
+    foreach ($result->result() as $c) {
+    $stmt= $c->nik;
+    return $stmt;
+    }
+  }
+  function tampil_kk_siswa_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
+    foreach ($result->result() as $c) {
+    $stmt= $c->kk;
+    return $stmt;
+    }
+  }
+  function tampil_asal_sekolah_siswa_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_daftar',$id)->get('tabel_daftar');
+    foreach ($result->result() as $c) {
+    $stmt= $c->asal_sekolah;
     return $stmt;
     }
   }

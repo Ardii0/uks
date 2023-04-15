@@ -36,27 +36,38 @@
 
             <section class="content">
                 <div class="container-fluid bg-white">
-                    <div class="row mx-2 pt-3 d-flex justify-content-between">
-                        <div class="col-2 col-sm-6 ">
+                    <?php foreach ($filter as $data): ?>
+                    <div class="row pt-3 d-flex justify-content-between">
+                        <div class="col">
                             <div class="form-group d-flex flex-row " style="width: fit-content;">
                                 <div class="mt-2 mx-1">
-                                <?php foreach ($filter as $data): ?>
-                                    <h4>Data Siswa Rombel <?php echo tampil_namarombel_byid($data->id_rombel) ?></h4>
-                                    <?php endforeach ?>
+                                    <h4>Data Siswa Kelas <?php echo tampil_kelas_byid($data->id_kelas) ?></h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group d-flex justify-content-end">
+                                <div class="mt-2 mx-1">
+                                    <a
+                                        href="<?php echo base_url('Akademik/export_siswa_kelas_to_excel/').$data->id_kelas; ?>">
+                                        <button type="button" class="btn btn-success mr-1"><i
+                                                class="fa fa-download pr-2"></i>Export Data Siswa</button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <form action="<?php echo base_url('Akademik/finter_by_rombel_siswa') ?>" method="post">
+                    <?php endforeach ?>
+                    <form action="<?php echo base_url('Akademik/finter_by_kelas_siswa') ?>" method="post">
                         <div class="row mx-2 pt-3 d-flex justify-content-between">
                             <div class="col">
                                 <div class="form-group">
-                                    <select name="id_rombel" class="form-control select2 select2-info"
+                                    <select name="id_kelas" class="form-control select2 select2-info"
                                         data-dropdown-css-class="select2-info" style="width: 100%;">
-                                        <option>Pilih Rombel</option>
-                                        <?php $id = 0;foreach ($rombel as $data): $id++;?>
-                                        <option value="<?php echo $data->id_rombel ?>">
-                                            <?php echo $data->nama_rombel ?>
+                                        <option>Pilih Kelas</option>
+                                        <?php $id = 0;foreach ($kelas as $data): $id++;?>
+                                        <option value="<?php echo $data->id_kelas ?>">
+                                            <?php echo $data->nama_kelas ?>
                                         </option>
                                         <?php endforeach?>
                                     </select>
@@ -73,7 +84,7 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Rombel</th>
+                                            <th>Kelas</th>
                                             <th>Nama</th>
                                             <th>Jenis Kelamin</th>
                                             <th>Tempat Lahir</th>
@@ -86,14 +97,14 @@
                                         <?php $id=0; foreach($siswa as $data ): $id++;?>
                                         <tr>
                                             <td><?php echo $id?></td>
-                                            <td><?php echo tampil_rombel_byid($data->id_rombel)?></td>
+                                            <td><?php echo tampil_kelas_byid($data->id_kelas)?></td>
                                             <td class="text-truncate" style="max-width: 150px;">
-                                                <?php echo tampil_nama_siswa_byid($data->id_daftar)?></td>
-                                            <td><?php echo tampil_jekel_siswa_byid($data->id_daftar)?></td>
-                                            <td><?php echo tampil_tempat_lahir_siswa_byid($data->id_daftar)?></td>
-                                            <td><?php echo tampil_tanggal_lahir_siswa_byid($data->id_daftar)?></td>
+                                                <?php echo tampil_nama_siswa_byid($data->id_siswa)?></td>
+                                            <td><?php echo tampil_jekel_siswa_byid($data->id_siswa)?></td>
+                                            <td><?php echo tampil_tempat_lahir_siswa_byid($data->id_siswa)?></td>
+                                            <td><?php echo tampil_tanggal_lahir_siswa_byid($data->id_siswa)?></td>
                                             <td class="text-truncate" style="max-width: 150px;">
-                                                <?php echo tampil_alamat_siswa_byid($data->id_daftar) ?></td>
+                                                <?php echo tampil_alamat_siswa_byid($data->id_siswa) ?></td>
                                             <td class="text-center">
                                                 <a href="<?php echo base_url('Akademik/detail_siswa/'.$data->id_siswa)?>"
                                                     class="btn btn-warning btn-sm">
