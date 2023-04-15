@@ -20,7 +20,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Edit Rombel Siswa</h1>
+                            <h1>Edit Kelas Siswa</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -30,7 +30,7 @@
                                 <li class="breadcrumb-item active"><a
                                         href="<?php echo base_url('Akademik/siswa_data') ?>">Data Siswa</a>
                                 </li>
-                                <li class="breadcrumb-item active">Edit Rombel Siswa</li>
+                                <li class="breadcrumb-item active">Edit Kelas Siswa</li>
                             </ol>
                         </div>
                     </div>
@@ -41,17 +41,16 @@
                 <div class="container-fluid bg-white p-3">
                     <?php foreach ($siswa as $data): ?>
                     <div class="main-body">
-                        <form action="<?php echo base_url('Akademik/update_siswa_rombel') ?>"
+                        <form action="<?php echo base_url('Akademik/update_siswa_kelas') ?>"
                             enctype="multipart/form-data" method="post">
-                            <select class="form-control form-select px-2 py-1" name="id_rombel"
+                            <select class="form-control form-select px-2 py-1" name="id_kelas"
                                 aria-label="Default select example">
-                                <option selected>Pilih Rombel</option>
-                                <?php $id = 0;foreach ($rombel as $row): $id++;?>
-                                <option value="<?php echo $row->id_rombel ?>"><?php echo $row->nama_rombel ?></option>
+                                <option selected>Pilih Kelas</option>
+                                <?php $id = 0;foreach ($kelas as $row): $id++;?>
+                                <option value="<?php echo $row->id_kelas ?>"><?php echo $row->nama_kelas ?></option>
                                 <?php endforeach;?>
                             </select>
                             <input type="hidden" name="id_siswa" value="<?php echo $data->id_siswa?>">
-                            <input type="hidden" name="id_daftar" value="<?php echo $data->id_daftar?>">
                             <!-- <input type="text" name="id_rombel" value="<?php echo $data->id_rombel?>"> -->
                             <input type="hidden" name="saldo_tabungan" value="<?php echo $data->saldo_tabungan?>">
                             <button type="submit" class="w-25 btn btn-primary mt-2">Simpan</button>

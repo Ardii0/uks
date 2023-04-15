@@ -87,7 +87,7 @@
                 <li class="nav-item">
                   <a href="<?php echo base_url('Akademik/siswa_pendaftaran') ;?>" class="nav-link <?=$submenu == 'siswa_pendaftaran' ? 'active' :'' ?>">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Pendaftaran Siswa</p>
+                    <p>PPDB</p>
                   </a>
                 </li>
                 <li class="nav-item">

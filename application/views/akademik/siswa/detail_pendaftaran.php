@@ -55,9 +55,9 @@
                                             src="<?php $img = $data->foto == null ? base_url('uploads/akademik/default_profile/User.png') : base_url('uploads/akademik/pendaftaran_siswa')."/".$data->foto; echo $img?>"
                                             alt="Foto Siswa Pendaftaran" class="rounded-circle" width="150">
                                         <div class="mt-3">
-                                            <h4><?php echo tampil_nama_siswa_byid($data->id_daftar)?></h4>
+                                            <h4><?php echo $data->nama?></h4>
                                             <p class="text-muted font-size-sm">
-                                                <?php echo tampil_alamat_siswa_byid($data->id_daftar)?></p>
+                                            <?php echo $data->alamat?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -70,36 +70,62 @@
                                                 <h6 class="mb-0">Anak Ke</h6>
                                             </div>
                                             <div class="col-sm-4 text-secondary">
-                                                <?php echo tampil_anak_ke_siswa_byid($data->id_daftar)?>
+                                            <?php echo $data->anak_ke?>
                                             </div>
                                         </div>
                                         <hr>
                                         <div class="row">
                                             <div class="col-sm-8">
-                                                <h6 class="mb-0">Jumlah Saudara (Kandung)</h6>
+                                                <h6 class="mb-0">Nama Ayah</h6>
                                             </div>
                                             <div class="col-sm-4 text-secondary">
-                                                <?php echo tampil_saudara_kandung_siswa_byid($data->id_daftar)?>
+                                            <?php echo $data->ayah?>
                                             </div>
                                         </div>
                                         <hr>
                                         <div class="row">
                                             <div class="col-sm-8">
-                                                <h6 class="mb-0">Jumlah Saudara (Angkat)</h6>
+                                                <h6 class="mb-0">Nama Ibu</h6>
                                             </div>
                                             <div class="col-sm-4 text-secondary">
-                                                <?php echo tampil_saudara_angkat_siswa_byid($data->id_daftar)?>
+                                            <?php echo $data->ibu?>
                                             </div>
                                         </div>
                                         <hr>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                         <div class="col-md-8">
                             <div class="card mb-3">
                                 <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">No.NIK</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                        <?php echo $data->nik?>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">No.KK</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                        <?php echo $data->kk?>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Asal Sekolah</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                        <?php echo $data->asal_sekolah?>
+                                        </div>
+                                    </div>
+                                    <hr>
                                     <div class="row">
                                         <div class="col-sm-3">
                                             <h6 class="mb-0">NISN</h6>
@@ -134,15 +160,6 @@
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <?php echo tampil_agama_siswa_byid($data->id_daftar)?>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0">Kewarganegaraan</h6>
-                                        </div>
-                                        <div class="col-sm-9 text-secondary">
-                                            <?php echo tampil_warga_negara_siswa_byid($data->id_daftar)?>
                                         </div>
                                     </div>
                                     <hr>

@@ -39,7 +39,7 @@
 
             <section class="content">
                 <div class="container-fluid bg-white">
-                    <form action="<?php echo base_url('Akademik/finter_by_jenjang') ?>" method="post">
+                    <!-- <form action="<?php echo base_url('Akademik/finter_by_jenjang') ?>" method="post">
                         <div class="row mx-2 pt-3 d-flex justify-content-between">
                             <div class="col">
                                 <div class="form-group">
@@ -57,16 +57,16 @@
                             <button type="submit" class="btn bg-info ml-2"
                                 style="height: 38px; width: 150px">Tampilkan</button>
                         </div>
-                    </form>
+                    </form> -->
                     <form action="<?php echo base_url('Akademik/masuk_kelas') ?>" method="post">
                         <div class="row mx-2 pt-3 d-flex justify-content-between">
                             <div class="col">
                                 <div class="form-group">
-                                    <select name="id_rombel" class="form-control select2 select2-info"
+                                    <select name="id_kelas" class="form-control select2 select2-info"
                                         data-dropdown-css-class="select2-info" style="width: 100%;">
-                                        <option selected="selected">Pilih Rombel</option>
-                                        <?php $id=0; foreach($rombel as $data ): $id++; ?>
-                                        <option value="<?php echo $data->id_rombel ?>"><?php echo $data->nama_rombel ?>
+                                        <option selected="selected">Pilih Kelas</option>
+                                        <?php $id=0; foreach($kelas as $data ): $id++; ?>
+                                        <option value="<?php echo $data->id_kelas ?>"><?php echo $data->nama_kelas ?>
                                         </option>
                                         <?php endforeach ?>
                                     </select>
@@ -84,7 +84,7 @@
                                     <table id="akademik-table" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Pilih</th>
+                                                <th><input type="checkbox" class="checkAll"></th>
                                                 <th>No Reg</th>
                                                 <th>Tahun Ajaran</th>
                                                 <th>Jenjang</th>
@@ -98,7 +98,7 @@
                                         <tbody>
                                             <?php $id = 0;foreach ($data_siswa_diterima as $data): $id++;?>
                                             <tr>
-                                                <td><input type="checkbox"
+                                                <td><input type="checkbox" class="check"
                                                         name="id_daftar[<?php echo $data->id_daftar ?>]"></td>
                                                 <td><?php echo $data->no_reg ?></td>
                                                 <td><?php echo tampil_tahunangkatan_byid($data->id_angkatan) ?></td>
@@ -125,9 +125,13 @@
     <?php $this->load->view('akademik/style/js')?>
 
     <script>
-    function get_by_jenjang(id) {
-        window.location.href = "<?php echo base_url('Akademik/finter_by_jenjang/') ?>" + id;
-    }
+    $('.checkAll').click(function() {
+        if ($(this).is(':checked')) {
+            $('.check').attr('checked', true);
+        } else {
+            $('.check').attr('checked', false);
+        }
+    });
     </script>
 </body>
 

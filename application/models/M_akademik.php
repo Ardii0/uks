@@ -169,15 +169,23 @@ class M_akademik extends CI_Model{
     }
 
     public function exportSiswa() {
-        $this->db->select(array('nama', 'id_daftar', 'id_rombel'));
+        $this->db->select(array('nama', 'id_siswa', 'id_kelas'));
         $this->db->from('tabel_siswa');
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function filterByRombel($id_rombel){
-        if ($id_rombel != null) {
-          $query = $this->db->query("SELECT * from tabel_siswa where id_rombel = '$id_rombel' ");
+    public function export_siswa_kelas($id_kelas) {
+        $this->db->select(array('nama', 'id_siswa', 'id_kelas'));
+        $this->db->from('tabel_siswa');
+        $this->db->where('id_kelas', $id_kelas);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function filterByKelas($id_kelas){
+        if ($id_kelas != null) {
+          $query = $this->db->query("SELECT * from tabel_siswa where id_kelas = '$id_kelas' ");
         } else {
           $query = $this->db->query("SELECT * from tabel_siswa");
         }
@@ -185,9 +193,9 @@ class M_akademik extends CI_Model{
         return $query->result();
 	}
 
-    public function get_filter_rombel($tabel, $id_rombel)
+    public function get_filter_kelas($tabel, $id_rombel)
 	{
-		$data=$this->db->where('id_rombel', $id_rombel)->get($tabel);
+		$data=$this->db->where('id_kelas', $id_rombel)->get($tabel);
 		return $data;
 	}
 
@@ -246,7 +254,7 @@ class M_akademik extends CI_Model{
 
 // Pendaftaran Siswa
     public function exportList() {
-        $this->db->where('diterima','P')->select(array('no_reg', 'id_angkatan', 'id_jenjang', 'tgl_daftar', 'nisn', 'nama', 'jekel', 'tempat_lahir', 'anak_ke', 'saudara_kandung', 'saudara_angkat', 'tgl_lahir', 'agama', 'alamat', 'telepon', 'warga_negara'));
+        $this->db->where('diterima','P')->select(array('no_reg', 'id_angkatan', 'id_jenjang', 'tgl_daftar', 'asal_sekolah', 'nisn', 'nama', 'nik', 'kk', 'jekel', 'tempat_lahir', 'anak_ke', 'ayah', 'ibu', 'tgl_lahir', 'agama', 'alamat', 'telepon'));
         $this->db->from('tabel_daftar');
         $query = $this->db->get();
         return $query->result();

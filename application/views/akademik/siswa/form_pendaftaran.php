@@ -42,7 +42,7 @@
                     enctype="multipart/form-data" method="post">
                     <div class="container-fluid p-3 bg-white">
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-3">
                                 <div>
                                     <label for="id-daftar" class="mr-3">
                                         Tahun Ajaran
@@ -59,7 +59,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-3">
                                 <div>
                                     <label for="id-daftar" class="mr-3">
                                         Tanggal Daftar
@@ -70,21 +70,26 @@
                                         placeholder="Tahun Ajaran">
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-3">
                                 <div>
                                     <label for="jenjang" class="mr-3">
                                         Jenjang
                                     </label>
                                 </div>
                                 <div>
-                                    <select name="id_jenjang" class="form-control select2 select2-info"
-                                        data-dropdown-css-class="select2-info">
-                                        <option selected>Pilih Jenjang</option>
-                                        <?php $id = 0;foreach ($data_jenjang as $row): $id++;?>
-                                        <option value="<?php echo $row->id_jenjang ?>"><?php echo $row->nama_jenjang ?>
-                                        </option>
-                                        <?php endforeach;?>
-                                    </select>
+                                    <input type="text" value="<?php echo $data_jenjang[0]->nama_jenjang ?>" class="form-control" disabled>
+                                    <input type="text" name="id_jenjang" value="<?php echo $data_jenjang[0]->id_jenjang ?>" class="form-control" hidden>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div>
+                                    <label for="asal_sekolah" class="mr-3">
+                                        Asal Sekolah
+                                    </label>
+                                </div>
+                                <div>
+                                    <input id="asal_sekolah" type="text" name="asal_sekolah" class="form-control"
+                                        placeholder="Asal Sekolah">
                                 </div>
                             </div>
                         </div>
@@ -128,6 +133,27 @@
                                 </div>
                                 <div>
                                     <input id="nisn" type="number" name="nisn" class="form-control" placeholder="NISN">
+                                </div>
+                            </div>
+                            <div class="col-4 mt-2">
+                                <div>
+                                    <label for="nik" class="mr-3">
+                                        No. NIK
+                                    </label>
+                                </div>
+                                <div>
+                                    <input id="nik" type="number" name="nik" class="form-control"
+                                        placeholder="NIK Siswa">
+                                </div>
+                            </div>
+                            <div class="col-4 mt-2">
+                                <div>
+                                    <label for="kk" class="mr-3">
+                                        No. KK
+                                    </label>
+                                </div>
+                                <div>
+                                    <input id="kk" type="number" name="kk" class="form-control" placeholder="No KK">
                                 </div>
                             </div>
                             <div class="col-4 mt-2">
@@ -176,27 +202,43 @@
                             </div>
                             <div class="col-4 mt-2">
                                 <div>
-                                    <label for="saudara-kandung" class="mr-3">
-                                        Saudara Kandung
+                                    <label for="ayah" class="mr-3">
+                                        Nama Ayah
                                     </label>
                                 </div>
                                 <div>
-                                    <input id="saudara-kandung" type="number" name="saudara_kandung"
-                                        class="form-control" placeholder="Saudara Kandung">
+                                    <input id="ayah" type="text" name="ayah" class="form-control"
+                                        placeholder="Nama Ayah">
                                 </div>
                             </div>
                             <div class="col-4 mt-2">
                                 <div>
-                                    <label for="saudara-angkat" class="mr-3">
-                                        Saudara Angkat
+                                    <label for="ibu" class="mr-3">
+                                        Nama Ibu
                                     </label>
                                 </div>
                                 <div>
-                                    <input id="saudara-angkat" type="number" name="saudara_angkat" class="form-control"
-                                        placeholder="Saudara Angkat">
+                                    <input id="ibu" type="text" name="ibu" class="form-control" placeholder="Nama Ibu">
                                 </div>
                             </div>
-                            <div class="col-12 mt-2">
+                            <div class="col-4 mt-2">
+                                <div>
+                                    <label for="jenjang" class="mr-3">
+                                        Gaji Orang Tua
+                                    </label>
+                                </div>
+                                <div>
+                                    <select id="gaji_ortu" name="gaji_ortu" class="form-control">
+                                        <option selected>Pilih</option>
+                                        <option value="kurang dari 1jt">kurang dari 1jt</option>
+                                        <option value="1jt - 2jt">1jt - 2jt</option>
+                                        <option value="2jt - 3jt">2jt - 3jt</option>
+                                        <option value="3jt - 4jt">3jt - 4jt</option>
+                                        <option value="4jt - 5jt">4jt - 5jt</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-4 mt-2">
                                 <div>
                                     <label for="tanggal-lahir" class="mr-3">
                                         Tanggal Lahir
@@ -212,22 +254,22 @@
                                         Jenis Kelamin
                                     </label>
                                 </div>
-                                <div class="d-flex items-center">
+                                <div class="d-flex mt-2">
                                     <div class="form-check mr-3">
                                         <input class="form-check-input" value="L" type="radio" name="jekel" id="jekel">
-                                        <label class="form-check-label" for="flexRadioDefault1">
+                                        <label class="form-check-label" for="jekel">
                                             Laki-Laki
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" value="P" type="radio" name="jekel" id="jekel1">
-                                        <label class="form-check-label" for="flexRadioDefault2">
+                                        <label class="form-check-label" for="jekel1">
                                             Perempuan
                                         </label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-4 mt-2">
+                            <!-- <div class="col-4 mt-2">
                                 <div>
                                     <label class="mr-3">
                                         Warga Negara
@@ -237,20 +279,20 @@
                                     <div class="form-check mr-3">
                                         <input class="form-check-input" name="warga_negara" value="WNI" type="radio"
                                             name="warganegara" id="warganegara">
-                                        <label class="form-check-label" for="flexRadioDefault1">
+                                        <label class="form-check-label" for="warganegara">
                                             WNI
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" name="warga_negara" value="WNA" type="radio"
                                             name="warganegara" id="warganegara1">
-                                        <label class="form-check-label" for="flexRadioDefault2">
+                                        <label class="form-check-label" for="warganegara1">
                                             WNA
                                         </label>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-12 mt-3">
+                            </div> -->
+                            <div class="col-4 mt-2">
                                 <div>
                                     <div>
                                         <label class="mr-3">

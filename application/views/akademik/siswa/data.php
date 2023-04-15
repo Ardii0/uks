@@ -55,16 +55,16 @@
                             </div>
                         </div>
                     </div>
-                    <form action="<?php echo base_url('Akademik/finter_by_rombel_siswa') ?>" method="post">
+                    <form action="<?php echo base_url('Akademik/finter_by_kelas_siswa') ?>" method="post">
                         <div class="row mx-2 pt-3 d-flex justify-content-between">
                             <div class="col">
                                 <div class="form-group">
-                                    <select name="id_rombel" class="form-control select2 select2-info"
+                                    <select name="id_kelas" class="form-control select2 select2-info"
                                         data-dropdown-css-class="select2-info" style="width: 100%;">
-                                        <option>Pilih Rombel</option>
-                                        <?php $id = 0;foreach ($rombel as $data): $id++;?>
-                                        <option value="<?php echo $data->id_rombel ?>">
-                                            <?php echo $data->nama_rombel ?>
+                                        <option>Pilih Kelas</option>
+                                        <?php $id = 0;foreach ($kelas as $data): $id++;?>
+                                        <option value="<?php echo $data->id_kelas ?>">
+                                            <?php echo $data->nama_kelas ?>
                                         </option>
                                         <?php endforeach?>
                                     </select>
@@ -81,7 +81,7 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Rombel</th>
+                                            <th>Kelas</th>
                                             <th>Nama</th>
                                             <th>Jenis Kelamin</th>
                                             <th>Tempat Lahir</th>
@@ -94,14 +94,14 @@
                                         <?php $id=0; foreach($siswa as $data ): $id++;?>
                                         <tr>
                                             <td><?php echo $id?></td>
-                                            <td><?php echo tampil_rombel_byid($data->id_rombel)?></td>
+                                            <td><?php echo tampil_kelas_byid($data->id_kelas)?></td>
                                             <td class="text-truncate" style="max-width: 150px;">
-                                                <?php echo tampil_nama_siswa_byid($data->id_daftar)?></td>
-                                            <td><?php echo tampil_jekel_siswa_byid($data->id_daftar)?></td>
-                                            <td><?php echo tampil_tempat_lahir_siswa_byid($data->id_daftar)?></td>
-                                            <td><?php echo tampil_tanggal_lahir_siswa_byid($data->id_daftar)?></td>
+                                                <?php echo tampil_nama_siswa_byid($data->id_siswa)?></td>
+                                            <td><?php echo tampil_jekel_siswa_byid($data->id_siswa)?></td>
+                                            <td><?php echo tampil_tempat_lahir_siswa_byid($data->id_siswa)?></td>
+                                            <td><?php echo tampil_tanggal_lahir_siswa_byid($data->id_siswa)?></td>
                                             <td class="text-truncate" style="max-width: 150px;">
-                                                <?php echo tampil_alamat_siswa_byid($data->id_daftar) ?></td>
+                                                <?php echo tampil_alamat_siswa_byid($data->id_siswa) ?></td>
                                             <td class="text-center">
                                                 <a href="<?php echo base_url('Akademik/detail_siswa/'.$data->id_siswa)?>"
                                                     class="btn btn-warning btn-sm">

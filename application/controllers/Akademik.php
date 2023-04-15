@@ -575,15 +575,15 @@ class Akademik extends CI_Controller {
     }
     
     public function acak($long)
-	{
-		$char = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
-		$string = '';
-		for ($i=0; $i < $long; $i++) { 			
-			$pos = rand(0, strlen($char)-1);
-			$string .= $char[$pos];
-		}
-		return $string;
-	}
+    {
+        $char = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $string = '';
+        for ($i=0; $i < $long; $i++) { 			
+            $pos = rand(0, strlen($char)-1);
+            $string .= $char[$pos];
+        }
+        return $string;
+    }
 
     public function aksi_tambah_pendaftaran_siswa()
     {
@@ -595,20 +595,23 @@ class Akademik extends CI_Controller {
                 'foto' => null,
                 'no_reg' => 'REG'.'-'.$this->acak(6),
                 'id_angkatan' => $this->input->post('id_angkatan'),
-                'id_jenjang' => $this->input->post('id_jenjang'),
                 'tgl_daftar' => $this->input->post('tgl_daftar'),
-                'nisn' => $this->input->post('nisn'),
+                'id_jenjang' => $this->input->post('id_jenjang'),
+                'asal_sekolah' => $this->input->post('asal_sekolah'),
                 'nama' => $this->input->post('nama'),
-                'jekel' => $this->input->post('jekel'),
+                'agama' => $this->input->post('agama'),
+                'nisn' => $this->input->post('nisn'),
+                'nik' => $this->input->post('nik'),
+                'kk' => $this->input->post('kk'),
+                'telepon' => $this->input->post('telepon'),
+                'alamat' => $this->input->post('alamat'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
                 'anak_ke' => $this->input->post('anak_ke'),
-                'saudara_kandung' => $this->input->post('saudara_kandung'),
-                'saudara_angkat' => $this->input->post('saudara_angkat'),
+                'ayah' => $this->input->post('ayah'),
+                'ibu' => $this->input->post('ibu'),
+                'gaji_ortu' => $this->input->post('gaji_ortu'),
                 'tgl_lahir' => $this->input->post('tgl_lahir'),
-                'agama' => $this->input->post('agama'),
-                'alamat' => $this->input->post('alamat'),
-                'telepon' => $this->input->post('telepon'),
-                'warga_negara' => $this->input->post('warga_negara'),
+                'jekel' => $this->input->post('jekel'),
                 'diterima' => 'P',
             );
             $masuk=$this->m_akademik->tambah_pendaftaran('tabel_daftar', $data);
@@ -623,20 +626,23 @@ class Akademik extends CI_Controller {
                 'foto' => $foto[1],
                 'no_reg' => 'REG'.'-'.$this->acak(6),
                 'id_angkatan' => $this->input->post('id_angkatan'),
-                'id_jenjang' => $this->input->post('id_jenjang'),
                 'tgl_daftar' => $this->input->post('tgl_daftar'),
-                'nisn' => $this->input->post('nisn'),
+                'id_jenjang' => $this->input->post('id_jenjang'),
+                'asal_sekolah' => $this->input->post('asal_sekolah'),
                 'nama' => $this->input->post('nama'),
-                'jekel' => $this->input->post('jekel'),
+                'agama' => $this->input->post('agama'),
+                'nisn' => $this->input->post('nisn'),
+                'nik' => $this->input->post('nik'),
+                'kk' => $this->input->post('kk'),
+                'telepon' => $this->input->post('telepon'),
+                'alamat' => $this->input->post('alamat'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
                 'anak_ke' => $this->input->post('anak_ke'),
-                'saudara_kandung' => $this->input->post('saudara_kandung'),
-                'saudara_angkat' => $this->input->post('saudara_angkat'),
+                'ayah' => $this->input->post('ayah'),
+                'ibu' => $this->input->post('ibu'),
+                'gaji_ortu' => $this->input->post('gaji_ortu'),
                 'tgl_lahir' => $this->input->post('tgl_lahir'),
-                'agama' => $this->input->post('agama'),
-                'alamat' => $this->input->post('alamat'),
-                'telepon' => $this->input->post('telepon'),
-                'warga_negara' => $this->input->post('warga_negara'),
+                'jekel' => $this->input->post('jekel'),
                 'diterima' => 'P',
             );
             $masuk=$this->m_akademik->tambah_pendaftaran('tabel_daftar', $data);
@@ -653,170 +659,58 @@ class Akademik extends CI_Controller {
         }
     }
 
-    public function import_excel(){    
-        // ---------------------------------------------------------------------------------------------------------//     
-               // $date = date('Y-m-d');
-               // $upload_file=$_FILES['upload_file']['name'];
-               // $extension=pathinfo($upload_file,PATHINFO_EXTENSION);
-               // if($extension=='csv')
-               // {
-               // 	$reader= new \PhpOffice\PhpSpreadsheet\Reader\Csv();
-               // } else if($extension=='xls')
-               // {
-               // 	$reader= new \PhpOffice\PhpSpreadsheet\Reader\Xls();
-               // } else
-               // {
-               // 	$reader= new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-               // }
-               // $spreadsheet=$reader->load($_FILES['upload_file']['tmp_name']);
-               // $sheetdata=$spreadsheet->getActiveSheet()->toArray();
-               // $sheetcount=count($sheetdata);
-               // if($sheetcount>1)
-               // {
-               // 	$data=array();
-               // 	for ($i=1; $i < $sheetcount; $i++) { 
-               // 		$nama=$sheetdata[$i][1];
-               // 		$agama=$sheetdata[$i][2];
-               // 		$nisn=$sheetdata[$i][3];
-               // 		$telepon=$sheetdata[$i][4];
-               // 		$alamat=$sheetdata[$i][5];
-               // 		$tempat_lahir=$sheetdata[$i][6];
-               // 		$anak_ke=$sheetdata[$i][7];
-               // 		$saudara_kandung=$sheetdata[$i][8];
-               // 		$saudara_angkat=$sheetdata[$i][9];
-               // 		$tgl_lahir=$sheetdata[$i][10];
-               // 		$jekel=$sheetdata[$i][11];
-               // 		$warga_negara=$sheetdata[$i][12];
-               // 		$data[]=array(
-               // 			'nama'=>$nama,
-               // 			'agama'=>$agama,
-               // 			'telepon'=>$telepon,
-               // 			'alamat'=>$alamat,
-               // 			'tempat_lahir'=>$tempat_lahir,
-               // 			'anak_ke'=>$anak_ke,
-               // 			'saudara_kandung'=>$saudara_kandung,
-               // 			'saudara_angkat'=>$saudara_angkat,
-               // 			'tgl_lahir'=>$tgl_lahir,
-               // 			'jekel'=>$jekel,
-               // 			'warga_negara'=>$warga_negara,
-               //             'no_reg'	=> 'REG'.'-'.$this->acak(6),
-               // 			'foto'	=> null,
-               // 			'id_angkatan'	=> $this->input->post('id_angkatan'),
-               // 			'id_jenjang'	=> $this->input->post('id_jenjang'),
-               // 			'tgl_daftar'	=> $date,
-               // 		);
-               // 	}
-               // 	$inserdata=$this->m_akademik->insert_batch($data);
-               // 	if($inserdata)
-               // 	{
-               // 		redirect(base_url('Akademik/siswa_pendaftaran'));
-               // 	} else {
-               // 		redirect(base_url('Akademik/siswa_pendaftaran'));
-               // 	}
-               // }
-        // ---------------------------------------------------------------------------------------------------------//
-               // $file = $this->request->getFile('fileexcel');
-               // if($file){
-               // 	$excelReader  = $this->load->library('excel');
-               // 	//mengambil lokasi temp file
-               // 	$fileLocation = $file->getTempName();
-               // 	//baca file
-               // 	$objPHPExcel = PHPExcel_IOFactory::load($fileLocation);
-               // 	//ambil sheet active
-               // 	$sheet	= $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
-               // 	//looping untuk mengambil data
-               // 	foreach ($sheet as $idx => $data) {
-               // 		//skip index 1 karena title excel
-               // 		if($idx==1){
-               // 			continue;
-               // 		}
-               // 		$nama = $data['A'];
-               // 		$agama = $data['B'];
-               // 		$nisn = $data['C'];
-               // 		$telepon = $data['D'];
-               // 		$alamat = $data['E'];
-               // 		$tempat_lahir = $data['F'];
-               // 		$anak_ke = $data['G'];
-               // 		$saudara_kandung = $data['H'];
-               // 		$saudara_angkat = $data['I'];
-               // 		$tgl_lahir = $data['J'];
-               // 		$jekel = $data['K'];
-               // 		$warga_negara = $data['L'];
-               // 		// insert data
-               // 		$this->db->insert([
-               //             'nama'	=> $nama,
-               //             'agama'	=> $agama,
-               //             'nisn'	=> $nisn,
-               //             'telepon'	=> $telepon,
-               //             'alamat'	=> $alamat,
-               //             'tempat_lahir'	=> $tempat_lahir,
-               //             'anak_ke'	=> $anak_ke,
-               //             'saudara_kandung'	=> $saudara_kandung,
-               //             'saudara_angkat'	=> $saudara_angkat,
-               //             'tgl_lahir'	=> $tgl_lahir,
-               //             'jekel'	=> $jekel,
-               //             'warga_negara'	=> $warga_negara,
-               //             'no_reg'	=> 'REG'.'-'.$this->acak(6),
-               //             'foto'	=> null,
-               //             'id_angkatan'	=> $this->input->post('id_angkatan'),
-               //             'id_jenjang'	=> $this->input->post('id_jenjang'),
-               //             'tgl_daftar'	=> $date,
-               // 		]);
-               // 	}
-               // }
-               // session()->setFlashdata('message','Berhasil import excel');
-               // return redirect(base_url('Akademik/siswa_pendaftaran'));
-        // ---------------------------------------------------------------------------------------------------------//
-               $this->load->library('excel');
-               if (isset($_FILES["fileExcel"]["name"])) {
-                   $path = $_FILES["fileExcel"]["tmp_name"];
-                   $object = PHPExcel_IOFactory::load($path);
-                   $date = date('Y-m-d');
-                   foreach($object->getWorksheetIterator() as $worksheet)
-                   {
-                       $highestRow = $worksheet->getHighestRow();
-                       $highestColumn = $worksheet->getHighestColumn();	
-                       for($row=2; $row<=$highestRow; $row++)
-                       {
-                           $nama = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
-                           $agama = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
-                           $nisn = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
-                           $telepon = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
-                           $alamat = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
-                           $tempat_lahir = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
-                           $anak_ke = $worksheet->getCellByColumnAndRow(6, $row)->getValue();
-                           $saudara_kandung = $worksheet->getCellByColumnAndRow(7, $row)->getValue();
-                           $saudara_angkat = $worksheet->getCellByColumnAndRow(8, $row)->getValue();
-                           $tgl_lahir = $worksheet->getCellByColumnAndRow(9, $row)->getValue();
-                           $jekel = $worksheet->getCellByColumnAndRow(10, $row)->getValue();
-                           $warga_negara = $worksheet->getCellByColumnAndRow(11, $row)->getValue();
-                           $temp_data[] = array(
-                               'nama'	=> $nama,
-                               'agama'	=> $agama,
-                               'nisn'	=> $nisn,
-                               'telepon'	=> $telepon,
-                               'alamat'	=> $alamat,
-                               'tempat_lahir'	=> $tempat_lahir,
-                               'anak_ke'	=> $anak_ke,
-                               'saudara_kandung'	=> $saudara_kandung,
-                               'saudara_angkat'	=> $saudara_angkat,
-                               'tgl_lahir'	=> $tgl_lahir,
-                               'jekel'	=> $jekel,
-                               'warga_negara'	=> $warga_negara,
-                               'no_reg'	=> 'REG'.'-'.$this->acak(6),
-                               'foto'	=> null,
-                               'id_angkatan'	=> $this->input->post('id_angkatan'),
-                               'id_jenjang'	=> $this->input->post('id_jenjang'),
-                               'tgl_daftar'	=> $date,
-                           ); 	
-                       }
-                   }
-                   $this->load->library('excel');
-                   $this->m_akademik->insert($temp_data);
-                   $this->session->set_flashdata('sukses', 'berhasil');
-                   redirect(base_url('Akademik/siswa_pendaftaran'));
-               }
-           }
+    // public function import_excel()
+    // {
+    //     $this->load->library('excel');
+    //     if (isset($_FILES["fileExcel"]["name"])) {
+    //         $path = $_FILES["fileExcel"]["tmp_name"];
+    //         $object = PHPExcel_IOFactory::load($path);
+    //         $date = date('Y-m-d');
+    //         foreach($object->getWorksheetIterator() as $worksheet)
+    //         {
+    //             $highestRow = $worksheet->getHighestRow();
+    //             $highestColumn = $worksheet->getHighestColumn();	
+    //             for($row=2; $row<=$highestRow; $row++)
+    //             {
+    //                 $nama = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+    //                 $agama = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+    //                 $nisn = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+    //                 $telepon = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+    //                 $alamat = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
+    //                 $tempat_lahir = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
+    //                 $anak_ke = $worksheet->getCellByColumnAndRow(6, $row)->getValue();
+    //                 $saudara_kandung = $worksheet->getCellByColumnAndRow(7, $row)->getValue();
+    //                 $saudara_angkat = $worksheet->getCellByColumnAndRow(8, $row)->getValue();
+    //                 $tgl_lahir = $worksheet->getCellByColumnAndRow(9, $row)->getValue();
+    //                 $jekel = $worksheet->getCellByColumnAndRow(10, $row)->getValue();
+    //                 $warga_negara = $worksheet->getCellByColumnAndRow(11, $row)->getValue();
+    //                 $temp_data[] = array(
+    //                     'nama'	=> $nama,
+    //                     'agama'	=> $agama,
+    //                     'nisn'	=> $nisn,
+    //                     'telepon'	=> $telepon,
+    //                     'alamat'	=> $alamat,
+    //                     'tempat_lahir'	=> $tempat_lahir,
+    //                     'anak_ke'	=> $anak_ke,
+    //                     'saudara_kandung'	=> $saudara_kandung,
+    //                     'saudara_angkat'	=> $saudara_angkat,
+    //                     'tgl_lahir'	=> $tgl_lahir,
+    //                     'jekel'	=> $jekel,
+    //                     'warga_negara'	=> $warga_negara,
+    //                     'no_reg'	=> 'REG'.'-'.$this->acak(6),
+    //                     'foto'	=> null,
+    //                     'id_angkatan'	=> $this->input->post('id_angkatan'),
+    //                     'id_jenjang'	=> $this->input->post('id_jenjang'),
+    //                     'tgl_daftar'	=> $date,
+    //                 ); 	
+    //             }
+    //         }
+    //         $this->load->library('excel');
+    //         $this->m_akademik->insert($temp_data);
+    //         $this->session->set_flashdata('sukses', 'berhasil');
+    //         redirect(base_url('Akademik/siswa_pendaftaran'));
+    //     }
+    // }
 
     public function export_to_excel()
     {
@@ -830,18 +724,20 @@ class Akademik extends CI_Controller {
         $objPHPExcel->getActiveSheet()->SetCellValue('B1', 'Tahun Ajaran');   
         $objPHPExcel->getActiveSheet()->SetCellValue('C1', 'Jenjang');   
         $objPHPExcel->getActiveSheet()->SetCellValue('D1', 'Tanggal Daftar');   
-        $objPHPExcel->getActiveSheet()->SetCellValue('E1', 'NISN');   
-        $objPHPExcel->getActiveSheet()->SetCellValue('F1', 'Nama');   
-        $objPHPExcel->getActiveSheet()->SetCellValue('G1', 'Gender');   
-        $objPHPExcel->getActiveSheet()->SetCellValue('H1', 'Tempat Lahir');   
-        $objPHPExcel->getActiveSheet()->SetCellValue('I1', 'Anak Ke');   
-        $objPHPExcel->getActiveSheet()->SetCellValue('J1', 'Saudara Kandung');   
-        $objPHPExcel->getActiveSheet()->SetCellValue('K1', 'Saudara Angkat');   
-        $objPHPExcel->getActiveSheet()->SetCellValue('L1', 'Tanggal Lahir');   
-        $objPHPExcel->getActiveSheet()->SetCellValue('M1', 'Agama');   
-        $objPHPExcel->getActiveSheet()->SetCellValue('N1', 'Alamat');   
-        $objPHPExcel->getActiveSheet()->SetCellValue('O1', 'Telepon');   
-        $objPHPExcel->getActiveSheet()->SetCellValue('P1', 'Warga Negara');
+        $objPHPExcel->getActiveSheet()->SetCellValue('E1', 'Asal Sekolah');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('F1', 'NISN');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('G1', 'Nama');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('H1', 'No NIK');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('I1', 'No KK');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('J1', 'Gender');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('K1', 'Tempat Lahir');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('L1', 'Anak Ke'); 
+        $objPHPExcel->getActiveSheet()->SetCellValue('M1', 'Nama Ayah');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('N1', 'Nama Ibu');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('O1', 'Tanggal Lahir');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('P1', 'Agama');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('Q1', 'Alamat');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('R1', 'Telepon');   
         // set Row
         $rowCount = 2;
         foreach ($listInfo as $list) {
@@ -849,62 +745,23 @@ class Akademik extends CI_Controller {
             $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, tampil_tahunangkatan_byid($list->id_angkatan));
             $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, tampil_namajenjang_byid($list->id_jenjang));
             $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $list->tgl_daftar);
-            $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, $list->nisn);
-            $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, $list->nama);
-            $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount, $list->jekel);
-            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount, $list->tempat_lahir);
-            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount, $list->anak_ke);
-            $objPHPExcel->getActiveSheet()->SetCellValue('J' . $rowCount, $list->saudara_kandung);
-            $objPHPExcel->getActiveSheet()->SetCellValue('K' . $rowCount, $list->saudara_angkat);
-            $objPHPExcel->getActiveSheet()->SetCellValue('L' . $rowCount, $list->tgl_lahir);
-            $objPHPExcel->getActiveSheet()->SetCellValue('M' . $rowCount, $list->agama);
-            $objPHPExcel->getActiveSheet()->SetCellValue('N' . $rowCount, $list->alamat);
-            $objPHPExcel->getActiveSheet()->SetCellValue('O' . $rowCount, $list->telepon);
-            $objPHPExcel->getActiveSheet()->SetCellValue('P' . $rowCount, $list->warga_negara);
+            $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, $list->asal_sekolah);
+            $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, $list->nisn);
+            $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount, $list->nama);
+            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount, $list->nik);
+            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount, $list->kk);
+            $objPHPExcel->getActiveSheet()->SetCellValue('J' . $rowCount, $list->jekel);
+            $objPHPExcel->getActiveSheet()->SetCellValue('K' . $rowCount, $list->tempat_lahir);
+            $objPHPExcel->getActiveSheet()->SetCellValue('L' . $rowCount, $list->anak_ke);
+            $objPHPExcel->getActiveSheet()->SetCellValue('M' . $rowCount, $list->ayah);
+            $objPHPExcel->getActiveSheet()->SetCellValue('N' . $rowCount, $list->ibu);
+            $objPHPExcel->getActiveSheet()->SetCellValue('O' . $rowCount, $list->tgl_lahir);
+            $objPHPExcel->getActiveSheet()->SetCellValue('P' . $rowCount, $list->agama);
+            $objPHPExcel->getActiveSheet()->SetCellValue('Q' . $rowCount, $list->alamat);
+            $objPHPExcel->getActiveSheet()->SetCellValue('R' . $rowCount, $list->telepon);
             $rowCount++;
         }
-        $filename = "data-pendaftaran-siswa.csv";
-        header('Content-Type: application/vnd.ms-excel'); 
-        header('Content-Disposition: attachment;filename="'.$filename.'"');
-        header('Cache-Control: max-age=0'); 
-        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'CSV');  
-        $objWriter->save('php://output'); 
-    }
-
-    public function export_siswa_to_excel()
-    {
-        // load excel library
-        $this->load->library('excel');
-        $listInfo = $this->m_akademik->exportSiswa();
-        $objPHPExcel = new PHPExcel();
-        $objPHPExcel->setActiveSheetIndex(0);
-        // set Header
-        $objPHPExcel->getActiveSheet()->SetCellValue('A1', 'Rombel');   
-        $objPHPExcel->getActiveSheet()->SetCellValue('B1', 'NISN');   
-        $objPHPExcel->getActiveSheet()->SetCellValue('C1', 'Nama');   
-        $objPHPExcel->getActiveSheet()->SetCellValue('D1', 'Jenis Kelamin');   
-        $objPHPExcel->getActiveSheet()->SetCellValue('E1', 'Tempat Lahir');   
-        $objPHPExcel->getActiveSheet()->SetCellValue('F1', 'Tanggal Lahir');   
-        $objPHPExcel->getActiveSheet()->SetCellValue('G1', 'Alamat');
-        $objPHPExcel->getActiveSheet()->SetCellValue('H1', 'Agama');
-        $objPHPExcel->getActiveSheet()->SetCellValue('I1', 'Telepon');
-        $objPHPExcel->getActiveSheet()->SetCellValue('J1', 'Warga Negara');
-        // set Row
-        $rowCount = 2;
-        foreach ($listInfo as $list) {
-            $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, tampil_rombel_byid($list->id_rombel));
-            $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, tampil_nisn_siswa_byid($list->id_daftar));
-            $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, tampil_nama_siswa_byid($list->id_daftar));
-            $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, tampil_jekel_siswa_byid($list->id_daftar));
-            $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, tampil_tempat_lahir_siswa_byid($list->id_daftar));
-            $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, tampil_tanggal_lahir_siswa_byid($list->id_daftar));
-            $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount, tampil_alamat_siswa_byid($list->id_daftar));
-            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount, tampil_agama_siswa_byid($list->id_daftar));
-            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount, tampil_telepon_siswa_byid($list->id_daftar));
-            $objPHPExcel->getActiveSheet()->SetCellValue('J' . $rowCount, tampil_warga_negara_siswa_byid($list->id_daftar));
-            $rowCount++;
-        }
-        $filename = "data-siswa.csv";
+        $filename = "data-pendaftaran-peserta-didik-baru.csv";
         header('Content-Type: application/vnd.ms-excel'); 
         header('Content-Disposition: attachment;filename="'.$filename.'"');
         header('Cache-Control: max-age=0'); 
@@ -932,25 +789,66 @@ class Akademik extends CI_Controller {
         $foto = $this->upload_img_pendaftaran_siswa('foto');
         if($foto[0]==false)
         {
-            //$this->upload->display_errors();
-            $this->session->set_flashdata('error', 'gagal upload foto.');
-            redirect(base_url('Akademik/edit_pendaftaran/'.$this->input->post('id_daftar')));
+            $data = array
+            (
+                'no_reg' => 'REG'.'-'.$this->acak(6),
+                'id_angkatan' => $this->input->post('id_angkatan'),
+                'tgl_daftar' => $this->input->post('tgl_daftar'),
+                'id_jenjang' => $this->input->post('id_jenjang'),
+                'asal_sekolah' => $this->input->post('asal_sekolah'),
+                'nama' => $this->input->post('nama'),
+                'agama' => $this->input->post('agama'),
+                'nisn' => $this->input->post('nisn'),
+                'nik' => $this->input->post('nik'),
+                'kk' => $this->input->post('kk'),
+                'telepon' => $this->input->post('telepon'),
+                'alamat' => $this->input->post('alamat'),
+                'tempat_lahir' => $this->input->post('tempat_lahir'),
+                'anak_ke' => $this->input->post('anak_ke'),
+                'ayah' => $this->input->post('ayah'),
+                'ibu' => $this->input->post('ibu'),
+                'gaji_ortu' => $this->input->post('gaji_ortu'),
+                'tgl_lahir' => $this->input->post('tgl_lahir'),
+                'jekel' => $this->input->post('jekel'),
+                'diterima' => 'P',
+            );
+            $masuk = $this->m_akademik->ubah_pendaftaran("tabel_daftar", $data, array("id_daftar" => $this->input->post("id_daftar")));
+        if ($masuk)
+        {
+            $this->session->set_flashdata('sukses', 'berhasil');
+            redirect(base_url('Akademik/siswa_pendaftaran'));
         }
         else
         {
-            $data = array (
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Akademik/edit_pendaftaran/'.$this->input->post('id_daftar')));
+        }
+        }
+        else
+        {
+            $data = array
+            (
                 'foto' => $foto[1],
-                "nisn" => $this->input->post("nisn"),
-                "nama" => $this->input->post("nama"),
-                "tempat_lahir" => $this->input->post("tempat_lahir"),
-                "tgl_lahir" => $this->input->post("tgl_lahir"),
-                "agama" => $this->input->post("agama"),
-                "alamat" => $this->input->post("alamat"),
-                "telepon" => $this->input->post("telepon"),
+                'no_reg' => 'REG'.'-'.$this->acak(6),
+                'id_angkatan' => $this->input->post('id_angkatan'),
+                'tgl_daftar' => $this->input->post('tgl_daftar'),
+                'id_jenjang' => $this->input->post('id_jenjang'),
+                'asal_sekolah' => $this->input->post('asal_sekolah'),
+                'nama' => $this->input->post('nama'),
+                'agama' => $this->input->post('agama'),
+                'nisn' => $this->input->post('nisn'),
+                'nik' => $this->input->post('nik'),
+                'kk' => $this->input->post('kk'),
+                'telepon' => $this->input->post('telepon'),
+                'alamat' => $this->input->post('alamat'),
+                'tempat_lahir' => $this->input->post('tempat_lahir'),
                 'anak_ke' => $this->input->post('anak_ke'),
-                'saudara_kandung' => $this->input->post('saudara_kandung'),
-                'saudara_angkat' => $this->input->post('saudara_angkat'),
-                "diterima" => "P",
+                'ayah' => $this->input->post('ayah'),
+                'ibu' => $this->input->post('ibu'),
+                'gaji_ortu' => $this->input->post('gaji_ortu'),
+                'tgl_lahir' => $this->input->post('tgl_lahir'),
+                'jekel' => $this->input->post('jekel'),
+                'diterima' => 'P',
             );
             $masuk = $this->m_akademik->ubah_pendaftaran("tabel_daftar", $data, array("id_daftar" => $this->input->post("id_daftar")));
         if ($masuk)
@@ -996,49 +894,48 @@ class Akademik extends CI_Controller {
         ];
         $this->load->model('M_akademik');
         $data['data_siswa_diterima'] = $this->m_akademik->get_siswa_diterima('data_siswa_diterima');
-        $jenjang['jenjang'] = $this->m_akademik->get_jenjang('jenjang');
-        $rombel['rombel'] = $this->m_akademik->get_rombel('rombel');
-        $this->load->view('akademik/siswa/pembagian_kelas', $data + $jenjang + $rombel);
+        $kelas['kelas'] = $this->m_akademik->get('tabel_kelas');
+        $this->load->view('akademik/siswa/pembagian_kelas', $data + $kelas);
     }
 
-    public function finter_by_jenjang()
-    {
-        $data = [
-            'judul' => 'akademik',
-            'page' => 'akademik',
-            'menu' => 'siswa',
-            'submenu'=>'pembagian_kelas',
-            'menu_submenu_admin'=>'siswa',
-            'menu_admin' => 'akademik',
-            'submenu_admin'=>'pembagian_kelas',
-        ];
-        $nama_jenjang = $this->input->post('nama_jenjang');
-        $nilaifilter = $this->input->post('nilaifilter');
+    // public function finter_by_jenjang()
+    // {
+    //     $data = [
+    //         'judul' => 'akademik',
+    //         'page' => 'akademik',
+    //         'menu' => 'siswa',
+    //         'submenu'=>'pembagian_kelas',
+    //         'menu_submenu_admin'=>'siswa',
+    //         'menu_admin' => 'akademik',
+    //         'submenu_admin'=>'pembagian_kelas',
+    //     ];
+    //     $nama_jenjang = $this->input->post('nama_jenjang');
+    //     $nilaifilter = $this->input->post('nilaifilter');
         
-        if($nilaifilter = 1) {
-            $jenjang['jenjang'] = $this->m_akademik->get_jenjang('jenjang');
-            $rombel['rombel'] = $this->m_akademik->get_rombel('rombel');
-            $data['data_siswa_diterima'] = $this->m_akademik->filterByJenjang($nama_jenjang);
-            $data['filter']=$this->m_akademik->get_filter('tabel_jenjang', $nama_jenjang)->result();
+    //     if($nilaifilter = 1) {
+    //         $jenjang['jenjang'] = $this->m_akademik->get_jenjang('jenjang');
+    //         $rombel['rombel'] = $this->m_akademik->get_rombel('rombel');
+    //         $data['data_siswa_diterima'] = $this->m_akademik->filterByJenjang($nama_jenjang);
+    //         $data['filter']=$this->m_akademik->get_filter('tabel_jenjang', $nama_jenjang)->result();
             
-            $this->load->view('akademik/siswa/filter/filter_by_jenjang', $data + $jenjang + $rombel);
-        }
-    }
+    //         $this->load->view('akademik/siswa/filter/filter_by_jenjang', $data + $jenjang + $rombel);
+    //     }
+    // }
 
     public function masuk_kelas()
     {
-        $id_rombel = $this->input->post('id_rombel');
+        $id_kelas = $this->input->post('id_kelas');
         $id_daftar = $this->input->post('id_daftar');
 
         foreach( $id_daftar as $key => $value){
             $this->db->insert('tabel_siswa', array(
-                'id_rombel' => $id_rombel,
-                'id_daftar' => $key,
+                'id_kelas' => $id_kelas,
+                'id_siswa' => $key,
                 'nama' => tampil_nama_siswa_byid($key)
             ));
             $this->m_akademik->ubah_pendaftaran('tabel_siswa', array( 
                 'id_siswa' => $key, 
-                'id_rombel' => $id_rombel 
+                'id_kelas' => $id_kelas 
             ), array( 
                 'id_siswa' => $key 
             )); 
@@ -1072,14 +969,14 @@ class Akademik extends CI_Controller {
         $this->load->view('akademik/siswa/seleksi_siswa', $siswa_daftar + $siswa_diterima+$data);
     }
 
-    public function terima_siswa()
+    public function terima_siswa($id_daftar)
     {
         $approve = array
         (
             "diterima" => "S",
         );
 
-        $approve_siswa=$this->m_akademik->ubah_seleksi('tabel_daftar', $approve, array('id_daftar'=>$this->input->post('id_daftar')));
+        $approve_siswa=$this->m_akademik->ubah_seleksi('tabel_daftar', $approve, array('id_daftar'=>$id_daftar));
         if($approve_siswa)
         {
             $this->session->set_flashdata('sukses', 'berhasil');
@@ -1092,14 +989,14 @@ class Akademik extends CI_Controller {
         }
     }
 
-    public function tolak_siswa()
+    public function tolak_siswa($id_daftar)
     {
         $approve = array
         (
             "diterima" => "R",
         );
 
-        $approve_siswa=$this->m_akademik->ubah_seleksi('tabel_daftar', $approve, array('id_daftar'=>$this->input->post('id_daftar')));
+        $approve_siswa=$this->m_akademik->ubah_seleksi('tabel_daftar', $approve, array('id_daftar'=>$id_daftar));
         if($approve_siswa)
         {
             $this->session->set_flashdata('sukses', 'berhasil');
@@ -1112,14 +1009,14 @@ class Akademik extends CI_Controller {
         }
     }
 
-    public function kembalikan_siswa()
+    public function kembalikan_siswa($id_daftar)
     {
         $data = array
         (
             "diterima" => "P",
         );
 
-        $data_siswa=$this->m_akademik->ubah_seleksi('tabel_daftar', $data, array('id_daftar'=>$this->input->post('id_daftar')));
+        $data_siswa=$this->m_akademik->ubah_seleksi('tabel_daftar', $data, array('id_daftar'=>$id_daftar));
         if($data_siswa)
         {
             $this->session->set_flashdata('sukses', 'berhasil');
@@ -1131,7 +1028,37 @@ class Akademik extends CI_Controller {
             redirect(base_url('Akademik/siswa_seleksi_siswa'));
         }
     }
- 
+
+    public function terima_all()
+    {
+        $id_daftar = $this->input->post('id_daftar');
+
+        foreach ($id_daftar as $key => $value) { 
+            $this->m_akademik->ubah_pendaftaran('tabel_daftar', array( 
+                'id_daftar' => $key, 
+                'diterima' => "S", 
+            ), array( 
+                'id_daftar' => $key 
+            )); 
+        }
+        redirect(base_url('Akademik/siswa_seleksi_siswa'));
+    }
+
+    public function kembalikan_all()
+    {
+        $id_daftar = $this->input->post('id_daftar');
+
+        foreach ($id_daftar as $key => $value) { 
+            $this->m_akademik->ubah_pendaftaran('tabel_daftar', array( 
+                'id_daftar' => $key, 
+                'diterima' => "P", 
+            ), array( 
+                'id_daftar' => $key 
+            )); 
+        }
+        redirect(base_url('Akademik/siswa_seleksi_siswa'));
+    }
+
  // Data Siswa 
     public function siswa_data()
     {
@@ -1145,12 +1072,12 @@ class Akademik extends CI_Controller {
             'submenu_admin'=>'data_siswa',
         ];
         $this->load->model('M_akademik');
-        $data['rombel'] = $this->m_akademik->get_rombel('rombel');
+        $data['kelas'] = $this->m_akademik->get('tabel_kelas');
         $data['siswa'] = $this->m_akademik->get_siswa('siswa');
         $this->load->view('akademik/siswa/data', $data);
     }
 
-    public function finter_by_rombel_siswa()
+    public function finter_by_kelas_siswa()
     {
         $data = [
             'judul' => 'akademik',
@@ -1161,16 +1088,112 @@ class Akademik extends CI_Controller {
             'menu_admin' => 'akademik',
             'submenu_admin'=>'data_siswa',
         ];
-        $id_rombel = $this->input->post('id_rombel');
+        $id_kelas = $this->input->post('id_kelas');
         $nilaifilter = $this->input->post('nilaifilter');
 
         if($nilaifilter = 1) {
-            $data['rombel'] = $this->m_akademik->get_rombel('rombel');
-            $data['siswa'] = $this->m_akademik->filterByRombel($id_rombel);
-            $data['filter']=$this->m_akademik->get_filter_rombel('tabel_rombel', $id_rombel)->result();
+            $data['kelas'] = $this->m_akademik->get('tabel_kelas');
+            $data['siswa'] = $this->m_akademik->filterByKelas($id_kelas);
+            $data['filter']=$this->m_akademik->get_filter_kelas('tabel_kelas', $id_kelas)->result();
             
-            $this->load->view('akademik/siswa/filter/filter_by_rombel_siswa', $data);
+            $this->load->view('akademik/siswa/filter/filter_by_kelas_siswa', $data);
         }
+    }
+
+    public function export_siswa_to_excel()
+    {
+        // load excel library
+        $this->load->library('excel');
+        $listInfo = $this->m_akademik->exportSiswa();
+        $objPHPExcel = new PHPExcel();
+        $objPHPExcel->setActiveSheetIndex(0);
+        // set Header
+        $objPHPExcel->getActiveSheet()->SetCellValue('A1', 'Kelas'); 
+        $objPHPExcel->getActiveSheet()->SetCellValue('B1', 'No NIK');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('C1', 'No KK');  
+        $objPHPExcel->getActiveSheet()->SetCellValue('D1', 'NISN');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('E1', 'Nama');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('F1', 'Jenis Kelamin');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('G1', 'Tempat Lahir');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('H1', 'Tanggal Lahir');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('I1', 'Alamat');
+        $objPHPExcel->getActiveSheet()->SetCellValue('J1', 'Agama');
+        $objPHPExcel->getActiveSheet()->SetCellValue('K1', 'Telepon');
+        $objPHPExcel->getActiveSheet()->SetCellValue('L1', 'Nama Ayah');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('M1', 'Nama Ibu');   
+
+        // set Row
+        $rowCount = 2;
+        foreach ($listInfo as $list) {
+            $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, tampil_kelas_byid($list->id_kelas));
+            $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, tampil_nik_siswa_byid($list->id_siswa));
+            $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, tampil_kk_siswa_byid($list->id_siswa));
+            $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, tampil_nisn_siswa_byid($list->id_siswa));
+            $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, tampil_nama_siswa_byid($list->id_siswa));
+            $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, tampil_jekel_siswa_byid($list->id_siswa));
+            $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount, tampil_tempat_lahir_siswa_byid($list->id_siswa));
+            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount, tampil_tanggal_lahir_siswa_byid($list->id_siswa));
+            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount, tampil_alamat_siswa_byid($list->id_siswa));
+            $objPHPExcel->getActiveSheet()->SetCellValue('J' . $rowCount, tampil_agama_siswa_byid($list->id_siswa));
+            $objPHPExcel->getActiveSheet()->SetCellValue('K' . $rowCount, tampil_telepon_siswa_byid($list->id_siswa));
+            $objPHPExcel->getActiveSheet()->SetCellValue('L' . $rowCount, tampil_nama_ayah_siswa_byid($list->id_siswa));
+            $objPHPExcel->getActiveSheet()->SetCellValue('M' . $rowCount, tampil_nama_ibu_siswa_byid($list->id_siswa));
+            $rowCount++;
+        }
+        $filename = "data-siswa.csv";
+        header('Content-Type: application/vnd.ms-excel'); 
+        header('Content-Disposition: attachment;filename="'.$filename.'"');
+        header('Cache-Control: max-age=0'); 
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'CSV');  
+        $objWriter->save('php://output'); 
+    }
+
+    public function export_siswa_kelas_to_excel($kelas)
+    {
+        // load excel library
+        $this->load->library('excel');
+        $listInfo = $this->m_akademik->export_siswa_kelas($kelas);
+        $objPHPExcel = new PHPExcel();
+        $objPHPExcel->setActiveSheetIndex(0);
+        // set Header
+        $objPHPExcel->getActiveSheet()->SetCellValue('A1', 'Kelas'); 
+        $objPHPExcel->getActiveSheet()->SetCellValue('B1', 'No NIK');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('C1', 'No KK');  
+        $objPHPExcel->getActiveSheet()->SetCellValue('D1', 'NISN');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('E1', 'Nama');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('F1', 'Jenis Kelamin');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('G1', 'Tempat Lahir');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('H1', 'Tanggal Lahir');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('I1', 'Alamat');
+        $objPHPExcel->getActiveSheet()->SetCellValue('J1', 'Agama');
+        $objPHPExcel->getActiveSheet()->SetCellValue('K1', 'Telepon');
+        $objPHPExcel->getActiveSheet()->SetCellValue('L1', 'Nama Ayah');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('M1', 'Nama Ibu');   
+
+        // set Row
+        $rowCount = 2;
+        foreach ($listInfo as $list) {
+            $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, tampil_kelas_byid($list->id_kelas));
+            $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, tampil_nik_siswa_byid($list->id_siswa));
+            $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, tampil_kk_siswa_byid($list->id_siswa));
+            $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, tampil_nisn_siswa_byid($list->id_siswa));
+            $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, tampil_nama_siswa_byid($list->id_siswa));
+            $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, tampil_jekel_siswa_byid($list->id_siswa));
+            $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount, tampil_tempat_lahir_siswa_byid($list->id_siswa));
+            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount, tampil_tanggal_lahir_siswa_byid($list->id_siswa));
+            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount, tampil_alamat_siswa_byid($list->id_siswa));
+            $objPHPExcel->getActiveSheet()->SetCellValue('J' . $rowCount, tampil_agama_siswa_byid($list->id_siswa));
+            $objPHPExcel->getActiveSheet()->SetCellValue('K' . $rowCount, tampil_telepon_siswa_byid($list->id_siswa));
+            $objPHPExcel->getActiveSheet()->SetCellValue('L' . $rowCount, tampil_nama_ayah_siswa_byid($list->id_siswa));
+            $objPHPExcel->getActiveSheet()->SetCellValue('M' . $rowCount, tampil_nama_ibu_siswa_byid($list->id_siswa));
+            $rowCount++;
+        }
+        $filename = "data-siswa-".tampil_kelas_byid($list->id_kelas).".csv";
+        header('Content-Type: application/vnd.ms-excel'); 
+        header('Content-Disposition: attachment;filename="'.$filename.'"');
+        header('Cache-Control: max-age=0'); 
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'CSV');  
+        $objWriter->save('php://output'); 
     }
     
     public function hapus_siswa($id_siswa)
@@ -1194,7 +1217,7 @@ class Akademik extends CI_Controller {
         $this->load->view('akademik/siswa/detail_siswa', $data);
     }
 
-    public function edit_siswa_rombel($id_siswa)
+    public function edit_siswa_kelas($id_siswa)
     {
         $data = [
             'judul' => 'akademik',
@@ -1206,15 +1229,15 @@ class Akademik extends CI_Controller {
             'submenu_admin'=>'data_siswa',
         ];
         $data['siswa']=$this->m_akademik->get_siswaById('tabel_siswa', $id_siswa)->result();
-        $data['rombel'] = $this->m_akademik->get_rombel('rombel');
+        $data['kelas'] = $this->m_akademik->get('tabel_kelas');
         $this->load->view('akademik/siswa/edit_siswa_rombel', $data);
     }
 
-    public function update_siswa_rombel()
+    public function update_siswa_kelas()
     {
         $data = array (
-            "id_daftar" => $this->input->post("id_daftar"),
-            "id_rombel" => $this->input->post("id_rombel"),
+            "id_siswa" => $this->input->post("id_siswa"),
+            "id_kelas" => $this->input->post("id_kelas"),
             "saldo_tabungan" => $this->input->post("saldo_tabungan"),
         );
         $masuk = $this->m_akademik->ubah_siswa("tabel_siswa", $data, array("id_siswa" => $this->input->post("id_siswa")));
@@ -1251,25 +1274,66 @@ class Akademik extends CI_Controller {
         $foto = $this->upload_img_pendaftaran_siswa('foto');
         if($foto[0]==false)
         {
-            //$this->upload->display_errors();
-            $this->session->set_flashdata('error', 'gagal upload foto.');
-            redirect(base_url('Akademik/edit_pendaftaran/'.$this->input->post('id_daftar')));
+            $data = array
+            (
+                'no_reg' => 'REG'.'-'.$this->acak(6),
+                'id_angkatan' => $this->input->post('id_angkatan'),
+                'tgl_daftar' => $this->input->post('tgl_daftar'),
+                'id_jenjang' => $this->input->post('id_jenjang'),
+                'asal_sekolah' => $this->input->post('asal_sekolah'),
+                'nama' => $this->input->post('nama'),
+                'agama' => $this->input->post('agama'),
+                'nisn' => $this->input->post('nisn'),
+                'nik' => $this->input->post('nik'),
+                'kk' => $this->input->post('kk'),
+                'telepon' => $this->input->post('telepon'),
+                'alamat' => $this->input->post('alamat'),
+                'tempat_lahir' => $this->input->post('tempat_lahir'),
+                'anak_ke' => $this->input->post('anak_ke'),
+                'ayah' => $this->input->post('ayah'),
+                'ibu' => $this->input->post('ibu'),
+                'gaji_ortu' => $this->input->post('gaji_ortu'),
+                'tgl_lahir' => $this->input->post('tgl_lahir'),
+                'jekel' => $this->input->post('jekel'),
+                'diterima' => 'P',
+            );
+            $masuk = $this->m_akademik->ubah_pendaftaran("tabel_daftar", $data, array("id_daftar" => $this->input->post("id_daftar")));
+            if ($masuk)
+            {
+                $this->session->set_flashdata('sukses', 'berhasil');
+                redirect(base_url('Akademik/siswa_data'));
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'gagal..');
+                redirect(base_url('Akademik/edit_siswa/'.$this->input->post('id_daftar')));
+            }
         }
         else
         {
-            $data = array (
+            $data = array
+            (
                 'foto' => $foto[1],
-                "nisn" => $this->input->post("nisn"),
-                "nama" => $this->input->post("nama"),
-                "tempat_lahir" => $this->input->post("tempat_lahir"),
-                "tgl_lahir" => $this->input->post("tgl_lahir"),
-                "agama" => $this->input->post("agama"),
-                "alamat" => $this->input->post("alamat"),
-                "telepon" => $this->input->post("telepon"),
+                'no_reg' => 'REG'.'-'.$this->acak(6),
+                'id_angkatan' => $this->input->post('id_angkatan'),
+                'tgl_daftar' => $this->input->post('tgl_daftar'),
+                'id_jenjang' => $this->input->post('id_jenjang'),
+                'asal_sekolah' => $this->input->post('asal_sekolah'),
+                'nama' => $this->input->post('nama'),
+                'agama' => $this->input->post('agama'),
+                'nisn' => $this->input->post('nisn'),
+                'nik' => $this->input->post('nik'),
+                'kk' => $this->input->post('kk'),
+                'telepon' => $this->input->post('telepon'),
+                'alamat' => $this->input->post('alamat'),
+                'tempat_lahir' => $this->input->post('tempat_lahir'),
                 'anak_ke' => $this->input->post('anak_ke'),
-                'saudara_kandung' => $this->input->post('saudara_kandung'),
-                'saudara_angkat' => $this->input->post('saudara_angkat'),
-                "diterima" => "Y",
+                'ayah' => $this->input->post('ayah'),
+                'ibu' => $this->input->post('ibu'),
+                'gaji_ortu' => $this->input->post('gaji_ortu'),
+                'tgl_lahir' => $this->input->post('tgl_lahir'),
+                'jekel' => $this->input->post('jekel'),
+                'diterima' => 'P',
             );
             $masuk = $this->m_akademik->ubah_pendaftaran("tabel_daftar", $data, array("id_daftar" => $this->input->post("id_daftar")));
             if ($masuk)
@@ -1284,7 +1348,6 @@ class Akademik extends CI_Controller {
             }
         }
     }
-
  //Mutasi
     public function siswa_mutasi()
     {
