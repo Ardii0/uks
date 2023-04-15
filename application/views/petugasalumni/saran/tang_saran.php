@@ -51,22 +51,23 @@
                                         <?php endforeach;?>
                                     </div>
                                     <div class="mt-3 d-flex justify-content-between">
-                                        <div>
-                                        <a href="<?php echo base_url('PetugasAlumni/admin_saran') ?>">
-                                    <button class="btn btn-info"><i class="fa fa-arrow-left"></i>
-                                        <b>Kembali</b></button>
-                                </a>
-                                        </div>
+                                    <button class="btn btn-info" onclick=kembali()>
+                                        <i class="fa fa-arrow-left"></i>
+                                        <b>Kembali</b>
+                                    </button>
                                         <div>
                                             <input type="text" value="<?php echo $data->id_saran ?>" name="id_saran"
                                                 class="form-control" hidden>
                                             <input type="text" value="<?php echo $dt->id_level ?>" name="id_user"
                                                 class="form-control" hidden>
-                                            <button type="submit" class="btn bg-blue"
+                                            <button type="submit" class="btn btn-primary"
                                                 style="width: 150px; margin-right: 12px;">Simpan</button>
                                         </div>
                                     </div>
                                 </form>
+                                <div class="px-3">
+                                    
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -77,12 +78,17 @@
 </body>
 <?php $this->load->view('PetugasAlumni/style/js')?>
 <script>
-    $("form").submit( function(e) {
-            var totalcontentlength = CKEDITOR.instances['ckeditor'].getData().replace(/<[^>]*>/gi, '').length;
-            if( !totalcontentlength ) {
-                alert( 'Isi Terlebih Dahulu!' );
-                e.preventDefault();
-            }
-        });
+$("form").submit(function(e) {
+    var totalcontentlength = CKEDITOR.instances['ckeditor'].getData().replace(/<[^>]*>/gi, '').length;
+    if (!totalcontentlength) {
+        alert('Isi Terlebih Dahulu!');
+        e.preventDefault();
+    }
+});
+
+function kembali() {
+    window.history.go(-1);
+}
 </script>
+
 </html>
