@@ -50,6 +50,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="control-label">Kuota</label>
+                                    <div class="">
+                                        <input type="text" name="kuota" class="form-control"
+                                            placeholder="Masukan Kuota" value="<?php echo $data->kuota ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="control-label">Keterangan</label>
                                     <div class="">
                                         <textarea class="form-control" name="keterangan"
@@ -61,12 +68,25 @@
                                 <div class="form-group">
                                     <label class="control-label">Tingkat</label>
                                     <div class="">
-                                        <select class="form-control form-select px-2 py-1" name="id_tingkat" aria-label="tingkat">
-                                            <option name="id_tingkat" value="<?php echo $data->id_tingkat?>" style="display: none;">
+                                        <select class="form-control form-select px-2 py-1 select2" name="id_tingkat" aria-label="tingkat">
+                                            <option name="id_tingkat" value="<?php echo $data->id_tingkat?>">
                                                 <?php echo tampil_namatingkat_ById($data->id_tingkat)?>
                                             </option>
-                                            <?php $id = 0;foreach ($tingkat as $tingkat): $id++;?>
+                                            <?php foreach ($tingkat as $tingkat): ?>
                                                 <option name="id_tingkat" value="<?php echo $tingkat->id_tingkat ?>"><?php echo $tingkat->nama_tingkat ?></option>
+                                            <?php endforeach;?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Kode Guru</label>
+                                    <div class="">
+                                        <select name="kode_guru" class="form-control form-select px-2 py-1 select2" aria-label="guru">
+                                            <option name="kode_guru" value="<?php echo $data->kode_guru?>">
+                                                <?php echo tampil_guruById($data->kode_guru)?>
+                                            </option>
+                                            <?php foreach($guru as $guru): ?>
+                                                <option value="<?php echo $guru->kode_guru ?>"><?php echo $guru->nama_guru ?></option>
                                             <?php endforeach;?>
                                         </select>
                                     </div>
