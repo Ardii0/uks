@@ -107,8 +107,7 @@
                                 <div class="form-group">
                                     <label class="control-label">Tanggal SK</label>
                                     <div class="">
-                                        <input type="date" name="tgl_sk" class="form-control"
-                                            placeholder="Masukan Tanggal SK">
+                                        <input type="date" name="tgl_sk" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -120,7 +119,7 @@
                                 <div class="form-group">
                                     <label class="control-label">Jabatan</label>
                                     <div class="">
-                                        <select name="" class="form-control select2">
+                                        <select name="jabatan" class="form-control select2">
                                             <option>Pilih Jabatan</option>
                                             <option value="TU">TU</option>
                                             <option value="Kesiswaan">Kesiswaan</option>

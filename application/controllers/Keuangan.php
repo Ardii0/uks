@@ -588,15 +588,15 @@ class Keuangan extends CI_Controller
         $this->load->view('keuangan/pembayaran/pembayaran', $data);
     }
 
-    public function get_rombelByIdKelas(){
-        $id_kelas = $this->input->post('id_kelas',TRUE);
-        $data = $this->m_keuangan->get_rombelByIdKelas($id_kelas)->result();
+    public function get_kelasByIdTingkat(){
+        $id = $this->input->post('id_tingkat',TRUE);
+        $data = $this->m_keuangan->get_kelasByIdTingkat($id)->result();
         echo json_encode($data);
     }
 
-    public function get_siswaByIdRombel(){
-        $id_rombel = $this->input->post('id_rombel',TRUE);
-        $data = $this->m_keuangan->get_siswaByIdRombel($id_rombel)->result();
+    public function get_siswaByIdKelas(){
+        $id = $this->input->post('id_tingkat',TRUE);
+        $data = $this->m_keuangan->get_siswaByIdKelas($id)->result();
         echo json_encode($data);
     }
     
@@ -612,8 +612,8 @@ class Keuangan extends CI_Controller
             'submenu_admin'=> 'pembayaran'
         ];
         $this->load->model('m_akademik');
-        $data['kelas'] = $this->m_akademik->get('tabel_tingkat');
-        $data['rombel'] = $this->m_akademik->get('tabel_kelas');
+        $data['tingkat'] = $this->m_akademik->get('tabel_tingkat');
+        $data['kelas'] = $this->m_akademik->get('tabel_kelas');
         $data['siswa'] = $this->m_akademik->get_siswa();
         $this->load->view('keuangan/pembayaran/tambah_pembayaran', $data);
     }

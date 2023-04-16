@@ -193,8 +193,8 @@ class M_keuangan extends CI_Model{
         return $data;
     }
 
-    function get_rombelByIdKelas($id_kelas){
-        $query = $this->db->get_where('tabel_rombel', array('id_kelas' => $id_kelas));
+    function get_kelasByIdTingkat($id){
+        $query = $this->db->get_where('tabel_kelas', array('id_tingkat' => $id));
         return $query;
     }
 
@@ -204,12 +204,12 @@ class M_keuangan extends CI_Model{
         return $data;
     }
 
-    function get_siswaByIdRombel($id_rombel){
+    function get_siswaByIdKelas($id){
         // $this->db->select('tabel_daftar.nama, tabel_siswa.*');
         // $this->db->from('tabel_siswa');
         // $this->db->join('tabel_daftar', 'tabel_daftar.id_daftar = tabel_siswa.id_daftar');
         // $this->db->where('tabel_siswa.id_rombel', $id_rombel);
-        $query = $this->db->get_where('tabel_siswa', array('id_rombel' => $id_rombel));
+        $query = $this->db->get_where('tabel_siswa', array('id_kelas' => $id));
         // $db = $this->db->get();
         return $query;
         // return $db;

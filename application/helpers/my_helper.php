@@ -221,17 +221,6 @@ $result = $ci->db->where('id_level',$id)->get('tabel_level');
     }
   }
 
-  function tampil_ket_mapelById($id)
-  {
-  $ci =& get_instance();
-  $ci->load->database();
-  $result = $ci->db->where('id_mapel',$id)->get('tabel_mapel');
-    foreach ($result->result() as $c) {
-    $stmt= $c->keterangan;
-    return $stmt;
-    }
-  }
-
   function tampil_ket_kelasById($id)
   {
   $ci =& get_instance();
@@ -243,6 +232,17 @@ $result = $ci->db->where('id_level',$id)->get('tabel_level');
     }
   }
 
+  function tampil_jenismapelById($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_jenismapel',$id)->get('tabel_jenismapel');
+    foreach ($result->result() as $c) {
+    $stmt= $c->nama_jenismapel;
+    return $stmt;
+    }
+  }
+
   function tampil_kurikulum_jenismapelById($id)
   {
   $ci =& get_instance();
@@ -250,17 +250,6 @@ $result = $ci->db->where('id_level',$id)->get('tabel_level');
   $result = $ci->db->where('id_jenismapel',$id)->get('tabel_jenismapel');
     foreach ($result->result() as $c) {
     $stmt= $c->kurikulum;
-    return $stmt;
-    }
-  }
-
-  function tampil_ket_jenismapelById($id)
-  {
-  $ci =& get_instance();
-  $ci->load->database();
-  $result = $ci->db->where('id_jenismapel',$id)->get('tabel_jenismapel');
-    foreach ($result->result() as $c) {
-    $stmt= $c->keterangan;
     return $stmt;
     }
   }

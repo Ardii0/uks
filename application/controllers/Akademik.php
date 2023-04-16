@@ -440,8 +440,13 @@ class Akademik extends CI_Controller {
             'kode_guru' => $this->input->post('kode_guru'),
             'nama_guru' => $this->input->post('nama_guru'),
             'nip' => $this->input->post('nip'),
+            'nik' => $this->input->post('nik'),
             'jekel' => $this->input->post('jekel'),
             'no_hp' => $this->input->post('no_hp'),
+            'jabatan' => $this->input->post('jabatan'),
+            'tmt' => $this->input->post('tmt'),
+            'no_sk' => $this->input->post('no_sk'),
+            'tgl_sk' => $this->input->post('tgl_sk'),
             'alamat' => $this->input->post('alamat'),
         ];
         $this->m_akademik->tambah_guru('tabel_guru', $data);
@@ -478,8 +483,13 @@ class Akademik extends CI_Controller {
         $data =  [
             'nama_guru' => $this->input->post('nama_guru'),
             'nip' => $this->input->post('nip'),
+            'nik' => $this->input->post('nik'),
             'jekel' => $this->input->post('jekel'),
             'no_hp' => $this->input->post('no_hp'),
+            'jabatan' => $this->input->post('jabatan'),
+            'tmt' => $this->input->post('tmt'),
+            'no_sk' => $this->input->post('no_sk'),
+            'tgl_sk' => $this->input->post('tgl_sk'),
             'alamat' => $this->input->post('alamat'),
         ];
         $logged=$this->m_akademik->ubah_guru('tabel_guru', $data, array('kode_guru'=>$this->input->post('kode_guru')));
@@ -1562,7 +1572,6 @@ class Akademik extends CI_Controller {
             'menu_admin' => 'akademik',
             'submenu_admin'=>'mapel',
         ];
-        $this->load->model('M_akademik');
         $data['mapel'] = $this->m_akademik->get_mapel('mapel');
         $this->load->view('akademik/pelajaran/mata_pelajaran', $data);
     }
@@ -1578,7 +1587,6 @@ class Akademik extends CI_Controller {
             'menu_admin' => 'akademik',
             'submenu_admin'=>'mapel',
         ];
-        $this->load->model('M_akademik');
         $data['jenismapel'] = $this->m_akademik->get_jenismapel('jenismapel');
         $this->load->view('akademik/pelajaran/form_mapel', $data);
     }
@@ -1588,7 +1596,7 @@ class Akademik extends CI_Controller {
         $data = [
             'nama_mapel' => $this->input->post('nama_mapel'),
             'id_jenismapel' => $this->input->post('id_jenismapel'),
-            'keterangan' => $this->input->post('keterangan'),
+            'jam_belajar' => $this->input->post('jam_belajar'),
         ];
         $this->m_akademik->tambah_mapel('tabel_mapel', $data);
         redirect(base_url('Akademik/pelajaran'));
@@ -1615,7 +1623,7 @@ class Akademik extends CI_Controller {
         $data =  [
             'nama_mapel' => $this->input->post('nama_mapel'),
             'id_jenismapel' => $this->input->post('id_jenismapel'),
-            'keterangan' => $this->input->post('keterangan'),
+            'jam_belajar' => $this->input->post('jam_belajar'),
         ];
         $logged=$this->m_akademik->ubah_mapel('tabel_mapel', $data, array('id_mapel'=>$this->input->post('id_mapel')));
         if($logged)
@@ -1647,7 +1655,6 @@ class Akademik extends CI_Controller {
             'menu_admin' => 'akademik',
             'submenu_admin'=>'jenis_mapel',
         ];
-        $this->load->model('M_akademik');
         $data['jenismapel'] = $this->m_akademik->get_jenismapel('jenismapel');
         $this->load->view('akademik/pelajaran/jenis_pelajaran', $data);
     }
@@ -1663,7 +1670,6 @@ class Akademik extends CI_Controller {
             'menu_admin' => 'akademik',
             'submenu_admin'=>'jenis_mapel',
         ];
-        $this->load->model('M_akademik');
         $this->load->view('akademik/pelajaran/form_jenismapel', $data);
     }
 
@@ -1758,6 +1764,12 @@ class Akademik extends CI_Controller {
         redirect(base_url('Akademik/alokasi_guru/'.$this->input->post('kode_guru')));
     }
     
+    public function get_mapelByAlokasiguru(){
+        $id = $this->input->post('id_alokasiguru',TRUE);
+        $data = $this->m_akademik->getwhere('tabel_alokasiguru', array('id_alokasiguru' => $id))->result();
+        echo json_encode($data);
+    }
+
     public function tambah_jam_mengajar()
     {
         $data =  [
@@ -1780,18 +1792,18 @@ class Akademik extends CI_Controller {
                 'menu_admin' => 'akademik',
                 'submenu_admin'=>'mapel',
             ];
-            $data['rombel'] = $this->m_akademik->get_rombel('rombel');
+            $data['kelas'] = $this->m_akademik->get('tabel_kelas');
             $data['mapel']=$this->m_akademik->get_mapelById('tabel_mapel', $id_mapel)->result();
             $data['alokasimapel'] = $this->m_akademik->get_alokasimapelByIdMapel('tabel_alokasimapel', $id_mapel);
             $this->load->view('akademik/alokasi/alokasi_mapel/alokasi_mapel', $data);
         }
     public function tambah_alokasimapel()
         {
-            $rombel = $this->input->post('id_rombel');
+            $kelas = $this->input->post('id_kelas');
             $mapel = $this->input->post('id_mapel');
-            foreach( $rombel as $key => $value){
+            foreach( $kelas as $key => $value){
                 $this->db->insert('tabel_alokasimapel', array(
-                    'id_rombel' => $key,
+                    'id_kelas' => $key,
                     'id_mapel' => $mapel,
                 ));
             }
@@ -1807,7 +1819,7 @@ class Akademik extends CI_Controller {
             redirect(base_url('Akademik/alokasi_mapel/'.$this->input->post('id_mapel')));
         }
 
-        // Akun
+// Akun
         public function akun()
         {
             $data = [

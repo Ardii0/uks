@@ -50,10 +50,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">Keterangan</label>
+                                    <label class="control-label">Jam Belajar Perminggu</label>
                                     <div class="">
-                                        <input type="text" name="keterangan" class="form-control"
-                                            placeholder="Masukan Keterangan" value="<?php echo $data->keterangan ?>">
+                                        <input type="text" name="jam_belajar" class="form-control" autocomplete="off"
+                                            placeholder="Masukan Jam Belajar Perminggu" value="<?php echo $data->jam_belajar ?>">
                                     </div>
                                 </div>
                             </div>

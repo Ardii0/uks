@@ -10,7 +10,7 @@
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini layout-fixed">
     <div class="wrapper">
         <?php $this->load->view('akademik/style/navbar') ?> 
         <?php $this->load->view('akademik/style/sidebar') ?>
@@ -59,6 +59,7 @@
                                             <th>Nama Mata Pelajaran</th>
                                             <th>Jenis Mapel</th>
                                             <th>Kurikulum</th>
+                                            <th>Jam Belajar</th>
                                             <th style="width: 100px;">Aksi</th>
                                         </tr>
                                     </thead>
@@ -78,6 +79,9 @@
                                                 </td>
                                                 <td>
                                                     <?php echo tampil_kurikulum_jenismapelById($data->id_jenismapel) ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $data->jam_belajar ?> Jam/Minggu
                                                 </td>
                                                 <td class="text-center">
                                                     <a href="<?php echo base_url('Akademik/alokasi_mapel/'.$data->id_mapel) ?>"
@@ -109,7 +113,7 @@
     <?php $this->load->view('akademik/style/js') ?>
     <script>
         function hapus(id) {
-            var yes = confirm('Yakin Di Hapus?');
+            var yes = confirm('Apakah Anda Yakin untuk Menghapus?');
             if (yes == true) {
                 window.location.href = "<?php echo base_url('Akademik/hapus_mapel/') ?>" + id;
             }
