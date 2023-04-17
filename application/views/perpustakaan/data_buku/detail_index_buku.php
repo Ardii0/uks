@@ -51,7 +51,7 @@
                             <div class="col-6"><?php echo tampil_tanggal_masuk_buku_byid($data->id_buku)?></div>
                         </div>
                         <div class="col-6 row mt-1">
-                            <div class="col-6 text-right font-weight-bold">Penerbit :</div>
+                            <div class="col-6 text-right font-weight-bold">Penerbit Buku :</div>
                             <div class="col-6"><?php echo tampil_penerbit_buku_byid($data->id_buku)?></div>
                         </div>
                         <div class="col-6 row mt-3">
@@ -61,19 +61,19 @@
                             </div>
                         </div>
                         <div class="col-6 row mt-3">
-                            <div class="col-6 text-right font-weight-bold">Tahun :</div>
+                            <div class="col-6 text-right font-weight-bold">Tahun Terbit :</div>
                             <div class="col-6"><?php echo tampil_tahun_terbit_byid($data->id_buku)?></div>
                         </div>
                         <div class="col-6 row mt-3">
-                            <div class="col-6 text-right font-weight-bold">Kategori :</div>
+                            <div class="col-6 text-right font-weight-bold">Kategori Buku:</div>
                             <div class="col-6"><?php echo namakategori(tampil_kategori_id_byid($data->id_buku))?></div>
                         </div>
                         <div class="col-6 row mt-3">
-                            <div class="col-6 text-right font-weight-bold">Rak :</div>
+                            <div class="col-6 text-right font-weight-bold">Rak Buku :</div>
                             <div class="col-6"><?php echo tampil_rak_buku_id_byid($data->id_buku)?></div>
                         </div>
                         <div class="col-6 row mt-3">
-                            <div class="col-6 text-right font-weight-bold">Pengarang :</div>
+                            <div class="col-6 text-right font-weight-bold">Pengarang Buku :</div>
                             <div class="col-6"><?php echo tampil_penulis_buku_byid($data->id_buku)?></div>
                         </div>
                     </div>
