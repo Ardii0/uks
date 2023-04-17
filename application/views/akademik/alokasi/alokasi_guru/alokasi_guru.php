@@ -10,7 +10,7 @@
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini layout-fixed">
     <div class="wrapper">
         <?php $this->load->view('akademik/style/navbar')?>
         <?php $this->load->view('akademik/style/sidebar')?>
@@ -72,7 +72,7 @@
                                                         <input type="checkbox" class="checkAll">
                                                     </th>
                                                     <th>Nama Mapel</th>
-                                                    <th>Keterangan</th>
+                                                    <th>Kurikulum</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -85,7 +85,7 @@
                                                         <?php echo $data->nama_mapel ?>
                                                     </td>
                                                     <td>
-                                                        <?php echo tampil_ket_mapelById($data->id_mapel) ?>
+                                                        <?php echo tampil_kurikulum_jenismapelById($data->id_jenismapel) ?>
                                                     </td>
                                                 </tr>
                                                 <?php endforeach; ?>
@@ -97,7 +97,7 @@
                         </form>
                         <form action="<?php echo base_url('Akademik/hapus_alokasiguru'); ?>" enctype="multipart/form-data"
                             method="post" class="col">
-                                <input type="hidden" name="kode_guru" value="<?php echo $dataguru->kode_guru ?>">
+                            <input type="hidden" name="kode_guru" value="<?php echo $dataguru->kode_guru ?>">
                             <div class="row px-1 pt-5">
                                 <div class="col">
                                     <div class="d-flex justify-content-between"
@@ -117,7 +117,8 @@
                                                         <input type="checkbox" class="deleteAll">
                                                     </th>
                                                     <th>Nama Mapel</th>
-                                                    <th>Keterangan</th>
+                                                    <th style="width: 120px;">Waktu Mengajar</th>
+                                                    <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -130,8 +131,14 @@
                                                         <?php echo tampil_mapelById($datamapel->id_mapel) ?>
                                                     </td>
                                                     <td>
-                                                        <?php echo tampil_ket_mapelById($datamapel->id_mapel) ?>
-                                                    </form>
+                                                        <?php echo $datamapel->jam_mengajar ?>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <form action="<?php echo base_url('Akademik/tambah_jam_mengajar'); ?>" id="alokasi" enctype="multipart/form-data" method="post" class="d-flex align-items-center justify-content-center">
+                                                            <button type="button" class="btn btn-info" onclick="send(<?php echo $datamapel->id_alokasiguru; ?>)">
+                                                                <i class="fa fa-plus"></i>
+                                                            </button>
+                                                        </form>
                                                     </td>
                                                 </tr>
                                                 <?php endforeach; ?>
@@ -147,7 +154,7 @@
         </div>
     </div>
 <?php $this->load->view('akademik/style/js')?>
-<script>
+<script type="text/javascript">
     $('.checkAll').click(function() {
     if ($(this).is(':checked')) {
         $('.check').attr('checked', true);
@@ -162,6 +169,23 @@
         $('.deletealokguru').attr('checked', false);
     }
     });
+
+    function send(id_alokasiguru) {
+        $.ajax({
+            url : "<?php echo base_url('akademik/get_mapelByAlokasiguru');?>",
+            method : "POST",
+            data : {id_alokasiguru: id_alokasiguru},
+            async : true,
+            dataType : 'json',
+            success: function(data){
+                var html = '<input type="number" class="form-control col-6" name="jam_mengajar" value="'+data[0].jam_mengajar+'">'+
+                           '<input type="hidden" class="form-control col-6" name="id_alokasiguru" value="'+data[0].id_alokasiguru+'">'+
+                           '<input type="hidden" class="form-control col-6" name="id_mapel" value="'+data[0].id_mapel+'">'+
+                           '<button type="submit" class="btn btn-info col-6"><i class="fa fa-check"></i></button>';
+                $('#alokasi').html(html);
+            }
+        });
+    };
 </script>
 </body>
 

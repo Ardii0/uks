@@ -51,10 +51,10 @@
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <label class="control-label">Keterangan</label>
+                                    <label class="control-label">Kurikulum</label>
                                     <div class="">
-                                        <textarea name="keterangan" class="form-control"
-                                        rows="3" placeholder="Masukan Keterangan"></textarea>
+                                        <textarea name="kurikulum" class="form-control"
+                                        rows="3" placeholder="Masukan Kurikulum"></textarea>
                                     </div>
                                 </div>
                             </div>

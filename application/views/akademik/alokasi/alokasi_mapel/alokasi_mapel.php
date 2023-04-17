@@ -44,7 +44,6 @@
                         method="post">
                         <div class="d-flex justify-content-end p-3 font-weight-bold">
                             <p>
-                               
                                 <?php foreach ($mapel as $mapel): ?>
                                 <input type="hidden" name="id_mapel" value="<?php echo $mapel->id_mapel ?>">
                                 <?php echo $mapel->nama_mapel ?>
@@ -75,16 +74,16 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php foreach($rombel as $rombel ):?>
+                                                <?php foreach($kelas as $kelas ):?>
                                                 <tr>
                                                     <td>
-                                                        <input type="checkbox" class="check" name="id_rombel[<?php echo $rombel->id_rombel ?>]">
-                                                    </td>
-                                                    <td class="d-flex">
-                                                        <?php echo $rombel->nama_rombel?>
+                                                        <input type="checkbox" class="check" name="id_kelas[<?php echo $kelas->id_kelas ?>]">
                                                     </td>
                                                     <td>
-                                                        <!-- <?php echo $rombel->id_kelas?> -->
+                                                        <?php echo tampil_namatingkat_ById($kelas->id_tingkat).' '.$kelas->nama_kelas?>
+                                                    </td>
+                                                    <td>
+                                                        <!-- <?php echo $kelas->id_kelas?> -->
                                                     </td>
                                                 </tr>
                                                 <?php endforeach;?>
@@ -126,10 +125,10 @@
                                         <input type="checkbox" class="deletealokmapel" name="id_alokasimapel[<?php echo $data->id_alokasimapel ?>]">
                                     </td>
                                     <td class="d-flex">
-                                            <?php echo tampil_rombel_byid($data->id_rombel) ?>
+                                            <?php echo tampil_namatingkat_ById($kelas->id_tingkat).' '.tampil_kelas_byid($data->id_kelas) ?>
                                     </td>
                                     <td>
-                                        <?php echo tampil_ket_kelasById($data->id_rombel) ?>
+                                        <?php echo tampil_ket_kelasById($data->id_kelas) ?>
                                     </td>
                                 </tr>
                                 <?php endforeach;?>

@@ -444,8 +444,7 @@ class M_akademik extends CI_Model{
         $data=$this->db->delete($tabel, array($field => $id_alokasiguru));
         return $data;
     }
-
- //Alok Mapel
+ // Alok Mapel
   public function get_alokasimapel()
     {
         return $this->db->get('tabel_alokasimapel')->result();

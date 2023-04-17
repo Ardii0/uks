@@ -50,6 +50,20 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="control-label">No HP</label>
+                                    <div class="">
+                                        <input type="text" name="no_hp" class="form-control"
+                                            placeholder="Masukan No HP" value="<?php echo $data->no_hp ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">No SK</label>
+                                    <div class="">
+                                        <input type="text" name="no_sk" class="form-control"
+                                            placeholder="Masukan No SK" value="<?php echo $data->no_sk ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="control-label">Jekel</label>
                                     <div class="d-flex">
                                         <div class="form-check mr-3">
@@ -71,25 +85,47 @@
                                 <div class="form-group">
                                     <label class="control-label">Alamat</label>
                                     <div class="">
-                                        <textarea class="form-control" name="alamat" cols="88" rows="2" placeholder="Masukan Alamat">
-                                            <?php echo $data->alamat ?>
-                                        </textarea>
+                                        <textarea class="form-control" name="alamat" cols="88" rows="2" 
+                                            placeholder="Masukan Alamat"><?php echo $data->alamat ?></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <label class="control-label">NIP</label>
+                                    <label class="control-label">NIP/Y</label>
                                     <div class="">
                                         <input type="text" name="nip" class="form-control"
-                                            placeholder="Masukan NIP" value="<?php echo $data->nip ?>">
+                                            placeholder="Masukan NIP/Y" value="<?php echo $data->nip ?>">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">No HP</label>
+                                    <label class="control-label">NIK</label>
                                     <div class="">
-                                        <input type="number" name="no_hp" class="form-control"
-                                            placeholder="Masukan No HP" value="<?php echo $data->no_hp ?>">
+                                        <input type="text" name="nik" class="form-control"
+                                            placeholder="Masukan NIK" value="<?php echo $data->nik ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Tanggal SK</label>
+                                    <div class="">
+                                        <input type="date" name="tgl_sk" class="form-control" value="<?php echo $data->tgl_sk ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">TMT</label>
+                                    <div class="">
+                                        <input type="date" name="tmt" class="form-control" value="<?php echo $data->tmt ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Jabatan</label>
+                                    <div class="">
+                                        <select name="jabatan" class="form-control select2">
+                                            <option value="<?php echo $data->jabatan ?>"><?php echo $data->jabatan ?></option>
+                                            <option value="TU">TU</option>
+                                            <option value="Kesiswaan">Kesiswaan</option>
+                                            <option value="Lainnya">Lainnya</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>

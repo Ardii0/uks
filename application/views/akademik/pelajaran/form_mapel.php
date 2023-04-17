@@ -49,10 +49,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">Keterangan</label>
+                                    <label class="control-label">Jam Belajar Perminggu</label>
                                     <div class="">
-                                        <textarea name="keterangan" class="form-control"
-                                        rows="3" placeholder="Masukan Keterangan"></textarea>
+                                        <input type="number" name="jam_belajar" class="form-control"
+                                            placeholder="Masukan Jam Belajar Perminggu" autocomplete="off">
                                     </div>
                                 </div>
                             </div>

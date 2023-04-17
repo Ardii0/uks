@@ -58,11 +58,16 @@
                                         data-dropdown-css-class="select2-info" style="width: 100%;">
                                         <option selected="selected">Pilih Anggota</option>
                                         <?php $id = 0; foreach ($data_anggota as $data): $id++ ?>
-                                            <option value="<?php echo $data->id_anggota ?>"><?php echo tampil_namadaftar_ByIdSiswa($data->id_siswa) ?></option>
+                                        <option value="<?php echo $data->id_anggota ?>">
+                                            <?php echo tampil_namadaftar_ByIdSiswa($data->id_siswa) ?></option>
                                         <?php endforeach ?>
                                     </select>
                                 </div>
                             </div>
+                            <?php $id = 0; foreach ($denda as $data): ?>
+                            <input type="hidden" name="tanggal_jatuh_tempo"
+                                value="<?php echo $data->maksimal_pengembalian_hari ?>">
+                            <?php endforeach ?>
                             <div class="form-group">
                                 <label class="control-label">Buku</label>
                                 <div class="">
@@ -121,7 +126,8 @@
 
                     var html = '';
                     var i;
-                        html += '<option value=' + data[0].id_stok + '>' + data[0].id_detail_index_buku + '</option>';
+                    html += '<option value=' + data[0].id_stok + '>' + data[0]
+                        .id_detail_index_buku + '</option>';
                     $('#idx-buku').html(html);
 
                 }

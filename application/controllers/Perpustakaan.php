@@ -447,46 +447,70 @@ class Perpustakaan extends CI_Controller {
         }
     }
 
-    public function aksi_tambah_buku()
-    {
-        $foto = $this->upload_img_buku('foto');
-        if($foto[0]==false)
-        {
-            //$this->upload->display_errors();
-            $this->session->set_flashdata('error', 'gagal upload foto.');
-            redirect(base_url('Perpustakaan/tambah_buku'));
-        }
-        else
-        {
-            $data = array
-            (
-                'foto' => $foto[1],
-                'judul_buku' => $this->input->post('judul_buku'),
-                'penerbit_buku' => $this->input->post('penerbit_buku'),
-                'penulis_buku' => $this->input->post('penulis_buku'),
-                'tahun_terbit' => $this->input->post('tahun_terbit'),
-                'keterangan' => $this->input->post('keterangan'),
-                'sumber' => $this->input->post('sumber'),
-                'kategori_id' => $this->input->post('kategori_id'),
-                'rak_buku_id' => $this->input->post('rak_buku_id'),
-                'del_flag' => '1',
-            );
-
-
-            $masuk=$this->m_perpustakaan->tambah_buku('table_buku', $data);
-            if($masuk)
-            {
-                $this->session->set_flashdata('sukses', 'berhasil');
-                redirect(base_url('Perpustakaan/data_buku'));
-            }
-            else
-            {
-                $this->session->set_flashdata('error', 'gagal..');
-                redirect(base_url('Perpustakaan/tambah_buku'));
-            }
-        }
+    public function aksi_tambah_buku() 
+    { 
+        $tgl_masuk = $this->input->post('tgl_masuk'.$value);
+        $foto = $this->upload_img_buku('foto'); 
+        if($foto[0]==false) 
+        { 
+            $this->session->set_flashdata('error', 'gagal upload foto.'); 
+            redirect(base_url('Perpustakaan/tambah_buku')); 
+        }else if ($tgl_masuk !== '') {
+            $data = array 
+            ( 
+                'foto' => $foto[1], 
+                'judul_buku' => $this->input->post('judul_buku'), 
+                'penerbit_buku' => $this->input->post('penerbit_buku'), 
+                'penulis_buku' => $this->input->post('penulis_buku'), 
+                'tahun_terbit' => $this->input->post('tahun_terbit'), 
+                'keterangan' => $this->input->post('keterangan'), 
+                'sumber' => $this->input->post('sumber'), 
+                'kategori_id' => $this->input->post('kategori_id'), 
+                'rak_buku_id' => $this->input->post('rak_buku_id'), 
+                'tgl_masuk' => $this->input->post('tgl_masuk'),
+                'del_flag' => '1', 
+            ); 
+ 
+            $masuk=$this->m_perpustakaan->tambah_buku('table_buku', $data); 
+            if($masuk) 
+            { 
+                $this->session->set_flashdata('sukses', 'berhasil'); 
+                redirect(base_url('Perpustakaan/data_buku')); 
+            } 
+            else 
+            { 
+                $this->session->set_flashdata('error', 'gagal..'); 
+                redirect(base_url('Perpustakaan/tambah_buku')); 
+            } 
+        }else {
+            $data = array 
+            ( 
+                'foto' => $foto[1], 
+                'judul_buku' => $this->input->post('judul_buku'), 
+                'penerbit_buku' => $this->input->post('penerbit_buku'), 
+                'penulis_buku' => $this->input->post('penulis_buku'), 
+                'tahun_terbit' => $this->input->post('tahun_terbit'), 
+                'keterangan' => $this->input->post('keterangan'), 
+                'sumber' => $this->input->post('sumber'), 
+                'kategori_id' => $this->input->post('kategori_id'), 
+                'rak_buku_id' => $this->input->post('rak_buku_id'), 
+                'del_flag' => '1', 
+            ); 
+    
+            $masuk=$this->m_perpustakaan->tambah_buku('table_buku', $data); 
+            if($masuk) 
+            { 
+                $this->session->set_flashdata('sukses', 'berhasil'); 
+                redirect(base_url('Perpustakaan/data_buku')); 
+            } 
+            else 
+            { 
+                $this->session->set_flashdata('error', 'gagal..'); 
+                redirect(base_url('Perpustakaan/tambah_buku')); 
+            } 
+        } 
     }
-
+    
    public function edit_buku($id_buku)
     {
         $data = [
@@ -596,6 +620,7 @@ class Perpustakaan extends CI_Controller {
         $buku['data_buku'] = $this->m_perpustakaan->get_buku_tersedia('data_buku');
         $buku['index_buku'] = $this->m_perpustakaan->get_index_buku('index_buku');
         $anggota['data_anggota'] = $this->m_perpustakaan->get_anggota('data_anggota');
+        $data['denda']=$this->m_perpustakaan->get_setting_perpus('setting_perpustakaan')->result();
         $this->load->view('perpustakaan/peminjaman/input_peminjaman', $buku + $anggota + $data);
     }
 
@@ -612,7 +637,9 @@ class Perpustakaan extends CI_Controller {
 
     public function aksi_input_peminjaman()
     {
+        $tanggal_jatuh_tempo = $this->input->post('tanggal_jatuh_tempo');
         $date = date('Y-m-d');
+        $nextN = mktime(0, 0, 0, date("m"), date("d") + $tanggal_jatuh_tempo, date("Y"));
         $data = array
         (
             'no_pinjaman' => 'PMJ'.'-'.$this->acak(6),
@@ -621,6 +648,7 @@ class Perpustakaan extends CI_Controller {
             'tgl_pinjaman' => $date,
             'tgl_kembali' => "0000-00-00",
             'status' => 'DIPINJAM',
+            'jatuh_tempo' => date('Y-m-d', $nextN),
         );
 
         $status = array
@@ -661,6 +689,17 @@ class Perpustakaan extends CI_Controller {
         ];
         $peminjam['data_peminjam']=$this->m_perpustakaan->edit_pinjaman('tabel_pinjaman', $id_pinjaman)->result();
         $this->load->view('perpustakaan/peminjaman/detail_peminjaman', $peminjam + $data);
+    }
+
+    public function cetak_bukti_peminjaman($id_pinjaman)
+    {
+            $cek = $this->m_perpustakaan->edit_pinjaman('tabel_pinjaman', $id_pinjaman)->result();
+            $data['data'] = $this->m_perpustakaan->edit_pinjaman('tabel_pinjaman', $id_pinjaman)->result();
+            $this->load->library('pdf');
+            $this->pdf->load_view('perpustakaan/peminjaman/cetak_peminjaman', $data);
+            $this->pdf->render();
+            $this->pdf->stream(" Bukti Peminjaman ".$id_pinjaman.".pdf", array("Attachment" => false));		
+            
     }
 
     public function hapus_peminjaman_id($id_pinjaman)

@@ -42,23 +42,23 @@
                         <!-- <form class="col-5" action="<?php echo base_url('Keuangan/form_tambah_pembayaran/') ?>" enctype="multipart/form-data" method="post"> -->
                         <?php echo form_open('Keuangan/direct', array('class' => 'col-5', 'id' => 'form')); ?>
                             <div class="row mt-3">
+                                <div class="col-4 text-right font-weight-bold mt-1">Tingkat</div>
+                                <div class="col-8">
+                                    <select id="tingkat" class="custom-select custom-select-md">
+                                        <option value="">Pilih Tingkat</option>
+                                        <?php foreach($tingkat as $tingkat): ?>
+                                            <option value="<?php echo $tingkat->id_tingkat ?>"><?php echo $tingkat->nama_tingkat ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
                                 <div class="col-4 text-right font-weight-bold mt-1">Kelas</div>
                                 <div class="col-8">
                                     <select id="kelas" class="custom-select custom-select-md">
                                         <option value="">Pilih Kelas</option>
                                         <?php foreach($kelas as $kelas): ?>
                                             <option value="<?php echo $kelas->id_kelas ?>"><?php echo $kelas->nama_kelas ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-4 text-right font-weight-bold mt-1">Rombel</div>
-                                <div class="col-8">
-                                    <select id="rombel" class="custom-select custom-select-md">
-                                        <option value="">Pilih Rombel</option>
-                                        <?php foreach($rombel as $rombel): ?>
-                                            <option value="<?php echo $rombel->id_rombel ?>"><?php echo $rombel->nama_rombel ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
@@ -90,35 +90,35 @@
     <?php $this->load->view('keuangan/style/js') ?>
     <script type="text/javascript">
         $(document).ready(function(){
-            $('#kelas').change(function(){ 
-                var id_kelas=$(this).val();
+            $('#tingkat').change(function(){ 
+                var id_tingkat=$(this).val();
                 $.ajax({
-                    url : "<?php echo site_url('keuangan/get_rombelByIdKelas');?>",
+                    url : "<?php echo site_url('keuangan/get_kelasByIdTingkat');?>",
                     method : "POST",
-                    data : {id_kelas: id_kelas},
+                    data : {id_tingkat: id_tingkat},
                     async : true,
                     dataType : 'json',
                     success: function(data){
                          
                         var html = '';
                         var i;
-                        html += '<option>Pilih Rombel</option>';
+                        html += '<option>Pilih Kelas</option>';
                         for(i=0; i<data.length; i++){
-                            html += '<option value='+data[i].id_rombel+'>'+data[i].nama_rombel+'</option>';
+                            html += '<option value='+data[i].id_kelas+'>'+data[i].nama_kelas+'</option>';
                         }
-                        $('#rombel').html(html);
+                        $('#kelas').html(html);
  
                     }
                 });
                 return false;
             }); 
              
-            $('#rombel').change(function(){ 
-                var id_rombel=$(this).val();
+            $('#kelas').change(function(){ 
+                var id_kelas=$(this).val();
                 $.ajax({
-                    url : "<?php echo site_url('keuangan/get_siswaByIdRombel');?>",
+                    url : "<?php echo site_url('keuangan/get_siswaByIdKelas');?>",
                     method : "POST",
-                    data : {id_rombel: id_rombel},
+                    data : {id_kelas: id_kelas},
                     async : true,
                     dataType : 'json',
                     success: function(data){
