@@ -131,6 +131,13 @@
                                                     </div>
                                                 </div>
                                                 <div class="col form-group">
+                                                    <label class="control-label">Tanggal Masuk Buku</label>
+                                                    <div class="">
+                                                        <input id="remove" type="datetime-local" name="tgl_masuk"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col form-group">
                                                     <label class="control-label">Cover</label>
                                                     <div class="mt-1">
                                                         <input type="file" name="foto" onchange="readURL(this);" />
@@ -174,6 +181,7 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
+        $('#remove').removeAttr('required');
         </script>
 
 </body>
