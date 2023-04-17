@@ -156,12 +156,12 @@
                                         </tbody>
                                     </table>
                                     <?php else: ?>
-                                    <div class="row" style="margin-top: 45px">
+                                    <div class="row mt-4">
                                         <div class="icon col-12 row align-items-center justify-content-center">
-                                            <i style="font-size: 100px" class="fas fa-bullhorn"></i>
+                                            <i style="font-size: 80px" class="fas fa-bullhorn"></i>
                                         </div>
-                                        <div class="col-12 row align-items-center justify-content-center">
-                                            <h1>Lowongan Kerja Tidak Tersedia</h1>
+                                        <div class="col-12 row align-items-center justify-content-center mt-3">
+                                            <h4>Lowongan Kerja Tidak Tersedia</h4>
                                         </div>
                                     </div>
                                     <?php endif; ?>
