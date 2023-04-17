@@ -80,11 +80,6 @@
     <h1>Bukti Peminjaman Buku</h1>
     <table border="0" style="font-size: 14px; font-weight: bold;">
         <tr>
-            <td>No Peminjaman</td>
-            <td>:</td>
-            <td><?php echo $data->no_pinjaman ?></td>
-        </tr>
-        <tr>
             <td>Nama Siswa</td>
             <td>:</td>
             <td><?php echo tampil_namadaftar_ByIdAnggota($data->id_anggota) ?></td>
@@ -94,21 +89,26 @@
             <td>:</td>
             <td><?php echo $data->id_anggota ?></td>
         </tr>
+        <tr>
+            <td>No Peminjaman</td>
+            <td>:</td>
+            <td><?php echo $data->no_pinjaman ?></td>
+        </tr>
     </table>
     <hr>
     <br>
     <table border="1" style="border-collapse: collapse;" width="100%" cellpadding="4" cellspacing="4">
         <tr style="font-weight: bold;">
             <th>ID Buku</th>
-            <th>Judul Buku</th>
-            <th>Rak Buku</th>
+            <th>Nama Buku</th>
+            <th>Kategori Buku</th>
             <th>Tanggal Peminjaman</th>
             <th>Jatuh Tempo</th>
         </tr>
         <tr style="text-align: center;">
             <td><?php echo tampil_id_index_buku($data->id_index_buku) ?></td>
             <td><?php echo tampil_namabuku_byPeminjamanId($data->id_index_buku) ?></td>
-            <td><?php echo tampil_rakbuku_byPeminjamanId($data->id_index_buku) ?></td>
+            <td><?php echo tampil_kategoribuku_byPeminjamanId($data->id_index_buku) ?></td>
             <td><?php echo $data->tgl_pinjaman ?></td>
             <td><?php echo $data->jatuh_tempo ?></td>
         </tr>

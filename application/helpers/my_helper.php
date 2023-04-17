@@ -828,6 +828,17 @@ $result = $ci->db->where('id_level',$id)->get('tabel_level');
   }
   
  // Detail Index Buku
+  function tampil_tanggal_masuk_buku_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_buku',$id)->get('table_buku');
+    foreach ($result->result() as $c) {
+    $stmt= $c->tgl_masuk;
+    return $stmt;
+    }
+  }
+
   function tampil_judul_buku_byid($id)
   {
   $ci =& get_instance();

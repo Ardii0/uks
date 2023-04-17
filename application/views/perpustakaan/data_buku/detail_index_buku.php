@@ -46,12 +46,12 @@
                         <div class="col-12 row justify-content-between align-content-center">
                             <div class="h4 font-weight-bold">Detail Buku</div>
                         </div>
-                        <div class="col-6 row mt-1">
-                            <div class="col-6 text-right font-weight-bold">Id Buku :</div>
-                            <div class="col-6"><?php echo $data->id_buku ?></div>
+                        <div class="col-12 row mt-3">
+                            <div class="col-6 text-right font-weight-bold">Tanggal Buku Masuk :</div>
+                            <div class="col-6"><?php echo tampil_tanggal_masuk_buku_byid($data->id_buku)?></div>
                         </div>
                         <div class="col-6 row mt-1">
-                            <div class="col-6 text-right font-weight-bold">Penerbit :</div>
+                            <div class="col-6 text-right font-weight-bold">Penerbit Buku :</div>
                             <div class="col-6"><?php echo tampil_penerbit_buku_byid($data->id_buku)?></div>
                         </div>
                         <div class="col-6 row mt-3">
@@ -61,24 +61,20 @@
                             </div>
                         </div>
                         <div class="col-6 row mt-3">
-                            <div class="col-6 text-right font-weight-bold">Tahun :</div>
+                            <div class="col-6 text-right font-weight-bold">Tahun Terbit :</div>
                             <div class="col-6"><?php echo tampil_tahun_terbit_byid($data->id_buku)?></div>
                         </div>
                         <div class="col-6 row mt-3">
-                            <div class="col-6 text-right font-weight-bold">Kategori :</div>
-                            <div class="col-6"><?php echo tampil_kategori_id_byid($data->id_buku)?></div>
+                            <div class="col-6 text-right font-weight-bold">Kategori Buku:</div>
+                            <div class="col-6"><?php echo namakategori(tampil_kategori_id_byid($data->id_buku))?></div>
                         </div>
                         <div class="col-6 row mt-3">
-                            <div class="col-6 text-right font-weight-bold">Rak :</div>
+                            <div class="col-6 text-right font-weight-bold">Rak Buku :</div>
                             <div class="col-6"><?php echo tampil_rak_buku_id_byid($data->id_buku)?></div>
                         </div>
                         <div class="col-6 row mt-3">
-                            <div class="col-6 text-right font-weight-bold">Pengarang :</div>
+                            <div class="col-6 text-right font-weight-bold">Pengarang Buku :</div>
                             <div class="col-6"><?php echo tampil_penulis_buku_byid($data->id_buku)?></div>
-                        </div>
-                        <div class="col-6 row mt-3">
-                            <div class="col-6 text-right font-weight-bold">Total Buku :</div>
-                            <div class="col-6"><?php echo tampil_stok_byid($data->id_buku)?></div>
                         </div>
                     </div>
                     <div class="row shadow p-4 mb-5 bg-white rounded">
