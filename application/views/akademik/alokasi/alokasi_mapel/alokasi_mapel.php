@@ -69,7 +69,7 @@
                                             <thead class="bg-info">
                                                 <tr>
                                                     <th><input type="checkbox" class="checkAll"></th>
-                                                    <th>Nama Kelas</th>
+                                                    <th>Kelas</th>
                                                     <th>Keterangan</th>
                                                 </tr>
                                             </thead>
@@ -120,9 +120,9 @@
                             <thead class="bg-info">
                                 <tr>
                                     <th><input type="checkbox" class="deleteAll"></th>
-                                    <th>Nama Kelas</th>
-                                    <th>Jam Per/</th>
+                                    <th>Kelas</th>
                                     <th>Semester</th>
+                                    <th>Jam</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -142,7 +142,7 @@
                                         <?php echo $data->jam_belajar ?>
                                     </td>
                                     <td class="text-center">
-                                        <form action="<?php echo base_url('Akademik/tambah_jam_belajar'); ?>" id="alokasi<?php echo $data->id_alokasimapel; ?>" enctype="multipart/form-data" method="post" class="d-flex align-items-center justify-content-center">
+                                        <form action="<?php echo base_url('Akademik/tambah_jam_belajar'); ?>" id="alokasi<?php echo $data->id_alokasimapel; ?>" enctype="multipart/form-data" method="post" class="align-items-center justify-content-center">
                                             <button type="button" class="btn btn-info" onclick="send(<?php echo $data->id_alokasimapel; ?>)">
                                                 <i class="fa fa-plus"></i>
                                             </button>
@@ -188,8 +188,9 @@
             async : true,
             dataType : 'json',
             success: function(data){
-                console.log(data);
-                var html = '<div class="d-flex"><input type="number" class="form-control" name="jam_belajar" value="'+data[0].jam_belajar+'">'+
+                var html = '<div class="mb-1" id="semester"><input type="number" class="form-control" name="semester" value="'+data[0].semester+'">'+
+                           '<input type="hidden" class="form-control" name="id_alokasimapel" value="'+data[0].id_alokasimapel+'"></div>'+
+                           '<div class="d-flex" id="jam"><input type="number" class="form-control" name="jam_belajar" value="'+data[0].jam_belajar+'">'+
                            '<input type="hidden" class="form-control" name="id_alokasimapel" value="'+data[0].id_alokasimapel+'">'+
                            '<button type="submit" class="ml-2 btn btn-info"><i class="fa fa-check"></i></button></div>';
                 $('#alokasi'+data[0].id_alokasimapel).html(html);

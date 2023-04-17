@@ -1854,6 +1854,7 @@ class Akademik extends CI_Controller {
         public function tambah_jam_belajar()
         {
             $data =  [
+                'semester' => $this->input->post('semester'),
                 'jam_belajar' => $this->input->post('jam_belajar'),
             ];
             $this->m_akademik->update('tabel_alokasimapel', $data, array('id_alokasimapel'=>$this->input->post('id_alokasimapel')));
