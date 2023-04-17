@@ -49,13 +49,6 @@
                                             placeholder="Masukan Nama mapel" value="<?php echo $data->nama_mapel ?>">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label">Jam Belajar Perminggu</label>
-                                    <div class="">
-                                        <input type="text" name="jam_belajar" class="form-control" autocomplete="off"
-                                            placeholder="Masukan Jam Belajar Perminggu" value="<?php echo $data->jam_belajar ?>">
-                                    </div>
-                                </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">

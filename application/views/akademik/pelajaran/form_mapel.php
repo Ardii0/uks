@@ -48,13 +48,6 @@
                                             placeholder="Masukan Nama Mapel" autocomplete="off">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label">Jam Belajar Perminggu</label>
-                                    <div class="">
-                                        <input type="number" name="jam_belajar" class="form-control"
-                                            placeholder="Masukan Jam Belajar Perminggu" autocomplete="off">
-                                    </div>
-                                </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">

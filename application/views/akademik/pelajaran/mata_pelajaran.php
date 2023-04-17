@@ -59,7 +59,6 @@
                                             <th>Nama Mata Pelajaran</th>
                                             <th>Jenis Mapel</th>
                                             <th>Kurikulum</th>
-                                            <th>Jam Belajar</th>
                                             <th style="width: 100px;">Aksi</th>
                                         </tr>
                                     </thead>
@@ -79,9 +78,6 @@
                                                 </td>
                                                 <td>
                                                     <?php echo tampil_kurikulum_jenismapelById($data->id_jenismapel) ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $data->jam_belajar ?> Jam/Minggu
                                                 </td>
                                                 <td class="text-center">
                                                     <a href="<?php echo base_url('Akademik/alokasi_mapel/'.$data->id_mapel) ?>"

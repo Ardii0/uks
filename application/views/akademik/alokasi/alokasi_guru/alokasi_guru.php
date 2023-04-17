@@ -102,7 +102,13 @@
                                 <div class="col">
                                     <div class="d-flex justify-content-between"
                                         style="border-bottom: solid 2px; border-color: #">
-                                        <h3 class="text-start pl-3">DATA ALOKASI KE GURU</h3>
+                                        <h3 class="text-start pl-3">ALOKASI GURU</h3>
+                                        <div class="row">
+                                            <?php foreach ($alokasiguru as $trial_data): ?>
+                                                <form action="<?php echo base_url('Akademik/tambah_jam_mengajar'); ?>" enctype="multipart/form-data" method="post" class="d-flex align-items-center justify-content-center">
+                                                </form>
+                                            <?php endforeach; ?>
+                                        </div>
                                         <div class="">
                                             <button type="submit" class="btn btn-danger">
                                                 <i class="fa fa-minus pr-2"></i>Hapus
@@ -131,10 +137,10 @@
                                                         <?php echo tampil_mapelById($datamapel->id_mapel) ?>
                                                     </td>
                                                     <td>
-                                                        <?php echo $datamapel->jam_mengajar ?>
+                                                        <?php echo $datamapel->jam_mengajar ?> Jam/Minggu
                                                     </td>
                                                     <td class="text-center">
-                                                        <form action="<?php echo base_url('Akademik/tambah_jam_mengajar'); ?>" id="alokasi" enctype="multipart/form-data" method="post" class="d-flex align-items-center justify-content-center">
+                                                        <form action="<?php echo base_url('Akademik/tambah_jam_mengajar'); ?>" id="alokasi<?php echo $datamapel->id_alokasiguru; ?>" enctype="multipart/form-data" method="post" class="d-flex align-items-center justify-content-center">
                                                             <button type="button" class="btn btn-info" onclick="send(<?php echo $datamapel->id_alokasiguru; ?>)">
                                                                 <i class="fa fa-plus"></i>
                                                             </button>
@@ -178,11 +184,12 @@
             async : true,
             dataType : 'json',
             success: function(data){
-                var html = '<input type="number" class="form-control col-6" name="jam_mengajar" value="'+data[0].jam_mengajar+'">'+
-                           '<input type="hidden" class="form-control col-6" name="id_alokasiguru" value="'+data[0].id_alokasiguru+'">'+
-                           '<input type="hidden" class="form-control col-6" name="id_mapel" value="'+data[0].id_mapel+'">'+
-                           '<button type="submit" class="btn btn-info col-6"><i class="fa fa-check"></i></button>';
-                $('#alokasi').html(html);
+                console.log(data);
+                var html = '<div class="d-flex"><input type="number" class="form-control" name="jam_mengajar" value="'+data[0].jam_mengajar+'">'+
+                           '<input type="hidden" class="form-control" name="id_alokasiguru" value="'+data[0].id_alokasiguru+'">'+
+                           '<input type="hidden" class="form-control" name="id_mapel" value="'+data[0].id_mapel+'">'+
+                           '<button type="submit" class="ml-2 btn btn-info"><i class="fa fa-check"></i></button></div>';
+                $('#alokasi'+data[0].id_alokasiguru).html(html);
             }
         });
     };

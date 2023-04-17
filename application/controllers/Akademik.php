@@ -1624,7 +1624,6 @@ class Akademik extends CI_Controller {
         $data = [
             'nama_mapel' => $this->input->post('nama_mapel'),
             'id_jenismapel' => $this->input->post('id_jenismapel'),
-            'jam_belajar' => $this->input->post('jam_belajar'),
         ];
         $this->m_akademik->tambah_mapel('tabel_mapel', $data);
         redirect(base_url('Akademik/pelajaran'));
@@ -1651,7 +1650,6 @@ class Akademik extends CI_Controller {
         $data =  [
             'nama_mapel' => $this->input->post('nama_mapel'),
             'id_jenismapel' => $this->input->post('id_jenismapel'),
-            'jam_belajar' => $this->input->post('jam_belajar'),
         ];
         $logged=$this->m_akademik->ubah_mapel('tabel_mapel', $data, array('id_mapel'=>$this->input->post('id_mapel')));
         if($logged)
@@ -1845,6 +1843,21 @@ class Akademik extends CI_Controller {
                 $this->m_akademik->hapus_alokasimapel('tabel_alokasimapel', 'id_alokasimapel', $key); 
             }
             redirect(base_url('Akademik/alokasi_mapel/'.$this->input->post('id_mapel')));
+        }
+
+        public function get_mapelByAlokasimapel(){
+            $id = $this->input->post('id_alokasimapel',TRUE);
+            $data = $this->m_akademik->getwhere('tabel_alokasimapel', array('id_alokasimapel' => $id))->result();
+            echo json_encode($data);
+        }
+    
+        public function tambah_jam_belajar()
+        {
+            $data =  [
+                'jam_belajar' => $this->input->post('jam_belajar'),
+            ];
+            $this->m_akademik->update('tabel_alokasimapel', $data, array('id_alokasimapel'=>$this->input->post('id_alokasimapel')));
+            redirect($_SERVER['HTTP_REFERER']);
         }
 
 // Akun
