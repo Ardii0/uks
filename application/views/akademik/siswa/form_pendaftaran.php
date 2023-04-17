@@ -97,6 +97,37 @@
                         <div class="row">
                             <div class="col-4">
                                 <div>
+                                    <label for="nik" class="mr-3">
+                                        No. NIK
+                                    </label>
+                                </div>
+                                <div>
+                                    <input id="nik" type="number" name="nik" class="form-control"
+                                        placeholder="NIK Siswa">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div>
+                                    <label for="kk" class="mr-3">
+                                        No. KK
+                                    </label>
+                                </div>
+                                <div>
+                                    <input id="kk" type="number" name="kk" class="form-control" placeholder="No KK">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div>
+                                    <label for="nisn" class="mr-3">
+                                        NISN
+                                    </label>
+                                </div>
+                                <div>
+                                    <input id="nisn" type="number" name="nisn" class="form-control" placeholder="NISN">
+                                </div>
+                            </div>
+                            <div class="col-4 mt-2">
+                                <div>
                                     <label for="nama-lengkap" class="mr-3">
                                         Nama Lengkap
                                     </label>
@@ -106,7 +137,7 @@
                                         placeholder="Nama Lengkap">
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-4 mt-2">
                                 <div>
                                     <label for="jenjang" class="mr-3">
                                         Agama
@@ -123,37 +154,6 @@
                                         <option value="Hindu">Hindu</option>
                                         <option value="Budha">Budha</option>
                                     </select>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div>
-                                    <label for="nisn" class="mr-3">
-                                        NISN
-                                    </label>
-                                </div>
-                                <div>
-                                    <input id="nisn" type="number" name="nisn" class="form-control" placeholder="NISN">
-                                </div>
-                            </div>
-                            <div class="col-4 mt-2">
-                                <div>
-                                    <label for="nik" class="mr-3">
-                                        No. NIK
-                                    </label>
-                                </div>
-                                <div>
-                                    <input id="nik" type="number" name="nik" class="form-control"
-                                        placeholder="NIK Siswa">
-                                </div>
-                            </div>
-                            <div class="col-4 mt-2">
-                                <div>
-                                    <label for="kk" class="mr-3">
-                                        No. KK
-                                    </label>
-                                </div>
-                                <div>
-                                    <input id="kk" type="number" name="kk" class="form-control" placeholder="No KK">
                                 </div>
                             </div>
                             <div class="col-4 mt-2">
@@ -213,6 +213,34 @@
                             </div>
                             <div class="col-4 mt-2">
                                 <div>
+                                    <label for="pekerjaan_ayah" class="mr-3">
+                                        Pekerjaan Ayah
+                                    </label>
+                                </div>
+                                <div>
+                                    <input id="pekerjaan_ayah" type="text" name="pekerjaan_ayah" class="form-control"
+                                        placeholder="Pekerjaan Ayah">
+                                </div>
+                            </div>
+                            <div class="col-4 mt-2">
+                                <div>
+                                    <label for="gaji_ayah" class="mr-3">
+                                        Gaji Ayah
+                                    </label>
+                                </div>
+                                <div>
+                                    <select id="gaji_ayah" name="gaji_ayah" class="form-control">
+                                        <option selected>Pilih</option>
+                                        <option value="kurang dari 1jt">kurang dari 1jt</option>
+                                        <option value="1jt - 2jt">1jt - 2jt</option>
+                                        <option value="2jt - 3jt">2jt - 3jt</option>
+                                        <option value="3jt - 4jt">3jt - 4jt</option>
+                                        <option value="4jt - 5jt">4jt - 5jt</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-4 mt-2">
+                                <div>
                                     <label for="ibu" class="mr-3">
                                         Nama Ibu
                                     </label>
@@ -223,12 +251,23 @@
                             </div>
                             <div class="col-4 mt-2">
                                 <div>
-                                    <label for="jenjang" class="mr-3">
-                                        Gaji Orang Tua
+                                    <label for="pekerjaan_ibu" class="mr-3">
+                                        Pekerjaan Ibu
                                     </label>
                                 </div>
                                 <div>
-                                    <select id="gaji_ortu" name="gaji_ortu" class="form-control">
+                                    <input id="pekerjaan_ibu" type="text" name="pekerjaan_ibu" class="form-control"
+                                        placeholder="Pekerjaan Ayah">
+                                </div>
+                            </div>
+                            <div class="col-4 mt-2">
+                                <div>
+                                    <label for="gaji_ibu" class="mr-3">
+                                        Gaji Ibu
+                                    </label>
+                                </div>
+                                <div>
+                                    <select id="gaji_ibu" name="gaji_ibu" class="form-control">
                                         <option selected>Pilih</option>
                                         <option value="kurang dari 1jt">kurang dari 1jt</option>
                                         <option value="1jt - 2jt">1jt - 2jt</option>
@@ -269,29 +308,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="col-4 mt-2">
-                                <div>
-                                    <label class="mr-3">
-                                        Warga Negara
-                                    </label>
-                                </div>
-                                <div class="d-flex items-center">
-                                    <div class="form-check mr-3">
-                                        <input class="form-check-input" name="warga_negara" value="WNI" type="radio"
-                                            name="warganegara" id="warganegara">
-                                        <label class="form-check-label" for="warganegara">
-                                            WNI
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="warga_negara" value="WNA" type="radio"
-                                            name="warganegara" id="warganegara1">
-                                        <label class="form-check-label" for="warganegara1">
-                                            WNA
-                                        </label>
-                                    </div>
-                                </div>
-                            </div> -->
                             <div class="col-4 mt-2">
                                 <div>
                                     <div>

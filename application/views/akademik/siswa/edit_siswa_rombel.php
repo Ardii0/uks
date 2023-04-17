@@ -51,6 +51,7 @@
                                 <?php endforeach;?>
                             </select>
                             <input type="hidden" name="id_siswa" value="<?php echo $data->id_siswa?>">
+                            <input type="hidden" name="id_daftar" value="<?php echo $data->id_daftar?>">
                             <!-- <input type="text" name="id_rombel" value="<?php echo $data->id_rombel?>"> -->
                             <input type="hidden" name="saldo_tabungan" value="<?php echo $data->saldo_tabungan?>">
                             <button type="submit" class="w-25 btn btn-primary mt-2">Simpan</button>

@@ -37,14 +37,47 @@
             <section class="content">
                 <div class="container-fluid bg-white">
                     <div class="row pt-3 d-flex justify-content-between">
-                        <div class="col">
-                            <div class="form-group d-flex flex-row " style="width: fit-content;">
-                                <div class="mt-2 mx-1">
-                                    <h4>Data Siswa</h4>
+                        <div class="col-7 ml-3 p-2 border rounded-lg">
+                            <form action="<?php echo base_url('Akademik/finter_by_kelas_siswa') ?>" method="post">
+                                <div class="mx-2">
+                                    <h4>Filter Data Siswa</h4>
                                 </div>
-                            </div>
+                                <div class="row mt-3 mx-2">
+                                    <div class="col-1 text-left font-weight-bold mt-1">Tingkat</div>
+                                    <div class="col-11">
+                                        <select id="tingkat" class="custom-select custom-select-md" require>
+                                            <option value="">Pilih Tingkat</option>
+                                            <?php foreach($tingkat as $data): ?>
+                                            <option value="<?php echo $data->id_tingkat ?>">
+                                                <?php echo $data->nama_tingkat ?>
+                                            </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mt-3 mx-2">
+                                    <div class="col-1 text-left font-weight-bold mt-1">Kelas</div>
+                                    <div class="col-11">
+                                        <select id="kelas" name="id_kelas" class="custom-select custom-select-md"
+                                            require>
+                                            <option>Pilih Kelas</option>
+                                            <?php $id = 0;foreach ($kelas as $data): $id++;?>
+                                            <option value="<?php echo $data->id_kelas ?>">
+                                            <?php echo tampil_namatingkat_ByIdkelas($data->id_kelas)?> <?php echo $data->nama_kelas ?>
+                                            </option>
+                                            <?php endforeach?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mt-3 mx-2">
+                                    <div class="col-12 text-right">
+                                        <button type="submit" class="btn bg-info"
+                                            style="height: 38px; width: auto">Tampilkan</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <div class="col">
+                        <div class="col-4">
                             <div class="form-group d-flex justify-content-end">
                                 <div class="mt-2 mx-1">
                                     <a href="<?php echo base_url('Akademik/export_siswa_to_excel'); ?>">
@@ -55,32 +88,13 @@
                             </div>
                         </div>
                     </div>
-                    <form action="<?php echo base_url('Akademik/finter_by_kelas_siswa') ?>" method="post">
-                        <div class="row mx-2 pt-3 d-flex justify-content-between">
-                            <div class="col">
-                                <div class="form-group">
-                                    <select name="id_kelas" class="form-control select2 select2-info"
-                                        data-dropdown-css-class="select2-info" style="width: 100%;">
-                                        <option>Pilih Kelas</option>
-                                        <?php $id = 0;foreach ($kelas as $data): $id++;?>
-                                        <option value="<?php echo $data->id_kelas ?>">
-                                            <?php echo $data->nama_kelas ?>
-                                        </option>
-                                        <?php endforeach?>
-                                    </select>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn bg-info ml-2"
-                                style="height: 38px; width: 150px">Tampilkan</button>
-                        </div>
-                    </form>
                     <div class="row">
                         <div class="col-12">
                             <div class="card-body">
                                 <table id="datasiswa-table" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
+                                            <th class="text-center">No</th>
                                             <th>Kelas</th>
                                             <th>Nama</th>
                                             <th>Jenis Kelamin</th>
@@ -93,20 +107,29 @@
                                     <tbody>
                                         <?php $id=0; foreach($siswa as $data ): $id++;?>
                                         <tr>
-                                            <td><?php echo $id?></td>
-                                            <td><?php echo tampil_kelas_byid($data->id_kelas)?></td>
+                                            <td class="text-center"><?php echo $id?></td>
+                                            <td>
+                                                <div class="row">
+                                                    <div>
+                                                        <?php echo tampil_namatingkat_ByIdkelas($data->id_kelas)?>
+                                                    </div>
+                                                    <div class="ml-1">
+                                                        <?php echo tampil_kelas_byid($data->id_kelas)?>
+                                                    </div>
+                                                </div>
+                                            </td>
                                             <td class="text-truncate" style="max-width: 150px;">
-                                                <?php echo tampil_nama_siswa_byid($data->id_siswa)?></td>
-                                            <td><?php echo tampil_jekel_siswa_byid($data->id_siswa)?></td>
-                                            <td><?php echo tampil_tempat_lahir_siswa_byid($data->id_siswa)?></td>
-                                            <td><?php echo tampil_tanggal_lahir_siswa_byid($data->id_siswa)?></td>
+                                                <?php echo tampil_nama_siswa_byid($data->id_daftar)?></td>
+                                            <td><?php $gender = tampil_jekel_siswa_byid($data->id_daftar) == "L" ? 'Laki - Laki' : 'Perempuan'; echo $gender ?></td>
+                                            <td><?php echo tampil_tempat_lahir_siswa_byid($data->id_daftar)?></td>
+                                            <td><?php echo tampil_tanggal_lahir_siswa_byid($data->id_daftar)?></td>
                                             <td class="text-truncate" style="max-width: 150px;">
-                                                <?php echo tampil_alamat_siswa_byid($data->id_siswa) ?></td>
+                                                <?php echo tampil_alamat_siswa_byid($data->id_daftar) ?></td>
                                             <td class="text-center">
                                                 <a href="<?php echo base_url('Akademik/detail_siswa/'.$data->id_siswa)?>"
                                                     class="btn btn-warning btn-sm">
                                                     <i class="fa fa-eye"></i></a>
-                                                    <?php 
+                                                <?php 
                                                     $find = find_idanggota($data->id_siswa);
                                                     if($find == null) echo "
                                                     <button onClick='hapus($data->id_siswa)'
@@ -137,6 +160,35 @@
     </script>
 
     <?php $this->load->view('akademik/style/js')?>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#tingkat').change(function() {
+            var id_tingkat = $(this).val();
+            $.ajax({
+                url: "<?php echo site_url('Akademik/get_kelasByIdTingkat');?>",
+                method: "POST",
+                data: {
+                    id_tingkat: id_tingkat
+                },
+                async: true,
+                dataType: 'json',
+                success: function(data) {
+
+                    var html = '';
+                    var i;
+                    html += '<option>Pilih Kelas</option>';
+                    for (i = 0; i < data.length; i++) {
+                        html += '<option value=' + data[i].id_kelas + '>' + data[i].nama_kelas + '</option>';
+                    }
+                    $('#kelas').html(html);
+
+                }
+            });
+            return false;
+        });
+    });
+    </script>
 </body>
 
 </html>

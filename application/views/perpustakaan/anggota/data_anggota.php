@@ -55,7 +55,7 @@
                                             <th>ID ANGGOTA</th>
                                             <th>Nama</th>
                                             <th>Kelas</th>
-                                            <th>Rombel</th>
+                                            <th>Kelas</th>
                                             <th>Tgl Daftar</th>
                                             <th>Aksi</th>
                                         </tr>

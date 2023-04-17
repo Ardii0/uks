@@ -145,7 +145,6 @@
                                                                 <th>No</th>
                                                                 <th>Nama</th>
                                                                 <th>Kelas</th>
-                                                                <th>Rombel</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -154,9 +153,7 @@
                                                                 <td style="width: 4%;"><?php echo $id ?></td>
                                                                 <td><?php echo tampil_namadaftar_ByIdSiswa($data->id_siswa) ?>
                                                                 </td>
-                                                                <td><?php echo tampil_kelasdaftar_ByIdSiswa($data->id_siswa) ?>
-                                                                </td>
-                                                                <td><?php echo tampil_rombeldaftar_ByIdSiswa($data->id_siswa) ?>
+                                                                <td> <?php echo tampil_kelasdaftar_ByIdSiswa($data->id_siswa) ?> <?php echo tampil_rombeldaftar_ByIdSiswa($data->id_siswa) ?>
                                                                 </td>
                                                             </tr>
                                                             <?php endforeach;?>

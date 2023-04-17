@@ -50,7 +50,7 @@
                                             </tr>
                                             <tr>
                                                 <th class="px-2">Denda</th>
-                                                <td class="px-2"><?php echo $data->denda ?></td>
+                                                <td class="px-2">-</td>
                                             </tr>
                                         </table>
                                     </div>
