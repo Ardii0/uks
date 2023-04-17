@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keuangan</title>
-    <?php $this->load->view('keuangan/style/head') ?>
+    <title>Perpustakaan</title>
+    <?php $this->load->view('Perpustakaan/style/head') ?>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed" data-panel-auto-height-mode="height">
     <div class="wrapper">
-        <?php $this->load->view('keuangan/style/navbar') ?>
-        <?php $this->load->view('keuangan/style/sidebar') ?>
+        <?php $this->load->view('Perpustakaan/style/navbar') ?>
+        <?php $this->load->view('Perpustakaan/style/sidebar') ?>
 
         <div class="content-wrapper">
             <section class="content-header">
@@ -38,7 +38,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="w-75 pt-2 px-3">
-                                    <form action="<?php echo base_url('Keuangan/filter_tglrekap'); ?>" method="POST">
+                                    <form action="<?php echo base_url('Perpustakaan/filter_tglrekap'); ?>" method="POST">
                                         <div class="row">
                                             <div class="form-group col-3">
                                                 <label for="">Tanggal Awal</label>
@@ -68,6 +68,7 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Nama peminjam</th>
+                                                <th>Buku Dipinjam</th>
                                                 <th>Tanggal Pinjam</th>
                                                 <th>Tanggal Kembali</th>
                                                 <th>Jumlah Denda</th>
@@ -80,7 +81,10 @@
                                                     <?php echo $id ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $data->id_anggota ?>
+                                                    <?php echo tampil_namadaftar_ByIdAnggota($data->id_anggota) ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo tampil_namabuku_byPeminjamanId($data->id_index_buku) ?>
                                                 </td>
                                                 <td>
                                                     <?php echo $data->tgl_pinjaman ?>
@@ -94,7 +98,7 @@
                                             </tr>
                                             <?php endforeach;?>
                                             <tr>
-                                                <td colspan="4" class="text-lg text-bold">
+                                                <td colspan="5" class="text-lg text-bold">
                                                     Total
                                                 </td>
                                                 <td class="text-lg text-bold">
@@ -118,7 +122,7 @@
 
         </div>
 
-        <?php $this->load->view('keuangan/style/js') ?>
+        <?php $this->load->view('Perpustakaan/style/js') ?>
 
 </body>
 

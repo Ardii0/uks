@@ -140,6 +140,15 @@
                                 </a>
                             </li>
                         </ul>
+                    <li class="nav-item">
+                        <a href="<?php echo base_url('Perpustakaan/rekap_denda')?>"
+                            class="nav-link <?=$menu == 'denda_perpus' ? 'active' :'' ?>">
+                            <i class="nav-icon fas fa-newspaper"></i>
+                            <p>
+                                Rekap Denda Perpus
+                            </p>
+                        </a>
+                    </li>
                     </li>
                     <li class="nav-item logout">
                         <a href="<?php echo base_url('Login/logout');?>" class="nav-link">

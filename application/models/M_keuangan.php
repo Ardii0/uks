@@ -309,20 +309,4 @@ class M_keuangan extends CI_Model{
         $data=$this->db->update($tabel, $data, $where);
         return $this->db->affected_rows();
     }
-
-    // rekap denda
-    public function get_denda()
-	{
-		return $this->db->where('status', 'DIKEMBALIKAN')->get('tabel_pinjaman')->result();
-	}
-    public function filter_rekap($tanggalawal=0,$tanggalakhir=0){
-        if ($tanggalawal != 0 && $tanggalakhir == 0) {
-          $query = $this->db->query("SELECT * from tabel_pinjaman where status ='DIKEMBALIKAN' AND DATE (tgl_pinjaman) = '$tanggalawal' ORDER BY tgl_pinjaman ASC ");
-        } else if($tanggalawal != 0 && $tanggalakhir != 0) {
-          $query = $this->db->query("SELECT * from tabel_pinjaman where status ='DIKEMBALIKAN' AND tgl_pinjaman BETWEEN '$tanggalawal' and '$tanggalakhir' ORDER BY tgl_pinjaman ASC ");
-        } else {
-          $query = $this->db->query("SELECT * from tabel_pinjaman");
-        }
-        return $query->result();
-        }
 }
