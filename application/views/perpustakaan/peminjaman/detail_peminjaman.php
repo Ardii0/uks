@@ -81,8 +81,8 @@
                                             <td class="px-2"><?php echo $data->tgl_pinjaman ?></td>
                                         </tr>
                                         <tr>
-                                            <th class="px-2">Jatuh Tempo</th>
-                                            <td class="px-2"><?php echo $data->jatuh_tempo ?></td>
+                                            <th class="px-2">Tanggal Pengembalian</th>
+                                            <td class="px-2"><?php echo $data->tgl_kembali ?></td>
                                         </tr>
                                     </table>
                                 </div>
