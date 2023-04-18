@@ -38,7 +38,7 @@
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body shadow p-4 mb-5 bg-white rounded">
-                                <table id="datasiswa-table" class="table table-bordered table-striped">
+                                    <table id="datasiswa-table" class="table table-bordered table-striped">
                                         <thead>
                                             <tr class="text-center">
                                                 <th>No</th>
@@ -49,6 +49,7 @@
                                                 <th>Tahun Terbit</th>
                                                 <th>Kategori</th>
                                                 <th>Rak Buku</th>
+                                                <th>Tanggal Masuk</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -66,6 +67,7 @@
                                                 <td><?php echo $row->tahun_terbit?></td>
                                                 <td><?php echo namakategori($row->kategori_id)?></td>
                                                 <td><?php echo $row->rak_buku_id?></td>
+                                                <td><?php echo $row->tgl_masuk?></td>
                                                 <td>
                                                     <a href="<?php echo base_url('Perpustakaan/detail_index_buku/'.$row->id_buku)?>"
                                                         class="btn btn-success btn-sm">
