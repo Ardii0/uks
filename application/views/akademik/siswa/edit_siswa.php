@@ -101,6 +101,39 @@
                         <div class="row">
                             <div class="col-4">
                                 <div>
+                                    <label for="nik" class="mr-3">
+                                        No. NIK
+                                    </label>
+                                </div>
+                                <div>
+                                    <input id="nik" type="number" name="nik" value="<?php echo $row->nik?>"
+                                        class="form-control" placeholder="NIK Siswa">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div>
+                                    <label for="kk" class="mr-3">
+                                        No. KK
+                                    </label>
+                                </div>
+                                <div>
+                                    <input id="kk" type="number" name="kk" value="<?php echo $row->kk?>"
+                                        class="form-control" placeholder="No KK">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div>
+                                    <label for="nisn" class="mr-3">
+                                        NISN
+                                    </label>
+                                </div>
+                                <div>
+                                    <input id="nisn" type="number" name="nisn" value="<?php echo $row->nisn?>"
+                                        class="form-control" placeholder="NISN">
+                                </div>
+                            </div>
+                            <div class="col-4 mt-2">
+                                <div>
                                     <label for="nama-lengkap" class="mr-3">
                                         Nama Lengkap
                                     </label>
@@ -110,7 +143,7 @@
                                         class="form-control" placeholder="Nama Lengkap">
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-4 mt-2">
                                 <div>
                                     <label for="jenjang" class="mr-3">
                                         Agama
@@ -127,39 +160,6 @@
                                         <option value="Hindu">Hindu</option>
                                         <option value="Budha">Budha</option>
                                     </select>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div>
-                                    <label for="nisn" class="mr-3">
-                                        NISN
-                                    </label>
-                                </div>
-                                <div>
-                                    <input id="nisn" type="number" name="nisn" value="<?php echo $row->nisn?>"
-                                        class="form-control" placeholder="NISN">
-                                </div>
-                            </div>
-                            <div class="col-4 mt-2">
-                                <div>
-                                    <label for="nik" class="mr-3">
-                                        No. NIK
-                                    </label>
-                                </div>
-                                <div>
-                                    <input id="nik" type="number" name="nik" value="<?php echo $row->nik?>"
-                                        class="form-control" placeholder="NIK Siswa">
-                                </div>
-                            </div>
-                            <div class="col-4 mt-2">
-                                <div>
-                                    <label for="kk" class="mr-3">
-                                        No. KK
-                                    </label>
-                                </div>
-                                <div>
-                                    <input id="kk" type="number" name="kk" value="<?php echo $row->kk?>"
-                                        class="form-control" placeholder="No KK">
                                 </div>
                             </div>
                             <div class="col-4 mt-2">
@@ -214,8 +214,36 @@
                                     </label>
                                 </div>
                                 <div>
-                                    <input id="ayah" type="text" name="ayah" value="<?php echo $row->ayah?>"
-                                        class="form-control" placeholder="Nama Ayah">
+                                    <input id="ayah" type="text" name="ayah" value="<?php echo $row->ayah?>" class="form-control"
+                                        placeholder="Nama Ayah">
+                                </div>
+                            </div>
+                            <div class="col-4 mt-2">
+                                <div>
+                                    <label for="pekerjaan_ayah" class="mr-3">
+                                        Pekerjaan Ayah
+                                    </label>
+                                </div>
+                                <div>
+                                    <input id="pekerjaan_ayah" type="text" value="<?php echo $row->pekerjaan_ayah?>" name="pekerjaan_ayah" class="form-control"
+                                        placeholder="Pekerjaan Ayah">
+                                </div>
+                            </div>
+                            <div class="col-4 mt-2">
+                                <div>
+                                    <label for="gaji_ayah" class="mr-3">
+                                        Gaji Ayah
+                                    </label>
+                                </div>
+                                <div>
+                                    <select id="gaji_ayah" name="gaji_ayah" class="form-control">
+                                        <option selected value="<?php echo $row->gaji_ayah?>"><?php echo $row->gaji_ayah?></option>
+                                        <option value="kurang dari 1jt">kurang dari 1jt</option>
+                                        <option value="1jt - 2jt">1jt - 2jt</option>
+                                        <option value="2jt - 3jt">2jt - 3jt</option>
+                                        <option value="3jt - 4jt">3jt - 4jt</option>
+                                        <option value="4jt - 5jt">4jt - 5jt</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-4 mt-2">
@@ -225,20 +253,29 @@
                                     </label>
                                 </div>
                                 <div>
-                                    <input id="ibu" type="text" name="ibu" class="form-control"
-                                        value="<?php echo $row->ibu?>" placeholder="Nama Ibu">
+                                    <input id="ibu" type="text" name="ibu" value="<?php echo $row->ibu?>" class="form-control" placeholder="Nama Ibu">
                                 </div>
                             </div>
                             <div class="col-4 mt-2">
                                 <div>
-                                    <label for="jenjang" class="mr-3">
-                                        Gaji Orang Tua
+                                    <label for="pekerjaan_ibu" class="mr-3">
+                                        Pekerjaan Ibu
                                     </label>
                                 </div>
                                 <div>
-                                    <select id="gaji_ortu" name="gaji_ortu"
-                                        class="form-control">
-                                        <option value="<?php echo $row->gaji_ortu ?>"><?php echo $row->gaji_ortu ?></option>
+                                    <input id="pekerjaan_ibu" type="text" value="<?php echo $row->pekerjaan_ibu?>" name="pekerjaan_ibu" class="form-control"
+                                        placeholder="Pekerjaan Ayah">
+                                </div>
+                            </div>
+                            <div class="col-4 mt-2">
+                                <div>
+                                    <label for="gaji_ibu" class="mr-3">
+                                        Gaji Ibu
+                                    </label>
+                                </div>
+                                <div>
+                                    <select id="gaji_ibu" name="gaji_ibu" class="form-control">
+                                        <option selected value="<?php echo $row->gaji_ibu?>"><?php echo $row->gaji_ibu?></option>
                                         <option value="kurang dari 1jt">kurang dari 1jt</option>
                                         <option value="1jt - 2jt">1jt - 2jt</option>
                                         <option value="2jt - 3jt">2jt - 3jt</option>

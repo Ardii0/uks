@@ -91,15 +91,6 @@
                             </li>
                         </ul>
                         <li class="nav-item">
-                        <a href="<?php echo base_url('keuangan/rekap_denda')?>"
-                            class="nav-link <?=$menu == 'denda_perpus' ? 'active' :'' ?>">
-                            <i class="nav-icon fas fa-newspaper"></i>
-                            <p>
-                               Rekap Denda Perpus
-                            </p>
-                        </a>
-                    </li>
-                        <li class="nav-item">
                         <a href="<?php echo base_url('keuangan/pembayaran')?>"
                             class="nav-link <?=$menu == 'pembayaran' ? 'active' :'' ?>">
                             <i class="nav-icon fas fa-money-bill"></i>

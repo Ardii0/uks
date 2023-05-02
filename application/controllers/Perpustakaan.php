@@ -953,4 +953,40 @@ class Perpustakaan extends CI_Controller {
                  }
          }
      }
+     // rekap Denda Perpus
+public function rekap_denda()
+{
+    $data = [
+        'judul' => 'perpus',
+        'page' => 'perpus',
+        'menu' => 'denda_perpus',
+        'submenu'=>'rekap_denda',
+        'menu_submenu_admin'=>'',
+        'menu_admin' => 'perpus',
+        'submenu_admin'=> 'rekap_denda'
+    ];
+    $peminjam['peminjam'] = $this->m_perpustakaan->get_denda('data_peminjam');
+    $this->load->view('perpustakaan/denda_perpus/rekap_denda',$peminjam + $data);
+}
+
+public function filter_tglrekap()
+   {
+    $data = [
+        'judul' => 'perpus',
+        'page' => 'perpus',
+        'menu' => 'denda_perpus',
+        'submenu'=>'rekap_denda',
+        'menu_submenu_admin'=>'',
+        'menu_admin' => 'perpus',
+        'submenu_admin'=> 'rekap_denda'
+    ];
+      $tanggalawal = $this->input->post('tanggalawal');
+      $tanggalakhir = $this->input->post('tanggalakhir');
+      $lapjurnal = $this->input->post('lapjurnal');
+
+      if($lapjurnal = 1) {
+        $peminjam['peminjam'] = $this->m_perpustakaan->filter_rekap($tanggalawal,$tanggalakhir);
+        $this->load->view('perpustakaan/denda_perpus/filter_denda',$peminjam + $data);
+      }
+   }
 }

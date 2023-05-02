@@ -58,7 +58,7 @@
                                             <th>No-Peminjaman</th>
                                             <th>Nama Siswa</th>
                                             <th>Tanggal Pinjam</th>
-                                            <th>Jatuh Tempo</th>
+                                            <th>Tanggal Pengembalian</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -71,8 +71,13 @@
                                             <td><?php echo $data->no_pinjaman ?></td>
                                             <td><?php echo tampil_namadaftar_ByIdAnggota($data->id_anggota) ?></td>
                                             <td><?php echo $data->tgl_pinjaman ?></td>
-                                            <td><?php echo $data->jatuh_tempo ?></td>
-                                            <td><?php echo $data->status ?></td>
+                                            <td><?php echo $data->tgl_kembali ?></td>
+                                            <td> 
+                                                <?php    
+                                                    $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
+                                                    echo $generator->getBarcode($data->no_pinjaman, $generator::TYPE_CODE_128);
+                                                ?>
+                                            </td>
                                             <td class="text-center">
                                                 <a
                                                     href="<?php echo base_url('Perpustakaan/peminjam_id/'.$data->id_pinjaman)?>">

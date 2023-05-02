@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alokasi Mapel</title>
+    <title>Akademik</title>
     <?php $this->load->view('akademik/style/head')?>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -69,7 +69,7 @@
                                             <thead class="bg-info">
                                                 <tr>
                                                     <th><input type="checkbox" class="checkAll"></th>
-                                                    <th>Nama Kelas</th>
+                                                    <th>Kelas</th>
                                                     <th>Keterangan</th>
                                                 </tr>
                                             </thead>
@@ -102,7 +102,13 @@
                         <div class="text-center mb-3 d-flex justify-content-between"
                             style="border-bottom: solid 1px; border-color: #">
                             <div>
-                                <h3 class="">DATA ALOKASI KE KELAS</h3>
+                                <h3 class="">ALOKASI MATA PELAJARAN</h3>
+                            </div>
+                            <div class="row">
+                                <?php foreach ($alokasimapel as $trial_data): ?>
+                                    <form action="<?php echo base_url('Akademik/tambah_jam_belajar'); ?>" enctype="multipart/form-data" method="post" class="d-flex align-items-center justify-content-center">
+                                    </form>
+                                <?php endforeach; ?>
                             </div>
                             <div class="">
                                 <button type="submit" class="btn btn-danger">
@@ -114,8 +120,10 @@
                             <thead class="bg-info">
                                 <tr>
                                     <th><input type="checkbox" class="deleteAll"></th>
-                                    <th>Nama Kelas</th>
-                                    <th>Keterangan</th>
+                                    <th>Kelas</th>
+                                    <th>Semester</th>
+                                    <th>Jam</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -124,11 +132,21 @@
                                     <td>
                                         <input type="checkbox" class="deletealokmapel" name="id_alokasimapel[<?php echo $data->id_alokasimapel ?>]">
                                     </td>
-                                    <td class="d-flex">
-                                            <?php echo tampil_namatingkat_ById($kelas->id_tingkat).' '.tampil_kelas_byid($data->id_kelas) ?>
+                                    <td>
+                                        <?php echo tampil_namatingkat_ByIdKelas($data->id_kelas).' '.tampil_kelas_byid($data->id_kelas) ?>
                                     </td>
                                     <td>
-                                        <?php echo tampil_ket_kelasById($data->id_kelas) ?>
+                                        <?php echo $data->semester ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $data->jam_belajar ?>
+                                    </td>
+                                    <td class="text-center">
+                                        <form action="<?php echo base_url('Akademik/tambah_jam_belajar'); ?>" id="alokasi<?php echo $data->id_alokasimapel; ?>" enctype="multipart/form-data" method="post" class="align-items-center justify-content-center">
+                                            <button type="button" class="btn btn-info" onclick="send(<?php echo $data->id_alokasimapel; ?>)">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                                 <?php endforeach;?>
@@ -161,6 +179,24 @@
         $('.deletealokmapel').attr('checked', false);
     }
     });
+    
+    function send(id_alokasimapel) {
+        $.ajax({
+            url : "<?php echo base_url('akademik/get_mapelByAlokasimapel');?>",
+            method : "POST",
+            data : {id_alokasimapel: id_alokasimapel},
+            async : true,
+            dataType : 'json',
+            success: function(data){
+                var html = '<div class="mb-1" id="semester"><input type="number" class="form-control" name="semester" value="'+data[0].semester+'">'+
+                           '<input type="hidden" class="form-control" name="id_alokasimapel" value="'+data[0].id_alokasimapel+'"></div>'+
+                           '<div class="d-flex" id="jam"><input type="number" class="form-control" name="jam_belajar" value="'+data[0].jam_belajar+'">'+
+                           '<input type="hidden" class="form-control" name="id_alokasimapel" value="'+data[0].id_alokasimapel+'">'+
+                           '<button type="submit" class="ml-2 btn btn-info"><i class="fa fa-check"></i></button></div>';
+                $('#alokasi'+data[0].id_alokasimapel).html(html);
+            }
+        });
+    };
 </script>
 </body>
 

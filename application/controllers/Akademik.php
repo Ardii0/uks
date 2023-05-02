@@ -618,8 +618,11 @@ class Akademik extends CI_Controller {
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
                 'anak_ke' => $this->input->post('anak_ke'),
                 'ayah' => $this->input->post('ayah'),
+                'pekerjaan_ayah' => $this->input->post('pekerjaan_ayah'),
+                'gaji_ayah' => $this->input->post('gaji_ayah'),
                 'ibu' => $this->input->post('ibu'),
-                'gaji_ortu' => $this->input->post('gaji_ortu'),
+                'pekerjaan_ibu' => $this->input->post('pekerjaan_ibu'),
+                'gaji_ibu' => $this->input->post('gaji_ibu'),
                 'tgl_lahir' => $this->input->post('tgl_lahir'),
                 'jekel' => $this->input->post('jekel'),
                 'diterima' => 'P',
@@ -649,8 +652,11 @@ class Akademik extends CI_Controller {
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
                 'anak_ke' => $this->input->post('anak_ke'),
                 'ayah' => $this->input->post('ayah'),
+                'pekerjaan_ayah' => $this->input->post('pekerjaan_ayah'),
+                'gaji_ayah' => $this->input->post('gaji_ayah'),
                 'ibu' => $this->input->post('ibu'),
-                'gaji_ortu' => $this->input->post('gaji_ortu'),
+                'pekerjaan_ibu' => $this->input->post('pekerjaan_ibu'),
+                'gaji_ibu' => $this->input->post('gaji_ibu'),
                 'tgl_lahir' => $this->input->post('tgl_lahir'),
                 'jekel' => $this->input->post('jekel'),
                 'diterima' => 'P',
@@ -743,11 +749,15 @@ class Akademik extends CI_Controller {
         $objPHPExcel->getActiveSheet()->SetCellValue('K1', 'Tempat Lahir');   
         $objPHPExcel->getActiveSheet()->SetCellValue('L1', 'Anak Ke'); 
         $objPHPExcel->getActiveSheet()->SetCellValue('M1', 'Nama Ayah');   
-        $objPHPExcel->getActiveSheet()->SetCellValue('N1', 'Nama Ibu');   
-        $objPHPExcel->getActiveSheet()->SetCellValue('O1', 'Tanggal Lahir');   
-        $objPHPExcel->getActiveSheet()->SetCellValue('P1', 'Agama');   
-        $objPHPExcel->getActiveSheet()->SetCellValue('Q1', 'Alamat');   
-        $objPHPExcel->getActiveSheet()->SetCellValue('R1', 'Telepon');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('N1', 'Pekerjaan Ayah');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('O1', 'Gaji Ayah');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('P1', 'Nama Ibu');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('Q1', 'Pekerjaan Ibu');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('R1', 'Gaji Ibu');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('S1', 'Tanggal Lahir');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('T1', 'Agama');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('U1', 'Alamat');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('V1', 'Telepon');   
         // set Row
         $rowCount = 2;
         foreach ($listInfo as $list) {
@@ -764,11 +774,15 @@ class Akademik extends CI_Controller {
             $objPHPExcel->getActiveSheet()->SetCellValue('K' . $rowCount, $list->tempat_lahir);
             $objPHPExcel->getActiveSheet()->SetCellValue('L' . $rowCount, $list->anak_ke);
             $objPHPExcel->getActiveSheet()->SetCellValue('M' . $rowCount, $list->ayah);
-            $objPHPExcel->getActiveSheet()->SetCellValue('N' . $rowCount, $list->ibu);
-            $objPHPExcel->getActiveSheet()->SetCellValue('O' . $rowCount, $list->tgl_lahir);
-            $objPHPExcel->getActiveSheet()->SetCellValue('P' . $rowCount, $list->agama);
-            $objPHPExcel->getActiveSheet()->SetCellValue('Q' . $rowCount, $list->alamat);
-            $objPHPExcel->getActiveSheet()->SetCellValue('R' . $rowCount, $list->telepon);
+            $objPHPExcel->getActiveSheet()->SetCellValue('N' . $rowCount, $list->pekerjaan_ayah);
+            $objPHPExcel->getActiveSheet()->SetCellValue('O' . $rowCount, $list->gaji_ayah);
+            $objPHPExcel->getActiveSheet()->SetCellValue('P' . $rowCount, $list->ibu);
+            $objPHPExcel->getActiveSheet()->SetCellValue('Q' . $rowCount, $list->pekerjaan_ibu);
+            $objPHPExcel->getActiveSheet()->SetCellValue('R' . $rowCount, $list->gaji_ibu);
+            $objPHPExcel->getActiveSheet()->SetCellValue('S' . $rowCount, $list->tgl_lahir);
+            $objPHPExcel->getActiveSheet()->SetCellValue('T' . $rowCount, $list->agama);
+            $objPHPExcel->getActiveSheet()->SetCellValue('U' . $rowCount, $list->alamat);
+            $objPHPExcel->getActiveSheet()->SetCellValue('V' . $rowCount, $list->telepon);
             $rowCount++;
         }
         $filename = "data-pendaftaran-peserta-didik-baru.csv";
@@ -816,8 +830,11 @@ class Akademik extends CI_Controller {
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
                 'anak_ke' => $this->input->post('anak_ke'),
                 'ayah' => $this->input->post('ayah'),
+                'pekerjaan_ayah' => $this->input->post('pekerjaan_ayah'),
+                'gaji_ayah' => $this->input->post('gaji_ayah'),
                 'ibu' => $this->input->post('ibu'),
-                'gaji_ortu' => $this->input->post('gaji_ortu'),
+                'pekerjaan_ibu' => $this->input->post('pekerjaan_ibu'),
+                'gaji_ibu' => $this->input->post('gaji_ibu'),
                 'tgl_lahir' => $this->input->post('tgl_lahir'),
                 'jekel' => $this->input->post('jekel'),
                 'diterima' => 'P',
@@ -854,8 +871,11 @@ class Akademik extends CI_Controller {
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
                 'anak_ke' => $this->input->post('anak_ke'),
                 'ayah' => $this->input->post('ayah'),
+                'pekerjaan_ayah' => $this->input->post('pekerjaan_ayah'),
+                'gaji_ayah' => $this->input->post('gaji_ayah'),
                 'ibu' => $this->input->post('ibu'),
-                'gaji_ortu' => $this->input->post('gaji_ortu'),
+                'pekerjaan_ibu' => $this->input->post('pekerjaan_ibu'),
+                'gaji_ibu' => $this->input->post('gaji_ibu'),
                 'tgl_lahir' => $this->input->post('tgl_lahir'),
                 'jekel' => $this->input->post('jekel'),
                 'diterima' => 'P',
@@ -940,7 +960,7 @@ class Akademik extends CI_Controller {
         foreach( $id_daftar as $key => $value){
             $this->db->insert('tabel_siswa', array(
                 'id_kelas' => $id_kelas,
-                'id_siswa' => $key,
+                'id_daftar' => $key,
                 'nama' => tampil_nama_siswa_byid($key)
             ));
             $this->m_akademik->ubah_pendaftaran('tabel_siswa', array( 
@@ -1082,9 +1102,17 @@ class Akademik extends CI_Controller {
             'submenu_admin'=>'data_siswa',
         ];
         $this->load->model('M_akademik');
+        $data['tingkat'] = $this->m_akademik->get('tabel_tingkat');
         $data['kelas'] = $this->m_akademik->get('tabel_kelas');
         $data['siswa'] = $this->m_akademik->get_siswa('siswa');
         $this->load->view('akademik/siswa/data', $data);
+    }
+
+    public function get_kelasByIdTingkat()
+    {
+        $id_tingkat = $this->input->post('id_tingkat',TRUE);
+        $data = $this->m_akademik->get_kelas($id_tingkat)->result();
+        echo json_encode($data);
     }
 
     public function finter_by_kelas_siswa()
@@ -1101,7 +1129,8 @@ class Akademik extends CI_Controller {
         $id_kelas = $this->input->post('id_kelas');
         $nilaifilter = $this->input->post('nilaifilter');
 
-        if($nilaifilter = 1) {
+        if($nilaifilter = 1) 
+            $data['tingkat'] = $this->m_akademik->get('tabel_tingkat');{
             $data['kelas'] = $this->m_akademik->get('tabel_kelas');
             $data['siswa'] = $this->m_akademik->filterByKelas($id_kelas);
             $data['filter']=$this->m_akademik->get_filter_kelas('tabel_kelas', $id_kelas)->result();
@@ -1136,18 +1165,18 @@ class Akademik extends CI_Controller {
         $rowCount = 2;
         foreach ($listInfo as $list) {
             $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, tampil_kelas_byid($list->id_kelas));
-            $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, tampil_nik_siswa_byid($list->id_siswa));
-            $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, tampil_kk_siswa_byid($list->id_siswa));
-            $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, tampil_nisn_siswa_byid($list->id_siswa));
-            $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, tampil_nama_siswa_byid($list->id_siswa));
-            $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, tampil_jekel_siswa_byid($list->id_siswa));
-            $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount, tampil_tempat_lahir_siswa_byid($list->id_siswa));
-            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount, tampil_tanggal_lahir_siswa_byid($list->id_siswa));
-            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount, tampil_alamat_siswa_byid($list->id_siswa));
-            $objPHPExcel->getActiveSheet()->SetCellValue('J' . $rowCount, tampil_agama_siswa_byid($list->id_siswa));
-            $objPHPExcel->getActiveSheet()->SetCellValue('K' . $rowCount, tampil_telepon_siswa_byid($list->id_siswa));
-            $objPHPExcel->getActiveSheet()->SetCellValue('L' . $rowCount, tampil_nama_ayah_siswa_byid($list->id_siswa));
-            $objPHPExcel->getActiveSheet()->SetCellValue('M' . $rowCount, tampil_nama_ibu_siswa_byid($list->id_siswa));
+            $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, tampil_nik_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, tampil_kk_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, tampil_nisn_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, tampil_nama_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, tampil_jekel_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount, tampil_tempat_lahir_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount, tampil_tanggal_lahir_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount, tampil_alamat_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('J' . $rowCount, tampil_agama_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('K' . $rowCount, tampil_telepon_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('L' . $rowCount, tampil_nama_ayah_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('M' . $rowCount, tampil_nama_ibu_siswa_byid($list->id_daftar));
             $rowCount++;
         }
         $filename = "data-siswa.csv";
@@ -1184,18 +1213,18 @@ class Akademik extends CI_Controller {
         $rowCount = 2;
         foreach ($listInfo as $list) {
             $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, tampil_kelas_byid($list->id_kelas));
-            $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, tampil_nik_siswa_byid($list->id_siswa));
-            $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, tampil_kk_siswa_byid($list->id_siswa));
-            $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, tampil_nisn_siswa_byid($list->id_siswa));
-            $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, tampil_nama_siswa_byid($list->id_siswa));
-            $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, tampil_jekel_siswa_byid($list->id_siswa));
-            $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount, tampil_tempat_lahir_siswa_byid($list->id_siswa));
-            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount, tampil_tanggal_lahir_siswa_byid($list->id_siswa));
-            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount, tampil_alamat_siswa_byid($list->id_siswa));
-            $objPHPExcel->getActiveSheet()->SetCellValue('J' . $rowCount, tampil_agama_siswa_byid($list->id_siswa));
-            $objPHPExcel->getActiveSheet()->SetCellValue('K' . $rowCount, tampil_telepon_siswa_byid($list->id_siswa));
-            $objPHPExcel->getActiveSheet()->SetCellValue('L' . $rowCount, tampil_nama_ayah_siswa_byid($list->id_siswa));
-            $objPHPExcel->getActiveSheet()->SetCellValue('M' . $rowCount, tampil_nama_ibu_siswa_byid($list->id_siswa));
+            $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, tampil_nik_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, tampil_kk_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, tampil_nisn_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, tampil_nama_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, tampil_jekel_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount, tampil_tempat_lahir_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount, tampil_tanggal_lahir_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount, tampil_alamat_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('J' . $rowCount, tampil_agama_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('K' . $rowCount, tampil_telepon_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('L' . $rowCount, tampil_nama_ayah_siswa_byid($list->id_daftar));
+            $objPHPExcel->getActiveSheet()->SetCellValue('M' . $rowCount, tampil_nama_ibu_siswa_byid($list->id_daftar));
             $rowCount++;
         }
         $filename = "data-siswa-".tampil_kelas_byid($list->id_kelas).".csv";
@@ -1246,7 +1275,7 @@ class Akademik extends CI_Controller {
     public function update_siswa_kelas()
     {
         $data = array (
-            "id_siswa" => $this->input->post("id_siswa"),
+            "id_daftar" => $this->input->post("id_daftar"),
             "id_kelas" => $this->input->post("id_kelas"),
             "saldo_tabungan" => $this->input->post("saldo_tabungan"),
         );
@@ -1301,11 +1330,14 @@ class Akademik extends CI_Controller {
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
                 'anak_ke' => $this->input->post('anak_ke'),
                 'ayah' => $this->input->post('ayah'),
+                'pekerjaan_ayah' => $this->input->post('pekerjaan_ayah'),
+                'gaji_ayah' => $this->input->post('gaji_ayah'),
                 'ibu' => $this->input->post('ibu'),
-                'gaji_ortu' => $this->input->post('gaji_ortu'),
+                'pekerjaan_ibu' => $this->input->post('pekerjaan_ibu'),
+                'gaji_ibu' => $this->input->post('gaji_ibu'),
                 'tgl_lahir' => $this->input->post('tgl_lahir'),
                 'jekel' => $this->input->post('jekel'),
-                'diterima' => 'P',
+                'diterima' => 'A',
             );
             $masuk = $this->m_akademik->ubah_pendaftaran("tabel_daftar", $data, array("id_daftar" => $this->input->post("id_daftar")));
             if ($masuk)
@@ -1339,8 +1371,11 @@ class Akademik extends CI_Controller {
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
                 'anak_ke' => $this->input->post('anak_ke'),
                 'ayah' => $this->input->post('ayah'),
+                'pekerjaan_ayah' => $this->input->post('pekerjaan_ayah'),
+                'gaji_ayah' => $this->input->post('gaji_ayah'),
                 'ibu' => $this->input->post('ibu'),
-                'gaji_ortu' => $this->input->post('gaji_ortu'),
+                'pekerjaan_ibu' => $this->input->post('pekerjaan_ibu'),
+                'gaji_ibu' => $this->input->post('gaji_ibu'),
                 'tgl_lahir' => $this->input->post('tgl_lahir'),
                 'jekel' => $this->input->post('jekel'),
                 'diterima' => 'P',
@@ -1589,7 +1624,6 @@ class Akademik extends CI_Controller {
         $data = [
             'nama_mapel' => $this->input->post('nama_mapel'),
             'id_jenismapel' => $this->input->post('id_jenismapel'),
-            'jam_belajar' => $this->input->post('jam_belajar'),
         ];
         $this->m_akademik->tambah_mapel('tabel_mapel', $data);
         redirect(base_url('Akademik/pelajaran'));
@@ -1616,7 +1650,6 @@ class Akademik extends CI_Controller {
         $data =  [
             'nama_mapel' => $this->input->post('nama_mapel'),
             'id_jenismapel' => $this->input->post('id_jenismapel'),
-            'jam_belajar' => $this->input->post('jam_belajar'),
         ];
         $logged=$this->m_akademik->ubah_mapel('tabel_mapel', $data, array('id_mapel'=>$this->input->post('id_mapel')));
         if($logged)
@@ -1810,6 +1843,22 @@ class Akademik extends CI_Controller {
                 $this->m_akademik->hapus_alokasimapel('tabel_alokasimapel', 'id_alokasimapel', $key); 
             }
             redirect(base_url('Akademik/alokasi_mapel/'.$this->input->post('id_mapel')));
+        }
+
+        public function get_mapelByAlokasimapel(){
+            $id = $this->input->post('id_alokasimapel',TRUE);
+            $data = $this->m_akademik->getwhere('tabel_alokasimapel', array('id_alokasimapel' => $id))->result();
+            echo json_encode($data);
+        }
+    
+        public function tambah_jam_belajar()
+        {
+            $data =  [
+                'semester' => $this->input->post('semester'),
+                'jam_belajar' => $this->input->post('jam_belajar'),
+            ];
+            $this->m_akademik->update('tabel_alokasimapel', $data, array('id_alokasimapel'=>$this->input->post('id_alokasimapel')));
+            redirect($_SERVER['HTTP_REFERER']);
         }
 
 // Akun

@@ -53,8 +53,7 @@
                                 <div class="form-group">
                                     <label class="control-label">Kurikulum</label>
                                     <div class="">
-                                        <textarea name="kurikulum" class="form-control"
-                                        rows="3" placeholder="Masukan Kurikulum"></textarea>
+                                        <input type="text" name="kurikulum" class="form-control" placeholder="Masukan Kurikulum">
                                     </div>
                                 </div>
                             </div>

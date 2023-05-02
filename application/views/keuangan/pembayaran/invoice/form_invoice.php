@@ -66,7 +66,7 @@
                                 <div class="row mt-3">
                                     <div class="col-4 text-right font-weight-bold">Kelas/Rombel</div>
                                     <div class="col-8">
-                                        <?php echo tampil_rombeldaftar_ByIdSiswa($data->id_siswa) ;?>
+                                        <?php echo tampil_tingkat_ByIdSiswa($data->id_siswa).' '.tampil_kelasdaftar_ByIdSiswa($data->id_siswa);?>
                                     </div>
                                 </div>
                             <?php endforeach; ?>

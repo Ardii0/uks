@@ -57,7 +57,7 @@
                                         <div class="mt-3">
                                             <h4><?php echo $data->nama?></h4>
                                             <p class="text-muted font-size-sm">
-                                            <?php echo $data->alamat?></p>
+                                                <?php echo $data->alamat?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -70,7 +70,7 @@
                                                 <h6 class="mb-0">Anak Ke</h6>
                                             </div>
                                             <div class="col-sm-4 text-secondary">
-                                            <?php echo $data->anak_ke?>
+                                                <?php echo $data->anak_ke?>
                                             </div>
                                         </div>
                                         <hr>
@@ -79,7 +79,7 @@
                                                 <h6 class="mb-0">Nama Ayah</h6>
                                             </div>
                                             <div class="col-sm-4 text-secondary">
-                                            <?php echo $data->ayah?>
+                                                <?php echo $data->ayah?>
                                             </div>
                                         </div>
                                         <hr>
@@ -88,7 +88,7 @@
                                                 <h6 class="mb-0">Nama Ibu</h6>
                                             </div>
                                             <div class="col-sm-4 text-secondary">
-                                            <?php echo $data->ibu?>
+                                                <?php echo $data->ibu?>
                                             </div>
                                         </div>
                                         <hr>
@@ -104,7 +104,7 @@
                                             <h6 class="mb-0">No.NIK</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                        <?php echo $data->nik?>
+                                            <?php echo $data->nik?>
                                         </div>
                                     </div>
                                     <hr>
@@ -113,7 +113,7 @@
                                             <h6 class="mb-0">No.KK</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                        <?php echo $data->kk?>
+                                            <?php echo $data->kk?>
                                         </div>
                                     </div>
                                     <hr>
@@ -122,7 +122,7 @@
                                             <h6 class="mb-0">Asal Sekolah</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                        <?php echo $data->asal_sekolah?>
+                                            <?php echo $data->asal_sekolah?>
                                         </div>
                                     </div>
                                     <hr>
@@ -168,7 +168,7 @@
                                             <h6 class="mb-0">Jenis Kelamin</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <?php echo tampil_jekel_siswa_byid($data->id_daftar)?>
+                                            <?php $gender = tampil_jekel_siswa_byid($data->id_daftar) == "L" ? 'Laki - Laki' : 'Perempuan'; echo $gender ?>
                                         </div>
                                     </div>
                                 </div>

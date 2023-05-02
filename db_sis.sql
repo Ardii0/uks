@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2023 at 11:32 PM
+-- Generation Time: Apr 18, 2023 at 12:52 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -224,8 +224,8 @@ INSERT INTO `tabel_alokasiguru` (`id_alokasiguru`, `kode_guru`, `jam_mengajar`, 
 (11, 'KG-VNKIWZ', NULL, 11),
 (12, 'KG-VNKIWZ', NULL, 12),
 (13, 'KG-VNKIWZ', NULL, 13),
-(26, 'KG-Z4XFYE', '2', 9),
-(27, 'KG-Z4XFYE', '1', 14);
+(28, 'KG-Z4XFYE', '23', 9),
+(29, 'KG-Z4XFYE', '24', 14);
 
 -- --------------------------------------------------------
 
@@ -236,8 +236,20 @@ INSERT INTO `tabel_alokasiguru` (`id_alokasiguru`, `kode_guru`, `jam_mengajar`, 
 CREATE TABLE `tabel_alokasimapel` (
   `id_alokasimapel` int(11) NOT NULL,
   `id_mapel` int(11) NOT NULL,
-  `id_kelas` int(11) NOT NULL
+  `id_kelas` int(11) NOT NULL,
+  `semester` int(11) DEFAULT NULL,
+  `jam_belajar` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `tabel_alokasimapel`
+--
+
+INSERT INTO `tabel_alokasimapel` (`id_alokasimapel`, `id_mapel`, `id_kelas`, `semester`, `jam_belajar`) VALUES
+(4, 8, 1, 1, 3),
+(5, 8, 2, 3, 4),
+(6, 9, 1, NULL, 12),
+(8, 9, 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -392,15 +404,6 @@ CREATE TABLE `tabel_invoice` (
   `id_ta` int(11) DEFAULT NULL,
   `cek_p` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tabel_invoice`
---
-
-INSERT INTO `tabel_invoice` (`id_invoice`, `id_siswa`, `date`, `id_level`, `id_ta`, `cek_p`) VALUES
-('INV0414SRQ4336', 11, '2023-04-14', 5, 0, 1),
-('INV0414RN30711', 10, '2023-04-14', 5, 0, 1),
-('INV04140D21045', 10, '2023-04-15', 5, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -591,7 +594,6 @@ CREATE TABLE `tabel_mapel` (
   `id_mapel` int(11) NOT NULL,
   `id_jenismapel` int(11) NOT NULL,
   `nama_mapel` varchar(255) NOT NULL,
-  `jam_belajar` int(11) NOT NULL,
   `status` enum('AKTIF','NONAKTIF') NOT NULL DEFAULT 'AKTIF'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
@@ -599,14 +601,14 @@ CREATE TABLE `tabel_mapel` (
 -- Dumping data for table `tabel_mapel`
 --
 
-INSERT INTO `tabel_mapel` (`id_mapel`, `id_jenismapel`, `nama_mapel`, `jam_belajar`, `status`) VALUES
-(8, 3, 'Matematika', 10, 'AKTIF'),
-(9, 3, 'Bahasa Indonesia', 20, 'AKTIF'),
-(10, 4, 'ASJ', 3, 'AKTIF'),
-(11, 4, 'Simdig', 12, 'AKTIF'),
-(12, 4, 'Pemrograman Dasar', 66, 'AKTIF'),
-(13, 3, 'Bahasa Inggris', 23, 'AKTIF'),
-(14, 3, 'PAI', 51, 'AKTIF');
+INSERT INTO `tabel_mapel` (`id_mapel`, `id_jenismapel`, `nama_mapel`, `status`) VALUES
+(8, 3, 'Matematika', 'AKTIF'),
+(9, 3, 'Bahasa Indonesia', 'AKTIF'),
+(10, 4, 'ASJ', 'AKTIF'),
+(11, 4, 'Simdig', 'AKTIF'),
+(12, 4, 'Pemrograman Dasar', 'AKTIF'),
+(13, 3, 'Bahasa Inggris', 'AKTIF'),
+(14, 3, 'PAI', 'AKTIF');
 
 -- --------------------------------------------------------
 
@@ -708,10 +710,18 @@ CREATE TABLE `tabel_pinjaman` (
 --
 
 INSERT INTO `tabel_pinjaman` (`id_pinjaman`, `no_pinjaman`, `id_anggota`, `id_index_buku`, `tgl_pinjaman`, `tgl_kembali`, `status`, `denda`) VALUES
-(3, 'PMJ-ITGZX7', 95774, 8, '2023-04-12', '2023-04-12', 'DIKEMBALIKAN', 0),
-(4, 'PMJ-X45Z81', 9980, 10, '2023-04-12', '2023-04-12', 'DIKEMBALIKAN', 0),
-(6, 'PMJ-HYKUBY', 95774, 11, '2023-04-02', '2023-04-12', 'DIKEMBALIKAN', 0),
-(7, 'PMJ-674OLF', 9980, 8, '2023-03-31', '2023-04-12', 'DIKEMBALIKAN', 25000);
+(3, 'PMJ-ITGZX7', 95774, 8, '2023-04-12', '2023-04-12', 'DIKEMBALIKAN', 20000),
+(4, 'PMJ-X45Z81', 9980, 10, '2023-04-12', '2023-04-12', 'DIKEMBALIKAN', 20000),
+(6, 'PMJ-HYKUBY', 95774, 11, '2023-04-02', '2023-04-12', 'DIKEMBALIKAN', 20000),
+(7, 'PMJ-674OLF', 9980, 8, '2023-03-31', '2023-04-12', 'DIKEMBALIKAN', 25000),
+(8, 'PMJ-674OLF', 9980, 8, '2023-03-31', '2023-04-12', 'DIKEMBALIKAN', 10000),
+(9, 'PMJ-674OLF', 9980, 8, '2023-03-31', '2023-04-12', 'DIKEMBALIKAN', 10000),
+(10, 'PMJ-674OLF', 9980, 8, '2023-03-31', '2023-04-12', 'DIKEMBALIKAN', 10000),
+(11, 'PMJ-674OLF', 9980, 8, '2023-03-31', '2023-04-12', 'DIKEMBALIKAN', 10000),
+(12, 'PMJ-674OLF', 9980, 8, '2023-03-31', '2023-04-12', 'DIKEMBALIKAN', 10000),
+(13, 'PMJ-674OLF', 9980, 8, '2023-03-31', '2023-04-12', 'DIKEMBALIKAN', 10000),
+(14, 'PMJ-674OLF', 9980, 8, '2023-03-31', '2023-04-12', 'DIKEMBALIKAN', 10000),
+(15, 'PMJ-674OLF', 9980, 8, '2023-03-31', '2023-04-12', 'DIKEMBALIKAN', 10000);
 
 -- --------------------------------------------------------
 
@@ -778,6 +788,13 @@ CREATE TABLE `tabel_siswa` (
   `nama` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Dumping data for table `tabel_siswa`
+--
+
+INSERT INTO `tabel_siswa` (`id_siswa`, `id_daftar`, `id_kelas`, `saldo_tabungan`, `nama`) VALUES
+(1, 1, 1, 1, 'ada');
+
 -- --------------------------------------------------------
 
 --
@@ -813,11 +830,18 @@ INSERT INTO `tabel_tahunajaran` (`id_angkatan`, `kd_angkatan`, `nama_angkatan`, 
 --
 
 CREATE TABLE `tabel_testimoni` (
-  `id_testimoni` int(11) DEFAULT NULL,
-  `id_alumni` int(11) DEFAULT NULL,
+  `id_testimoni` int(11) NOT NULL,
+  `id_level` int(11) DEFAULT NULL,
   `pesan` varchar(765) DEFAULT NULL,
   `tampil` varchar(765) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tabel_testimoni`
+--
+
+INSERT INTO `tabel_testimoni` (`id_testimoni`, `id_level`, `pesan`, `tampil`) VALUES
+(1, 6, 'Allo guys ini testimoni yaaa', 'YES');
 
 -- --------------------------------------------------------
 
@@ -877,7 +901,7 @@ CREATE TABLE `table_buku` (
   `del_flag` int(11) NOT NULL DEFAULT 1,
   `kategori_id` varchar(255) NOT NULL,
   `rak_buku_id` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `tgl_masuk` timestamp NOT NULL DEFAULT current_timestamp(),
   `foto` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -885,7 +909,7 @@ CREATE TABLE `table_buku` (
 -- Dumping data for table `table_buku`
 --
 
-INSERT INTO `table_buku` (`id_buku`, `judul_buku`, `penerbit_buku`, `penulis_buku`, `tahun_terbit`, `keterangan`, `sumber`, `stok`, `del_flag`, `kategori_id`, `rak_buku_id`, `created_at`, `foto`) VALUES
+INSERT INTO `table_buku` (`id_buku`, `judul_buku`, `penerbit_buku`, `penulis_buku`, `tahun_terbit`, `keterangan`, `sumber`, `stok`, `del_flag`, `kategori_id`, `rak_buku_id`, `tgl_masuk`, `foto`) VALUES
 (1, 'Sri Asih', 'MBC Group', 'Joko Puspito', 2018, 'Alana tidak mengerti mengapa dia selalu dikuasai oleh kemarahan. Tapi dia selalu berusaha untuk melawannya. Dia lahir saat letusan gunung berapi yang memisahkan dia dan orang tuanya. Dia kemudian diadopsi oleh seorang wanita kaya yang berusaha membantunya', NULL, 2, 1, '12', '002', '2023-03-28 00:13:11', '1679987591723.jpg'),
 (2, 'Tiga Sandra Terakhir', 'Noura Publishing', 'Brahmanto Anindito', 2015, 'Tiga Sandera Terakhir adalah sebuah novel thriller-militer karya Brahmanto Anindito yang diterbitkan pertama pada 2015 oleh Noura Publishing, Jakarta. Novel bersubjudul Terinspirasi dari Konflik Berdarah di Timur Indonesia ini menceritakan sebuah drama pe', NULL, 0, 1, '12', '002', '2023-03-28 00:16:37', '1679987797810.jpg'),
 (3, 'Atlas', 'MBC Group', 'Ariestotoles', 2017, 'Atlas adalah kumpulan peta yang disatukan dalam bentuk buku, tetapi juga ditemukan dalam bentuk multimedia. Atlas dapat memuat informasi geografi, batas negara, statisik geopolitik, sosial, agama dan ekonomi.', NULL, 1, 1, '12', '001', '2023-03-28 00:17:57', '1679987877012.jpg'),
@@ -1179,6 +1203,13 @@ ALTER TABLE `tabel_tahunajaran`
   ADD PRIMARY KEY (`id_angkatan`);
 
 --
+-- Indexes for table `tabel_testimoni`
+--
+ALTER TABLE `tabel_testimoni`
+  ADD PRIMARY KEY (`id_testimoni`),
+  ADD KEY `tabel_testimoni_to_level` (`id_level`);
+
+--
 -- Indexes for table `tabel_tingkat`
 --
 ALTER TABLE `tabel_tingkat`
@@ -1254,13 +1285,13 @@ ALTER TABLE `tabel_akun`
 -- AUTO_INCREMENT for table `tabel_alokasiguru`
 --
 ALTER TABLE `tabel_alokasiguru`
-  MODIFY `id_alokasiguru` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_alokasiguru` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `tabel_alokasimapel`
 --
 ALTER TABLE `tabel_alokasimapel`
-  MODIFY `id_alokasimapel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_alokasimapel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tabel_daftar`
@@ -1350,7 +1381,7 @@ ALTER TABLE `tabel_pindah`
 -- AUTO_INCREMENT for table `tabel_pinjaman`
 --
 ALTER TABLE `tabel_pinjaman`
-  MODIFY `id_pinjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_pinjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tabel_rencana_anggaran`
@@ -1374,13 +1405,19 @@ ALTER TABLE `tabel_semester`
 -- AUTO_INCREMENT for table `tabel_siswa`
 --
 ALTER TABLE `tabel_siswa`
-  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tabel_tahunajaran`
 --
 ALTER TABLE `tabel_tahunajaran`
   MODIFY `id_angkatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `tabel_testimoni`
+--
+ALTER TABLE `tabel_testimoni`
+  MODIFY `id_testimoni` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tabel_tingkat`
@@ -1501,6 +1538,12 @@ ALTER TABLE `tabel_pindah`
 ALTER TABLE `tabel_siswa`
   ADD CONSTRAINT `tabel_siswa_from_daftar` FOREIGN KEY (`id_daftar`) REFERENCES `tabel_daftar` (`id_daftar`),
   ADD CONSTRAINT `tabel_siswa_to_kelas` FOREIGN KEY (`id_kelas`) REFERENCES `tabel_kelas` (`id_kelas`);
+
+--
+-- Constraints for table `tabel_testimoni`
+--
+ALTER TABLE `tabel_testimoni`
+  ADD CONSTRAINT `tabel_testimoni_to_level` FOREIGN KEY (`id_level`) REFERENCES `tabel_level` (`id_level`);
 
 --
 -- Constraints for table `tabel_tingkat`

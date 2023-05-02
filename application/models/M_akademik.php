@@ -168,6 +168,11 @@ class M_akademik extends CI_Model{
         return $this->db->get('tabel_siswa')->result();
     }
 
+    function get_kelas($id_tingkat){
+        $query = $this->db->get_where('tabel_kelas', array('id_tingkat' => $id_tingkat));
+        return $query;
+    }
+
     public function exportSiswa() {
         $this->db->select(array('nama', 'id_siswa', 'id_kelas'));
         $this->db->from('tabel_siswa');
@@ -236,10 +241,10 @@ class M_akademik extends CI_Model{
     }
 
 
-    public function get_siswaperkelas($tabel, $id_kelas)
-    {
-        $data=$this->db->where('id_kelas', $id_kelas)->get($tabel);
-        return $data;
+    public function get_siswaperkelas($tabel, $id_kelas) 
+    { 
+        $data=$this->db->where('id_kelas', $id_kelas)->get($tabel); 
+        return $data; 
     }
 
 
@@ -254,7 +259,7 @@ class M_akademik extends CI_Model{
 
 // Pendaftaran Siswa
     public function exportList() {
-        $this->db->where('diterima','P')->select(array('no_reg', 'id_angkatan', 'id_jenjang', 'tgl_daftar', 'asal_sekolah', 'nisn', 'nama', 'nik', 'kk', 'jekel', 'tempat_lahir', 'anak_ke', 'ayah', 'ibu', 'tgl_lahir', 'agama', 'alamat', 'telepon'));
+        $this->db->where('diterima','P')->select(array('no_reg', 'id_angkatan', 'id_jenjang', 'tgl_daftar', 'asal_sekolah', 'nisn', 'nama', 'nik', 'kk', 'jekel', 'tempat_lahir', 'anak_ke', 'ayah', 'pekerjaan_ayah', 'gaji_ayah', 'ibu', 'pekerjaan_ibu', 'gaji_ibu', 'tgl_lahir', 'agama', 'alamat', 'telepon'));
         $this->db->from('tabel_daftar');
         $query = $this->db->get();
         return $query->result();

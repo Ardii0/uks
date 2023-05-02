@@ -95,6 +95,23 @@ $result = $ci->db->where('id_level',$id)->get('tabel_level');
     }
   }
 
+  function tampil_namatingkat_ByIdKelas($id)
+  {
+    $ci =& get_instance();
+    $ci->load->database();
+    $namatingkat = '';
+    $result = $ci->db->select('*')
+                      ->from('tabel_kelas')
+                      ->join('tabel_tingkat','tabel_kelas.id_tingkat = tabel_tingkat.id_tingkat')
+                      ->where('tabel_kelas.id_kelas',$id)
+                      ->get();
+      foreach ($result->result() as $c) {
+      $stmt= $c->nama_tingkat;
+      $namatingkat= $namatingkat.$stmt;
+      }
+      return $namatingkat;
+  }
+
   function tampil_namajenjang_byid($id)
   {
   $ci =& get_instance();
@@ -159,26 +176,26 @@ $result = $ci->db->where('id_level',$id)->get('tabel_level');
     return $addrs;
   }
 
-  function tampil_id_siswa_byid($id)
-  {
-  $ci =& get_instance();
-  $ci->load->database();
-  $result = $ci->db->where('id_daftar',$id)->get('tabel_siswa');
-    foreach ($result->result() as $c) {
-    $stmt= $c->id_siswa;
-    return $stmt;
-    }
-  }
+  function tampil_id_siswa_byid($id) 
+  { 
+  $ci =& get_instance(); 
+  $ci->load->database(); 
+  $result = $ci->db->where('id_daftar',$id)->get('tabel_siswa'); 
+    foreach ($result->result() as $c) { 
+    $stmt= $c->id_siswa; 
+    return $stmt; 
+    } 
+  } 
 
-  function tampil_id_kelas_byid($id)
-  {
-  $ci =& get_instance();
-  $ci->load->database();
-  $result = $ci->db->where('id_daftar',$id)->get('tabel_siswa');
-    foreach ($result->result() as $c) {
-    $stmt= $c->id_kelas;
-    return $stmt;
-    }
+  function tampil_id_kelas_byid($id) 
+  { 
+  $ci =& get_instance(); 
+  $ci->load->database(); 
+  $result = $ci->db->where('id_daftar',$id)->get('tabel_siswa'); 
+    foreach ($result->result() as $c) { 
+    $stmt= $c->id_kelas; 
+    return $stmt; 
+    } 
   }
 
   function tampil_idta_ByIdSiswa($id)
@@ -583,21 +600,22 @@ $result = $ci->db->where('id_level',$id)->get('tabel_level');
     return $nisn;
   }
 
-  function tampil_rombeldaftar_ByIdSiswa($id)
+  function tampil_tingkat_ByIdSiswa($id)
   {
   $ci =& get_instance();
   $ci->load->database();
-  $namadaftar = '';
+  $namatingkat = '';
   $result = $ci->db->select('*')
                     ->from('tabel_siswa')
-                    ->join('tabel_rombel','tabel_siswa.id_rombel = tabel_rombel.id_rombel')
+                    ->join('tabel_kelas','tabel_siswa.id_kelas = tabel_kelas.id_kelas')
+                    ->join('tabel_tingkat','tabel_kelas.id_tingkat = tabel_tingkat.id_tingkat')
                     ->where('tabel_siswa.id_siswa',$id)
                     ->get();
     foreach ($result->result() as $c) {
-    $stmt= $c->nama_rombel;
-    $namadaftar= $namadaftar.$stmt.'<br>';
+    $stmt= $c->nama_tingkat;
+    $namatingkat= $namatingkat.$stmt;
     }
-    return $namadaftar;
+    return $namatingkat;
   }
 
   function tampil_kelasdaftar_ByIdSiswa($id)
@@ -607,13 +625,12 @@ $result = $ci->db->where('id_level',$id)->get('tabel_level');
   $namakelas = '';
   $result = $ci->db->select('*')
                     ->from('tabel_siswa')
-                    ->join('tabel_rombel','tabel_siswa.id_rombel = tabel_rombel.id_rombel')
-                    ->join('tabel_kelas','tabel_rombel.id_kelas = tabel_kelas.id_kelas')
+                    ->join('tabel_kelas','tabel_siswa.id_kelas = tabel_kelas.id_kelas')
                     ->where('tabel_siswa.id_siswa',$id)
                     ->get();
     foreach ($result->result() as $c) {
     $stmt= $c->nama_kelas;
-    $namakelas= $namakelas.$stmt;
+    $namakelas= $namakelas.$stmt.'<br>';
     }
     return $namakelas;
   }
@@ -737,12 +754,12 @@ $result = $ci->db->where('id_level',$id)->get('tabel_level');
   $result = $ci->db->select('*')
                     ->from('tabel_anggota')
                     ->join('tabel_siswa','tabel_anggota.id_siswa = tabel_siswa.id_siswa')
-                    ->join('tabel_rombel','tabel_siswa.id_rombel = tabel_rombel.id_rombel')
-                    ->join('tabel_kelas','tabel_rombel.id_kelas = tabel_kelas.id_kelas')
+                    ->join('tabel_kelas','tabel_siswa.id_kelas = tabel_kelas.id_kelas')
+                    ->join('tabel_tingkat','tabel_kelas.id_tingkat = tabel_tingkat.id_tingkat')
                     ->where('tabel_anggota.id_anggota',$id)
                     ->get();
     foreach ($result->result() as $c) {
-    $stmt= $c->nama_kelas;
+    $stmt= $c->nama_tingkat;
     $namakelas= $namakelas.$stmt.'<br>';
     }
     return $namakelas;
@@ -756,11 +773,11 @@ $result = $ci->db->where('id_level',$id)->get('tabel_level');
   $result = $ci->db->select('*')
                     ->from('tabel_anggota')
                     ->join('tabel_siswa','tabel_anggota.id_siswa = tabel_siswa.id_siswa')
-                    ->join('tabel_rombel','tabel_siswa.id_rombel = tabel_rombel.id_rombel')
+                    ->join('tabel_kelas','tabel_siswa.id_kelas = tabel_kelas.id_kelas')
                     ->where('tabel_anggota.id_anggota',$id)
                     ->get();
     foreach ($result->result() as $c) {
-    $stmt= $c->nama_rombel;
+    $stmt= $c->nama_kelas;
     $namarombel= $namarombel.$stmt.'<br>';
     }
     return $namarombel;
@@ -839,6 +856,17 @@ $result = $ci->db->where('id_level',$id)->get('tabel_level');
   }
   
  // Detail Index Buku
+  function tampil_tanggal_masuk_buku_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_buku',$id)->get('table_buku');
+    foreach ($result->result() as $c) {
+    $stmt= $c->tgl_masuk;
+    return $stmt;
+    }
+  }
+
   function tampil_judul_buku_byid($id)
   {
   $ci =& get_instance();

@@ -71,7 +71,7 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>Tanggal</th>
+                                                <th>Tanggal Pembayaran</th>
                                                 <th>Uraian</th>
                                                 <th>Debet</th>
                                             </tr>
@@ -110,7 +110,7 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>Tanggal</th>
+                                                <th>Tanggal Pembayaran</th>
                                                 <th>Uraian</th>
                                                 <th>Kredit</th>
                                             </tr>

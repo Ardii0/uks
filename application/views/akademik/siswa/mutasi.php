@@ -109,7 +109,7 @@
                                                     <?php echo tampil_nama_siswa_byid($data->id_daftar) ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo tampil_jekel_siswa_byid($data->id_daftar) ?>
+                                                <?php $gender = tampil_jekel_siswa_byid($data->id_daftar) == "L" ? 'Laki - Laki' : 'Perempuan'; echo $gender ?>
                                                 </td>
                                                 <td>
                                                     <?php echo tampil_tempat_lahir_siswa_byid($data->id_daftar) ?>,

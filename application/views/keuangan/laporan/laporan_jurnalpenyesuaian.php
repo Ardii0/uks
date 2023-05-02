@@ -80,7 +80,7 @@
                                 <table id="data-table" class="table table-bordered ">
                                     <thead>
                                         <tr>
-                                            <th>Date Time</th>
+                                            <th>Tanggal Pembayaran</th>
                                             <th>Uraian</th>
                                             <!-- <th>Nominal</th> -->
                                             <th>Debet</th>

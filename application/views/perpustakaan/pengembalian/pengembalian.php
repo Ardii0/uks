@@ -48,7 +48,7 @@
                                             <th>No</th>
                                             <th>No-Peminjaman</th>
                                             <th>Nama Siswa</th>
-                                            <th>Rombel</th>
+                                            <th>Kelas</th>
                                             <th>Tanggal Pinjam</th>
                                             <th>Tanggal Kembali</th>
                                             <th>Status</th>

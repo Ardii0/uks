@@ -253,7 +253,7 @@ class M_perpustakaan extends CI_Model{
 		$data=$this->db->delete($tabel, array($field => $id_pasien));
 		return $data;
 	}
-//Laporan
+// Laporan
 	public function get_laporan_pinjam()
 	{
 		return $this->db->where('status', 'DIPINJAM')->get('tabel_pinjaman')->result();
@@ -296,4 +296,19 @@ class M_perpustakaan extends CI_Model{
         $data=$this->db->update($tabel, $data, $where);
         return $this->db->affected_rows();
     }
+// Rekap Denda	
+	public function get_denda()
+	{
+		return $this->db->query("SELECT * from tabel_pinjaman where status = 'DIKEMBALIKAN' AND denda !=0")->result();
+	}
+    public function filter_rekap($tanggalawal=0,$tanggalakhir=0){
+        if ($tanggalawal != 0 && $tanggalakhir == 0) {
+          $query = $this->db->query("SELECT * from tabel_pinjaman where status ='DIKEMBALIKAN' AND DATE (tgl_pinjaman) = '$tanggalawal' ORDER BY tgl_pinjaman ASC ");
+        } else if($tanggalawal != 0 && $tanggalakhir != 0) {
+          $query = $this->db->query("SELECT * from tabel_pinjaman where status ='DIKEMBALIKAN' AND tgl_pinjaman BETWEEN '$tanggalawal' and '$tanggalakhir' ORDER BY tgl_pinjaman ASC ");
+        } else {
+          $query = $this->db->query("SELECT * from tabel_pinjaman");
+        }
+        return $query->result();
+        }
 }
