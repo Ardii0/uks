@@ -595,7 +595,7 @@ class Keuangan extends CI_Controller
     }
 
     public function get_siswaByIdKelas(){
-        $id = $this->input->post('id_tingkat',TRUE);
+        $id = $this->input->post('id_kelas',TRUE);
         $data = $this->m_keuangan->get_siswaByIdKelas($id)->result();
         echo json_encode($data);
     }
@@ -758,7 +758,7 @@ class Keuangan extends CI_Controller
 			$invoice = $this->m_keuangan->get_inv($idi);
 			foreach ($nama->result() as $key) {
 				$data['nama'] = $key->nama;
-				$data['rombel'] = $key->id_rombel;
+				$data['kelas'] = $key->id_kelas;
 			}
 			foreach ($invoice->result() as $key2) {
 				$data['invoice'] = $key2->id_invoice;

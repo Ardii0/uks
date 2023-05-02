@@ -74,7 +74,7 @@
 		<tr>
 			<td>Kelas</td>
 			<td>:</td>
-			<td><?php echo tampil_rombel_byid($rombel) ?></td>
+			<td><?php echo tampil_namatingkat_ByIdKelas($kelas).' '.tampil_kelas_byid($kelas) ?></td>
 		</tr>
 		<tr>
 			<td>ID Invoice</td>
