@@ -174,14 +174,14 @@ class M_akademik extends CI_Model{
     }
 
     public function exportSiswa() {
-        $this->db->select(array('nama', 'id_siswa', 'id_kelas'));
+        $this->db->select(array('nama', 'id_daftar', 'id_kelas'));
         $this->db->from('tabel_siswa');
         $query = $this->db->get();
         return $query->result();
     }
 
     public function export_siswa_kelas($id_kelas) {
-        $this->db->select(array('nama', 'id_siswa', 'id_kelas'));
+        $this->db->select(array('nama', 'id_daftar', 'id_kelas'));
         $this->db->from('tabel_siswa');
         $this->db->where('id_kelas', $id_kelas);
         $query = $this->db->get();
