@@ -38,15 +38,25 @@ class Register extends CI_Controller {
 //=====Aksi Daftar======
 public function aksi_registrasi()
 {
-    $data = [
-        'username' => $this->input->post('username'),
-        'email' => $this->input->post('email'),
-        'password' => md5($this->input->post('password')),
-        'level' => "Alumni",
-    ];
+  $password = md5($this->input->post("password"));
+  $konfir_password = md5($this->input->post("konfirPassword"));
+  
+  $data = [
+    'username' => $this->input->post('username'),
+    'email' => $this->input->post('email'),
+    'password' => $password,
+    'level' => "Alumni",
+  ];
+  
+  
+  if ($password !== $konfir_password) {
+    $this->load->view('petugas/register');
 
-    $this->m_register->registrasi('tabel_level', $data);
-    redirect(base_url('Login'));
+    } else{
+      $this->m_register->registrasi('tabel_level', $data);
+      redirect(base_url('Login'));
+    }
+
 }
 
   

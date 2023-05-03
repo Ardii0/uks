@@ -42,6 +42,13 @@
                     method="post">
                     <div class="row">
                             <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                    <label class="control-label">NIK</label>
+                                    <div class="">
+                                        <input type="text" name="nik" class="form-control"
+                                            placeholder="Masukan NIK" value="<?php echo $data->nik ?>">
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label class="control-label">Nama Guru</label>
                                     <div class="">
@@ -49,13 +56,7 @@
                                             placeholder="Masukan Nama guru" value="<?php echo $data->nama_guru ?>">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label">No HP</label>
-                                    <div class="">
-                                        <input type="text" name="no_hp" class="form-control"
-                                            placeholder="Masukan No HP" value="<?php echo $data->no_hp ?>">
-                                    </div>
-                                </div>
+                              
                                 <div class="form-group">
                                     <label class="control-label">No SK</label>
                                     <div class="">
@@ -99,12 +100,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">NIK</label>
+                                    <label class="control-label">No HP</label>
                                     <div class="">
-                                        <input type="text" name="nik" class="form-control"
-                                            placeholder="Masukan NIK" value="<?php echo $data->nik ?>">
+                                        <input type="text" name="no_hp" class="form-control"
+                                            placeholder="Masukan No HP" value="<?php echo $data->no_hp ?>">
                                     </div>
                                 </div>
+
                                 <div class="form-group">
                                     <label class="control-label">Tanggal SK</label>
                                     <div class="">
@@ -120,12 +122,12 @@
                                 <div class="form-group">
                                     <label class="control-label">Jabatan</label>
                                     <div class="">
-                                        <select name="jabatan" class="form-control select2">
-                                            <option value="<?php echo $data->jabatan ?>"><?php echo $data->jabatan ?></option>
-                                            <option value="TU">TU</option>
-                                            <option value="Kesiswaan">Kesiswaan</option>
-                                            <option value="Lainnya">Lainnya</option>
-                                        </select>
+                                    <select name="id_paket" class="form-control">
+                                            <option style="display: none;">Pilih Jabatan</option>
+                                            <?php foreach($jabatan as $jab ): ?>
+                                                <option name="id_jabatan" value="<?php echo $jab->id_jabatan ?>"><?php echo $jab->nama_jabatan ?></option>
+                                            <?php endforeach ?>
+                                    </select>
                                     </div>
                                 </div>
                             </div>

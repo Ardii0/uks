@@ -24,7 +24,9 @@
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="<?php echo base_url('Akademik/') ?>"><?php echo $this->session->userdata('level') ?></a></li>
+                                <li class="breadcrumb-item"><a
+                                        href="<?php echo base_url('Akademik/') ?>"><?php echo $this->session->userdata('level') ?></a>
+                                </li>
                                 <li class="breadcrumb-item active">Guru</li>
                             </ol>
                         </div>
@@ -61,7 +63,7 @@
                                             <th>Nama</th>
                                             <th style="width: 100px;">Jenis Kelamin</th>
                                             <th>No HP</th>
-                                            <th>Alamat</th>
+                                            <th>Jabatan</th>
                                             <th style="width: 100px;">Aksi</th>
                                         </tr>
                                     </thead>
@@ -69,40 +71,44 @@
                                         <?php $id = 0;
                                         foreach ($guru as $data):
                                             $id++; ?>
-                                            <tr>
-                                                <td>
-                                                    <?php echo $id ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $data->nip ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $data->nama_guru ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $data->jekel ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $data->no_hp ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $data->alamat ?>
-                                                </td>
-                                                <td class="text-center">
-                                                    <a href="<?php echo base_url('Akademik/alokasi_guru/' .$data->kode_guru) ?>" class="btn btn-success btn-sm">
-                                                        <i class="fa fa-share"></i></a>
-                                                    <a href="<?php echo base_url('Akademik/edit_guru/' . $data->kode_guru) ?>"
-                                                        class="btn btn-primary btn-sm">
-                                                        <i class="fa fa-edit"></i></a>
-                                                    <?php 
+                                        <tr>
+                                            <td>
+                                                <?php echo $id ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $data->nip ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $data->nama_guru ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $data->jekel ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $data->no_hp ?>
+                                            </td>
+                                            <td>
+                                                <?php echo tampil_jabatanGuruById($data->id_jabatan) ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="<?php echo base_url('Akademik/alokasi_guru/' .$data->kode_guru) ?>"
+                                                    class="btn btn-success btn-sm">
+                                                    <i class="fa fa-share"></i></a>
+                                                <a href="<?php echo base_url('Akademik/edit_guru/' . $data->kode_guru) ?>"
+                                                    class="btn btn-primary btn-sm">
+                                                    <i class="fa fa-edit"></i></a>
+                                                <a href="<?php echo base_url('Akademik/detail_guru/'.$data->kode_guru)?>"
+                                                    class="btn btn-warning btn-sm">
+                                                    <i class="fa fa-eye"></i></a>
+                                                <?php 
                                                     if(!$this->db->where('kode_guru',$data->kode_guru)->get('tabel_kelas')->result() &&
                                                        !$this->db->where('kode_guru',$data->kode_guru)->get('tabel_alokasiguru')->result()) {?>
-                                                    <button onclick="hapus('<?php echo $data->kode_guru ?>')"
-                                                        class='btn btn-danger btn-sm'>
+                                                <button onclick="hapus('<?php echo $data->kode_guru ?>')"
+                                                    class='btn btn-danger btn-sm'>
                                                     <i class='fa fa-trash'></i></button>
-                                                    <?php }?>
-                                                </td>
-                                            </tr>
+                                                <?php }?>
+                                            </td>
+                                        </tr>
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
@@ -116,12 +122,12 @@
     </div>
     <?php $this->load->view('akademik/style/js') ?>
     <script>
-        function hapus(id) {
-            var yes = confirm('Apakah Anda Yakin Untuk Menghapus?');
-            if (yes == true) {
-                window.location.href = "<?php echo base_url('Akademik/hapus_guru/') ?>" + id;
-            }
+    function hapus(id) {
+        var yes = confirm('Apakah Anda Yakin Untuk Menghapus?');
+        if (yes == true) {
+            window.location.href = "<?php echo base_url('Akademik/hapus_guru/') ?>" + id;
         }
+    }
     </script>
 </body>
 
