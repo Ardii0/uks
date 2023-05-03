@@ -45,7 +45,8 @@
                                 <div class="row mt-3 mx-2">
                                     <div class="col-1 text-left font-weight-bold mt-1">Tingkat</div>
                                     <div class="col-11">
-                                        <select id="tingkat" class="custom-select custom-select-md" require>
+                                        <select id="tingkat" class="custom-select select2 select2-info"
+                                        data-dropdown-css-class="select2-info" require>
                                             <option value="">Pilih Tingkat</option>
                                             <?php foreach($tingkat as $data): ?>
                                             <option value="<?php echo $data->id_tingkat ?>">
@@ -58,8 +59,8 @@
                                 <div class="row mt-3 mx-2">
                                     <div class="col-1 text-left font-weight-bold mt-1">Kelas</div>
                                     <div class="col-11">
-                                        <select id="kelas" name="id_kelas" class="custom-select custom-select-md"
-                                            require>
+                                        <select id="kelas" name="id_kelas" class="custom-select select2 select2-info"
+                                        data-dropdown-css-class="select2-info" require>
                                             <option>Pilih Kelas</option>
                                             <?php $id = 0;foreach ($kelas as $data): $id++;?>
                                             <option value="<?php echo $data->id_kelas ?>">
@@ -129,14 +130,14 @@
                                                 <a href="<?php echo base_url('Akademik/detail_siswa/'.$data->id_siswa)?>"
                                                     class="btn btn-warning btn-sm">
                                                     <i class="fa fa-eye"></i></a>
-                                                <?php 
+                                                <!-- <?php 
                                                     $find = find_idanggota($data->id_siswa);
                                                     if($find == null) echo "
                                                     <button onClick='hapus($data->id_siswa)'
                                                     class='btn btn-danger btn-sm'>
                                                     <i class='fa fa-trash'></i></button>                                           
                                                     "; 
-                                                    else echo ""?>
+                                                    else echo ""?> -->
                                             </td>
                                         </tr>
                                         <?php endforeach;?>

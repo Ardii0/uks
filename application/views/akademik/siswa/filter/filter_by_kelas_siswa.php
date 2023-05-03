@@ -21,7 +21,7 @@
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <?php foreach ($filter as $data): ?>
-                            <h1>Data Siswa Kelas <?php echo tampil_kelas_byid($data->id_kelas) ?></h1>
+                            <h1>Data Siswa Kelas <?php echo tampil_tingkat_byid($data->id_tingkat) ?> <?php echo tampil_kelas_byid($data->id_kelas) ?></h1>
                             <?php endforeach ?>
                         </div>
                         <div class="col-sm-6">
@@ -134,9 +134,9 @@
                                                 <a href="<?php echo base_url('Akademik/detail_siswa/'.$data->id_siswa)?>"
                                                     class="btn btn-warning btn-sm">
                                                     <i class="fa fa-eye"></i></a>
-                                                <button onClick="hapus(<?php echo $data->id_siswa?>)"
+                                                <!-- <button onClick="hapus(<?php echo $data->id_siswa?>)"
                                                     class="btn btn-danger btn-sm">
-                                                    <i class="fa fa-trash"></i></button>
+                                                    <i class="fa fa-trash"></i></button> -->
                                             </td>
                                         </tr>
                                         <?php endforeach;?>
