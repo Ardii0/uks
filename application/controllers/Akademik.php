@@ -59,6 +59,7 @@ class Akademik extends CI_Controller {
         $data['jenjang'] = $this->m_akademik->get_jenjang('jenjang');
         $this->load->view('akademik/dashboard', $data);
     }
+    
 // Tahun Ajar
     public function tahun_ajaran()
     {
