@@ -51,7 +51,6 @@
                                 <div class="font-weight-bold">Dari :</div>
                                     <div><strong><?php echo tampil_namadaftar_ByIdSiswa($idinvc->id_siswa)?></strong></div>
                                     <div>Kelas <?php echo tampil_kelasdaftar_ByIdSiswa($idinvc->id_siswa)?></div>
-                                    <div><?php echo tampil_rombeldaftar_ByIdSiswa($idinvc->id_siswa)?></div>
                             </div>
                         </div>
                         <div class="col-4 px-3">

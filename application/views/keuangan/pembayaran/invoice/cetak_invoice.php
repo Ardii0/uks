@@ -64,22 +64,53 @@
 	</style>
 </head>
 <body>
-	<h1>Rekap Pembayaran</h1>
+<table width="100%">
+	<tr>
+	<td width="50" align="center"><h1>SMK Bina Nusantara</h1><h2>Semarang</h2></td>
+	</tr>
+	</table>
+	<hr>
+
+	<table border="0"  width="100%" >
+		<tr>
+			<td>Nomor</td>
+			<td>:</td>
+			<td>426/SP/SMK.BN/IV/2023</td>
+			<td style="text-align: right;"><h3>Semarang, <?= format_indo2(date("Y-m-d")) ?></h3></td>
+		</tr>
+		<tr>
+			<td>Lampiran</td>
+			<td>:</td>
+			<td>-</td>
+		</tr>
+		<tr>
+			<td>Hal</td>
+			<td>:</td>
+			<td>Pembayaran SPP</td>
+		</tr>
+	</table>
+
+	<h1 style="text-align: center">Rekap Pembayaran</h1>
 	<table border="0" style="font-size: 14px; font-weight: bold;">
 		<tr>
 			<td>Nama</td>
 			<td>:</td>
-			<td><?php echo $nama ?></td>
+			<td><?= $nama ?></td>
 		</tr>
 		<tr>
 			<td>Kelas</td>
 			<td>:</td>
-			<td><?php echo tampil_rombel_byid($rombel) ?></td>
+			<td><?= tampil_kelas_byid($kelas) ?></td>
 		</tr>
 		<tr>
 			<td>ID Invoice</td>
 			<td>:</td>
-			<td><?php echo $invoice ?></td>
+			<td><?= $invoice ?></td>
+		</tr>
+		<tr>
+			<td>Keterangan</td>
+			<td>:</td>
+			<td><?= $keterangan ?></td>
 		</tr>
 	</table>
 	<hr>

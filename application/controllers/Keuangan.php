@@ -758,10 +758,11 @@ class Keuangan extends CI_Controller
 			$invoice = $this->m_keuangan->get_inv($idi);
 			foreach ($nama->result() as $key) {
 				$data['nama'] = $key->nama;
-				$data['rombel'] = $key->id_rombel;
+				$data['kelas'] = $key->id_kelas;
 			}
 			foreach ($invoice->result() as $key2) {
 				$data['invoice'] = $key2->id_invoice;
+				$data['keterangan'] = $key2->keterangan;
 			}
 			$data['data'] = $this->m_keuangan->ibs($idi)->result();
 			if ($this->uri->segment(4) == "pdf") {
