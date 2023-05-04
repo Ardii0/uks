@@ -46,7 +46,7 @@
                 <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
                     <label>Masukan NISN *</label>
                 </div>
-                <div class="col-lg-3 col-md-10 col-sm-8 col-xs-7">
+                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                     <div class="form-group">
                         <div class="form-line">
                             <select id="enter" name="id_daftar" class="form-control select2" required="">
@@ -77,7 +77,7 @@
                 <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
                     <label>Jurusan *</label>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-6">
                     <div class="form-group">
                         <div class="form-line">
                             <select name="jurusan_sekolah" class="form-control select2" required="">
@@ -97,7 +97,7 @@
                 <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
                     <label>Jenis Kelamin *</label>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-6">
                     <div class="form-group">
                         <div class="form-line">
                             <select id="showdata_jekel" class="form-control select2" disabled>
@@ -113,14 +113,14 @@
                 <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
                     <label>Tempat/Tanggal Lahir *</label>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-6">
                     <div class="form-group">
                         <div class="form-line" id="showdata_tempat">
                             <input type="text" class="form-control" value="<?php echo tampil_tempat_lahir_siswa_byid($ready->id_daftar) ?>" disabled>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-6">
                     <div class="form-group">
                         <div class="form-line" id="showdata_tgl_lahir">
                             <input type="text" name="tanggal_lahir" value="<?php echo tampil_tanggal_lahir_siswa_byid($ready->id_daftar) ?>" class="form-control" disabled>
@@ -228,7 +228,7 @@
             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
                 <label>Masukan NISN *</label>
             </div>
-            <div class="col-lg-3 col-md-10 col-sm-8 col-xs-7">
+            <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                 <div class="form-group">
                     <div class="form-line">
                         <select id="enter" name="id_daftar" class="form-control select2" required>
@@ -259,7 +259,7 @@
             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
                 <label>Jurusan *</label>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+            <div class="col-lg-10 col-md-10 col-sm-8 col-xs-6">
                 <div class="form-group">
                     <div class="form-line">
                         <select name="jurusan_sekolah" class="form-control select2" required>
@@ -279,7 +279,7 @@
             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
                 <label>Jenis Kelamin *</label>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+            <div class="col-lg-10 col-md-10 col-sm-8 col-xs-6">
                 <div class="form-group">
                     <div class="form-line">
                         <select id="showdata_jekel" class="form-control select2" disabled>
@@ -295,14 +295,14 @@
             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
                 <label>Tempat/Tanggal Lahir *</label>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+            <div class="col-lg-5 col-md-5 col-sm-4 col-xs-6">
                 <div class="form-group">
                     <div class="form-line" id="showdata_tempat">
                         <input type="text" class="form-control" placeholder="Masukan Tempat Lahir" disabled>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+            <div class="col-lg-5 col-md-5 col-sm-4 col-xs-6">
                 <div class="form-group">
                     <div class="form-line" id="showdata_tgl_lahir">
                         <input type="date" name="tanggal_lahir" class="form-control" disabled>

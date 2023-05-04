@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2023 at 05:50 AM
+-- Generation Time: May 04, 2023 at 06:07 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -572,7 +572,8 @@ INSERT INTO `tabel_level` (`id_level`, `username`, `email`, `password`, `level`,
 (30, 'Soimatun', 'Soimatuh,S.Pd@gmail.com', 'fa61f827f0f5373133b11cc20d835a79', 'Guru', 'KG-VNKIWZ', 5, NULL),
 (31, 'Riyan Suryo Andono', 'RiyanSuryoAndono@gmail.com', '33c2cbd53687980928c13725dde63ba1', 'Guru', 'KG-RP3X25', 5, NULL),
 (32, 'Tito Dwi Yulianto', 'TitoDwiYulianto@gmail.com', 'd3b653b71dcfd8d90320d6c69090403b', 'Guru', 'KG-V6Y488', 5, NULL),
-(33, 'Ade Sucipto', 'AdeSucipto@gmail.com', '7427dfd74090b72827f684cd2fdab748', 'Guru', 'KG-AH9TQ4', 5, NULL);
+(33, 'Ade Sucipto', 'AdeSucipto@gmail.com', '7427dfd74090b72827f684cd2fdab748', 'Guru', 'KG-AH9TQ4', 5, NULL),
+(35, 'PetugasAlumni', 'petugasalumni@gmail.com', '202cb962ac59075b964b07152d234b70', 'PetugasAlumni', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1411,7 +1412,7 @@ ALTER TABLE `tabel_kritik`
 -- AUTO_INCREMENT for table `tabel_level`
 --
 ALTER TABLE `tabel_level`
-  MODIFY `id_level` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id_level` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `tabel_lowongan`
