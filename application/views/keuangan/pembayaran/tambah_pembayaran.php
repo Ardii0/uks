@@ -44,7 +44,7 @@
                             <div class="row mt-3">
                                 <div class="col-4 text-right font-weight-bold mt-1">Tingkat</div>
                                 <div class="col-8">
-                                    <select id="tingkat" class="custom-select custom-select-md">
+                                    <select id="tingkat" class="custom-select custom-select-md select2">
                                         <option value="">Pilih Tingkat</option>
                                         <?php foreach($tingkat as $tingkat): ?>
                                             <option value="<?php echo $tingkat->id_tingkat ?>"><?php echo $tingkat->nama_tingkat ?></option>
@@ -55,7 +55,7 @@
                             <div class="row mt-3">
                                 <div class="col-4 text-right font-weight-bold mt-1">Kelas</div>
                                 <div class="col-8">
-                                    <select id="kelas" class="custom-select custom-select-md">
+                                    <select id="kelas" class="custom-select custom-select-md select2">
                                         <option value="">Pilih Kelas</option>
                                         <?php foreach($kelas as $kelas): ?>
                                             <option value="<?php echo $kelas->id_kelas ?>"><?php echo $kelas->nama_kelas ?></option>
@@ -66,7 +66,7 @@
                             <div class="row mt-3">
                                 <div class="col-4 text-right font-weight-bold mt-1">Nama Siswa</div>
                                 <div class="col-8">
-                                    <select name="id_siswa" id="siswa" class="custom-select custom-select-md">
+                                    <select name="id_siswa" id="siswa" class="custom-select custom-select-md select2">
                                         <option value="">Pilih Siswa</option>
                                         <?php foreach($siswa as $siswa): ?>
                                             <option value="<?php echo $siswa->id_siswa ?>"><?php echo tampil_namadaftar_ByIdSiswa($siswa->id_siswa) ?></option>
@@ -99,7 +99,6 @@
                     async : true,
                     dataType : 'json',
                     success: function(data){
-                         
                         var html = '';
                         var i;
                         html += '<option>Pilih Kelas</option>';
@@ -107,7 +106,6 @@
                             html += '<option value='+data[i].id_kelas+'>'+data[i].nama_kelas+'</option>';
                         }
                         $('#kelas').html(html);
- 
                     }
                 });
                 return false;
@@ -129,7 +127,6 @@
                             html += '<option value='+data[i].id_siswa+'>'+data[i].nama+'</option>';
                         }
                         $('#siswa').html(html);
- 
                     }
                 });
                 return false;

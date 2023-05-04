@@ -595,7 +595,7 @@ class Keuangan extends CI_Controller
     }
 
     public function get_siswaByIdKelas(){
-        $id = $this->input->post('id_tingkat',TRUE);
+        $id = $this->input->post('id_kelas',TRUE);
         $data = $this->m_keuangan->get_siswaByIdKelas($id)->result();
         echo json_encode($data);
     }

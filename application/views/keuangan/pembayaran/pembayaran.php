@@ -81,7 +81,7 @@
                                                     <?php echo tampil_namadaftar_ByIdSiswa($history->id_siswa)?>
                                                 </span>/&nbsp;
                                                 <span>
-                                                    <?php echo tampil_rombeldaftar_ByIdSiswa($history->id_siswa)?>
+                                                    <?php echo tampil_kelasdaftar_ByIdSiswa($history->id_siswa)?>
                                                 </span>
                                             </td>
                                             <td><?php echo tampil_namajenisbayarById($history->id_jenis)?></td>

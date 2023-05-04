@@ -100,7 +100,7 @@
 		<tr>
 			<td>Kelas</td>
 			<td>:</td>
-			<td><?= tampil_kelas_byid($kelas) ?></td>
+			<td><?php echo tampil_namatingkat_ByIdKelas($kelas).' '.tampil_kelas_byid($kelas) ?></td>
 		</tr>
 		<tr>
 			<td>ID Invoice</td>
