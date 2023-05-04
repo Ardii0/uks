@@ -193,7 +193,7 @@ public function get_bursaById($tabel, $id_lowongan)
     public function get_event()
     {
 
-        return $this->db->get('tabel_event')->result();
+        return $this->db->where('status','aktif')->get('tabel_event')->result();
     }
 
     public function get_eventById($tabel, $id_event)
