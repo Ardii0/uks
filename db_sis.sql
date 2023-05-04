@@ -558,17 +558,16 @@ INSERT INTO `tabel_level` (`id_level`, `username`, `email`, `password`, `level`,
 --
 
 CREATE TABLE `tabel_lowongan` (
-  `id_lowongan` int DEFAULT NULL,
-  `id_user` int DEFAULT NULL,
-  `nama_perusahaan` varchar(150) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `bidang_usaha` varchar(150) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `job_title` varchar(150) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `job_slug` varchar(180) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `deskripsi` text COLLATE utf8mb4_general_ci,
+  `id_lowongan` int(11) NOT NULL,
+  `id_user` int(11) DEFAULT NULL,
+  `nama_perusahaan` varchar(150) DEFAULT NULL,
+  `bidang_usaha` varchar(150) DEFAULT NULL,
+  `job_title` varchar(150) DEFAULT NULL,
+  `deskripsi` text DEFAULT NULL,
   `akhir_waktu` date DEFAULT NULL,
-  `tanggal_posting` timestamp NULL DEFAULT NULL,
-  `gambar` varchar(300) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `is_tampil` varchar(15) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `tanggal_posting` date DEFAULT NULL,
+  `gambar` varchar(300) DEFAULT NULL,
+  `is_tampil` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -690,7 +689,7 @@ CREATE TABLE `tabel_pindah` (
 
 -- --------------------------------------------------------
 
---
+--F
 -- Table structure for table `tabel_pinjaman`
 --
 
@@ -1022,6 +1021,12 @@ ALTER TABLE `data_diri`
 --
 ALTER TABLE `kembalikan`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tabel_lowongan`
+--
+ALTER TABLE `tabel_lowongan`
+  ADD PRIMARY KEY (`id_lowongan`);
 
 --
 -- Indexes for table `pinjam`
@@ -1357,6 +1362,13 @@ ALTER TABLE `tabel_mapel`
 --
 ALTER TABLE `tabel_nilai`
   MODIFY `id_nilai` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tabel_lowongan`
+--
+ALTER TABLE `tabel_lowongan`
+  MODIFY `id_lowongan` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
 
 --
 -- AUTO_INCREMENT for table `tabel_paketjenjang`

@@ -329,6 +329,7 @@ class PetugasAlumni extends CI_Controller
 
     public function aksi_tambah_bursa_kerja()
     {
+        $date = date('Y-m-d');
         $gambar = $this->upload_img('gambar');
         if ($gambar[0] == false) {
             $data = array
@@ -340,6 +341,7 @@ class PetugasAlumni extends CI_Controller
                 'job_title' => $this->input->post('job_title'),
                 'deskripsi' => $this->input->post('deskripsi'),
                 'akhir_waktu' => $this->input->post('akhir_waktu'),
+                'tanggal_posting' => $date,
                 'is_tampil' => $this->input->post('is_tampil'),
             );
 
@@ -363,6 +365,7 @@ class PetugasAlumni extends CI_Controller
                 'deskripsi' => $this->input->post('deskripsi'),
                 'akhir_waktu' => $this->input->post('akhir_waktu'),
                 'is_tampil' => $this->input->post('is_tampil'),
+                'tanggal_posting' => $date,
             );
 
 
