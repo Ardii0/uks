@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2023 at 06:07 AM
+-- Generation Time: May 04, 2023 at 10:15 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -346,7 +346,7 @@ CREATE TABLE `tabel_guru` (
   `nik` int(11) NOT NULL,
   `jekel` enum('L','P') NOT NULL,
   `no_hp` varchar(14) DEFAULT NULL,
-  `jabatan` varchar(255) DEFAULT NULL,
+  `id_jabatan` int(11) DEFAULT NULL,
   `tmt` date DEFAULT NULL,
   `no_sk` varchar(255) DEFAULT NULL,
   `tgl_sk` date DEFAULT NULL,
@@ -358,14 +358,13 @@ CREATE TABLE `tabel_guru` (
 -- Dumping data for table `tabel_guru`
 --
 
-INSERT INTO `tabel_guru` (`kode_guru`, `nama_guru`, `nip`, `nik`, `jekel`, `no_hp`, `jabatan`, `tmt`, `no_sk`, `tgl_sk`, `alamat`, `status`) VALUES
-('KG-Z4XFYE', 'Raga Suci Al-Ghali', '324123', 0, 'L', '085875258684', NULL, NULL, NULL, NULL, 'Jl. Pudakpayung 07 RT03/RW01                                        ', 'AKTIF'),
-('KG-K5AIDV', 'Arga Dian Setyo Wicaksono', '312312', 0, 'L', '085801565981', NULL, NULL, NULL, NULL, 'Jl. Tanahmas RT02/RW06                                                                                                                        ', 'AKTIF'),
-('KG-72IIMM', 'Ida Fahru Roziyah', '441234', 0, 'P', '082584778212', NULL, NULL, NULL, NULL, 'Jl. Kumambang Raya 01 RT12/RW02', 'AKTIF'),
-('KG-VNKIWZ', 'Soimatun', '312312', 0, 'P', '084312762267', NULL, NULL, NULL, NULL, 'Jl. Kembang Raya 09 RT04/RW03', 'AKTIF'),
-('KG-RP3X25', 'Riyan Suryo Andono', '884564', 0, 'L', '084312762233', NULL, NULL, NULL, NULL, 'Jl. Kalibanteng Kidul 08 RT01/RW02', 'AKTIF'),
-('KG-V6Y488', 'Tito Dwi Yulianto', '782514', 0, 'L', '08238475223', NULL, NULL, NULL, NULL, 'Jl. Palangkaraya 12 RT08/RW12', 'AKTIF'),
-('KG-AH9TQ4', 'Ade Sucipto', '345632', 0, 'L', '089453725173', NULL, NULL, NULL, NULL, 'Jl. Mangkang Raya 09 RT07/RW02', 'AKTIF');
+INSERT INTO `tabel_guru` (`kode_guru`, `nama_guru`, `nip`, `nik`, `jekel`, `no_hp`, `id_jabatan`, `tmt`, `no_sk`, `tgl_sk`, `alamat`, `status`) VALUES
+('KG-Z4XFYE', 'Raga Suci Al-Ghali', '324123', 55435, 'L', '085875258684', 1, '2023-04-03', '4525625', '2023-04-12', 'Jl. Pudakpayung 07 RT03/RW01', 'AKTIF'),
+('KG-K5AIDV', 'Arga Dian Setyo Wicaksono', '312312', 53465, 'L', '085801565981', 1, '2023-03-27', '7547457', '2023-04-08', 'Jl. Tanahmas RT02/RW06', 'AKTIF'),
+('KG-72IIMM', 'Ida Fahru Roziyah', '441234', 76896, 'P', '082584778212', 1, '2023-03-26', '3424365', '2023-04-08', 'Jl. Kumambang Raya 01 RT12/RW02', 'AKTIF'),
+('KG-VNKIWZ', 'Soimatun', '312312', 9754, 'P', '084312762267', 4, '2023-03-31', '7545733', '2023-04-08', 'Jl. Kembang Raya 09 RT04/RW03', 'AKTIF'),
+('KG-RP3X25', 'Riyan Suryo Andono', '884564', 32145, 'L', '084312762233', 5, '2023-04-04', '5753632', '2023-04-08', 'Jl. Kalibanteng Kidul 08 RT01/RW02', 'AKTIF'),
+('KG-V6Y488', 'Tito Dwi Yulianto', '782514', 67854, 'L', '08238475223', 5, '2023-04-17', '4643775', '2023-04-08', 'Jl. Palangkaraya 12 RT08/RW12', 'AKTIF');
 
 -- --------------------------------------------------------
 
@@ -404,6 +403,49 @@ CREATE TABLE `tabel_invoice` (
   `id_ta` int(11) DEFAULT NULL,
   `cek_p` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tabel_jabatan`
+--
+
+CREATE TABLE `tabel_jabatan` (
+  `id_jabatan` int(11) NOT NULL,
+  `kode_jabatan` varchar(10) NOT NULL,
+  `nama_jabatan` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tabel_jabatan`
+--
+
+INSERT INTO `tabel_jabatan` (`id_jabatan`, `kode_jabatan`, `nama_jabatan`) VALUES
+(1, '001', 'Kepala Sekolah'),
+(2, '002', 'Waka Kurikulum'),
+(3, '003', 'Waka Kesiswaan'),
+(4, '004', 'Waka Sarana dan Prasarana'),
+(5, '005', 'Guru Mapel Sejarah'),
+(6, '006', 'K3 Teknik Komputer dan Jaringan'),
+(7, '007', 'K3 Tata Busana'),
+(8, '008', 'K3 Teknik Bisnis Sepeda Motor'),
+(9, '009', 'K3 Akuntansi dan Keuangan Lembaga'),
+(10, '010', 'Sekretaris Jurusan Teknik Komputer dan Jaringan'),
+(11, '011', 'Sekretaris Jurusan Tata Busana'),
+(12, '012', 'Ka. Lab Teknik Bisnis Sepeda Motor'),
+(13, '013', 'Sekretaris Jurusan Akuntansi dan Keuangan Lembaga'),
+(14, '014', 'Ka. Lab Jurusan Teknik Komputer dan Jaringan\r\n\r\n'),
+(15, '015', 'Ka. Lab Jurusan Tata Busana'),
+(16, '016', 'Ka. Lab Sekretaris Jurusan Teknik Bisnis Sepeda Motor'),
+(17, '017', 'Guru Mapel Bahasa Indonesia'),
+(18, '018', 'Guru Mapel Bahasa Jawa'),
+(19, '019', 'Guru Mapel Matematika'),
+(20, '020', 'Guru Mapel Penjasorkes'),
+(21, '021', 'Guru Mapel Bahasa Inggris'),
+(22, '022', 'Guru Mapel Agama Islam'),
+(23, '023', 'Guru Mapel Bahasa Jepang'),
+(24, '024', 'Guru BK'),
+(25, '025', 'Waka Humas');
 
 -- --------------------------------------------------------
 
@@ -1128,6 +1170,12 @@ ALTER TABLE `tabel_event`
   ADD KEY `id_user` (`id_user`);
 
 --
+-- Indexes for table `tabel_jabatan`
+--
+ALTER TABLE `tabel_jabatan`
+  ADD PRIMARY KEY (`id_jabatan`);
+
+--
 -- Indexes for table `tabel_jenisbayar`
 --
 ALTER TABLE `tabel_jenisbayar`
@@ -1371,6 +1419,12 @@ ALTER TABLE `tabel_daftar`
 --
 ALTER TABLE `tabel_event`
   MODIFY `id_event` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `tabel_jabatan`
+--
+ALTER TABLE `tabel_jabatan`
+  MODIFY `id_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `tabel_jenisbayar`
