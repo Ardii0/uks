@@ -41,7 +41,7 @@
             <section class="content">
                 <div class="container-fluid bg-white">
                     <div class="p-3 h5">
-                        Pilih Mapel & Rombel
+                        Pilih Mapel & Kelas
                     </div>
                     <div class="row px-1 pt-5">
                         <div class="col">
@@ -90,14 +90,14 @@
                         </div>
                         <div class="col">
                             <div class="text-center" style="border-bottom: solid 2px; border-color: #">
-                                <h3 class="">Alokasi Rombel</h3>
+                                <h3 class="">Alokasi Kelas</h3>
                             </div>
                             <div class="card-body">
                                 <table id="data-table2" class="table table-bordered table-striped">
                                     <thead class="bg-dark">
                                         <tr>
                                             <th>No</th>
-                                            <th>Rombel</th>
+                                            <th>Kelas</th>
                                             <th style="width: 150px;">Aksi</th>
                                         </tr>
                                     </thead>

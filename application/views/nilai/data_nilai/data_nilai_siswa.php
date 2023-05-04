@@ -43,20 +43,20 @@
             </section>
 
             <section class="content">
-                <?php foreach($rombel as $rombels ): ?>
+                <?php foreach($kelas as $kelass ): ?>
                 <?php foreach($mapel as $mapels ): ?>
                 <?php foreach($semester as $semesters ): ?>
                 <div class="container-fluid shadow p-3 mb-5 bg-white rounded">
                     <div class="d-flex justify-content-between">
                         <div class="px-2 h5">
                             <p><?php echo $mapels->nama_mapel?></p>
-                            <p class="mt-n2"><?php echo tampil_kelas_byid(($rombels->id_kelas))?>
-                                <?php echo $rombels->nama_rombel?>
+                            <p class="mt-n2"><?php echo tampil_kelas_byid(($kelass->id_kelas))?>
+                                <?php echo $kelass->nama_kelas?>
                                 (Semester <?php echo $semesters->semester?>)
                             </p>
                         </div>
                         <div>
-                            <a href="<?php echo base_url('Nilai/cetak_data_nilai/'.$mapels->id_mapel.'/'.$rombels->id_rombel.'/'.$semesters->id_semester.'/pdf') ?>"
+                            <a href="<?php echo base_url('Nilai/cetak_data_nilai/'.$mapels->id_mapel.'/'.$kelass->id_kelas.'/'.$semesters->id_semester.'/pdf') ?>"
                                 class="btn btn-success">
                                 <i class="fas fa-print"></i> Export PDF
                             </a>

@@ -114,7 +114,7 @@
                                                 <tr class="fixed bg-gradient-info">
                                                     <th>No</th>
                                                     <th>Nama Siswa</th>
-                                                    <th>Ankatan</th>
+                                                    <th>Angkatan</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

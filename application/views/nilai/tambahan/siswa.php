@@ -52,12 +52,13 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Rombel</th>
+                                            <th>Kelas</th>
                                             <th>Nama</th>
                                             <th>Jenis Kelamin</th>
                                             <th>Tempat Lahir</th>
                                             <th>Tanggal Lahir</th>
                                             <th>Alamat</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -72,6 +73,12 @@
                                             <td><?php echo tampil_tanggal_lahir_siswa_byid($data->id_daftar)?></td>
                                             <td class="text-truncate" style="max-width: 150px;">
                                                 <?php echo tampil_alamat_siswa_byid($data->id_daftar) ?></td>
+                                                <a href=""class="btn btn-warning btn-sm">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                                <a href=""class="btn btn-danger btn-sm">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
                                         </tr>
                                         <?php endforeach;?>
                                     </tbody>

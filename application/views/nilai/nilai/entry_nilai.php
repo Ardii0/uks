@@ -42,8 +42,8 @@
                             <p><?php echo $mapel->nama_mapel ?></p>
                         <?php endforeach; ?>
                         <p class="mt-n2 d-flex">
-                            <?php foreach ($rombel as $information): ?>
-                                 <?php echo $information->nama_rombel ?>
+                            <?php foreach ($kelas as $information): ?>
+                                 <?php echo $information->nama_kelas ?>
                             <?php endforeach; ?>
                             <?php foreach ($semester as $smt): ?>
                                 <span>&nbsp;

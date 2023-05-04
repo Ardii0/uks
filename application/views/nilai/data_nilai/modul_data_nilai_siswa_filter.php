@@ -41,7 +41,7 @@
             <section class="content">
                 <div class="container-fluid bg-white">
                     <div class="p-3 h5">
-                        Pilih Mapel & Rombel
+                        Pilih Mapel & Kelas
                     </div>
                     <div class="row px-1 pt-5">
                         <div class="col">
@@ -91,14 +91,14 @@
                         </div>
                         <div class="col">
                             <div class="text-center" style="border-bottom: solid 2px; border-color: #">
-                                <h3 class="">Alokasi Rombel</h3>
+                                <h3 class="">Alokasi Kelas</h3>
                             </div>
                             <div class="card-body">
                                 <table id="data-table2" class="table table-bordered table-striped">
                                     <thead class="bg-dark">
                                         <tr>
                                             <th>No</th>
-                                            <th>Rombel</th>
+                                            <th>Kelas</th>
                                             <th class="text-center">Aksi</th>
                                         </tr>
                                     </thead>
@@ -107,13 +107,13 @@
                                         <tr>
                                             <td><?php echo $id ?></td>
                                             <td>
-                                                <?php echo tampil_rombel_byid($data->id_rombel)?></td>
+                                                <?php echo tampil_kelas_byid($data->id_kelas)?></td>
                                             <td class="grid gap-3 text-center">
-                                                <a href="<?php echo base_url('Nilai/data_nilai_siswa/'.$data->id_mapel.'/'.$data->id_rombel.'/1')?>"
+                                                <a href="<?php echo base_url('Nilai/data_nilai_siswa/'.$data->id_mapel.'/'.$data->id_kelas.'/1')?>"
                                                     class="btn btn-success btn-sm">
                                                     Ganjil
                                                 </a>
-                                                <a href="<?php echo base_url('Nilai/data_nilai_siswa/'.$data->id_mapel.'/'.$data->id_rombel.'/2')?>"
+                                                <a href="<?php echo base_url('Nilai/data_nilai_siswa/'.$data->id_mapel.'/'.$data->id_kelas.'/2')?>"
                                                     class="btn btn-success btn-sm">
                                                     Genap
                                                 </a>

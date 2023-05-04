@@ -72,7 +72,7 @@
                                                 <?php echo tampil_jenismapelById($data->id_jenismapel) ?>
                                             </td>
                                             <td>
-                                                <?php echo $data->keterangan ?>
+                                                <?php echo $data->status ?>
                                             </td>
                                         </tr>
                                         <?php endforeach; ?>

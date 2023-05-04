@@ -27,7 +27,7 @@ class Nilai extends CI_Controller {
             'menu_admin' => 'nilai',
             'submenu_admin'=> 'nilai'
             ];
-        $data['total_kelas'] = $this->m_akademik->total_kelas();
+        // $data['total_tingkat'] = $this->m_akademik->total_tingkat();
         $data['total_mapel'] = $this->m_akademik->total_mapel();
         $data['total_siswa'] = $this->m_akademik->total_siswa();
         $data['total_guru'] = $this->m_akademik->total_guru();
@@ -65,7 +65,7 @@ class Nilai extends CI_Controller {
             'submenu_admin'=> 'nilai'
             ];
         $this->load->model('M_akademik');
-        $data['rombel'] = $this->m_akademik->get_rombel('rombel');
+        $data['kelas'] = $this->m_akademik->get_kelas('kelas');
         $data['siswa'] = $this->m_akademik->get_siswa('siswa');
         $this->load->view('nilai/tambahan/siswa', $data);
     }
@@ -98,7 +98,7 @@ class Nilai extends CI_Controller {
             ];
         $array = array(
             'id_mapel' => $idm,
-            'id_rombel' => $idr,
+            'id_kelas' => $idr,
             'id_semester' => $smt
         );
         $this->session->set_userdata($array);
@@ -109,7 +109,7 @@ class Nilai extends CI_Controller {
     {
         $array = array(
             'id_mapel' => $idm,
-            'id_rombel' => $idr,
+            'id_kelas' => $idr,
             'id_semester' => $smt,
             'id_siswa' => $ids
         );
@@ -127,13 +127,13 @@ class Nilai extends CI_Controller {
             ];
         if(!empty($this->session->userdata('id_mapel'))) {
            $idm = $this->session->userdata('id_mapel');
-           $idr = $this->session->userdata('id_rombel');
+           $idr = $this->session->userdata('id_kelas');
            $smt = $this->session->userdata('id_semester');
 
            $data['row'] = $this->m_nilai->entry($idr)->result();
            $data['mapel'] = $this->m_nilai->mapel($idm)->result();
            $data['mapelById'] = $this->m_nilai->mapelById($idm)->result();
-           $data['rombel'] = $this->m_nilai->rombel($idr)->result();
+           $data['kelas'] = $this->m_nilai->kelas($idr)->result();
            $data['semester'] = $this->m_nilai->semester($smt)->result();
            $data['content'] = 'nilai/entry';
 
@@ -153,14 +153,14 @@ class Nilai extends CI_Controller {
             ];
         if(!empty($this->session->userdata('id_mapel'))) {
            $idm = $this->session->userdata('id_mapel');
-           $idr = $this->session->userdata('id_rombel');
+           $idr = $this->session->userdata('id_kelas');
            $smt = $this->session->userdata('id_semester');
            $ids = $this->session->userdata('id_siswa');
 
            $data['row'] = $this->m_nilai->entry($idr)->result();
            $data['mapel'] = $this->m_nilai->mapel($idm)->result();
            $data['mapelById'] = $this->m_nilai->mapelById($idm)->result();
-           $data['rombel'] = $this->m_nilai->rombel($idr)->result();
+           $data['kelas'] = $this->m_nilai->kelas($idr)->result();
            $data['semester'] = $this->m_nilai->semester($smt)->result();
            $data['siswa'] = $this->m_nilai->get_nilaiBySiswa('tabel_siswa', $ids);
            $data['edit'] = $this->m_nilai->get_nilaiSiswaperMapel();
@@ -188,7 +188,7 @@ class Nilai extends CI_Controller {
         $nar = round(($nh + $mid + $smt) / 3);
         $this->m_nilai->tambah_nilai('tabel_nilai',
         array(
-            'id_rombel' => $this->input->post('id_rombel'),
+            'id_kelas' => $this->input->post('id_kelas'),
             'id_siswa' => $this->input->post('id_siswa'),
             'id_mapel' => $this->input->post('id_mapel'),
             'id_semester' => $this->input->post('id_semester'),
@@ -206,7 +206,7 @@ class Nilai extends CI_Controller {
             'nar' => $nar,
         )
     );
-        redirect(base_url('Nilai/session/'.$this->input->post('id_mapel').'/'.$this->input->post('id_rombel').'/'.$this->input->post('id_semester')));
+        redirect(base_url('Nilai/session/'.$this->input->post('id_mapel').'/'.$this->input->post('id_kelas').'/'.$this->input->post('id_semester')));
     }
 
     public function update_nilai()
@@ -225,7 +225,7 @@ class Nilai extends CI_Controller {
         $nar = round(($nh + $mid + $smt) / 3);
         $this->m_nilai->edit_nilai('tabel_nilai',
         array(
-            'id_rombel' => $this->input->post('id_rombel'),
+            'id_kelas' => $this->input->post('id_kelas'),
             'nuh1' => $nuh1,
             'nuh2' => $nuh2,
             'nuh3' => $nuh3,
@@ -245,7 +245,7 @@ class Nilai extends CI_Controller {
             'id_semester' => $this->input->post('id_semester'),
         )
     );
-        redirect(base_url('Nilai/session/'.$this->input->post('id_mapel').'/'.$this->input->post('id_rombel').'/'.$this->input->post('id_semester')));
+        redirect(base_url('Nilai/session/'.$this->input->post('id_mapel').'/'.$this->input->post('id_kelas').'/'.$this->input->post('id_semester')));
     }
 
  // Modul
@@ -292,7 +292,7 @@ class Nilai extends CI_Controller {
     }
 
 // Data Nilai
-    public function data_nilai_siswa($id_mapel, $id_rombel, $id_semester)
+    public function data_nilai_siswa($id_mapel, $id_kelas, $id_semester)
     {
         $data = [
             'judul' => 'nilai',
@@ -303,8 +303,8 @@ class Nilai extends CI_Controller {
             'menu_admin' => 'nilai',
             'submenu_admin'=> 'data_nilai'
         ];
-        $data['data']=$this->m_nilai->get_data_nilai($id_mapel, $id_rombel, $id_semester)->result();
-        $data['rombel']=$this->m_nilai->get_rombelByid($id_rombel)->result();
+        $data['data']=$this->m_nilai->get_data_nilai($id_mapel, $id_kelas, $id_semester)->result();
+        $data['kelas']=$this->m_nilai->get_kelasByid($id_kelas)->result();
         $data['mapel']=$this->m_nilai->get_mapelByid($id_mapel)->result();
         $data['semester']=$this->m_nilai->get_semesterByid($id_semester)->result();
         $this->load->view('nilai/data_nilai/data_nilai_siswa', $data);
@@ -334,11 +334,11 @@ class Nilai extends CI_Controller {
             'submenu'=>'data_mapel'
         ];
         $cek = $this->m_nilai->get_nilaiByid($id_nilai)->result();
-            // $rombel = $this->m_nilai->get_rombelByid($id_rombel)->result();
+            // $kelas = $this->m_nilai->get_kelasByid($id_kelas)->result();
             // $mapel = $this->m_nilai->get_mapelByid($id_mapel)->result();
-            // foreach ($rombel as $key) {
-            //     $data['rombel'] = $key->nama_rombel;
-            //     $data['id_kelas'] = $key->id_kelas;
+            // foreach ($kelas as $key) {
+            //     $data['kelas'] = $key->nama_kelas;
+            //     $data['id_tingkat'] = $key->id_tingkat;
             // }
             // foreach ($mapel as $key1) {
             //     $data['mapel'] = $key1->nama_mapel;
@@ -351,7 +351,7 @@ class Nilai extends CI_Controller {
             
     }
     
-    public function cetak_data_nilai($id_mapel, $id_rombel, $id_semester)
+    public function cetak_data_nilai($id_mapel, $id_kelas, $id_semester)
 	{
         $data = [
             'judul' => 'nilai',
@@ -359,22 +359,22 @@ class Nilai extends CI_Controller {
             'menu' => 'nilai',
             'submenu'=>'data_mapel'
         ];
-		$cek = $this->m_nilai->get_data_nilai($id_mapel, $id_rombel, $id_semester)->result();
-			$rombel = $this->m_nilai->get_rombelByid($id_rombel)->result();
+		$cek = $this->m_nilai->get_data_nilai($id_mapel, $id_kelas, $id_semester)->result();
+			$kelas = $this->m_nilai->get_kelasByid($id_kelas)->result();
 			$mapel = $this->m_nilai->get_mapelByid($id_mapel)->result();
-			foreach ($rombel as $key) {
-				$data['rombel'] = $key->nama_rombel;
-				$data['id_kelas'] = $key->id_kelas;
+			foreach ($kelas as $key) {
+				$data['kelas'] = $key->nama_kelas;
+				$data['id_tingkat'] = $key->id_tingkat;
 			}
 			foreach ($mapel as $key1) {
 				$data['mapel'] = $key1->nama_mapel;
 			}
-			$data['data'] = $this->m_nilai->get_data_nilai($id_mapel, $id_rombel, $id_semester)->result();
+			$data['data'] = $this->m_nilai->get_data_nilai($id_mapel, $id_kelas, $id_semester)->result();
 			if ($this->uri->segment(6) == "pdf") {
                 $this->load->library('pdf');
 				$this->pdf->load_view('nilai/data_nilai/cetak_data_nilai', $data);
 				$this->pdf->render();
-				$this->pdf->stream($data['rombel']." Semester ".$id_semester.".pdf", array("Attachment" => false));		
+				$this->pdf->stream($data['kelas']." Semester ".$id_semester.".pdf", array("Attachment" => false));		
 			}else{
 				$this->load->view('nilai/data_nilai/cetakraportexcel', $data);
 			}
@@ -439,18 +439,18 @@ class Nilai extends CI_Controller {
         $this->load->model('m_keuangan');
 	    $cek = $this->m_nilai->cek_wali()->num_rows();
 	    if ($cek > 0) {
-            $data['rombel'] = $this->m_nilai->get_rombel_raport()->result();    	
+            $data['kelas'] = $this->m_nilai->get_kelas_raport()->result();    	
 	    }else{
 	    	$this->session->set_flashdata('denided', 
             '<div class="alert alert-danger">
                 <h4>Maaf</h4>
-                <p>Menu Cetak Raport hanya tersedia bagi Wali Kelas.</p>
+                <p>Menu Cetak Raport hanya tersedia bagi Wali tingkat.</p>
                 <p>Hubungi Administrator untuk proses lebih lanjut.</p>
             </div>');
 			$data['content'] = 'denided';
 	    }
-        $data['siswaPerRombel'] = $this->m_keuangan->ambil('tabel_siswa','id_rombel')->row();
-        $data['rombelPerWakel'] = $this->m_keuangan->ambil('tabel_rombel',array('kode_guru'=>$this->session->userdata('kode_guru')))->row();
+        $data['siswaPerkelas'] = $this->m_keuangan->ambil('tabel_siswa','id_kelas')->row();
+        $data['kelasPerWakel'] = $this->m_keuangan->ambil('tabel_kelas',array('kode_guru'=>$this->session->userdata('kode_guru')))->row();
         $data['dt'] = $this->m_keuangan->ambil('tabel_level',array('id_level'=>$this->session->userdata('id_level')))->row();
         $this->load->view('nilai/raport/raport', $data);
     }
@@ -479,19 +479,19 @@ class Nilai extends CI_Controller {
 		// 	redirect('Nilai/cetak_raport','refresh');
 		// }else{
 			$nama = $this->m_nilai->get_n($ids);
-			$rombel = $this->m_nilai->get_r($idr);
+			$kelas = $this->m_nilai->get_r($idr);
 			foreach ($nama->result() as $key) {
 				$data['nama'] = $key->nama;
 			}
-			foreach ($rombel->result() as $key1) {
-				$data['rombel'] = $key1->nama_rombel;
+			foreach ($kelas->result() as $key1) {
+				$data['kelas'] = $key1->nama_kelas;
 			}
 			$data['data'] = $this->m_nilai->nps($ids,$idr,$smt)->result();	
 			if ($this->uri->segment(6) == "pdf") {
                 $this->load->library('pdf');
 				$this->pdf->load_view('nilai/raport/cetakraport', $data);
 				$this->pdf->render();
-				$this->pdf->stream($data['nama']." ".$data['rombel']." Semester ".$smt.".pdf", array("Attachment" => false));		
+				$this->pdf->stream($data['nama']." ".$data['kelas']." Semester ".$smt.".pdf", array("Attachment" => false));		
 			}else{
 				$this->load->view('nilai/raport/cetakraportexcel', $data);
 			}
