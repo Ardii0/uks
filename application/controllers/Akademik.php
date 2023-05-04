@@ -28,10 +28,38 @@ class Akademik extends CI_Controller {
         $data['total_mapel'] = $this->m_akademik->total_mapel();
         $data['total_siswa'] = $this->m_akademik->total_siswa();
         $data['total_guru'] = $this->m_akademik->total_guru();
+        $data['total_jabatan_kepsek'] = $this->m_akademik->total_jabatan_guru(1);
+        $data['total_jabatan_wakaKur'] = $this->m_akademik->total_jabatan_guru(2);
+        $data['total_jabatan_wakaKesis'] = $this->m_akademik->total_jabatan_guru(3);
+        $data['total_jabatan_wakaSar'] = $this->m_akademik->total_jabatan_guru(4);
+        $data['total_jabatan_sejarah'] = $this->m_akademik->total_jabatan_guru(5);
+        $data['total_jabatan_K3TKJ'] = $this->m_akademik->total_jabatan_guru(6);
+        $data['total_jabatan_K3TB'] = $this->m_akademik->total_jabatan_guru(7);
+        $data['total_jabatan_K3TBSM'] = $this->m_akademik->total_jabatan_guru(8);
+        $data['total_jabatan_K3AKL'] = $this->m_akademik->total_jabatan_guru(9);
+        $data['total_jabatan_SekreTKJ'] = $this->m_akademik->total_jabatan_guru(10);
+        $data['total_jabatan_SekreTabus'] = $this->m_akademik->total_jabatan_guru(11);
+        $data['total_jabatan_LabTBSM'] = $this->m_akademik->total_jabatan_guru(12);
+        $data['total_jabatan_SekreAKL'] = $this->m_akademik->total_jabatan_guru(13);
+        $data['total_jabatan_LabTKJ'] = $this->m_akademik->total_jabatan_guru(14);
+        $data['total_jabatan_LabTB'] = $this->m_akademik->total_jabatan_guru(15);
+        $data['total_jabatan_SekreTBSM'] = $this->m_akademik->total_jabatan_guru(16);
+        $data['total_jabatan_bIndo'] = $this->m_akademik->total_jabatan_guru(17);
+        $data['total_jabatan_bJawa'] = $this->m_akademik->total_jabatan_guru(18);
+        $data['total_jabatan_mtk'] = $this->m_akademik->total_jabatan_guru(19);
+        $data['total_jabatan_pjok'] = $this->m_akademik->total_jabatan_guru(20);
+        $data['total_jabatan_bInggris'] = $this->m_akademik->total_jabatan_guru(21);
+        $data['total_jabatan_pai'] = $this->m_akademik->total_jabatan_guru(22);
+        $data['total_jabatan_bJepang'] = $this->m_akademik->total_jabatan_guru(23);
+        $data['total_jabatan_BK'] = $this->m_akademik->total_jabatan_guru(24);
+        $data['total_jabatan_humas'] = $this->m_akademik->total_jabatan_guru(25);
+        $data['jabatan'] = $this->m_akademik->get_jabatan('jabatan');
+
         $data['ta'] = $this->m_akademik->get_tahun_ajaran_aktif();
         $data['jenjang'] = $this->m_akademik->get_jenjang('jenjang');
         $this->load->view('akademik/dashboard', $data);
     }
+    
 // Tahun Ajar
     public function tahun_ajaran()
     {
@@ -402,6 +430,22 @@ class Akademik extends CI_Controller {
         redirect(base_url('Akademik/kelas'));
     }
 
+// Jabatan
+public function detail_jabatan($id_jabatan)
+{
+    $data = [
+        'judul' => 'akademik',
+        'page' => 'akademik',
+        'menu' => 'jabatan',
+        'submenu'=>'detail_jabatan',
+        'menu_submenu_admin'=>'jabatan',
+        'menu_admin' => 'akademik',
+        'submenu_admin'=>'detail_jabatan',
+    ];
+    $data['detail_jabatan']=$this->m_akademik->get_jabatanById('tabel_guru', $id_jabatan)->result();
+    $this->load->view('akademik/guru/detail_jabatan_guru', $data);
+}
+
 // Guru
     public function guru()
     {
@@ -419,6 +463,21 @@ class Akademik extends CI_Controller {
         $this->load->view('akademik/guru/guru', $data);
     }
 
+    public function detail_guru($id_guru)
+    {
+        $data = [
+            'judul' => 'akademik',
+            'page' => 'akademik',
+            'menu' => 'guru',
+            'submenu'=>'data_guru',
+            'menu_submenu_admin'=>'guru',
+            'menu_admin' => 'akademik',
+            'submenu_admin'=>'data_guru',
+        ];
+        $data['guru']=$this->m_akademik->get_guruById('tabel_guru', $id_guru)->result();
+        $this->load->view('akademik/guru/detail_guru', $data);
+    }
+
     public function guru_form()
     {
         $data = [
@@ -431,6 +490,7 @@ class Akademik extends CI_Controller {
             'submenu_admin'=>'guru',
         ];
         $data['acak'] = 'KG'.'-'.$this->acak(6);
+        $data['jabatan'] = $this->m_akademik->get_jabatan('jabatan');
         $this->load->view('akademik/guru/form_guru', $data);
     }
 
@@ -448,6 +508,7 @@ class Akademik extends CI_Controller {
             'no_sk' => $this->input->post('no_sk'),
             'tgl_sk' => $this->input->post('tgl_sk'),
             'alamat' => $this->input->post('alamat'),
+            'id_jabatan' => $this->input->post('jabatan'),
         ];
         $this->m_akademik->tambah_guru('tabel_guru', $data);
         $nilaiAccess = [
@@ -459,7 +520,6 @@ class Akademik extends CI_Controller {
             'id_hak_akses' => '5',
         ];
         $this->m_akademik->tambah_guru('tabel_level', $nilaiAccess);
-
         redirect(base_url('Akademik/guru'));
     }
 
@@ -475,6 +535,7 @@ class Akademik extends CI_Controller {
             'submenu_admin'=>'guru',
         ];
         $data['guru']=$this->m_akademik->get_guruById('tabel_guru', $kode_guru)->result();
+        $data['jabatan'] = $this->m_akademik->get_jabatan('jabatan');
         $this->load->view('akademik/guru/edit_guru', $data);
     }
 
@@ -510,6 +571,24 @@ class Akademik extends CI_Controller {
         $this->m_akademik->hapus_guru('tabel_guru', 'kode_guru', $kode_guru);
         $this->m_akademik->hapus_guru('tabel_level', 'kode_guru', $kode_guru);
         redirect(base_url('Akademik/guru'));
+    }
+
+    public function cetak_guru($id_gur)
+    {
+        $data = [
+            'judul' => 'guru',
+            'page' => 'guru',
+            'menu' => 'guru',
+            'submenu'=>'data_guru'
+        ];
+        $cek = $this->m_akademik->get_guruById("tabel_guru",$id_gur)->result();
+         
+            $data['data'] = $this->m_akademik->get_guruById("tabel_guru",$id_gur)->result();
+            $this->load->library('pdf');
+            $this->pdf->load_view('akademik/guru/cetak_guru', $data);
+            $this->pdf->render();
+            $this->pdf->stream(" Akademik ".$id_gur.".pdf", array("Attachment" => false));		
+            
     }
     
 // Siswa

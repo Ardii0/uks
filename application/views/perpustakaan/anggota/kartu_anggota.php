@@ -80,7 +80,7 @@
                                                         :
                                                     </div>
                                                     <div class="col-6">
-                                                        <?php echo  tampil_kelasdaftar_ByIdSiswa($data->id_siswa)?> <?php echo tampil_rombeldaftar_ByIdSiswa($data->id_siswa)?>
+                                                        <?php echo  tampil_kelasdaftar_ByIdSiswa($data->id_siswa)?> <?php echo tampil_rombeldaftar_ByIdAnggota($data->id_siswa)?>
                                                     </div>
                                                 </div>
                                                 <div class="p-4 bg- text-center">

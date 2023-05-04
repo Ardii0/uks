@@ -61,6 +61,10 @@ class M_akademik extends CI_Model{
   {
     return $this->db->where('status','AKTIF')->get('tabel_guru')->num_rows();
   }
+  public function total_jabatan_guru($id_jabatan)
+  {
+    return $this->db->where('id_jabatan', $id_jabatan)->get('tabel_guru')->num_rows();
+  }
 // Tahun Ajar
     public function get_tahun_ajaran()
 	{
@@ -132,12 +136,23 @@ class M_akademik extends CI_Model{
         return $data;
     }
 
+    // Paket Jabatan
+public function get_jabatan()
+{
+    return $this->db->get('tabel_jabatan')->result();
+}
+
+public function get_jabatanById($tabel, $id_jabatan)
+{
+    $data=$this->db->where('id_jabatan', $id_jabatan)->get($tabel);
+    return $data;
+}
+
 // Guru
     public function get_guru()
 	{
 		return $this->db->get('tabel_guru')->result();
 	}
-
     public function get_guruById($tabel, $id_guru)
     {
         $data=$this->db->where('kode_guru', $id_guru)->get($tabel);
@@ -161,6 +176,18 @@ class M_akademik extends CI_Model{
         $data=$this->db->delete($tabel, array($field => $id_guru));
         return $data;
     }
+    public function get_s($idi)
+	{
+		$this->db->select('*');
+		$this->db->from('tabel_guru');
+		$db = $this->db->get();
+		return $db;
+	}
+
+	public function get_inv($idi)
+	{
+		return $this->db->get_where('tabel_guru', array('kode_guru' => $idi));
+	}
 
 // Siswa
     public function get_siswa()

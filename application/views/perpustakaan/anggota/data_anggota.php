@@ -55,7 +55,6 @@
                                             <th>ID ANGGOTA</th>
                                             <th>Nama</th>
                                             <th>Kelas</th>
-                                            <th>Kelas</th>
                                             <th>Tgl Daftar</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -66,8 +65,7 @@
                                             <td style="width: 4%;"><?php echo $id?></td>
                                             <td style="width: 15%;"><?php echo $data->id_anggota?></td>
                                             <td><?php echo tampil_namadaftar_ByIdSiswa($data->id_siswa)?></td>
-                                            <td><?php echo tampil_kelasdaftar_ByIdSiswa($data->id_siswa)?></td>
-                                            <td><?php echo tampil_rombeldaftar_ByIdSiswa($data->id_siswa)?></td>
+                                            <td> <?php echo  tampil_kelasdaftar_ByIdSiswa($data->id_siswa)?></td>
                                             <td><?php echo $data->date?></td>
                                             <td class="text-center">
                                                 <a href="<?php echo base_url('Perpustakaan/kartu_anggota/'.$data->id_anggota)?>"

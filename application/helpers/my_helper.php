@@ -271,6 +271,28 @@ $result = $ci->db->where('id_level',$id)->get('tabel_level');
     }
   }
 
+  function tampil_jabatanGuruById($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('id_jabatan',$id)->get('tabel_jabatan');
+    foreach ($result->result() as $c) {
+    $stmt= $c->nama_jabatan;
+    return $stmt;
+    }
+  }
+
+  function tampil_jekel_guru_byid($id)
+  {
+  $ci =& get_instance();
+  $ci->load->database();
+  $result = $ci->db->where('kode_guru',$id)->get('tabel_guru');
+    foreach ($result->result() as $c) {
+    $stmt= $c->jekel;
+    return $stmt;
+    }
+  }
+
   function tampil_kurikulum_jenismapelById($id)
   {
   $ci =& get_instance();

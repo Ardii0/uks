@@ -42,6 +42,13 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
+                                    <label class="control-label">NIK</label>
+                                    <div class="">
+                                        <input type="text" name="nik" class="form-control"
+                                            placeholder="Masukan NIK">
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="control-label">Nama Guru</label>
                                     <div class="">
                                         <input type="hidden" name="kode_guru" value="<?php echo $acak?>">
@@ -49,13 +56,7 @@
                                             placeholder="Masukan Nama guru">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label">No HP</label>
-                                    <div class="">
-                                        <input type="text" name="no_hp" class="form-control"
-                                            placeholder="Masukan No HP">
-                                    </div>
-                                </div>
+                            
                                 <div class="form-group">
                                     <label class="control-label">No SK</label>
                                     <div class="">
@@ -90,20 +91,22 @@
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
-                                <div class="form-group">
+                            <div class="form-group">
                                     <label class="control-label">NIP/Y</label>
                                     <div class="">
                                         <input type="text" name="nip" class="form-control"
                                             placeholder="Masukan NIP/Y">
                                     </div>
                                 </div>
+                            
                                 <div class="form-group">
-                                    <label class="control-label">NIK</label>
+                                    <label class="control-label">No HP</label>
                                     <div class="">
-                                        <input type="text" name="nik" class="form-control"
-                                            placeholder="Masukan NIK">
+                                        <input type="text" name="no_hp" class="form-control"
+                                            placeholder="Masukan No HP">
                                     </div>
                                 </div>
+                                
                                 <div class="form-group">
                                     <label class="control-label">Tanggal SK</label>
                                     <div class="">
@@ -119,12 +122,12 @@
                                 <div class="form-group">
                                     <label class="control-label">Jabatan</label>
                                     <div class="">
-                                        <select name="jabatan" class="form-control select2">
-                                            <option>Pilih Jabatan</option>
-                                            <option value="TU">TU</option>
-                                            <option value="Kesiswaan">Kesiswaan</option>
-                                            <option value="Lainnya">Lainnya</option>
-                                        </select>
+                                    <select name="id_paket" class="form-control">
+                                            <option style="display: none;">Pilih Jabatan</option>
+                                            <?php foreach($jabatan as $data ): ?>
+                                                <option name="id_jabatan" value="<?php echo $data->id_jabatan ?>"><?php echo $data->nama_jabatan ?></option>
+                                            <?php endforeach ?>
+                                    </select>
                                     </div>
                                 </div>
                             </div>
