@@ -22,7 +22,6 @@
                     <div class="row mb-2">
                         <div class="col-sm-7 ">
                             <h2>Event Detail</h2>
-
                         </div>
                         <div class="col-sm-5">
                             <ol class="breadcrumb float-sm-right">
@@ -38,25 +37,24 @@
 
             <section class="content ">
                 <div class="container-fluid ">
-                <?php foreach ($event as $data) { ?>
-                    <div class="">
-
+                    <?php foreach ($event as $data) { ?>
+                    <div>
                         <div class="row">
-                            <div class="col-3 mb-2">
-                                <img src="<?php echo base_url('uploads/alumni/event/').$data->gambar;?>" alt="project-image"
-                                    style="height: auto; width: 300px">
+                            <div class="col-4 text-center">
+                                <div class="card p-2">
+                                    <img src="<?php echo base_url('uploads/alumni/event/').$data->gambar;?>"
+                                        alt="project-image" style="height: auto; width: auto">
+                                    <h3 class="mt-2"><?php echo $data->event_title ?></h3>
+                                    <p><?php echo $data->deskripsi ?></p>
+                                </div>
                             </div><!-- / column -->
-                            <div class="col-9">
+                            <div class="col-8">
                                 <div class="card p-5 mt-0 ">
-                                    <h3><?php echo $data->event_title ?></h3>
-                                    <p class=" border-none h-100"><?php echo $data->deskripsi ?></p>
-                                    <hr>
                                     <p><b>Tanggal Pelaksanaan:</b>
                                         <?php echo date('l, j F Y',strtotime($data-> tanggal_event) ) ?></p>
-                                        <hr>
+                                    <hr>
                                     <p><b>Tanggal Posting:</b>
                                         <?php echo date('l, j F Y',strtotime($data-> tanggal_posting) ) ?></p>
-
                                 </div>
                             </div><!-- / column -->
                         </div>
@@ -66,10 +64,8 @@
                     </div>
                 </div>
                 <?php } ?>
-
+            </section>
         </div>
-        </section>
-    </div>
     </div>
     <?php $this->load->view('alumni/style/js') ?>
 </body>

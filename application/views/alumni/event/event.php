@@ -44,26 +44,22 @@
                 <div class="container-fluid ">
                     <div class="row clearfix ">
                         <?php foreach ($event as $vent) { ?>
-
                         <div class="col-md-4 mb-4">
-                            <div class="card card-bursa mt-4 py-5">
-                                <div class=""> <img class="card-img card-img-bursa p-1"
-                                        src="<?php echo base_url('uploads/alumni/event/').$vent->gambar;?>" /></div>
-
-                                <div class="card-info-bursa mb-0">
-                                    <h3 class="text-secondary" style="margin-top:-10px"><?php echo $vent->event_title ?></h3>
-                                    <p style="font-size:15px; font-weight:bold">Waktu:
-                                        <?php echo date('j F Y', strtotime($vent-> tanggal_event))?></p>
-
-                                    <p class="text-body px-3 ">
-                                        <?php echo character_limiter($vent->deskripsi,170); ?>
-                                        <a href="<?php echo base_url('Alumni/detail_event/'.$vent->id_event)?>">
-                                        <i class="text-info">selengkapnya</i> </a>
-                                   
-
+                            <a href="<?php echo base_url('Alumni/detail_event/'.$vent->id_event)?>">
+                                <div class="card card-bursa mt-4 py-5">
+                                    <div class=""> <img class="card-img card-img-bursa p-1"
+                                            src="<?php echo base_url('uploads/alumni/event/').$vent->gambar;?>" /></div>
+                                    <div class="card-info-bursa mb-0">
+                                        <h3 class="text-secondary" style="margin-top:-10px">
+                                            <?php echo $vent->event_title ?>
+                                        </h3>
+                                        <p style="font-size:15px; font-weight:bold">Waktu:
+                                            <?php echo date('j F Y', strtotime($vent-> tanggal_event))?></p>
+                                        <p class="text-body px-3 ">
+                                            <?php echo character_limiter($vent->deskripsi,170); ?>
+                                    </div>
                                 </div>
-                            </div>
-
+                            </a>
                         </div>
                         <?php } ?>
                     </div>

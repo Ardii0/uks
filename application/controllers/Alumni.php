@@ -292,7 +292,7 @@ class Alumni extends CI_Controller {
         (
             'id_level' => $this->input->post('id_level'),
             'pesan' => $this->input->post('pesan'),
-            'tampil' => 'tidak',
+            'tampil' => 'NO',
         );
         $masuk=$this->m_alumni->tambah_testimoni('tabel_testimoni', $data);
         if($masuk)

@@ -12,7 +12,7 @@ class M_landingpage extends CI_Model
 	}
   public function total_testimoni_yes()
   {
-    return $this->db->where('tampil','yes')->get('tabel_testimoni')->num_rows();
+    return $this->db->where('tampil','YES')->get('tabel_testimoni')->num_rows();
   }
 
     public function total_ketegori()
