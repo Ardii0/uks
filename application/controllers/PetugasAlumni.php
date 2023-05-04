@@ -740,6 +740,15 @@ class PetugasAlumni extends CI_Controller
 
     public function edit_pengguna( $id )
  {
+    $data = [
+        'judul' => 'petugasAlumni',
+        'page' => 'petugasAlumni',
+        'menu' => 'manajement',
+        'submenu'=>'pengguna',
+        'menu_submenu_admin'=>'',
+        'menu_admin' => 'manajement',
+        'submenu_admin'=> 'pengguna'
+        ];
         $this->load->model( 'M_petugasalumni' );
         $data[ 'pengguna' ] = $this->m_petugasalumni->get_data_id( 'tabel_level', 'id_level', $id )->result();
         $this->load->view( 'petugasalumni/pengguna/edit_pengguna', $data );
