@@ -63,7 +63,7 @@
                                     </form>
                                 </div>
                                 <div class="card-body">
-                                    <table id="data-table" class="table table-striped ">
+                                    <table id="datasiswa-table" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
@@ -97,20 +97,21 @@
                                                 </td>
                                             </tr>
                                             <?php endforeach;?>
-                                            <tr>
-                                                <td colspan="5" class="text-lg text-bold">
-                                                    Total
-                                                </td>
-                                                <td class="text-lg text-bold">
-                                                    <?php  
-                                                            $totalprice = 0; 
-                                                            foreach ($peminjam as $key) { 
-                                                                $totalprice += $key->denda; 
-                                                            } 
-                                                            echo convRupiah($totalprice);?>
-                                                </td>
-                                            </tr>
                                         </tbody>
+                                        <tr class="bg-white">
+                                            <td colspan="5" class="text-lg text-bold">
+                                                Total
+                                            </td>
+                                            <td class="text-lg text-bold">
+                                                <?php  
+                                                    $totalprice = 0; 
+                                                    foreach ($peminjam as $key) { 
+                                                        $totalprice += $key->denda; 
+                                                    } 
+                                                    echo convRupiah($totalprice);
+                                                ?>
+                                            </td>
+                                        </tr>
                                     </table>
                                 </div>
                             </div>
