@@ -766,29 +766,10 @@ CREATE TABLE `tabel_pinjaman` (
   `id_index_buku` int(11) NOT NULL,
   `tgl_pinjaman` date DEFAULT NULL,
   `tgl_kembali` date DEFAULT NULL,
+  `jatuh_tempo` date DEFAULT NULL,
   `status` varchar(255) DEFAULT 'DIPINJAM',
   `denda` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tabel_pinjaman`
---
-
-INSERT INTO `tabel_pinjaman` (`id_pinjaman`, `no_pinjaman`, `id_anggota`, `id_index_buku`, `tgl_pinjaman`, `tgl_kembali`, `status`, `denda`) VALUES
-(3, 'PMJ-ITGZX7', 95774, 8, '2023-04-12', '2023-04-12', 'DIKEMBALIKAN', 20000),
-(4, 'PMJ-X45Z81', 9980, 10, '2023-04-12', '2023-04-12', 'DIKEMBALIKAN', 20000),
-(6, 'PMJ-HYKUBY', 95774, 11, '2023-04-02', '2023-04-12', 'DIKEMBALIKAN', 20000),
-(7, 'PMJ-674OLF', 9980, 8, '2023-03-31', '2023-04-12', 'DIKEMBALIKAN', 25000),
-(8, 'PMJ-674OLF', 9980, 8, '2023-03-31', '2023-04-12', 'DIKEMBALIKAN', 10000),
-(9, 'PMJ-674OLF', 9980, 8, '2023-03-31', '2023-04-12', 'DIKEMBALIKAN', 10000),
-(10, 'PMJ-674OLF', 9980, 8, '2023-03-31', '2023-04-12', 'DIKEMBALIKAN', 10000),
-(11, 'PMJ-674OLF', 9980, 8, '2023-03-31', '2023-04-12', 'DIKEMBALIKAN', 10000),
-(12, 'PMJ-674OLF', 9980, 8, '2023-03-31', '2023-04-12', 'DIKEMBALIKAN', 10000),
-(13, 'PMJ-674OLF', 9980, 8, '2023-03-31', '2023-04-12', 'DIKEMBALIKAN', 10000),
-(14, 'PMJ-674OLF', 9980, 8, '2023-03-31', '2023-04-12', 'DIKEMBALIKAN', 10000),
-(15, 'PMJ-674OLF', 9980, 8, '2023-03-31', '2023-04-12', 'DIKEMBALIKAN', 10000);
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `tabel_rencana_anggaran`
