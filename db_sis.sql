@@ -629,7 +629,6 @@ CREATE TABLE `tabel_lowongan` (
   `nama_perusahaan` varchar(150) DEFAULT NULL,
   `bidang_usaha` varchar(150) DEFAULT NULL,
   `job_title` varchar(150) DEFAULT NULL,
-  `job_slug` varchar(180) DEFAULT NULL,
   `deskripsi` text DEFAULT NULL,
   `akhir_waktu` date DEFAULT NULL,
   `tanggal_posting` date DEFAULT NULL,
