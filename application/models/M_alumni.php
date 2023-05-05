@@ -7,6 +7,11 @@ class M_alumni extends CI_Model{
 		return $this->db->get($tabel)->result();
 	}
 
+  public function get_data2($tabel) {
+    $this->db->order_by('tanggal_event');
+    return $this->db->get($tabel)->result();
+  }
+
     public function input_data($tabel, $data)
 	{
     $this->db->insert($tabel, $data);

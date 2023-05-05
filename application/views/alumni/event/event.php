@@ -19,7 +19,7 @@
     <div class="wrapper">
         <?php $this->load->view('alumni/style/navbar') ?>
         <?php $this->load->view('alumni/style/sidebar') ?>
-
+ 
         <div class="content-wrapper">
             <section class="content-header">
                 <div class="container-fluid">
@@ -42,6 +42,13 @@
 
             <section class="content ">
                 <div class="container-fluid ">
+                <div class="row mx-2 pt-3">
+                        <div class="col-md-5">
+                            <a href="<?php echo base_url('alumni/tambah_event'); ?>">
+                            <button type="button" class="btn btn-success"><i class="fa fa-plus pr-2"></i>Tambah</button>
+                            </a>
+                        </div>
+                    </div>
                     <div class="row clearfix ">
                         <?php foreach ($event as $vent) { ?>
                         <div class="col-md-4 mb-4">

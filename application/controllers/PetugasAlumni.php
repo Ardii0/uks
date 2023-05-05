@@ -125,7 +125,7 @@ class PetugasAlumni extends CI_Controller
             'submenu_admin'=> 'event'
             ];
         $this->load->model('M_alumni');
-        $data['data_event'] = $this->m_alumni->get_data('tabel_event');
+        $data['data_event'] = $this->m_alumni->get_data2('tabel_event');
         $this->load->view('petugasalumni/event/event', $data);
     }
 

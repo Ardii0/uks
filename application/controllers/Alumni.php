@@ -237,6 +237,156 @@ class Alumni extends CI_Controller {
       $this->load->view('alumni/event/event', $data);
   }
 
+  public function tambah_event()
+  {
+        $data = [
+            'judul' => 'alumni',
+            'page' => 'alumni',
+            'menu' => 'event',
+            'submenu'=>'event',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'event',
+            'submenu_admin'=> 'event'
+            ];
+      $this->load->view('alumni/event/tambah_event', $data);
+  }
+
+  public function upload_img_event($value)
+  {
+      $kode = round(microtime(true) * 1000);
+      $config['upload_path'] = './uploads/alumni/event/';
+      $config['allowed_types'] = 'jpg|png|jpeg';
+      $config['max_size'] = '100000';
+      $config['file_name'] = $kode;
+      $this->upload->initialize($config);
+      if (!$this->upload->do_upload($value)) {
+          return array(false, '');
+      } else {
+          $fn = $this->upload->data();
+          $nama = $fn['file_name'];
+          return array(true, $nama);
+      }
+  }
+
+  public function aksi_tambah_event()
+  {
+      $gambar = $this->upload_img_event('gambar');
+      if ($gambar[0] == false) {
+          //$this->upload->display_errors();
+          $this->session->set_flashdata('error', 'gagal upload gambar.');
+          redirect(base_url('alumni/event'));
+      } else {
+          $data = array
+          (
+              'id_user' => $this->input->post('id_user'),
+              'event_title' => $this->input->post('event_title'),
+              'event_slug' => strtolower($this->input->post('event_title')),
+              'deskripsi' => $this->input->post('deskripsi'),
+              'tanggal_event' => $this->input->post('tanggal_event'),
+              'tanggal_posting' => date("Y-m-d H:i:s"),
+              'status' => 'nonaktif',
+              'gambar' => $gambar[1]
+          );
+          $event = $this->m_alumni->input_data('tabel_event', $data);
+          if ($event) {
+              $this->session->set_flashdata('sukses', 'berhasil');
+              redirect(base_url('alumni/event/event'));
+          } else {
+              $this->session->set_flashdata('error', 'gagal..');
+              redirect(base_url('alumni/event/tambah_event'));
+          }
+      }
+  }
+
+  public function edit_event($id)
+  {
+        $data = [
+            'judul' => 'alumni',
+            'page' => 'alumni',
+            'menu' => 'event',
+            'submenu'=>'event',
+            'menu_submenu_admin'=>'',
+            'menu_admin' => 'event',
+            'submenu_admin'=> 'event'
+            ];
+      $this->load->model('M_alumni');
+      $data['data_event'] = $this->m_alumni->get_data_id('tabel_event', 'id_event', $id)->result();
+      $this->load->view('alumni/event/edit_event', $data);
+  }
+  public function aksi_edit_event()
+  {
+      // echo '<script>console.log("Hola")</script>';
+      $gambar = $this->upload_img_event('gambar');
+      if ($gambar[0] == false) {
+          $data = array
+          (
+              'id_user' => $this->input->post('id_user'),
+              'event_title' => $this->input->post('event_title'),
+              'event_slug' => strtolower($this->input->post('event_title')),
+              'deskripsi' => $this->input->post('deskripsi'),
+              'tanggal_event' => $this->input->post('tanggal_event'),
+              'tanggal_posting' => date("Y-m-d H:i:s"),
+          );
+          $event = $this->m_alumni->edit_data('tabel_event', $data, array('id_event' => $this->input->post('id_event')));
+          if ($event) {
+              $this->session->set_flashdata('sukses', 'berhasil');
+              redirect(base_url('alumni/event/event'));
+          } else {
+              $this->session->set_flashdata('error', 'gagal..');
+              redirect(base_url('alumni/event/edit_event' . $this->input->post('id_event')));
+          }
+      } else {
+          $data = array
+          (
+              'id_user' => $this->input->post('id_user'),
+              'event_title' => $this->input->post('event_title'),
+              'event_slug' => strtolower($this->input->post('event_title')),
+              'deskripsi' => $this->input->post('deskripsi'),
+              'tanggal_event' => $this->input->post('tanggal_event'),
+              'tanggal_posting' => date("Y-m-d H:i:s"),
+              'gambar' => $gambar[1]
+          );
+          $event = $this->m_alumni->edit_data('tabel_event', $data, array('id_event' => $this->input->post('id_event')));
+          if ($event) {
+              $this->session->set_flashdata('sukses', 'berhasil');
+              redirect(base_url('alumni/event/event'));
+          } else {
+              $this->session->set_flashdata('error', 'gagal..');
+              redirect(base_url('alumni/event/edit_event' . $this->input->post('id_event')));
+          }
+      }
+  }
+
+  public function activate_event($id)
+  {
+      $data = array (
+          'status' => 'aktif',
+      );
+      $this->m_alumni->edit_data('tabel_event', $data, array('id_event'=>$id));
+      redirect(base_url('alumni/event'));
+  }
+
+  public function nonactivate_event($id)
+  {
+      $data = array (
+          'status' => 'nonaktif',
+      );
+      $this->m_alumni->edit_data('tabel_event', $data, array('id_event'=>$id));
+      redirect(base_url('alumni/event'));
+  }
+
+  public function hapus_event($id_event)
+  {
+      $hapus = $this->m_alumni->delete_data('tabel_event', 'id_event', $id_event);
+      if ($hapus) {
+          $this->session->set_flashdata('sukses', 'berhasil');
+          redirect(base_url('alumni/event/event'));
+      } else {
+          $this->session->set_flashdata('error', 'gagal..');
+          redirect(base_url('alumni/event/event/' . $this->input->post('id_event')));
+      }
+  }
+ 
   public function detail_event($id_event)
   {
         $data = [
