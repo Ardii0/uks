@@ -76,14 +76,6 @@
                                     <input type="file" name="gambar">
                                 </div>
                             </div>
-                            <div class="row align-items-center mt-4">
-                                <div class="col-2">
-                                    <label class="control-label">Akhir Waktu Pendaftaran</label>
-                                </div>
-                                <div class="col">
-                                    <input type="date" name="akhir_waktu" class="form-control">
-                                </div>
-                            </div>
                             <div class="row mt-4">
                                 <div class="col-2">
                                     <label class="control-label">Deskripsi</label>
@@ -93,16 +85,26 @@
                                         placeholder="Masukan Deskripsi*"></textarea>
                                 </div>
                             </div>
-                            <div class="row align-items-center mt-4">
-                                <div class="col-2">
-                                    <label class="control-label">Data Ditampilkan?</label>
+                            <div class="row mt-4">
+                                <div class="col-6 row align-items-center mt-4">
+                                    <div class="col-4">
+                                        <label class="control-label">Akhir Waktu Pendaftaran</label>
+                                    </div>
+                                    <div class="col">
+                                        <input type="date" name="akhir_waktu" class="form-control">
+                                    </div>
                                 </div>
-                                <div class="col">
-                                    <select name="is_tampil" class="form-control">
-                                        <option>-- Pilih --</option>
-                                        <option value="Ya">Ya</option>
-                                        <option value="Tidak">Tidak</option>
-                                    </select>
+                                <div class="col-6 row align-items-center mt-4">
+                                    <div class="col-3">
+                                        <label class="control-label">Data Ditampilkan?</label>
+                                    </div>
+                                    <div class="col">
+                                        <select name="is_tampil" class="form-control">
+                                            <option>-- Pilih --</option>
+                                            <option value="Ya">Ya</option>
+                                            <option value="Tidak">Tidak</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -40,7 +40,7 @@
                     <div class="row mx-2 pt-3">
                         <div class="col">
                             <div class="mt-2 mx-1">
-                                <h4>Lengkapi Data Diri Anda Dengan Niat, Bismillah</h4>
+                                <h4>Lengkapi Data Diri Anda Dengan Benar</h4>
                             </div>
                             <hr>
                         </div>
@@ -61,9 +61,10 @@
                         <div class="col-12 mb-3">
                             <div class="row clearfix">
                                 <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5">
+                                    <a href="<?php echo base_url('Alumni/data_diri') ?>" class="btn btn-info">Kembali</a>
                                 </div>
                                 <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                    <button type="submit" class="btn btn-info">Submit</button>
+                                    <button type="submit" class="btn btn-info">Simpan</button>
                                 </div>
                             </div>
                         </div>

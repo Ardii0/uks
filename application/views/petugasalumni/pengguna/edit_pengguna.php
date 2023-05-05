@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Pengguna</title>
+    <title>Edit Pengguna</title>
     <?php $this->load->view('petugasalumni/style/head')?>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -21,7 +21,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Tambah Pengguna</h1>
+                            <h1>Edit Pengguna</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -30,7 +30,7 @@
                                 </li>
                                 <li class="breadcrumb-item active"><a
                                         href="<?php echo base_url('PetugasAlumni/pengguna') ?>">Pengguna</a></li>
-                                <li class="breadcrumb-item active">Form Tambah Pengguna</li>
+                                <li class="breadcrumb-item active">Form Edit Pengguna</li>
                             </ol>
                         </div>
                     </div>
@@ -38,10 +38,10 @@
             </section>
 
             <section class="content bg-white p-4 mx-4">
-            <?php $id=0; foreach($pengguna as $data): $id++ ?>
+                <?php $id=0; foreach($pengguna as $data): $id++ ?>
                 <div class="container-fluid">
                     <form action="<?php echo base_url('PetugasAlumni/aksi_edit_pengguna') ?>" method="post">
-                    <input name="id_level" type="hidden" value="<?php echo $data->id_level ?>">
+                        <input name="id_level" type="hidden" value="<?php echo $data->id_level ?>">
                         <div class="form-group mb-4">
                             <div class="row align-items-center">
                                 <div class="col-2">
@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="col">
                                     <input type="text" name="username" class="form-control"
-                                        placeholder="Masukan Username"  value="<?php echo $data->username ?>">
+                                        placeholder="Masukan Username" value="<?php echo $data->username ?>">
                                 </div>
                             </div>
                             <div class="row align-items-center mt-4">
@@ -57,8 +57,8 @@
                                     <label class="control-label">email</label>
                                 </div>
                                 <div class="col">
-                                    <input type="email" name="email" class="form-control"
-                                        placeholder="Masukan Email"  value="<?php echo $data->email ?>">
+                                    <input type="email" name="email" class="form-control" placeholder="Masukan Email"
+                                        value="<?php echo $data->email ?>">
                                 </div>
                             </div>
                             <div class="row align-items-center mt-4">
@@ -76,7 +76,7 @@
                                 </div>
                                 <div class="col">
                                     <select name="level" class="form-control">
-                                    <option style="display: none;" value="<?php echo $data->level ?>">
+                                        <option style="display: none;" value="<?php echo $data->level ?>">
                                             <?php echo $data->level ?></option>
                                         <option value="PetugasAlumni">PetugasAlumni</option>
                                         <option value="Alumni">Alumni</option>
@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="col">
                                     <select name="id_hak_akses" class="form-control">
-                                    <option style="display: none;" value="<?php echo $data->id_hak_akses ?>">
+                                        <option style="display: none;" value="<?php echo $data->id_hak_akses ?>">
                                             <?php echo $data->id_hak_akses ?></option>
                                         <option value="7">PetugasAlumni</option>
                                         <option value="8">Alumni</option>
@@ -98,11 +98,11 @@
                             </div>
                         </div>
                         <div class="row d-flex justify-content-between mt-4">
-                            <div class="">
+                            <div>
                                 <button type="button" onClick="kembali()" class="btn bg-gray"
                                     style="width: 150px; margin-right: 12px;">Kembali</button>
                             </div>
-                            <div class="">
+                            <div>
                                 <button type="submit" class="btn bg-blue"
                                     style="width: 150px; margin-right: 12px;">Simpan</button>
                             </div>
