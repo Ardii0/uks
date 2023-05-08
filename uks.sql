@@ -30,7 +30,7 @@ CREATE TABLE `admin` (
 /*Data for the table `admin` */
 
 insert  into `admin`(`id`,`password`,`username`) values 
-(1,'$2a$10$BS8iSfdS.V8oruLqdRg3xeeIPlWJeWJqHgivIyrCMFEvAsBDAb6LG','smpn1_smg@gmail.com');
+(1,'202cb962ac59075b964b07152d234b70','smpn1_smg@gmail.com');
 
 /*Table structure for table `daftar_obat` */
 
