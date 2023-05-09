@@ -1,0 +1,16 @@
+.badge{
+    background-color:  #4ADE80;
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    font-size: 16px;
+    color: #ffffff;
+    padding: 10px 0 0 0;
+}
+.badge p{
+    font-weight: 600;
+}
+.theback {
+    padding: 10px 20px 10px 20px;
+    background-color: #ffffff;
+}
