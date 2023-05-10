@@ -21,7 +21,7 @@
                     <li class="nav-item">
                         <a href="<?php echo base_url('Admin/') ;?>"
                             class="nav-link">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <i class="nav-icon fas fa-home"></i>
                             <p>
                                 Dashboard
                             </p>
@@ -41,7 +41,7 @@
                             class="nav-link">
                             <i class="nav-icon fas fa-user"></i>
                             <p>
-                                Penanganan Pasien
+                                Data
                             </p>
                         </a>
                     </li>
@@ -72,10 +72,10 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="<?php echo base_url('Daftar_obat/') ;?>"
+                    <li class="nav-item ">
+                        <a href="<?php echo base_url('Daftar_Obat/') ;?>"
                             class="nav-link">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <i class="nav-icon fas fa-capsules"></i>
                             <p>
                                 Daftar Obat P3K
                             </p>
