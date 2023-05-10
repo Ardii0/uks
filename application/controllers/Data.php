@@ -142,11 +142,17 @@ class Data extends CI_Controller {
     public function ubah_siswa()
     {
         $data = array (
-             'nama_siswa' => $this->input->post('nama_siswa'),
-             'tempat_lahir' => $this->input->post('tempat_lahir'),
-             'tanggal_lahir' => $this->input->post('tanggal_lahir'),
-             'kelas' => $this->input->post('kelas'),
-             'alamat' => $this->input->post('alamat'),
+            'nama_siswa' => $this->input->post('nama_siswa'),
+            'tempat_lahir' => $this->input->post('tempat_lahir'),
+            'tanggal_lahir' => $this->input->post('tanggal_lahir'),
+            'kelas' => $this->input->post('kelas'),
+            'alamat' => $this->input->post('alamat'),
+            'TB' => $this->input->post('TB'),
+            'BB' => $this->input->post('BB'),
+            'riwayat_penyakit' => $this->input->post('riwayat_penyakit'),
+            'gol_darah' => $this->input->post('gol_darah'),
+            'tekanan_darah' => $this->input->post('tekanan_darah'),
+            'alergi' => $this->input->post('alergi'),
         );
         $masuk=$this->Main_model->ubah_data('siswa', $data, array('id'=>$this->input->post('id')));
         if($masuk)
