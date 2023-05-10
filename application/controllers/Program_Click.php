@@ -20,7 +20,7 @@ class Program_Click extends CI_Controller {
      public function index()
      {
          $this->load->model('Main_model');
-         $data['periksa'] = $this->Main_model->get('periksa')->result();
+         $data['periksa'] = $this->Main_model->get('program_click')->result();
          $data['pasien_status'] = $this->Main_model->get('pasien_status')->result();
          $data['siswa'] = $this->Main_model->get('siswa')->result();
          $this->load->view('program_click/index', $data);
@@ -37,7 +37,7 @@ class Program_Click extends CI_Controller {
              'nama_pasien' => $this->input->post('nama_pasien'),
              'pasien_status_id' => $this->input->post('pasien_status_id'),
          );
-         $masuk = $this->Main_model->insert_data($data,'periksa');
+         $masuk = $this->Main_model->insert_data($data,'progran_click');
          if ($masuk) {
              $this->session->set_flashdata('sukses', 'berhasil');
              redirect(base_url('Program_click/'));
@@ -50,7 +50,7 @@ class Program_Click extends CI_Controller {
      
      public function hapus_program_click($id)
      {
-        $hapus=$this->Main_model->delete_data( ['id'=>$id], 'periksa');
+        $hapus=$this->Main_model->delete_data( ['id'=>$id], 'program_click');
          if($hapus)
          {
              $this->session->set_flashdata('sukses', 'berhasil');

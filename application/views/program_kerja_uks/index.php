@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Pojok Baca</title>
+    <title>Program Kerja UKS</title>
     <?php $this->load->view('style/head') ?>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -20,11 +20,11 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Pojok Baca</h1>
+                            <h1>Program Kerja UKS</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="<?php echo base_url('Pojok_baca/') ?>">Pojok Baca</a>
+                                <li class="breadcrumb-item"><a href="<?php echo base_url('Pojok_baca/') ?>">Program Kerja UKS</a>
                                 </li>
                                 <li class="breadcrumb-item active">Data Buku</li>
                             </ol>
@@ -39,7 +39,7 @@
                         <div class="col-2 col-sm-6 ">
                             <div class="form-group d-flex flex-row " style="width: fit-content;">
                                 <div class="mt-2 mx-1">
-                                    <h4>Pojok Baca</h4>
+                                    <h4>Program Kerja UKS</h4>
                                 </div>
                             </div>
                         </div>
