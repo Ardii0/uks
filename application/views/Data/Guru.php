@@ -162,13 +162,13 @@ function hapus(id) {
 
 }
 
-// function bisa() {
-//     swal.fire({
-//         icon: 'success',
-//         title: 'Your work has been saved',
-//         showConfirmButton: false,
-//     })
-// }
+function bisa() {
+    swal.fire({
+        icon: 'success',
+        title: 'Your work has been saved',
+        showConfirmButton: false,
+    })
+}
 </script>
 
 </html>

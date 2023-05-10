@@ -51,14 +51,14 @@
                                                 <td><?php echo $datas->tempat_lahir?>, <?php echo indonesian_date_time($datas->tanggal_lahir);?></td>
                                                 <td><?php echo $datas->alamat?></td>
                                                 <td>
-                                                <a href="#"
+                                                <a href="<?php echo base_url('data/edit_karyawan/' . $datas->id)?>"
                                                         class="btn btn-info btn-sm">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                <a href="#"
+                                                <button onclick="hapus(<?php echo $datas->id?>)"
                                                         class="btn btn-danger btn-sm">
                                                         <i class="fa fa-trash"></i>
-                                                    </a>
+                                                    </button>
                                                 </td>
                                             </tr>
                                             <?php endforeach;?>
@@ -136,5 +136,28 @@
 
     <?php $this->load->view('style/js')?>
 </body>
-
+<script>
+function hapus(id) {
+    swal.fire({
+        title: 'Yakin untuk menghapus data ini?',
+        text: "Data ini akan terhapus permanen",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Batal',
+        confirmButtonText: ' Ya hapus!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = "<?php echo base_url('data/hapus_karyawan/')?>" + id;
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil Dihapus',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+    });
+}
+</script>
 </html>
