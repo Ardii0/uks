@@ -1,6 +1,6 @@
 <div>
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
-        <a href="index3.html" class="brand-link">
+        <a href="<?php echo base_url('Admin/') ;?>" class="brand-link">
             <span class="brand-text font-weight-light">SISTEM APLIKASI UKS <br> SMPN 1 SEMARANG</span>
         </a>
         <div class="form-inline p-2">
@@ -30,13 +30,13 @@
                     <li class="nav-item">
                         <a href="<?php echo base_url('Periksa/') ;?>"
                             class="nav-link">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <i class="nav-icon fas fa-stethoscope"></i>
                             <p>
                                 Periksa Pasien
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item">
                         <a class="nav-link">
                             <i class="nav-icon fas fa-book"></i>
                             <p>
@@ -71,7 +71,7 @@
                     <li class="nav-item">
                         <a href="<?php echo base_url('Diagnosa/') ;?>"
                             class="nav-link">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <i class="nav-icon fas fa-diagnoses"></i>
                             <p>
                                 Diagnosa
                             </p>
@@ -80,7 +80,7 @@
                     <li class="nav-item">
                         <a href="<?php echo base_url('Penanganan/') ;?>"
                             class="nav-link">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <i class="nav-icon fas fa-people-carry"></i>
                             <p>
                                 Penanganan Pertama
                             </p>
@@ -89,18 +89,27 @@
                     <li class="nav-item">
                         <a href="<?php echo base_url('Tindakan/') ;?>"
                             class="nav-link">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <i class="nav-icon fas fa-exclamation"></i>
                             <p>
                                 Tindakan
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item">
                         <a href="<?php echo base_url('Daftar_Obat/') ;?>"
                             class="nav-link">
                             <i class="nav-icon fas fa-capsules"></i>
                             <p>
                                 Daftar Obat P3K
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?php echo base_url('Kegiatan/') ;?>"
+                            class="nav-link">
+                            <i class="nav-icon fas fa-medkit"></i>
+                            <p>
+                                Kegiatan UKS
                             </p>
                         </a>
                     </li>

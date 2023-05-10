@@ -109,6 +109,22 @@ insert  into `karyawan`(`id`,`alamat`,`nama_karyawan`,`tanggal_lahir`,`tempat_la
 (1,'Tugurejo','Ridho Roma','2023-04-11 07:00:00','Semarang',0),
 (2,'Tegal','Surtiono','2023-02-02 07:00:00','Semarang',0);
 
+/*Table structure for table `kegiatan_uks` */
+
+DROP TABLE IF EXISTS `kegiatan_uks`;
+
+CREATE TABLE `kegiatan_uks` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nama_kegiatan` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `tanggal_mulai` timestamp NULL DEFAULT NULL,
+  `tanggal_akhir` timestamp NULL DEFAULT NULL,
+  `deskripsi` text COLLATE utf8mb4_general_ci,
+  `foto` text COLLATE utf8mb4_general_ci,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+/*Data for the table `kegiatan_uks` */
+
 /*Table structure for table `pasien_status` */
 
 DROP TABLE IF EXISTS `pasien_status`;
