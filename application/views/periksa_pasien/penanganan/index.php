@@ -68,7 +68,7 @@
                         </div>
                         <div class="col-lg-2">
                             <label class="d-block">Catatan</label>
-                            <input type="text" name="catatan" class="form-control">
+                            <input type="text" name="catatan" class="form-control" autocomplete="off">
                         </div>
                         <div class="col-lg-1 pt-2">
                             <button type="submit" class="btn btn-success mt-4" type="submit">Tambah</button>
@@ -76,6 +76,51 @@
                     </div>
                     <input type="hidden" value="<?php echo $periksa['id']?>" name="memperiksa" class="form-control">
                 </form>
+                <div class="theback">
+                    <table id="data-table" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th style="width: 2%;">No</th>
+                                <th>Keluhan</th>
+                                <th>Diagnosa</th>
+                                <th>Tindakan</th>
+                                <th>Penanganan Pertama</th>
+                                <th>Catatan</th>
+                                <th style="width: 2%;">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $id=0; foreach($dataperiksa as $data): $id++;?>
+                                <tr>
+                                    <td><?php echo $id?></td>
+                                    <td><?php echo JoinOne('penanganan_periksa', 'periksa', 'periksa_id', 'id','penanganan_periksa.id',$data->id, 'keluhan')?></td>
+                                    <td><?php echo JoinOne('penanganan_periksa', 'diagnosa', 'diagnosa_penyakit_id', 'id','penanganan_periksa.id',$data->id, 'nama')?></td>
+                                    <td><?php echo JoinOne('penanganan_periksa', 'tindakan', 'tindakan_id', 'id','penanganan_periksa.id',$data->id, 'nama')?></td>
+                                    <td><?php echo JoinOne('penanganan_periksa', 'penanganan_pertama', 'penanganan_pertama_id', 'id','penanganan_periksa.id',$data->id, 'nama_penanganan')?></td>
+                                    <td><?php echo $data->catatan?></td>
+                                    <td class="text-center">
+                                        <a href="<?php echo base_url('Periksa/delete_stat/'.$data->id)?>">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                style="width:24px; height: 24px; color: #F87171; font-weight: 700;"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                                />
+                                            </svg>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

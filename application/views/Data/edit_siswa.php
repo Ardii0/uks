@@ -72,7 +72,7 @@
                                 <button type="button" class="btn btn-danger text-bold mr-2" onclick="kembali()"
                                     data-dismiss="modal"><span class="p-3">Batal</span></button>
                                     <input type="hidden" value="<?php echo $datas->id ?>" name="id">
-                                <button type="submit" class="btn btn-success text-bold "><span class="p-3">Update</span></button>
+                                <button onclick="bisa()" type="submit" class="btn btn-success text-bold"><span class="p-3">Update</span></button>
                                 </div>
 
                             </form>
@@ -92,30 +92,6 @@
 </body>
 
 <script>
-function hapus() {
-    swal.fire({
-        title: 'Yakin untuk menghapus data ini?',
-        text: "Data ini akan terhapus permanen",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        cancelButtonText: 'Batal',
-        confirmButtonText: ' Ya hapus!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Berhasil Dihapus',
-                showConfirmButton: false,
-                timer: 1500
-            })
-
-        }
-    });
-
-}
-
 function bisa() {
     swal.fire({
         icon: 'success',

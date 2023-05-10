@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Guru</title>
+    <title>Data Karyawan</title>
     <?php $this->load->view('style/head')?>
 </head>
 
@@ -22,21 +22,21 @@
                                 <div class="header p-2 text-light rounded-top d-flex justify-content-center"
                                     style="background-color:#4ADE80">
                                     <div class="d-flex align-items-center">
-                                        <div style="font-size: 2rem">Edit Data Guru</div>
+                                        <div style="font-size: 2rem">Edit Data Karyawan</div>
                                     </div>
 
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body shadow px-3 py-1 mb-5 bg-white rounded">
-                                    <?php foreach ($daf_guru as $datas): ?>
+                                    <?php foreach ($daf_karyawan as $datas): ?>
                                     <section class="content bg-white p-2 rounded">
-                                        <form action="<?php echo base_url('data/ubah_guru') ?>" method="post">
+                                        <form action="<?php echo base_url('data/ubah_karyawan') ?>" method="post">
                                             <div class="box-body">
                                                 <div class="form-group col-sm-12">
                                                     <label class="col-sm-2 control-label">Nama</label>
                                                     <div class="col-sm-">
-                                                        <input type="text" value="<?php echo $datas->nama_guru ?>"
-                                                            name="nama_guru" class="form-control"><br>
+                                                        <input type="text" value="<?php echo $datas->nama_karyawan ?>"
+                                                            name="nama_karyawan" class="form-control"><br>
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-sm-12">

@@ -61,12 +61,13 @@ CREATE TABLE `diagnosa` (
   `update_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `nama` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `diagnosa` */
 
 insert  into `diagnosa`(`id`,`create_date`,`update_date`,`nama`) values 
-(1,'2023-04-11 15:39:27','2023-04-11 15:39:37','Pusing');
+(1,'2023-04-11 15:39:27','2023-04-11 15:39:37','Pusing'),
+(2,'2023-05-10 10:59:46',NULL,'Mual');
 
 /*Table structure for table `guru` */
 
@@ -114,7 +115,7 @@ DROP TABLE IF EXISTS `pasien_status`;
 
 CREATE TABLE `pasien_status` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nama` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
@@ -122,7 +123,7 @@ CREATE TABLE `pasien_status` (
 
 /*Data for the table `pasien_status` */
 
-insert  into `pasien_status`(`id`,`nama`,`create_date`,`update_date`) values 
+insert  into `pasien_status`(`id`,`name`,`create_date`,`update_date`) values 
 (1,'Guru','2023-04-11 15:42:38','2023-04-11 15:42:38'),
 (2,'Siswa','2023-04-11 15:42:38','2023-04-11 15:42:38'),
 (3,'Karyawan','2023-04-11 15:42:38','2023-04-11 15:42:38');
@@ -147,19 +148,12 @@ CREATE TABLE `penanganan_periksa` (
   CONSTRAINT `FK2k8dghilwkkc0j9pa2kwgbdxx` FOREIGN KEY (`diagnosa_penyakit_id`) REFERENCES `diagnosa` (`id`),
   CONSTRAINT `FK32mt44a65dkhlh6pxty5awrh2` FOREIGN KEY (`penanganan_pertama_id`) REFERENCES `penanganan_pertama` (`id`),
   CONSTRAINT `FKhodf9h6bb8ltbkru05ot05kb0` FOREIGN KEY (`periksa_id`) REFERENCES `periksa` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `penanganan_periksa` */
 
 insert  into `penanganan_periksa`(`id`,`catatan`,`diagnosa_penyakit_id`,`tindakan_id`,`penanganan_pertama_id`,`periksa_id`) values 
-(1,NULL,NULL,NULL,NULL,NULL),
-(2,'Ada',1,1,1,NULL),
-(3,'Ada',1,1,1,NULL),
-(4,'Ada',1,1,1,NULL),
-(6,'Ada',1,1,1,NULL),
-(7,'Ada',1,1,1,1),
-(8,'Ada',1,1,1,1),
-(9,'Ada',1,1,1,1);
+(1,'Bismillah',2,2,2,1);
 
 /*Table structure for table `penanganan_pertama` */
 
@@ -171,12 +165,13 @@ CREATE TABLE `penanganan_pertama` (
   `update_date` datetime DEFAULT NULL,
   `nama_penanganan` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `penanganan_pertama` */
 
 insert  into `penanganan_pertama`(`id`,`create_date`,`update_date`,`nama_penanganan`) values 
-(1,'2023-04-11 15:39:46','2023-04-11 15:39:46','Di Perban');
+(1,'2023-04-11 15:39:46','2023-04-11 15:39:46','Di Perban'),
+(2,'2023-05-10 11:05:16',NULL,'Di Korbankan');
 
 /*Table structure for table `periksa` */
 
@@ -245,12 +240,13 @@ CREATE TABLE `tindakan` (
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `tindakan` */
 
 insert  into `tindakan`(`id`,`nama`,`create_date`,`update_date`) values 
-(1,'Di Istirahatkan','2023-04-11 15:39:57','2023-04-11 15:39:57');
+(1,'Di Istirahatkan','2023-04-11 15:39:57','2023-04-11 15:39:57'),
+(2,'Di Mutilasi','2023-05-10 11:04:30',NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

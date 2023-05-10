@@ -16,7 +16,7 @@ class Periksa extends CI_Controller {
         }
     }
 
-    //Periksa
+// Periksa
     public function index()
     {
         $this->load->model('Main_model');
@@ -118,6 +118,7 @@ class Periksa extends CI_Controller {
         }
     }
 
+// Status Periksa
     public function status($id)
     {
         $where = ['id' => $id];
@@ -125,6 +126,8 @@ class Periksa extends CI_Controller {
         $data['diagnosa'] = $this->Main_model->get('diagnosa')->result();
         $data['penanganan'] = $this->Main_model->get('penanganan_pertama')->result();
         $data['tindakan'] = $this->Main_model->get('tindakan')->result();
+        $data['dataperiksa'] = $this->Main_model->getwhere(array('periksa_id' => $id),'penanganan_periksa')->result();
+        // $data['dataperiksa'] = $this->Main_model->read_join_one('penanganan_periksa', 'periksa', 'periksa_id', 'id', array('siswa_id' => $id), 'create_date')->result();
         $this->load->view('periksa_pasien/penanganan/index', $data);
     }
 
@@ -138,6 +141,13 @@ class Periksa extends CI_Controller {
             'catatan' => $this->input->post('catatan'),
         ];
         $this->Main_model->insert_data($data, 'penanganan_periksa');
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
+    public function delete_stat($id)
+    {
+        $where = array('id' => $id);
+        $this->Main_model->delete_data($where, 'penanganan_periksa');
         redirect($_SERVER['HTTP_REFERER']);
     }
 }
