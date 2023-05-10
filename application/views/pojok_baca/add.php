@@ -95,6 +95,16 @@
                                                     </div>
                                                 </div>
                                                 <div class="col form-group">
+                                                    <label class="control-label">Sumber</label>
+                                                    <div class="">
+                                                        <input type="text" name="sumber" class="form-control"
+                                                            placeholder="Masukan Sumber"><br>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                            <div class="col form-group">
                                                     <label class="control-label">Cover</label>
                                                     <div class="mt-1">
                                                         <input type="file" name="foto" onchange="readURL(this);" />

@@ -10,129 +10,58 @@
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition sidebar-mini layout-fixed" data-panel-auto-height-mode="height">
     <div class="wrapper">
         <?php $this->load->view('style/navbar') ?>
         <?php $this->load->view('style/sidebar') ?>
 
-        <div class="content-wrapper">
-            <section class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1>Periksa Pasien</h1>
-                        </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="<?php echo base_url('Periksa/') ?>">OWH</a>
-                                </li>
-                                <li class="breadcrumb-item active">Periksa Pasien</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
+        <div class="content-wrapper py-3">
             <section class="content">
                 <!-- FILTER REKAP DATA -->
-                <div class="container-fluid bg-white shadow mb-4">
-                    <div class="row mx-2 pt-3 d-flex justify-content-between">
-                        <div class="col-2 col-sm-6 ">
-                            <div class="form-group d-flex flex-row " style="width: fit-content;">
-                                <div class="mt-2 mx-1">
-                                    <h4>Filter Rekap Data</h4>
-                                </div>
+                <div class="container-fluid mb-4">
+                    <div class="header p-3 text-light rounded-top" style="background-color:#4ADE80">
+                        <div class="row">
+                            <div class="col pl-3 pt-1">
+                                <h5>Filter Rekap Data</h5>
                             </div>
-                        </div>
-                        <div class="col-md-3 d-flex justify-content-end align-self-start">
-                            <button type="button" class="btn btn-success" data-toggle="modal"
-                                data-target="#modal_filter_tanggal">
-                                Filter Tanggal
-                            </button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card-body">
-                                <table id="table" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 5%;">No</th>
-                                            <th>Nama Pasien</th>
-                                            <th>Status Pasien</th>
-                                            <th>Tanggal / Jam</th>
-                                            <th>Keluhan</th>
-                                            <th>Status</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php $id = 0;
-                                        foreach ($periksa as $data):
-                                            $id++; ?>
-                                            <tr>
-                                                <td>
-                                                    <?php echo $id ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $data->nama_pasien ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo tampil_pasien_status_byid($data->pasien_status_id) ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $data->create_date ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $data->keluhan ?>
-                                                </td>
-                                                <td>
-                                                    <?php if ($data->status == 1) {
-                                                        echo "<p style='color: green'>Sudah Ditangani</p>";
-                                                    } else {
-                                                        echo "<p style='color: red'>Belum Ditangani</p>";
-                                                    }
-                                                    ?>
-                                                </td>
-                                                <td class="text-center">
-                                                    <?php if ($data->status == 1) {
-                                                        echo "
-                                                        <a href='<?php echo base_url('Periksa/export_pasien_to_excel'); ?>
-                                                        <button type='button' class='btn btn-success btn-sm'>
-                                                            <i class='fa fa-download'></i>
-                                                        </button>
-                                                    </a>";
-                                                    }
-                                                    ?>
-                                                    <button class='btn btn-danger btn-sm'
-                                                        onClick="hapus_periksa(<?php echo $data->id ?>)">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
+                            <div class="col">
+                            </div>
+                            <div class="col text-right">
+                                <button type="button" data-toggle="modal" data-target="#modal_filter_tanggal"
+                                    class="btn btn-info px-5 rounded bg-sky-600">Filter Tanggal</button>
                             </div>
                         </div>
                     </div>
+                    <div class="bg-light shadow">
+                        <?php if (1 + 1 == 2):?>
+                            <div id="not_found" class="text-center mx-auto p-3">
+                                <img src="https://cdn.iconscout.com/icon/free/png-256/free-data-not-found-1965034-1662569.png" alt="">
+                                <h4>Filter terlebih dahulu sesuai tanggal yang diinginkan.</h4>
+                            </div>
+                        <?php elseif(1 + 1 == 3): ?>
+                            <div id="rekap_data" class="text-center mx-auto p-3">
+                                <h1 style="font-weight: 600;">Rekap Data Pasien</h1>
+                                <h4>(2023-05-10) - (2023-05-10)</h4>
+                                <button type="button" class="btn btn-primary px-5 rounded">Download Rekap Data Pasien </button>
+                            </div>
+                        <?php endif;?>
+                        </div>
                 </div>
 
                 <!-- DATA PASIEN-->
                 <div class="container-fluid bg-white shadow mb-4">
-                    <div class="row mx-2 pt-3 d-flex justify-content-between">
-                        <div class="col-2 col-sm-6 ">
-                            <div class="form-group d-flex flex-row " style="width: fit-content;">
-                                <div class="mt-2 mx-1">
-                                    <h4>Data Pasien</h4>
-                                </div>
+                    <div class="header p-3 text-light rounded-top" style="background-color:#4ADE80">
+                        <div class="row">
+                            <div class="col pl-3 pt-1">
+                                <h5>Data Pasien</h5>
                             </div>
-                        </div>
-                        <div class="col-md-3 d-flex justify-content-end align-self-start">
-                            <button type="button" class="btn btn-success" data-toggle="modal"
-                                data-target="#modal_tambah_periksa">
-                                <i class="fa fa-plus pr-2"></i>Tambah
-                            </button>
+                            <div class="col">
+                            </div>
+                            <div class="col text-right">
+                                <button type="button" data-toggle="modal" data-target="#modal_tambah_periksa"
+                                    class="btn btn-info px-5 rounded bg-sky-600"> <i
+                                        class="fa fa-plus pr-2"></i>Tambah</button>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -179,18 +108,21 @@
                                                     ?>
                                                 </td>
                                                 <td class="text-center">
-                                                    <a href="<?php echo base_url('periksa/edit_event/' . $data->id); ?>"
+                                                    <?php if ($data->status == 1) : ?>
+                                                        <a href="<?php echo base_url('periksa/status/' . $data->id); ?>"
                                                         class="trash " data-id="1">
-                                                        <button class="btn btn-primary btn-sm" type="button"
-                                                            class="btn btn-success" data-toggle="modal"
-                                                            data-target="#modal_event<?php echo $data->id ?>">
-                                                            <i class="fa fa-edit"></i>
+                                                        <button class="btn btn-success btn-sm" type="button" data-toggle="modal">
+                                                            Selesai
                                                         </button>
                                                     </a>
-                                                    <button class='btn btn-danger btn-sm'
-                                                        onClick="hapus_periksa(<?php echo $data->id ?>)">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
+                                                    <?php elseif ($data->status == 0) : ?>
+                                                        <a href="<?php echo base_url('periksa/status/' . $data->id); ?>"
+                                                        class="trash " data-id="1">
+                                                        <button class="btn btn-danger btn-sm" type="button" data-toggle="modal">
+                                                            Tangani
+                                                        </button>
+                                                    </a>
+                                                    <?php endif; ?>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -204,8 +136,8 @@
                 <div class="modal fade" id="modal_tambah_periksa" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <form action="<?php echo base_url('Periksa/aksi_tambah_periksa') ?>" enctype="multipart/form-data"
-                            method="post">
+                        <form action="<?php echo base_url('Periksa/aksi_tambah_periksa') ?>"
+                            enctype="multipart/form-data" method="post">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">Form Input Periksa</h5>
@@ -270,8 +202,8 @@
                 <div class="modal fade" id="modal_filter_tanggal" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <form action="<?php echo base_url('Periksa/aksi_filter_tanggal') ?>" enctype="multipart/form-data"
-                            method="post">
+                        <form action="<?php echo base_url('Periksa/aksi_filter_tanggal') ?>"
+                            enctype="multipart/form-data" method="post">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">Filter Rekap Data Pasien</h5>

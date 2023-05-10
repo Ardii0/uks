@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Pojok_Baca extends CI_Controller
+class Program_Kerja_UKS extends CI_Controller
 {
 
     public function __construct()
@@ -22,17 +22,17 @@ class Pojok_Baca extends CI_Controller
     {
         $this->load->model('Main_model');
         $data['buku'] = $this->Main_model->get('buku')->result();
-        $this->load->view('pojok_baca/index', $data);
+        $this->load->view('program_kerja_uks/index', $data);
     }
     public function tambah_buku()
     {
-        $this->load->view('pojok_baca/add');
+        $this->load->view('program_kerja_uks/add');
     }
 
     public function upload_img_buku($value)
     {
         $kode = round(microtime(true) * 1000);
-        $config['upload_path'] = './uploads/pojok_baca/buku/';
+        $config['upload_path'] = './uploads/program_kerja_uks/buku/';
         $config['allowed_types'] = 'jpg|png|jpeg';
         $config['max_size'] = '100000';
         $config['file_name'] = $kode;
@@ -51,7 +51,7 @@ class Pojok_Baca extends CI_Controller
         if ($foto[0] == false) {
             //$this->upload->display_errors();
             $this->session->set_flashdata('error', 'gagal upload gambar.');
-            redirect(base_url('Pojok_Baca/add'));
+            redirect(base_url('program_kerja_uks/add'));
         } else {
             $data = array
             (
@@ -67,10 +67,10 @@ class Pojok_Baca extends CI_Controller
             $masuk = $this->Main_model->insert_data($data, 'buku');
             if ($masuk) {
                 $this->session->set_flashdata('sukses', 'berhasil');
-                redirect(base_url('Pojok_baca/'));
+                redirect(base_url('program_kerja_uks/'));
             } else {
                 $this->session->set_flashdata('error', 'gagal..');
-                redirect(base_url('Pojok_baca/123'));
+                redirect(base_url('program_kerja_uks/123'));
             }
         }
     }
@@ -81,10 +81,10 @@ class Pojok_Baca extends CI_Controller
         $hapus=$this->Main_model->delete_data( ['id'=>$id], 'buku');
         if ($hapus) {
             $this->session->set_flashdata('sukses', 'berhasil');
-            redirect(base_url('Pojok_baca/'));
+            redirect(base_url('program_kerja_uks/'));
         } else {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Pojok_baca/123'));
+            redirect(base_url('program_kerja_uks/123'));
         }
     }
 }
