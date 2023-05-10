@@ -36,8 +36,8 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item <?=$menu == 'data' ? 'menu-open' :'' ?>">
-                        <a class="nav-link <?=$menu == 'guru' ? 'active' :'' ?>">
+                    <li class="nav-item ">
+                        <a class="nav-link">
                             <i class="nav-icon fas fa-book"></i>
                             <p>
                                 Data 
@@ -47,21 +47,21 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="<?php echo base_url('data/daf_guru')?>"
-                                    class="nav-link <?=$submenu == 'guru' ? 'active' :'' ?>">
+                                    class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Daftar Guru</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="<?php echo base_url('data/daf_siswa')?>"
-                                    class="nav-link <?=$submenu == 'siswa' ? 'active' :'' ?>">
+                                    class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Daftar Siswa</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="<?php echo base_url('data/daf_karyawan')?>"
-                                    class="nav-link <?=$submenu == 'karyawan' ? 'active' :'' ?>">
+                                    class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Daftar Karyawan</p>
                                 </a>
