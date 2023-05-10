@@ -18,6 +18,15 @@ class Admin extends CI_Controller {
 
     public function index()
     {
-        $this->load->view('dashboard/dashboard');
+        $data['guru']=$this->Main_model->total('pasien_status_id', '1', 'periksa');
+        $data['siswa']=$this->Main_model->total('pasien_status_id', '2', 'periksa');
+        $data['karyawan']=$this->Main_model->total('pasien_status_id', '3', 'periksa');
+        // $data['testing']=$this->Main_model->get_graph('2023-04-11 15:42:58', '2')->num_rows();
+        $data['periksa']=$this->Main_model->get('periksa')->result();
+        $results = $this->Main_model->get_chart_data();
+        $data['chart_data'] = $results['chart_data'];
+        $data['min_year'] = $results['min_year'];
+        $data['max_year'] = $results['max_year'];
+        $this->load->view('dashboard/dashboard', $data);
     }
 }

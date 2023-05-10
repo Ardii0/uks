@@ -42,6 +42,13 @@ $(function() {
         "autoWidth": false,
     }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
 
+    $("#table_dashboard").DataTable({
+        "responsive": true,
+        "lengthChange": false,
+        "autoWidth": false,
+        'pageLength': 5,
+    }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
+
     $("#table2").DataTable({
         "responsive": true,
         "lengthChange": false,

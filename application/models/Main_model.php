@@ -103,5 +103,35 @@ class Main_model extends CI_Model
         $this->db->group_by($group_by);
         return $this->db->get();
     }
+
+    private $performance = 'performance';
+
+
+    // Dashboard
+    function get_chart_data() {
+        $query = $this->db->get($this->performance);
+        $results['chart_data'] = $query->result();
+        $this->db->select_min('performance_year');
+        $this->db->limit(1);
+        $query = $this->db->get($this->performance);
+        $results['min_year'] = $query->row()->performance_year;
+        $this->db->select_max('performance_year');
+        $this->db->limit(1);
+        $query = $this->db->get($this->performance);
+        $results['max_year'] = $query->row()->performance_year;
+        return $results;
+    }
+
+    public function total($column, $what, $table)
+    {
+    return $this->db->where($column, $what)->get($table)->num_rows();
+    }
+
+    public function get_graph($create_date, $pasien_status_id)
+    {
+        $multiClause = array('create_date' => $create_date,'pasien_status_id' => $pasien_status_id);
+        $data = $this->db->where($multiClause)->get('periksa');
+        return $data;
+    }
 }
 ?>
