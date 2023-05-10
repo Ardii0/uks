@@ -25,7 +25,6 @@
 
     .container {
         position: relative;
-        /* max-width: 1000px; */
         display: flex;
         background: #ffffff;
         box-shadow: 0 0 15px rgba(0, 0, 0, .1);
@@ -33,19 +32,17 @@
     }
 
     /* * * * * Login Form CSS * * * * */
-    h4,
-    h2 {
+    h3,
+    h5 {
         margin: 0 0 15px 0;
-        /* font-size: 30px; */
         font-weight: 700;
         text-align: center;
     }
 
     p {
         margin: 0 0 20px 0;
-        font-size: 16px;
         font-weight: 500;
-        line-height: 15px;
+        line-height: 5px;
     }
 
     .btn {
@@ -69,18 +66,17 @@
 
     .col-left,
     .col-right {
-        width: 55%;
-        padding: 25px;
+        width: 52%;
+        padding: 15px;
         display: flex;
     }
 
     .col-left {
-        width: 85%;
+        width: 75%;
         background: #4CAF50;
         -webkit-clip-path: polygon(98% 17%, 100% 34%, 98% 51%, 100% 68%, 98% 84%, 100% 100%, 0 100%, 0 0, 100% 0);
         clip-path: polygon(98% 17%, 100% 34%, 98% 51%, 100% 68%, 98% 84%, 100% 100%, 0 100%, 0 0, 100% 0);
         margin-left: -7px;
-
     }
 
     .login-text {
@@ -114,7 +110,7 @@
     .login-form input {
         display: block;
         width: 100%;
-        height: 60px;
+        height: 58px;
         padding: 0 10px;
         font-size: 16px;
         letter-spacing: 1px;
@@ -136,18 +132,20 @@
 </head>
 
 <body>
-    <div class="wrapper mb-5 mt-5">
+    <div class="wrapper mt-4">
         <div class="container ">
             <div class="col-left">
                 <div class="login-text">
-                    <h2 class="text-center " style="font-weight: 700">UKS SMP N 1 SEMARANG</h2>
-                    <h4 class="mt-4">Motto</h4>
-                    <h5 class="text-center "><b> TERDEPAN</b></h5>
-                    <p class="text-center mt-2">“ Terintegritas Dedikasi Empati Profesional Akurat Normatif ”</p>
-                    <h4>Visi</h4>
-                    <p class="text-center ">“ Luhur Budi, Cerdas, Berprestasi ”</p>
-                    <h4>Misi</h4>
-                    <ol type="1">
+                    <div class="header">
+                        <h3 class="mt-2">UKS SMP N 1 SEMARANG</h3>
+                        <h5 class="mt-2">Motto</h5>
+                        <h6 class="text-center "><b> TERDEPAN</b></h6>
+                        <p class="text-center mt-2">“ Terintegritas Dedikasi Empati Profesional Akurat Normatif ”</p>
+                        <h5>Visi</h5>
+                        <p class="text-center ">“ Luhur Budi, Cerdas, Berprestasi ”</p>
+                        <h5>Misi</h5>
+                    </div>
+                    <ol type="1" style=" margin-right: 20px">
                         <li>Menyelenggarakan pendidikan yang lebih baik dan bermutu sehingga dapat menciptakan
                             peserta
                             didik yang komprehensif dan kompetitif, berpenghayatan terhadap ajaran yang dianut dan
@@ -171,11 +169,11 @@
             </div>
             <div class="col-right">
                 <div class="login-form">
-                    <h4>
-                        <img src="<?php echo base_url('assets/logo_login.png'); ?>" width="320" height="320"
+                    <h5>
+                        <img src="<?php echo base_url('assets/logo_login.png'); ?>" width="280" height="280"
                             class="d-inline-block align-text-top me-3">
-                    </h4>
-                    <h2>Register</h2>
+                    </h5>
+                    <h3>Register</h3>
                     <form action="<?php echo base_url('Register/aksi_registrasi')?>" method="post">
                         <p>
                             <input type="text" name="username" placeholder="Username" required>
@@ -188,11 +186,8 @@
                             </span>
                         </p>
                         <p>
-                            <button class="btn btn-success w-100" type="submit" style="height: 60px">Sign Up</button>
+                            <button class="btn btn-success w-100" type="submit" style="height: 58px">Sign Up</button>
                         </p>
-                        <!-- <p>
-                            <a href="Register">Create an account.</a>
-                        </p> -->
                     </form>
                 </div>
             </div>
