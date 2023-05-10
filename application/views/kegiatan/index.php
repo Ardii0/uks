@@ -23,19 +23,21 @@
                         <thead>
                             <tr>
                                 <th style="width: 5%;">No</th>
-                                <th>Foto</th>
+                                <th>Foto Kegiatan</th>
                                 <th>Nama Kegiatan</th>
                                 <th>Tanggal Mulai</th>
                                 <th>Tanggal Akhir</th>
                                 <th>Deskripsi</th>
-                                <th style="width: 5%;">Aksi</th>
+                                <th style="width: 10%;">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php $id=0; foreach($kegiatan as $data): $id++;?>
                                 <tr>
                                     <td><?php echo $id?></td>
-                                    <td><?php echo $data->foto?></td>
+                                    <td class="d-flex justify-content-center"><img style="width: 100px; height:100px;" 
+                                        src="<?php echo base_url('uploads/kegiatan_uks/'.$data->foto) ?>">
+                                    </td>
                                     <td><?php echo $data->nama_kegiatan?></td>
                                     <td><?php echo $data->tanggal_mulai?></td>
                                     <td><?php echo $data->tanggal_akhir?></td>
@@ -43,6 +45,9 @@
                                     <td class="text-center">
                                         <a href="<?php echo base_url('Kegiatan/edit_kegiatan/'.$data->id)?>" class='btn btn-info btn-sm'>
                                             <i class="fas fa-pencil-alt"></i>
+                                        </a>
+                                        <a href="<?php echo base_url('Kegiatan/delete/'.$data->id)?>" class='btn btn-danger btn-sm'>
+                                            <i class="fas fa-trash"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -82,19 +87,19 @@
                         <div class="form-group col-sm-12 mb-0">
                             <label class="control-label">Tanggal Mulai Kegiatan</label>
                             <div class="">
-                                <input type="date" name="tanggal_mulai" class="form-control"><br>
+                                <input type="datetime-local" name="tanggal_mulai" class="form-control"><br>
                             </div>
                         </div>
                         <div class="form-group col-sm-12 mb-0">
                             <label class="control-label">Tanggal Akhir Kegiatan</label>
                             <div class="">
-                                <input type="date" name="tanggal_akhir" class="form-control"><br>
+                                <input type="datetime-local" name="tanggal_akhir" class="form-control"><br>
                             </div>
                         </div>
                         <div class="form-group col-sm-12 mb-0">
                             <label class="control-label">Deskripsi Kegiatan</label>
                             <div class="">
-                                <textarea type="text" name="deskripsi" class="form-control" placeholder="Masukan Deskripsi Kegiatan"></textarea><br>
+                                <textarea type="text" name="deskripsi" class="form-control" placeholder="Masukan Deskripsi Kegiatan"></textarea>
                             </div>
                         </div>
                     </div>
