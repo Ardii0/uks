@@ -175,8 +175,8 @@
                         <img src="<?php echo base_url('assets/logo_login.png'); ?>" width="320" height="320"
                             class="d-inline-block align-text-top me-3">
                     </h4>
-                    <h2>Login</h2>
-                    <form action="<?php echo base_url('Login/aksi_login')?>" method="post">
+                    <h2>Register</h2>
+                    <form action="<?php echo base_url('Register/aksi_registrasi')?>" method="post">
                         <p>
                             <input type="text" name="username" placeholder="Username" required>
                         </p>
@@ -188,7 +188,7 @@
                             </span>
                         </p>
                         <p>
-                            <button class="btn btn-success w-100" type="submit" style="height: 60px">Sign In</button>
+                            <button class="btn btn-success w-100" type="submit" style="height: 60px">Sign Up</button>
                         </p>
                         <!-- <p>
                             <a href="Register">Create an account.</a>

@@ -6,59 +6,29 @@ class Register extends CI_Controller {
   public function __construct()
   {
     parent::__construct();
-    $this->load->model('m_register');
+    $this->load->model('M_register');
     date_default_timezone_set('Asia/Jakarta');
     $this->load->helper(array('Form', 'Cookie', 'String'));
 
   }
-//======login=======
+  
+//======register=======
   public function index()
   {
-    if ($this->session->userdata('status_admin')==='login') {
-      redirect(base_url('Admin/'));
-    } elseif ($this->session->userdata('status_akademik')==='login') {
-      redirect(base_url('Akademik/'));
-    } elseif ($this->session->userdata('status_perpustakaan')==='login') {
-      redirect(base_url('Perpustakaan/'));
-    } elseif ($this->session->userdata('status_nilai')==='login') {
-      redirect(base_url('Nilai/'));
-    } elseif ($this->session->userdata('status_keuangan')==='login') {
-      redirect(base_url('Keuangan/'));
-    }
     $sub_data['warning']=$this->session->userdata('warning');
-    $this->load->view('petugas/register',$sub_data);
-  }
-  
-  function login_email()
-  {
-    $this->load->view('petugas/login_email');
+    $this->load->view('auth/register',$sub_data);
   }
 
 
 //=====Aksi Daftar======
 public function aksi_registrasi()
 {
-  $password = md5($this->input->post("password"));
-  $konfir_password = md5($this->input->post("konfirPassword"));
-  
-  $data = [
-    'username' => $this->input->post('username'),
-    'email' => $this->input->post('email'),
-    'password' => $password,
-    'level' => "Alumni",
+  $data =[
+      'username' => $this->input->post('username'),
+      'password' => md5($this->input->post("password")),
   ];
-  
-  
-  if ($password !== $konfir_password) {
-    $this->load->view('petugas/register');
-
-    } else{
-      $this->m_register->registrasi('tabel_level', $data);
-      redirect(base_url('Login'));
-    }
-
+  $this->M_register->registrasi('admin', $data);
+  redirect(base_url('Login'));
 }
-
-  
 
 }
