@@ -1,4 +1,22 @@
 <?php
+// Global For One Join Table Helper, Make Sure Didn't Make Other Similiar Code
+    function JoinOne($from, $tablejoin, $coljoin, $coljoin2,$where, $id, $field)
+    {
+      $ci =& get_instance();
+      $ci->load->database();
+      $smth = '';
+      $result = $ci->db->select('*')
+                        ->from($from)
+                        ->join($tablejoin, $from.'.'.$coljoin.'='.$tablejoin.'.'.$coljoin2)
+                        ->where($where,$id)
+                        ->get();
+        foreach ($result->result() as $c) {
+        $stmt= $c->$field;
+        $smth= $smth.$stmt;
+        }
+        return $smth;
+    }
+
   function status_byid($id)
   {
   $ci =& get_instance();
