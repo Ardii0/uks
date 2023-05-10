@@ -70,3 +70,7 @@ $(function() {
 </script>
 <!-- Select2 -->
 <script src="<?php echo base_url('builder/plugins/select2/js/select2.full.min.js'); ?>"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="sweetalert2.all.min.js"></script>
+<script src="sweetalert2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

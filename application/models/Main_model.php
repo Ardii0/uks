@@ -133,5 +133,30 @@ class Main_model extends CI_Model
         $data = $this->db->where($multiClause)->get('periksa');
         return $data;
     }
+    // Data
+        public function tambah($tabel, $data)
+        {
+            $this->db->insert($tabel, $data);
+            return $this->db->insert_id();
+        }
+    
+        public function by_id($tabel, $id)
+        {
+            $data=$this->db->where('id', $id)->get($tabel);
+            return $data;
+        }
+    
+        public function ubah_data($tabel, $data, $where)
+        {
+            $data=$this->db->update($tabel, $data, $where);
+            return $this->db->affected_rows();
+        }
+    
+    public function hapus($tabel, $field, $id_pasien)
+        {
+            $data=$this->db->delete($tabel, array($field => $id_pasien));
+            return $data;
+        }
 }
+
 ?>

@@ -16,3 +16,4 @@
   <link rel="stylesheet" href="<?php echo base_url('builder/dist/css/adminlte.min.css'); ?>">
   <!-- Style Down Below -->
   <link rel="stylesheet" href="<?php echo base_url('builder/dist/css/sidebar.css'); ?>">
+  <link rel="stylesheet" href="sweetalert2.min.css">
