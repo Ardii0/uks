@@ -64,41 +64,47 @@
                                                             placeholder="Masukan Alamat">
                                                     </div>
                                                     <div class="form-group col-sm-4">
-                                                        <label class="control-label">Gol Darah</label>
-                                                        <input type="text" value="<?php echo $datas->gol_darah ?>"
-                                                            name="gol_darah" class="form-control"
-                                                            placeholder="Masukan Golongan Darah">
+                                                        <label class="control-label">Nama Orang Tua/Wali</label>
+                                                        <input type="text" value="<?php echo $datas->nama_wali ?>"
+                                                            name="nama_wali" class="form-control"
+                                                            placeholder="Masukan Nama Orang Tua/Wali">
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="form-group col-sm-4">
-                                                        <label class="control-label">TB</label>
+                                                        <label class="control-label">No. Telepon Orang Tua/Wali</label>
+                                                        <input type="text" value="<?php echo $datas->no_telepon_wali ?>"
+                                                            name="no_telepon_wali" class="form-control"
+                                                            placeholder="Masukan No. Telepon Wali">
+                                                    </div>
+                                                    <div class="form-group col-sm-4">
+                                                        <label class="control-label">Tinggi Badan (TB)</label>
                                                         <input type="text" value="<?php echo $datas->TB ?>" name="TB"
                                                             class="form-control"
                                                             placeholder="Masukan Tinggi Badan (*cm)">
                                                     </div>
                                                     <div class="form-group col-sm-4">
-                                                        <label class="control-label">BB</label>
+                                                        <label class="control-label">Berat Badan (BB)</label>
                                                         <input type="text" value="<?php echo $datas->BB ?>" name="BB"
                                                             class="form-control"
                                                             placeholder="Masukan Tinggi Badan (*kg)">
                                                     </div>
-                                                    <div class="form-group col-sm-4">
-                                                        <label class="control-label">Tekanan Darah</label>
-                                                        <input type="text" value="<?php echo $datas->tekanan_darah ?>"
-                                                            name="tekanan_darah" class="form-control"
-                                                            placeholder="Masukan Tekanan Darah (*mmHg)">
-                                                    </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="form-group col-sm-6">
+                                                    <div class="form-group col-sm-4">
+                                                        <label class="control-label">Gol Darah</label>
+                                                        <input type="text" value="<?php echo $datas->gol_darah ?>"
+                                                            name="gol_darah" class="form-control"
+                                                            placeholder="Masukan Golongan Darah">
+                                                    </div>
+                                                    <div class="form-group col-sm-4">
                                                         <label class="control-label">Riwayat Penyakit</label>
                                                         <input type="text"
                                                             value="<?php echo $datas->riwayat_penyakit ?>"
                                                             name="riwayat_penyakit" class="form-control"
                                                             placeholder="Masukan Riwayat Penyakit">
                                                     </div>
-                                                    <div class="form-group col-sm-6">
+                                                    <div class="form-group col-sm-4">
                                                         <label class="control-label">Alergi</label>
                                                         <input type="text" value="<?php echo $datas->alergi ?>"
                                                             name="alergi" class="form-control"

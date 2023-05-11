@@ -151,7 +151,8 @@ class Data extends CI_Controller {
             'BB' => $this->input->post('BB'),
             'riwayat_penyakit' => $this->input->post('riwayat_penyakit'),
             'gol_darah' => $this->input->post('gol_darah'),
-            'tekanan_darah' => $this->input->post('tekanan_darah'),
+            'nama_wali' => $this->input->post('nama_wali'),
+            'no_telepon_wali' => $this->input->post('no_telepon_wali'),
             'alergi' => $this->input->post('alergi'),
         );
         $masuk=$this->Main_model->ubah_data('siswa', $data, array('id'=>$this->input->post('id')));
@@ -176,6 +177,19 @@ class Data extends CI_Controller {
             redirect(base_url('data/daf_siswa/'));
         }
     }
+
+    public function detail_siswa($id)
+    {
+        $data = [
+            'judul' => 'uks',
+            'page' => 'data',
+            'menu' => 'data',
+            'submenu'=>'siswa',
+        ];
+        $data['siswa']=$this->Main_model->by_id('siswa', $id)->result();
+        $this->load->view('Data/detail_siswa', $data);
+    }
+
 //Karyawan
     public function daf_karyawan()
     {
