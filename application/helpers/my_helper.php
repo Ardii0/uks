@@ -17,6 +17,21 @@
         return $smth;
     }
 
+    function IDNTimes($date)
+    {
+        $monthformat = array('Januari', 'Februari', 'Maret',
+            'April', 'Mei', 'Juni',
+            'Juli', 'Agustus', 'September',
+            'Oktober', 'November', 'Desember', );
+        $year = substr($date, 0, 4);
+        $month = substr($date, 5, 2);
+        $currentdate = substr($date, 8, 2);
+        $time = substr($date, 11);
+        $result = $currentdate.' '.$monthformat[(int) $month - 1].' '.$year.' '.$time;
+
+        return $result;
+    }
+
   defined('BASEPATH') or exit('No direct script access allowed');
   if (!function_exists('indonesian_date')) {
       function indonesian_date($date)

@@ -39,16 +39,24 @@
                                         src="<?php echo base_url('uploads/kegiatan_uks/'.$data->foto) ?>">
                                     </td>
                                     <td><?php echo $data->nama_kegiatan?></td>
-                                    <td><?php echo $data->tanggal_mulai?></td>
-                                    <td><?php echo $data->tanggal_akhir?></td>
+                                    <td><?php echo IDNTimes($data->tanggal_mulai)?></td>
+                                    <td><?php if($data->tanggal_akhir == '0000-00-00 00:00:00' || empty($data->tanggal_akhir)) {
+                                                echo 'Sampai Selesai';
+                                              } else if (isset($data->tanggal_akhir)) { 
+                                                echo IDNTimes($data->tanggal_akhir); 
+                                        } ?>
+                                    </td>
                                     <td><?php echo $data->deskripsi?></td>
                                     <td class="text-center">
                                         <a href="<?php echo base_url('Kegiatan/edit_kegiatan/'.$data->id)?>" class='btn btn-info btn-sm'>
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
-                                        <a href="<?php echo base_url('Kegiatan/delete/'.$data->id)?>" class='btn btn-danger btn-sm'>
+                                        <button onclick="hapus(<?php echo $data->id ?>)" class="btn btn-danger btn-sm">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                        <!-- <a href="<?php echo base_url('Kegiatan/delete/'.$data->id)?>" class='btn btn-danger btn-sm'>
                                             <i class="fas fa-trash"></i>
-                                        </a>
+                                        </a> -->
                                     </td>
                                 </tr>
                             <?php endforeach;?>
@@ -60,12 +68,12 @@
     </div>
 
     <div class="modal fade" id="modal_tambah" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        aria-labelledby="Modal" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <form action="<?php echo base_url('Kegiatan/tambah_kegiatan') ?>" enctype="multipart/form-data" method="post">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Tambah Kegiatan</h5>
+                        <h5 class="modal-title" id="Modal">Tambah Kegiatan</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -74,20 +82,21 @@
                         <div class="form-group col-sm-12 mb-0">
                             <label class="control-label">Nama Kegiatan</label>
                             <div class="">
-                                <input type="text" name="nama_kegiatan" class="form-control"
-                                    placeholder="Masukan Nama Kegiatan"><br>
+                                <input type="text" name="nama_kegiatan" class="form-control mb-2"
+                                    placeholder="Masukan Nama Kegiatan" required autocomplete="off">
                             </div>
                         </div>
                         <div class="form-group col-sm-12 mb-0">
                             <label class="control-label">Foto Kegiatan</label>
-                            <div class="">
-                                <input type="file" name="foto" class="form-control"><br>
+                            <div class="custom-file mb-3">
+                                <input type="file" class="custom-file-input" id="customFile" name="foto">
+                                <label class="custom-file-label" for="customFile">Pilih File</label>
                             </div>
                         </div>
                         <div class="form-group col-sm-12 mb-0">
                             <label class="control-label">Tanggal Mulai Kegiatan</label>
                             <div class="">
-                                <input type="datetime-local" name="tanggal_mulai" class="form-control"><br>
+                                <input type="datetime-local" name="tanggal_mulai" class="form-control" required><br>
                             </div>
                         </div>
                         <div class="form-group col-sm-12 mb-0">
@@ -99,7 +108,7 @@
                         <div class="form-group col-sm-12 mb-0">
                             <label class="control-label">Deskripsi Kegiatan</label>
                             <div class="">
-                                <textarea type="text" name="deskripsi" class="form-control" placeholder="Masukan Deskripsi Kegiatan"></textarea>
+                                <textarea type="text" name="deskripsi" class="form-control" placeholder="Masukan Deskripsi Kegiatan" required></textarea>
                             </div>
                         </div>
                     </div>
@@ -112,5 +121,50 @@
         </form>
     </div>
     <?php $this->load->view('style/js')?>
+<!-- <script src="<?php echo base_url('builder/plugins/jquery/jquery.slim.min.js') ?>"></script> -->
+<script>
+    <?php if ($this->session->flashdata('bisa')): ?>
+            swal.fire({
+                title: "<?php echo $this->session->flashdata('bisa')?>",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        <?php if (isset($_SESSION['bisa'])) {
+            unset($_SESSION['bisa']);
+        }
+    endif; ?>
+    
+    function hapus(id) {
+        swal.fire({
+            title: 'Yakin untuk menghapus data ini?',
+            text: "Data ini akan terhapus permanen",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Ya Hapus'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil Dihapus',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    
+                }).then(function() {
+                    window.location.href = "<?php echo base_url('Kegiatan/delete/')?>" + id;
+                });
+            }
+        });
+
+    }
+        
+    $(".custom-file-input").on("change", function() {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
 </body>
 </html>

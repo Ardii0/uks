@@ -27,7 +27,10 @@
                             <div class="form-group col-sm-12 mb-0">
                                 <label class="control-label">Foto Kegiatan</label>
                                 <div class="">
-                                    <input type="file" name="foto" class="form-control"/><br>
+                                    <div class="custom-file mb-3">
+                                        <input type="file" class="custom-file-input" id="customFile" name="foto">
+                                        <label class="custom-file-label" for="customFile">Pilih File</label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group col-sm-12 mb-0">
@@ -52,7 +55,7 @@
                             </div>
                         </div>
                         <div class="form-group col-sm-12 d-flex justify-content-between">
-                        <button type="button" class="btn btn-danger text-bold mr-2" onclick="<?php echo $_SERVER['HTTP_REFERER']?>"><span class="p-3">Batal</span></button>
+                        <a href="<?php echo base_url('Kegiatan/')?>" class="btn btn-danger text-bold mr-2"><span class="p-3">Batal</span></a>
                         <button type="submit" class="btn btn-success text-bold "><span class="p-3">Update</span></button>
                     </div>
 
@@ -63,5 +66,11 @@
     </div>
 
     <?php $this->load->view('style/js')?>
+    <script>
+        $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
 </body>
 </html>

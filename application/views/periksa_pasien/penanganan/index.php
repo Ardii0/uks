@@ -17,7 +17,15 @@
                 <div class="badge">
                     <p>
                         Periksa Pasien: 
-                        <strong><?php echo $periksa['nama_pasien']?>
+                        <strong>
+                            <?php if(!empty($periksa['siswa_id'])) {
+                                echo JoinOne('periksa', 'siswa', 'siswa_id', 'id','periksa.siswa_id',$periksa['siswa_id'], 'nama_siswa');
+                            } else if(!empty($periksa['guru_id'])) {
+                                echo JoinOne('periksa', 'guru', 'guru_id', 'id','periksa.guru_id',$periksa['guru_id'], 'nama_guru');
+                            } else if(!empty($periksa['karyawan_id'])) {
+                                echo JoinOne('periksa', 'karyawan', 'karyawan_id', 'id','periksa.karyawan_id',$periksa['karyawan_id'], 'nama_karyawan');
+                            }
+                            ?>
                         </strong>
                     </p>
                 </div>
