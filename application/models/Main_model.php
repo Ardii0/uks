@@ -139,6 +139,27 @@ class Main_model extends CI_Model
             $this->db->insert($tabel, $data);
             return $this->db->insert_id();
         }
+
+        public function import_guru($data){
+            $insert = $this->db->insert_batch('guru', $data);
+            if($insert){
+                return true;
+            }
+        }
+        
+        public function import_siswa($data){
+            $insert = $this->db->insert_batch('siswa', $data);
+            if($insert){
+                return true;
+            }
+        }
+
+        public function import_karyawan($data){
+            $insert = $this->db->insert_batch('karyawan', $data);
+            if($insert){
+                return true;
+            }
+        }
     
         public function by_id($tabel, $id)
         {

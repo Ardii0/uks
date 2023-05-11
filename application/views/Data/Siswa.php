@@ -24,11 +24,20 @@
                                     <div class="p-2 d-flex align-items-center gap-3">
                                         <div style="font-size: 1.5rem">Daftar Siswa</div>
                                     </div>
-                                    <div class="p-2 d-flex align-items-center gap-3">
-                                        <div class="grid gap-3">
-                                            <button data-toggle="modal" data-target="#index1" class="btn btn-success"><i
-                                                    class="fas fa-plus"></i>&nbsp;
-                                                Tambah</button>
+                                    <div class="d-flex">
+                                        <div class="p-2 d-flex align-items-center gap-3">
+                                            <div class="grid gap-3">
+                                                <button data-toggle="modal" data-target="#index2"
+                                                    class="btn btn-success"><i class="fa fa-upload"></i>&nbsp;
+                                                    Upload</button>
+                                            </div>
+                                        </div>
+                                        <div class="p-2 d-flex align-items-center gap-3">
+                                            <div class="grid gap-3">
+                                                <button data-toggle="modal" data-target="#index1" class="btn btn-success"><i
+                                                        class="fas fa-plus"></i>&nbsp;
+                                                    Tambah</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -76,6 +85,47 @@
                 </section>
             </div>
         </div>
+
+        <div class="modal fade" id="index2" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form action="<?php echo base_url('data/import_excel2/') ?>" enctype="multipart/form-data" method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Upload Data Siswa</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="box-body">
+                            <p>Download template excel untuk mengisi data siswa yang akan diupload.</p>
+                            <a href="<?php echo base_url('assets/format-siswa.xlsx') ?>" class="btn btn-success">
+                                <i class="fa fa-download"></i> Download Template
+                            </a>
+                            <br>
+                            <hr>
+                            <div>
+                                <label class="mr-3">
+                                    Upload
+                                </label>
+                            </div>
+                            <div>
+                                <input type="file" name="fileExcel">
+                            </div>
+                            <p class="mt-1">Type File Upload .*xls</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary" onclick="kembali()"
+                            data-dismiss="modal">Kembali</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </div>
+        </div>
+        </form>
+    </div>
+
         <div class="modal fade" id="index1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">

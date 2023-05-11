@@ -50,7 +50,7 @@ class Data extends CI_Controller {
       $masuk=$this->Main_model->tambah("guru", $data);
       if($masuk)
         {
-            $this->session->set_flashdata('sukses', 'Berhasil..');
+            $this->session->set_flashdata('bisa', 'Berhasil..');
             redirect(base_url('data/daf_guru/'));
         }
     }
@@ -78,7 +78,7 @@ class Data extends CI_Controller {
         $masuk=$this->Main_model->ubah_data('guru', $data, array('id'=>$this->input->post('id')));
         if($masuk)
         {
-            $this->session->set_flashdata('sukses', 'berhasil');
+            $this->session->set_flashdata('bisa', 'berhasil mengedit...');
             redirect(base_url('data/daf_guru'));
         }
     }
@@ -95,6 +95,48 @@ class Data extends CI_Controller {
         {
             $this->session->set_flashdata('error', 'gagal..');
             redirect(base_url('data/daf_guru/'));
+        }
+    }
+
+    public function import_excel()
+    {
+        $this->load->library('excel');
+        if (isset($_FILES["fileExcel"]["name"])) {
+            $path = $_FILES["fileExcel"]["tmp_name"];
+            $object = PHPExcel_IOFactory::load($path);
+            $date = date('Y-m-d');
+            foreach($object->getWorksheetIterator() as $worksheet)
+            {
+                $highestRow = $worksheet->getHighestRow();
+                $highestColumn = $worksheet->getHighestColumn();	
+                for($row=2; $row<=$highestRow; $row++)
+                {
+                    $nama_guru = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+                    if ($nama_guru == "") {
+                        break;
+                    }
+                    $tempat_lahir = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+                    $tanggal_lahir = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+                    $alamat = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+                    $total_periksa = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
+                   
+                    $temp_data[] = array(
+                        'nama_guru' => $nama_guru,
+                        'tempat_lahir'	=> $tempat_lahir,
+                        'tanggal_lahir'	=> $tanggal_lahir,
+                        'alamat' => $alamat,
+                        'total_periksa'	=> $total_periksa,
+                        
+                    ); 	
+                }
+            }
+            $this->load->library('excel');
+            $masuk=$this->Main_model->import_guru($temp_data);
+            if($masuk)
+              {
+                  $this->session->set_flashdata('bisa', 'Berhasil..');
+                  redirect(base_url('data/daf_guru/'));
+              }
         }
     }
 //Siswa
@@ -190,6 +232,50 @@ class Data extends CI_Controller {
         $this->load->view('Data/detail_siswa', $data);
     }
 
+    public function import_excel2()
+    {
+        $this->load->library('excel');
+        if (isset($_FILES["fileExcel"]["name"])) {
+            $path = $_FILES["fileExcel"]["tmp_name"];
+            $object = PHPExcel_IOFactory::load($path);
+            $date = date('Y-m-d');
+            foreach($object->getWorksheetIterator() as $worksheet)
+            {
+                $highestRow = $worksheet->getHighestRow();
+                $highestColumn = $worksheet->getHighestColumn();	
+                for($row=2; $row<=$highestRow; $row++)
+                {
+                    $nama_siswa = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+                    if ($nama_siswa == "") {
+                        break;
+                    }
+                    $kelas = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+                    $tempat_lahir = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+                    $tanggal_lahir = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+                    $alamat = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
+                    $total_periksa = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
+                   
+                    $temp_data[] = array(
+                        'nama_siswa' => $nama_siswa,
+                        'kelas' => $kelas,
+                        'tempat_lahir'	=> $tempat_lahir,
+                        'tanggal_lahir'	=> $tanggal_lahir,
+                        'alamat' => $alamat,
+                        'total_periksa'	=> $total_periksa,
+                        
+                    ); 	
+                }
+            }
+            $this->load->library('excel');
+            $masuk=$this->Main_model->import_siswa($temp_data);
+            if($masuk)
+              {
+                  $this->session->set_flashdata('sukses', 'Berhasil..');
+                  redirect(base_url('data/daf_siswa/'));
+              }
+        }
+    }
+
 //Karyawan
     public function daf_karyawan()
     {
@@ -258,6 +344,48 @@ class Data extends CI_Controller {
         {
             $this->session->set_flashdata('error', 'gagal..');
             redirect(base_url('data/daf_karyawan/'));
+        }
+    }
+
+    public function import_excel3()
+    {
+        $this->load->library('excel');
+        if (isset($_FILES["fileExcel"]["name"])) {
+            $path = $_FILES["fileExcel"]["tmp_name"];
+            $object = PHPExcel_IOFactory::load($path);
+            $date = date('Y-m-d');
+            foreach($object->getWorksheetIterator() as $worksheet)
+            {
+                $highestRow = $worksheet->getHighestRow();
+                $highestColumn = $worksheet->getHighestColumn();	
+                for($row=2; $row<=$highestRow; $row++)
+                {
+                    $nama_karyawan = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+                    if ($nama_karyawan == "") {
+                        break;
+                    }
+                    $tempat_lahir = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+                    $tanggal_lahir = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+                    $alamat = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+                    $total_periksa = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
+                   
+                    $temp_data[] = array(
+                        'nama_karyawan' => $nama_karyawan,
+                        'tempat_lahir'	=> $tempat_lahir,
+                        'tanggal_lahir'	=> $tanggal_lahir,
+                        'alamat' => $alamat,
+                        'total_periksa'	=> $total_periksa,
+                        
+                    ); 	
+                }
+            }
+            $this->load->library('excel');
+            $masuk=$this->Main_model->import_karyawan($temp_data);
+            if($masuk)
+              {
+                  $this->session->set_flashdata('sukses', 'Berhasil..');
+                  redirect(base_url('data/daf_karyawan/'));
+              }
         }
     }
 }

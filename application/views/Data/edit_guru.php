@@ -83,19 +83,22 @@
             </div>
         </div>
     </div>
-
     <?php $this->load->view('style/js')?>
 </body>
-
+<?php if ($this->session->flashdata('bisa')): ?>
+        <script>
+            swal.fire({
+                title: "<?php echo $this->session->flashdata('bisa')?>",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 2000,
+            });
+        </script>
+        <?php if (isset($_SESSION['bisa'])) {
+            unset($_SESSION['bisa']);
+        }
+    endif; ?>
 <script>
-function bisa() {
-    swal.fire({
-        icon: 'success',
-        title: 'Your work has been saved',
-        showConfirmButton: false,
-    })
-}
-
 function kembali() {
     window.history.go(-1);
 }

@@ -23,11 +23,20 @@
                                     <div class="p-2 d-flex align-items-center gap-3">
                                         <div style="font-size: 1.5rem">Daftar Guru</div>
                                     </div>
-                                    <div class="p-2 d-flex align-items-center gap-3">
-                                        <div class="grid gap-3">
-                                            <button data-toggle="modal" data-target="#index1" class="btn btn-success"><i
-                                                    class="fas fa-plus"></i>&nbsp;
-                                                Tambah</button>
+                                    <div class="d-flex">
+                                        <div class="p-2 d-flex align-items-center gap-3">
+                                            <div class="grid gap-3">
+                                                <button data-toggle="modal" data-target="#index2" class="btn btn-success"><i
+                                                        class="fa fa-upload"></i>&nbsp;
+                                                        Upload</button>
+                                            </div>
+                                        </div>
+                                        <div class="p-2 d-flex align-items-center gap-3">
+                                            <div class="grid gap-3">
+                                                <button data-toggle="modal" data-target="#index1" class="btn btn-success"><i
+                                                        class="fas fa-plus"></i>&nbsp;
+                                                    Tambah</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -49,7 +58,7 @@
                                                 <td><?php echo $no?></td>
                                                 <td><?php echo $datas->nama_guru?> </td>
                                                 <td><?php echo $datas->tempat_lahir?>,
-                                                    <?php echo indonesian_date_time($datas->tanggal_lahir);?></td>
+                                                <?php echo indonesian_date_time($datas->tanggal_lahir);?></td>
                                                 <td><?php echo $datas->alamat?></td>
                                                 <td>
                                                     <a href="<?php echo base_url('data/edit_guru/' . $datas->id)?>"
@@ -132,10 +141,60 @@
             </form>
         </div>
     </div>
-
+    <div class="modal fade" id="index2" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form action="<?php echo base_url('data/import_excel/') ?>" enctype="multipart/form-data" method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Upload Data Guru</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="box-body">
+                            <p>Download template excel untuk mengisi data guru yang akan diupload.</p>
+                            <a href="<?php echo base_url('assets/format-guru.xlsx') ?>" class="btn btn-success">
+                                <i class="fa fa-download"></i> Download Template
+                            </a>
+                            <br>
+                            <hr>
+                            <div>
+                                <label class="mr-3">
+                                    Upload
+                                </label>
+                            </div>
+                            <div>
+                                <input type="file" name="fileExcel">
+                            </div>
+                            <p class="mt-1">Type File Upload .*xls</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary" onclick="kembali()"
+                            data-dismiss="modal">Kembali</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </div>
+        </div>
+        </form>
+    </div>
     <?php $this->load->view('style/js')?>
 </body>
-
+<?php if ($this->session->flashdata('bisa')): ?>
+        <script>
+            swal.fire({
+                title: "<?php echo $this->session->flashdata('bisa')?>",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 2000,
+            });
+        </script>
+        <?php if (isset($_SESSION['bisa'])) {
+            unset($_SESSION['bisa']);
+        }
+    endif; ?>
 <script>
 function hapus(id) {
     swal.fire({
@@ -160,14 +219,6 @@ function hapus(id) {
         }
     });
 
-}
-
-function bisa() {
-    swal.fire({
-        icon: 'success',
-        title: 'Your work has been saved',
-        showConfirmButton: false,
-    })
 }
 </script>
 
