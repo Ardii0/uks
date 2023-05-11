@@ -28,6 +28,7 @@ public function aksi_registrasi()
       'password' => md5($this->input->post("password")),
   ];
   $this->M_register->registrasi('admin', $data);
+  $this->session->set_flashdata('register', 'Register Sukses');
   redirect(base_url('Login'));
 }
 

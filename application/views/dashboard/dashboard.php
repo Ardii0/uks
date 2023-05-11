@@ -59,6 +59,7 @@
     marquee {
         box-shadow: 2px 2px 3px rgba(0, 0, 0, .05);
         background: #4CAF50;
+        /* background: #4ADE80; */
         color: white;
         height: 50px;
         margin: 0px 8px 0px 8px;
@@ -197,6 +198,19 @@
     </div>
     </div>
     <?php $this->load->view('style/js')?>
+    <?php if ($this->session->flashdata('yeay')): ?>
+    <script>
+    swal.fire({
+        title: "<?php echo $this->session->flashdata('yeay')?>",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 1000,
+    });
+    </script>
+    <?php if (isset($_SESSION['yeay'])) {
+            unset($_SESSION['yeay']);
+        }
+    endif; ?>
 </body>
 
 </html>

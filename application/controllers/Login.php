@@ -54,18 +54,18 @@ class Login extends CI_Controller {
         // $this->session->set_userdata($data_session);
       }
       if ($this->session->userdata('is_login') == TRUE) {
+        $this->session->set_flashdata('yeay', 'Login Sukses');
         // $last_login1 = array('last_login' =>date('Y-m-d H:i:s') );
         $where  = array('id'=>$this->session->userdata('id'));
         // // $this->M_login->last_login($last_login1,$where);
 
         $this->session->set_userdata('login',$data_session);
-        $this->session->set_flashdata('pesan','<div class="alert alert-success">Login sukses.</div>');
         redirect(base_url()."Admin/");//Controller/function
       }
       }
   else{
     //$this->session->set_userdata('blank',$data_session);
-    $this->session->set_flashdata('pesan','<div class="alert alert-danger">Username atau Password yang anda masukan salah!</div>');
+    $this->session->set_flashdata('salah','Username atau Password salah!</div>');
     redirect(base_url());
   }
   }

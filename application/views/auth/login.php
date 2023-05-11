@@ -193,7 +193,9 @@
             </div>
         </div>
     </div>
-    <?php $this->load->view('style/js')?>
+    <?php $this->load->view('style/js') ?>
+
+    <!-- show/hidden password -->
     <script>
     $(document).ready(function() {
         $("#showPass").click(function() {
@@ -208,6 +210,36 @@
         });
     });
     </script>
+
+    <!-- sweetalert -->
+    <?php if ($this->session->flashdata('salah')): ?>
+    <script>
+    swal.fire({
+        title: "<?php echo $this->session->flashdata('salah')?>",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 1000,
+    });
+    </script>
+    <?php if (isset($_SESSION['salah'])) {
+            unset($_SESSION['salah']);
+        }
+    endif; ?>
+
+    <!-- sweetalert register -->
+    <?php if ($this->session->flashdata('register')): ?>
+    <script>
+    swal.fire({
+        title: "<?php echo $this->session->flashdata('register')?>",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 1000,
+    });
+    </script>
+    <?php if (isset($_SESSION['register'])) {
+            unset($_SESSION['register']);
+        }
+    endif; ?>
 </body>
 
 </html>
