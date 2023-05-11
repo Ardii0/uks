@@ -36,7 +36,7 @@
                                 <button type="button" class="btn btn-danger text-bold mr-2" onclick="kembali()"
                                     data-dismiss="modal"><span class="p-3">Batal</span></button>
                                     <input type="hidden" value="<?php echo $row->id ?>" name="id">
-                                <button type="submit" class="btn btn-success text-bold "><span class="p-3">Update</span></button>
+                                <button onclick="bisa()" type="submit" class="btn btn-success text-bold "><span class="p-3">Update</span></button>
                             </div>
 
                             </form>
@@ -52,6 +52,14 @@
 
     <?php $this->load->view('style/js')?>
     <script>
+        function bisa() {
+    swal.fire({
+        icon: 'success',
+        title: 'Your work has been saved',
+        showConfirmButton: false,
+    })
+}
+
     function kembali() {
         window.history.go(-1);
     }

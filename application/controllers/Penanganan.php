@@ -49,7 +49,7 @@ class Penanganan extends CI_Controller {
         $masuk=$this->Main_model->insert_data($data, 'penanganan_pertama');
         if($masuk)
         {
-            $this->session->set_flashdata('sukses', 'berhasil');
+            $this->session->set_flashdata('yes', 'Berhasil Menambahkan');
             redirect(base_url('Penanganan/penanganan_pertama'));
         }
         else
@@ -91,20 +91,19 @@ class Penanganan extends CI_Controller {
         }
     }
     
-    public function hapus_penanganan($id_penanganan)
+    public function hapus_penanganan($id)
     {
-        $hapus=$this->Main_model->delete_data( ['id'=>$id_penanganan], 'penanganan_pertama');
+        $hapus=$this->Main_model->hapus('penanganan_pertama', 'id', $id);
         if($hapus)
         {
             $this->session->set_flashdata('sukses', 'Berhasil..');
-            redirect(base_url('Penanganan/penanganan_pertama'));
+            redirect(base_url('Penanganan/penanganan_pertama/'));
         }
         else
         {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Penanganan/penanganan_pertama'));
+            redirect(base_url('Penanganan/penanganan_pertama/'));
         }
-
     }
 
 }

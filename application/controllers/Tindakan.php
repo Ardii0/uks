@@ -49,7 +49,7 @@ class Tindakan extends CI_Controller {
         $masuk=$this->Main_model->insert_data($data, 'tindakan');
         if($masuk)
         {
-            $this->session->set_flashdata('sukses', 'berhasil');
+            $this->session->set_flashdata('yes', 'Berhasil Menambahkan');
             redirect(base_url('Tindakan/tindakan'));
         }
         else

@@ -45,20 +45,20 @@ class Diagnosa extends CI_Controller {
             'nama' => $this->input->post('name_penyakit'),
         );
         $masuk=$this->Main_model->insert_data($data, 'diagnosa');
-        if($masuk)
-        {
-            $this->session->set_flashdata('sukses', 'berhasil');
+        if ($masuk) {
+            $this->session->set_flashdata('yes', 'Berhasil Menambahkan');
             redirect(base_url('Diagnosa/diagnosa'));
-        }
-        else
+        }else
         {
             $this->session->set_flashdata('error', 'gagal..');
             redirect(base_url('Diagnosa/diagnosa'));
         }
     }
 
+   
+
     // Change data
-    public function edit_diagnosa($id_diagnosa)
+    public function edit_diagnosa($id)
     {
         $data = [
             'judul' => 'admin',
@@ -66,7 +66,7 @@ class Diagnosa extends CI_Controller {
             'menu' => 'diagnosa',
             'submenu'=>''
         ];
-        $getwhere=['id'=>$id_diagnosa];
+        $getwhere=['id'=>$id];
         $data['diagnosa']=$this->Main_model->getwhere($getwhere, 'diagnosa')->result();
         $this->load->view('diagnosa/edit_diagnosa', $data);
     }
@@ -74,24 +74,24 @@ class Diagnosa extends CI_Controller {
     public function update_diagnosa()
     {
         $data =  [
-            'nama' => $this->input->post('nama_diagnosa')
+            'nama' => $this->input->post('nama')
         ];
         $logged=$this->Main_model->update_data(array('id'=>$this->input->post('id')), $data, 'diagnosa');
         if($logged)
         {
             $this->session->set_flashdata('sukses', 'berhasil');
-            redirect(base_url('diagnosa/diagnosa'));
+            redirect(base_url('Diagnosa/diagnosa'));
         }
         else
         {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Diagnosa/edit_diagnosa/'.$this->input->post('id')));
+            redirect(base_url('diagnosa/edit_diagnosa'.$this->input->post('id')));
         }
     }
-    
-    public function hapus_diagnosa($id_diagnosa)
+
+    public function hapus_diagnosa($id)
     {
-        $hapus=$this->Main_model->delete_data( ['id'=>$id_diagnosa], 'diagnosa');
+        $hapus=$this->Main_model->delete_data( ['id'=>$id], 'diagnosa');
         if($hapus)
         {
             $this->session->set_flashdata('sukses', 'Berhasil..');
@@ -104,5 +104,7 @@ class Diagnosa extends CI_Controller {
         }
 
     }
+
+    
     }
 
