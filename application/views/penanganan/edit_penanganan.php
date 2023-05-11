@@ -26,17 +26,19 @@
                                     <div class="form-group col-sm-12">
                                         <label class="col-sm-2 control-label">Nama Penanganan</label>
                                         <div class="col-sm-">
-                                            <input type="text" value="<?php echo $row->nama_penanganan ?>" name="nama_penanganan"
-                                                class="form-control" placeholder="Masukan Nama Penanganan"><br>
+                                            <input type="text" value="<?php echo $row->nama_penanganan ?>"
+                                                name="nama_penanganan" class="form-control" required
+                                                placeholder="Masukan Nama Penanganan"><br>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-12 d-flex justify-content-end">
                                     <button type="button" class="btn btn-danger text-bold mr-2" onclick="kembali()"
-                                    data-dismiss="modal"><span class="p-3">Batal</span></button>
+                                        data-dismiss="modal"><span class="p-3">Batal</span></button>
                                     <input type="hidden" value="<?php echo $row->id ?>" name="id">
-                                <button type="submit" class="btn btn-success text-bold "><span class="p-3">Update</span></button>
-                            </div>
+                                    <button onclick="bisa()" type="submit" class="btn btn-success text-bold "><span
+                                            class="p-3">Update</span></button>
+                                </div>
 
                             </form>
                         </section>
@@ -51,6 +53,14 @@
 
     <?php $this->load->view('style/js')?>
     <script>
+    function bisa() {
+        swal.fire({
+            icon: 'success',
+            title: 'Your work has been saved',
+            showConfirmButton: false,
+        })
+    }
+
     function kembali() {
         window.history.go(-1);
     }

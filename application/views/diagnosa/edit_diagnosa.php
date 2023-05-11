@@ -17,8 +17,15 @@
             <div class="container-fluid">
                 <section class="content ">
                     <div class="container-fluid ">
+                    <div class="header p-3 text-light rounded-top" style="background-color:#4ADE80">
+                                <div class="row">
+                                    <div class="col pl-3 pt-1">
+                                        <h5>Edit Diagnosa</h5>
+                                    </div>
+                                    
+                                </div>
+                            </div>
                         <?php foreach ($diagnosa as $row): ?>
-
                         <section class="content bg-white p-3 rounded">
                             <form action="<?php echo base_url('Diagnosa/update_diagnosa') ?>" method="post">
                                 <div class="box-body">
@@ -26,8 +33,8 @@
                                     <div class="form-group col-sm-12">
                                         <label class="col-sm-2 control-label">Nama Diagnosa</label>
                                         <div class="col-sm-">
-                                            <input type="text" value="<?php echo $row->nama ?>" name="nama_diagnosa"
-                                                class="form-control" placeholder="Masukan Nama Diagnosa"><br>
+                                            <input type="text" value="<?php echo $row->nama ?>" name="nama"
+                                                class="form-control" required placeholder="Masukan Nama Diagnosa"><br>
                                         </div>
                                     </div>
                                 </div>
@@ -35,7 +42,8 @@
                                 <div class="form-group col-sm-12 d-flex justify-content-end">
                                 <button type="button" class="btn btn-danger text-bold mr-2" onclick="kembali()"
                                     data-dismiss="modal"><span class="p-3">Batal</span></button>
-                                <button type="submit" class="btn btn-success text-bold "><span class="p-3">Update</span></button>
+                                    <input type="hidden" value="<?php echo $row->id ?>" name="id">
+                                <button onclick="bisa()" type="submit" class="btn btn-success text-bold "><span class="p-3">Update</span></button>
                             </div>
 
                             </form>
@@ -51,6 +59,14 @@
 
     <?php $this->load->view('style/js')?>
     <script>
+        function bisa() {
+    swal.fire({
+        icon: 'success',
+        title: 'Your work has been saved',
+        showConfirmButton: false,
+    })
+}
+
     function kembali() {
         window.history.go(-1);
     }

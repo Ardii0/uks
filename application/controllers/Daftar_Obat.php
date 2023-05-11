@@ -45,13 +45,14 @@ class Daftar_Obat extends CI_Controller {
         $data = array
         (
             'nama_obat' => $this->input->post('nama_obat'),
-            'dosis' => $this->input->post('dosis_obat'),
+            'stocks' => $this->input->post('stocks_obat'),
+            'satuan' => $this->input->post('satuan_obat'),
             'expired' => $this->input->post('expired_obat'),
         );
         $masuk=$this->Main_model->insert_data($data, 'daftar_obat');
         if($masuk)
         {
-            $this->session->set_flashdata('sukses', 'berhasil');
+            $this->session->set_flashdata('yes', 'Berhasil Menambahkan');
             redirect(base_url('Daftar_Obat/daftar_obat'));
         }
         else
@@ -79,7 +80,7 @@ class Daftar_Obat extends CI_Controller {
     {
         $data =  [
             'nama_obat' => $this->input->post('nama_obat'),
-            'dosis' => $this->input->post('dosis_obat'),
+            'stocks' => $this->input->post('stocks_obat'),
             'expired' => $this->input->post('expired_obat')
         ];
         $logged=$this->Main_model->update_data(array('id'=>$this->input->post('id')), $data, 'daftar_obat');

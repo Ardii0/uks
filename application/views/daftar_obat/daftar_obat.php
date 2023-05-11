@@ -18,19 +18,21 @@
                 <section class="content ">
                     <div class="container-fluid ">
                         <div class="">
-                            <div class="header p-3 text-light rounded-top" style="background-color:#4ADE80">
-                                <div class="row">
-                                    <div class="col pl-3 pt-1">
-                                        <h5>Diagnosa Penyakit</h5>
-                                    </div>
-                                    <div class="col">
-                                    </div>
-                                    <div class="col text-right">
-                                        <button type="button" data-toggle="modal" data-target="#modal_tambah_diagnosa"
-                                            class="btn btn-info px-5 rounded bg-sky-600">Tambah</button>
+                            <!-- header -->
+                            <div class="header p-1 text-light rounded-top d-flex justify-content-between"
+                                style="background-color:#4ADE80">
+                                <div class="p-2 d-flex align-items-center gap-3">
+                                    <div style="font-size: 1.5rem">Daftar Obat</div>
+                                </div>
+                                <div class="p-2 d-flex align-items-center gap-3">
+                                    <div class="grid gap-3">
+                                        <button data-toggle="modal" data-target="#modal_tambah_daftar_obat"
+                                            class="btn btn-success"><i class="fas fa-plus"></i>&nbsp;
+                                            Tambah</button>
                                     </div>
                                 </div>
                             </div>
+                            <!-- isi -->
                             <div class=" bg-light shadow">
                                 <div class="isi-tabel p-4">
                                     <table class="table">
@@ -38,7 +40,8 @@
                                             <tr class="">
                                                 <th class="text-center" scope="col">NO</th>
                                                 <th class="text-center" scope="col">NAMA OBAT</th>
-                                                <th class="text-center" scope="col">DOSIS</th>
+                                                <th class="text-center" scope="col">STOCK</th>
+                                                <th class="text-center" scope="col">SATUAN</th>
                                                 <th class="text-center" scope="col">AKSI</th>
                                             </tr>
                                         </thead>
@@ -47,9 +50,11 @@
                                             <tr>
                                                 <th class="text-center" scope="row"><?php echo $id?></th>
                                                 <td class="text-center"><?php echo $data->nama_obat?></td>
-                                                <td class="text-center"><?php echo $data->dosis?></td>
+                                                <td class="text-center"><?php echo $data->stocks?></td>
+                                                <td class="text-center"><?php echo $data->satuan?></td>
                                                 <td class="text-center">
-                                                    <a href="<?php echo base_url('Daftar_Obat/edit_daftar_obat/' . $data->id) ?>" class="btn btn-primary btn-sm" >
+                                                    <a href="<?php echo base_url('Daftar_Obat/edit_daftar_obat/' . $data->id) ?>"
+                                                        class="btn btn-primary btn-sm">
                                                         <i class="fa fa-edit"></i> </a>
                                                     <button onclick="hapus(<?php echo $data->id ?>)"
                                                         class="btn btn-danger btn-sm">
@@ -66,11 +71,11 @@
                 </section>
             </div>
             <!-- Modal -->
-            <div class="modal fade" id="modal_tambah_diagnosa" tabindex="-1" role="dialog"
+            <div class="modal fade" id="modal_tambah_daftar_obat" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <form action="<?php echo base_url('Daftar_Obat/aksi_tambah_daftar_obat') ?>" enctype="multipart/form-data"
-                        method="post">
+                    <form action="<?php echo base_url('Daftar_Obat/aksi_tambah_daftar_obat') ?>"
+                        enctype="multipart/form-data" method="post">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">Tambah Obat</h5>
@@ -83,21 +88,32 @@
                                 <div class="form-group col-sm-12 mb-0">
                                     <label class="control-label">Nama Obat</label>
                                     <div class="">
-                                        <input type="text" name="nama_obat" class="form-control"
+                                        <input type="text" name="nama_obat" class="form-control" required
                                             placeholder="Masukan Nama Obat"><br>
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-12 mb-0">
-                                    <label class="control-label">Dosis Obat</label>
+                                    <label class="control-label">Stocks Obat</label>
                                     <div class="">
-                                        <input type="text" name="dosis_obat" class="form-control"
-                                            placeholder="Masukan Dosis Obat"><br>
+                                        <input type="text" name="stocks_obat" class="form-control" required
+                                            placeholder="Masukan Stocks Obat"><br>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-12 mb-0">
+                                    <label class="control-label">Satuan</label>
+                                    <div class="">
+                                        <select class="form-control form-select px-2 py-1" name="satuan_obat"
+                                            aria-label="Default select example">
+                                            <option> Tablet</option>
+                                            <option> Sirup</option>
+                                            <option> Kapsul</option>
+                                        </select><br>
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-12 mb-0">
                                     <label class="control-label">Expired Obat</label>
                                     <div class="">
-                                        <input type="date" name="expired_obat" class="form-control"
+                                        <input type="datetime-local" name="expired_obat" class="form-control" required
                                             placeholder="Masukan Expired Obat"><br>
                                     </div>
                                 </div>
@@ -116,15 +132,48 @@
     </div>
     </div>
 
-    <?php $this->load->view('style/js')?>
+    <?php $this->load->view('style/js') ?>
+    <?php if ($this->session->flashdata('yes')): ?>
     <script>
-    function hapus(id_obat) {
-        var yes = confirm('Yakin Di Hapus?');
-        if (yes == true) {
-            window.location.href = "<?php echo base_url('Daftar_Obat/hapus_daftar_obat/')?>" + "/" + id_obat;
-        }
-    }
+    swal.fire({
+        title: "<?php echo $this->session->flashdata('yes')?>",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 5000,
+    });
     </script>
+    <?php if (isset($_SESSION['yes'])) {
+            unset($_SESSION['yes']);
+        }
+    endif; ?>
+</body>
+
+<script>
+function hapus(id) {
+    swal.fire({
+        title: 'Yakin untuk menghapus data ini?',
+        text: "Data ini akan terhapus permanen",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Batal',
+        confirmButtonText: ' Ya hapus!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = "<?php echo base_url('Daftar_Obat/hapus_daftar_obat/')?>" + id;
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil Dihapus',
+                showConfirmButton: false,
+                timer: 1500
+            })
+
+        }
+    });
+
+}
+</script>
 </body>
 
 </html>

@@ -17,6 +17,14 @@
             <div class="container-fluid">
                 <section class="content ">
                     <div class="container-fluid ">
+                    <div class="header p-3 text-light rounded-top" style="background-color:#4ADE80">
+                                <div class="row">
+                                    <div class="col  pt-1 text-center">
+                                        <h5>Edit Daftar Obat</h5>
+                                    </div>
+                                    
+                                </div>
+                            </div>
                         <?php foreach ($obat as $row): ?>
 
                         <section class="content bg-white p-3 rounded">
@@ -27,28 +35,28 @@
                                         <label class="col-sm-2 control-label">Nama Obat</label>
                                         <div class="col-sm-">
                                             <input type="text" value="<?php echo $row->nama_obat ?>" name="nama_obat"
-                                                class="form-control" placeholder="Masukan Nama Obat"><br>
+                                                class="form-control" required placeholder="Masukan Nama Obat"><br>
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-12">
-                                        <label class="col-sm-2 control-label">Dosis Obat</label>
+                                        <label class="col-sm-2 control-label">Stocks Obat</label>
                                         <div class="col-sm-">
-                                            <input type="text" value="<?php echo $row->dosis ?>" name="dosis_obat"
-                                                class="form-control" placeholder="Masukan Dosis Obat"><br>
+                                            <input type="text" value="<?php echo $row->stocks ?>" name="stocks_obat"
+                                                class="form-control" required placeholder="Masukan Stocks Obat"><br>
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-12">
                                         <label class="col-sm-2 control-label">Expired Obat</label>
                                         <div class="col-sm-">
-                                            <input type="date" value="<?php echo $row->expired ?>" name="expired_obat"
-                                                class="form-control" placeholder="Masukan Expired Obat"><br>
+                                            <input type="datetime-local" value="<?php echo $row->expired ?>" name="expired_obat"
+                                                class="form-control" required placeholder="Masukan Expired Obat"><br>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-12 d-flex justify-content-end">
                                 <button type="button" class="btn btn-danger text-bold mr-2" onclick="kembali()"
                                     data-dismiss="modal"><span class="p-3">Batal</span></button>
-                                <button type="submit" class="btn btn-success text-bold "><span class="p-3">Update</span></button>
+                                <button onclick="bisa()" type="submit" class="btn btn-success text-bold "><span class="p-3">Update</span></button>
                             </div>
 
                             </form>
@@ -64,6 +72,15 @@
 
     <?php $this->load->view('style/js')?>
     <script>
+        function bisa() {
+    swal.fire({
+        icon: 'success',
+        title: 'Your work has been saved',
+        showConfirmButton: false,
+        timer: 3000,
+    })
+}
+
     function kembali() {
         window.history.go(-1);
     }
