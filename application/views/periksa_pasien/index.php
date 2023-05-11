@@ -33,19 +33,23 @@
                         </div>
                     </div>
                     <div class="bg-light shadow">
-                        <?php if (1 + 1 == 2):?>
+                        <?php if ($export == 0): ?>
                             <div id="not_found" class="text-center mx-auto p-3">
-                                <img src="https://cdn.iconscout.com/icon/free/png-256/free-data-not-found-1965034-1662569.png" alt="">
+                                <img src="https://cdn.iconscout.com/icon/free/png-256/free-data-not-found-1965034-1662569.png"
+                                    alt="">
                                 <h4>Filter terlebih dahulu sesuai tanggal yang diinginkan.</h4>
                             </div>
-                        <?php elseif(1 + 1 == 3): ?>
+                        <?php elseif ($export != 0): ?>
                             <div id="rekap_data" class="text-center mx-auto p-3">
                                 <h1 style="font-weight: 600;">Rekap Data Pasien</h1>
-                                <h4>(2023-05-10) - (2023-05-10)</h4>
-                                <button type="button" class="btn btn-primary px-5 rounded">Download Rekap Data Pasien </button>
+                                <h4>
+                                    <?= '(' . $awal_tanggal . ') - (' . $akhir_tanggal . ')' ?>
+                                </h4>
+                                <button type="button" class="btn btn-primary px-5 rounded">Download Rekap Data Pasien
+                                </button>
                             </div>
-                        <?php endif;?>
-                        </div>
+                        <?php endif; ?>
+                    </div>
                 </div>
 
                 <!-- DATA PASIEN-->
@@ -108,20 +112,22 @@
                                                     ?>
                                                 </td>
                                                 <td class="text-center">
-                                                    <?php if ($data->status == 1) : ?>
+                                                    <?php if ($data->status == 1): ?>
                                                         <a href="<?php echo base_url('periksa/status/' . $data->id); ?>"
-                                                        class="trash " data-id="1">
-                                                        <button class="btn btn-success btn-sm" type="button" data-toggle="modal">
-                                                            Selesai
-                                                        </button>
-                                                    </a>
-                                                    <?php elseif ($data->status == 0) : ?>
+                                                            class="trash " data-id="1">
+                                                            <button class="btn btn-success btn-sm" type="button"
+                                                                data-toggle="modal">
+                                                                Selesai
+                                                            </button>
+                                                        </a>
+                                                    <?php elseif ($data->status == 0): ?>
                                                         <a href="<?php echo base_url('periksa/status/' . $data->id); ?>"
-                                                        class="trash " data-id="1">
-                                                        <button class="btn btn-danger btn-sm" type="button" data-toggle="modal">
-                                                            Tangani
-                                                        </button>
-                                                    </a>
+                                                            class="trash " data-id="1">
+                                                            <button class="btn btn-danger btn-sm" type="button"
+                                                                data-toggle="modal">
+                                                                Tangani
+                                                            </button>
+                                                        </a>
                                                     <?php endif; ?>
                                                 </td>
                                             </tr>
@@ -182,7 +188,7 @@
                                             <div class="form-group col-sm-12">
                                                 <label class="control-label">Keluhan Pasien</label>
                                                 <div class="">
-                                                    <input type="text" name="keluhan" class="form-control"><br>
+                                                    <input type="text" name="keluhan" class="form-control" required><br>
                                                 </div>
                                             </div>
                                         </div>
@@ -246,6 +252,19 @@
         </div>
     </div>
     <?php $this->load->view('style/js') ?>
+    <?php if ($this->session->flashdata('bisa')): ?>
+        <script>
+            swal.fire({
+                title: "<?php echo $this->session->flashdata('bisa')?>",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 5000,
+            });
+        </script>
+        <?php if (isset($_SESSION['bisa'])) {
+            unset($_SESSION['bisa']);
+        }
+    endif; ?>
     <script>
         function hapus_periksa(id) {
             var yes = confirm('Yakin Di Hapus?');

@@ -20,6 +20,7 @@ class Periksa extends CI_Controller {
     public function index()
     {
         $this->load->model('Main_model');
+        $data['export'] = 0;
         $data['periksa'] = $this->Main_model->get('periksa')->result();
         $data['pasien_status'] = $this->Main_model->get('pasien_status')->result();
         $data['siswa'] = $this->Main_model->get('siswa')->result();
@@ -39,7 +40,7 @@ class Periksa extends CI_Controller {
         );
         $masuk = $this->Main_model->insert_data($data,'periksa');
         if ($masuk) {
-            $this->session->set_flashdata('sukses', 'berhasil');
+            $this->session->set_flashdata('bisa', 'Berhasil Menambahkan');
             redirect(base_url('Periksa/'));
         } else {
             $this->session->set_flashdata('error', 'gagal..');
@@ -58,9 +59,11 @@ class Periksa extends CI_Controller {
     {
         $awal_tanggal = $this->input->post('awal_tanggal');
         $akhir_tanggal = $this->input->post('akhir_tanggal');
-
-        $data['periksa'] = $this->filter_tanggal($awal_tanggal, $akhir_tanggal)->result();
-        // $data['siswa'] = $this->Main_model->get('siswa')->result();
+        $data['awal_tanggal'] = $awal_tanggal;
+        $data['akhir_tanggal'] = $akhir_tanggal;
+        
+        $data['export'] = $this->filter_tanggal($awal_tanggal, $akhir_tanggal)->result();
+        $data['periksa'] = $this->Main_model->get('periksa')->result();
         $this->load->view('periksa_pasien/index', $data);
     }
 
