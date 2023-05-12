@@ -48,7 +48,7 @@
                                     <div class="form-group col-sm-12">
                                         <label class="col-sm-2 control-label">Jumlah Barang</label>
                                         <div class="col-sm-">
-                                            <input type="text" value="<?php echo $datas->jumlah_barang ?>" name="jumlah_barang"
+                                            <input type="number" value="<?php echo $datas->jumlah_barang ?>" name="jumlah_barang"
                                                 class="form-control"><br>
                                         </div>
                                     </div>
@@ -76,14 +76,6 @@
 </body>
 
 <script>
-function bisa() {
-    swal.fire({
-        icon: 'success',
-        title: 'Your work has been saved',
-        showConfirmButton: false,
-    })
-}
-
 function kembali() {
             window.history.go(-1);
         }

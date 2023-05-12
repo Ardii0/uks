@@ -134,11 +134,41 @@ class Data extends CI_Controller {
             $masuk=$this->Main_model->import_guru($temp_data);
             if($masuk)
               {
-                  $this->session->set_flashdata('bisa', 'Berhasil..');
+                  $this->session->set_flashdata('bisa', 'Berhasil di import...');
                   redirect(base_url('data/daf_guru/'));
               }
         }
     }
+
+    public function export_guru()
+    {
+        // load excel library
+        $this->load->library('excel');
+        $listInfo = $this->Main_model->export_guru();
+        $objPHPExcel = new PHPExcel();
+        $objPHPExcel->setActiveSheetIndex(0);
+        // set Header
+        $objPHPExcel->getActiveSheet()->SetCellValue('A1', 'Nama Guru'); 
+        $objPHPExcel->getActiveSheet()->SetCellValue('B1', 'Tempat Lahir');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('C1', 'Tanggal Lahir');  
+        $objPHPExcel->getActiveSheet()->SetCellValue('D1', 'Alamat');   
+        // set Row
+        $rowCount = 2;
+        foreach ($listInfo as $list) {
+            $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, $list->nama_guru);
+            $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $list->tempat_lahir);
+            $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, $list->tanggal_lahir);
+            $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $list->alamat);
+            $rowCount++;
+        }
+        $filename = "data-guru.csv";
+        header('Content-Type: application/vnd.ms-excel'); 
+        header('Content-Disposition: attachment;filename="'.$filename.'"');
+        header('Cache-Control: max-age=0'); 
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'CSV');  
+        $objWriter->save('php://output'); 
+    }
+
 //Siswa
     public function daf_siswa()
     {
@@ -319,10 +349,41 @@ class Data extends CI_Controller {
             $masuk=$this->Main_model->import_siswa($temp_data);
             if($masuk)
               {
-                  $this->session->set_flashdata('sukses', 'Berhasil..');
+                  $this->session->set_flashdata('bisa', 'Berhasil di import...');
                   redirect(base_url('data/daf_siswa/'));
               }
         }
+    }
+
+    public function export_siswa()
+    {
+        // load excel library
+        $this->load->library('excel');
+        $listInfo = $this->Main_model->export_siswa();
+        $objPHPExcel = new PHPExcel();
+        $objPHPExcel->setActiveSheetIndex(0);
+        // set Header
+        $objPHPExcel->getActiveSheet()->SetCellValue('A1', 'Nama Siswa');
+        $objPHPExcel->getActiveSheet()->SetCellValue('B1', 'Kelas');
+        $objPHPExcel->getActiveSheet()->SetCellValue('C1', 'Tempat Lahir');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('D1', 'Tanggal Lahir');  
+        $objPHPExcel->getActiveSheet()->SetCellValue('E1', 'Alamat');   
+        // set Row
+        $rowCount = 2;
+        foreach ($listInfo as $list) {
+            $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, $list->nama_guru);
+            $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $list->kelas);
+            $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, $list->tempat_lahir);
+            $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $list->tanggal_lahir);
+            $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, $list->alamat);
+            $rowCount++;
+        }
+        $filename = "data-siswa.csv";
+        header('Content-Type: application/vnd.ms-excel'); 
+        header('Content-Disposition: attachment;filename="'.$filename.'"');
+        header('Cache-Control: max-age=0'); 
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'CSV');  
+        $objWriter->save('php://output'); 
     }
 
 //Karyawan
@@ -432,9 +493,38 @@ class Data extends CI_Controller {
             $masuk=$this->Main_model->import_karyawan($temp_data);
             if($masuk)
               {
-                  $this->session->set_flashdata('sukses', 'Berhasil..');
+                  $this->session->set_flashdata('bisa', 'Berhasil di import...');
                   redirect(base_url('data/daf_karyawan/'));
               }
         }
+    }
+
+    public function export_karyawan()
+    {
+        // load excel library
+        $this->load->library('excel');
+        $listInfo = $this->Main_model->export_karyawan();
+        $objPHPExcel = new PHPExcel();
+        $objPHPExcel->setActiveSheetIndex(0);
+        // set Header
+        $objPHPExcel->getActiveSheet()->SetCellValue('A1', 'Nama Karyawan'); 
+        $objPHPExcel->getActiveSheet()->SetCellValue('B1', 'Tempat Lahir');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('C1', 'Tanggal Lahir');  
+        $objPHPExcel->getActiveSheet()->SetCellValue('D1', 'Alamat');
+        // set Row
+        $rowCount = 2;
+        foreach ($listInfo as $list) {
+            $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, $list->nama_guru);
+            $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $list->tempat_lahir);
+            $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, $list->tanggal_lahir);
+            $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $list->alamat);
+            $rowCount++;
+        }
+        $filename = "data-guru.csv";
+        header('Content-Type: application/vnd.ms-excel'); 
+        header('Content-Disposition: attachment;filename="'.$filename.'"');
+        header('Cache-Control: max-age=0'); 
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'CSV');  
+        $objWriter->save('php://output'); 
     }
 }

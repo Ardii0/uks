@@ -105,6 +105,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="<?php echo base_url('inventaris/') ;?>"
+                            class="nav-link">
+                            <i class="nav-icon fas fa-boxes"></i>
+                            <p>
+                                Inventaris
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="<?php echo base_url('Kegiatan/') ;?>"
                             class="nav-link">
                             <i class="nav-icon fas fa-medkit"></i>

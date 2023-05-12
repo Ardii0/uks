@@ -160,7 +160,25 @@ class Main_model extends CI_Model
                 return true;
             }
         }
-    
+          
+        public function export_guru() {
+            $this->db->from('guru');
+            $query = $this->db->get();
+            return $query->result();
+        }
+        
+        public function export_siswa() {
+            $this->db->from('siswa');
+            $query = $this->db->get();
+            return $query->result();
+        
+        }
+        public function export_karyawan() {
+            $this->db->from('karyawan');
+            $query = $this->db->get();
+            return $query->result();
+        }
+
         public function by_id($tabel, $id)
         {
             $data=$this->db->where('id', $id)->get($tabel);

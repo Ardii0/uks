@@ -15,15 +15,9 @@ class Inventaris extends CI_Controller {
             redirect(base_url());
         }
     }
-    public function data_inventaris()
+    public function index()
     {
-        $data = [
-            'judul' => 'uks',
-            'page' => 'inventaris',
-            'menu' => 'inventaris',
-            'submenu'=>'',
-        ];
-        $data['daf_invent'] = $this->Main_model->get("inventaris")->result();
+        $data['daf_invent'] = $this->Main_model->get('inventaris')->result();
         $this->load->view('inventaris/inventaris', $data);
     }
 
@@ -38,8 +32,8 @@ class Inventaris extends CI_Controller {
       $masuk=$this->Main_model->tambah("inventaris", $data);
       if($masuk)
         {
-            $this->session->set_flashdata('sukses', 'Berhasil..');
-            redirect(base_url('inventaris/data_inventaris/'));
+            $this->session->set_flashdata('bisa', 'Berhasil di tambahkan...');
+            redirect(base_url('inventaris/'));
         }
     }
 
@@ -56,13 +50,12 @@ class Inventaris extends CI_Controller {
             'nama_barang' => $this->input->post('nama_barang'),
           'asal_barang' => $this->input->post('asal_barang'),
           'jumlah_barang' => $this->input->post('jumlah_barang'),
-          'update_barang' => date('Y-m-d  H:i:s'),
         );
         $masuk=$this->Main_model->ubah_data('inventaris', $data, array('id'=>$this->input->post('id')));
         if($masuk)
         {
-            $this->session->set_flashdata('sukses', 'berhasil');
-            redirect(base_url('inventaris/data_inventaris'));
+            $this->session->set_flashdata('bisa', 'berhasil di edit...');
+            redirect(base_url('inventaris/'));
         }
     }
 
@@ -72,12 +65,12 @@ class Inventaris extends CI_Controller {
         if($hapus)
         {
             $this->session->set_flashdata('sukses', 'Berhasil..');
-            redirect(base_url('inventaris/data_inventaris'));
+            redirect(base_url('inventaris/'));
         }
         else
         {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('inventaris/data_inventaris'));
+            redirect(base_url('inventaris/inventaris'));
         }
     }
 }

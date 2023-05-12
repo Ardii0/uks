@@ -26,6 +26,14 @@
                                     </div>
                                     <div class="d-flex">
                                         <div class="p-2 d-flex align-items-center gap-3">
+                                        <div class="grid gap-3">
+                                                <a href="<?php echo base_url('Data/export_siswa'); ?>">
+                                                    <button type="button" class="btn btn-success"><i
+                                                            class="fa fa-download pr-2"></i>Download Data Siswa</button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="p-2 d-flex align-items-center gap-3">
                                             <div class="grid gap-3">
                                                 <button data-toggle="modal" data-target="#index2"
                                                     class="btn btn-success"><i class="fa fa-upload"></i>&nbsp;
@@ -43,7 +51,7 @@
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body shadow p-4 mb-5 bg-white rounded">
-                                    <table id="datasiswa-table" class="table">
+                                    <table id="table" class="table">
                                         <thead>
                                             <tr class="text-center">
                                                 <th>No</th>
@@ -196,6 +204,19 @@
 
     <?php $this->load->view('style/js')?>
 </body>
+<?php if ($this->session->flashdata('bisa')): ?>
+<script>
+swal.fire({
+    title: "<?php echo $this->session->flashdata('bisa')?>",
+    icon: "success",
+    showConfirmButton: false,
+    timer: 2000,
+});
+</script>
+<?php if (isset($_SESSION['bisa'])) {
+            unset($_SESSION['bisa']);
+        }
+    endif; ?>
 <script>
 function hapus(id) {
     swal.fire({

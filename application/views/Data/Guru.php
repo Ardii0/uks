@@ -19,22 +19,31 @@
                     <div class="row px-3 py-2">
                         <div class="col-sm-12">
                             <div class="box">
-                                <div class="header p-1 text-light rounded-top d-flex justify-content-between" style="background-color:#4ADE80">
+                                <div class="header p-1 text-light rounded-top d-flex justify-content-between"
+                                    style="background-color:#4ADE80">
                                     <div class="p-2 d-flex align-items-center gap-3">
                                         <div style="font-size: 1.5rem">Daftar Guru</div>
                                     </div>
                                     <div class="d-flex">
                                         <div class="p-2 d-flex align-items-center gap-3">
                                             <div class="grid gap-3">
-                                                <button data-toggle="modal" data-target="#index2" class="btn btn-success"><i
-                                                        class="fa fa-upload"></i>&nbsp;
-                                                        Upload</button>
+                                                <a href="<?php echo base_url('Data/export_guru'); ?>">
+                                                    <button type="button" class="btn btn-success"><i
+                                                            class="fa fa-download pr-2"></i>Download Data Guru</button>
+                                                </a>
                                             </div>
                                         </div>
                                         <div class="p-2 d-flex align-items-center gap-3">
                                             <div class="grid gap-3">
-                                                <button data-toggle="modal" data-target="#index1" class="btn btn-success"><i
-                                                        class="fas fa-plus"></i>&nbsp;
+                                                <button data-toggle="modal" data-target="#index2"
+                                                    class="btn btn-success"><i class="fa fa-upload"></i>&nbsp;
+                                                    Upload</button>
+                                            </div>
+                                        </div>
+                                        <div class="p-2 d-flex align-items-center gap-3">
+                                            <div class="grid gap-3">
+                                                <button data-toggle="modal" data-target="#index1"
+                                                    class="btn btn-success"><i class="fas fa-plus"></i>&nbsp;
                                                     Tambah</button>
                                             </div>
                                         </div>
@@ -42,7 +51,7 @@
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body shadow p-4 mb-5 bg-white rounded">
-                                    <table id="datasiswa-table" class="table">
+                                    <table id="table" class="table">
                                         <thead>
                                             <tr class="text-center">
                                                 <th>No</th>
@@ -58,7 +67,7 @@
                                                 <td><?php echo $no?></td>
                                                 <td><?php echo $datas->nama_guru?> </td>
                                                 <td><?php echo $datas->tempat_lahir?>,
-                                                <?php echo indonesian_date_time($datas->tanggal_lahir);?></td>
+                                                    <?php echo indonesian_date_time($datas->tanggal_lahir);?></td>
                                                 <td><?php echo $datas->alamat?></td>
                                                 <td>
                                                     <a href="<?php echo base_url('data/edit_guru/' . $datas->id)?>"
@@ -82,7 +91,7 @@
                 </section>
             </div>
         </div>
- </div>
+    </div>
     <div class="modal fade" id="index1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -141,8 +150,8 @@
             </form>
         </div>
     </div>
-    <div class="modal fade" id="index2" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="index2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <form action="<?php echo base_url('data/import_excel/') ?>" enctype="multipart/form-data" method="post">
                 <div class="modal-content">
@@ -183,15 +192,15 @@
     <?php $this->load->view('style/js')?>
 </body>
 <?php if ($this->session->flashdata('bisa')): ?>
-        <script>
-            swal.fire({
-                title: "<?php echo $this->session->flashdata('bisa')?>",
-                icon: "success",
-                showConfirmButton: false,
-                timer: 2000,
-            });
-        </script>
-        <?php if (isset($_SESSION['bisa'])) {
+<script>
+swal.fire({
+    title: "<?php echo $this->session->flashdata('bisa')?>",
+    icon: "success",
+    showConfirmButton: false,
+    timer: 2000,
+});
+</script>
+<?php if (isset($_SESSION['bisa'])) {
             unset($_SESSION['bisa']);
         }
     endif; ?>

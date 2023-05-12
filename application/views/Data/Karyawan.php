@@ -27,6 +27,14 @@
                                     <div class="d-flex">
                                         <div class="p-2 d-flex align-items-center gap-3">
                                             <div class="grid gap-3">
+                                                <a href="<?php echo base_url('Data/export_karyawan'); ?>">
+                                                    <button type="button" class="btn btn-success"><i
+                                                            class="fa fa-download pr-2"></i>Download Data Karyawan</button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="p-2 d-flex align-items-center gap-3">
+                                            <div class="grid gap-3">
                                                 <button data-toggle="modal" data-target="#index2"
                                                     class="btn btn-success"><i class="fa fa-upload"></i>&nbsp;
                                                     Upload</button>
@@ -43,7 +51,7 @@
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body shadow p-4 mb-5 bg-white rounded">
-                                    <table id="datasiswa-table" class="table">
+                                    <table id="table" class="table">
                                         <thead>
                                             <tr class="text-center">
                                                 <th>No</th>
@@ -143,49 +151,63 @@
                 </form>
             </div>
         </div>
-        <div class="modal fade" id="index2" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <form action="<?php echo base_url('data/import_excel3/') ?>" enctype="multipart/form-data" method="post">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Upload Data Karyawan</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="box-body">
-                            <p>Download template excel untuk mengisi data karyawan yang akan diupload.</p>
-                            <a href="<?php echo base_url('assets/format-karyawan.xlsx') ?>" class="btn btn-success">
-                                <i class="fa fa-download"></i> Download Template
-                            </a>
-                            <br>
-                            <hr>
-                            <div>
-                                <label class="mr-3">
-                                    Upload
-                                </label>
+        <div class="modal fade" id="index2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <form action="<?php echo base_url('data/import_excel3/') ?>" enctype="multipart/form-data"
+                    method="post">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Upload Data Karyawan</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="box-body">
+                                <p>Download template excel untuk mengisi data karyawan yang akan diupload.</p>
+                                <a href="<?php echo base_url('assets/format-karyawan.xlsx') ?>" class="btn btn-success">
+                                    <i class="fa fa-download"></i> Download Template
+                                </a>
+                                <br>
+                                <hr>
+                                <div>
+                                    <label class="mr-3">
+                                        Upload
+                                    </label>
+                                </div>
+                                <div>
+                                    <input type="file" name="fileExcel">
+                                </div>
+                                <p class="mt-1">Type File Upload .*xls</p>
                             </div>
-                            <div>
-                                <input type="file" name="fileExcel">
-                            </div>
-                            <p class="mt-1">Type File Upload .*xls</p>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-between">
+                            <button type="button" class="btn btn-secondary" onclick="kembali()"
+                                data-dismiss="modal">Kembali</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
                     </div>
-                    <div class="modal-footer d-flex justify-content-between">
-                        <button type="button" class="btn btn-secondary" onclick="kembali()"
-                            data-dismiss="modal">Kembali</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-                </div>
+            </div>
+            </form>
         </div>
-        </form>
-    </div>
     </div>
 
     <?php $this->load->view('style/js')?>
 </body>
+<?php if ($this->session->flashdata('bisa')): ?>
+<script>
+swal.fire({
+    title: "<?php echo $this->session->flashdata('bisa')?>",
+    icon: "success",
+    showConfirmButton: false,
+    timer: 2000,
+});
+</script>
+<?php if (isset($_SESSION['bisa'])) {
+            unset($_SESSION['bisa']);
+        }
+    endif; ?>
 <script>
 function hapus(id) {
     swal.fire({

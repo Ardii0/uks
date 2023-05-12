@@ -127,7 +127,19 @@
 
     <?php $this->load->view('style/js')?>
 </body>
-
+<?php if ($this->session->flashdata('bisa')): ?>
+        <script>
+            swal.fire({
+                title: "<?php echo $this->session->flashdata('bisa')?>",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 2000,
+            });
+        </script>
+        <?php if (isset($_SESSION['bisa'])) {
+            unset($_SESSION['bisa']);
+        }
+    endif; ?>
 <script>
 function hapus(id) {
     swal.fire({
@@ -146,20 +158,12 @@ function hapus(id) {
                 icon: 'success',
                 title: 'Berhasil Dihapus',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 2000
             })
 
         }
     });
 
-}
-
-function bisa() {
-    swal.fire({
-        icon: 'success',
-        title: 'Your work has been saved',
-        showConfirmButton: false,
-    })
 }
 </script>
 
