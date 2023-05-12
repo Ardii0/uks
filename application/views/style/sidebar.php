@@ -113,6 +113,49 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="<?php echo base_url('Pojok_Baca/') ;?>"
+                            class="nav-link">
+                            <i class="nav-icon fas fa-book"></i>
+                            <p>
+                                Pojok Baca
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?php echo base_url('Program_Click/') ;?>"
+                            class="nav-link">
+                            <i class="nav-icon fas fa-sitemap"></i>
+                            <p>
+                                Program Click
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">
+                            <i class="nav-icon fas fa-book"></i>
+                            <p>
+                                Program Kerja UKS 
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('Program_Kerja_UKS/struktur')?>"
+                                    class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Struktur Organisasi</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('Program_Kerja_UKS/')?>"
+                                    class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Program Kerja</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="nav-item logout">
                         <a href="<?php echo base_url('Login/logout');?>" class="nav-link">
                             <i class="nav-icon far fa-circle text-danger"></i>

@@ -10,7 +10,7 @@ class Program_Click extends CI_Controller {
         $this->load->helpers('my_helper');
         // $this->load->library('excel');
         $this->load->library('form_validation');
-        $this->load->library('session');
+        $this->load->library('session'); 
         if ($this->session->userdata('is_login')!= TRUE ) {
             redirect(base_url('Login'));
         }
@@ -21,8 +21,9 @@ class Program_Click extends CI_Controller {
      {
          $this->load->model('Main_model');
          $data['periksa'] = $this->Main_model->get('program_click')->result();
-         $data['pasien_status'] = $this->Main_model->get('pasien_status')->result();
+         $data['guru'] = $this->Main_model->get('guru')->result();
          $data['siswa'] = $this->Main_model->get('siswa')->result();
+         $data['karyawan'] = $this->Main_model->get('karyawan')->result();
          $this->load->view('program_click/index', $data);
      }
  
@@ -30,16 +31,18 @@ class Program_Click extends CI_Controller {
      {
          $data = array
          (
+            'guru_id' => $this->input->post('guru_id'),
+            'siswa_id' => $this->input->post('siswa_id'),
+            'karyawan_id' => $this->input->post('karyawan_id'),
              'create_date' => date("Y-m-d H:i:s"),
-             'update_date' => date("Y-m-d H:i:s"),
-             'status' => 0,  
              'keluhan' => $this->input->post('keluhan'),
-             'nama_pasien' => $this->input->post('nama_pasien'),
-             'pasien_status_id' => $this->input->post('pasien_status_id'),
+             'saran' => $this->input->post('saran'),
+             'pasien_status' => $this->input->post('pasien_status'),
+             'tahun_bulan' => date("Y-m"),
          );
-         $masuk = $this->Main_model->insert_data($data,'progran_click');
+         $masuk = $this->Main_model->insert_data($data,'program_click');
          if ($masuk) {
-             $this->session->set_flashdata('sukses', 'berhasil');
+             $this->session->set_flashdata('sukses', 'Berhasil Menambahkan');
              redirect(base_url('Program_click/'));
          } else {
              $this->session->set_flashdata('error', 'gagal..');
@@ -53,7 +56,7 @@ class Program_Click extends CI_Controller {
         $hapus=$this->Main_model->delete_data( ['id'=>$id], 'program_click');
          if($hapus)
          {
-             $this->session->set_flashdata('sukses', 'berhasil');
+             $this->session->set_flashdata('sukses hapus', 'berhasil');
              redirect(base_url('Program_click/'));
          }
          else

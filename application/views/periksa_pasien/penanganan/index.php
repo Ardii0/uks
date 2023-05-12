@@ -19,11 +19,11 @@
                         Periksa Pasien: 
                         <strong>
                             <?php if(!empty($periksa['siswa_id'])) {
-                                echo JoinOne('periksa', 'siswa', 'siswa_id', 'id','periksa.siswa_id',$periksa['siswa_id'], 'nama_siswa');
+                                echo JoinOne('periksa', 'siswa', 'siswa_id', 'id','periksa.id',$periksa['id'], 'nama_siswa');
                             } else if(!empty($periksa['guru_id'])) {
-                                echo JoinOne('periksa', 'guru', 'guru_id', 'id','periksa.guru_id',$periksa['guru_id'], 'nama_guru');
+                                echo JoinOne('periksa', 'guru', 'guru_id', 'id','periksa.id',$periksa['id'], 'nama_guru');
                             } else if(!empty($periksa['karyawan_id'])) {
-                                echo JoinOne('periksa', 'karyawan', 'karyawan_id', 'id','periksa.karyawan_id',$periksa['karyawan_id'], 'nama_karyawan');
+                                echo JoinOne('periksa', 'karyawan', 'karyawan_id', 'id','periksa.id',$periksa['id'], 'nama_karyawan');
                             }
                             ?>
                         </strong>
@@ -34,11 +34,19 @@
                         <div class="row clearfix">
                             <div class="col-lg-6">
                                 <label class="d-block">Nama Pasien</label>
-                                <input type="text" value="<?php echo $periksa['nama_pasien']?>" name="name" class="form-control" disabled>
+                                <input type="text" 
+                                value="<?php if(!empty($periksa['siswa_id'])) {
+                                        echo JoinOne('periksa', 'siswa', 'siswa_id', 'id','periksa.id',$periksa['id'], 'nama_siswa');
+                                    } else if(!empty($periksa['guru_id'])) {
+                                        echo JoinOne('periksa', 'guru', 'guru_id', 'id','periksa.id',$periksa['id'], 'nama_guru');
+                                    } else if(!empty($periksa['karyawan_id'])) {
+                                        echo JoinOne('periksa', 'karyawan', 'karyawan_id', 'id','periksa.id',$periksa['id'], 'nama_karyawan');
+                                    }
+                            ?>" name="name" class="form-control" disabled>
                             </div>
                             <div class="col-lg-6">
                                 <label class="d-block">Status Pasien</label>
-                                <input type="text" value="<?php echo $periksa['pasien_status_id']?>" name="name" class="form-control" disabled>
+                                <input type="text" value="<?php echo $periksa['pasien_status']?>" name="name" class="form-control" disabled>
                             </div>
                         </div>
                         <div class="row clearfix my-1">

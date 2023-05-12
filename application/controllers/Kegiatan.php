@@ -97,7 +97,7 @@ class Kegiatan extends CI_Controller {
         $valid = $this->Main_model->update_data($where, $data, 'kegiatan_uks');
         if($valid)
         {
-            $this->session->set_flashdata('sukses', 'berhasil');
+            $this->session->set_flashdata('bisa', 'Berhasil Diubah');
             redirect(base_url('Kegiatan/'));
         }
         else

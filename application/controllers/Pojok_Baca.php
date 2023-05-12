@@ -66,7 +66,7 @@ class Pojok_Baca extends CI_Controller
             );
             $masuk = $this->Main_model->insert_data($data, 'buku');
             if ($masuk) {
-                $this->session->set_flashdata('sukses', 'berhasil');
+                $this->session->set_flashdata('sukses', 'Berhasil Menambahkan');
                 redirect(base_url('Pojok_baca/'));
             } else {
                 $this->session->set_flashdata('error', 'gagal..');
@@ -75,12 +75,71 @@ class Pojok_Baca extends CI_Controller
         }
     }
 
+    public function detail($id)
+    {
+        $this->load->model('Main_model');
+        $where = ['id_buku' => $id];
+        $data['buku'] = $this->Main_model->getwhere($where,'buku')->row_array();
+        $this->load->view('pojok_baca/detail', $data);
+    }
 
+    public function edit_buku($id)
+    {
+        $this->load->model('Main_model');
+        $where = ['id_buku' => $id];
+        $data['buku'] = $this->Main_model->getwhere($where,'buku')->row_array();
+        $this->load->view('pojok_baca/edit', $data);
+    }
+
+    public function aksi_edit_buku($id)
+    {
+        $where = array('id_buku' => $id);
+        $_id = $this->Main_model->getwhere($where, 'buku')->row();
+        $foto = $this->upload_img_buku('foto');
+        if($foto[0]==false) {
+            $data = array
+            (
+                'judul_buku' => $this->input->post('judul_buku'),
+                'penerbit_buku' => $this->input->post('penerbit_buku'),
+                'penulis_buku' => $this->input->post('penulis_buku'),
+                'tahun_terbit' => $this->input->post('tahun_terbit'),
+                'keterangan' => $this->input->post('keterangan'),
+                'sumber' => $this->input->post('sumber'),
+                'created_at' => $this->input->post('tgl_masuk'),
+            );
+        } else {
+            $data = array
+            (
+                'foto' => $foto[1],
+                'judul_buku' => $this->input->post('judul_buku'),
+                'penerbit_buku' => $this->input->post('penerbit_buku'),
+                'penulis_buku' => $this->input->post('penulis_buku'),
+                'tahun_terbit' => $this->input->post('tahun_terbit'),
+                'keterangan' => $this->input->post('keterangan'),
+                'sumber' => $this->input->post('sumber'),
+                'created_at' => $this->input->post('tgl_masuk'),
+            );
+            if ($_id->foto != '') {
+                unlink('./uploads/pojok_baca/buku/'.$_id->foto);
+            }
+        }
+        $valid = $this->Main_model->update_data($where, $data, 'buku');
+        if($valid)
+        {
+            $this->session->set_flashdata('sukses', 'Berhasil Mengubah');
+            redirect(base_url('Pojok_Baca/'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Pojok_Baca/'.$id));
+        }
+    }
     public function hapus_buku($id)
     {
-        $hapus=$this->Main_model->delete_data( ['id'=>$id], 'buku');
+        $hapus=$this->Main_model->delete_data( ['id_buku'=>$id], 'buku');
         if ($hapus) {
-            $this->session->set_flashdata('sukses', 'berhasil');
+            $this->session->set_flashdata('sukses hapus', 'berhasil');
             redirect(base_url('Pojok_baca/'));
         } else {
             $this->session->set_flashdata('error', 'gagal..');

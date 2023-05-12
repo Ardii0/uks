@@ -16,23 +16,26 @@ class Program_Kerja_UKS extends CI_Controller
             redirect(base_url('Login'));
         }
     }
+
+    //Struktur
+    public function struktur()
+    {
+        $this->load->model('Main_model');
+        $this->load->view('program_kerja_uks/struktur/index');
+    }
     
-    //Pojok Baca
+    //Program Kerja UKS
     public function index()
     {
         $this->load->model('Main_model');
-        $data['buku'] = $this->Main_model->get('buku')->result();
+        $data['program'] = $this->Main_model->get('program_kerja')->result();
         $this->load->view('program_kerja_uks/index', $data);
     }
-    public function tambah_buku()
-    {
-        $this->load->view('program_kerja_uks/add');
-    }
-
-    public function upload_img_buku($value)
+ 
+    public function upload_img_program($value)
     {
         $kode = round(microtime(true) * 1000);
-        $config['upload_path'] = './uploads/program_kerja_uks/buku/';
+        $config['upload_path'] = './uploads/program_kerja_uks/foto/';
         $config['allowed_types'] = 'jpg|png|jpeg';
         $config['max_size'] = '100000';
         $config['file_name'] = $kode;
@@ -45,9 +48,9 @@ class Program_Kerja_UKS extends CI_Controller
             return array(true, $nama);
         }
     }
-    public function aksi_tambah_buku()
+    public function aksi_tambah_program()
     {
-        $foto = $this->upload_img_buku('foto');
+        $foto = $this->upload_img_program('foto');
         if ($foto[0] == false) {
             //$this->upload->display_errors();
             $this->session->set_flashdata('error', 'gagal upload gambar.');
@@ -56,17 +59,13 @@ class Program_Kerja_UKS extends CI_Controller
             $data = array
             (
                 'foto' => $foto[1],
-                'judul_buku' => $this->input->post('judul_buku'),
-                'penerbit_buku' => $this->input->post('penerbit_buku'),
-                'penulis_buku' => $this->input->post('penulis_buku'),
-                'tahun_terbit' => $this->input->post('tahun_terbit'),
-                'keterangan' => $this->input->post('keterangan'),
-                'sumber' => $this->input->post('sumber'),
-                'created_at' => $this->input->post('tgl_masuk'),
+                'nama_program' => $this->input->post('nama_program'),
+                'tanggal' => $this->input->post('tanggal'),
+                'deskripsi' => $this->input->post('deskripsi')
             );
-            $masuk = $this->Main_model->insert_data($data, 'buku');
+            $masuk = $this->Main_model->insert_data($data, 'program_kerja');
             if ($masuk) {
-                $this->session->set_flashdata('sukses', 'berhasil');
+                $this->session->set_flashdata('sukses', 'Berhasil Menambahkan');
                 redirect(base_url('program_kerja_uks/'));
             } else {
                 $this->session->set_flashdata('error', 'gagal..');
@@ -75,12 +74,49 @@ class Program_Kerja_UKS extends CI_Controller
         }
     }
 
-
-    public function hapus_buku($id)
+    public function aksi_edit_program()
     {
-        $hapus=$this->Main_model->delete_data( ['id'=>$id], 'buku');
+        $where = array('id' => $this->input->post('id'));
+        $_id = $this->Main_model->getwhere($where, 'program_kerja')->row();
+        $foto = $this->upload_img_program('foto');
+        if($foto[0]==false) {
+            $data = array
+            (
+                'nama_program' => $this->input->post('nama_program'),
+                'tanggal' => $this->input->post('tanggal'),
+                'deskripsi' => $this->input->post('deskripsi')
+            );
+        } else {
+            $data = array
+            (
+                'foto' => $foto[1],
+                'nama_program' => $this->input->post('nama_program'),
+                'tanggal' => $this->input->post('tanggal'),
+                'deskripsi' => $this->input->post('deskripsi')
+            );
+            if ($_id->foto != '') {
+                unlink('./uploads/program_kerja_uks/buku/'.$_id->foto);
+            }
+        }
+        $valid = $this->Main_model->update_data($where, $data, 'program_kerja');
+        if($valid)
+        {
+            $this->session->set_flashdata('sukses', 'Berhasil Mengubah');
+            redirect(base_url('program_kerja_uks/'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('program_kerja_uks/'.$where));
+        }
+    }
+
+
+    public function hapus_program($id)
+    {
+        $hapus=$this->Main_model->delete_data( ['id'=>$id], 'program_kerja');
         if ($hapus) {
-            $this->session->set_flashdata('sukses', 'berhasil');
+            $this->session->set_flashdata('sukses hapus', 'berhasil');
             redirect(base_url('program_kerja_uks/'));
         } else {
             $this->session->set_flashdata('error', 'gagal..');

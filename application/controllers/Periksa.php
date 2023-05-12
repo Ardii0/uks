@@ -23,7 +23,9 @@ class Periksa extends CI_Controller {
         $data['export'] = 0;
         $data['periksa'] = $this->Main_model->get('periksa')->result();
         $data['pasien_status'] = $this->Main_model->get('pasien_status')->result();
+        $data['guru'] = $this->Main_model->get('guru')->result();
         $data['siswa'] = $this->Main_model->get('siswa')->result();
+        $data['karyawan'] = $this->Main_model->get('karyawan')->result();
         $this->load->view('periksa_pasien/index', $data);
     }
 
@@ -31,12 +33,12 @@ class Periksa extends CI_Controller {
     {
         $data = array
         (
-            'create_date' => date("Y-m-d H:i:s"),
-            'update_date' => date("Y-m-d H:i:s"),
-            'status' => 0,  
+            'guru_id' => $this->input->post('guru_id'),
+            'siswa_id' => $this->input->post('siswa_id'),
+            'karyawan_id' => $this->input->post('karyawan_id'),
+            'pasien_status' => $this->input->post('pasien_status'),
             'keluhan' => $this->input->post('keluhan'),
-            'nama_pasien' => $this->input->post('nama_pasien'),
-            'pasien_status_id' => $this->input->post('pasien_status_id'),
+            'tahun_bulan' => date("Y-m"),
         );
         $masuk = $this->Main_model->insert_data($data,'periksa');
         if ($masuk) {
@@ -64,12 +66,16 @@ class Periksa extends CI_Controller {
         
         $data['export'] = $this->filter_tanggal($awal_tanggal, $akhir_tanggal)->result();
         $data['periksa'] = $this->Main_model->get('periksa')->result();
+        $data['pasien_status'] = $this->Main_model->get('pasien_status')->result();
+        $data['guru'] = $this->Main_model->get('guru')->result();
+        $data['siswa'] = $this->Main_model->get('siswa')->result();
+        $data['karyawan'] = $this->Main_model->get('karyawan')->result();
         $this->load->view('periksa_pasien/index', $data);
     }
 
     
     public function export_periksa() {
-        $this->db->where('status',1)->select(array('nama_pasien', 'pasien_status_id', 'keluhan', 'create_date', 'status'));
+        $this->db->where('status',1)->select(array('nama_pasien', 'pasien_status', 'keluhan', 'create_date', 'status'));
         $this->db->from('periksa');
         $query = $this->db->get();
         return $query->result();
@@ -92,7 +98,7 @@ class Periksa extends CI_Controller {
         $rowCount = 2;
         foreach ($listInfo as $list) {
             $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, $list->nama_pasien);
-            $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, tampil_pasien_status_byid($list->pasien_status_id));
+            $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $list->pasien_status);
             $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, $list->keluhan);
             $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $list->create_date);
             $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, $list->status);
