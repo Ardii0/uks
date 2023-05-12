@@ -127,9 +127,9 @@ class Main_model extends CI_Model
     return $this->db->where($column, $what)->get($table)->num_rows();
     }
 
-    public function get_graph($create_date, $pasien_status_id)
+    public function get_graph($tahun_bulan, $pasien_status_id)
     {
-        $multiClause = array('create_date' => $create_date,'pasien_status_id' => $pasien_status_id);
+        $multiClause = array('tahun_bulan' => $tahun_bulan,'pasien_status_id' => $pasien_status_id);
         $data = $this->db->where($multiClause)->get('periksa');
         return $data;
     }

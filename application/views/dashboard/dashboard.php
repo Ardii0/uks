@@ -15,38 +15,49 @@
     google.setOnLoadCallback(drawChart);
 
     function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            [{
-                type: 'string',
-                label: 'Bulan'
-            }, {
-                type: 'number',
-                label: 'Guru'
-            }, 'Siswa', 'Karyawan'],
-            // <?php
-            // 	foreach ($chart_data as $data) {
-            // 		echo '[' . $data->performance_year . ',' . $data->performance_sales . ',' . $data->performance_expense . ',' . $data->performance_profit . '],';
-            // 	}
-            // ?>
-            ['a', 0, 0, 0],
-            ['Januari', 1, 3, 5],
-            ['February', 2, 7, 9],
-            ['Maret', 3, 9, 7],
-            ['April', 4, 5, 8],
-            ['Mei', 9, 5, 6],
-            ['Juni', 4, 5, 2],
-            ['Juli', 8, 7, 2],
-            ['Agustus', 1, 6, 9],
-            ['September', 1, 6, 3],
-            ['Oktober', 4, 2, 8],
-            ['November', 5, 2, 2],
-            ['Desember', 7, 6, 1],
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Bulan');
+        data.addColumn('number', 'Guru');
+        data.addColumn('number', 'Siswa');
+        data.addColumn('number', 'Karyawan');
+        data.addRows([
+            <?php foreach ($graph_data as $row) : ?>['<?= $row['bulan'] ?>', <?= $row['guru'] ?>,
+                <?= $row['siswa'] ?>, <?= $row['karyawan'] ?>],
+            <?php endforeach; ?>
         ]);
 
         var options = {
-            chart: {
-                title: 'Pasien',
-                subtitle: 'Data Pasien Perbulan'
+            lineWidth: 3,
+            pointSize: 6,
+            series: {
+                0: {
+                    color: '#1E90FF'
+                },
+                1: {
+                    color: '#FFA500'
+                },
+                2: {
+                    color: '#4CAF50'
+                }
+            },
+            title: 'Grafik Jumlah Guru, Siswa, dan Karyawan',
+            legend: {
+                position: 'top'
+            },
+            hAxis: {
+                title: 'Bulan',
+                format: 'MMM yyyy',
+                gridlines: {
+                    count: -1,
+                    units: {
+                        months: 1
+                    }
+                }
+            },
+            vAxis: {
+                title: 'Jumlah',
+                minValue: 0,
+                format: '0'
             }
         };
 
@@ -59,7 +70,7 @@
     marquee {
         box-shadow: 2px 2px 3px rgba(0, 0, 0, .05);
         background: #4CAF50;
-        /* background: #4ADE80; */
+        /* background: #4CAF50; */
         color: white;
         height: 50px;
         margin: 0px 8px 0px 8px;
@@ -112,7 +123,7 @@
                             <div class="card-body text-center">
                                 <div class="icon">
                                     <i class="fa fa-user-injured p-3 rounded-circle"
-                                        style="background-color: #4ADE80; color: white; font-size: 35px;"></i>
+                                        style="background-color: #4CAF50; color: white; font-size: 35px;"></i>
                                 </div>
                                 <div class="total-pasien-guru">
                                     <h2 class="font-weight-bold">
@@ -130,7 +141,7 @@
                             <div class="card-body text-center">
                                 <div class="icon">
                                     <i class="fa fa-user-injured p-3 rounded-circle"
-                                        style="background-color: #4ADE80; color: white; font-size: 35px;"></i>
+                                        style="background-color: #4CAF50; color: white; font-size: 35px;"></i>
                                 </div>
                                 <div class="total-pasien-siswa">
                                     <h2 class="font-weight-bold"><?php echo $siswa ?></h2>
@@ -146,7 +157,7 @@
                             <div class="card-body text-center">
                                 <div class="icon">
                                     <i class="fa fa-user-injured p-3 rounded-circle"
-                                        style="background-color: #4ADE80; color: white; font-size: 35px;"></i>
+                                        style="background-color: #4CAF50; color: white; font-size: 35px;"></i>
                                 </div>
                                 <div class="total-pasien-karyawan">
                                     <h2 class="font-weight-bold"><?php echo $karyawan ?></h2>
@@ -161,10 +172,9 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-header text-center"
-                                style="background-color: #4ADE80; color: white; font-size: 25px;">
+                            <h5 class="card-header text-center" style="background-color: #4CAF50; color: white;">
                                 Riwayat Pasien
-                            </div>
+                            </h5>
                             <div class="card-body">
                                 <table id="table_dashboard" class="table table-striped text-center">
                                     <thead>
@@ -195,7 +205,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <?php $this->load->view('style/js')?>
     <?php if ($this->session->flashdata('yeay')): ?>
