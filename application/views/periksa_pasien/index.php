@@ -19,16 +19,15 @@
             <section class="content">
                 <!-- FILTER REKAP DATA -->
                 <div class="container-fluid mb-4">
-                    <div class="header p-3 text-light rounded-top" style="background-color:#4ADE80">
-                        <div class="row">
-                            <div class="col pl-3 pt-1">
-                                <h5>Filter Rekap Data</h5>
-                            </div>
-                            <div class="col">
-                            </div>
-                            <div class="col text-right">
-                                <button type="button" data-toggle="modal" data-target="#modal_filter_tanggal"
-                                    class="btn btn-info px-5 rounded bg-sky-600">Filter Tanggal</button>
+                    <div class="header p-1 text-light rounded-top d-flex justify-content-between"
+                        style="background-color:#4ADE80">
+                        <div class="p-2 d-flex align-items-center gap-3">
+                            <div style="font-size: 1.5rem">Filter Rekap Data</div>
+                        </div>
+                        <div class="p-2 d-flex align-items-center gap-3">
+                            <div class="grid gap-3">
+                                <button data-toggle="modal" data-target="#modal_filter_tanggal" class="btn btn-info"><i
+                                        class="fas fa-filter"></i>&nbsp;Filter Tanggal</button>
                             </div>
                         </div>
                     </div>
@@ -53,87 +52,93 @@
                 </div>
 
                 <!-- DATA PASIEN-->
-                <div class="container-fluid bg-white shadow mb-4">
-                    <div class="header p-3 text-light rounded-top" style="background-color:#4ADE80">
-                        <div class="row">
-                            <div class="col pl-3 pt-1">
-                                <h5>Data Pasien</h5>
-                            </div>
-                            <div class="col">
-                            </div>
-                            <div class="col text-right">
-                                <button type="button" data-toggle="modal" data-target="#modal_tambah_periksa"
-                                    class="btn btn-info px-5 rounded bg-sky-600"> <i
-                                        class="fa fa-plus pr-2"></i>Tambah</button>
+                <div class="container-fluid mb-4">
+                    <div class="header p-1 text-light rounded-top d-flex justify-content-between"
+                        style="background-color:#4ADE80">
+                        <div class="p-2 d-flex align-items-center gap-3">
+                            <div style="font-size: 1.5rem">Data Pasien</div>
+                        </div>
+                        <div class="p-2 d-flex align-items-center gap-3">
+                            <div class="grid gap-3">
+                                <button data-toggle="modal" data-target="#modal_tambah_periksa" class="btn btn-info"><i
+                                        class="fas fa-plus"></i>&nbsp;
+                                    Tambah</button>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card-body">
-                                <table id="table" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 5%;">No</th>
-                                            <th>Nama Pasien</th>
-                                            <th>Status Pasien</th>
-                                            <th>Tanggal / Jam</th>
-                                            <th>Keluhan</th>
-                                            <th>Status</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php $id = 0;
-                                        foreach ($periksa as $data):
-                                            $id++; ?>
+                    <div class="bg-light shadow">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card-body">
+                                    <table id="data-table" class="table table-bordered table-striped">
+                                        <thead>
                                             <tr>
-                                                <td>
-                                                    <?php echo $id ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $data->nama_pasien ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo tampil_pasien_status_byid($data->pasien_status_id) ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $data->create_date ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $data->keluhan ?>
-                                                </td>
-                                                <td>
-                                                    <?php if ($data->status == 1) {
-                                                        echo "<p style='color: green'>Sudah Ditangani</p>";
-                                                    } else {
-                                                        echo "<p style='color: red'>Belum Ditangani</p>";
-                                                    }
-                                                    ?>
-                                                </td>
-                                                <td class="text-center">
-                                                    <?php if ($data->status == 1): ?>
-                                                        <a href="<?php echo base_url('periksa/status/' . $data->id); ?>"
-                                                            class="trash " data-id="1">
-                                                            <button class="btn btn-success btn-sm" type="button"
-                                                                data-toggle="modal">
-                                                                Selesai
-                                                            </button>
-                                                        </a>
-                                                    <?php elseif ($data->status == 0): ?>
-                                                        <a href="<?php echo base_url('periksa/status/' . $data->id); ?>"
-                                                            class="trash " data-id="1">
-                                                            <button class="btn btn-danger btn-sm" type="button"
-                                                                data-toggle="modal">
-                                                                Tangani
-                                                            </button>
-                                                        </a>
-                                                    <?php endif; ?>
-                                                </td>
+                                                <th style="width: 5%;">No</th>
+                                                <th>Nama Pasien</th>
+                                                <th>Status Pasien</th>
+                                                <th>Tanggal / Jam</th>
+                                                <th>Keluhan</th>
+                                                <th>Status</th>
+                                                <th>Aksi</th>
                                             </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            <?php $id = 0;
+                                            foreach ($periksa as $data):
+                                                $id++; ?>
+                                                <tr>
+                                                    <td>
+                                                        <?php echo $id ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo $data->nama_pasien ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo tampil_pasien_status_byid($data->pasien_status_id) ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo $data->create_date ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo $data->keluhan ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php if ($data->status == 1) {
+                                                            echo "<p style='color: green'>Sudah Ditangani</p>";
+                                                        } else {
+                                                            echo "<p style='color: red'>Belum Ditangani</p>";
+                                                        }
+                                                        ?>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <a href="<?php echo base_url('Periksa/export_pasien_to_excel'); ?>">
+                                                            <button type="button" class="btn btn-success mr-1"
+                                                                style="width: 150px"><i
+                                                                    class="fa fa-download pr-2"></i>Export</button>
+                                                        </a>
+                                                        <?php if ($data->status == 1): ?>
+                                                            <a href="<?php echo base_url('periksa/status/' . $data->id); ?>"
+                                                                class="trash " data-id="1">
+                                                                <button class="btn btn-success btn-sm" type="button"
+                                                                    data-toggle="modal">
+                                                                    Selesai
+                                                                </button>
+                                                            </a>
+                                                        <?php elseif ($data->status == 0): ?>
+                                                            <a href="<?php echo base_url('periksa/status/' . $data->id); ?>"
+                                                                class="trash " data-id="1">
+                                                                <button class="btn btn-danger btn-sm" type="button"
+                                                                    data-toggle="modal">
+                                                                    Tangani
+                                                                </button>
+                                                            </a>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -160,13 +165,9 @@
                                                 <div class="">
                                                     <select class="form-control form-select px-2 py-1"
                                                         name="pasien_status_id" aria-label="Default select example">
-                                                        <?php $id = 0;
-                                                        foreach ($pasien_status as $row):
-                                                            $id++; ?>
-                                                            <option value="<?php echo $row->id ?>">
-                                                                <?php echo $row->name ?>
-                                                            </option>
-                                                        <?php endforeach; ?>
+                                                        <option value="Guru">Guru</option>
+                                                        <option value="Siswa">Siswa</option>
+                                                        <option value="Karyawan">Karyawan</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -195,9 +196,10 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer d-flex justify-content-between">
-                                    <button type="button" class="btn btn-secondary" onclick="kembali()"
-                                        data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                    <button class="btn btn-danger text-bold mr-2" data-dismiss="modal" onclick="kembali()"><span
+                                            class="p-3">Batal</span></button>
+                                    <button type="submit" class="btn btn-success text-bold "><span
+                                            class="p-3">Simpan</span></button>
                                 </div>
                             </div>
                         </form>
@@ -239,9 +241,10 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer d-flex justify-content-between">
-                                    <button type="button" class="btn btn-secondary" onclick="kembali()"
-                                        data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                    <button class="btn btn-danger text-bold mr-2" data-dismiss="modal" onclick="kembali()"><span
+                                            class="p-3">Batal</span></button>
+                                    <button type="submit" class="btn btn-success text-bold "><span
+                                            class="p-3">Simpan</span></button>
                                 </div>
                             </div>
                         </form>
@@ -255,7 +258,7 @@
     <?php if ($this->session->flashdata('bisa')): ?>
         <script>
             swal.fire({
-                title: "<?php echo $this->session->flashdata('bisa')?>",
+                title: "<?php echo $this->session->flashdata('bisa') ?>",
                 icon: "success",
                 showConfirmButton: false,
                 timer: 5000,
