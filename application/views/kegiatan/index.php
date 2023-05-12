@@ -12,11 +12,14 @@
     <div class="wrapper">
         <?php $this->load->view('style/navbar')?>
         <?php $this->load->view('style/sidebar')?>
-        <div class="content-wrapper p-3">
+        <div class="content-wrapper p-2 py-3">
             <div class="container-fluid">
                 <div class="badge d-flex justify-content-between">
                     <div class="d-flex justify-content-center"><h4>Kegiatan UKS</h4></div>
-                    <div><button class="btn btn-info" data-toggle="modal" data-target="#modal_tambah">Tambah</button></div>
+                    <div>
+                        <button class="btn btn-info px-5 rounded bg-sky-600" data-toggle="modal" data-target="#modal_tambah">
+                        <i class="fa fa-plus pr-2"></i>Tambah</button>
+                    </div>
                 </div>
                 <div class="theback" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 8px 16px 0px">
                     <table id="data-table" class="table table-bordered table-striped">
@@ -49,14 +52,11 @@
                                     <td><?php echo $data->deskripsi?></td>
                                     <td class="text-center">
                                         <a href="<?php echo base_url('Kegiatan/edit_kegiatan/'.$data->id)?>" class='btn btn-info btn-sm'>
-                                            <i class="fas fa-pencil-alt"></i>
+                                            <i class="fas fa-edit"></i>
                                         </a>
                                         <button onclick="hapus(<?php echo $data->id ?>)" class="btn btn-danger btn-sm">
                                             <i class="fa fa-trash"></i>
                                         </button>
-                                        <!-- <a href="<?php echo base_url('Kegiatan/delete/'.$data->id)?>" class='btn btn-danger btn-sm'>
-                                            <i class="fas fa-trash"></i>
-                                        </a> -->
                                     </td>
                                 </tr>
                             <?php endforeach;?>

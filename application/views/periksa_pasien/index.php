@@ -87,15 +87,22 @@
                                         <?php $id = 0;
                                         foreach ($periksa as $data):
                                             $id++; ?>
+                                        <?php $ditangani = $this->db->get_where('penanganan_periksa', array('periksa_id' => $data->id))->num_rows();?>
                                             <tr>
                                                 <td>
                                                     <?php echo $id ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $data->nama_pasien ?>
+                                                    <?php if(!empty($data->siswa_id)) {
+                                                            echo JoinOne('periksa', 'siswa', 'siswa_id', 'id','periksa.id',$data->id, 'nama_siswa');
+                                                        } else if(!empty($data->guru_id)) {
+                                                            echo JoinOne('periksa', 'guru', 'guru_id', 'id','periksa.id',$data->id, 'nama_guru');
+                                                        } else if(!empty($data->karyawan_id)) {
+                                                            echo JoinOne('periksa', 'karyawan', 'karyawan_id', 'id','periksa.id',$data->id, 'nama_karyawan');
+                                                        } ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo tampil_pasien_status_byid($data->pasien_status_id) ?>
+                                                    <?php echo $data->pasien_status ?>
                                                 </td>
                                                 <td>
                                                     <?php echo $data->create_date ?>
@@ -104,7 +111,7 @@
                                                     <?php echo $data->keluhan ?>
                                                 </td>
                                                 <td>
-                                                    <?php if ($data->status == 1) {
+                                                    <?php if ($ditangani > 0) {
                                                         echo "<p style='color: green'>Sudah Ditangani</p>";
                                                     } else {
                                                         echo "<p style='color: red'>Belum Ditangani</p>";
@@ -112,7 +119,7 @@
                                                     ?>
                                                 </td>
                                                 <td class="text-center">
-                                                    <?php if ($data->status == 1): ?>
+                                                    <?php if ($ditangani > 0): ?>
                                                         <a href="<?php echo base_url('periksa/status/' . $data->id); ?>"
                                                             class="trash " data-id="1">
                                                             <button class="btn btn-success btn-sm" type="button"
@@ -120,7 +127,7 @@
                                                                 Selesai
                                                             </button>
                                                         </a>
-                                                    <?php elseif ($data->status == 0): ?>
+                                                    <?php elseif ($ditangani == 0): ?>
                                                         <a href="<?php echo base_url('periksa/status/' . $data->id); ?>"
                                                             class="trash " data-id="1">
                                                             <button class="btn btn-danger btn-sm" type="button"
@@ -158,28 +165,64 @@
                                             <div class="form-group col-sm-12">
                                                 <label class="control-label">Status Pasien</label>
                                                 <div class="">
-                                                    <select class="form-control form-select px-2 py-1"
-                                                        name="pasien_status_id" aria-label="Default select example">
-                                                        <?php $id = 0;
-                                                        foreach ($pasien_status as $row):
-                                                            $id++; ?>
-                                                            <option value="<?php echo $row->id ?>">
-                                                                <?php echo $row->name ?>
-                                                            </option>
-                                                        <?php endforeach; ?>
+                                                    <select class="form-control form-select px-2 py-1" id="option"
+                                                        onchange="selectStatus()" name="pasien_status">
+                                                        <option value="Pilih" style="display: none;">
+                                                            Pilih Status
+                                                        </option>
+                                                        <option value="Guru">
+                                                            Guru
+                                                        </option>
+                                                        <option value="Siswa">
+                                                            Siswa
+                                                        </option>
+                                                        <option value="Karyawan">
+                                                            Karyawan
+                                                        </option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="form-group col-sm-12">
                                                 <label class="control-label">Nama Pasien</label>
-                                                <div class="">
-                                                    <select class="form-control form-select px-2 py-1"
-                                                        name="nama_pasien" aria-label="Default select example">
-                                                        <?php $id = 0;
-                                                        foreach ($siswa as $row):
-                                                            $id++; ?>
-                                                            <option value="<?php echo $row->nama_siswa ?>">
-                                                                <?php echo $row->nama_siswa ?>
+                                                <div class="" id="disabled">
+                                                    <select class="form-control select2" disabled>
+                                                            <option selected>
+                                                                Pilih Pasien
+                                                            </option>
+                                                    </select>
+                                                </div>
+                                                <div id="guru" style="display: none;">
+                                                    <select class="form-control select2" name="guru_id">
+                                                        <option style="display: none;" selected disabled>
+                                                            Pilih Pasien
+                                                        </option>
+                                                        <?php foreach($guru as $guru): ?>
+                                                            <option value="<?php echo $guru->id ?>">
+                                                                <?php echo $guru->nama_guru ?>
+                                                            </option>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                </div>
+                                                <div id="siswa" style="display: none;">
+                                                    <select class="form-control select2" name="siswa_id">
+                                                        <option style="display: none;" selected disabled>
+                                                            Pilih Pasien
+                                                        </option>
+                                                        <?php foreach($siswa as $siswa): ?>
+                                                            <option value="<?php echo $siswa->id ?>">
+                                                                <?php echo $siswa->nama_siswa ?>
+                                                            </option>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                </div>
+                                                <div id="karyawan" style="display: none;">
+                                                    <select class="form-control select2" name="karyawan_id">
+                                                        <option style="display: none;" selected disabled>
+                                                            Pilih Pasien
+                                                        </option>
+                                                        <?php foreach($karyawan as $karyawan): ?>
+                                                            <option value="<?php echo $karyawan->id ?>">
+                                                                <?php echo $karyawan->nama_karyawan ?>
                                                             </option>
                                                         <?php endforeach; ?>
                                                     </select>
@@ -188,16 +231,15 @@
                                             <div class="form-group col-sm-12">
                                                 <label class="control-label">Keluhan Pasien</label>
                                                 <div class="">
-                                                    <input type="text" name="keluhan" class="form-control" required><br>
+                                                    <textarea name="keluhan" class="form-control" required></textarea>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="modal-footer d-flex justify-content-between">
-                                    <button type="button" class="btn btn-secondary" onclick="kembali()"
-                                        data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                    <button type="button" class="btn btn-danger text-bold w-25" data-dismiss="modal">Batal</button>
+                                    <button type="submit" class="btn btn-success text-bold w-25">Simpan</button>
                                 </div>
                             </div>
                         </form>
@@ -252,13 +294,14 @@
         </div>
     </div>
     <?php $this->load->view('style/js') ?>
+    <script src="<?php echo base_url('builder/dist/js/status.js'); ?>"></script>
     <?php if ($this->session->flashdata('bisa')): ?>
         <script>
             swal.fire({
                 title: "<?php echo $this->session->flashdata('bisa')?>",
                 icon: "success",
                 showConfirmButton: false,
-                timer: 5000,
+                timer: 1500,
             });
         </script>
         <?php if (isset($_SESSION['bisa'])) {
