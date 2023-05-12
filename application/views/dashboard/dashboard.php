@@ -189,8 +189,17 @@
                                         <?php $no = 0; foreach ($periksa as $row): $no++ ?>
                                         <tr>
                                             <th scope="row"><?php echo $no?></th>
-                                            <td><?php echo $row->nama_pasien?></td>
-                                            <td><?php echo tampil_pasien_status_byid($row->pasien_status_id)?></td>
+                                            <td>
+                                                <?php if(!empty($row->siswa_id)) {
+                                                echo tampil_siswa_byid($row->siswa_id);
+                                                } else if(!empty($row->guru_id)) {
+                                                    echo tampil_guru_byid($row->guru_id);
+                                                } else if(!empty($row->karyawan_id)) {
+                                                    echo tampil_karyawan_byid($row->karyawan_id);
+                                                }
+                                                ?>
+                                            </td>
+                                            <td><?php echo $row->pasien_status?></td>
                                             <td><?php echo $row->create_date?></td>
                                         </tr>
                                         <?php endforeach ?>

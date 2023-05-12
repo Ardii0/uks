@@ -71,6 +71,14 @@ $(function() {
         "lengthChange": true,
         "autoWidth": false,
     }).buttons().container().appendTo('#data-table2_wrapper .col-md-6:eq(0)');
+
+    $("#table3").DataTable({
+        "responsive": true,
+        "lengthChange": false,
+        "bPaginate": false,
+        "bFilter": false,
+        "autoWidth": false,
+    }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
 });
 </script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

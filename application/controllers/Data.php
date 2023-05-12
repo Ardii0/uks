@@ -181,9 +181,33 @@ class Data extends CI_Controller {
         $this->load->view('Data/edit_siswa', $data, $id);
     }
 
+    public function upload_img_siswa($value)
+    {
+        $kode = round(microtime(true) * 1000);
+        $config['upload_path'] = './uploads/data/data_siswa/';
+        $config['allowed_types'] = 'jpg|png|jpeg';
+        $config['max_size'] = '30000';
+        $config['file_name'] = $kode;
+        $this->upload->initialize($config);
+        if (!$this->upload->do_upload($value))
+        {
+            return array( false, '' );
+        }
+        else
+        {
+            $fn = $this->upload->data();
+            $nama = $fn['file_name'];
+            return array( true, $nama );
+        }
+    }
+    
     public function ubah_siswa()
     {
-        $data = array (
+        $where = array('id' => $this->input->post("id"));
+        $_id = $this->Main_model->getwhere($where, 'siswa')->row();
+        $foto = $this->upload_img_siswa('foto');
+        if($foto[0]==false) {
+            $data = [
             'nama_siswa' => $this->input->post('nama_siswa'),
             'tempat_lahir' => $this->input->post('tempat_lahir'),
             'tanggal_lahir' => $this->input->post('tanggal_lahir'),
@@ -196,12 +220,37 @@ class Data extends CI_Controller {
             'nama_wali' => $this->input->post('nama_wali'),
             'no_telepon_wali' => $this->input->post('no_telepon_wali'),
             'alergi' => $this->input->post('alergi'),
-        );
-        $masuk=$this->Main_model->ubah_data('siswa', $data, array('id'=>$this->input->post('id')));
-        if($masuk)
+            ];
+        } else {
+            $data = [
+            'nama_siswa' => $this->input->post('nama_siswa'),
+            'tempat_lahir' => $this->input->post('tempat_lahir'),
+            'tanggal_lahir' => $this->input->post('tanggal_lahir'),
+            'kelas' => $this->input->post('kelas'),
+            'alamat' => $this->input->post('alamat'),
+            'TB' => $this->input->post('TB'),
+            'BB' => $this->input->post('BB'),
+            'riwayat_penyakit' => $this->input->post('riwayat_penyakit'),
+            'gol_darah' => $this->input->post('gol_darah'),
+            'nama_wali' => $this->input->post('nama_wali'),
+            'no_telepon_wali' => $this->input->post('no_telepon_wali'),
+            'alergi' => $this->input->post('alergi'),
+            'foto' => $foto[1],
+            ];
+            if ($_id->foto != '') {
+                unlink('./uploads/data/data_siswa/'.$_id->foto);
+            }
+        }
+        $valid = $this->Main_model->update_data($where, $data, 'siswa');
+        if($valid)
         {
             $this->session->set_flashdata('sukses', 'berhasil');
-            redirect(base_url('data/daf_siswa'));
+            redirect(base_url('data/daf_siswa/'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('data/daf_siswa/'.$id));
         }
     }
 
