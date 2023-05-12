@@ -32,8 +32,8 @@
                                 <div class="card-body text-center">
                                     <div class="d-flex flex-column align-items-center">
                                         <img style="width: 190px; height:190px;"
-                                            src="<?php echo base_url('assets/logo_profil.png'); ?>" alt="Foto Siswa"
-                                            class="rounded-circle" width="150">
+                                            src="<?php echo $datas->foto == null ? base_url('uploads/data/default_profile/logo_profil.png') : base_url('uploads/data/data_siswa')."/".$datas->foto ?>"
+                                            alt="Foto Siswa" class="rounded-circle" width="150">
                                     </div>
                                     <div class="mt-4">
                                         <h4><?php echo $datas->nama_siswa ?></h4>
