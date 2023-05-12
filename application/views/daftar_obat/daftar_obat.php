@@ -27,15 +27,16 @@
                                 <div class="p-2 d-flex align-items-center gap-3">
                                     <div class="grid gap-3">
                                         <button data-toggle="modal" data-target="#modal_tambah_daftar_obat"
-                                            class="btn btn-success"><i class="fas fa-plus"></i>&nbsp;
+                                        class="btn btn-info rounded bg-sky-600"><i class="fas fa-plus"></i>&nbsp;
                                             Tambah</button>
                                     </div>
                                 </div>
                             </div>
                             <!-- isi -->
-                            <div class=" bg-light shadow">
-                                <div class="isi-tabel p-4">
-                                    <table class="table">
+                            <div class="row">
+                            <div class="col-12">
+                                <div class="card-body bg-light shadow">
+                                    <table id="table3" class="table  table-striped">
                                         <thead>
                                             <tr class="">
                                                 <th class="text-center" scope="col">NO</th>
@@ -54,7 +55,7 @@
                                                 <td class="text-center"><?php echo $data->satuan?></td>
                                                 <td class="text-center">
                                                     <a href="<?php echo base_url('Daftar_Obat/edit_daftar_obat/' . $data->id) ?>"
-                                                        class="btn btn-primary btn-sm">
+                                                        class="btn btn-warning btn-sm">
                                                         <i class="fa fa-edit"></i> </a>
                                                     <button onclick="hapus(<?php echo $data->id ?>)"
                                                         class="btn btn-danger btn-sm">
@@ -65,6 +66,7 @@
                                         </tbody>
                                     </table>
                                 </div>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -104,9 +106,13 @@
                                     <div class="">
                                         <select class="form-control form-select px-2 py-1" name="satuan_obat"
                                             aria-label="Default select example">
+                                            <option> Pulvis</option>
                                             <option> Tablet</option>
-                                            <option> Sirup</option>
+                                            <option> Pil</option>
                                             <option> Kapsul</option>
+                                            <option> Kaplet</option>
+                                            <option> Sirup</option>
+                                            <option disabled selected >Masukan Satuan Obat  </option>
                                         </select><br>
                                     </div>
                                 </div>

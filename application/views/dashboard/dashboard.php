@@ -37,7 +37,7 @@
                     color: '#FFA500'
                 },
                 2: {
-                    color: '#4CAF50'
+                    color: '#4ADE80'
                 }
             },
             title: 'Grafik Jumlah Guru, Siswa, dan Karyawan',
@@ -69,8 +69,8 @@
     <style>
     marquee {
         box-shadow: 2px 2px 3px rgba(0, 0, 0, .05);
-        background: #4CAF50;
-        /* background: #4CAF50; */
+        background: #4ADE80;
+        /* background: #4ADE80; */
         color: white;
         height: 50px;
         margin: 0px 8px 0px 8px;
@@ -123,7 +123,7 @@
                             <div class="card-body text-center">
                                 <div class="icon">
                                     <i class="fa fa-user-injured p-3 rounded-circle"
-                                        style="background-color: #4CAF50; color: white; font-size: 35px;"></i>
+                                        style="background-color: #4ADE80; color: white; font-size: 35px;"></i>
                                 </div>
                                 <div class="total-pasien-guru">
                                     <h2 class="font-weight-bold">
@@ -141,7 +141,7 @@
                             <div class="card-body text-center">
                                 <div class="icon">
                                     <i class="fa fa-user-injured p-3 rounded-circle"
-                                        style="background-color: #4CAF50; color: white; font-size: 35px;"></i>
+                                        style="background-color: #4ADE80; color: white; font-size: 35px;"></i>
                                 </div>
                                 <div class="total-pasien-siswa">
                                     <h2 class="font-weight-bold"><?php echo $siswa ?></h2>
@@ -157,7 +157,7 @@
                             <div class="card-body text-center">
                                 <div class="icon">
                                     <i class="fa fa-user-injured p-3 rounded-circle"
-                                        style="background-color: #4CAF50; color: white; font-size: 35px;"></i>
+                                        style="background-color: #4ADE80; color: white; font-size: 35px;"></i>
                                 </div>
                                 <div class="total-pasien-karyawan">
                                     <h2 class="font-weight-bold"><?php echo $karyawan ?></h2>
@@ -172,7 +172,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <h5 class="card-header text-center" style="background-color: #4CAF50; color: white;">
+                            <h5 class="card-header text-center" style="background-color: #4ADE80; color: white;">
                                 Riwayat Pasien
                             </h5>
                             <div class="card-body">
@@ -189,8 +189,17 @@
                                         <?php $no = 0; foreach ($periksa as $row): $no++ ?>
                                         <tr>
                                             <th scope="row"><?php echo $no?></th>
-                                            <td><?php echo $row->nama_pasien?></td>
-                                            <td><?php echo tampil_pasien_status_byid($row->pasien_status_id)?></td>
+                                            <td>
+                                                <?php if(!empty($row->siswa_id)) {
+                                                echo tampil_siswa_byid($row->siswa_id);
+                                                } else if(!empty($row->guru_id)) {
+                                                    echo tampil_guru_byid($row->guru_id);
+                                                } else if(!empty($row->karyawan_id)) {
+                                                    echo tampil_karyawan_byid($row->karyawan_id);
+                                                }
+                                                ?>
+                                            </td>
+                                            <td><?php echo $row->pasien_status?></td>
                                             <td><?php echo $row->create_date?></td>
                                         </tr>
                                         <?php endforeach ?>

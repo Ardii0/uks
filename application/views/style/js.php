@@ -30,7 +30,12 @@ $.widget.bridge('uibutton', $.ui.button)
 <script>
 $(function() {
     //Initialize Select2 Elements
-    $('.select2').select2()
+    $('.select2').each((_i, e) => {
+        var $e = $(e);
+        $e.select2({
+            dropdownParent: $e.parent()
+        });
+    })
 
     //Initialize Select2 Elements
     $('.select2bs4').select2({
@@ -66,10 +71,16 @@ $(function() {
         "lengthChange": true,
         "autoWidth": false,
     }).buttons().container().appendTo('#data-table2_wrapper .col-md-6:eq(0)');
+
+    $("#table3").DataTable({
+        "responsive": true,
+        "lengthChange": false,
+        "bPaginate": false,
+        "bFilter": false,
+        "autoWidth": false,
+    }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
 });
 </script>
-<!-- Select2 -->
-<script src="<?php echo base_url('builder/plugins/select2/js/select2.full.min.js'); ?>"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="sweetalert2.all.min.js"></script>
 <script src="sweetalert2.min.js"></script>

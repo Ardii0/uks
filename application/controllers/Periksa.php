@@ -23,7 +23,9 @@ class Periksa extends CI_Controller {
         $data['export'] = 0;
         $data['periksa'] = $this->Main_model->get('periksa')->result();
         $data['pasien_status'] = $this->Main_model->get('pasien_status')->result();
+        $data['guru'] = $this->Main_model->get('guru')->result();
         $data['siswa'] = $this->Main_model->get('siswa')->result();
+        $data['karyawan'] = $this->Main_model->get('karyawan')->result();
         $this->load->view('periksa_pasien/index', $data);
     }
 
@@ -31,12 +33,12 @@ class Periksa extends CI_Controller {
     {
         $data = array
         (
-            'create_date' => date("Y-m-d H:i:s"),
-            'update_date' => date("Y-m-d H:i:s"),
-            'status' => 0,  
+            'guru_id' => $this->input->post('guru_id'),
+            'siswa_id' => $this->input->post('siswa_id'),
+            'karyawan_id' => $this->input->post('karyawan_id'),
+            'pasien_status' => $this->input->post('pasien_status'),
             'keluhan' => $this->input->post('keluhan'),
-            'nama_pasien' => $this->input->post('nama_pasien'),
-            'pasien_status_id' => $this->input->post('pasien_status_id'),
+            'tahun_bulan' => date("Y-m"),
         );
         $masuk = $this->Main_model->insert_data($data,'periksa');
         if ($masuk) {

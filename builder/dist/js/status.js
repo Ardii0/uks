@@ -1,18 +1,30 @@
-function findmystatus() {
-  var option = document.getElementById("option").value;
+function selectStatus() {
+  var status = document.getElementById("option").value;
 
-  switch (option) {
-    case "Aktif":
-      alert("Please select")
+  switch (status) {
+    case "Guru":
+      document.getElementById("guru").style.display = "block";
+      document.getElementById("siswa").style.display = "none";
+      document.getElementById("karyawan").style.display = "none";
+      document.getElementById("disabled").style.display = "none";
       break;
-    case 1:
-      alert("Please selecteee")
-      document.getElementById("naik_kelas").style.display = "none";
-      document.getElementById("pindah_rombel").style.display = "block";
-      document.getElementById("pindah_sekolah").style.display = "none";
-      document.getElementById("lulus").style.display = "none";
+    case "Siswa":
+      document.getElementById("guru").style.display = "none";
+      document.getElementById("siswa").style.display = "block";
+      document.getElementById("karyawan").style.display = "none";
+      document.getElementById("disabled").style.display = "none";
+      break;
+    case "Karyawan":
+      document.getElementById("guru").style.display = "none";
+      document.getElementById("siswa").style.display = "none";
+      document.getElementById("karyawan").style.display = "block";
+      document.getElementById("disabled").style.display = "none";
       break;
     default:
+      document.getElementById("guru").style.display = "none";
+      document.getElementById("siswa").style.display = "none";
+      document.getElementById("karyawan").style.display = "none";
+      document.getElementById("disabled").style.display = "block";
       break;
   }
 }
