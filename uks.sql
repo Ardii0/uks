@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2023 at 09:16 AM
+-- Generation Time: May 12, 2023 at 01:37 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -39,6 +39,31 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`id`, `password`, `username`) VALUES
 (1, '202cb962ac59075b964b07152d234b70', 'smpn1_smg@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `buku`
+--
+
+CREATE TABLE `buku` (
+  `id_buku` int(11) NOT NULL,
+  `judul_buku` varchar(255) DEFAULT NULL,
+  `penerbit_buku` varchar(255) DEFAULT NULL,
+  `penulis_buku` varchar(255) DEFAULT NULL,
+  `tahun_terbit` int(11) DEFAULT NULL,
+  `keterangan` longtext DEFAULT NULL,
+  `sumber` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `foto` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `buku`
+--
+
+INSERT INTO `buku` (`id_buku`, `judul_buku`, `penerbit_buku`, `penulis_buku`, `tahun_terbit`, `keterangan`, `sumber`, `created_at`, `foto`) VALUES
+(1, 'Laut Tengah', 'Akads', ' Berliana Kimberly', 2022, 'Laut Tengah merupakan novel karya Berliana Kimberly yang diterbitkan oleh Akad Publishing pada tahun 2022. Novel ini cocok dibaca oleh remaja perempuan maupun wanita dewasa yang menyukai novel bertema romance.', 'Beli', '2023-05-12 02:19:00', '1683771606217.png');
 
 -- --------------------------------------------------------
 
@@ -105,6 +130,32 @@ CREATE TABLE `guru` (
 INSERT INTO `guru` (`id`, `alamat`, `nama_guru`, `tanggal_lahir`, `tempat_lahir`, `total_periksa`) VALUES
 (1, 'Mangkang', 'Dwi Sasmita', '1986-04-06 07:00:00', 'Semarang', 1),
 (3, 'Mijen', 'Dwi Arianto', '1987-02-02 09:57:00', 'Magelang', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inventaris`
+--
+
+CREATE TABLE `inventaris` (
+  `id` bigint(20) NOT NULL,
+  `nama_barang` varchar(255) DEFAULT NULL,
+  `tgl_barang_masuk` datetime DEFAULT NULL,
+  `asal_barang` varchar(255) DEFAULT NULL,
+  `jumlah_barang` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `inventaris`
+--
+
+INSERT INTO `inventaris` (`id`, `nama_barang`, `tgl_barang_masuk`, `asal_barang`, `jumlah_barang`) VALUES
+(1, 'Kasur', '2003-11-08 07:00:00', 'DANA BOS', 4),
+(2, 'Kursi', '2003-11-08 07:00:00', 'DANA BOS', 9),
+(4, 'Kipas', '2023-05-10 00:00:00', 'dana bos', 6),
+(5, 'Meja', '2023-05-10 00:00:00', 'Dana Bos', 36),
+(14, 'Kipas', '2023-05-12 11:43:16', 'dana bos', 6),
+(15, 'Lampu', '2023-05-12 11:44:11', 'dana boss', 6);
 
 -- --------------------------------------------------------
 
@@ -194,9 +245,10 @@ CREATE TABLE `penanganan_periksa` (
 --
 
 INSERT INTO `penanganan_periksa` (`id`, `catatan`, `diagnosa_penyakit_id`, `tindakan_id`, `penanganan_pertama_id`, `periksa_id`) VALUES
-(1, 'Bismillah', 2, 2, 2, 1),
+(1, 'Lekas Sembuh', 2, 1, 1, 1),
 (3, 'Tes', 2, 1, 2, 2),
-(4, 'Lekas Sembuh', 2, 1, 1, 5);
+(4, 'Lekas Sembuh', 2, 1, 1, 5),
+(5, 'Cepat Sembuh', 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -244,12 +296,62 @@ CREATE TABLE `periksa` (
 --
 
 INSERT INTO `periksa` (`id`, `create_date`, `update_date`, `status`, `keluhan`, `guru_id`, `siswa_id`, `karyawan_id`, `keterangan_pasien_id`, `pasien_status`, `tahun_bulan`) VALUES
-(1, '2023-04-11 08:42:58', '2023-04-11 08:43:29', b'1', 'Pusing', NULL, 1, NULL, NULL, 'Siswa', '2023-04'),
+(1, '2023-04-11 08:42:58', '2023-04-11 08:43:29', b'1', 'Pusingduh', NULL, 1, NULL, NULL, 'Siswa', '2023-04'),
 (2, '2023-04-11 08:43:46', '2023-04-11 08:43:46', b'0', 'Pusing', 1, NULL, NULL, NULL, 'Guru', '2023-04'),
 (5, '2023-05-12 01:40:57', '2023-05-12 01:40:57', b'0', 'Mual Mual', NULL, 4, NULL, NULL, 'Siswa', NULL),
 (6, '2023-05-12 01:42:21', '2023-05-12 01:42:21', b'0', 'Mual', NULL, 4, NULL, NULL, 'Siswa', NULL),
 (7, '2023-05-12 06:49:02', '2023-05-12 06:49:02', b'0', 'Demam', 3, NULL, NULL, NULL, 'Guru', '2023-05'),
 (8, '2023-05-12 06:50:08', '2023-05-12 06:50:08', b'0', 'Sakit Kepala', NULL, NULL, 2, NULL, 'Karyawan', '2023-05');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `program_click`
+--
+
+CREATE TABLE `program_click` (
+  `id` bigint(20) NOT NULL,
+  `create_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `keluhan` longtext DEFAULT NULL,
+  `saran` longtext DEFAULT NULL,
+  `guru_id` bigint(20) DEFAULT NULL,
+  `siswa_id` bigint(20) DEFAULT NULL,
+  `karyawan_id` bigint(20) DEFAULT NULL,
+  `pasien_status` varchar(255) DEFAULT NULL,
+  `tahun_bulan` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `program_click`
+--
+
+INSERT INTO `program_click` (`id`, `create_date`, `keluhan`, `saran`, `guru_id`, `siswa_id`, `karyawan_id`, `pasien_status`, `tahun_bulan`) VALUES
+(1, '2023-05-12 03:33:38', 'Mual', 'Makan Ayam', 3, NULL, NULL, 'Guru', '2023-05'),
+(2, '2023-05-12 03:35:37', 'Muntah', 'Makan Bayam\r\n', NULL, 4, NULL, 'Siswa', '2023-05');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `program_kerja`
+--
+
+CREATE TABLE `program_kerja` (
+  `id` int(11) NOT NULL,
+  `nama_program` varchar(255) DEFAULT NULL,
+  `tanggal` timestamp NULL DEFAULT current_timestamp(),
+  `deskripsi` longtext DEFAULT NULL,
+  `foto` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `program_kerja`
+--
+
+INSERT INTO `program_kerja` (`id`, `nama_program`, `tanggal`, `deskripsi`, `foto`) VALUES
+(3, 'wadawddee', '2023-05-12 09:03:00', 'dwadad                                                                                                                        ', '1683882237914.jpg'),
+(4, 'adawdawd', '2023-05-10 09:15:00', 'dwadawd', '1683882949253.jpg'),
+(5, 'adawds', '2023-05-06 09:20:00', 'dawawd', '1683883225753.jpg'),
+(6, 'wdad', '2023-05-12 09:36:00', 'awdad', '1683884186357.jpg');
 
 -- --------------------------------------------------------
 
@@ -316,6 +418,12 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `buku`
+--
+ALTER TABLE `buku`
+  ADD PRIMARY KEY (`id_buku`);
+
+--
 -- Indexes for table `daftar_obat`
 --
 ALTER TABLE `daftar_obat`
@@ -331,6 +439,12 @@ ALTER TABLE `diagnosa`
 -- Indexes for table `guru`
 --
 ALTER TABLE `guru`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `inventaris`
+--
+ALTER TABLE `inventaris`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -378,6 +492,21 @@ ALTER TABLE `periksa`
   ADD KEY `FK47quael7ajgnjndxqajkdqsja` (`siswa_id`);
 
 --
+-- Indexes for table `program_click`
+--
+ALTER TABLE `program_click`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK8hrcq33h7p66gri512oqd3wa2` (`guru_id`),
+  ADD KEY `FKg2i0oe51i65ahdj5n0oisaqn0` (`karyawan_id`),
+  ADD KEY `FK47quael7ajgnjndxqajkdqsja` (`siswa_id`);
+
+--
+-- Indexes for table `program_kerja`
+--
+ALTER TABLE `program_kerja`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `siswa`
 --
 ALTER TABLE `siswa`
@@ -400,6 +529,12 @@ ALTER TABLE `admin`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `buku`
+--
+ALTER TABLE `buku`
+  MODIFY `id_buku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `daftar_obat`
 --
 ALTER TABLE `daftar_obat`
@@ -416,6 +551,12 @@ ALTER TABLE `diagnosa`
 --
 ALTER TABLE `guru`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `inventaris`
+--
+ALTER TABLE `inventaris`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `karyawan`
@@ -439,7 +580,7 @@ ALTER TABLE `pasien_status`
 -- AUTO_INCREMENT for table `penanganan_periksa`
 --
 ALTER TABLE `penanganan_periksa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `penanganan_pertama`
@@ -452,6 +593,18 @@ ALTER TABLE `penanganan_pertama`
 --
 ALTER TABLE `periksa`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `program_click`
+--
+ALTER TABLE `program_click`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `program_kerja`
+--
+ALTER TABLE `program_kerja`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `siswa`

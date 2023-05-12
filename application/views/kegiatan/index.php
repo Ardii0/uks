@@ -51,7 +51,7 @@
                                     </td>
                                     <td><?php echo $data->deskripsi?></td>
                                     <td class="text-center">
-                                        <a href="<?php echo base_url('Kegiatan/edit_kegiatan/'.$data->id)?>" class='btn btn-info btn-sm'>
+                                        <a href="<?php echo base_url('Kegiatan/edit_kegiatan/'.$data->id)?>" class='btn btn-warning btn-sm'>
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         <button onclick="hapus(<?php echo $data->id ?>)" class="btn btn-danger btn-sm">

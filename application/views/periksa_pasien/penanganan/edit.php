@@ -15,54 +15,44 @@
         <div class="content-wrapper p-2 py-3">
             <div class="container-fluid">
                 <?php 
-                    $nama_guru = JoinOne('periksa', 'guru', 'guru_id', 'id','periksa.id',$periksa['id'], 'nama_guru');
-                    $nama_siswa = JoinOne('periksa', 'siswa', 'siswa_id', 'id','periksa.id',$periksa['id'], 'nama_siswa');
-                    $nama_karyawan = JoinOne('periksa', 'karyawan', 'karyawan_id', 'id','periksa.id',$periksa['id'], 'nama_karyawan');
+                    $nama_guru = JoinTwo('penanganan_periksa', 'periksa', 'periksa_id', 'id', 'guru', 'guru_id', 'penanganan_periksa.id', $periksa['id'], 'nama_guru');
+                    $nama_siswa = JoinTwo('penanganan_periksa', 'periksa', 'periksa_id', 'id', 'siswa', 'siswa_id', 'penanganan_periksa.id', $periksa['id'], 'nama_siswa');
+                    $nama_karyawan = JoinTwo('penanganan_periksa', 'periksa', 'periksa_id', 'id', 'karyawan', 'karyawan_id', 'penanganan_periksa.id', $periksa['id'], 'nama_karyawan');
+                    $statuspasien = JoinOne('penanganan_periksa', 'periksa', 'periksa_id', 'id', 'penanganan_periksa.id', $periksa['id'], 'pasien_status');
+                    $keluhan = JoinOne('penanganan_periksa', 'periksa', 'periksa_id', 'id', 'penanganan_periksa.id', $periksa['id'], 'keluhan');
                 ?>
                 <div class="badge">
                     <p>
                         Periksa Pasien: 
                         <strong>
-                            <?php if(!empty($periksa['guru_id'])) {
-                                echo $nama_guru;
-                            } else if(!empty($periksa['siswa_id'])) {
-                                echo $nama_siswa;
-                            } else if(!empty($periksa['karyawan_id'])) {
-                                echo $nama_karyawan;
-                            } ?>
+                            <?php echo $nama_guru; echo $nama_siswa; echo $nama_karyawan; ?>
                         </strong>
                     </p>
                 </div>
                 <div class="theback" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 8px 16px 0px">
-                    <form action="<?php echo base_url('Periksa/add_penanganan') ?>" enctype="multipart/form-data" method="post">
+                    <form action="<?php echo base_url('Periksa/update_penanganan/'.$periksa['id']) ?>" enctype="multipart/form-data" method="post">
                         <div class="row clearfix">
                             <div class="col-lg-6">
                                 <label class="d-block">Nama Pasien</label>
                                 <input type="text" 
-                                value="<?php if(!empty($periksa['guru_id'])) {
-                                        echo $nama_guru;
-                                    } else if(!empty($periksa['siswa_id'])) {
-                                        echo $nama_siswa;
-                                    } else if(!empty($periksa['karyawan_id'])) {
-                                        echo $nama_karyawan;
-                                    } ?>" class="form-control" disabled>
+                                value="<?php echo $nama_guru; echo $nama_siswa; echo $nama_karyawan; ?>" class="form-control" disabled>
                             </div>
                             <div class="col-lg-6">
                                 <label class="d-block">Status Pasien</label>
-                                <input type="text" value="<?php echo $periksa['pasien_status']?>" class="form-control" disabled>
+                                <input type="text" value="<?php echo $statuspasien ?>" class="form-control" disabled>
                             </div>
                         </div>
                         <div class="row clearfix my-1">
                             <div class="col-lg-12">
                                 <label class="d-block">Keluhan Pasien</label>
-                                <textarea class="form-control" disabled><?php echo $periksa['keluhan']?></textarea>
+                                <textarea class="form-control" name="keluhan"><?php echo $keluhan ?></textarea>
                             </div>
                         </div>
                         <div class="row clearfix">
                             <div class="col-lg-3">
                                 <label class="d-block">Penyakit Pasien</label>
                                 <select name="diagnosa_penyakit_id" class="form-control select2">
-                                    <option value="">Pilih Penyakit</option>
+                                    <option value="<?php echo $periksa['diagnosa_penyakit_id'] ?>"><?php echo JoinOne('penanganan_periksa', 'diagnosa', 'diagnosa_penyakit_id', 'id','penanganan_periksa.id',$periksa['id'], 'nama')?></option>
                                     <?php foreach($diagnosa as $diagnosa):?>
                                         <option value="<?php echo $diagnosa->id; ?>"><?php echo $diagnosa->nama; ?></option>
                                     <?php endforeach; ?>
@@ -71,7 +61,7 @@
                             <div class="col-lg-3">
                                 <label class="d-block">Penanganan Pertama</label>
                                 <select name="penanganan_pertama_id" class="form-control select2">
-                                    <option value="">Pilih Penanganan</option>
+                                    <option value="<?php echo $periksa['penanganan_pertama_id'] ?>"><?php echo JoinOne('penanganan_periksa', 'penanganan_pertama', 'penanganan_pertama_id', 'id','penanganan_periksa.id',$periksa['id'], 'nama_penanganan')?></option>
                                     <?php foreach($penanganan as $penanganan):?>
                                         <option value="<?php echo $penanganan->id; ?>"><?php echo $penanganan->nama_penanganan; ?></option>
                                     <?php endforeach; ?>
@@ -80,7 +70,7 @@
                             <div class="col-lg-3">
                                 <label class="d-block">Tindakan</label>
                                 <select name="tindakan_id" class="form-control select2">
-                                    <option value="">Pilih Tindakan</option>
+                                    <option value="<?php echo $periksa['tindakan_id'] ?>"><?php echo JoinOne('penanganan_periksa', 'tindakan', 'tindakan_id', 'id','penanganan_periksa.id',$periksa['id'], 'nama')?></option>
                                     <?php foreach($tindakan as $tindakan):?>
                                         <option value="<?php echo $tindakan->id; ?>"><?php echo $tindakan->nama; ?></option>
                                     <?php endforeach; ?>
@@ -88,10 +78,10 @@
                             </div>
                             <div class="col-lg-2">
                                 <label class="d-block">Catatan</label>
-                                <input type="text" name="catatan" class="form-control" autocomplete="off">
+                                <input type="text" value="<?php echo $periksa['catatan']; ?>" name="catatan" class="form-control" autocomplete="off">
                             </div>
                             <div class="col-lg-1 pt-2">
-                                <button type="submit" class="btn btn-success mt-4" type="submit">Tambah</button>
+                                <button type="submit" class="btn btn-success mt-4" type="submit">Simpan</button>
                             </div>
                         </div>
                         <input type="hidden" value="<?php echo $periksa['id']?>" name="memperiksa" class="form-control">
@@ -163,18 +153,5 @@
     </div>
 
     <?php $this->load->view('style/js')?>
-    <script>
-        <?php if ($this->session->flashdata('success')): ?>
-                swal.fire({
-                    title: "<?php echo $this->session->flashdata('success')?>",
-                    icon: "success",
-                    showConfirmButton: false,
-                    timer: 1250,
-                });
-            <?php if (isset($_SESSION['success'])) {
-                unset($_SESSION['success']);
-            }
-        endif; ?>
-    </script>
 </body>
 </html>

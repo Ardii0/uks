@@ -150,6 +150,7 @@ class Periksa extends CI_Controller {
             'catatan' => $this->input->post('catatan'),
         ];
         $this->Main_model->insert_data($data, 'penanganan_periksa');
+        $this->session->set_flashdata('success', 'Berhasil Ditambahkan');
         redirect($_SERVER['HTTP_REFERER']);
     }
 
@@ -158,5 +159,44 @@ class Periksa extends CI_Controller {
         $where = array('id' => $id);
         $this->Main_model->delete_data($where, 'penanganan_periksa');
         redirect($_SERVER['HTTP_REFERER']);
+    }
+    
+ // Edit Status
+    public function edit_stat($id)
+    {
+        $where = ['id' => $id];
+        $data['periksa'] = $this->Main_model->getwhere($where,'penanganan_periksa')->row_array();
+        $data['diagnosa'] = $this->Main_model->get('diagnosa')->result();
+        $data['penanganan'] = $this->Main_model->get('penanganan_pertama')->result();
+        $data['tindakan'] = $this->Main_model->get('tindakan')->result();
+        $data['dataperiksa'] = $this->Main_model->getwhere(array('periksa_id' => $id),'penanganan_periksa')->result();
+        // $data['dataperiksa'] = $this->Main_model->read_join_one('penanganan_periksa', 'periksa', 'periksa_id', 'id', array('siswa_id' => $id), 'create_date')->result();
+        $this->load->view('periksa_pasien/penanganan/edit', $data);
+    }
+
+    public function update_penanganan($id)
+    {
+        $where = array('id' => $id);
+        $periksa = $this->Main_model->getwhere($where,'penanganan_periksa')->row_array();
+        $whereperiksa = array('id' => $periksa['periksa_id']);
+        $data = [
+            'diagnosa_penyakit_id' => $this->input->post('diagnosa_penyakit_id'),
+            'tindakan_id' => $this->input->post('tindakan_id'),
+            'penanganan_pertama_id' => $this->input->post('penanganan_pertama_id'),
+            'periksa_id' => $this->input->post('memperiksa'),
+            'catatan' => $this->input->post('catatan'),
+        ];
+        $keluhan = [
+            'keluhan' => $this->input->post('keluhan'),
+        ];
+        $valid = $this->Main_model->update_data($where, $data, 'penanganan_periksa');
+        $valid2keluhan = $this->Main_model->update_data($whereperiksa, $keluhan, 'periksa');
+        if($valid && $valid2keluhan) {
+            $this->session->set_flashdata('success', 'Berhasil Diubah');
+            redirect(base_url('Periksa/status/'.$periksa['periksa_id']));
+        } else {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Periksa/edit_stat/'.$periksa['id']));
+        }
     }
 }
