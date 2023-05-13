@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2023 at 01:37 PM
--- Server version: 10.4.27-MariaDB
+-- Generation Time: May 13, 2023 at 08:00 AM
+-- Server version: 8.0.29
 -- PHP Version: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -28,9 +28,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `id` bigint(20) NOT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `username` varchar(255) DEFAULT NULL
+  `id` bigint NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `username` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -47,15 +47,15 @@ INSERT INTO `admin` (`id`, `password`, `username`) VALUES
 --
 
 CREATE TABLE `buku` (
-  `id_buku` int(11) NOT NULL,
-  `judul_buku` varchar(255) DEFAULT NULL,
-  `penerbit_buku` varchar(255) DEFAULT NULL,
-  `penulis_buku` varchar(255) DEFAULT NULL,
-  `tahun_terbit` int(11) DEFAULT NULL,
-  `keterangan` longtext DEFAULT NULL,
-  `sumber` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `foto` text DEFAULT NULL
+  `id_buku` int NOT NULL,
+  `judul_buku` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `penerbit_buku` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `penulis_buku` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `tahun_terbit` int DEFAULT NULL,
+  `keterangan` longtext COLLATE utf8mb4_general_ci,
+  `sumber` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `foto` text COLLATE utf8mb4_general_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -72,20 +72,23 @@ INSERT INTO `buku` (`id_buku`, `judul_buku`, `penerbit_buku`, `penulis_buku`, `t
 --
 
 CREATE TABLE `daftar_obat` (
-  `id` bigint(20) NOT NULL,
+  `id` bigint NOT NULL,
   `create_date` datetime NOT NULL,
   `update_date` datetime DEFAULT NULL,
-  `dosis` varchar(255) DEFAULT NULL,
+  `stocks` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `satuan` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `expired` datetime DEFAULT NULL,
-  `nama_obat` varchar(255) DEFAULT NULL
+  `nama_obat` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `daftar_obat`
 --
 
-INSERT INTO `daftar_obat` (`id`, `create_date`, `update_date`, `dosis`, `expired`, `nama_obat`) VALUES
-(1, '2023-04-11 15:40:10', '2023-04-11 15:40:10', '100', '2023-04-11 07:00:00', 'Panadol');
+INSERT INTO `daftar_obat` (`id`, `create_date`, `update_date`, `stocks`, `satuan`, `expired`, `nama_obat`) VALUES
+(1, '2023-04-11 15:40:10', '2023-04-11 15:40:10', '100', 'Tablet', '2023-04-11 07:00:00', 'Panadol'),
+(2, '0000-00-00 00:00:00', NULL, '4', 'Sirup', '2023-05-27 11:36:00', 'OBH Combi'),
+(3, '0000-00-00 00:00:00', NULL, '4', 'Sirup', '2023-05-13 15:23:00', 'Bronchitin');
 
 -- --------------------------------------------------------
 
@@ -94,10 +97,10 @@ INSERT INTO `daftar_obat` (`id`, `create_date`, `update_date`, `dosis`, `expired
 --
 
 CREATE TABLE `diagnosa` (
-  `id` bigint(20) NOT NULL,
-  `create_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `update_date` datetime DEFAULT NULL ON UPDATE current_timestamp(),
-  `nama` varchar(255) DEFAULT NULL
+  `id` bigint NOT NULL,
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `nama` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -115,12 +118,12 @@ INSERT INTO `diagnosa` (`id`, `create_date`, `update_date`, `nama`) VALUES
 --
 
 CREATE TABLE `guru` (
-  `id` bigint(20) NOT NULL,
-  `alamat` varchar(255) DEFAULT NULL,
-  `nama_guru` varchar(255) DEFAULT NULL,
+  `id` bigint NOT NULL,
+  `alamat` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nama_guru` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `tanggal_lahir` datetime DEFAULT NULL,
-  `tempat_lahir` varchar(255) DEFAULT NULL,
-  `total_periksa` int(11) DEFAULT NULL
+  `tempat_lahir` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `total_periksa` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -138,11 +141,11 @@ INSERT INTO `guru` (`id`, `alamat`, `nama_guru`, `tanggal_lahir`, `tempat_lahir`
 --
 
 CREATE TABLE `inventaris` (
-  `id` bigint(20) NOT NULL,
-  `nama_barang` varchar(255) DEFAULT NULL,
+  `id` bigint NOT NULL,
+  `nama_barang` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `tgl_barang_masuk` datetime DEFAULT NULL,
-  `asal_barang` varchar(255) DEFAULT NULL,
-  `jumlah_barang` int(11) DEFAULT NULL
+  `asal_barang` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `jumlah_barang` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -164,12 +167,12 @@ INSERT INTO `inventaris` (`id`, `nama_barang`, `tgl_barang_masuk`, `asal_barang`
 --
 
 CREATE TABLE `karyawan` (
-  `id` bigint(20) NOT NULL,
-  `alamat` varchar(255) DEFAULT NULL,
-  `nama_karyawan` varchar(255) DEFAULT NULL,
+  `id` bigint NOT NULL,
+  `alamat` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nama_karyawan` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `tanggal_lahir` datetime DEFAULT NULL,
-  `tempat_lahir` varchar(255) DEFAULT NULL,
-  `total_periksa` int(11) DEFAULT NULL
+  `tempat_lahir` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `total_periksa` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -187,12 +190,12 @@ INSERT INTO `karyawan` (`id`, `alamat`, `nama_karyawan`, `tanggal_lahir`, `tempa
 --
 
 CREATE TABLE `kegiatan_uks` (
-  `id` int(11) NOT NULL,
-  `nama_kegiatan` varchar(255) NOT NULL,
+  `id` int NOT NULL,
+  `nama_kegiatan` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `tanggal_mulai` timestamp NULL DEFAULT NULL,
   `tanggal_akhir` timestamp NULL DEFAULT NULL,
-  `deskripsi` text DEFAULT NULL,
-  `foto` text DEFAULT NULL
+  `deskripsi` text COLLATE utf8mb4_general_ci,
+  `foto` text COLLATE utf8mb4_general_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -210,10 +213,10 @@ INSERT INTO `kegiatan_uks` (`id`, `nama_kegiatan`, `tanggal_mulai`, `tanggal_akh
 --
 
 CREATE TABLE `pasien_status` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `create_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `update_date` datetime DEFAULT NULL ON UPDATE current_timestamp()
+  `id` int NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -232,12 +235,12 @@ INSERT INTO `pasien_status` (`id`, `name`, `create_date`, `update_date`) VALUES
 --
 
 CREATE TABLE `penanganan_periksa` (
-  `id` int(11) NOT NULL,
-  `catatan` varchar(255) DEFAULT NULL,
-  `diagnosa_penyakit_id` bigint(20) DEFAULT NULL,
-  `tindakan_id` bigint(20) DEFAULT NULL,
-  `penanganan_pertama_id` bigint(20) DEFAULT NULL,
-  `periksa_id` bigint(20) DEFAULT NULL
+  `id` int NOT NULL,
+  `catatan` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `diagnosa_penyakit_id` bigint DEFAULT NULL,
+  `tindakan_id` bigint DEFAULT NULL,
+  `penanganan_pertama_id` bigint DEFAULT NULL,
+  `periksa_id` bigint DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -257,10 +260,10 @@ INSERT INTO `penanganan_periksa` (`id`, `catatan`, `diagnosa_penyakit_id`, `tind
 --
 
 CREATE TABLE `penanganan_pertama` (
-  `id` bigint(20) NOT NULL,
+  `id` bigint NOT NULL,
   `create_date` datetime NOT NULL,
   `update_date` datetime DEFAULT NULL,
-  `nama_penanganan` varchar(255) DEFAULT NULL
+  `nama_penanganan` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -278,17 +281,17 @@ INSERT INTO `penanganan_pertama` (`id`, `create_date`, `update_date`, `nama_pena
 --
 
 CREATE TABLE `periksa` (
-  `id` bigint(20) NOT NULL,
-  `create_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `update_date` timestamp NULL DEFAULT current_timestamp(),
+  `id` bigint NOT NULL,
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `status` bit(1) DEFAULT b'0',
-  `keluhan` longtext DEFAULT NULL,
-  `guru_id` bigint(20) DEFAULT NULL,
-  `siswa_id` bigint(20) DEFAULT NULL,
-  `karyawan_id` bigint(20) DEFAULT NULL,
-  `keterangan_pasien_id` bigint(20) DEFAULT NULL,
-  `pasien_status` varchar(255) DEFAULT NULL,
-  `tahun_bulan` varchar(255) DEFAULT NULL
+  `keluhan` longtext COLLATE utf8mb4_general_ci,
+  `guru_id` bigint DEFAULT NULL,
+  `siswa_id` bigint DEFAULT NULL,
+  `karyawan_id` bigint DEFAULT NULL,
+  `keterangan_pasien_id` bigint DEFAULT NULL,
+  `pasien_status` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `tahun_bulan` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -310,15 +313,15 @@ INSERT INTO `periksa` (`id`, `create_date`, `update_date`, `status`, `keluhan`, 
 --
 
 CREATE TABLE `program_click` (
-  `id` bigint(20) NOT NULL,
-  `create_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `keluhan` longtext DEFAULT NULL,
-  `saran` longtext DEFAULT NULL,
-  `guru_id` bigint(20) DEFAULT NULL,
-  `siswa_id` bigint(20) DEFAULT NULL,
-  `karyawan_id` bigint(20) DEFAULT NULL,
-  `pasien_status` varchar(255) DEFAULT NULL,
-  `tahun_bulan` varchar(255) DEFAULT NULL
+  `id` bigint NOT NULL,
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `keluhan` longtext COLLATE utf8mb4_general_ci,
+  `saran` longtext COLLATE utf8mb4_general_ci,
+  `guru_id` bigint DEFAULT NULL,
+  `siswa_id` bigint DEFAULT NULL,
+  `karyawan_id` bigint DEFAULT NULL,
+  `pasien_status` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `tahun_bulan` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -336,11 +339,11 @@ INSERT INTO `program_click` (`id`, `create_date`, `keluhan`, `saran`, `guru_id`,
 --
 
 CREATE TABLE `program_kerja` (
-  `id` int(11) NOT NULL,
-  `nama_program` varchar(255) DEFAULT NULL,
-  `tanggal` timestamp NULL DEFAULT current_timestamp(),
-  `deskripsi` longtext DEFAULT NULL,
-  `foto` text DEFAULT NULL
+  `id` int NOT NULL,
+  `nama_program` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `tanggal` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `deskripsi` longtext COLLATE utf8mb4_general_ci,
+  `foto` text COLLATE utf8mb4_general_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -360,31 +363,33 @@ INSERT INTO `program_kerja` (`id`, `nama_program`, `tanggal`, `deskripsi`, `foto
 --
 
 CREATE TABLE `siswa` (
-  `id` bigint(20) NOT NULL,
-  `alamat` varchar(255) DEFAULT NULL,
-  `kelas` varchar(255) DEFAULT NULL,
-  `nama_siswa` varchar(255) DEFAULT NULL,
+  `id` bigint NOT NULL,
+  `foto` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nama_siswa` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `kelas` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `alamat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `tanggal_lahir` date DEFAULT NULL,
-  `tempat_lahir` varchar(255) DEFAULT NULL,
-  `total_periksa` int(11) DEFAULT NULL,
-  `TB` varchar(255) DEFAULT NULL,
-  `BB` varchar(255) DEFAULT NULL,
-  `riwayat_penyakit` varchar(255) DEFAULT NULL,
-  `gol_darah` varchar(255) DEFAULT NULL,
-  `no_telepon_wali` varchar(255) DEFAULT NULL,
-  `alergi` varchar(255) DEFAULT NULL,
-  `nama_wali` varchar(255) DEFAULT NULL
+  `tempat_lahir` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `total_periksa` int DEFAULT NULL,
+  `TB` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `BB` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `riwayat_penyakit` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `gol_darah` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `no_telepon_wali` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `alergi` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nama_wali` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `siswa`
 --
 
-INSERT INTO `siswa` (`id`, `alamat`, `kelas`, `nama_siswa`, `tanggal_lahir`, `tempat_lahir`, `total_periksa`, `TB`, `BB`, `riwayat_penyakit`, `gol_darah`, `no_telepon_wali`, `alergi`, `nama_wali`) VALUES
-(1, 'Mangkang', 'VII A', 'Rizqi Ramandika', '2003-11-08', 'Semarang', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 'Bringin', 'VII A', 'Orlynz', '2004-02-02', 'Semarang', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'Rembang', 'XI TKJ', 'Mala Fillatunnida', '2023-04-30', 'Rembang', NULL, '163 cm', '48 kg', 'Maag', 'A', '08123445', 'Udang', 'Akbar'),
-(5, 'Semarang', 'XI Tata Busana', 'Lina', '2023-05-09', 'Semarang', NULL, '', '', '', '', '', '', '');
+INSERT INTO `siswa` (`id`, `foto`, `nama_siswa`, `kelas`, `alamat`, `tanggal_lahir`, `tempat_lahir`, `total_periksa`, `TB`, `BB`, `riwayat_penyakit`, `gol_darah`, `no_telepon_wali`, `alergi`, `nama_wali`) VALUES
+(1, NULL, 'Rizqi Ramandika', 'VII A', 'Mangkang', '2003-11-08', 'Semarang', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, NULL, 'Orlynz', 'VII A', 'Bringin', '2004-02-02', 'Semarang', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, NULL, 'Mala Fillatunnida', 'XI TKJ', 'Rembang', '2023-04-30', 'Rembang', NULL, '163 cm', '48 kg', 'Maag', 'A', '08123445', 'Udang', 'Akbar'),
+(5, NULL, 'Lina', 'XI Tata Busana', 'Semarang', '2023-05-09', 'Semarang', NULL, '', '', '', '', '', '', ''),
+(6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -393,10 +398,10 @@ INSERT INTO `siswa` (`id`, `alamat`, `kelas`, `nama_siswa`, `tanggal_lahir`, `te
 --
 
 CREATE TABLE `tindakan` (
-  `id` bigint(20) NOT NULL,
-  `nama` varchar(255) DEFAULT NULL,
-  `create_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `update_date` datetime DEFAULT NULL ON UPDATE current_timestamp()
+  `id` bigint NOT NULL,
+  `nama` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -526,97 +531,97 @@ ALTER TABLE `tindakan`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `buku`
 --
 ALTER TABLE `buku`
-  MODIFY `id_buku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_buku` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `daftar_obat`
 --
 ALTER TABLE `daftar_obat`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `diagnosa`
 --
 ALTER TABLE `diagnosa`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `guru`
 --
 ALTER TABLE `guru`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `inventaris`
 --
 ALTER TABLE `inventaris`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `karyawan`
 --
 ALTER TABLE `karyawan`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `kegiatan_uks`
 --
 ALTER TABLE `kegiatan_uks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `pasien_status`
 --
 ALTER TABLE `pasien_status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `penanganan_periksa`
 --
 ALTER TABLE `penanganan_periksa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `penanganan_pertama`
 --
 ALTER TABLE `penanganan_pertama`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `periksa`
 --
 ALTER TABLE `periksa`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `program_click`
 --
 ALTER TABLE `program_click`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `program_kerja`
 --
 ALTER TABLE `program_kerja`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tindakan`
 --
 ALTER TABLE `tindakan`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
