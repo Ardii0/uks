@@ -33,6 +33,7 @@ class Akun extends CI_Controller {
                     $masuk=$this->Main_model->ubah_data('admin', $data, array('id'=>$this->input->post('id')));
                     if($masuk)
                     {
+                        $this->session->set_userdata($data);
                         $this->session->set_flashdata('sukses', 'Berhasil Mengganti Username');
                         redirect(base_url('akun'));
                     }
@@ -49,6 +50,7 @@ class Akun extends CI_Controller {
                 $masuk=$this->Main_model->ubah_data('admin', $data, array('id'=>$this->input->post('id')));
                 if($masuk)
                 {
+                    $this->session->set_userdata($data);
                     $this->session->set_flashdata('sukses', 'Berhasil Mengganti Data Akun');
                     redirect(base_url('akun'));
                 }
