@@ -119,13 +119,13 @@
                                 <div class="form-group col-sm-12 mb-0">
                                     <label class="control-label">Expired Obat</label>
                                     <div class="">
-                                        <input type="datetime-local" name="expired_obat" class="form-control" required
+                                        <input type="date" name="expired_obat" class="form-control" required
                                             placeholder="Masukan Expired Obat"><br>
                                     </div>
                                 </div>
                                 <!-- </div> -->
                             </div>
-                            <div class="modal-footer d-flex justify-content-end">
+                            <div class="modal-footer  d-flex justify-content-between">
                                 <button type="button" class="btn btn-danger text-bold w-25" onclick="kembali()"
                                     data-dismiss="modal">Batal</button>
                                 <button type="submit" class="btn btn-success text-bold w-25">Simpan</button>

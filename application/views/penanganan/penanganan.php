@@ -92,7 +92,7 @@
                                 </div>
                                 <!-- </div> -->
                             </div>
-                            <div class="modal-footer d-flex justify-content-end">
+                            <div class="modal-footer d-flex justify-content-between">
                                 <button type="button" class="btn btn-danger text-bold w-25" onclick="kembali()"
                                     data-dismiss="modal">Batal</button>
                                 <button type="submit" class="btn btn-success text-bold w-25">Simpan</button>

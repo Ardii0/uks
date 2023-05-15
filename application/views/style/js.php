@@ -76,8 +76,9 @@ $(function() {
         "responsive": true,
         "lengthChange": false,
         "bPaginate": false,
-        "bFilter": false,
+        "bFilter": true,
         "autoWidth": false,
+        "bInfo": false
     }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
 });
 </script>

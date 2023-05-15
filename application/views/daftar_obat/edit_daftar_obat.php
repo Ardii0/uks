@@ -17,14 +17,13 @@
             <div class="container-fluid">
                 <section class="content ">
                     <div class="container-fluid ">
-                    <div class="header p-3 text-light rounded-top" style="background-color:#4ADE80">
-                                <div class="row">
-                                    <div class="col  pt-1 text-center">
-                                        <h5>Edit Daftar Obat</h5>
+                    <div class="header p-2 text-light rounded-top d-flex justify-content-center"
+                                    style="background-color:#4ADE80">
+                                    <div class="d-flex align-items-center">
+                                        <div style="font-size: 2rem">Edit Daftar Obat</div>
                                     </div>
-                                    
+
                                 </div>
-                            </div>
                         <?php foreach ($obat as $row): ?>
 
                         <section class="content bg-white p-3 rounded">
@@ -48,12 +47,12 @@
                                     <div class="form-group col-sm-12">
                                         <label class="col-sm-2 control-label">Expired Obat</label>
                                         <div class="col-sm-">
-                                            <input type="datetime-local" value="<?php echo $row->expired ?>" name="expired_obat"
+                                            <input type="date" value="<?php echo $row->expired ?>" name="expired_obat"
                                                 class="form-control" required placeholder="Masukan Expired Obat"><br>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group col-sm-12 d-flex justify-content-end">
+                                <div class="form-group col-sm-12 d-flex justify-content-between">
                                 <button type="button" class="btn btn-danger text-bold mr-2" onclick="kembali()"
                                     data-dismiss="modal"><span class="p-3">Batal</span></button>
                                 <button onclick="bisa()" type="submit" class="btn btn-success text-bold "><span class="p-3">Update</span></button>

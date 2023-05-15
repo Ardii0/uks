@@ -17,14 +17,13 @@
             <div class="container-fluid">
                 <section class="content ">
                     <div class="container-fluid ">
-                    <div class="header p-3 text-light rounded-top" style="background-color:#4ADE80">
-                                <div class="row">
-                                    <div class="col pl-3 pt-1">
-                                        <h5>Edit Diagnosa</h5>
+                    <div class="header p-2 text-light rounded-top d-flex justify-content-center"
+                                    style="background-color:#4ADE80">
+                                    <div class="d-flex align-items-center">
+                                        <div style="font-size: 2rem">Edit Diagnosa</div>
                                     </div>
-                                    
+
                                 </div>
-                            </div>
                         <?php foreach ($diagnosa as $row): ?>
                         <section class="content bg-white p-3 rounded">
                             <form action="<?php echo base_url('Diagnosa/update_diagnosa') ?>" method="post">
@@ -39,7 +38,7 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group col-sm-12 d-flex justify-content-end">
+                                <div class="form-group col-sm-12 d-flex justify-content-between">
                                 <button type="button" class="btn btn-danger text-bold mr-2" onclick="kembali()"
                                     data-dismiss="modal"><span class="p-3">Batal</span></button>
                                     <input type="hidden" value="<?php echo $row->id ?>" name="id">
