@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Siswa</title>
+    <title>Edit Siswa</title>
     <?php $this->load->view('style/head')?>
 </head>
 
@@ -30,8 +30,8 @@
                                 <div class="box-body shadow px-3 py-1 mb-5 bg-white rounded">
                                     <?php foreach ($daf_siswa as $datas): ?>
                                     <section class="content bg-white p-2 rounded">
-                                        <form action="<?php echo base_url('data/ubah_siswa') ?>" method="post"
-                                            enctype="multipart/form-data">
+                                        <form action="<?php echo base_url('data/ubah_siswa') ?>"
+                                            enctype="multipart/form-data" method="post">
                                             <div class="box-body">
                                                 <div class="row">
                                                     <div class="form-group col-sm-4">
@@ -54,13 +54,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="form-group col-sm-6 mb-0">
-                                                        <!-- <div class="">
-                                                            <label for="formFile" class="form-label">Foto
-                                                                Kegiatan</label>
-                                                            <input class="form-control" type="file" id="formFile"
-                                                                name="foto">
-                                                        </div> -->
-                                                        <label class="control-label">Foto Kegiatan</label>
+                                                        <label class="control-label">Foto Profil</label>
                                                         <div class="custom-file mb-3">
                                                             <input type="file" class="custom-file-input" id="customFile"
                                                                 name="foto">
@@ -126,7 +120,7 @@
                                                         name="alergi" class="form-control" placeholder="Masukan Alergi">
                                                 </div>
                                             </div>
-                                            <div class="form-group col-sm-12 d-flex justify-content-end">
+                                            <div class="form-group col-sm-12 d-flex justify-content-between">
                                                 <button type="button" class="btn btn-danger text-bold mr-2"
                                                     onclick="kembali()" data-dismiss="modal"><span
                                                         class="p-3">Batal</span></button>
@@ -165,17 +159,10 @@ function kembali() {
     window.history.go(-1);
 }
 
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function(e) {
-            $('#blah').attr('src', e.target.result);
-        }
-
-        reader.readAsDataURL(input.files[0]);
-    }
-}
+$(".custom-file-input").on("change", function() {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
 </script>
 
 </html>

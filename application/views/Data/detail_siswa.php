@@ -6,15 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Data</title>
     <?php $this->load->view('style/head')?>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
-
-    .tes {
-        font-family: 'Nunito', sans-serif;
-    }
-    </style>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini layout-fixed">
@@ -47,7 +38,7 @@
                                         <p class="text-muted font-size-sm mb-2"><?php echo $datas->alamat ?></p>
                                         <hr class="mt-0 mb-4">
                                     </div>
-                                    <a class="btn btn-info w-100 mt-1 d-flex align-items-center justify-content-center"
+                                    <a class="btn btn-warning text-white text-bold w-100 mt-1 d-flex align-items-center justify-content-center"
                                         style="height: 47px"
                                         href="<?php echo base_url('data/edit_siswa/' . $datas->id)?>">Edit
                                         Data Siswa</a>
@@ -94,7 +85,7 @@
                                         </div>
                                         <div class="col-sm-1 text-secondary">:</div>
                                         <div class="col-sm-7 text-secondary">
-                                            <?php echo $datas->TB ?>
+                                            <?php echo $datas->TB ?> cm
                                         </div>
                                     </div>
                                     <hr>
@@ -104,7 +95,7 @@
                                         </div>
                                         <div class="col-sm-1 text-secondary">:</div>
                                         <div class="col-sm-7 text-secondary">
-                                            <?php echo $datas->BB ?>
+                                            <?php echo $datas->BB ?> kg
                                         </div>
                                     </div>
                                     <hr>
