@@ -41,6 +41,13 @@ class Main_model extends CI_Model
         return $this->db->delete($table);
     }
 
+    function set_data($where, $field, $table)
+    {
+        $this->db->where($where);
+        $this->db->set($field, $field.'+ 1', FALSE);
+        return $this->db->update($table);
+    }
+
     public function read_join_one($table1, $table2, $field1, $field2, $where, $id)
     {
         $this->db->select('*');
@@ -107,7 +114,7 @@ class Main_model extends CI_Model
     private $performance = 'performance';
 
 
-    // Dashboard
+// Dashboard
     function get_chart_data() {
         $query = $this->db->get($this->performance);
         $results['chart_data'] = $query->result();
@@ -133,7 +140,7 @@ class Main_model extends CI_Model
         $data = $this->db->where($multiClause)->get('periksa');
         return $data;
     }
-    // Data
+// Data
         public function tambah($tabel, $data)
         {
             $this->db->insert($tabel, $data);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2023 at 05:46 AM
+-- Generation Time: May 15, 2023 at 11:37 AM
 -- Server version: 8.0.29
 -- PHP Version: 8.0.25
 
@@ -120,10 +120,10 @@ INSERT INTO `diagnosa` (`id`, `create_date`, `update_date`, `nama`) VALUES
 
 CREATE TABLE `guru` (
   `id` bigint NOT NULL,
-  `alamat` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `nama_guru` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `tanggal_lahir` datetime DEFAULT NULL,
+  `nama_guru` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `tanggal_lahir` date DEFAULT NULL,
   `tempat_lahir` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `alamat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `total_periksa` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -131,10 +131,9 @@ CREATE TABLE `guru` (
 -- Dumping data for table `guru`
 --
 
-INSERT INTO `guru` (`id`, `alamat`, `nama_guru`, `tanggal_lahir`, `tempat_lahir`, `total_periksa`) VALUES
-(1, 'Mangkang', 'Dwi Sasmita', '1986-04-06 07:00:00', 'Semarang', 1),
-(3, 'Mijen', 'Dwi Arianto', '1987-02-02 09:57:00', 'Magelang', 0),
-(6, 'Jl. Kali Pancur', 'Secondta', '1986-07-22 00:00:00', 'Semarang', NULL);
+INSERT INTO `guru` (`id`, `nama_guru`, `tanggal_lahir`, `tempat_lahir`, `alamat`, `total_periksa`) VALUES
+(1, 'Dwi Sasmita', '1986-04-06', 'Semarang', 'Mangkang', 1),
+(3, 'Dwi Arianto', '1987-02-02', 'Magelang', 'Mijen', 1);
 
 -- --------------------------------------------------------
 
@@ -145,8 +144,8 @@ INSERT INTO `guru` (`id`, `alamat`, `nama_guru`, `tanggal_lahir`, `tempat_lahir`
 CREATE TABLE `inventaris` (
   `id` bigint NOT NULL,
   `nama_barang` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `tgl_barang_masuk` datetime DEFAULT NULL,
-  `asal_barang` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `tgl_barang_masuk` date DEFAULT NULL,
+  `pendanaan` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `jumlah_barang` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -154,14 +153,10 @@ CREATE TABLE `inventaris` (
 -- Dumping data for table `inventaris`
 --
 
-INSERT INTO `inventaris` (`id`, `nama_barang`, `tgl_barang_masuk`, `asal_barang`, `jumlah_barang`) VALUES
-(1, 'Kasur', '2003-11-08 07:00:00', 'DANA BOS', 4),
-(2, 'Kursi', '2003-11-08 07:00:00', 'DANA BOS', 9),
-(4, 'Kipas', '2023-05-10 00:00:00', 'dana bos', 6),
-(5, 'Meja', '2023-05-10 00:00:00', 'Dana Bos', 36),
-(14, 'Kipas', '2023-05-12 11:43:16', 'dana bos', 6),
-(15, 'Lampu', '2023-05-12 11:44:11', 'dana boss', 6),
-(16, 'Meja panjang', '2023-05-15 04:46:20', 'Pendanaan', 4);
+INSERT INTO `inventaris` (`id`, `nama_barang`, `tgl_barang_masuk`, `pendanaan`, `jumlah_barang`) VALUES
+(5, 'Meja', '2023-08-27', 'Dana Bos', 6),
+(14, 'Kipas', '2023-05-12', 'dana bos', 6),
+(15, 'Lampu', '2023-05-12', 'dana boss', 6);
 
 -- --------------------------------------------------------
 
@@ -173,7 +168,7 @@ CREATE TABLE `karyawan` (
   `id` bigint NOT NULL,
   `alamat` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `nama_karyawan` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `tanggal_lahir` datetime DEFAULT NULL,
+  `tanggal_lahir` date DEFAULT NULL,
   `tempat_lahir` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `total_periksa` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -183,8 +178,8 @@ CREATE TABLE `karyawan` (
 --
 
 INSERT INTO `karyawan` (`id`, `alamat`, `nama_karyawan`, `tanggal_lahir`, `tempat_lahir`, `total_periksa`) VALUES
-(1, 'Tugurejo', 'Ridho Roma', '2023-04-11 07:00:00', 'Semarang', 0),
-(2, 'Tegal', 'Surtiono', '2023-02-02 07:00:00', 'Semarang', 0);
+(1, 'Tugurejo', 'Ridho Roma', '2023-04-11', 'Semarang', 3),
+(2, 'Tegal', 'Surtiono', '2023-02-02', 'Semarang', 1);
 
 -- --------------------------------------------------------
 
@@ -208,7 +203,7 @@ CREATE TABLE `kegiatan_uks` (
 INSERT INTO `kegiatan_uks` (`id`, `nama_kegiatan`, `tanggal_mulai`, `tanggal_akhir`, `deskripsi`, `foto`) VALUES
 (1, 'Peresmian UKS SMPN 1 SMG', '2023-05-11 00:30:00', '2023-05-11 02:00:00', 'Pembukaan UKS SMPN 1 Semarang', '1683778201252.jpg'),
 (4, 'Cuci Tangan Bersama', '2023-05-11 00:40:00', '2023-05-11 01:30:00', 'Kegiatan diadakan Di depan UKS', '1683780730703.jpg'),
-(17, 'Senam', '2023-05-26 03:00:00', '2023-05-26 05:00:00', 'Kegiatan Senam di Lapangan', '1684118931742.png');
+(17, 'Senam Sehat', '2023-05-26 03:00:00', '2023-05-26 05:00:00', 'Kegiatan Senam di Lapangan', '1684137029918.png');
 
 -- --------------------------------------------------------
 
@@ -255,7 +250,8 @@ INSERT INTO `penanganan_periksa` (`id`, `catatan`, `diagnosa_penyakit_id`, `tind
 (1, 'Lekas Sembuh', 2, 1, 1, 1),
 (3, 'Tes', 2, 1, 2, 2),
 (4, 'Lekas Sembuh', 2, 1, 1, 5),
-(5, 'Cepat Sembuh', 1, 1, 1, 1);
+(5, 'Cepat Sembuh', 1, 1, 1, 1),
+(8, 'ada', 2, 1, 1, 6);
 
 -- --------------------------------------------------------
 
@@ -276,7 +272,8 @@ CREATE TABLE `penanganan_pertama` (
 
 INSERT INTO `penanganan_pertama` (`id`, `create_date`, `update_date`, `nama_penanganan`) VALUES
 (1, '2023-04-11 15:39:46', '2023-04-11 15:39:46', 'Di Perban'),
-(2, '2023-05-10 11:05:16', NULL, 'Di Korbankan');
+(2, '2023-05-10 11:05:16', NULL, 'Di Korbankan'),
+(3, '0000-00-00 00:00:00', NULL, 'Di beri Obat');
 
 -- --------------------------------------------------------
 
@@ -308,7 +305,10 @@ INSERT INTO `periksa` (`id`, `create_date`, `update_date`, `status`, `keluhan`, 
 (5, '2023-05-12 01:40:57', '2023-05-12 01:40:57', b'0', 'Mual Mual', NULL, 4, NULL, NULL, 'Siswa', '2023-05'),
 (6, '2023-05-12 01:42:21', '2023-05-12 01:42:21', b'0', 'Mual', NULL, 4, NULL, NULL, 'Siswa', '2023-05'),
 (7, '2023-05-12 06:49:02', '2023-05-12 06:49:02', b'0', 'Demam', 3, NULL, NULL, NULL, 'Guru', '2023-05'),
-(8, '2023-05-12 06:50:08', '2023-05-12 06:50:08', b'0', 'Sakit Kepala', NULL, NULL, 2, NULL, 'Karyawan', '2023-05');
+(8, '2023-05-12 06:50:08', '2023-05-12 06:50:08', b'0', 'Sakit Kepala', NULL, NULL, 2, NULL, 'Karyawan', '2023-05'),
+(10, '2023-05-15 07:03:06', '2023-05-15 07:03:06', b'0', 'Pusing', NULL, NULL, 1, NULL, 'Karyawan', '2023-05'),
+(11, '2023-05-15 07:04:13', '2023-05-15 07:04:13', b'0', 'Muntah', NULL, NULL, 1, NULL, 'Karyawan', '2023-05'),
+(12, '2023-05-15 07:05:24', '2023-05-15 07:05:24', b'0', 'Pusing', NULL, NULL, 1, NULL, 'Karyawan', '2023-05');
 
 -- --------------------------------------------------------
 
@@ -370,7 +370,7 @@ INSERT INTO `program_kerja` (`id`, `nama_program`, `tanggal`, `deskripsi`, `foto
 
 CREATE TABLE `siswa` (
   `id` bigint NOT NULL,
-  `foto` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `foto` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
   `nama_siswa` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `kelas` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `alamat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
@@ -393,7 +393,7 @@ CREATE TABLE `siswa` (
 INSERT INTO `siswa` (`id`, `foto`, `nama_siswa`, `kelas`, `alamat`, `tanggal_lahir`, `tempat_lahir`, `total_periksa`, `TB`, `BB`, `riwayat_penyakit`, `gol_darah`, `no_telepon_wali`, `alergi`, `nama_wali`) VALUES
 (1, '1684118451484.png', 'Rizqi Ramandika', 'VII A', 'Mangkang', '2003-11-08', 'Semarang', 1, '600', '89', 'Tidak ada', 'C', '080494857', 'Udang', 'Wali'),
 (3, NULL, 'Orlynz', 'VII A', 'Bringin', '2004-02-02', 'Semarang', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, NULL, 'Mala Fillatunnida', 'XI TKJ', 'Rembang', '2023-04-30', 'Rembang', NULL, '163 cm', '48 kg', 'Maag', 'A', '08123445', 'Udang', 'Akbar'),
+(4, NULL, 'Mala Fillatunnida', 'XI TKJ', 'Rembang', '2023-04-30', 'Rembang', 2, '163 cm', '48 kg', 'Maag', 'A', '08123445', 'Udang', 'Akbar'),
 (5, NULL, 'Lina', 'XI Tata Busana', 'Semarang', '2023-05-09', 'Semarang', NULL, '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
@@ -566,7 +566,7 @@ ALTER TABLE `guru`
 -- AUTO_INCREMENT for table `inventaris`
 --
 ALTER TABLE `inventaris`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `karyawan`
@@ -590,19 +590,19 @@ ALTER TABLE `pasien_status`
 -- AUTO_INCREMENT for table `penanganan_periksa`
 --
 ALTER TABLE `penanganan_periksa`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `penanganan_pertama`
 --
 ALTER TABLE `penanganan_pertama`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `periksa`
 --
 ALTER TABLE `periksa`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `program_click`
