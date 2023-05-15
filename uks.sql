@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 13, 2023 at 08:00 AM
+-- Generation Time: May 15, 2023 at 05:46 AM
 -- Server version: 8.0.29
 -- PHP Version: 8.0.25
 
@@ -63,7 +63,8 @@ CREATE TABLE `buku` (
 --
 
 INSERT INTO `buku` (`id_buku`, `judul_buku`, `penerbit_buku`, `penulis_buku`, `tahun_terbit`, `keterangan`, `sumber`, `created_at`, `foto`) VALUES
-(1, 'Laut Tengah', 'Akads', ' Berliana Kimberly', 2022, 'Laut Tengah merupakan novel karya Berliana Kimberly yang diterbitkan oleh Akad Publishing pada tahun 2022. Novel ini cocok dibaca oleh remaja perempuan maupun wanita dewasa yang menyukai novel bertema romance.', 'Beli', '2023-05-12 02:19:00', '1683771606217.png');
+(1, 'Laut Tengah', 'Akads', ' Berliana Kimberly', 2022, 'Laut Tengah merupakan novel karya Berliana Kimberly yang diterbitkan oleh Akad Publishing pada tahun 2022. Novel ini cocok dibaca oleh remaja perempuan maupun wanita dewasa yang menyukai novel bertema romance.', 'Beli', '2023-05-12 02:19:00', '1683771606217.png'),
+(5, 'ada', 'ada', 'da', 2009, 'ada', 'Puspita Sari', '2023-05-14 17:00:00', '1684119131474.jpg');
 
 -- --------------------------------------------------------
 
@@ -132,7 +133,8 @@ CREATE TABLE `guru` (
 
 INSERT INTO `guru` (`id`, `alamat`, `nama_guru`, `tanggal_lahir`, `tempat_lahir`, `total_periksa`) VALUES
 (1, 'Mangkang', 'Dwi Sasmita', '1986-04-06 07:00:00', 'Semarang', 1),
-(3, 'Mijen', 'Dwi Arianto', '1987-02-02 09:57:00', 'Magelang', 0);
+(3, 'Mijen', 'Dwi Arianto', '1987-02-02 09:57:00', 'Magelang', 0),
+(6, 'Jl. Kali Pancur', 'Secondta', '1986-07-22 00:00:00', 'Semarang', NULL);
 
 -- --------------------------------------------------------
 
@@ -158,7 +160,8 @@ INSERT INTO `inventaris` (`id`, `nama_barang`, `tgl_barang_masuk`, `asal_barang`
 (4, 'Kipas', '2023-05-10 00:00:00', 'dana bos', 6),
 (5, 'Meja', '2023-05-10 00:00:00', 'Dana Bos', 36),
 (14, 'Kipas', '2023-05-12 11:43:16', 'dana bos', 6),
-(15, 'Lampu', '2023-05-12 11:44:11', 'dana boss', 6);
+(15, 'Lampu', '2023-05-12 11:44:11', 'dana boss', 6),
+(16, 'Meja panjang', '2023-05-15 04:46:20', 'Pendanaan', 4);
 
 -- --------------------------------------------------------
 
@@ -204,7 +207,8 @@ CREATE TABLE `kegiatan_uks` (
 
 INSERT INTO `kegiatan_uks` (`id`, `nama_kegiatan`, `tanggal_mulai`, `tanggal_akhir`, `deskripsi`, `foto`) VALUES
 (1, 'Peresmian UKS SMPN 1 SMG', '2023-05-11 00:30:00', '2023-05-11 02:00:00', 'Pembukaan UKS SMPN 1 Semarang', '1683778201252.jpg'),
-(4, 'Cuci Tangan Bersama', '2023-05-11 00:40:00', '2023-05-11 01:30:00', 'Kegiatan diadakan Di depan UKS', '1683780730703.jpg');
+(4, 'Cuci Tangan Bersama', '2023-05-11 00:40:00', '2023-05-11 01:30:00', 'Kegiatan diadakan Di depan UKS', '1683780730703.jpg'),
+(17, 'Senam', '2023-05-26 03:00:00', '2023-05-26 05:00:00', 'Kegiatan Senam di Lapangan', '1684118931742.png');
 
 -- --------------------------------------------------------
 
@@ -301,8 +305,8 @@ CREATE TABLE `periksa` (
 INSERT INTO `periksa` (`id`, `create_date`, `update_date`, `status`, `keluhan`, `guru_id`, `siswa_id`, `karyawan_id`, `keterangan_pasien_id`, `pasien_status`, `tahun_bulan`) VALUES
 (1, '2023-04-11 08:42:58', '2023-04-11 08:43:29', b'1', 'Pusingduh', NULL, 1, NULL, NULL, 'Siswa', '2023-04'),
 (2, '2023-04-11 08:43:46', '2023-04-11 08:43:46', b'0', 'Pusing', 1, NULL, NULL, NULL, 'Guru', '2023-04'),
-(5, '2023-05-12 01:40:57', '2023-05-12 01:40:57', b'0', 'Mual Mual', NULL, 4, NULL, NULL, 'Siswa', NULL),
-(6, '2023-05-12 01:42:21', '2023-05-12 01:42:21', b'0', 'Mual', NULL, 4, NULL, NULL, 'Siswa', NULL),
+(5, '2023-05-12 01:40:57', '2023-05-12 01:40:57', b'0', 'Mual Mual', NULL, 4, NULL, NULL, 'Siswa', '2023-05'),
+(6, '2023-05-12 01:42:21', '2023-05-12 01:42:21', b'0', 'Mual', NULL, 4, NULL, NULL, 'Siswa', '2023-05'),
 (7, '2023-05-12 06:49:02', '2023-05-12 06:49:02', b'0', 'Demam', 3, NULL, NULL, NULL, 'Guru', '2023-05'),
 (8, '2023-05-12 06:50:08', '2023-05-12 06:50:08', b'0', 'Sakit Kepala', NULL, NULL, 2, NULL, 'Karyawan', '2023-05');
 
@@ -330,7 +334,8 @@ CREATE TABLE `program_click` (
 
 INSERT INTO `program_click` (`id`, `create_date`, `keluhan`, `saran`, `guru_id`, `siswa_id`, `karyawan_id`, `pasien_status`, `tahun_bulan`) VALUES
 (1, '2023-05-12 03:33:38', 'Mual', 'Makan Ayam', 3, NULL, NULL, 'Guru', '2023-05'),
-(2, '2023-05-12 03:35:37', 'Muntah', 'Makan Bayam\r\n', NULL, 4, NULL, 'Siswa', '2023-05');
+(2, '2023-05-12 03:35:37', 'Muntah', 'Makan Bayam\r\n', NULL, 4, NULL, 'Siswa', '2023-05'),
+(3, '2023-05-14 21:53:15', 'Sakit hati', 'Semangat', NULL, 3, NULL, 'Siswa', '2023-05');
 
 -- --------------------------------------------------------
 
@@ -354,7 +359,8 @@ INSERT INTO `program_kerja` (`id`, `nama_program`, `tanggal`, `deskripsi`, `foto
 (3, 'wadawddee', '2023-05-12 09:03:00', 'dwadad                                                                                                                        ', '1683882237914.jpg'),
 (4, 'adawdawd', '2023-05-10 09:15:00', 'dwadawd', '1683882949253.jpg'),
 (5, 'adawds', '2023-05-06 09:20:00', 'dawawd', '1683883225753.jpg'),
-(6, 'wdad', '2023-05-12 09:36:00', 'awdad', '1683884186357.jpg');
+(6, 'wdad', '2023-05-12 09:36:00', 'awdad', '1683884186357.jpg'),
+(7, 'Pelaksanaan', '2023-05-15 02:55:00', 'Melaksanakan', '1684119318338.jpg');
 
 -- --------------------------------------------------------
 
@@ -385,11 +391,10 @@ CREATE TABLE `siswa` (
 --
 
 INSERT INTO `siswa` (`id`, `foto`, `nama_siswa`, `kelas`, `alamat`, `tanggal_lahir`, `tempat_lahir`, `total_periksa`, `TB`, `BB`, `riwayat_penyakit`, `gol_darah`, `no_telepon_wali`, `alergi`, `nama_wali`) VALUES
-(1, NULL, 'Rizqi Ramandika', 'VII A', 'Mangkang', '2003-11-08', 'Semarang', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1, '1684118451484.png', 'Rizqi Ramandika', 'VII A', 'Mangkang', '2003-11-08', 'Semarang', 1, '600', '89', 'Tidak ada', 'C', '080494857', 'Udang', 'Wali'),
 (3, NULL, 'Orlynz', 'VII A', 'Bringin', '2004-02-02', 'Semarang', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (4, NULL, 'Mala Fillatunnida', 'XI TKJ', 'Rembang', '2023-04-30', 'Rembang', NULL, '163 cm', '48 kg', 'Maag', 'A', '08123445', 'Udang', 'Akbar'),
-(5, NULL, 'Lina', 'XI Tata Busana', 'Semarang', '2023-05-09', 'Semarang', NULL, '', '', '', '', '', '', ''),
-(6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(5, NULL, 'Lina', 'XI Tata Busana', 'Semarang', '2023-05-09', 'Semarang', NULL, '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -537,7 +542,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `buku`
 --
 ALTER TABLE `buku`
-  MODIFY `id_buku` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_buku` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `daftar_obat`
@@ -555,13 +560,13 @@ ALTER TABLE `diagnosa`
 -- AUTO_INCREMENT for table `guru`
 --
 ALTER TABLE `guru`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `inventaris`
 --
 ALTER TABLE `inventaris`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `karyawan`
@@ -573,7 +578,7 @@ ALTER TABLE `karyawan`
 -- AUTO_INCREMENT for table `kegiatan_uks`
 --
 ALTER TABLE `kegiatan_uks`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `pasien_status`
@@ -603,19 +608,19 @@ ALTER TABLE `periksa`
 -- AUTO_INCREMENT for table `program_click`
 --
 ALTER TABLE `program_click`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `program_kerja`
 --
 ALTER TABLE `program_kerja`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tindakan`
