@@ -63,13 +63,13 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-group col-sm-12 d-flex justify-content-end">
+                                            <div class="form-group col-sm-12 d-flex justify-content-between">
                                                 <button type="button" class="btn btn-danger text-bold mr-2"
                                                     onclick="kembali()" data-dismiss="modal"><span
                                                         class="p-3">Batal</span></button>
                                                 <input type="hidden" value="<?php echo $datas->id ?>" name="id">
                                                 <button type="submit" class="btn btn-success text-bold "><span
-                                                        class="p-3" onclick="bisa()">Update</span></button>
+                                                        class="p-3">Update</span></button>
                                             </div>
                                         </form>
                                     </section>
@@ -91,7 +91,7 @@
                 title: "<?php echo $this->session->flashdata('bisa')?>",
                 icon: "success",
                 showConfirmButton: false,
-                timer: 2000,
+                timer: 3500,
             });
         </script>
         <?php if (isset($_SESSION['bisa'])) {

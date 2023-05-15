@@ -25,7 +25,7 @@
                                     </div>
                                     <div class="p-2 d-flex align-items-center gap-3">
                                         <div class="grid gap-3">
-                                            <button data-toggle="modal" data-target="#index1" class="btn btn-success"><i
+                                            <button data-toggle="modal" data-target="#index1" class="btn btn-info"><i
                                                     class="fas fa-plus"></i>&nbsp;
                                                 Tambah</button>
                                         </div>
@@ -33,13 +33,13 @@
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body shadow p-4 mb-5 bg-white rounded">
-                                    <table id="datasiswa-table" class="table">
+                                    <table id="table" class="table">
                                         <thead>
                                             <tr class="text-center">
                                                 <th>No</th>
                                                 <th>Nama Barang</th>
                                                 <th>Tanggal Masuk</th>
-                                                <th>Asal Barang</th>
+                                                <th>Pendanaan</th>
                                                 <th>Jumlah Barang</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -50,11 +50,11 @@
                                                 <td><?php echo $no?></td>
                                                 <td><?php echo $datas->nama_barang?></td>
                                                 <td><?php echo indonesian_date_time($datas->tgl_barang_masuk)?></td>
-                                                <td><?php echo $datas->asal_barang?></td>
+                                                <td><?php echo $datas->pendanaan?></td>
                                                 <td><?php echo $datas->jumlah_barang?></td>
                                                 <td>
                                                     <a href="<?php echo base_url('inventaris/edit_invent/' . $datas->id)?>"
-                                                        class="btn btn-info btn-sm">
+                                                        class="btn btn-warning btn-sm">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
                                                     <button onclick="hapus(<?php echo $datas->id ?>)"
@@ -98,9 +98,16 @@
                                     </div>
                                 </div>  
                                 <div class="form-group">
-                                    <label class="control-label">Asal Barang</label>
+                                    <label class="control-label">Pendanaan</label>
                                     <div class="">
-                                        <input type='text' name="asal_barang" class="form-control" required=""
+                                        <input type='text' name="pendanaan" class="form-control" required=""
+                                            placeholder="Masukan Asal Barang"><br>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Tanggal Masuk</label>
+                                    <div class="">
+                                        <input type='date' name="tgl_barang_masuk" class="form-control" required=""
                                             placeholder="Masukan Asal Barang"><br>
                                     </div>
                                 </div>
@@ -116,9 +123,9 @@
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-between">
-                        <button type="button" class="btn btn-secondary" onclick="kembali()"
-                            data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" onclick="bisa()">Simpan</button>
+                    <button type="button"  class="btn btn-danger text-bold w-25" onclick="kembali()"
+                                data-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-success text-bold w-25">Simpan</button>
                     </div>
                 </div>
             </form>
@@ -133,7 +140,7 @@
                 title: "<?php echo $this->session->flashdata('bisa')?>",
                 icon: "success",
                 showConfirmButton: false,
-                timer: 2000,
+                timer: 3000,
             });
         </script>
         <?php if (isset($_SESSION['bisa'])) {
@@ -158,7 +165,7 @@ function hapus(id) {
                 icon: 'success',
                 title: 'Berhasil Dihapus',
                 showConfirmButton: false,
-                timer: 2000
+                timer: 3000
             })
 
         }

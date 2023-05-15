@@ -25,9 +25,9 @@ class Inventaris extends CI_Controller {
     {
         $data = [
             'nama_barang' => $this->input->post('nama_barang'),
-            'asal_barang' => $this->input->post('asal_barang'),
+            'pendanaan' => $this->input->post('pendanaan'),
             'jumlah_barang' => $this->input->post('jumlah_barang'),
-            'tgl_barang_masuk' => date('Y-m-d  H:i:s'),
+            'tgl_barang_masuk' => $this->input->post('tgl_barang_masuk')
       ];
       $masuk=$this->Main_model->tambah("inventaris", $data);
       if($masuk)
@@ -48,13 +48,19 @@ class Inventaris extends CI_Controller {
     {
         $data = array (
             'nama_barang' => $this->input->post('nama_barang'),
-          'asal_barang' => $this->input->post('asal_barang'),
+          'pendanaan' => $this->input->post('pendanaan'),
           'jumlah_barang' => $this->input->post('jumlah_barang'),
+          'tgl_barang_masuk' => $this->input->post('tgl_barang_masuk')
         );
         $masuk=$this->Main_model->ubah_data('inventaris', $data, array('id'=>$this->input->post('id')));
         if($masuk)
         {
-            $this->session->set_flashdata('bisa', 'berhasil di edit...');
+            $this->session->set_flashdata('bisa', 'berhasil mengedit...');
+            redirect(base_url('inventaris/'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
             redirect(base_url('inventaris/'));
         }
     }
@@ -70,7 +76,7 @@ class Inventaris extends CI_Controller {
         else
         {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('inventaris/inventaris'));
+            redirect(base_url('inventaris/'));
         }
     }
 }

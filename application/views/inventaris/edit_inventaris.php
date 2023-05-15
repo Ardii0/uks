@@ -39,9 +39,16 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-12">
-                                        <label class="col-sm-2 control-label">Asal Barang</label>
+                                        <label class="col-sm-2 control-label">Pendanaan</label>
                                         <div class="col-sm-">
-                                            <input type="text" value="<?php echo $datas->asal_barang ?>" name="asal_barang"
+                                            <input type="text" value="<?php echo $datas->pendanaan ?>" name="pendanaan"
+                                                class="form-control"><br>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-12">
+                                        <label class="col-sm-2 control-label">Tanggal Masuk</label>
+                                        <div class="col-sm-">
+                                            <input type="date" value="<?php echo $datas->tgl_barang_masuk ?>" name="tgl_barang_masuk"
                                                 class="form-control"><br>
                                         </div>
                                     </div>
@@ -52,11 +59,11 @@
                                                 class="form-control"><br>
                                         </div>
                                     </div>
-                                <div class="form-group col-sm-12 d-flex justify-content-end">
+                                <div class="form-group col-sm-12 d-flex justify-content-between">
                                 <button type="button" class="btn btn-danger text-bold mr-2" onclick="kembali()"
                                     data-dismiss="modal"><span class="p-3">Batal</span></button>
                                     <input type="hidden" value="<?php echo $datas->id ?>" name="id">
-                                <button onclick="bisa()" type="submit" class="btn btn-success text-bold"><span class="p-3">Update</span></button>
+                                <button type="submit" class="btn btn-success text-bold"><span class="p-3">Update</span></button>
                                 </div>
 
                             </form>
@@ -74,7 +81,19 @@
 
     <?php $this->load->view('style/js')?>
 </body>
-
+<?php if ($this->session->flashdata('bisa')): ?>
+        <script>
+            swal.fire({
+                title: "<?php echo $this->session->flashdata('bisa')?>",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 3000,
+            });
+        </script>
+        <?php if (isset($_SESSION['bisa'])) {
+            unset($_SESSION['bisa']);
+        }
+    endif; ?>
 <script>
 function kembali() {
             window.history.go(-1);

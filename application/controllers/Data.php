@@ -81,6 +81,11 @@ class Data extends CI_Controller {
             $this->session->set_flashdata('bisa', 'berhasil mengedit...');
             redirect(base_url('data/daf_guru'));
         }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('data/daf_guru/'));
+        }
     }
 
     public function hapus_guru($id)
@@ -437,8 +442,13 @@ class Data extends CI_Controller {
         $masuk=$this->Main_model->ubah_data('karyawan', $data, array('id'=>$this->input->post('id')));
         if($masuk)
         {
-            $this->session->set_flashdata('sukses', 'berhasil');
+            $this->session->set_flashdata('bisa', 'berhasil mengedit...');
             redirect(base_url('data/daf_karyawan'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('data/daf_karyawan/'));
         }
     }
 

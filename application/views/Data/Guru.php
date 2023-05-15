@@ -43,7 +43,7 @@
                                         <div class="p-2 d-flex align-items-center gap-3">
                                             <div class="grid gap-3">
                                                 <button data-toggle="modal" data-target="#index1"
-                                                    class="btn btn-success"><i class="fas fa-plus"></i>&nbsp;
+                                                    class="btn btn-info"><i class="fas fa-plus"></i>&nbsp;
                                                     Tambah</button>
                                             </div>
                                         </div>
@@ -71,7 +71,7 @@
                                                 <td><?php echo $datas->alamat?></td>
                                                 <td>
                                                     <a href="<?php echo base_url('data/edit_guru/' . $datas->id)?>"
-                                                        class="btn btn-info btn-sm">
+                                                        class="btn btn-warning btn-sm">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
                                                     <button onclick="hapus(<?php echo $datas->id ?>)"
@@ -142,9 +142,8 @@
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-between">
-                        <button type="button" class="btn btn-secondary" onclick="kembali()"
-                            data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" onclick="bisa()">Simpan</button>
+                    <button type="button" class="btn btn-danger text-bold w-25" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-success text-bold w-25">Simpan</button>
                     </div>
                 </div>
             </form>
@@ -164,7 +163,7 @@
                     <div class="modal-body">
                         <div class="box-body">
                             <p>Download template excel untuk mengisi data guru yang akan diupload.</p>
-                            <a href="<?php echo base_url('assets/format-guru.xlsx') ?>" class="btn btn-success">
+                            <a href="<?php echo base_url('assets/guru-format.xlsx') ?>" class="btn btn-success">
                                 <i class="fa fa-download"></i> Download Template
                             </a>
                             <br>
@@ -181,9 +180,9 @@
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-between">
-                        <button type="button" class="btn btn-secondary" onclick="kembali()"
-                            data-dismiss="modal">Kembali</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="button" class="btn btn-danger text-bold w-25" onclick="kembali()"
+                            data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-success text-bold w-25">Simpan</button>
                     </div>
                 </div>
         </div>
@@ -197,7 +196,7 @@ swal.fire({
     title: "<?php echo $this->session->flashdata('bisa')?>",
     icon: "success",
     showConfirmButton: false,
-    timer: 2000,
+    timer: 3000,
 });
 </script>
 <?php if (isset($_SESSION['bisa'])) {
