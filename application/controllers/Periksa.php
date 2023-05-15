@@ -111,6 +111,64 @@ class Periksa extends CI_Controller {
         $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'CSV');  
         $objWriter->save('php://output'); 
     }
+
+    public function exportToExcel()
+{
+    $this->load->library('excel');
+    // Load the MySQL data
+    $this->load->database();
+    $query = $this->db->get('periksa');
+    $data = $query->result_array();
+
+    // Create a new PHPExcel object
+    $objPHPExcel = new PHPExcel();
+
+    // Set the properties of the Excel file
+    $objPHPExcel->getProperties()
+        ->setCreator("Your Name")
+        ->setLastModifiedBy("Your Name")
+        ->setTitle("Your Title")
+        ->setSubject("Your Subject")
+        ->setDescription("Your Description");
+
+    // Set the column headings
+    $objPHPExcel->setActiveSheetIndex(0)
+        ->setCellValue('A1', 'Column 1')
+        ->setCellValue('B1', 'Column 2')
+        ->setCellValue('C1', 'Column 3');
+
+    // Add the data to the Excel file
+    $row = 2;
+    foreach ($data as $item) {
+        $objPHPExcel->setActiveSheetIndex(0)
+            ->setCellValue('A'.$row, $item['keluhan'])
+            ->setCellValue('B'.$row, $item['id'])
+            ->setCellValue('C'.$row, $item['id']);
+        $row++;
+    }
+
+    // Rename the worksheet
+    $objPHPExcel->getActiveSheet()->setTitle('Sheet1');
+
+    // Set the header and content type for the Excel file
+    $filename = 'your_filename.csv';
+    header('Content-Type: application/vnd.ms-excel'); 
+    header('Content-Disposition: attachment;filename="'.$filename.'"');
+    header('Cache-Control: max-age=0');
+
+    // Save the Excel file to output
+    $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'CSV');
+    $objWriter->save('php://output');
+
+    // $filename = "coba_periksa.csv";
+    // header('Content-Type: application/vnd.ms-excel'); 
+    // header('Content-Disposition: attachment;filename="'.$filename.'"');
+    // header('Cache-Control: max-age=0'); 
+    // $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'CSV');  
+    // $objWriter->save('php://output'); 
+    exit;
+}
+
     
     public function hapus_periksa($id)
     {

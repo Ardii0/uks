@@ -88,7 +88,7 @@
       }
       }
 
-// Periksa Pasien
+    // Periksa Pasien
     function tampil_pasien_status_byid($id)
         {
         $ci =& get_instance();
@@ -99,6 +99,43 @@
         return $stmt;
         }
     }
+
+    // Program Click
+    function tampil_kelas_byid($id)
+    {
+    $ci =& get_instance();
+    $ci->load->database();
+    $result = $ci->db->where('id',$id)->get('siswa');
+    foreach ($result->result() as $c) {
+    $stmt= $c->kelas;
+    return $stmt;
+    }
+}
+
+    // Program Kerja
+    function tampil_foto_byid($id)
+    {
+    $ci =& get_instance();
+    $ci->load->database();
+    $result = $ci->db->where('id',$id)->get('program_kerja');
+    foreach ($result->result() as $c) {
+    $stmt= $c->foto;
+    return $stmt;
+    }
+}
+
+    // Pojok Baca
+    function tampil_cover_byid($id)
+    {
+    $ci =& get_instance();
+    $ci->load->database();
+    $result = $ci->db->where('id_buku',$id)->get('buku');
+    foreach ($result->result() as $c) {
+    $stmt= $c->foto;
+    return $stmt;
+    }
+}
+
 
     function tampil_guru_byid($id)
         {

@@ -24,7 +24,7 @@
                         <div class="p-2 d-flex align-items-center gap-3">
                             <div style="font-size: 1.5rem">Filter Rekap Data</div>
                         </div>
-                        <div class="p-2 d-flex align-items-center gap-3">
+                        <div class="p-2 d-flex align-items-center gap-3"> 
                             <div class="grid gap-3">
                                 <button class="btn btn-info" data-toggle="modal"
                                     data-target="#modal_filter_tanggal"><i class="fas fa-filter"></i>&nbsp;
@@ -45,8 +45,10 @@
                                 <h4>
                                     <?= '(' . $awal_tanggal . ') - (' . $akhir_tanggal . ')' ?>
                                 </h4>
+                                <a href="<?php echo base_url('Periksa/exportToExcel/'.$awal_tanggal.'/pdf') ?>">
                                 <button type="button" class="btn btn-primary px-5 rounded">Download Rekap Data Pasien
                                 </button>
+                                </a>
                             </div>
                         <?php endif; ?>
                     </div>
