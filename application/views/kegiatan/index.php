@@ -134,7 +134,7 @@
             unset($_SESSION['bisa']);
         }
     endif; ?>
-    
+
     function hapus(id) {
         swal.fire({
             title: 'Yakin untuk menghapus data ini?',
@@ -158,7 +158,6 @@
                 });
             }
         });
-
     }
         
     $(".custom-file-input").on("change", function() {

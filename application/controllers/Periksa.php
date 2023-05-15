@@ -40,6 +40,17 @@ class Periksa extends CI_Controller {
             'keluhan' => $this->input->post('keluhan'),
             'tahun_bulan' => date("Y-m"),
         );
+            $total = 'total_periksa';
+        if ($this->input->post('pasien_status') === 'Guru') {
+            $whereguru = array('id' => $this->input->post('guru_id'));
+            $this->Main_model->set_data($whereguru, $total, 'guru');
+        } else if ($this->input->post('pasien_status') === 'Siswa') {
+            $wheresiswa = array('id' => $this->input->post('siswa_id'));
+            $this->Main_model->set_data($wheresiswa, $total, 'siswa');
+        } else if ($this->input->post('pasien_status') === 'Karyawan') {
+            $wherekaryawan = array('id' => $this->input->post('karyawan_id'));
+            $this->Main_model->set_data($wherekaryawan, $total, 'karyawan');
+        };
         $masuk = $this->Main_model->insert_data($data,'periksa');
         if ($masuk) {
             $this->session->set_flashdata('bisa', 'Berhasil Menambahkan');
@@ -156,9 +167,10 @@ class Periksa extends CI_Controller {
 
     public function delete_stat($id)
     {
-        $where = array('id' => $id);
+        $where = ['id' => $id];
+        $checkperiksa = $this->Main_model->getwhere($where,'penanganan_periksa')->row_array();
         $this->Main_model->delete_data($where, 'penanganan_periksa');
-        redirect($_SERVER['HTTP_REFERER']);
+        redirect(base_url('Periksa/status/'.$checkperiksa['periksa_id']));
     }
     
  // Edit Status
@@ -166,10 +178,11 @@ class Periksa extends CI_Controller {
     {
         $where = ['id' => $id];
         $data['periksa'] = $this->Main_model->getwhere($where,'penanganan_periksa')->row_array();
+        $checkperiksa = $this->Main_model->getwhere($where,'penanganan_periksa')->row_array();
         $data['diagnosa'] = $this->Main_model->get('diagnosa')->result();
         $data['penanganan'] = $this->Main_model->get('penanganan_pertama')->result();
         $data['tindakan'] = $this->Main_model->get('tindakan')->result();
-        $data['dataperiksa'] = $this->Main_model->getwhere(array('periksa_id' => $id),'penanganan_periksa')->result();
+        $data['dataperiksa'] = $this->Main_model->getwhere(array('periksa_id' => $checkperiksa['periksa_id']),'penanganan_periksa')->result();
         // $data['dataperiksa'] = $this->Main_model->read_join_one('penanganan_periksa', 'periksa', 'periksa_id', 'id', array('siswa_id' => $id), 'create_date')->result();
         $this->load->view('periksa_pasien/penanganan/edit', $data);
     }
@@ -190,8 +203,8 @@ class Periksa extends CI_Controller {
             'keluhan' => $this->input->post('keluhan'),
         ];
         $valid = $this->Main_model->update_data($where, $data, 'penanganan_periksa');
-        $valid2keluhan = $this->Main_model->update_data($whereperiksa, $keluhan, 'periksa');
-        if($valid && $valid2keluhan) {
+        $valid = $this->Main_model->update_data($whereperiksa, $keluhan, 'periksa');
+        if($valid) {
             $this->session->set_flashdata('success', 'Berhasil Diubah');
             redirect(base_url('Periksa/status/'.$periksa['periksa_id']));
         } else {
