@@ -8,6 +8,8 @@
     <title>Dashboard</title>
     <?php $this->load->view('style/head')?>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.0/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     <script type="text/javascript">
     google.load("visualization", "1.1", {
         packages: ['bar', 'timeline']
@@ -209,13 +211,25 @@
                         </div>
                     </div>
                 </div>
-                <div class="card p-2">
-                    <div id="columnchart_material" style="width: auto; height: 350px;"></div>
+                <div class="card p-1">
+                    <div class="mx-3 my-4 d-flex justify-content-end" id=" download">
+                        <button type="button" class="btn btn-primary w-25 ">Download Grafik</button>
+                    </div>
+                    <div id="columnchart_material" style="width: auto; height: 350px; padding: 20px;"></div>
                 </div>
             </div>
         </div>
     </div>
     <?php $this->load->view('style/js')?>
+    <script>
+    document.getElementById("download").addEventListener("click", function() {
+        html2canvas(document.querySelector("#columnchart_material")).then(canvas => {
+            canvas.toBlob(function(blob) {
+                saveAs(blob, "grafik.png");
+            });
+        });
+    });
+    </script>
     <?php if ($this->session->flashdata('yeay')): ?>
     <script>
     swal.fire({
