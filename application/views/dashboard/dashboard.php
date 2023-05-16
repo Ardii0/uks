@@ -213,8 +213,8 @@
                     </div>
                 </div>
                 <div class="card p-1">
-                    <div class="mx-3 my-4 d-flex justify-content-end" id=" download">
-                        <button type="button" class="btn btn-primary w-25 ">Download Grafik</button>
+                    <div class="mx-3 my-4 d-flex justify-content-end">
+                        <button type="button" id="download" class="btn btn-primary w-25 ">Download Grafik</button>
                     </div>
                     <div id="columnchart_material" style="width: auto; height: 350px; padding: 20px;"></div>
                 </div>
