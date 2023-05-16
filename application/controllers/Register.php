@@ -29,7 +29,7 @@ public function aksi_registrasi()
   ];
   $this->M_register->registrasi('admin', $data);
   $this->session->set_flashdata('register', 'Register Sukses');
-  redirect(base_url('Login'));
+  redirect(base_url('login'));
 }
 
 }

@@ -16,7 +16,7 @@ class Login extends CI_Controller {
   public function index()
   {
     if ($this->session->userdata('is_login') === TRUE) {
-      redirect(base_url('Admin/'));
+      redirect(base_url('admin/'));
     }
     $this->load->view('auth/login');
   }
@@ -60,7 +60,7 @@ class Login extends CI_Controller {
         // // $this->M_login->last_login($last_login1,$where);
 
         $this->session->set_userdata('login',$data_session);
-        redirect(base_url()."Admin/");//Controller/function
+        redirect(base_url()."admin/");//Controller/function
       }
       }
   else{
@@ -72,6 +72,6 @@ class Login extends CI_Controller {
 
   function logout(){
     $this->session->sess_destroy();
-    redirect(base_url('Login'));
+    redirect(base_url('login'));
   }
 }
