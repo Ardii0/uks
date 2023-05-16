@@ -63,37 +63,48 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a href="<?php echo base_url('diagnosa/') ;?>" class="nav-link">
-                            <i class="nav-icon fas fa-diagnoses"></i>
+                                        <li class="nav-item">
+                        <a class="nav-link">
+                        <i class="nav-icon fas fa-medkit"></i>
                             <p>
-                                Diagnosa
+                                Data UKS
+                                <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="<?php echo base_url('penanganan/') ;?>" class="nav-link">
-                            <i class="nav-icon fas fa-people-carry"></i>
-                            <p>
-                                Penanganan Pertama
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="<?php echo base_url('tindakan/') ;?>" class="nav-link">
-                            <i class="nav-icon fas fa-exclamation"></i>
-                            <p>
-                                Tindakan
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="<?php echo base_url('daftar_obat/') ;?>" class="nav-link">
-                            <i class="nav-icon fas fa-capsules"></i>
-                            <p>
-                                Daftar Obat P3K
-                            </p>
-                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('Diagnosa/') ;?>" class="nav-link">
+                                    <i class="nav-icon fas fa-diagnoses"></i>
+                                    <p>
+                                        Diagnosa
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('Penanganan/') ;?>" class="nav-link">
+                                    <i class="nav-icon fas fa-people-carry"></i>
+                                    <p>
+                                        Penanganan Pertama
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('Tindakan/') ;?>" class="nav-link">
+                                    <i class="nav-icon fas fa-exclamation"></i>
+                                    <p>
+                                        Tindakan
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('Daftar_Obat/') ;?>" class="nav-link">
+                                    <i class="nav-icon fas fa-capsules"></i>
+                                    <p>
+                                        Daftar Obat P3K
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a href="<?php echo base_url('inventaris/') ;?>" class="nav-link">

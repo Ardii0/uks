@@ -42,21 +42,51 @@ class Penanganan extends CI_Controller {
 
     public function aksi_tambah_penanganan()
     {
-        $data = array
-        (
-            'nama_penanganan' => $this->input->post('nama_penanganan'),
-        );
-        $masuk=$this->Main_model->insert_data($data, 'penanganan_pertama');
-        if($masuk)
-        {
-            $this->session->set_flashdata('yes', 'Berhasil Menambahkan');
-            redirect(base_url('Penanganan/penanganan_pertama'));
-        }
-        else
-        {
-            $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Penanganan/penanganan_pertama'));
-        }
+        $nama = $this->input->post('nama_penanganan');
+        $nama_penanganan = $this->Main_model->total('nama_penanganan', $nama, 'penanganan_pertama');
+        if ($nama_penanganan !== 0) { 
+            $this->session->set_flashdata('salah', 'Maaf Nama Penanganan Sudah Tersedia');
+                redirect(base_url('Penanganan/penanganan_pertama'));
+        }else { 
+            $data = array
+            (
+                'nama_penanganan' => $this->input->post('nama_penanganan'),
+            );
+            $masuk=$this->Main_model->insert_data($data, 'penanganan_pertama');
+            if($masuk) {
+                $this->session->set_flashdata('yes', 'Berhasil Menambahkan');
+                redirect(base_url('Penanganan/penanganan_pertama'));
+            }else
+            {
+                $this->session->set_flashdata('error', 'gagal..');
+                redirect(base_url('Penanganan/penanganan_pertama'));
+            }
+         }
+
+    }
+
+    public function aksi_tambah_diagnosa()
+    {
+        $nama = $this->input->post('name_penyakit');
+        $nama_diagnosa = $this->Main_model->total('nama', $nama, 'diagnosa');
+        if ($nama_diagnosa !== 0) { 
+            $this->session->set_flashdata('salah', 'Maaf Nama Diagnosa Penyakit Sudah Tersedia');
+                redirect(base_url('Diagnosa/diagnosa'));
+        } else { 
+            $data = array
+            (
+                'nama' => $this->input->post('name_penyakit'),
+            );
+            $masuk=$this->Main_model->insert_data($data, 'diagnosa');
+            if ($masuk) {
+                $this->session->set_flashdata('yes', 'Berhasil Menambahkan');
+                redirect(base_url('Diagnosa/diagnosa'));
+            }else
+            {
+                $this->session->set_flashdata('error', 'gagal..');
+                redirect(base_url('Diagnosa/diagnosa'));
+            }
+         }
     }
 
     // Change data

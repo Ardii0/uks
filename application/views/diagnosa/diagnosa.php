@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Diagnosa</title>
     <?php $this->load->view('style/head') ?>
 </head>
 
@@ -101,6 +101,7 @@
     </div>
     </div>
     <?php $this->load->view('style/js') ?>
+    <!-- sweetalert success add -->
     <?php if ($this->session->flashdata('yes')): ?>
     <script>
     swal.fire({
@@ -114,6 +115,21 @@
             unset($_SESSION['yes']);
         }
     endif; ?>
+    <!-- sweetalert error -->
+    <?php if ($this->session->flashdata('salah')): ?>
+    <script>
+    swal.fire({
+        title: "<?php echo $this->session->flashdata('salah')?>",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 1000,
+    });
+    </script>
+    <?php if (isset($_SESSION['salah'])) {
+            unset($_SESSION['salah']);
+        }
+    endif; ?>
+    <!-- delete data -->
     <script>
     function hapus(id) {
         swal.fire({
@@ -147,8 +163,6 @@
             showConfirmButton: false,
         })
     }
-
-    
     </script>
 </body>
 

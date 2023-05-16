@@ -37,24 +37,30 @@ class Diagnosa extends CI_Controller {
     }
 
 
-
     public function aksi_tambah_diagnosa()
     {
-        $data = array
-        (
-            'nama' => $this->input->post('name_penyakit'),
-        );
-        $masuk=$this->Main_model->insert_data($data, 'diagnosa');
-        if ($masuk) {
-            $this->session->set_flashdata('yes', 'Berhasil Menambahkan');
-            redirect(base_url('Diagnosa/diagnosa'));
-        }else
-        {
-            $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Diagnosa/diagnosa'));
-        }
+        $nama = $this->input->post('name_penyakit');
+        $nama_diagnosa = $this->Main_model->total('nama', $nama, 'diagnosa');
+        if ($nama_diagnosa !== 0) { 
+            $this->session->set_flashdata('salah', 'Maaf Nama Diagnosa Penyakit Sudah Tersedia');
+                redirect(base_url('Diagnosa/diagnosa'));
+        } else { 
+            $data = array
+            (
+                'nama' => $this->input->post('name_penyakit'),
+            );
+            $masuk=$this->Main_model->insert_data($data, 'diagnosa');
+            if ($masuk) {
+                $this->session->set_flashdata('yes', 'Berhasil Menambahkan');
+                redirect(base_url('Diagnosa/diagnosa'));
+            }else
+            {
+                $this->session->set_flashdata('error', 'gagal..');
+                redirect(base_url('Diagnosa/diagnosa'));
+            }
+         }
     }
-
+       
    
 
     // Change data
@@ -107,4 +113,3 @@ class Diagnosa extends CI_Controller {
 
     
     }
-

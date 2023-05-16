@@ -42,21 +42,27 @@ class Tindakan extends CI_Controller {
 
     public function aksi_tambah_tindakan()
     {
-        $data = array
-        (
-            'nama' => $this->input->post('nama_tindakan'),
-        );
-        $masuk=$this->Main_model->insert_data($data, 'tindakan');
-        if($masuk)
-        {
-            $this->session->set_flashdata('yes', 'Berhasil Menambahkan');
-            redirect(base_url('Tindakan/tindakan'));
-        }
-        else
-        {
-            $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Tindakan/tindakan'));
-        }
+        $nama = $this->input->post('nama_tindakan');
+        $nama_tindakan = $this->Main_model->total('nama', $nama, 'tindakan');
+        if ($nama_tindakan !== 0) { 
+            $this->session->set_flashdata('salah', 'Maaf Nama Penanganan Sudah Tersedia');
+                redirect(base_url('Tindakan/tindakan'));
+        }else { 
+            $data = array
+            (
+                'nama' => $this->input->post('nama_tindakan'),
+            );
+            $masuk=$this->Main_model->insert_data($data, 'tindakan');
+            if($masuk){
+                $this->session->set_flashdata('yes', 'Berhasil Menambahkan');
+                redirect(base_url('Tindakan/tindakan'));
+            }else
+            {
+                $this->session->set_flashdata('error', 'gagal..');
+                redirect(base_url('Tindakan/tindakan'));
+            }
+         }
+
     }
 
     // Change data

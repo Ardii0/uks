@@ -40,9 +40,19 @@ class Daftar_Obat extends CI_Controller {
         $this->load->view('daftar_obat/daftar_obat', $data);
     }
 
+
+
+  
+
     public function aksi_tambah_daftar_obat()
     {
-        $data = array
+        $nama = $this->input->post('nama_obat');
+        $nama_obat = $this->Main_model->total('nama_obat', $nama, 'daftar_obat');
+        if ($nama_obat !== 0) { 
+            $this->session->set_flashdata('salah', 'Maaf Nama Obat Sudah Tersedia');
+                redirect(base_url('Daftar_Obat/daftar_obat'));
+        }else { 
+            $data = array
         (
             'nama_obat' => $this->input->post('nama_obat'),
             'stocks' => $this->input->post('stocks_obat'),
@@ -50,16 +60,16 @@ class Daftar_Obat extends CI_Controller {
             'expired' => $this->input->post('expired_obat'),
         );
         $masuk=$this->Main_model->insert_data($data, 'daftar_obat');
-        if($masuk)
-        {
-            $this->session->set_flashdata('yes', 'Berhasil Menambahkan');
-            redirect(base_url('Daftar_Obat/daftar_obat'));
-        }
-        else
-        {
-            $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Daftar_Obat/daftar_obat'));
-        }
+        if($masuk){
+                $this->session->set_flashdata('yes', 'Berhasil Menambahkan');
+                redirect(base_url('Daftar_Obat/daftar_obat'));
+            }else
+            {
+                $this->session->set_flashdata('error', 'gagal..');
+                redirect(base_url('Daftar_Obat/daftar_obat'));
+            }
+         }
+
     }
 
     // Change data

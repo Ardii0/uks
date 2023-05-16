@@ -191,6 +191,7 @@ class Main_model extends CI_Model
             $data=$this->db->where('id', $id)->get($tabel);
             return $data;
         }
+        
     
         public function ubah_data($tabel, $data, $where)
         {
@@ -198,9 +199,24 @@ class Main_model extends CI_Model
             return $this->db->affected_rows();
         }
     
-    public function hapus($tabel, $field, $id_pasien)
+        public function hapus($tabel, $field, $id_pasien)
         {
             $data=$this->db->delete($tabel, array($field => $id_pasien));
+            return $data;
+        }
+
+// validasi
+
+        public function check_name($nama)
+        { 
+            $this->db->where('nama', $nama);
+        $query = $this->db->get('diagnosa');
+         return $query->num_rows() > 0; 
+        }
+
+        public function by_name($tabel, $nama)
+        {
+            $data=$this->db->where('nama', $nama)->get($tabel);
             return $data;
         }
 }

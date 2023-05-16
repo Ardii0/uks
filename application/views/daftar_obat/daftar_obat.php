@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Daftar Obat</title>
     <?php $this->load->view('style/head')?>
 </head>
 
@@ -27,46 +27,46 @@
                                 <div class="p-2 d-flex align-items-center gap-3">
                                     <div class="grid gap-3">
                                         <button data-toggle="modal" data-target="#modal_tambah_daftar_obat"
-                                        class="btn btn-info rounded bg-sky-600"><i class="fas fa-plus"></i>&nbsp;
+                                            class="btn btn-info rounded bg-sky-600"><i class="fas fa-plus"></i>&nbsp;
                                             Tambah</button>
                                     </div>
                                 </div>
                             </div>
                             <!-- isi -->
                             <div class="row">
-                            <div class="col-12">
-                                <div class="card-body bg-light shadow">
-                                    <table id="table3" class="table  table-striped">
-                                        <thead>
-                                            <tr class="">
-                                                <th class="text-center" scope="col">NO</th>
-                                                <th class="text-center" scope="col">NAMA OBAT</th>
-                                                <th class="text-center" scope="col">STOCK</th>
-                                                <th class="text-center" scope="col">SATUAN</th>
-                                                <th class="text-center" scope="col">AKSI</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php $id=0; foreach($obat as $data ): $id++;?>
-                                            <tr>
-                                                <th class="text-center" scope="row"><?php echo $id?></th>
-                                                <td class="text-center"><?php echo $data->nama_obat?></td>
-                                                <td class="text-center"><?php echo $data->stocks?></td>
-                                                <td class="text-center"><?php echo $data->satuan?></td>
-                                                <td class="text-center">
-                                                    <a href="<?php echo base_url('Daftar_Obat/edit_daftar_obat/' . $data->id) ?>"
-                                                        class="btn btn-warning btn-sm">
-                                                        <i class="fa fa-edit"></i> </a>
-                                                    <button onclick="hapus(<?php echo $data->id ?>)"
-                                                        class="btn btn-danger btn-sm">
-                                                        <i class="fa fa-trash"></i> </button>
-                                                </td>
-                                            </tr>
-                                            <?php endforeach;?>
-                                        </tbody>
-                                    </table>
+                                <div class="col-12">
+                                    <div class="card-body bg-light shadow">
+                                        <table id="table3" class="table  table-striped">
+                                            <thead>
+                                                <tr class="">
+                                                    <th class="text-center" scope="col">NO</th>
+                                                    <th class="text-center" scope="col">NAMA OBAT</th>
+                                                    <th class="text-center" scope="col">STOCK</th>
+                                                    <th class="text-center" scope="col">SATUAN</th>
+                                                    <th class="text-center" scope="col">AKSI</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php $id=0; foreach($obat as $data ): $id++;?>
+                                                <tr>
+                                                    <th class="text-center" scope="row"><?php echo $id?></th>
+                                                    <td class="text-center"><?php echo $data->nama_obat?></td>
+                                                    <td class="text-center"><?php echo $data->stocks?></td>
+                                                    <td class="text-center"><?php echo $data->satuan?></td>
+                                                    <td class="text-center">
+                                                        <a href="<?php echo base_url('Daftar_Obat/edit_daftar_obat/' . $data->id) ?>"
+                                                            class="btn btn-warning btn-sm">
+                                                            <i class="fa fa-edit"></i> </a>
+                                                        <button onclick="hapus(<?php echo $data->id ?>)"
+                                                            class="btn btn-danger btn-sm">
+                                                            <i class="fa fa-trash"></i> </button>
+                                                    </td>
+                                                </tr>
+                                                <?php endforeach;?>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
-                            </div>
                             </div>
                         </div>
                     </div>
@@ -112,7 +112,7 @@
                                             <option> Kapsul</option>
                                             <option> Kaplet</option>
                                             <option> Sirup</option>
-                                            <option disabled selected >Masukan Satuan Obat  </option>
+                                            <option disabled selected>Masukan Satuan Obat </option>
                                         </select><br>
                                     </div>
                                 </div>
@@ -139,6 +139,7 @@
     </div>
 
     <?php $this->load->view('style/js') ?>
+    <!-- sweetalert success add -->
     <?php if ($this->session->flashdata('yes')): ?>
     <script>
     swal.fire({
@@ -150,6 +151,20 @@
     </script>
     <?php if (isset($_SESSION['yes'])) {
             unset($_SESSION['yes']);
+        }
+    endif; ?>
+    <!-- sweetalert error -->
+    <?php if ($this->session->flashdata('salah')): ?>
+    <script>
+    swal.fire({
+        title: "<?php echo $this->session->flashdata('salah')?>",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 1000,
+    });
+    </script>
+    <?php if (isset($_SESSION['salah'])) {
+            unset($_SESSION['salah']);
         }
     endif; ?>
 </body>
