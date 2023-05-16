@@ -10,7 +10,7 @@
     <style>
     body {
         font-family: Arial, Helvetica, sans-serif;
-        font-size: 16px;
+        font-size: 15px;
         font-weight: 400;
         color: #666666;
         background: #eaeff4;
@@ -59,9 +59,10 @@
 
     .col-left,
     .col-right {
-        width: 52%;
-        padding: 15px;
+        width: 40%;
+        padding: 10px;
         display: flex;
+        height: 650px;
     }
 
     .col-left {
@@ -103,7 +104,7 @@
     .login-form input {
         display: block;
         width: 100%;
-        height: 58px;
+        height: 50px;
         padding: 0 10px;
         font-size: 16px;
         letter-spacing: 1px;
@@ -121,6 +122,75 @@
         margin-left: -40px;
         align-self: center;
     }
+
+    /* tab */
+    li {
+        line-height: 20px;
+        font-size: 15px;
+        margin-right: 20px;
+    }
+
+    .tabs {
+        position: relative;
+        display: flex;
+        min-height: 300px;
+        border-radius: 8px 8px 0 0;
+    }
+
+    .tabby-tab {
+        flex: 1;
+    }
+
+    .tabby-tab label {
+        display: block;
+        box-sizing: border-box;
+        height: 40px;
+
+        padding: 10px;
+        text-align: center;
+        background: #4CAF50;
+        border: 1px solid #abce80;
+        cursor: pointer;
+        transition: background 0.5s ease;
+    }
+
+    .tabby-tab label:hover {
+        background: #4CAF50;
+    }
+
+    .tabby-content {
+        position: absolute;
+        left: 0;
+        top: 40px;
+        border-radius: 0 0 8px 8px;
+        margin-top: 15px;
+        transition:
+            opacity 0.8s ease,
+            transform 0.8s ease;
+        opacity: 0;
+        transform: scale(0.1);
+        transform-origin: top left;
+    }
+
+    /* MAKE IT WORK ----- */
+
+    .tabby-tab [type=radio] {
+        display: none;
+    }
+
+    [type=radio]:checked~label {
+        background: #abce80;
+        border: 1px solid #abce80;
+        z-index: 2;
+    }
+
+    [type=radio]:checked~label~.tabby-content {
+        z-index: 1;
+
+        /* show/hide */
+        opacity: 1;
+        transform: scale(1);
+    }
     </style>
 </head>
 
@@ -131,41 +201,113 @@
                 <div class="col-left">
                     <div class="login-text">
                         <div class="header">
-                            <h3 class="mt-2">UKS SMP N 1 SEMARANG</h3>
                             <h5 class="mt-2">Motto</h5>
                             <h6 class="text-center "><b> TERDEPAN</b></h6>
                             <p class="text-center mt-2">“ Terintegritas Dedikasi Empati Profesional Akurat Normatif ”
                             </p>
                             <h5>Visi</h5>
-                            <p class="text-center ">“ Luhur Budi, Cerdas, Berprestasi ”</p>
-                            <h5>Misi</h5>
+                            <div class="text-center" style="margin-top: -10px;">“ Terwujudnya Pelayanan Kesehatan Yang
+                                Bermutu Menuju Sekolah
+                                Sehat, Aman, Bersih, Dan Menyenangkan ”</div>
                         </div>
-                        <ol type="1" style=" margin-right: 20px">
-                            <li>Menyelenggarakan pendidikan yang lebih baik dan bermutu sehingga dapat menciptakan
-                                peserta
-                                didik yang komprehensif dan kompetitif, berpenghayatan terhadap ajaran yang dianut dan
-                                berbudi pekerti luhur sehingga siswa mampu mengaktualisasikan dalam kehidupannya
-                                sehari-hari.</li>
-                            <li>Melaksanakan kegiatan belajar mengajar yang intensif, efektif, dan efisien, serta
-                                memberikan
-                                bimbingan yang maksimal kepada peserta didik sehingga mampu berkembang secara optimal
-                                sesuai
-                                dengan potensi yang dimiliki.</li>
-                            <li>Melaksanakan kegiatan ekstrakurikuler secara intensif sehingga dapat memupuk bakat dan
-                                minat
-                                yang dimiliki para peserta didik.</li>
-                            <li>Melaksanakan kegiatan jam tambahan secara intensif, ekstensif secara terstruktur dan
-                                terprogram.</li>
-                            <li>Melaksanakan kegiatan lain yang mendukung dan berkaitan dengan kegiatan sekolah yang
-                                lebih
-                                baik, transparan, akuntabel, dan demokratis.</li>
-                        </ol>
+
+                        <!-- tab -->
+                        <div class="mt-3">
+                            <div class="tabs">
+                                <div class="tabby-tab">
+                                    <input type="radio" id="tab-1" name="tabby-tabs" checked>
+                                    <label for="tab-1">Indikator</label>
+                                    <div class="tabby-content">
+                                        <ol type="1">
+                                            <li>Terpenuhinya hak dan kebutuhan murid akan kesehatan.</li>
+                                            <li>Terdapat komitmen dari sekolah yang memuat tentang sekolah sehat, aman ,
+                                                bersih dan menyenangkan.</li>
+                                            <li>Terdapat Tim pendampingan sekolah sehat, aman, bersih, dan menyenangkan.
+                                            </li>
+                                            <li>Kurikulum sekolah menempatkan pengetahuan tentang kesehatan terintegrasi
+                                                dengan mata pelajaran.</li>
+                                            <li>Terdapat rencana dan aksi secara berkala, tahunan, dan bersinambungan
+                                                untuk mewujudkan sekolah sehat, aman, ramah anak, dan menyenangkan yang
+                                                terintegrasi dalam kebijakan Usaha Kesehatan Sekolah, Sekolah Adiwiyata,
+                                                Sekolah Ramah Anak, Sekolah Standar Kependudukan.</li>
+                                            <li>Tercukupinya kebutuhan sarana dan prasarana kesehatan (cuci tangan,
+                                                jamban, air bersih, sampah dan pengelolannya).</li>
+                                            <li>Lingkungan Sekolah terbebas dari perundungan, pergaulan bebas, asap
+                                                rokok dan narkoba (NAPZA).</li>
+                                            <li>Terselenggaranya kegiatan untuk menjaga kesehatan warga sekolah.</li>
+                                            <li>Terdapat rambu-rambu keamanan dan kenyamanan warga sekolah untuk
+                                                perlindungan dari bencana.</li>
+                                        </ol>
+                                    </div>
+                                </div>
+
+                                <div class="tabby-tab">
+                                    <input type="radio" id="tab-2" name="tabby-tabs">
+                                    <label for="tab-2">Misi</label>
+                                    <div class="tabby-content">
+                                        <ol type="1">
+                                            <li>Menyelenggarakan pemenuhan kebutuhan kesehatan bagi warga sekolah sesuai
+                                                dengan standar keamanan dan kenyamanan.</li>
+                                            <li>Melaksanakan pemeliharaan ruang dan gedung sesuai standar keamanan dan
+                                                kesehatan.</li>
+                                            <li>Membentuk Tim Pendampingan Sekolah sehat, aman, bersih, dan
+                                                menyenangkan.</li>
+                                            <li>Semua mata pelajaran mengintegrasikan sekolah sehat, aman, bersih, dan
+                                                menyenangkan.</li>
+                                            <li>Menyusun Program Tahunan untuk mewujudkan sekolah sehat, aman, ramah
+                                                anak, dan menyenangkan yang terintegrasi dalam kebijakan Usaha Kesehatan
+                                                Sekolah, Sekolah Adiwiyata, Sekolah Ramah Anak, Sekolah Standar
+                                                Kependudukan.</li>
+                                            <li>Menyediakan kebutuhan sarana dan prasarana kesehatan (cuci tangan,
+                                                jamban, air bersih, sampah dan pengelolannya).</li>
+                                            <li>Menciptakan Lingkungan Sekolah terbebas dari perundungan, pergaulan
+                                                bebas, asap rokok dan narkoba (NAPZA).</li>
+                                            <li>Melaksanakan Kegiatan secara terprogram untuk menjaga kesehatan warga
+                                                sekolah.</li>
+                                            <li>Menyediakan rambu-rambu keamanan dan kenyamanan warga sekolah untuk
+                                                perlindungan dari bencana.</li>
+                                        </ol>
+                                    </div>
+                                </div>
+
+                                <div class="tabby-tab">
+                                    <input type="radio" id="tab-3" name="tabby-tabs">
+                                    <label for="tab-3">Tujuan</label>
+                                    <div class="tabby-content">
+                                        <ol type="1">
+                                            <li>Dapat menyelenggarakan pemenuhan kebutuhan kesehatan bagi warga sekolah
+                                                sesuai dengan standar keamanan dan kenyamanan.</li>
+                                            <li>Dapat melaksanakan pemeliharaan ruang dan gedung sesuai standar keamanan
+                                                dan kesehatan.</li>
+                                            <li>Dapat membentuk Tim Pendampingan Sekolah sehat, aman, bersih, dan
+                                                menyenangkan.</li>
+                                            <li>Dapat mengintegrasikakn sekolah sehat, aman, bersih, dan menyenangkan
+                                                pada semua mata pelajaran.</li>
+                                            <li>Dapat menyusun Program Tahunan untuk mewujudkan sekolah sehat, aman,
+                                                ramah anak, dan menyenangkan yang terintegrasi dalam kebijakan Usaha
+                                                Kesehatan Sekolah, Sekolah Adiwiyata, Sekolah Ramah Anak, Sekolah
+                                                Standar Kependudukan.</li>
+                                            <li>Dapat menyediakan kebutuhan sarana dan prasarana kesehatan (cuci tangan,
+                                                jamban, air bersih, sampah dan pengelolannya).</li>
+                                            <li>Dapat menciptakan Lingkungan Sekolah terbebas dari perundungan,
+                                                pergaulan bebas, asap rokok dan narkoba (NAPZA).</li>
+                                            <li>Dapat melaksanakan Kegiatan secara terprogram untuk menjaga kesehatan
+                                                warga sekolahDapat mengoptimalkan kegiatan sesuai standar sekolah sehat,
+                                                aman, dan menyenangkan.</li>
+                                            <li>Dapat menyediakan rambu-rambu keamanan dan kenyamanan warga sekolah
+                                                untuk perlindungan dari bencana</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-right">
-                    <div class="login-form">
+                    <div class="login-form p-3">
+                        <h3 class="mt-2">UKS SMP N 1 SEMARANG</h3>
                         <h5>
-                            <img src="<?php echo base_url('assets/logo_login.png'); ?>" width="280" height="280"
+                            <img src="<?php echo base_url('assets/logo_login.png'); ?>" width="240" height="240"
                                 class="d-inline-block align-text-top me-3">
                         </h5>
                         <h3>Login</h3>
@@ -181,7 +323,7 @@
                                 </span>
                             </p>
                             <p>
-                                <button class="btn btn-success w-100" type="submit" style="height: 58px">Sign
+                                <button class="btn btn-success w-100" type="submit" style="height: 50px">Sign
                                     In</button>
                             </p>
                         </form>
@@ -189,51 +331,50 @@
                 </div>
             </div>
         </div>
-    </div>
-    <?php $this->load->view('style/js') ?>
+        <?php $this->load->view('style/js') ?>
 
-    <!-- show/hidden password -->
-    <script>
-    $(document).ready(function() {
-        $("#showPass").click(function() {
-            if ($("#myPass").attr("type") == "password") {
-                $("#myPass").attr("type", "text");
-            } else {
-                $("#myPass").attr("type", "password");
-            }
+        <!-- show/hidden password -->
+        <script>
+        $(document).ready(function() {
+            $("#showPass").click(function() {
+                if ($("#myPass").attr("type") == "password") {
+                    $("#myPass").attr("type", "text");
+                } else {
+                    $("#myPass").attr("type", "password");
+                }
+            });
+            $("#showPass").click(function() {
+                $("#showPass i").toggle();
+            });
         });
-        $("#showPass").click(function() {
-            $("#showPass i").toggle();
-        });
-    });
-    </script>
+        </script>
 
-    <!-- sweetalert -->
-    <?php if ($this->session->flashdata('salah')): ?>
-    <script>
-    swal.fire({
-        title: "<?php echo $this->session->flashdata('salah')?>",
-        icon: "error",
-        showConfirmButton: false,
-        timer: 1000,
-    });
-    </script>
-    <?php if (isset($_SESSION['salah'])) {
+        <!-- sweetalert -->
+        <?php if ($this->session->flashdata('salah')): ?>
+        <script>
+        swal.fire({
+            title: "<?php echo $this->session->flashdata('salah')?>",
+            icon: "error",
+            showConfirmButton: false,
+            timer: 1000,
+        });
+        </script>
+        <?php if (isset($_SESSION['salah'])) {
             unset($_SESSION['salah']);
         }
     endif; ?>
 
-    <!-- sweetalert register -->
-    <?php if ($this->session->flashdata('register')): ?>
-    <script>
-    swal.fire({
-        title: "<?php echo $this->session->flashdata('register')?>",
-        icon: "success",
-        showConfirmButton: false,
-        timer: 1000,
-    });
-    </script>
-    <?php if (isset($_SESSION['register'])) {
+        <!-- sweetalert register -->
+        <?php if ($this->session->flashdata('register')): ?>
+        <script>
+        swal.fire({
+            title: "<?php echo $this->session->flashdata('register')?>",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 1000,
+        });
+        </script>
+        <?php if (isset($_SESSION['register'])) {
             unset($_SESSION['register']);
         }
     endif; ?>
