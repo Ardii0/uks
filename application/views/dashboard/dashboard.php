@@ -175,9 +175,10 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <h5 class="card-header text-center" style="background-color: #4ADE80; color: white;">
+                            <div class="card-header text-center"
+                                style="background-color: #4ADE80; color: white; font-size: 1.5rem">
                                 Riwayat Pasien
-                            </h5>
+                            </div>
                             <div class="card-body">
                                 <table id="table_dashboard" class="table table-striped text-center">
                                     <thead>
@@ -212,11 +213,21 @@
                         </div>
                     </div>
                 </div>
-                <div class="card p-1">
-                    <div class="mx-3 my-4 d-flex justify-content-end">
-                        <button type="button" id="download" class="btn btn-primary w-25 ">Download Grafik</button>
+                <div class="card">
+                    <div class="header p-1 text-light rounded-top d-flex justify-content-between"
+                        style="background-color:#4ADE80">
+                        <div class="p-2 d-flex align-items-center gap-3">
+                            <div style="font-size: 1.5rem">Grafik Pasien Tahun <?php echo date('Y') ?></div>
+                        </div>
+                        <div class="p-2 d-flex align-items-center gap-3">
+                            <div class="grid gap-3">
+                                <button type="button" id="download" class="btn btn-primary">Download Grafik</button>
+                            </div>
+                        </div>
                     </div>
-                    <div id="columnchart_material" style="width: auto; height: 350px; padding: 20px;"></div>
+                    <div class="card-body">
+                        <div id="columnchart_material" style="width: auto; height: 350px; padding: 20px;"></div>
+                    </div>
                 </div>
             </div>
         </div>
