@@ -36,7 +36,7 @@ class Data extends CI_Controller {
             'submenu'=>'guru',
         ];
         $data['daf_guru'] = $this->Main_model->get("guru")->result();
-        $this->load->view('Data/Guru', $data);
+        $this->load->view('data/guru', $data);
     }
 
     public function aksi_tambah_guru()
@@ -64,27 +64,89 @@ class Data extends CI_Controller {
             'submenu'=>'guru',
         ];
         $data['daf_guru']=$this->Main_model->by_id('guru', $id)->result();
-        $this->load->view('Data/edit_guru', $data, $id);
+        $this->load->view('data/edit_guru', $data, $id);
+    }
+
+    public function detail_guru($id)
+    {
+        $data = [
+            'judul' => 'uks',
+            'page' => 'data',
+            'menu' => 'data',
+            'submenu'=>'guru',
+        ];
+        $data['guru']=$this->Main_model->by_id('guru', $id)->result();
+        $this->load->view('data/detail_guru', $data);
+    }
+
+    public function upload_img_guru($value)
+    {
+        $kode = round(microtime(true) * 1000);
+        $config['upload_path'] = './uploads/data/data_guru/';
+        $config['allowed_types'] = 'jpg|png|jpeg';
+        $config['max_size'] = '30000';
+        $config['file_name'] = $kode;
+        $this->upload->initialize($config);
+        if (!$this->upload->do_upload($value))
+        {
+            return array( false, '' );
+        }
+        else
+        {
+            $fn = $this->upload->data();
+            $nama = $fn['file_name'];
+            return array( true, $nama );
+        }
     }
 
     public function ubah_guru()
     {
-        $data = array (
-             'nama_guru' => $this->input->post('nama_guru'),
-             'tempat_lahir' => $this->input->post('tempat_lahir'),
-             'tanggal_lahir' => $this->input->post('tanggal_lahir'),
-             'alamat' => $this->input->post('alamat'),
-        );
-        $masuk=$this->Main_model->ubah_data('guru', $data, array('id'=>$this->input->post('id')));
-        if($masuk)
+        $where = array('id' => $this->input->post("id"));
+        $_id = $this->Main_model->getwhere($where, 'guru')->row();
+        $foto = $this->upload_img_guru('foto');
+        if($foto[0]==false) {
+            $data = [
+            'nama_guru' => $this->input->post('nama_guru'),
+            'tempat_lahir' => $this->input->post('tempat_lahir'),
+            'tanggal_lahir' => $this->input->post('tanggal_lahir'),
+            'alamat' => $this->input->post('alamat'),
+            'TB' => $this->input->post('TB'),
+            'BB' => $this->input->post('BB'),
+            'riwayat_penyakit' => $this->input->post('riwayat_penyakit'),
+            'gol_darah' => $this->input->post('gol_darah'),
+            'nama_wali' => $this->input->post('nama_wali'),
+            'no_telepon_wali' => $this->input->post('no_telepon_wali'),
+            'alergi' => $this->input->post('alergi'),
+            ];
+        } else {
+            $data = [
+            'nama_guru' => $this->input->post('nama_guru'),
+            'tempat_lahir' => $this->input->post('tempat_lahir'),
+            'tanggal_lahir' => $this->input->post('tanggal_lahir'),
+            'alamat' => $this->input->post('alamat'),
+            'TB' => $this->input->post('TB'),
+            'BB' => $this->input->post('BB'),
+            'riwayat_penyakit' => $this->input->post('riwayat_penyakit'),
+            'gol_darah' => $this->input->post('gol_darah'),
+            'nama_wali' => $this->input->post('nama_wali'),
+            'no_telepon_wali' => $this->input->post('no_telepon_wali'),
+            'alergi' => $this->input->post('alergi'),
+            'foto' => $foto[1],
+            ];
+            if ($_id->foto != '') {
+                unlink('./uploads/data/data_guru/'.$_id->foto);
+            }
+        }
+        $valid = $this->Main_model->update_data($where, $data, 'guru');
+        if($valid)
         {
-            $this->session->set_flashdata('bisa', 'berhasil mengedit...');
-            redirect(base_url('data/daf_guru'));
+            $this->session->set_flashdata('bisa', 'berhasil');
+            redirect(base_url('data/daf_guru/'));
         }
         else
         {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('data/daf_guru/'));
+            redirect(base_url('data/daf_guru/'.$id));
         }
     }
 
@@ -184,7 +246,7 @@ class Data extends CI_Controller {
             'submenu'=>'siswa',
         ];
         $data['daf_siswa'] = $this->Main_model->get("siswa")->result();
-        $this->load->view('Data/Siswa', $data);
+        $this->load->view('data/siswa', $data);
     }
 
     public function aksi_tambah_siswa()
@@ -213,7 +275,7 @@ class Data extends CI_Controller {
             'submenu'=>'siswa',
         ];
         $data['daf_siswa']=$this->Main_model->by_id('siswa', $id)->result();
-        $this->load->view('Data/edit_siswa', $data, $id);
+        $this->load->view('data/edit_siswa', $data, $id);
     }
 
     public function upload_img_siswa($value)
@@ -313,7 +375,7 @@ class Data extends CI_Controller {
             'submenu'=>'siswa',
         ];
         $data['siswa']=$this->Main_model->by_id('siswa', $id)->result();
-        $this->load->view('Data/detail_siswa', $data);
+        $this->load->view('data/detail_siswa', $data);
     }
 
     public function import_excel2()
@@ -337,7 +399,9 @@ class Data extends CI_Controller {
                     $tempat_lahir = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
                     $tanggal_lahir = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
                     $alamat = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
-                    $total_periksa = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
+                    $nama_wali = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
+                    $no_telepon_wali = $worksheet->getCellByColumnAndRow(6, $row)->getValue();
+                    $total_periksa = $worksheet->getCellByColumnAndRow(7, $row)->getValue();
                    
                     $temp_data[] = array(
                         'nama_siswa' => $nama_siswa,
@@ -345,6 +409,8 @@ class Data extends CI_Controller {
                         'tempat_lahir'	=> $tempat_lahir,
                         'tanggal_lahir'	=> $tanggal_lahir,
                         'alamat' => $alamat,
+                        'nama_wali' => $nama_wali,
+                        'no_telepon_wali' => $no_telepon_wali,
                         'total_periksa'	=> $total_periksa,
                         
                     ); 	
@@ -376,7 +442,7 @@ class Data extends CI_Controller {
         // set Row
         $rowCount = 2;
         foreach ($listInfo as $list) {
-            $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, $list->nama_guru);
+            $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, $list->nama_siswa);
             $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $list->kelas);
             $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, $list->tempat_lahir);
             $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $list->tanggal_lahir);
@@ -401,7 +467,7 @@ class Data extends CI_Controller {
             'submenu'=>'karyawan',
         ];
         $data['daf_karyawan'] = $this->Main_model->get("karyawan")->result();
-        $this->load->view('Data/Karyawan', $data);
+        $this->load->view('data/karyawan', $data);
     }
     public function aksi_tambah_karyawan()
     {
@@ -414,7 +480,12 @@ class Data extends CI_Controller {
       $masuk=$this->Main_model->tambah("karyawan", $data);
       if($masuk)
         {
-            $this->session->set_flashdata('sukses', 'Berhasil..');
+            $this->session->set_flashdata('bisa', 'Berhasil..');
+            redirect(base_url('data/daf_karyawan/'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
             redirect(base_url('data/daf_karyawan/'));
         }
     }
@@ -428,27 +499,89 @@ class Data extends CI_Controller {
             'submenu'=>'karyawan',
         ];
         $data['daf_karyawan']=$this->Main_model->by_id('karyawan', $id)->result();
-        $this->load->view('Data/edit_karyawan', $data, $id);
+        $this->load->view('data/edit_karyawan', $data, $id);
+    }
+
+    public function detail_karyawan($id)
+    {
+        $data = [
+            'judul' => 'uks',
+            'page' => 'data',
+            'menu' => 'data',
+            'submenu'=>'karyawan',
+        ];
+        $data['karyawan']=$this->Main_model->by_id('karyawan', $id)->result();
+        $this->load->view('data/detail_karyawan', $data);
+    }
+
+    public function upload_img_karyawan($value)
+    {
+        $kode = round(microtime(true) * 1000);
+        $config['upload_path'] = './uploads/data/data_karyawan/';
+        $config['allowed_types'] = 'jpg|png|jpeg';
+        $config['max_size'] = '30000';
+        $config['file_name'] = $kode;
+        $this->upload->initialize($config);
+        if (!$this->upload->do_upload($value))
+        {
+            return array( false, '' );
+        }
+        else
+        {
+            $fn = $this->upload->data();
+            $nama = $fn['file_name'];
+            return array( true, $nama );
+        }
     }
 
     public function ubah_karyawan()
     {
-        $data = array (
-             'nama_karyawan' => $this->input->post('nama_karyawan'),
-             'tempat_lahir' => $this->input->post('tempat_lahir'),
-             'tanggal_lahir' => $this->input->post('tanggal_lahir'),
-             'alamat' => $this->input->post('alamat'),
-        );
-        $masuk=$this->Main_model->ubah_data('karyawan', $data, array('id'=>$this->input->post('id')));
-        if($masuk)
+        $where = array('id' => $this->input->post("id"));
+        $_id = $this->Main_model->getwhere($where, 'karyawan')->row();
+        $foto = $this->upload_img_karyawan('foto');
+        if($foto[0]==false) {
+            $data = [
+            'nama_karyawan' => $this->input->post('nama_karyawan'),
+            'tempat_lahir' => $this->input->post('tempat_lahir'),
+            'tanggal_lahir' => $this->input->post('tanggal_lahir'),
+            'alamat' => $this->input->post('alamat'),
+            'TB' => $this->input->post('TB'),
+            'BB' => $this->input->post('BB'),
+            'riwayat_penyakit' => $this->input->post('riwayat_penyakit'),
+            'gol_darah' => $this->input->post('gol_darah'),
+            'nama_wali' => $this->input->post('nama_wali'),
+            'no_telepon_wali' => $this->input->post('no_telepon_wali'),
+            'alergi' => $this->input->post('alergi'),
+            ];
+        } else {
+            $data = [
+            'nama_karyawan' => $this->input->post('nama_karyawan'),
+            'tempat_lahir' => $this->input->post('tempat_lahir'),
+            'tanggal_lahir' => $this->input->post('tanggal_lahir'),
+            'alamat' => $this->input->post('alamat'),
+            'TB' => $this->input->post('TB'),
+            'BB' => $this->input->post('BB'),
+            'riwayat_penyakit' => $this->input->post('riwayat_penyakit'),
+            'gol_darah' => $this->input->post('gol_darah'),
+            'nama_wali' => $this->input->post('nama_wali'),
+            'no_telepon_wali' => $this->input->post('no_telepon_wali'),
+            'alergi' => $this->input->post('alergi'),
+            'foto' => $foto[1],
+            ];
+            if ($_id->foto != '') {
+                unlink('./uploads/data/data_karyawan/'.$_id->foto);
+            }
+        }
+        $valid = $this->Main_model->update_data($where, $data, 'karyawan');
+        if($valid)
         {
-            $this->session->set_flashdata('bisa', 'berhasil mengedit...');
-            redirect(base_url('data/daf_karyawan'));
+            $this->session->set_flashdata('bisa', 'berhasil');
+            redirect(base_url('data/daf_karyawan/'));
         }
         else
         {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('data/daf_karyawan/'));
+            redirect(base_url('data/daf_karyawan/'.$id));
         }
     }
 
@@ -524,13 +657,13 @@ class Data extends CI_Controller {
         // set Row
         $rowCount = 2;
         foreach ($listInfo as $list) {
-            $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, $list->nama_guru);
+            $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, $list->nama_karyawan);
             $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $list->tempat_lahir);
             $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, $list->tanggal_lahir);
             $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $list->alamat);
             $rowCount++;
         }
-        $filename = "data-guru.csv";
+        $filename = "data-karyawan.csv";
         header('Content-Type: application/vnd.ms-excel'); 
         header('Content-Disposition: attachment;filename="'.$filename.'"');
         header('Cache-Control: max-age=0'); 

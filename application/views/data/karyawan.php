@@ -70,9 +70,9 @@
                                                     <?php echo indonesian_date_time($datas->tanggal_lahir);?></td>
                                                 <td><?php echo $datas->alamat?></td>
                                                 <td>
-                                                    <a href="<?php echo base_url('data/edit_karyawan/' . $datas->id)?>"
+                                                    <a href="<?php echo base_url('data/detail_karyawan/' . $datas->id)?>"
                                                         class="btn btn-warning btn-sm">
-                                                        <i class="fa fa-edit"></i>
+                                                        <i class="fa fa-eye"></i>
                                                     </a>
                                                     <button onclick="hapus(<?php echo $datas->id?>)"
                                                         class="btn btn-danger btn-sm">

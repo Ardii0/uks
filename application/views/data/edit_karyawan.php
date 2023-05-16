@@ -30,47 +30,101 @@
                                 <div class="box-body shadow px-3 py-1 mb-5 bg-white rounded">
                                     <?php foreach ($daf_karyawan as $datas): ?>
                                     <section class="content bg-white p-2 rounded">
-                                        <form action="<?php echo base_url('data/ubah_karyawan') ?>" method="post">
+                                        <form action="<?php echo base_url('data/ubah_karyawan') ?>"
+                                            enctype="multipart/form-data" method="post">
                                             <div class="box-body">
-                                                <div class="form-group col-sm-12">
-                                                    <label class="col-sm-2 control-label">Nama</label>
-                                                    <div class="col-sm-">
+                                                <div class="row">
+                                                    <div class="form-group col-sm-4">
+                                                        <label class="control-label">Nama</label>
                                                         <input type="text" value="<?php echo $datas->nama_karyawan ?>"
-                                                            name="nama_karyawan" class="form-control"><br>
+                                                            name="nama_karyawan" class="form-control"
+                                                            placeholder="Masukan Nama">
                                                     </div>
-                                                </div>
-                                                <div class="form-group col-sm-12">
-                                                    <label class="col-sm-2 control-label">Tempat Lahir</label>
-                                                    <div class="col-sm-">
+                                                    <div class="form-group col-sm-4">
+                                                        <label class="control-label">Tempat Lahir</label>
                                                         <input type="text" value="<?php echo $datas->tempat_lahir ?>"
-                                                            name="tempat_lahir" class="form-control"><br>
+                                                            name="tempat_lahir" class="form-control"
+                                                            placeholder="Masukan Tempat Lahir">
                                                     </div>
                                                 </div>
-                                                <div class="form-group col-sm-12">
-                                                    <label class="col-sm-2 control-label">Tanggal Lahir</label>
-                                                    <div class="col-sm-">
+                                                <div class="row">
+                                                    <div class="form-group col-sm-6 mb-0">
+                                                        <label class="control-label">Foto Profil</label>
+                                                        <div class="custom-file mb-3">
+                                                            <input type="file" class="custom-file-input" id="customFile"
+                                                                name="foto">
+                                                            <label class="custom-file-label" for="customFile">Pilih
+                                                                File</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-sm-6">
+                                                        <label class="control-label">Tanggal Lahir</label>
                                                         <input type="date" value="<?php echo $datas->tanggal_lahir ?>"
-                                                            name="tanggal_lahir" class="form-control"><br>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group col-sm-12">
-                                                    <label class="col-sm-2 control-label">Alamat</label>
-                                                    <div class="col-sm-">
-                                                        <input type="text" value="<?php echo $datas->alamat ?>"
-                                                            name="alamat" class="form-control"
-                                                            placeholder="Masukan Keterangan"><br>
+                                                            name="tanggal_lahir" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="form-group col-sm-4">
+                                                    <label class="control-label">Alamat</label>
+                                                    <input type="text" value="<?php echo $datas->alamat ?>"
+                                                        name="alamat" class="form-control" placeholder="Masukan Alamat">
+                                                </div>
+                                                <div class="form-group col-sm-4">
+                                                    <label class="control-label">Nama Orang Tua/Wali</label>
+                                                    <input type="text" value="<?php echo $datas->nama_wali ?>"
+                                                        name="nama_wali" class="form-control"
+                                                        placeholder="Masukan Nama Orang Tua/Wali">
+                                                </div>
+                                                <div class="form-group col-sm-4">
+                                                    <label class="control-label">No. Telepon Orang Tua/Wali</label>
+                                                    <input type="number" value="<?php echo $datas->no_telepon_wali ?>"
+                                                        name="no_telepon_wali" class="form-control"
+                                                        placeholder="Masukan No. Telepon Wali">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-sm-4">
+                                                    <label class="control-label">Tinggi Badan (TB)</label>
+                                                    <input type="number" value="<?php echo $datas->TB ?>" name="TB"
+                                                        class="form-control" placeholder="Masukan Tinggi Badan (*cm)">
+                                                </div>
+                                                <div class="form-group col-sm-4">
+                                                    <label class="control-label">Berat Badan (BB)</label>
+                                                    <input type="number" value="<?php echo $datas->BB ?>" name="BB"
+                                                        class="form-control" placeholder="Masukan Tinggi Badan (*kg)">
+                                                </div>
+                                                <div class="form-group col-sm-4">
+                                                    <label class="control-label">Gol Darah</label>
+                                                    <input type="text" value="<?php echo $datas->gol_darah ?>"
+                                                        name="gol_darah" class="form-control"
+                                                        placeholder="Masukan Golongan Darah">
+                                                </div>
+                                            </div>
+                                            <div class="row">
 
+                                                <div class="form-group col-sm-6">
+                                                    <label class="control-label">Riwayat Penyakit</label>
+                                                    <input type="text" value="<?php echo $datas->riwayat_penyakit ?>"
+                                                        name="riwayat_penyakit" class="form-control"
+                                                        placeholder="Masukan Riwayat Penyakit">
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label class="control-label">Alergi</label>
+                                                    <input type="text" value="<?php echo $datas->alergi ?>"
+                                                        name="alergi" class="form-control" placeholder="Masukan Alergi">
+                                                </div>
+                                            </div>
                                             <div class="form-group col-sm-12 d-flex justify-content-between">
                                                 <button type="button" class="btn btn-danger text-bold mr-2"
                                                     onclick="kembali()" data-dismiss="modal"><span
                                                         class="p-3">Batal</span></button>
                                                 <input type="hidden" value="<?php echo $datas->id ?>" name="id">
-                                                <button type="submit" class="btn btn-success text-bold "><span
+                                                <button onclick="bisa()" type="submit"
+                                                    class="btn btn-success text-bold"><span
                                                         class="p-3">Update</span></button>
                                             </div>
+
                                         </form>
                                     </section>
                                     <?php endforeach;?>
@@ -92,7 +146,7 @@ swal.fire({
     title: "<?php echo $this->session->flashdata('bisa')?>",
     icon: "success",
     showConfirmButton: false,
-    timer: 2000,
+    timer: 3000,
 });
 </script>
 <?php if (isset($_SESSION['bisa'])) {
@@ -103,6 +157,11 @@ swal.fire({
 function kembali() {
     window.history.go(-1);
 }
+
+$(".custom-file-input").on("change", function() {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
 </script>
 
 </html>
