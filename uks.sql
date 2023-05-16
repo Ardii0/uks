@@ -377,8 +377,8 @@ CREATE TABLE `siswa` (
   `tanggal_lahir` date DEFAULT NULL,
   `tempat_lahir` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `total_periksa` int DEFAULT NULL,
-  `TB` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `BB` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `TB` int(11) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `BB` int(11) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `riwayat_penyakit` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `gol_darah` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `no_telepon_wali` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
@@ -393,7 +393,7 @@ CREATE TABLE `siswa` (
 INSERT INTO `siswa` (`id`, `foto`, `nama_siswa`, `kelas`, `alamat`, `tanggal_lahir`, `tempat_lahir`, `total_periksa`, `TB`, `BB`, `riwayat_penyakit`, `gol_darah`, `no_telepon_wali`, `alergi`, `nama_wali`) VALUES
 (1, '1684118451484.png', 'Rizqi Ramandika', 'VII A', 'Mangkang', '2003-11-08', 'Semarang', 1, '600', '89', 'Tidak ada', 'C', '080494857', 'Udang', 'Wali'),
 (3, NULL, 'Orlynz', 'VII A', 'Bringin', '2004-02-02', 'Semarang', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, NULL, 'Mala Fillatunnida', 'XI TKJ', 'Rembang', '2023-04-30', 'Rembang', 2, '163 cm', '48 kg', 'Maag', 'A', '08123445', 'Udang', 'Akbar'),
+(4, NULL, 'Mala Fillatunnida', 'XI TKJ', 'Rembang', '2023-04-30', 'Rembang', 2, '163', '48', 'Maag', 'A', '08123445', 'Udang', 'Akbar'),
 (5, NULL, 'Lina', 'XI Tata Busana', 'Semarang', '2023-05-09', 'Semarang', NULL, '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
