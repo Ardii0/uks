@@ -68,7 +68,7 @@
                                                         <?php echo $data->deskripsi ?>
                                                     </td>
                                                     <td class="text-center">
-                                                    <button class="btn btn-primary btn-sm" type="button"
+                                                    <button class="btn btn-warning btn-sm" type="button"
                                                                     data-toggle="modal"
                                                                     data-target="#modal<?php echo $data->id ?>">
                                                                     <i class="fa fa-edit"></i>

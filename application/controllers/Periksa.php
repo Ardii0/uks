@@ -40,6 +40,17 @@ class Periksa extends CI_Controller {
             'keluhan' => $this->input->post('keluhan'),
             'tahun_bulan' => date("Y-m"),
         );
+            $total = 'total_periksa';
+        if ($this->input->post('pasien_status') === 'Guru') {
+            $whereguru = array('id' => $this->input->post('guru_id'));
+            $this->Main_model->set_data($whereguru, $total, 'guru');
+        } else if ($this->input->post('pasien_status') === 'Siswa') {
+            $wheresiswa = array('id' => $this->input->post('siswa_id'));
+            $this->Main_model->set_data($wheresiswa, $total, 'siswa');
+        } else if ($this->input->post('pasien_status') === 'Karyawan') {
+            $wherekaryawan = array('id' => $this->input->post('karyawan_id'));
+            $this->Main_model->set_data($wherekaryawan, $total, 'karyawan');
+        };
         $masuk = $this->Main_model->insert_data($data,'periksa');
         if ($masuk) {
             $this->session->set_flashdata('bisa', 'Berhasil Menambahkan');
@@ -111,6 +122,64 @@ class Periksa extends CI_Controller {
         $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'CSV');  
         $objWriter->save('php://output'); 
     }
+
+    public function exportToExcel()
+{
+    $this->load->library('excel');
+    // Load the MySQL data
+    $this->load->database();
+    $query = $this->db->get('periksa');
+    $data = $query->result_array();
+
+    // Create a new PHPExcel object
+    $objPHPExcel = new PHPExcel();
+
+    // Set the properties of the Excel file
+    $objPHPExcel->getProperties()
+        ->setCreator("Your Name")
+        ->setLastModifiedBy("Your Name")
+        ->setTitle("Your Title")
+        ->setSubject("Your Subject")
+        ->setDescription("Your Description");
+
+    // Set the column headings
+    $objPHPExcel->setActiveSheetIndex(0)
+        ->setCellValue('A1', 'Column 1')
+        ->setCellValue('B1', 'Column 2')
+        ->setCellValue('C1', 'Column 3');
+
+    // Add the data to the Excel file
+    $row = 2;
+    foreach ($data as $item) {
+        $objPHPExcel->setActiveSheetIndex(0)
+            ->setCellValue('A'.$row, $item['keluhan'])
+            ->setCellValue('B'.$row, $item['id'])
+            ->setCellValue('C'.$row, $item['id']);
+        $row++;
+    }
+
+    // Rename the worksheet
+    $objPHPExcel->getActiveSheet()->setTitle('Sheet1');
+
+    // Set the header and content type for the Excel file
+    $filename = 'your_filename.csv';
+    header('Content-Type: application/vnd.ms-excel'); 
+    header('Content-Disposition: attachment;filename="'.$filename.'"');
+    header('Cache-Control: max-age=0');
+
+    // Save the Excel file to output
+    $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'CSV');
+    $objWriter->save('php://output');
+
+    // $filename = "coba_periksa.csv";
+    // header('Content-Type: application/vnd.ms-excel'); 
+    // header('Content-Disposition: attachment;filename="'.$filename.'"');
+    // header('Cache-Control: max-age=0'); 
+    // $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'CSV');  
+    // $objWriter->save('php://output'); 
+    exit;
+}
+
     
     public function hapus_periksa($id)
     {
@@ -156,9 +225,10 @@ class Periksa extends CI_Controller {
 
     public function delete_stat($id)
     {
-        $where = array('id' => $id);
+        $where = ['id' => $id];
+        $checkperiksa = $this->Main_model->getwhere($where,'penanganan_periksa')->row_array();
         $this->Main_model->delete_data($where, 'penanganan_periksa');
-        redirect($_SERVER['HTTP_REFERER']);
+        redirect(base_url('Periksa/status/'.$checkperiksa['periksa_id']));
     }
     
  // Edit Status
@@ -166,10 +236,11 @@ class Periksa extends CI_Controller {
     {
         $where = ['id' => $id];
         $data['periksa'] = $this->Main_model->getwhere($where,'penanganan_periksa')->row_array();
+        $checkperiksa = $this->Main_model->getwhere($where,'penanganan_periksa')->row_array();
         $data['diagnosa'] = $this->Main_model->get('diagnosa')->result();
         $data['penanganan'] = $this->Main_model->get('penanganan_pertama')->result();
         $data['tindakan'] = $this->Main_model->get('tindakan')->result();
-        $data['dataperiksa'] = $this->Main_model->getwhere(array('periksa_id' => $id),'penanganan_periksa')->result();
+        $data['dataperiksa'] = $this->Main_model->getwhere(array('periksa_id' => $checkperiksa['periksa_id']),'penanganan_periksa')->result();
         // $data['dataperiksa'] = $this->Main_model->read_join_one('penanganan_periksa', 'periksa', 'periksa_id', 'id', array('siswa_id' => $id), 'create_date')->result();
         $this->load->view('periksa_pasien/penanganan/edit', $data);
     }
@@ -190,8 +261,8 @@ class Periksa extends CI_Controller {
             'keluhan' => $this->input->post('keluhan'),
         ];
         $valid = $this->Main_model->update_data($where, $data, 'penanganan_periksa');
-        $valid2keluhan = $this->Main_model->update_data($whereperiksa, $keluhan, 'periksa');
-        if($valid && $valid2keluhan) {
+        $valid = $this->Main_model->update_data($whereperiksa, $keluhan, 'periksa');
+        if($valid) {
             $this->session->set_flashdata('success', 'Berhasil Diubah');
             redirect(base_url('Periksa/status/'.$periksa['periksa_id']));
         } else {

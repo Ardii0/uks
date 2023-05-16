@@ -137,6 +137,9 @@ class Pojok_Baca extends CI_Controller
     }
     public function hapus_buku($id)
     {
+        $foto = tampil_cover_byid($id);
+        $path = './uploads/pojok_baca/buku/'.$foto;
+        unlink($path); 
         $hapus=$this->Main_model->delete_data( ['id_buku'=>$id], 'buku');
         if ($hapus) {
             $this->session->set_flashdata('sukses hapus', 'berhasil');

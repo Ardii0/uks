@@ -119,38 +119,12 @@
                                         <td><?php echo JoinOne('penanganan_periksa', 'tindakan', 'tindakan_id', 'id','penanganan_periksa.id',$data->id, 'nama')?></td>
                                         <td><?php echo $data->catatan?></td>
                                         <td class="text-center">
-                                            <a href="<?php echo base_url('Periksa/edit_stat/'.$data->id)?>">
-                                                <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                style="width:24px; height: 24px; color: #60A5FA; font-weight: 700;"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                stroke="currentColor"
-                                                >
-                                                <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    strokeWidth="2"
-                                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                                                />
-                                                </svg>
+                                            <a href="<?php echo base_url('Periksa/edit_stat/'.$data->id)?>" class='btn btn-warning btn-sm text-white'>
+                                                <i class="fas fa-edit"></i>
                                             </a>
-                                            <a href="<?php echo base_url('Periksa/delete_stat/'.$data->id)?>">
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    style="width:24px; height: 24px; color: #F87171; font-weight: 700;"
-                                                    fill="none"
-                                                    viewBox="0 0 24 24"
-                                                    stroke="currentColor"
-                                                >
-                                                    <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    strokeWidth="2"
-                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                                                    />
-                                                </svg>
-                                            </a>
+                                            <button onclick="hapus(<?php echo $data->id ?>)" class="btn btn-danger btn-sm">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -175,6 +149,31 @@
                 unset($_SESSION['success']);
             }
         endif; ?>
+
+        function hapus(id) {
+            swal.fire({
+                title: 'Yakin untuk menghapus data ini?',
+                text: "Data ini akan terhapus permanen",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'Batal',
+                confirmButtonText: 'Ya Hapus'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil Dihapus',
+                        showConfirmButton: false,
+                        timer: 1250,
+                        
+                    }).then(function() {
+                        window.location.href = "<?php echo base_url('Periksa/delete_stat/')?>" + id;
+                    });
+                }
+            });
+        }
     </script>
 </body>
 </html>

@@ -49,6 +49,21 @@ class Program_Click extends CI_Controller {
              redirect(base_url('Program_click/123'));
          }
      }
+
+     public function cetak_program_click($id)
+     {
+            $where = ['id' => $id];
+            $data['program'] = $this->Main_model->getwhere($where,'program_click')->row_array();
+             if ($this->uri->segment(4) == "pdf") {
+                 $this->load->library('pdf');
+                 $this->pdf->load_view('program_click/cetak_program_click', $data);
+                 $this->pdf->render();
+                 $this->pdf->stream(" Surat Rujukan ".$id.".pdf", array("Attachment" => false));			
+             }else{
+                 redirect($_SERVER['HTTP_REFERER']);
+             }
+         // }
+     }
  
      
      public function hapus_program_click($id)

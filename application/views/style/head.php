@@ -20,3 +20,4 @@
   <!-- Style Down Below -->
   <link rel="stylesheet" href="<?php echo base_url('builder/dist/css/sidebar.css'); ?>">
   <link rel="stylesheet" href="sweetalert2.min.css">
+  <link rel='shorcut icon' href="<?php echo base_url('assets/logo_login.png'); ?>">

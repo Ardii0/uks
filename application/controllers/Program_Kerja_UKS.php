@@ -21,7 +21,48 @@ class Program_Kerja_UKS extends CI_Controller
     public function struktur()
     {
         $this->load->model('Main_model');
-        $this->load->view('program_kerja_uks/struktur/index');
+        $data['struktur'] = $this->Main_model->get('struktur')->result();
+        $this->load->view('program_kerja_uks/struktur/index',$data);
+    }
+
+    public function upload_img_struktur($value)
+    {
+        $kode = round(microtime(true) * 1000);
+        $config['upload_path'] = './uploads/program_kerja_uks/struktur/';
+        $config['allowed_types'] = 'jpg|png|jpeg';
+        $config['max_size'] = '100000';
+        $config['file_name'] = $kode;
+        $this->upload->initialize($config);
+        if (!$this->upload->do_upload($value)) {
+            return array(false, '');
+        } else {
+            $fn = $this->upload->data();
+            $nama = $fn['file_name'];
+            return array(true, $nama);
+        }
+    }
+    public function aksi_tambah_struktur()
+    {
+        $foto = $this->upload_img_struktur('foto');
+        if ($foto[0] == false) {
+            //$this->upload->display_errors();
+            $this->session->set_flashdata('error', 'gagal upload gambar.');
+            redirect(base_url('program_kerja_uks/add'));
+        } else {
+            $data = array
+            (
+                'foto' => $foto[1],
+                'created_at' => date("Y-m-d H:i:s"),
+            );
+            $masuk = $this->Main_model->insert_data($data, 'struktur');
+            if ($masuk) {
+                $this->session->set_flashdata('sukses', 'Berhasil Menambahkan');
+                redirect(base_url('program_kerja_uks/struktur'));
+            } else {
+                $this->session->set_flashdata('error', 'gagal..');
+                redirect(base_url('program_kerja_uks/123'));
+            }
+        }
     }
     
     //Program Kerja UKS
@@ -114,6 +155,9 @@ class Program_Kerja_UKS extends CI_Controller
 
     public function hapus_program($id)
     {
+        $foto = tampil_foto_byid($id);
+        $path = './uploads/program_kerja_uks/foto/'.$foto;
+        unlink($path); 
         $hapus=$this->Main_model->delete_data( ['id'=>$id], 'program_kerja');
         if ($hapus) {
             $this->session->set_flashdata('sukses hapus', 'berhasil');

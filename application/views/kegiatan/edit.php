@@ -12,8 +12,15 @@
     <div class="wrapper">
         <?php $this->load->view('style/navbar')?>
         <?php $this->load->view('style/sidebar')?>
-        <div class="content-wrapper p-3">
+        <div class="content-wrapper p-2 py-3">
             <div class="container-fluid">
+                <div class="header p-3 text-light rounded-top" style="background-color:#4ADE80">
+                    <div class="row">
+                        <div class="col pl-3 pt-1">
+                            <h5>Edit Kegiatan</h5>
+                        </div>
+                    </div>
+                </div>
                 <section class="content bg-white p-3 rounded">
                     <form action="<?php echo base_url('Kegiatan/update/'.$kegiatan['id']) ?>" enctype="multipart/form-data" method="post">
                         <div class="box-body">
@@ -29,7 +36,7 @@
                                 <div class="">
                                     <div class="custom-file mb-3">
                                         <input type="file" class="custom-file-input" id="customFile" name="foto">
-                                        <label class="custom-file-label" for="customFile">Pilih File</label>
+                                        <label class="custom-file-label" for="customFile"><?php echo $kegiatan['foto']; ?></label>
                                     </div>
                                 </div>
                             </div>
@@ -56,7 +63,7 @@
                         </div>
                         <div class="form-group col-sm-12 d-flex justify-content-between">
                         <a href="<?php echo base_url('Kegiatan/')?>" class="btn btn-danger text-bold mr-2"><span class="p-3">Batal</span></a>
-                        <button type="submit" class="btn btn-success text-bold "><span class="p-3">Update</span></button>
+                        <button type="submit" class="btn btn-success text-bold"><span class="p-3">Update</span></button>
                     </div>
 
                     </form>

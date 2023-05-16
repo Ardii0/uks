@@ -78,7 +78,7 @@
                                                             <i class="fas fa-search-plus"></i>
                                                         </a>
                                                         <a href="<?php echo base_url('Pojok_Baca/edit_buku/' . $data->id_buku) ?>"
-                                                            class="btn btn-primary btn-sm">
+                                                            class="btn btn-warning btn-sm">
                                                             <i class="fa fa-edit"></i></a>
                                                         <button class='btn btn-danger btn-sm'
                                                             onClick="hapus_buku(<?php echo $data->id_buku ?>)">

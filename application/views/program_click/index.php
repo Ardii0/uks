@@ -78,11 +78,15 @@
                                                         <?php echo $data->saran ?>
                                                     </td>
                                                     <td class="text-center">
-                                                        <a href="<?php echo base_url('Periksa/export_pasien_to_excel'); ?>">
+                                                    <a href="<?php echo base_url('Program_Click/cetak_program_click/'.$data->id.'/pdf')?>"
+                                                        class="btn btn-primary btn-sm">
+                                                        <i class="fas fa-print"></i>
+                                                    </a>
+                                                        <!-- <a href="<?php echo base_url('/export_pasien_to_excel'); ?>">
                                                             <button type="button" class="btn btn-success mr-1"
                                                                 style="width: 150px"><i
                                                                     class="fa fa-download pr-2"></i>Export</button>
-                                                        </a>
+                                                        </a> -->
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>
