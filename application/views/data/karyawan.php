@@ -77,11 +77,11 @@
                                                 <i class="fa fa-download"></i>
                                                 </button>
                                                     <a href="<?php echo base_url('data/detail_karyawan/' . $datas->id)?>"
-                                                        class="btn btn-warning btn-sm">
+                                                        class="btn btn-warning btn-sm" type="button">
                                                         <i class="fa fa-eye"></i>
                                                     </a>
                                                     <button onclick="hapus(<?php echo $datas->id?>)"
-                                                        class="btn btn-danger btn-sm">
+                                                        class="btn btn-danger btn-sm" type="button">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                     </form>
