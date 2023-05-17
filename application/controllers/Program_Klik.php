@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Program_Click extends CI_Controller {
+class Program_Klik extends CI_Controller {
 
     public function __construct()
     {
@@ -16,18 +16,18 @@ class Program_Click extends CI_Controller {
         }
     }
 
-     //Program Click
+     //Program Klik
      public function index()
      {
          $this->load->model('Main_model');
-         $data['periksa'] = $this->Main_model->get('program_click')->result();
+         $data['periksa'] = $this->Main_model->get('program_klik')->result();
          $data['guru'] = $this->Main_model->get('guru')->result();
          $data['siswa'] = $this->Main_model->get('siswa')->result();
          $data['karyawan'] = $this->Main_model->get('karyawan')->result();
-         $this->load->view('program_click/index', $data);
+         $this->load->view('program_klik/index', $data);
      }
  
-     public function aksi_tambah_program_click()
+     public function aksi_tambah_program_klik()
      {
          $data = array
          (
@@ -40,23 +40,23 @@ class Program_Click extends CI_Controller {
              'pasien_status' => $this->input->post('pasien_status'),
              'tahun_bulan' => date("Y-m"),
          );
-         $masuk = $this->Main_model->insert_data($data,'program_click');
+         $masuk = $this->Main_model->insert_data($data,'program_klik');
          if ($masuk) {
              $this->session->set_flashdata('sukses', 'Berhasil Menambahkan');
-             redirect(base_url('Program_click/'));
+             redirect(base_url('program_klik/'));
          } else {
              $this->session->set_flashdata('error', 'gagal..');
-             redirect(base_url('Program_click/123'));
+             redirect(base_url('program_klik/123'));
          }
      }
 
-     public function cetak_program_click($id)
+     public function cetak_program_klik($id)
      {
             $where = ['id' => $id];
-            $data['program'] = $this->Main_model->getwhere($where,'program_click')->row_array();
+            $data['program'] = $this->Main_model->getwhere($where,'program_klik')->row_array();
              if ($this->uri->segment(4) == "pdf") {
                  $this->load->library('pdf');
-                 $this->pdf->load_view('program_click/cetak_program_click', $data);
+                 $this->pdf->load_view('program_klik/cetak_program_klik', $data);
                  $this->pdf->render();
                  $this->pdf->stream(" Surat Rujukan ".$id.".pdf", array("Attachment" => false));			
              }else{
@@ -66,18 +66,18 @@ class Program_Click extends CI_Controller {
      }
  
      
-     public function hapus_program_click($id)
+     public function hapus_program_klik($id)
      {
-        $hapus=$this->Main_model->delete_data( ['id'=>$id], 'program_click');
+        $hapus=$this->Main_model->delete_data( ['id'=>$id], 'program_klik');
          if($hapus)
          {
              $this->session->set_flashdata('sukses hapus', 'berhasil');
-             redirect(base_url('Program_click/'));
+             redirect(base_url('program_klik/'));
          }
          else
          {
              $this->session->set_flashdata('error', 'gagal..');
-             redirect(base_url('Program_click/123'));
+             redirect(base_url('program_klik/123'));
          }
      }
     }

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Pojok_Baca extends CI_Controller
+class pojok_baca extends CI_Controller
 {
 
     public function __construct()
@@ -51,7 +51,7 @@ class Pojok_Baca extends CI_Controller
         if ($foto[0] == false) {
             //$this->upload->display_errors();
             $this->session->set_flashdata('error', 'gagal upload gambar.');
-            redirect(base_url('Pojok_Baca/add'));
+            redirect(base_url('pojok_baca/add'));
         } else {
             $data = array
             (
@@ -127,12 +127,12 @@ class Pojok_Baca extends CI_Controller
         if($valid)
         {
             $this->session->set_flashdata('sukses', 'Berhasil Mengubah');
-            redirect(base_url('Pojok_Baca/'));
+            redirect(base_url('pojok_baca/'));
         }
         else
         {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Pojok_Baca/'.$id));
+            redirect(base_url('pojok_baca/'.$id));
         }
     }
     public function hapus_buku($id)

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Program Click</title>
+    <title>Program Klik</title>
     <?php $this->load->view('style/head') ?>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -26,7 +26,7 @@
                         </div>
                         <div class="p-2 d-flex align-items-center gap-3">
                             <div class="grid gap-3">
-                                <button data-toggle="modal" data-target="#modal_tambah_program_click"
+                                <button data-toggle="modal" data-target="#modal_tambah_program_klik"
                                     class="btn btn-info"><i class="fas fa-plus"></i>&nbsp;
                                     Tambah</button>
                             </div>
@@ -58,11 +58,11 @@
                                                     </td>
                                                     <td>
                                                         <?php if (!empty($data->siswa_id)) {
-                                                            echo JoinOne('program_click', 'siswa', 'siswa_id', 'id', 'program_click.id', $data->id, 'nama_siswa');
+                                                            echo JoinOne('program_klik', 'siswa', 'siswa_id', 'id', 'program_klik.id', $data->id, 'nama_siswa');
                                                         } else if (!empty($data->guru_id)) {
-                                                            echo JoinOne('program_click', 'guru', 'guru_id', 'id', 'program_click.id', $data->id, 'nama_guru');
+                                                            echo JoinOne('program_klik', 'guru', 'guru_id', 'id', 'program_klik.id', $data->id, 'nama_guru');
                                                         } else if (!empty($data->karyawan_id)) {
-                                                            echo JoinOne('program_click', 'karyawan', 'karyawan_id', 'id', 'program_click.id', $data->id, 'nama_karyawan');
+                                                            echo JoinOne('program_klik', 'karyawan', 'karyawan_id', 'id', 'program_klik.id', $data->id, 'nama_karyawan');
                                                         } ?>
                                                     </td>
                                                     <td>
@@ -78,7 +78,7 @@
                                                         <?php echo $data->saran ?>
                                                     </td>
                                                     <td class="text-center">
-                                                    <a href="<?php echo base_url('Program_Click/cetak_program_click/'.$data->id.'/pdf')?>"
+                                                    <a href="<?php echo base_url('Program_Klik/cetak_program_klik/'.$data->id.'/pdf')?>"
                                                         class="btn btn-primary btn-sm">
                                                         <i class="fas fa-print"></i>
                                                     </a>
@@ -97,15 +97,15 @@
                         </div>
                     </div>
                 </div>
-                <!-- Modal Tambah Program Click-->
-                <div class="modal fade" id="modal_tambah_program_click" tabindex="-1" role="dialog"
+                <!-- Modal Tambah Program Klik-->
+                <div class="modal fade" id="modal_tambah_program_klik" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <form action="<?php echo base_url('Program_Click/aksi_tambah_program_click') ?>"
+                        <form action="<?php echo base_url('Program_Klik/aksi_tambah_program_klik') ?>"
                             enctype="multipart/form-data" method="post">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Form Input Program Click</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Form Input Program Klik</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>

@@ -313,10 +313,10 @@ INSERT INTO `periksa` (`id`, `create_date`, `update_date`, `status`, `keluhan`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `program_click`
+-- Table structure for table `program_klik`
 --
 
-CREATE TABLE `program_click` (
+CREATE TABLE `program_klik` (
   `id` bigint NOT NULL,
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `keluhan` longtext COLLATE utf8mb4_general_ci,
@@ -329,10 +329,10 @@ CREATE TABLE `program_click` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `program_click`
+-- Dumping data for table `program_klik`
 --
 
-INSERT INTO `program_click` (`id`, `create_date`, `keluhan`, `saran`, `guru_id`, `siswa_id`, `karyawan_id`, `pasien_status`, `tahun_bulan`) VALUES
+INSERT INTO `program_klik` (`id`, `create_date`, `keluhan`, `saran`, `guru_id`, `siswa_id`, `karyawan_id`, `pasien_status`, `tahun_bulan`) VALUES
 (1, '2023-05-12 03:33:38', 'Mual', 'Makan Ayam', 3, NULL, NULL, 'Guru', '2023-05'),
 (2, '2023-05-12 03:35:37', 'Muntah', 'Makan Bayam\r\n', NULL, 4, NULL, 'Siswa', '2023-05'),
 (3, '2023-05-14 21:53:15', 'Sakit hati', 'Semangat', NULL, 3, NULL, 'Siswa', '2023-05');
@@ -416,6 +416,23 @@ CREATE TABLE `tindakan` (
 INSERT INTO `tindakan` (`id`, `nama`, `create_date`, `update_date`) VALUES
 (1, 'Di Istirahatkan', '2023-04-11 08:39:57', '2023-04-11 15:39:57'),
 (2, 'Di Mutilasi', '2023-05-10 04:04:30', NULL);
+
+--
+-- Table structure for table `struktur`
+--
+
+CREATE TABLE `struktur` (
+  `id` int NOT NULL,
+  `foto` text,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `struktur`
+--
+
+INSERT INTO `struktur` (`id`, `foto`, `created_at`) VALUES
+(3, '1684141123249.png', '2023-05-15 03:58:43');
 
 --
 -- Indexes for dumped tables
@@ -502,9 +519,9 @@ ALTER TABLE `periksa`
   ADD KEY `FK47quael7ajgnjndxqajkdqsja` (`siswa_id`);
 
 --
--- Indexes for table `program_click`
+-- Indexes for table `program_klik`
 --
-ALTER TABLE `program_click`
+ALTER TABLE `program_klik`
   ADD PRIMARY KEY (`id`),
   ADD KEY `FK8hrcq33h7p66gri512oqd3wa2` (`guru_id`),
   ADD KEY `FKg2i0oe51i65ahdj5n0oisaqn0` (`karyawan_id`),
@@ -526,6 +543,12 @@ ALTER TABLE `siswa`
 -- Indexes for table `tindakan`
 --
 ALTER TABLE `tindakan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `struktur`
+--
+ALTER TABLE `struktur`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -605,9 +628,9 @@ ALTER TABLE `periksa`
   MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `program_click`
+-- AUTO_INCREMENT for table `program_klik`
 --
-ALTER TABLE `program_click`
+ALTER TABLE `program_klik`
   MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
@@ -627,6 +650,12 @@ ALTER TABLE `siswa`
 --
 ALTER TABLE `tindakan`
   MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `struktur`
+--
+ALTER TABLE `struktur`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

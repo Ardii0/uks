@@ -100,7 +100,7 @@
         }
     }
 
-    // Program Click
+    // Program Klik
     function tampil_kelas_byid($id)
     {
     $ci =& get_instance();

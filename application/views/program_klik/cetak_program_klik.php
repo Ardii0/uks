@@ -112,11 +112,11 @@
 			<td>:</td>
 			<td>
 				<?php if (!empty( $program["siswa_id"])) {
-					echo JoinOne('program_click', 'siswa', 'siswa_id', 'id', 'program_click.id', $program["id"], 'nama_siswa');
+					echo JoinOne('program_klik', 'siswa', 'siswa_id', 'id', 'program_klik.id', $program["id"], 'nama_siswa');
 				} else if (!empty( $program["guru_id"])) {
-					echo JoinOne('program_click', 'guru', 'guru_id', 'id', 'program_click.id', $program["id"], 'nama_guru');
+					echo JoinOne('program_klik', 'guru', 'guru_id', 'id', 'program_klik.id', $program["id"], 'nama_guru');
 				} else if (!empty( $program["karyawan_id"])) {
-					echo JoinOne('program_click', 'karyawan', 'karyawan_id', 'id', 'program_click.id', $program["id"], 'nama_karyawan');
+					echo JoinOne('program_klik', 'karyawan', 'karyawan_id', 'id', 'program_klik.id', $program["id"], 'nama_karyawan');
 				} ?>
 			</td>
 		</tr>

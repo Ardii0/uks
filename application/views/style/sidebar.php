@@ -131,10 +131,10 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url('program_click/') ;?>" class="nav-link">
+                        <a href="<?php echo base_url('program_klik/') ;?>" class="nav-link">
                             <i class="nav-icon fas fa-sitemap"></i>
                             <p>
-                                Program Click
+                                Program Klik
                             </p>
                         </a>
                     </li>
