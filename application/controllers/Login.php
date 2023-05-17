@@ -60,7 +60,7 @@ class Login extends CI_Controller {
         // // $this->M_login->last_login($last_login1,$where);
 
         $this->session->set_userdata('login',$data_session);
-        redirect(base_url()."admin/");//Controller/function
+        redirect(base_url()."home/");//Controller/function
       }
       }
   else{

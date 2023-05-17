@@ -95,29 +95,70 @@
                             Dedikasi Empati
                             Profesional Akurat Normatif ” &nbsp;
                             &nbsp;
-                            Visi : “ Luhur Budi, Cerdas, Berprestasi ” &nbsp; &nbsp;
-                            Misi : 1. Menyelenggarakan pendidikan yang lebih baik dan bermutu sehingga dapat
-                            menciptakan
-                            peserta
-                            didik yang komprehensif dan kompetitif, berpenghayatan terhadap ajaran yang dianut
-                            dan
-                            berbudi pekerti luhur sehingga siswa mampu mengaktualisasikan dalam kehidupannya
-                            sehari-hari.
-                            2. Melaksanakan kegiatan belajar mengajar yang intensif, efektif, dan efisien, serta
-                            memberikan
-                            bimbingan yang maksimal kepada peserta didik sehingga mampu berkembang secara
-                            optimal
-                            sesuai
-                            dengan potensi yang dimiliki.
-                            3. Melaksanakan kegiatan ekstrakurikuler secara intensif sehingga dapat memupuk bakat
-                            dan
-                            minat
-                            yang dimiliki para peserta didik.
-                            4. Melaksanakan kegiatan jam tambahan secara intensif, ekstensif secara terstruktur dan
-                            terprogram.
-                            5. Melaksanakan kegiatan lain yang mendukung dan berkaitan dengan kegiatan sekolah yang
-                            lebih
-                            baik, transparan, akuntabel, dan demokratis.</h5>
+                            Visi : “ Terwujudnya Pelayanan Kesehatan Yang Bermutu Menuju Sekolah Sehat, Aman, Bersih,
+                            Dan Menyenangkan ” &nbsp; &nbsp;
+
+                            Indikator : 1.Terpenuhinya hak dan kebutuhan murid akan kesehatan.
+                            2. Terdapat komitmen dari sekolah yang memuat tentang sekolah sehat, aman ,
+                            bersih dan menyenangkan.
+                            3. Terdapat Tim pendampingan sekolah sehat, aman, bersih, dan menyenangkan.
+                            4. Kurikulum sekolah menempatkan pengetahuan tentang kesehatan terintegrasi
+                            dengan mata pelajaran.
+                            5. Terdapat rencana dan aksi secara berkala, tahunan, dan bersinambungan
+                            untuk mewujudkan sekolah sehat, aman, ramah anak, dan menyenangkan yang
+                            terintegrasi dalam kebijakan Usaha Kesehatan Sekolah, Sekolah Adiwiyata,
+                            Sekolah Ramah Anak, Sekolah Standar Kependudukan.
+                            6. Tercukupinya kebutuhan sarana dan prasarana kesehatan (cuci tangan,
+                            jamban, air bersih, sampah dan pengelolannya).
+                            7. Lingkungan Sekolah terbebas dari perundungan, pergaulan bebas, asap
+                            rokok dan narkoba (NAPZA).
+                            8. Terselenggaranya kegiatan untuk menjaga kesehatan warga sekolah.
+                            9. Terdapat rambu-rambu keamanan dan kenyamanan warga sekolah untuk
+                            perlindungan dari bencana. &nbsp; &nbsp;
+
+                            Misi : 1. Menyelenggarakan pemenuhan kebutuhan kesehatan bagi warga sekolah sesuai
+                            dengan standar keamanan dan kenyamanan.
+                            2. Melaksanakan pemeliharaan ruang dan gedung sesuai standar keamanan dan
+                            kesehatan.
+                            3. Membentuk Tim Pendampingan Sekolah sehat, aman, bersih, dan
+                            menyenangkan.
+                            4. Semua mata pelajaran mengintegrasikan sekolah sehat, aman, bersih, dan
+                            menyenangkan.
+                            5. Menyusun Program Tahunan untuk mewujudkan sekolah sehat, aman, ramah
+                            anak, dan menyenangkan yang terintegrasi dalam kebijakan Usaha Kesehatan
+                            Sekolah, Sekolah Adiwiyata, Sekolah Ramah Anak, Sekolah Standar
+                            Kependudukan.
+                            6. Menyediakan kebutuhan sarana dan prasarana kesehatan (cuci tangan,
+                            jamban, air bersih, sampah dan pengelolannya).
+                            7. Menciptakan Lingkungan Sekolah terbebas dari perundungan, pergaulan
+                            bebas, asap rokok dan narkoba (NAPZA).
+                            8. Melaksanakan Kegiatan secara terprogram untuk menjaga kesehatan warga
+                            sekolah.
+                            9. Menyediakan rambu-rambu keamanan dan kenyamanan warga sekolah untuk
+                            perlindungan dari bencana. &nbsp; &nbsp;
+
+                            Tujuan : 1. Dapat menyelenggarakan pemenuhan kebutuhan kesehatan bagi warga sekolah
+                            sesuai dengan standar keamanan dan kenyamanan.
+                            2. Dapat melaksanakan pemeliharaan ruang dan gedung sesuai standar keamanan
+                            dan kesehatan.
+                            3. Dapat membentuk Tim Pendampingan Sekolah sehat, aman, bersih, dan
+                            menyenangkan.
+                            4. Dapat mengintegrasikakn sekolah sehat, aman, bersih, dan menyenangkan
+                            pada semua mata pelajaran.
+                            5. Dapat menyusun Program Tahunan untuk mewujudkan sekolah sehat, aman,
+                            ramah anak, dan menyenangkan yang terintegrasi dalam kebijakan Usaha
+                            Kesehatan Sekolah, Sekolah Adiwiyata, Sekolah Ramah Anak, Sekolah
+                            Standar Kependudukan.
+                            6. Dapat menyediakan kebutuhan sarana dan prasarana kesehatan (cuci tangan,
+                            jamban, air bersih, sampah dan pengelolannya).
+                            7. Dapat menciptakan Lingkungan Sekolah terbebas dari perundungan,
+                            pergaulan bebas, asap rokok dan narkoba (NAPZA).
+                            8. Dapat melaksanakan Kegiatan secara terprogram untuk menjaga kesehatan
+                            warga sekolahDapat mengoptimalkan kegiatan sesuai standar sekolah sehat,
+                            aman, dan menyenangkan.
+                            9. Dapat menyediakan rambu-rambu keamanan dan kenyamanan warga sekolah
+                            untuk perlindungan dari bencana.
+                        </h5>
                     </marquee>
                 </div>
                 <div class="row">
@@ -242,19 +283,6 @@
         });
     });
     </script>
-    <?php if ($this->session->flashdata('yeay')): ?>
-    <script>
-    swal.fire({
-        title: "<?php echo $this->session->flashdata('yeay')?>",
-        icon: "success",
-        showConfirmButton: false,
-        timer: 1000,
-    });
-    </script>
-    <?php if (isset($_SESSION['yeay'])) {
-            unset($_SESSION['yeay']);
-        }
-    endif; ?>
 </body>
 
 </html>

@@ -164,12 +164,7 @@
         top: 40px;
         border-radius: 0 0 8px 8px;
         margin-top: 15px;
-        transition:
-            opacity 0.8s ease,
-            transform 0.8s ease;
         opacity: 0;
-        transform: scale(0.1);
-        transform-origin: top left;
     }
 
     /* MAKE IT WORK ----- */
