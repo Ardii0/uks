@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class pojok_baca extends CI_Controller
+class Pojok_Baca extends CI_Controller
 {
 
     public function __construct()

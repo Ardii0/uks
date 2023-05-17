@@ -84,19 +84,13 @@ class Periksa extends CI_Controller {
         $this->load->view('periksa_pasien/index', $data);
     }
 
-    
-    public function export_periksa() {
-        $this->db->where('status',1)->select(array('nama_pasien', 'pasien_status', 'keluhan', 'create_date', 'status'));
-        $this->db->from('periksa');
-        $query = $this->db->get();
-        return $query->result();
-    }
-
     public function export_pasien_to_excel()
     {
         // load excel library
         $this->load->library('excel');
-        $listInfo = $this->export_periksa();
+        $awal_tanggal = $this->input->post('awal_tanggal');
+        $akhir_tanggal = $this->input->post('akhir_tanggal');
+        $listInfo = $this->filter_tanggal($awal_tanggal, $akhir_tanggal)->result();
         $objPHPExcel = new PHPExcel();
         $objPHPExcel->setActiveSheetIndex(0);
         // set Header
@@ -108,78 +102,32 @@ class Periksa extends CI_Controller {
         // set Row
         $rowCount = 2;
         foreach ($listInfo as $list) {
-            $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, $list->nama_pasien);
+            if(!empty($list->siswa_id)) {
+                $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, JoinOne('periksa', 'siswa', 'siswa_id', 'id','periksa.id',$list->id, 'nama_siswa'));
+            } else if(!empty($list->guru_id)) {
+                $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, JoinOne('periksa', 'guru', 'guru_id', 'id','periksa.id',$list->id, 'nama_guru'));
+            } else if(!empty($list->karyawan_id)) {
+                $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, JoinOne('periksa', 'karyawan', 'karyawan_id', 'id','periksa.id',$list->id, 'nama_karyawan'));
+            } 
             $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $list->pasien_status);
             $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, $list->keluhan);
             $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $list->create_date);
-            $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, $list->status);
+
+            $ditangani = $this->db->get_where('penanganan_periksa', array('periksa_id' => $list->id))->num_rows();
+            if ($ditangani > 0) {
+                $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, "Sudah Ditangani ");
+            } else {
+                $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, "Belum Ditangani");
+            }
             $rowCount++;
         }
-        $filename = "coba_periksa.csv";
+        $filename = "rekap data periksa ($awal_tanggal) - ($akhir_tanggal) .csv";
         header('Content-Type: application/vnd.ms-excel'); 
         header('Content-Disposition: attachment;filename="'.$filename.'"');
         header('Cache-Control: max-age=0'); 
         $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'CSV');  
         $objWriter->save('php://output'); 
     }
-
-    public function exportToExcel()
-{
-    $this->load->library('excel');
-    // Load the MySQL data
-    $this->load->database();
-    $query = $this->db->get('periksa');
-    $data = $query->result_array();
-
-    // Create a new PHPExcel object
-    $objPHPExcel = new PHPExcel();
-
-    // Set the properties of the Excel file
-    $objPHPExcel->getProperties()
-        ->setCreator("Your Name")
-        ->setLastModifiedBy("Your Name")
-        ->setTitle("Your Title")
-        ->setSubject("Your Subject")
-        ->setDescription("Your Description");
-
-    // Set the column headings
-    $objPHPExcel->setActiveSheetIndex(0)
-        ->setCellValue('A1', 'Column 1')
-        ->setCellValue('B1', 'Column 2')
-        ->setCellValue('C1', 'Column 3');
-
-    // Add the data to the Excel file
-    $row = 2;
-    foreach ($data as $item) {
-        $objPHPExcel->setActiveSheetIndex(0)
-            ->setCellValue('A'.$row, $item['keluhan'])
-            ->setCellValue('B'.$row, $item['id'])
-            ->setCellValue('C'.$row, $item['id']);
-        $row++;
-    }
-
-    // Rename the worksheet
-    $objPHPExcel->getActiveSheet()->setTitle('Sheet1');
-
-    // Set the header and content type for the Excel file
-    $filename = 'your_filename.csv';
-    header('Content-Type: application/vnd.ms-excel'); 
-    header('Content-Disposition: attachment;filename="'.$filename.'"');
-    header('Cache-Control: max-age=0');
-
-    // Save the Excel file to output
-    $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'CSV');
-    $objWriter->save('php://output');
-
-    // $filename = "coba_periksa.csv";
-    // header('Content-Type: application/vnd.ms-excel'); 
-    // header('Content-Disposition: attachment;filename="'.$filename.'"');
-    // header('Cache-Control: max-age=0'); 
-    // $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'CSV');  
-    // $objWriter->save('php://output'); 
-    exit;
-}
-
     
     public function hapus_periksa($id)
     {

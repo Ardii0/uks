@@ -45,10 +45,13 @@
                                 <h4>
                                     <?= '(' . $awal_tanggal . ') - (' . $akhir_tanggal . ')' ?>
                                 </h4>
-                                <a href="<?php echo base_url('Periksa/exportToExcel/'.$awal_tanggal.'/pdf') ?>">
-                                <button type="button" class="btn btn-primary px-5 rounded">Download Rekap Data Pasien
+                                <form action="<?php echo base_url('Periksa/export_pasien_to_excel') ?>"
+                                enctype="multipart/form-data" method="post">
+                                <input type="hidden" id="awal_tanggal" name="awal_tanggal" value="<?= $awal_tanggal?>">
+                                <input type="hidden" id="akhir_tanggal" name="akhir_tanggal" value="<?= $akhir_tanggal?>">
+                                <button type="submit" class="btn btn-primary px-5 rounded">Download Rekap Data Pasien
                                 </button>
-                                </a>
+                                </form>
                             </div>
                         <?php endif; ?>
                     </div>

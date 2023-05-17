@@ -185,12 +185,14 @@ class Data extends CI_Controller {
                     $tempat_lahir = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
                     $tanggal_lahir = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
                     $alamat = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+                    $total_periksa = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
                    
                     $temp_data[] = array(
                         'nama_guru' => $nama_guru,
                         'tempat_lahir'	=> $tempat_lahir,
                         'tanggal_lahir'	=> $tanggal_lahir,
                         'alamat' => $alamat,
+                        'total_periksa'	=> $total_periksa,
                         
                     ); 	
                 }
@@ -216,14 +218,7 @@ class Data extends CI_Controller {
         $objPHPExcel->getActiveSheet()->SetCellValue('A1', 'Nama Guru'); 
         $objPHPExcel->getActiveSheet()->SetCellValue('B1', 'Tempat Lahir');   
         $objPHPExcel->getActiveSheet()->SetCellValue('C1', 'Tanggal Lahir');  
-        $objPHPExcel->getActiveSheet()->SetCellValue('D1', 'Alamat');
-        $objPHPExcel->getActiveSheet()->SetCellValue('E1', 'Tinggi Badan');
-        $objPHPExcel->getActiveSheet()->SetCellValue('F1', 'Berat Badan');
-        $objPHPExcel->getActiveSheet()->SetCellValue('G1', 'Riwayat Penyakit');
-        $objPHPExcel->getActiveSheet()->SetCellValue('H1', 'Golongan Darah');
-        $objPHPExcel->getActiveSheet()->SetCellValue('I1', 'Alergi');
-        $objPHPExcel->getActiveSheet()->SetCellValue('J1', 'Nama Wali');
-        $objPHPExcel->getActiveSheet()->SetCellValue('K1', 'No Telepon Wali');
+        $objPHPExcel->getActiveSheet()->SetCellValue('D1', 'Alamat');   
         // set Row
         $rowCount = 2;
         foreach ($listInfo as $list) {
@@ -231,16 +226,49 @@ class Data extends CI_Controller {
             $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $list->tempat_lahir);
             $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, $list->tanggal_lahir);
             $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $list->alamat);
-            $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, $list->TB);
-            $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, $list->BB);
-            $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount, $list->riwayat_penyakit);
-            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount, $list->gol_darah);
-            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount, $list->alergi);
-            $objPHPExcel->getActiveSheet()->SetCellValue('J' . $rowCount, $list->nama_wali);
-            $objPHPExcel->getActiveSheet()->SetCellValue('K' . $rowCount, $list->no_telepon_wali);
             $rowCount++;
         }
         $filename = "data-guru.csv";
+        header('Content-Type: application/vnd.ms-excel'); 
+        header('Content-Disposition: attachment;filename="'.$filename.'"');
+        header('Cache-Control: max-age=0'); 
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'CSV');  
+        $objWriter->save('php://output'); 
+    }
+
+    public function export_periksa_guru()
+    {
+        // load excel library
+        $this->load->library('excel');
+        $id = $this->input->post('id');
+        $getwhere=['guru_id'=>$id];
+        $listInfo = $this->Main_model->getwhere($getwhere, 'periksa')->result();
+        $guru = tampil_guru_byid($id);
+        $objPHPExcel = new PHPExcel();
+        $objPHPExcel->setActiveSheetIndex(0);
+        // set Header
+        $objPHPExcel->getActiveSheet()->SetCellValue('A1', 'Nama Pasien');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('B1', 'Status Pasien');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('C1', 'Keluhan');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('D1', 'Tanggal');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('E1', 'Status');
+        // set Row
+        $rowCount = 2;
+        foreach ($listInfo as $list) {
+            $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, tampil_guru_byid($id));
+            $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $list->pasien_status);
+            $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, $list->keluhan);
+            $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $list->create_date);
+
+            $ditangani = $this->db->get_where('penanganan_periksa', array('periksa_id' => $list->id))->num_rows();
+            if ($ditangani > 0) {
+                $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, "Sudah Ditangani ");
+            } else {
+                $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, "Belum Ditangani");
+            }
+            $rowCount++;
+        }
+        $filename = "rekap data periksa $guru.csv";
         header('Content-Type: application/vnd.ms-excel'); 
         header('Content-Disposition: attachment;filename="'.$filename.'"');
         header('Cache-Control: max-age=0'); 
@@ -413,6 +441,7 @@ class Data extends CI_Controller {
                     $alamat = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
                     $nama_wali = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
                     $no_telepon_wali = $worksheet->getCellByColumnAndRow(6, $row)->getValue();
+                    $total_periksa = $worksheet->getCellByColumnAndRow(7, $row)->getValue();
                    
                     $temp_data[] = array(
                         'nama_siswa' => $nama_siswa,
@@ -422,6 +451,7 @@ class Data extends CI_Controller {
                         'alamat' => $alamat,
                         'nama_wali' => $nama_wali,
                         'no_telepon_wali' => $no_telepon_wali,
+                        'total_periksa'	=> $total_periksa,
                         
                     ); 	
                 }
@@ -448,14 +478,7 @@ class Data extends CI_Controller {
         $objPHPExcel->getActiveSheet()->SetCellValue('B1', 'Kelas');
         $objPHPExcel->getActiveSheet()->SetCellValue('C1', 'Tempat Lahir');   
         $objPHPExcel->getActiveSheet()->SetCellValue('D1', 'Tanggal Lahir');  
-        $objPHPExcel->getActiveSheet()->SetCellValue('E1', 'Alamat');
-        $objPHPExcel->getActiveSheet()->SetCellValue('F1', 'Tinggi Badan');
-        $objPHPExcel->getActiveSheet()->SetCellValue('G1', 'Berat Badan');
-        $objPHPExcel->getActiveSheet()->SetCellValue('H1', 'Riwayat Penyakit');
-        $objPHPExcel->getActiveSheet()->SetCellValue('I1', 'Golongan Darah');
-        $objPHPExcel->getActiveSheet()->SetCellValue('J1', 'Alergi');
-        $objPHPExcel->getActiveSheet()->SetCellValue('K1', 'Nama Wali');
-        $objPHPExcel->getActiveSheet()->SetCellValue('L1', 'No Telepon Wali');
+        $objPHPExcel->getActiveSheet()->SetCellValue('E1', 'Alamat');   
         // set Row
         $rowCount = 2;
         foreach ($listInfo as $list) {
@@ -464,16 +487,49 @@ class Data extends CI_Controller {
             $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, $list->tempat_lahir);
             $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $list->tanggal_lahir);
             $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, $list->alamat);
-            $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, $list->TB);
-            $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount, $list->BB);
-            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount, $list->riwayat_penyakit);
-            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount, $list->gol_darah);
-            $objPHPExcel->getActiveSheet()->SetCellValue('J' . $rowCount, $list->alergi);
-            $objPHPExcel->getActiveSheet()->SetCellValue('K' . $rowCount, $list->nama_wali);
-            $objPHPExcel->getActiveSheet()->SetCellValue('L' . $rowCount, $list->no_telepon_wali);
             $rowCount++;
         }
         $filename = "data-siswa.csv";
+        header('Content-Type: application/vnd.ms-excel'); 
+        header('Content-Disposition: attachment;filename="'.$filename.'"');
+        header('Cache-Control: max-age=0'); 
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'CSV');  
+        $objWriter->save('php://output'); 
+    }
+
+    public function export_periksa_siswa()
+    {
+        // load excel library
+        $this->load->library('excel');
+        $id = $this->input->post('id');
+        $getwhere=['siswa_id'=>$id];
+        $listInfo = $this->Main_model->getwhere($getwhere, 'periksa')->result();
+        $siswa = tampil_siswa_byid($id);
+        $objPHPExcel = new PHPExcel();
+        $objPHPExcel->setActiveSheetIndex(0);
+        // set Header
+        $objPHPExcel->getActiveSheet()->SetCellValue('A1', 'Nama Pasien');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('B1', 'Status Pasien');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('C1', 'Keluhan');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('D1', 'Tanggal');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('E1', 'Status');
+        // set Row
+        $rowCount = 2;
+        foreach ($listInfo as $list) {
+            $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, tampil_siswa_byid($id));
+            $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $list->pasien_status);
+            $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, $list->keluhan);
+            $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $list->create_date);
+
+            $ditangani = $this->db->get_where('penanganan_periksa', array('periksa_id' => $list->id))->num_rows();
+            if ($ditangani > 0) {
+                $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, "Sudah Ditangani ");
+            } else {
+                $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, "Belum Ditangani");
+            }
+            $rowCount++;
+        }
+        $filename = "rekap data periksa $siswa.csv";
         header('Content-Type: application/vnd.ms-excel'); 
         header('Content-Disposition: attachment;filename="'.$filename.'"');
         header('Cache-Control: max-age=0'); 
@@ -644,12 +700,14 @@ class Data extends CI_Controller {
                     $tempat_lahir = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
                     $tanggal_lahir = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
                     $alamat = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+                    $total_periksa = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
                    
                     $temp_data[] = array(
                         'nama_karyawan' => $nama_karyawan,
                         'tempat_lahir'	=> $tempat_lahir,
                         'tanggal_lahir'	=> $tanggal_lahir,
                         'alamat' => $alamat,
+                        'total_periksa'	=> $total_periksa,
                         
                     ); 	
                 }
@@ -676,14 +734,6 @@ class Data extends CI_Controller {
         $objPHPExcel->getActiveSheet()->SetCellValue('B1', 'Tempat Lahir');   
         $objPHPExcel->getActiveSheet()->SetCellValue('C1', 'Tanggal Lahir');  
         $objPHPExcel->getActiveSheet()->SetCellValue('D1', 'Alamat');
-        $objPHPExcel->getActiveSheet()->SetCellValue('E1', 'Tinggi Badan');
-        $objPHPExcel->getActiveSheet()->SetCellValue('F1', 'Berat Badan');
-        $objPHPExcel->getActiveSheet()->SetCellValue('G1', 'Riwayat Penyakit');
-        $objPHPExcel->getActiveSheet()->SetCellValue('H1', 'Golongan Darah');
-        $objPHPExcel->getActiveSheet()->SetCellValue('I1', 'Alergi');
-        $objPHPExcel->getActiveSheet()->SetCellValue('J1', 'Nama Wali');
-        $objPHPExcel->getActiveSheet()->SetCellValue('K1', 'No Telepon Wali');
-        
         // set Row
         $rowCount = 2;
         foreach ($listInfo as $list) {
@@ -691,16 +741,49 @@ class Data extends CI_Controller {
             $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $list->tempat_lahir);
             $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, $list->tanggal_lahir);
             $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $list->alamat);
-            $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, $list->TB);
-            $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, $list->BB);
-            $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount, $list->riwayat_penyakit);
-            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount, $list->gol_darah);
-            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount, $list->alergi);
-            $objPHPExcel->getActiveSheet()->SetCellValue('J' . $rowCount, $list->nama_wali);
-            $objPHPExcel->getActiveSheet()->SetCellValue('K' . $rowCount, $list->no_telepon_wali);
             $rowCount++;
         }
         $filename = "data-karyawan.csv";
+        header('Content-Type: application/vnd.ms-excel'); 
+        header('Content-Disposition: attachment;filename="'.$filename.'"');
+        header('Cache-Control: max-age=0'); 
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'CSV');  
+        $objWriter->save('php://output'); 
+    }
+
+    public function export_periksa_karyawan()
+    {
+        // load excel library
+        $this->load->library('excel');
+        $id = $this->input->post('id');
+        $getwhere=['karyawan_id'=>$id];
+        $listInfo = $this->Main_model->getwhere($getwhere, 'periksa')->result();
+        $karyawan = tampil_karyawan_byid($id);
+        $objPHPExcel = new PHPExcel();
+        $objPHPExcel->setActiveSheetIndex(0);
+        // set Header
+        $objPHPExcel->getActiveSheet()->SetCellValue('A1', 'Nama Pasien');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('B1', 'Status Pasien');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('C1', 'Keluhan');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('D1', 'Tanggal');   
+        $objPHPExcel->getActiveSheet()->SetCellValue('E1', 'Status');
+        // set Row
+        $rowCount = 2;
+        foreach ($listInfo as $list) {
+            $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, tampil_karyawan_byid($id));
+            $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $list->pasien_status);
+            $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, $list->keluhan);
+            $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $list->create_date);
+
+            $ditangani = $this->db->get_where('penanganan_periksa', array('periksa_id' => $list->id))->num_rows();
+            if ($ditangani > 0) {
+                $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, "Sudah Ditangani ");
+            } else {
+                $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, "Belum Ditangani");
+            }
+            $rowCount++;
+        }
+        $filename = "rekap data periksa $karyawan.csv";
         header('Content-Type: application/vnd.ms-excel'); 
         header('Content-Disposition: attachment;filename="'.$filename.'"');
         header('Cache-Control: max-age=0'); 

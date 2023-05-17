@@ -19,7 +19,7 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
                     <li class="nav-item">
-                        <a href="<?php echo base_url('admin/') ;?>" class="nav-link">
+                        <a href="<?php echo base_url('Admin/') ;?>" class="nav-link">
                             <i class="nav-icon fas fa-home"></i>
                             <p>
                                 Dashboard
@@ -27,7 +27,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url('periksa/') ;?>" class="nav-link">
+                        <a href="<?php echo base_url('Periksa/') ;?>" class="nav-link">
                             <i class="nav-icon fas fa-stethoscope"></i>
                             <p>
                                 Periksa Pasien
@@ -44,26 +44,26 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="<?php echo base_url('data/daf_guru')?>" class="nav-link">
+                                <a href="<?php echo base_url('Data/daf_guru')?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Daftar Guru</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('data/daf_siswa')?>" class="nav-link">
+                                <a href="<?php echo base_url('Data/daf_siswa')?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Daftar Siswa</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('data/daf_karyawan')?>" class="nav-link">
+                                <a href="<?php echo base_url('Data/daf_karyawan')?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Daftar Karyawan</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                                        <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link">
                         <i class="nav-icon fas fa-medkit"></i>
                             <p>
@@ -107,7 +107,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url('inventaris/') ;?>" class="nav-link">
+                        <a href="<?php echo base_url('Inventaris/') ;?>" class="nav-link">
                             <i class="nav-icon fas fa-boxes"></i>
                             <p>
                                 Inventaris
@@ -115,7 +115,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url('kegiatan/') ;?>" class="nav-link">
+                        <a href="<?php echo base_url('Kegiatan/') ;?>" class="nav-link">
                             <i class="nav-icon fas fa-medkit"></i>
                             <p>
                                 Kegiatan UKS
@@ -123,15 +123,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url('pojok_baca/') ;?>" class="nav-link">
+                        <a href="<?php echo base_url('Pojok_Baca/') ;?>" class="nav-link">
                             <i class="nav-icon fas fa-book"></i>
                             <p>
                                 Pojok Baca
-                            </p>
+                            </p> 
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url('program_klik/') ;?>" class="nav-link">
+                        <a href="<?php echo base_url('Program_Klik/') ;?>" class="nav-link">
                             <i class="nav-icon fas fa-sitemap"></i>
                             <p>
                                 Program Klik
@@ -148,13 +148,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="<?php echo base_url('program_kerja_uks/struktur')?>" class="nav-link">
+                                <a href="<?php echo base_url('Program_Kerja_UKS/struktur')?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Struktur Organisasi</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('program_kerja_uks/')?>" class="nav-link">
+                                <a href="<?php echo base_url('Program_Kerja_UKS/')?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Program Kerja</p>
                                 </a>

@@ -70,6 +70,12 @@
                                                     <?php echo indonesian_date_time($datas->tanggal_lahir);?></td>
                                                 <td><?php echo $datas->alamat?></td>
                                                 <td>
+                                                    <form action="<?php echo base_url('Data/export_periksa_karyawan') ?>"
+                                                enctype="multipart/form-data" method="post">
+                                                    <input type="hidden" id="id" name="id" value="<?= $datas->id?>">
+                                                <button type="submit" class="btn btn-primary btn-sm">
+                                                <i class="fa fa-download"></i>
+                                                </button>
                                                     <a href="<?php echo base_url('data/detail_karyawan/' . $datas->id)?>"
                                                         class="btn btn-warning btn-sm">
                                                         <i class="fa fa-eye"></i>
@@ -78,6 +84,7 @@
                                                         class="btn btn-danger btn-sm">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                             <?php endforeach;?>
