@@ -1,3 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+::-webkit-scrollbar {
+    width: .45rem;
+}
+::-webkit-scrollbar-thumb {
+    background-color: grey;
+    border-radius: 3px;
+}
+::-webkit-scrollbar-track{
+    background: transparent;
+}
+</style>
+<body>
 <div>
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <a href="<?php echo base_url('Admin/') ;?>" class="brand-link">
@@ -14,7 +35,8 @@
             </div>
         </div>
 
-        <div class="sidebar">
+        <div class="sidebar layout-fixed">
+        <div style="overflow: auto;  overflow-x: hidden;height:600px;text-align: left;">
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
@@ -169,6 +191,8 @@
                     </li>
                 </ul>
             </nav>
-        </div>
+            </div>
     </aside>
 </div>
+</body>
+</html>
