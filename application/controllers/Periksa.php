@@ -150,8 +150,9 @@ class Periksa extends CI_Controller {
         $where = ['id' => $id];
         $data['periksa'] = $this->Main_model->getwhere($where,'periksa')->row_array();
         $data['diagnosa'] = $this->Main_model->get('diagnosa')->result();
-        $data['penanganan'] = $this->Main_model->get('penanganan_pertama')->result();
         $data['tindakan'] = $this->Main_model->get('tindakan')->result();
+        $data['penanganan'] = $this->Main_model->get('penanganan_pertama')->result();
+        $data['daftar'] = $this->Main_model->get('daftar_obat')->result();
         $data['dataperiksa'] = $this->Main_model->getwhere(array('periksa_id' => $id),'penanganan_periksa')->result();
         // $data['dataperiksa'] = $this->Main_model->read_join_one('penanganan_periksa', 'periksa', 'periksa_id', 'id', array('siswa_id' => $id), 'create_date')->result();
         $this->load->view('periksa_pasien/penanganan/index', $data);
@@ -160,10 +161,13 @@ class Periksa extends CI_Controller {
     public function add_penanganan()
     {
         $data = [
-            'diagnosa_penyakit_id' => $this->input->post('diagnosa_penyakit_id'),
+            'diagnosa_id' => $this->input->post('diagnosa_id'),
             'tindakan_id' => $this->input->post('tindakan_id'),
             'penanganan_pertama_id' => $this->input->post('penanganan_pertama_id'),
+            'daftar_obat_id' => $this->input->post('daftar_obat_id'),
             'periksa_id' => $this->input->post('memperiksa'),
+            'tensi_systolic' => $this->input->post('tensi_systolic'),
+            'tensi_diastolic' => $this->input->post('tensi_diastolic'),
             'catatan' => $this->input->post('catatan'),
         ];
         $this->Main_model->insert_data($data, 'penanganan_periksa');
@@ -186,8 +190,9 @@ class Periksa extends CI_Controller {
         $data['periksa'] = $this->Main_model->getwhere($where,'penanganan_periksa')->row_array();
         $checkperiksa = $this->Main_model->getwhere($where,'penanganan_periksa')->row_array();
         $data['diagnosa'] = $this->Main_model->get('diagnosa')->result();
-        $data['penanganan'] = $this->Main_model->get('penanganan_pertama')->result();
         $data['tindakan'] = $this->Main_model->get('tindakan')->result();
+        $data['penanganan'] = $this->Main_model->get('penanganan_pertama')->result();
+        $data['daftar'] = $this->Main_model->get('daftar_obat')->result();
         $data['dataperiksa'] = $this->Main_model->getwhere(array('periksa_id' => $checkperiksa['periksa_id']),'penanganan_periksa')->result();
         // $data['dataperiksa'] = $this->Main_model->read_join_one('penanganan_periksa', 'periksa', 'periksa_id', 'id', array('siswa_id' => $id), 'create_date')->result();
         $this->load->view('periksa_pasien/penanganan/edit', $data);
@@ -199,10 +204,13 @@ class Periksa extends CI_Controller {
         $periksa = $this->Main_model->getwhere($where,'penanganan_periksa')->row_array();
         $whereperiksa = array('id' => $periksa['periksa_id']);
         $data = [
-            'diagnosa_penyakit_id' => $this->input->post('diagnosa_penyakit_id'),
+            'diagnosa_id' => $this->input->post('diagnosa_id'),
             'tindakan_id' => $this->input->post('tindakan_id'),
             'penanganan_pertama_id' => $this->input->post('penanganan_pertama_id'),
+            'daftar_obat_id' => $this->input->post('daftar_obat_id'),
             'periksa_id' => $this->input->post('memperiksa'),
+            'tensi_systolic' => $this->input->post('tensi_systolic'),
+            'tensi_diastolic' => $this->input->post('tensi_diastolic'),
             'catatan' => $this->input->post('catatan'),
         ];
         $keluhan = [

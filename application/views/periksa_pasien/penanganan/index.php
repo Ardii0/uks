@@ -59,16 +59,16 @@
                             </div>
                         </div>
                         <div class="row clearfix">
-                            <div class="col-lg-3">
+                            <div class="col-lg-4">
                                 <label class="d-block">Penyakit Pasien</label>
-                                <select name="diagnosa_penyakit_id" class="form-control select2">
+                                <select name="diagnosa_id" class="form-control select2">
                                     <option value="">Pilih Penyakit</option>
                                     <?php foreach($diagnosa as $diagnosa):?>
                                         <option value="<?php echo $diagnosa->id; ?>"><?php echo $diagnosa->nama; ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-4">
                                 <label class="d-block">Penanganan Pertama</label>
                                 <select name="penanganan_pertama_id" class="form-control select2">
                                     <option value="">Pilih Penanganan</option>
@@ -77,7 +77,18 @@
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-4">
+                                <label class="d-block">Obat</label>
+                                <select name="daftar_obat_id" class="form-control select2">
+                                    <option value="">Pilih Obat</option>
+                                    <?php foreach($daftar as $daftar):?>
+                                        <option value="<?php echo $daftar->id; ?>"><?php echo $daftar->nama_obat; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row clearfix mt-2">
+                            <div class="col-lg-4">
                                 <label class="d-block">Tindakan</label>
                                 <select name="tindakan_id" class="form-control select2">
                                     <option value="">Pilih Tindakan</option>
@@ -86,7 +97,25 @@
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-                            <div class="col-lg-2">
+                            <div class="col-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <label class="d-block">Tensi Systolic</label>
+                                        <input type="text" name="tensi_systolic" class="form-control" autocomplete="off">
+                                    </div>
+                                    <div class="mt-auto" style="padding: 0;">
+                                    /
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <label class="d-block">Tensi Diastolic</label>
+                                        <input type="text" name="tensi_diastolic" class="form-control" autocomplete="off">
+                                    </div>
+                                    <div class="col-lg-1 mt-auto" style="padding: 0;">
+                                        mmHG
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
                                 <label class="d-block">Catatan</label>
                                 <input type="text" name="catatan" class="form-control" autocomplete="off">
                             </div>
@@ -101,10 +130,11 @@
                             <thead>
                                 <tr>
                                     <th style="width: 2%;">No</th>
-                                    <th>Keluhan</th>
                                     <th>Diagnosa</th>
                                     <th>Penanganan Pertama</th>
                                     <th>Tindakan</th>
+                                    <th>Obat</th>
+                                    <th>Tensi</th>
                                     <th>Catatan</th>
                                     <th style="width: 10%;">Aksi</th>
                                 </tr>
@@ -113,10 +143,11 @@
                                 <?php $id=0; foreach($dataperiksa as $data): $id++;?>
                                     <tr>
                                         <td><?php echo $id?></td>
-                                        <td><?php echo JoinOne('penanganan_periksa', 'periksa', 'periksa_id', 'id','penanganan_periksa.id',$data->id, 'keluhan')?></td>
-                                        <td><?php echo JoinOne('penanganan_periksa', 'diagnosa', 'diagnosa_penyakit_id', 'id','penanganan_periksa.id',$data->id, 'nama')?></td>
+                                        <td><?php echo JoinOne('penanganan_periksa', 'diagnosa', 'diagnosa_id', 'id','penanganan_periksa.id',$data->id, 'nama')?></td>
                                         <td><?php echo JoinOne('penanganan_periksa', 'penanganan_pertama', 'penanganan_pertama_id', 'id','penanganan_periksa.id',$data->id, 'nama_penanganan')?></td>
                                         <td><?php echo JoinOne('penanganan_periksa', 'tindakan', 'tindakan_id', 'id','penanganan_periksa.id',$data->id, 'nama')?></td>
+                                        <td><?php echo JoinOne('penanganan_periksa', 'daftar_obat', 'daftar_obat_id', 'id','penanganan_periksa.id',$data->id, 'nama_obat')?></td>
+                                        <td><?php echo $data->tensi_systolic.'/'.$data->tensi_diastolic?> mmHG</td>
                                         <td><?php echo $data->catatan?></td>
                                         <td class="text-center">
                                             <a href="<?php echo base_url('Periksa/edit_stat/'.$data->id)?>" class='btn btn-warning btn-sm text-white'>
