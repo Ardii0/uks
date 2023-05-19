@@ -39,6 +39,7 @@ class Periksa extends CI_Controller {
             'pasien_status' => $this->input->post('pasien_status'),
             'keluhan' => $this->input->post('keluhan'),
             'tahun_bulan' => date("Y-m"),
+            'tahun_bulan_hari' => date("Y-m-d"),
         );
             $total = 'total_periksa';
         if ($this->input->post('pasien_status') === 'Guru') {

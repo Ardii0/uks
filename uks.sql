@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2023 at 11:37 AM
+-- Generation Time: May 19, 2023 at 05:20 AM
 -- Server version: 8.0.29
 -- PHP Version: 8.0.25
 
@@ -235,23 +235,26 @@ INSERT INTO `pasien_status` (`id`, `name`, `create_date`, `update_date`) VALUES
 
 CREATE TABLE `penanganan_periksa` (
   `id` int NOT NULL,
-  `catatan` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `diagnosa_penyakit_id` bigint DEFAULT NULL,
+  `diagnosa_id` bigint DEFAULT NULL,
   `tindakan_id` bigint DEFAULT NULL,
   `penanganan_pertama_id` bigint DEFAULT NULL,
-  `periksa_id` bigint DEFAULT NULL
+  `daftar_obat_id` bigint DEFAULT NULL,
+  `periksa_id` bigint DEFAULT NULL,
+  `tensi_systolic` bigint DEFAULT NULL,
+  `tensi_diastolic` bigint DEFAULT NULL,
+  `catatan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `penanganan_periksa`
 --
 
-INSERT INTO `penanganan_periksa` (`id`, `catatan`, `diagnosa_penyakit_id`, `tindakan_id`, `penanganan_pertama_id`, `periksa_id`) VALUES
-(1, 'Lekas Sembuh', 2, 1, 1, 1),
-(3, 'Tes', 2, 1, 2, 2),
-(4, 'Lekas Sembuh', 2, 1, 1, 5),
-(5, 'Cepat Sembuh', 1, 1, 1, 1),
-(8, 'ada', 2, 1, 1, 6);
+INSERT INTO `penanganan_periksa` (`id`, `diagnosa_id`, `tindakan_id`, `penanganan_pertama_id`, `daftar_obat_id`, `periksa_id`, `tensi_systolic`, `tensi_diastolic`, `catatan`) VALUES
+(1, 2, 1, 1, 2, 1, 117, 80, 'Semoga Sembuh'),
+(2, 2, 1, 2, 2, 2, 119, 30, 'Lekas Sembuh'),
+(3, 2, 1, 1, 2, 5, 110, 20, 'Lekas Sembuh'),
+(4, 1, 1, 1, 2, 1, 120, 90, 'Cepat Sembuh'),
+(5, 2, 1, 1, 3, 6, 117, 80, 'Lekas Sembuh');
 
 -- --------------------------------------------------------
 
@@ -292,28 +295,29 @@ CREATE TABLE `periksa` (
   `karyawan_id` bigint DEFAULT NULL,
   `keterangan_pasien_id` bigint DEFAULT NULL,
   `pasien_status` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `tahun_bulan` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `tahun_bulan` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `tahun_bulan_hari` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `periksa`
 --
 
-INSERT INTO `periksa` (`id`, `create_date`, `update_date`, `status`, `keluhan`, `guru_id`, `siswa_id`, `karyawan_id`, `keterangan_pasien_id`, `pasien_status`, `tahun_bulan`) VALUES
-(1, '2023-04-11 08:42:58', '2023-04-11 08:43:29', b'1', 'Pusingduh', NULL, 1, NULL, NULL, 'Siswa', '2023-04'),
-(2, '2023-04-11 08:43:46', '2023-04-11 08:43:46', b'0', 'Pusing', 1, NULL, NULL, NULL, 'Guru', '2023-04'),
-(5, '2023-05-12 01:40:57', '2023-05-12 01:40:57', b'0', 'Mual Mual', NULL, 4, NULL, NULL, 'Siswa', '2023-05'),
-(6, '2023-05-12 01:42:21', '2023-05-12 01:42:21', b'0', 'Mual', NULL, 4, NULL, NULL, 'Siswa', '2023-05'),
-(7, '2023-05-12 06:49:02', '2023-05-12 06:49:02', b'0', 'Demam', 3, NULL, NULL, NULL, 'Guru', '2023-05'),
-(8, '2023-05-12 06:50:08', '2023-05-12 06:50:08', b'0', 'Sakit Kepala', NULL, NULL, 2, NULL, 'Karyawan', '2023-05'),
-(10, '2023-05-15 07:03:06', '2023-05-15 07:03:06', b'0', 'Pusing', NULL, NULL, 1, NULL, 'Karyawan', '2023-05'),
-(11, '2023-05-15 07:04:13', '2023-05-15 07:04:13', b'0', 'Muntah', NULL, NULL, 1, NULL, 'Karyawan', '2023-05'),
-(12, '2023-05-15 07:05:24', '2023-05-15 07:05:24', b'0', 'Pusing', NULL, NULL, 1, NULL, 'Karyawan', '2023-05');
+INSERT INTO `periksa` (`id`, `create_date`, `update_date`, `status`, `keluhan`, `guru_id`, `siswa_id`, `karyawan_id`, `keterangan_pasien_id`, `pasien_status`, `tahun_bulan`, `tahun_bulan_hari`) VALUES
+(1, '2023-04-11 08:42:58', '2023-04-11 08:43:29', b'1', 'Pusingduh', NULL, 1, NULL, NULL, 'Siswa', '2023-04', '2023-05-17'),
+(2, '2023-04-11 08:43:46', '2023-04-11 08:43:46', b'0', 'Pusing', 1, NULL, NULL, NULL, 'Guru', '2023-04', '2023-05-17'),
+(5, '2023-05-12 01:40:57', '2023-05-12 01:40:57', b'0', 'Mual Mual', NULL, 4, NULL, NULL, 'Siswa', '2023-05', '2023-05-17'),
+(6, '2023-05-12 01:42:21', '2023-05-12 01:42:21', b'0', 'Mual', NULL, 4, NULL, NULL, 'Siswa', '2023-05', '2023-05-17'),
+(7, '2023-05-12 06:49:02', '2023-05-12 06:49:02', b'0', 'Demam', 3, NULL, NULL, NULL, 'Guru', '2023-05', '2023-05-17'),
+(8, '2023-05-12 06:50:08', '2023-05-12 06:50:08', b'0', 'Sakit Kepala', NULL, NULL, 2, NULL, 'Karyawan', '2023-05', '2023-05-17'),
+(10, '2023-05-15 07:03:06', '2023-05-15 07:03:06', b'0', 'Pusing', NULL, NULL, 1, NULL, 'Karyawan', '2023-05', '2023-05-17'),
+(11, '2023-05-15 07:04:13', '2023-05-15 07:04:13', b'0', 'Muntah', NULL, NULL, 1, NULL, 'Karyawan', '2023-05', '2023-05-17'),
+(12, '2023-05-15 07:05:24', '2023-05-15 07:05:24', b'0', 'Pusing', NULL, NULL, 1, NULL, 'Karyawan', '2023-05', '2023-05-17');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `program_klik`
+-- Table structure for table `program_click`
 --
 
 CREATE TABLE `program_klik` (
@@ -497,7 +501,7 @@ ALTER TABLE `pasien_status`
 --
 ALTER TABLE `penanganan_periksa`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `FK2k8dghilwkkc0j9pa2kwgbdxx` (`diagnosa_penyakit_id`),
+  ADD KEY `FK2k8dghilwkkc0j9pa2kwgbdxx` (`diagnosa_id`),
   ADD KEY `FK1t5wmmw5ljdxmr7me915pqr01` (`tindakan_id`),
   ADD KEY `FK32mt44a65dkhlh6pxty5awrh2` (`penanganan_pertama_id`),
   ADD KEY `FKhodf9h6bb8ltbkru05ot05kb0` (`periksa_id`);
@@ -625,7 +629,7 @@ ALTER TABLE `penanganan_pertama`
 -- AUTO_INCREMENT for table `periksa`
 --
 ALTER TABLE `periksa`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `program_klik`
@@ -666,7 +670,7 @@ ALTER TABLE `struktur`
 --
 ALTER TABLE `penanganan_periksa`
   ADD CONSTRAINT `FK1t5wmmw5ljdxmr7me915pqr01` FOREIGN KEY (`tindakan_id`) REFERENCES `tindakan` (`id`),
-  ADD CONSTRAINT `FK2k8dghilwkkc0j9pa2kwgbdxx` FOREIGN KEY (`diagnosa_penyakit_id`) REFERENCES `diagnosa` (`id`),
+  ADD CONSTRAINT `FK2k8dghilwkkc0j9pa2kwgbdxx` FOREIGN KEY (`diagnosa_id`) REFERENCES `diagnosa` (`id`),
   ADD CONSTRAINT `FK32mt44a65dkhlh6pxty5awrh2` FOREIGN KEY (`penanganan_pertama_id`) REFERENCES `penanganan_pertama` (`id`),
   ADD CONSTRAINT `FKhodf9h6bb8ltbkru05ot05kb0` FOREIGN KEY (`periksa_id`) REFERENCES `periksa` (`id`);
 
