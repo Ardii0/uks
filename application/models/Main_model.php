@@ -140,6 +140,13 @@ class Main_model extends CI_Model
         $data = $this->db->where($multiClause)->get('periksa');
         return $data;
     }
+    
+    public function get_graph_hari($tahun_bulan_hari, $pasien_status)
+    {
+        $multiClause = array('tahun_bulan_hari' => $tahun_bulan_hari,'pasien_status' => $pasien_status);
+        $data = $this->db->where($multiClause)->get('periksa');
+        return $data;
+    }
 // Data
         public function tambah($tabel, $data)
         {

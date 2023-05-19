@@ -69,6 +69,64 @@
         chart.draw(data, options);
     }
     </script>
+    <script type="text/javascript">
+    google.load("visualization", "1.1", {
+        packages: ['bar', 'timeline']
+    });
+    google.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Tanggal');
+        data.addColumn('number', 'Guru');
+        data.addColumn('number', 'Siswa');
+        data.addColumn('number', 'Karyawan');
+        data.addRows([
+            <?php foreach ($graph_data_hari as $row) : ?>['<?= $row['hari'] ?>', <?= $row['guru'] ?>,
+                <?= $row['siswa'] ?>, <?= $row['karyawan'] ?>],
+            <?php endforeach; ?>
+        ]);
+
+        var options = {
+            lineWidth: 3,
+            pointSize: 6,
+            series: {
+                0: {
+                    color: '#1E90FF'
+                },
+                1: {
+                    color: '#FFA500'
+                },
+                2: {
+                    color: '#4ADE80'
+                }
+            },
+            title: 'Grafik Jumlah Guru, Siswa, dan Karyawan',
+            legend: {
+                position: 'top'
+            },
+            hAxis: {
+                title: 'Bulan',
+                format: 'MMM yyyy',
+                gridlines: {
+                    count: -1,
+                    units: {
+                        months: 1
+                    }
+                }
+            },
+            vAxis: {
+                title: 'Jumlah',
+                minValue: 0,
+                format: '0'
+            }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material_hari'));
+
+        chart.draw(data, options);
+    }
+    </script>
     <style>
     marquee {
         box-shadow: 2px 2px 3px rgba(0, 0, 0, .05);
@@ -86,9 +144,9 @@
     <div class="wrapper">
         <?php $this->load->view('style/navbar')?>
         <?php $this->load->view('style/sidebar')?>
-        <div class="content-wrapper p-3">
+        <div class="content-wrapper p-2">
             <div class="container-fluid">
-                <div class="row my-3 mt-n1">
+                <div class="row my-3">
                     <marquee direction="left" class="d-flex align-items-center rounded shadow-sm">
                         <h5 class="mt-2"> Motto : TERDEPAN
                             “ Terintegritas
@@ -141,8 +199,7 @@
                             sesuai dengan standar keamanan dan kenyamanan.
                             2. Dapat melaksanakan pemeliharaan ruang dan gedung sesuai standar keamanan
                             dan kesehatan.
-                            3. Dapat membentuk Tim Pendampingan Sekolah sehat, aman, bersih, dan
-                            menyenangkan.
+                            3. Dapat membentuk Tim Pendampingan Sekolah sehat, aman, bersih, danmenyenangkan.
                             4. Dapat mengintegrasikakn sekolah sehat, aman, bersih, dan menyenangkan
                             pada semua mata pelajaran.
                             5. Dapat menyusun Program Tahunan untuk mewujudkan sekolah sehat, aman,
@@ -161,6 +218,21 @@
                         </h5>
                     </marquee>
                 </div>
+                <!-- <div>
+                    <div>
+                        <?php foreach ($graph_data as $row) : ?>['<?= $row['bulan'] ?>', <?= $row['guru'] ?>,
+                        <?= $row['siswa'] ?>, <?= $row['karyawan'] ?>],
+                        <?php endforeach; ?>
+                    </div>
+                    <br>
+                    <div>
+                        <?php foreach ($graph_data_hari as $row) : ?>['<?= $row['hari'] ?>', <?= $row['guru'] ?>,
+                        <?= $row['siswa'] ?>, <?= $row['karyawan'] ?>],
+                        <?php endforeach; ?>
+                    </div>
+                    <br>
+                    <?php echo $this->session->userdata('bulan') ?>
+                </div> -->
                 <div class="row">
                     <div class="col-4">
                         <div class="card shadow">
@@ -262,23 +334,97 @@
                         </div>
                         <div class="p-2 d-flex align-items-center gap-3">
                             <div class="grid gap-3">
-                                <button type="button" id="download" class="btn btn-primary">Download Grafik</button>
+                                <button type="button" id="download_grafik_full" class="btn btn-primary">Download
+                                    Grafik</button>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
+                        <?php if ( $this->session->userdata('bulan') === null ) : ?>
+                        <form action="<?php echo base_url('Admin/pilih_bulan') ?>" method="POST">
+                            <select id="sel_id" name="bulan" onchange="this.form.submit();"
+                                class="form-control select2">
+                                <option value="">Pilih Bulan</option>
+                                <option value="01">Januari</option>
+                                <option value="02">Februari</option>
+                                <option value="03">Maret</option>
+                                <option value="04">April</option>
+                                <option value="05">Mei</option>
+                                <option value="06">Juni</option>
+                                <option value="07">Juli</option>
+                                <option value="08">Agustus</option>
+                                <option value="09">September</option>
+                                <option value="10">Oktober</option>
+                                <option value="11">November</option>
+                                <option value="12">Desember</option>
+                            </select>
+                        </form>
+                        <?php else : ?>
+                        <?php endif; ?>
                         <div id="columnchart_material" style="width: auto; height: 350px; padding: 20px;"></div>
                     </div>
                 </div>
+                <?php if ( $this->session->userdata('bulan') === null ) : ?>
+                <?php else : ?>
+                <div class="card">
+                    <div class="header p-1 text-light rounded-top d-flex justify-content-between"
+                        style="background-color:#4ADE80">
+                        <div class="p-2 d-flex align-items-center gap-3">
+                            <div style="font-size: 1.5rem">Grafik Pasien Bulan
+                                <?php
+                                    $monthName = date("F", mktime(0, 0, 0, $this->session->userdata('bulan'), 10));
+                                    echo $monthName;
+                                ?>
+                            </div>
+                        </div>
+                        <div class="p-2 d-flex align-items-center gap-3">
+                            <div class="grid gap-3">
+                                <button type="button" id="download_grafik_hari" class="btn btn-primary">Download
+                                    Grafik</button>
+                                <button type="button" onclick="window.location='<?= base_url(); ?>Admin/reset'"
+                                    class="btn btn-primary">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form action="<?php echo base_url('Admin/pilih_bulan') ?>" method="POST">
+                            <select id="sel_id" name="bulan" onchange="this.form.submit();"
+                                class="form-control select2">
+                                <option value="">Pilih Bulan</option>
+                                <option value="01">Januari</option>
+                                <option value="02">Februari</option>
+                                <option value="03">Maret</option>
+                                <option value="04">April</option>
+                                <option value="05">Mei</option>
+                                <option value="06">Juni</option>
+                                <option value="07">Juli</option>
+                                <option value="08">Agustus</option>
+                                <option value="09">September</option>
+                                <option value="10">Oktober</option>
+                                <option value="11">November</option>
+                                <option value="12">Desember</option>
+                            </select>
+                        </form>
+                        <div id="columnchart_material_hari" style="width: auto; height: 350px; padding: 20px;"></div>
+                    </div>
+                </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
     <?php $this->load->view('style/js')?>
     <script>
-    document.getElementById("download").addEventListener("click", function() {
+    document.getElementById("download_grafik_full").addEventListener("click", function() {
         html2canvas(document.querySelector("#columnchart_material")).then(canvas => {
             canvas.toBlob(function(blob) {
                 saveAs(blob, "grafik.png");
+            });
+        });
+    });
+    document.getElementById("download_grafik_hari").addEventListener("click", function() {
+        html2canvas(document.querySelector("#columnchart_material_hari")).then(canvas => {
+            canvas.toBlob(function(blob) {
+                saveAs(blob, "grafik_perbulan.png");
             });
         });
     });
