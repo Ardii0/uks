@@ -56,7 +56,7 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item menu-open">
                         <a class="nav-link">
                             <i class="nav-icon fas fa-book"></i>
                             <p>
@@ -85,7 +85,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item menu-open">
                         <a class="nav-link">
                         <i class="nav-icon fas fa-medkit"></i>
                             <p>
@@ -160,7 +160,7 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item menu-open">
                         <a class="nav-link">
                             <i class="nav-icon fas fa-book"></i>
                             <p>

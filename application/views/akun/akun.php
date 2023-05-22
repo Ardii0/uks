@@ -35,6 +35,10 @@
                                                 value="<?php echo $data->id ?>">
                                         </div>
                                     </div>
+                                    <div class="mt-4">
+                                        <h5 class="font-weight-bold">Edit Password</h5>
+                                    </div>
+                                    <hr class="mt-n1" style="border: 1px solid black;">
                                     <div class=" form-group row">
                                         <label for="password" class="col-sm-2 col-form-label">Password</label>
                                         <div class="col-sm-10">
