@@ -75,7 +75,7 @@
 	<table width="100%">
 		<tr>
 			<td width="50" align="center">
-				<h1>SMK Bina Nusantara</h1>
+				<h1>SMP Negeri 1 Semarang</h1>
 				<h2>Semarang</h2>
 			</td>
 		</tr>
@@ -86,7 +86,7 @@
 		<tr>
 			<td>Nomor</td>
 			<td>:</td>
-			<td>426/SP/SMK.BN/IV/2023</td>
+			<td>426/SP/SMP.01/IV/2023</td>
 			<td style="text-align: right;">
 				<h3>Semarang,
 					<?= indonesian_date_time(date("Y-m-d")) ?>

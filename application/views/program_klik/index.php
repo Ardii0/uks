@@ -79,7 +79,7 @@
                                                     </td>
                                                     <td class="text-center">
                                                     <a href="<?php echo base_url('Program_Klik/cetak_program_klik/'.$data->id.'/pdf')?>"
-                                                        class="btn btn-primary btn-sm">
+                                                        class="btn btn-primary btn-sm" target="_blank">
                                                         <i class="fas fa-print"></i>
                                                     </a>
                                                         <!-- <a href="<?php echo base_url('/export_pasien_to_excel'); ?>">
