@@ -75,7 +75,7 @@
 	<table width="100%">
 		<tr>
 			<td width="50" align="center">
-				<h1>SMP Negeri 1 Semarang</h1>
+				<h1>UKS SMP Negeri 1 Semarang</h1>
 				<h2>Semarang</h2>
 			</td>
 		</tr>
