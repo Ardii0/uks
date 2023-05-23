@@ -146,7 +146,7 @@ class Data extends CI_Controller {
         else
         {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('data/daf_guru/'.$id));
+            redirect(base_url('data/daf_guru/'.$_id));
         }
     }
 
@@ -252,6 +252,12 @@ class Data extends CI_Controller {
         $objPHPExcel->getActiveSheet()->SetCellValue('C1', 'Keluhan');   
         $objPHPExcel->getActiveSheet()->SetCellValue('D1', 'Tanggal');   
         $objPHPExcel->getActiveSheet()->SetCellValue('E1', 'Status');
+        $objPHPExcel->getActiveSheet()->SetCellValue('F1', 'Diagnosa');
+        $objPHPExcel->getActiveSheet()->SetCellValue('G1', 'Penanganan Pertama');
+        $objPHPExcel->getActiveSheet()->SetCellValue('H1', 'Tindakan');
+        $objPHPExcel->getActiveSheet()->SetCellValue('I1', 'Obat');
+        $objPHPExcel->getActiveSheet()->SetCellValue('J1', 'Tensi');
+        $objPHPExcel->getActiveSheet()->SetCellValue('K1', 'Catatan');
         // set Row
         $rowCount = 2;
         foreach ($listInfo as $list) {
@@ -266,6 +272,13 @@ class Data extends CI_Controller {
             } else {
                 $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, "Belum Ditangani");
             }
+
+            $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, JoinOne('penanganan_periksa', 'diagnosa', 'diagnosa_id', 'id','penanganan_periksa.id',$list->id, 'nama'));
+            $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount, JoinOne('penanganan_periksa', 'penanganan_pertama', 'penanganan_pertama_id', 'id','penanganan_periksa.id',$list->id, 'nama_penanganan'));
+            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount, JoinOne('penanganan_periksa', 'tindakan', 'tindakan_id', 'id','penanganan_periksa.id',$list->id, 'nama'));
+            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount, JoinOne('penanganan_periksa', 'daftar_obat', 'daftar_obat_id', 'id','penanganan_periksa.id',$list->id, 'nama_obat'));
+            $objPHPExcel->getActiveSheet()->SetCellValue('J' . $rowCount, tampil_tensi1_byid($list->id).'/'.tampil_tensi2_byid($list->id));
+            $objPHPExcel->getActiveSheet()->SetCellValue('K' . $rowCount, tampil_catatan_byid($list->id));
             $rowCount++;
         }
         $filename = "rekap data periksa $guru.csv";
@@ -387,7 +400,7 @@ class Data extends CI_Controller {
         else
         {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('data/daf_siswa/'.$id));
+            redirect(base_url('data/daf_siswa/'.$_id));
         }
     }
 
@@ -513,6 +526,12 @@ class Data extends CI_Controller {
         $objPHPExcel->getActiveSheet()->SetCellValue('C1', 'Keluhan');   
         $objPHPExcel->getActiveSheet()->SetCellValue('D1', 'Tanggal');   
         $objPHPExcel->getActiveSheet()->SetCellValue('E1', 'Status');
+        $objPHPExcel->getActiveSheet()->SetCellValue('F1', 'Diagnosa');
+        $objPHPExcel->getActiveSheet()->SetCellValue('G1', 'Penanganan Pertama');
+        $objPHPExcel->getActiveSheet()->SetCellValue('H1', 'Tindakan');
+        $objPHPExcel->getActiveSheet()->SetCellValue('I1', 'Obat');
+        $objPHPExcel->getActiveSheet()->SetCellValue('J1', 'Tensi');
+        $objPHPExcel->getActiveSheet()->SetCellValue('K1', 'Catatan');
         // set Row
         $rowCount = 2;
         foreach ($listInfo as $list) {
@@ -527,6 +546,13 @@ class Data extends CI_Controller {
             } else {
                 $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, "Belum Ditangani");
             }
+
+            $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, JoinOne('penanganan_periksa', 'diagnosa', 'diagnosa_id', 'id','penanganan_periksa.id',$list->id, 'nama'));
+            $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount, JoinOne('penanganan_periksa', 'penanganan_pertama', 'penanganan_pertama_id', 'id','penanganan_periksa.id',$list->id, 'nama_penanganan'));
+            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount, JoinOne('penanganan_periksa', 'tindakan', 'tindakan_id', 'id','penanganan_periksa.id',$list->id, 'nama'));
+            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount, JoinOne('penanganan_periksa', 'daftar_obat', 'daftar_obat_id', 'id','penanganan_periksa.id',$list->id, 'nama_obat'));
+            $objPHPExcel->getActiveSheet()->SetCellValue('J' . $rowCount, tampil_tensi1_byid($list->id).'/'.tampil_tensi2_byid($list->id));
+            $objPHPExcel->getActiveSheet()->SetCellValue('K' . $rowCount, tampil_catatan_byid($list->id));
             $rowCount++;
         }
         $filename = "rekap data periksa $siswa.csv";
@@ -661,7 +687,7 @@ class Data extends CI_Controller {
         else
         {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('data/daf_karyawan/'.$id));
+            redirect(base_url('data/daf_karyawan/'.$_id));
         }
     }
 
@@ -767,6 +793,12 @@ class Data extends CI_Controller {
         $objPHPExcel->getActiveSheet()->SetCellValue('C1', 'Keluhan');   
         $objPHPExcel->getActiveSheet()->SetCellValue('D1', 'Tanggal');   
         $objPHPExcel->getActiveSheet()->SetCellValue('E1', 'Status');
+        $objPHPExcel->getActiveSheet()->SetCellValue('F1', 'Diagnosa');
+        $objPHPExcel->getActiveSheet()->SetCellValue('G1', 'Penanganan Pertama');
+        $objPHPExcel->getActiveSheet()->SetCellValue('H1', 'Tindakan');
+        $objPHPExcel->getActiveSheet()->SetCellValue('I1', 'Obat');
+        $objPHPExcel->getActiveSheet()->SetCellValue('J1', 'Tensi');
+        $objPHPExcel->getActiveSheet()->SetCellValue('K1', 'Catatan');
         // set Row
         $rowCount = 2;
         foreach ($listInfo as $list) {
@@ -781,6 +813,13 @@ class Data extends CI_Controller {
             } else {
                 $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, "Belum Ditangani");
             }
+            
+            $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, JoinOne('penanganan_periksa', 'diagnosa', 'diagnosa_id', 'id','penanganan_periksa.id',$list->id, 'nama'));
+            $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount, JoinOne('penanganan_periksa', 'penanganan_pertama', 'penanganan_pertama_id', 'id','penanganan_periksa.id',$list->id, 'nama_penanganan'));
+            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount, JoinOne('penanganan_periksa', 'tindakan', 'tindakan_id', 'id','penanganan_periksa.id',$list->id, 'nama'));
+            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount, JoinOne('penanganan_periksa', 'daftar_obat', 'daftar_obat_id', 'id','penanganan_periksa.id',$list->id, 'nama_obat'));
+            $objPHPExcel->getActiveSheet()->SetCellValue('J' . $rowCount, tampil_tensi1_byid($list->id).'/'.tampil_tensi2_byid($list->id));
+            $objPHPExcel->getActiveSheet()->SetCellValue('K' . $rowCount, tampil_catatan_byid($list->id));
             $rowCount++;
         }
         $filename = "rekap data periksa $karyawan.csv";

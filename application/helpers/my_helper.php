@@ -167,4 +167,38 @@
         return $stmt;
         }
     }
+
+    function tampil_tensi1_byid($id)
+    {
+    $ci =& get_instance();
+    $ci->load->database();
+    $result = $ci->db->where('periksa_id',$id)->get('penanganan_periksa');
+    foreach ($result->result() as $c) {
+    $stmt= $c->tensi_systolic;
+    return $stmt;
+    }
+    }
+
+    function tampil_tensi2_byid($id)
+    {
+    $ci =& get_instance();
+    $ci->load->database();
+    $result = $ci->db->where('periksa_id',$id)->get('penanganan_periksa');
+    foreach ($result->result() as $c) {
+    $stmt= $c->tensi_diastolic;
+    return $stmt;
+    }
+}
+
+function tampil_catatan_byid($id)
+{
+$ci =& get_instance();
+$ci->load->database();
+$result = $ci->db->where('periksa_id',$id)->get('penanganan_periksa');
+foreach ($result->result() as $c) {
+$stmt= $c->catatan;
+return $stmt;
+}
+}
+
 ?>

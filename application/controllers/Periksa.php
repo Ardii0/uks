@@ -129,6 +129,57 @@ class Periksa extends CI_Controller {
         $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'CSV');  
         $objWriter->save('php://output'); 
     }
+
+    public function export_pasien_to_excels()
+    {
+        // load excel library
+        $this->load->library('excel');
+        $awal_tanggal = $this->input->post('awal_tanggal');
+        $akhir_tanggal = $this->input->post('akhir_tanggal');
+        $listInfo = $this->filter_tanggal($awal_tanggal, $akhir_tanggal)->result();
+        $csv = new PHPExcel();
+        $csv->setActiveSheetIndex(0);
+        // set Header
+        $csv->getActiveSheet()->SetCellValue('A1', 'Nama Pasien');   
+        $csv->getActiveSheet()->SetCellValue('B1', 'Status Pasien');   
+        $csv->getActiveSheet()->SetCellValue('C1', 'Keluhan');   
+        $csv->getActiveSheet()->SetCellValue('D1', 'Tanggal');   
+        $csv->getActiveSheet()->SetCellValue('E1', 'Status');  
+        // set Row
+        $rowCount = 2;
+        foreach ($listInfo as $list) {
+            if(!empty($list->siswa_id)) {
+                $csv->getActiveSheet()->SetCellValue('A' . $rowCount, JoinOne('periksa', 'siswa', 'siswa_id', 'id','periksa.id',$list->id, 'nama_siswa'));
+            } else if(!empty($list->guru_id)) {
+                $csv->getActiveSheet()->SetCellValue('A' . $rowCount, JoinOne('periksa', 'guru', 'guru_id', 'id','periksa.id',$list->id, 'nama_guru'));
+            } else if(!empty($list->karyawan_id)) {
+                $csv->getActiveSheet()->SetCellValue('A' . $rowCount, JoinOne('periksa', 'karyawan', 'karyawan_id', 'id','periksa.id',$list->id, 'nama_karyawan'));
+            } 
+            $csv->getActiveSheet()->SetCellValue('B' . $rowCount, $list->pasien_status);
+            $csv->getActiveSheet()->SetCellValue('C' . $rowCount, $list->keluhan);
+            $csv->getActiveSheet()->SetCellValue('D' . $rowCount, $list->create_date);
+
+            $ditangani = $this->db->get_where('penanganan_periksa', array('periksa_id' => $list->id))->num_rows();
+            if ($ditangani > 0) {
+                $csv->getActiveSheet()->SetCellValue('E' . $rowCount, "Sudah Ditangani ");
+            } else {
+                $csv->getActiveSheet()->SetCellValue('E' . $rowCount, "Belum Ditangani");
+            }
+            $rowCount++;
+        }
+        $csv->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+        // Set judul file excel nya
+        $csv->getActiveSheet(0)->setTitle("data-pendaftaran-peserta-didik-baru");
+        $csv->setActiveSheetIndex(0);
+        // Proses file excel
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename="data-pendaftaran-peserta-didik-baru.xlsx"'); // Set nama file excel nya
+        header('Cache-Control: max-age=0');
+    //    $write = new PHPExcel_Writer_CSV($csv); kene kesalahane
+        $write = PHPExcel_IOFactory::createWriter($csv, 'Excel2007');
+        $write->save('php://output');
+    }
+    
     
     public function hapus_periksa($id)
     {
