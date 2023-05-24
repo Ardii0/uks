@@ -58,8 +58,8 @@
                                                         <div class="custom-file mb-3">
                                                             <input type="file" class="custom-file-input" id="customFile"
                                                                 name="foto">
-                                                            <label class="custom-file-label" for="customFile">Pilih
-                                                                File</label>
+                                                            <label class="custom-file-label"
+                                                                for="customFile"><?php echo $datas->foto ?></label>
                                                         </div>
                                                     </div>
                                                     <div class="form-group col-sm-6">
