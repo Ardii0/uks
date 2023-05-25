@@ -102,7 +102,7 @@
     <div class="modal fade" id="index1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form action="<?php echo base_url('data/aksi_tambah_guru')?>" enctype="multipart/form-data" method="post">
+            <form action="<?php echo base_url('Data/aksi_tambah_guru')?>" enctype="multipart/form-data" method="post">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Tambah Data Guru</h5>
@@ -203,38 +203,39 @@ swal.fire({
     title: "<?php echo $this->session->flashdata('bisa')?>",
     icon: "success",
     showConfirmButton: false,
-    timer: 3000,
+    timer: 1500,
 });
 </script>
 <?php if (isset($_SESSION['bisa'])) {
             unset($_SESSION['bisa']);
         }
     endif; ?>
+
 <script>
 function hapus(id) {
-    swal.fire({
-        title: 'Yakin untuk menghapus data ini?',
-        text: "Data ini akan terhapus permanen",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        cancelButtonText: 'Batal',
-        confirmButtonText: ' Ya hapus!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = "<?php echo base_url('data/hapus_guru/')?>" + id;
-            Swal.fire({
-                icon: 'success',
-                title: 'Berhasil Dihapus',
-                showConfirmButton: false,
-                timer: 1500
-            })
+        swal.fire({
+            title: 'Yakin untuk menghapus data ini?',
+            text: "Data ini akan terhapus permanen",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Ya Hapus'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil Dihapus',
+                    showConfirmButton: false,
+                    timer: 1500,
 
-        }
-    });
-
-}
+                }).then(function() {
+                    window.location.href = "<?php echo base_url('data/hapus_guru/')?>" + id;
+                });
+            }
+        });
+    }
 </script>
 
 </html>

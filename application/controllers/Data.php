@@ -50,7 +50,7 @@ class Data extends CI_Controller {
       $masuk=$this->Main_model->tambah("guru", $data);
       if($masuk)
         {
-            $this->session->set_flashdata('bisa', 'Berhasil..');
+            $this->session->set_flashdata('bisa', 'Berhasil Menambahkan...');
             redirect(base_url('data/daf_guru/'));
         }
     }
@@ -140,7 +140,7 @@ class Data extends CI_Controller {
         $valid = $this->Main_model->update_data($where, $data, 'guru');
         if($valid)
         {
-            $this->session->set_flashdata('bisa', 'berhasil');
+            $this->session->set_flashdata('bisa', 'Berhasil Mengedit...');
             redirect(base_url('data/daf_guru/'));
         }
         else
@@ -314,7 +314,7 @@ class Data extends CI_Controller {
       $masuk=$this->Main_model->tambah("siswa", $data);
       if($masuk)
         {
-            $this->session->set_flashdata('sukses', 'Berhasil..');
+            $this->session->set_flashdata('bisa', 'Berhasil Menambahkan...');
             redirect(base_url('data/daf_siswa/'));
         }
     }
@@ -394,7 +394,7 @@ class Data extends CI_Controller {
         $valid = $this->Main_model->update_data($where, $data, 'siswa');
         if($valid)
         {
-            $this->session->set_flashdata('sukses', 'berhasil');
+            $this->session->set_flashdata('bisa', 'Berhasil Mengedit...');
             redirect(base_url('data/daf_siswa/'));
         }
         else
@@ -586,7 +586,7 @@ class Data extends CI_Controller {
       $masuk=$this->Main_model->tambah("karyawan", $data);
       if($masuk)
         {
-            $this->session->set_flashdata('bisa', 'Berhasil..');
+            $this->session->set_flashdata('bisa', 'Berhasil Menambahkan...');
             redirect(base_url('data/daf_karyawan/'));
         }
         else
@@ -681,7 +681,7 @@ class Data extends CI_Controller {
         $valid = $this->Main_model->update_data($where, $data, 'karyawan');
         if($valid)
         {
-            $this->session->set_flashdata('bisa', 'berhasil');
+            $this->session->set_flashdata('bisa', 'Berhasil Mengedit...');
             redirect(base_url('data/daf_karyawan/'));
         }
         else
