@@ -54,11 +54,11 @@ class Periksa extends CI_Controller {
         };
         $masuk = $this->Main_model->insert_data($data,'periksa');
         if ($masuk) {
-            $this->session->set_flashdata('bisa', 'Berhasil Menambahkan');
-            redirect(base_url('Periksa/'));
+            $this->session->set_flashdata('success', 'Berhasil Menambahkan');
+            redirect(base_url('periksa/'));
         } else {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Periksa/123'));
+            redirect(base_url('periksa/'));
         }
     }
 
@@ -181,18 +181,18 @@ class Periksa extends CI_Controller {
     }
     
     
-    public function hapus_periksa($id)
+    public function delete_periksa($id)
     {
-        $hapus=$this->Main_model->delete_data( ['id'=>$id], 'periksa');
+        $hapus=$this->Main_model->delete_data(['periksa_id'=>$id], 'penanganan_periksa');
+        $hapus=$this->Main_model->delete_data(['id'=>$id], 'periksa');
         if($hapus)
         {
-            $this->session->set_flashdata('sukses', 'berhasil');
-            redirect(base_url('Periksa/'));
+            redirect(base_url('periksa/'));
         }
         else
         {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Periksa/123'));
+            redirect(base_url('periksa/'));
         }
     }
 
