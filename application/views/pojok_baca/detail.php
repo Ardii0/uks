@@ -61,7 +61,7 @@
                                     <div class="row mb-2">
                                         <div class="col-2 font-weight-bold">Tanggal Masuk</div>
                                         <div>:</div>
-                                        <div class="col"><?php echo indonesian_date_time($buku['created_at']) ?></div>
+                                        <div class="col"><?php echo indonesian_date_time($buku['tgl_masuk']) ?></div>
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-2 font-weight-bold">Keterangan</div>

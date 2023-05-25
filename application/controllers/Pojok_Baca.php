@@ -62,7 +62,7 @@ class Pojok_Baca extends CI_Controller
                 'tahun_terbit' => $this->input->post('tahun_terbit'),
                 'keterangan' => $this->input->post('keterangan'),
                 'sumber' => $this->input->post('sumber'),
-                'created_at' => $this->input->post('tgl_masuk'),
+                'tgl_masuk' => $this->input->post('tgl_masuk'),
             );
             $masuk = $this->Main_model->insert_data($data, 'buku');
             if ($masuk) {
@@ -105,7 +105,7 @@ class Pojok_Baca extends CI_Controller
                 'tahun_terbit' => $this->input->post('tahun_terbit'),
                 'keterangan' => $this->input->post('keterangan'),
                 'sumber' => $this->input->post('sumber'),
-                'created_at' => $this->input->post('tgl_masuk'),
+                'tgl_masuk' => $this->input->post('tgl_masuk'),
             );
         } else {
             $data = array
@@ -117,7 +117,7 @@ class Pojok_Baca extends CI_Controller
                 'tahun_terbit' => $this->input->post('tahun_terbit'),
                 'keterangan' => $this->input->post('keterangan'),
                 'sumber' => $this->input->post('sumber'),
-                'created_at' => $this->input->post('tgl_masuk'),
+                'tgl_masuk' => $this->input->post('tgl_masuk'),
             );
             if ($_id->foto != '') {
                 unlink('./uploads/pojok_baca/buku/'.$_id->foto);

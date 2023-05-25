@@ -78,7 +78,7 @@
                                             <label class="control-label">Tanggal Masuk Buku</label>
                                             <div class="">
                                                 <input id="remove" type="date" name="tgl_masuk" class="form-control"
-                                                    value="<?php echo $buku['created_at'] ?>">
+                                                    value="<?php echo $buku['tgl_masuk'] ?>">
                                             </div>
                                         </div>
                                         <div class="col form-group">
