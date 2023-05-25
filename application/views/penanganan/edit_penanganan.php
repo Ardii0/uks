@@ -17,17 +17,17 @@
             <div class="container-fluid">
                 <section class="content ">
                     <div class="container-fluid ">
-                    <div class="header p-2 text-light rounded-top d-flex justify-content-center"
-                                    style="background-color:#4ADE80">
-                                    <div class="d-flex align-items-center">
-                                        <div style="font-size: 2rem">Edit Penanganan Pertama</div>
-                                    </div>
+                        <div class="header p-2 text-light rounded-top d-flex justify-content-center"
+                            style="background-color:#4ADE80">
+                            <div class="d-flex align-items-center">
+                                <div style="font-size: 2rem">Edit Penanganan Pertama</div>
+                            </div>
 
-                                </div>
+                        </div>
                         <?php foreach ($penanganan as $row): ?>
 
                         <section class="content bg-white p-3 rounded">
-                            <form action="<?php echo base_url('Penanganan/update_penanganan') ?>" method="post">
+                            <form action="<?php echo base_url('penanganan/update_penanganan') ?>" method="post">
                                 <div class="box-body">
 
                                     <div class="form-group col-sm-12">

@@ -27,7 +27,7 @@
                                     <div class="d-flex">
                                         <div class="p-2 d-flex align-items-center gap-3">
                                             <div class="grid gap-3">
-                                                <a href="<?php echo base_url('Data/export_guru'); ?>">
+                                                <a href="<?php echo base_url('data/export_guru'); ?>">
                                                     <button type="button" class="btn btn-success"><i
                                                             class="fa fa-download pr-2"></i>Download Data Guru</button>
                                                 </a>
@@ -70,20 +70,20 @@
                                                     <?php echo indonesian_date_time($datas->tanggal_lahir);?></td>
                                                 <td><?php echo $datas->alamat?></td>
                                                 <td>
-                                                <form action="<?php echo base_url('Data/export_periksa_guru') ?>"
-                                                enctype="multipart/form-data" method="post">
-                                                <input type="hidden" id="id" name="id" value="<?= $datas->id?>">
-                                                <button type="submit" class="btn btn-primary btn-sm">
-                                                <i class="fa fa-download"></i>
-                                                </button>
-                                                <a href="<?php echo base_url('data/detail_guru/' . $datas->id)?>"
-                                                        class="btn btn-warning btn-sm" type="button">
-                                                        <i class="fa fa-eye"></i>
-                                                    </a>
-                                                    <button onclick="hapus(<?php echo $datas->id ?>)"
-                                                        class="btn btn-danger btn-sm" type="button">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
+                                                    <form action="<?php echo base_url('data/export_periksa_guru') ?>"
+                                                        enctype="multipart/form-data" method="post">
+                                                        <input type="hidden" id="id" name="id" value="<?= $datas->id?>">
+                                                        <button type="submit" class="btn btn-primary btn-sm">
+                                                            <i class="fa fa-download"></i>
+                                                        </button>
+                                                        <a href="<?php echo base_url('data/detail_guru/' . $datas->id)?>"
+                                                            class="btn btn-warning btn-sm" type="button">
+                                                            <i class="fa fa-eye"></i>
+                                                        </a>
+                                                        <button onclick="hapus(<?php echo $datas->id ?>)"
+                                                            class="btn btn-danger btn-sm" type="button">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -149,8 +149,8 @@
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-between">
-                    <button type="button" class="btn btn-danger text-bold w-25" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-success text-bold w-25">Simpan</button>
+                        <button type="button" class="btn btn-danger text-bold w-25" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-success text-bold w-25">Simpan</button>
                     </div>
                 </div>
             </form>

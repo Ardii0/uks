@@ -27,9 +27,10 @@
                                     <div class="d-flex">
                                         <div class="p-2 d-flex align-items-center gap-3">
                                             <div class="grid gap-3">
-                                                <a href="<?php echo base_url('Data/export_karyawan'); ?>">
+                                                <a href="<?php echo base_url('data/export_karyawan'); ?>">
                                                     <button type="button" class="btn btn-success"><i
-                                                            class="fa fa-download pr-2"></i>Download Data Karyawan</button>
+                                                            class="fa fa-download pr-2"></i>Download Data
+                                                        Karyawan</button>
                                                 </a>
                                             </div>
                                         </div>
@@ -70,20 +71,21 @@
                                                     <?php echo indonesian_date_time($datas->tanggal_lahir);?></td>
                                                 <td><?php echo $datas->alamat?></td>
                                                 <td>
-                                                    <form action="<?php echo base_url('Data/export_periksa_karyawan') ?>"
-                                                enctype="multipart/form-data" method="post">
-                                                    <input type="hidden" id="id" name="id" value="<?= $datas->id?>">
-                                                <button type="submit" class="btn btn-primary btn-sm">
-                                                <i class="fa fa-download"></i>
-                                                </button>
-                                                    <a href="<?php echo base_url('data/detail_karyawan/' . $datas->id)?>"
-                                                        class="btn btn-warning btn-sm" type="button">
-                                                        <i class="fa fa-eye"></i>
-                                                    </a>
-                                                    <button onclick="hapus(<?php echo $datas->id?>)"
-                                                        class="btn btn-danger btn-sm" type="button">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
+                                                    <form
+                                                        action="<?php echo base_url('data/export_periksa_karyawan') ?>"
+                                                        enctype="multipart/form-data" method="post">
+                                                        <input type="hidden" id="id" name="id" value="<?= $datas->id?>">
+                                                        <button type="submit" class="btn btn-primary btn-sm">
+                                                            <i class="fa fa-download"></i>
+                                                        </button>
+                                                        <a href="<?php echo base_url('data/detail_karyawan/' . $datas->id)?>"
+                                                            class="btn btn-warning btn-sm" type="button">
+                                                            <i class="fa fa-eye"></i>
+                                                        </a>
+                                                        <button onclick="hapus(<?php echo $datas->id?>)"
+                                                            class="btn btn-danger btn-sm" type="button">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -150,7 +152,7 @@
                             </div>
                         </div>
                         <div class="modal-footer d-flex justify-content-between">
-                        <button type="button"  class="btn btn-danger text-bold w-25" onclick="kembali()"
+                            <button type="button" class="btn btn-danger text-bold w-25" onclick="kembali()"
                                 data-dismiss="modal">Batal</button>
                             <button type="submit" class="btn btn-success text-bold w-25">Simpan</button>
                         </div>
@@ -190,7 +192,7 @@
                             </div>
                         </div>
                         <div class="modal-footer d-flex justify-content-between">
-                        <button type="button"  class="btn btn-danger text-bold w-25" onclick="kembali()"
+                            <button type="button" class="btn btn-danger text-bold w-25" onclick="kembali()"
                                 data-dismiss="modal">Batal</button>
                             <button type="submit" class="btn btn-success text-bold w-25">Simpan</button>
                         </div>

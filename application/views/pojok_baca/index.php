@@ -25,10 +25,10 @@
                         </div>
                         <div class="p-2 d-flex align-items-center gap-3">
                             <div class="grid gap-3">
-                                <a href="<?php echo base_url('Pojok_Baca/tambah_buku') ?>">
-                                <button class="btn btn-info"><i class="fas fa-plus"></i>&nbsp;
-                                    Tambah</button>
-                                    </a>
+                                <a href="<?php echo base_url('pojok_baca/tambah_buku') ?>">
+                                    <button class="btn btn-info"><i class="fas fa-plus"></i>&nbsp;
+                                        Tambah</button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -53,39 +53,39 @@
                                             <?php $id = 0;
                                             foreach ($buku as $data):
                                                 $id++; ?>
-                                                <tr>
-                                                    <td>
-                                                        <?php echo $id ?>
-                                                    </td>
-                                                    <td><img style="width: 70px; height:100px; "
-                                                            src="<?php echo base_url('uploads/pojok_baca/buku') . "/" . $data->foto; ?>">
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $data->judul_buku ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $data->penulis_buku ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $data->penerbit_buku ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $data->tahun_terbit ?>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <a href="<?php echo base_url('Pojok_Baca/detail/' . $data->id_buku) ?>"
-                                                            class="btn btn-success btn-sm">
-                                                            <i class="fas fa-search-plus"></i>
-                                                        </a>
-                                                        <a href="<?php echo base_url('Pojok_Baca/edit_buku/' . $data->id_buku) ?>"
-                                                            class="btn btn-warning btn-sm">
-                                                            <i class="fa fa-edit"></i></a>
-                                                        <button class='btn btn-danger btn-sm'
-                                                            onClick="hapus_buku(<?php echo $data->id_buku ?>)">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
+                                            <tr>
+                                                <td>
+                                                    <?php echo $id ?>
+                                                </td>
+                                                <td><img style="width: 70px; height:100px; "
+                                                        src="<?php echo base_url('uploads/pojok_baca/buku') . "/" . $data->foto; ?>">
+                                                </td>
+                                                <td>
+                                                    <?php echo $data->judul_buku ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $data->penulis_buku ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $data->penerbit_buku ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $data->tahun_terbit ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="<?php echo base_url('pojok_baca/detail/' . $data->id_buku) ?>"
+                                                        class="btn btn-success btn-sm">
+                                                        <i class="fas fa-search-plus"></i>
+                                                    </a>
+                                                    <a href="<?php echo base_url('pojok_baca/edit_buku/' . $data->id_buku) ?>"
+                                                        class="btn btn-warning btn-sm">
+                                                        <i class="fa fa-edit"></i></a>
+                                                    <button class='btn btn-danger btn-sm'
+                                                        onClick="hapus_buku(<?php echo $data->id_buku ?>)">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
                                             <?php endforeach; ?>
                                         </tbody>
                                     </table>
@@ -99,42 +99,42 @@
     </div>
     <?php $this->load->view('style/js') ?>
     <?php if ($this->session->flashdata('sukses')): ?>
-        <script>
-            swal.fire({
-                title: "<?php echo $this->session->flashdata('sukses') ?>",
-                icon: "success",
-                showConfirmButton: false,
-                timer: 5000,
-            });
-        </script>
-        <?php if (isset($_SESSION['sukses'])) {
+    <script>
+    swal.fire({
+        title: "<?php echo $this->session->flashdata('sukses') ?>",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 5000,
+    });
+    </script>
+    <?php if (isset($_SESSION['sukses'])) {
             unset($_SESSION['sukses']);
         }
     endif; ?>
     <script>
-        function hapus_buku(id) {
-            swal.fire({
-                title: 'Yakin untuk menghapus data ini?',
-                text: "Data ini akan terhapus permanen",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                cancelButtonText: 'Batal',
-                confirmButtonText: ' Ya hapus!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "<?php echo base_url('Pojok_Baca/hapus_buku/') ?>" + id;
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Berhasil Dihapus',
-                        showConfirmButton: false,
-                        timer: 5000
-                    })
+    function hapus_buku(id) {
+        swal.fire({
+            title: 'Yakin untuk menghapus data ini?',
+            text: "Data ini akan terhapus permanen",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Batal',
+            confirmButtonText: ' Ya hapus!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "<?php echo base_url('pojok_baca/hapus_buku/') ?>" + id;
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil Dihapus',
+                    showConfirmButton: false,
+                    timer: 5000
+                })
 
-                }
-            });
-        }
+            }
+        });
+    }
     </script>
 </body>
 

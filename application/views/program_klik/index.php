@@ -52,43 +52,43 @@
                                             <?php $id = 0;
                                             foreach ($periksa as $data):
                                                 $id++; ?>
-                                                <tr>
-                                                    <td>
-                                                        <?php echo $id ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php if (!empty($data->siswa_id)) {
+                                            <tr>
+                                                <td>
+                                                    <?php echo $id ?>
+                                                </td>
+                                                <td>
+                                                    <?php if (!empty($data->siswa_id)) {
                                                             echo JoinOne('program_klik', 'siswa', 'siswa_id', 'id', 'program_klik.id', $data->id, 'nama_siswa');
                                                         } else if (!empty($data->guru_id)) {
                                                             echo JoinOne('program_klik', 'guru', 'guru_id', 'id', 'program_klik.id', $data->id, 'nama_guru');
                                                         } else if (!empty($data->karyawan_id)) {
                                                             echo JoinOne('program_klik', 'karyawan', 'karyawan_id', 'id', 'program_klik.id', $data->id, 'nama_karyawan');
                                                         } ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $data->pasien_status ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $data->create_date ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $data->keluhan ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $data->saran ?>
-                                                    </td>
-                                                    <td class="text-center">
-                                                    <a href="<?php echo base_url('Program_Klik/cetak_program_klik/'.$data->id.'/pdf')?>"
+                                                </td>
+                                                <td>
+                                                    <?php echo $data->pasien_status ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $data->create_date ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $data->keluhan ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $data->saran ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="<?php echo base_url('program_klik/cetak_program_klik/'.$data->id.'/pdf')?>"
                                                         class="btn btn-primary btn-sm" target="_blank">
                                                         <i class="fas fa-print"></i>
                                                     </a>
-                                                        <!-- <a href="<?php echo base_url('/export_pasien_to_excel'); ?>">
+                                                    <!-- <a href="<?php echo base_url('/export_pasien_to_excel'); ?>">
                                                             <button type="button" class="btn btn-success mr-1"
                                                                 style="width: 150px"><i
                                                                     class="fa fa-download pr-2"></i>Export</button>
                                                         </a> -->
-                                                    </td>
-                                                </tr>
+                                                </td>
+                                            </tr>
                                             <?php endforeach; ?>
                                         </tbody>
                                     </table>
@@ -101,7 +101,7 @@
                 <div class="modal fade" id="modal_tambah_program_klik" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <form action="<?php echo base_url('Program_Klik/aksi_tambah_program_klik') ?>"
+                        <form action="<?php echo base_url('program_klik/aksi_tambah_program_klik') ?>"
                             enctype="multipart/form-data" method="post">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -149,9 +149,9 @@
                                                             Pilih Pasien
                                                         </option>
                                                         <?php foreach ($guru as $guru): ?>
-                                                            <option value="<?php echo $guru->id ?>">
-                                                                <?php echo $guru->nama_guru ?>
-                                                            </option>
+                                                        <option value="<?php echo $guru->id ?>">
+                                                            <?php echo $guru->nama_guru ?>
+                                                        </option>
                                                         <?php endforeach; ?>
                                                     </select>
                                                 </div>
@@ -161,9 +161,9 @@
                                                             Pilih Pasien
                                                         </option>
                                                         <?php foreach ($siswa as $siswa): ?>
-                                                            <option value="<?php echo $siswa->id ?>">
-                                                                <?php echo $siswa->nama_siswa ?>
-                                                            </option>
+                                                        <option value="<?php echo $siswa->id ?>">
+                                                            <?php echo $siswa->nama_siswa ?>
+                                                        </option>
                                                         <?php endforeach; ?>
                                                     </select>
                                                 </div>
@@ -173,9 +173,9 @@
                                                             Pilih Pasien
                                                         </option>
                                                         <?php foreach ($karyawan as $karyawan): ?>
-                                                            <option value="<?php echo $karyawan->id ?>">
-                                                                <?php echo $karyawan->nama_karyawan ?>
-                                                            </option>
+                                                        <option value="<?php echo $karyawan->id ?>">
+                                                            <?php echo $karyawan->nama_karyawan ?>
+                                                        </option>
                                                         <?php endforeach; ?>
                                                     </select>
                                                 </div>
@@ -211,25 +211,25 @@
     <?php $this->load->view('style/js') ?>
     <script src="<?php echo base_url('builder/dist/js/status.js'); ?>"></script>
     <?php if ($this->session->flashdata('sukses')): ?>
-        <script>
-            swal.fire({
-                title: "<?php echo $this->session->flashdata('sukses') ?>",
-                icon: "success",
-                showConfirmButton: false,
-                timer: 5000,
-            });
-        </script>
-        <?php if (isset($_SESSION['sukses'])) {
+    <script>
+    swal.fire({
+        title: "<?php echo $this->session->flashdata('sukses') ?>",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 5000,
+    });
+    </script>
+    <?php if (isset($_SESSION['sukses'])) {
             unset($_SESSION['sukses']);
         }
     endif; ?>
     <script>
-        function hapus_periksa(id) {
-            var yes = confirm('Yakin Di Hapus?');
-            if (yes == true) {
-                window.location.href = "<?php echo base_url('Periksa/hapus_periksa/') ?>" + id;
-            }
+    function hapus_periksa(id) {
+        var yes = confirm('Yakin Di Hapus?');
+        if (yes == true) {
+            window.location.href = "<?php echo base_url('periksa/hapus_periksa/') ?>" + id;
         }
+    }
     </script>
 </body>
 
