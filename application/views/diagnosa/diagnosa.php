@@ -108,7 +108,7 @@
         title: "<?php echo $this->session->flashdata('yes')?>",
         icon: "success",
         showConfirmButton: false,
-        timer: 5000,
+        timer: 2000,
     });
     </script>
     <?php if (isset($_SESSION['yes'])) {
@@ -122,7 +122,7 @@
         title: "<?php echo $this->session->flashdata('salah')?>",
         icon: "error",
         showConfirmButton: false,
-        timer: 1000,
+        timer: 2000,
     });
     </script>
     <?php if (isset($_SESSION['salah'])) {

@@ -43,6 +43,7 @@
                                                     <th class="text-center" scope="col">NAMA OBAT</th>
                                                     <th class="text-center" scope="col">STOCK</th>
                                                     <th class="text-center" scope="col">SATUAN</th>
+                                                    <th class="text-center" scope="col">EXPIRED</th>
                                                     <th class="text-center" scope="col">AKSI</th>
                                                 </tr>
                                             </thead>
@@ -53,6 +54,7 @@
                                                     <td class="text-center"><?php echo $data->nama_obat?></td>
                                                     <td class="text-center"><?php echo $data->stocks?></td>
                                                     <td class="text-center"><?php echo $data->satuan?></td>
+                                                    <td class="text-center"><?php echo indonesian_date_time($data->expired)?></td>
                                                     <td class="text-center">
                                                         <a href="<?php echo base_url('daftar_obat/edit_daftar_obat/' . $data->id) ?>"
                                                             class="btn btn-warning btn-sm">
@@ -110,6 +112,7 @@
                                             <option> Tablet</option>
                                             <option> Pil</option>
                                             <option> Kapsul</option>
+                                            <option> Cair</option>
                                             <option> Kaplet</option>
                                             <option> Sirup</option>
                                             <option disabled selected>Masukan Satuan Obat </option>
@@ -146,7 +149,7 @@
         title: "<?php echo $this->session->flashdata('yes')?>",
         icon: "success",
         showConfirmButton: false,
-        timer: 5000,
+        timer: 2000,
     });
     </script>
     <?php if (isset($_SESSION['yes'])) {
@@ -160,7 +163,7 @@
         title: "<?php echo $this->session->flashdata('salah')?>",
         icon: "error",
         showConfirmButton: false,
-        timer: 1000,
+        timer: 200,
     });
     </script>
     <?php if (isset($_SESSION['salah'])) {

@@ -34,7 +34,7 @@
                                         <label class="col-sm-2 control-label">Nama Tindakan</label>
                                         <div class="col-sm-">
                                             <input type="text" value="<?php echo $row->nama ?>" name="nama_tindakan"
-                                                class="form-control" placeholder="Masukan Nama Tindakan"><br>
+                                                class="form-control" required placeholder="Masukan Nama Tindakan"><br>
                                         </div>
                                     </div>
                                 </div>
@@ -43,7 +43,7 @@
                                     <button type="button" class="btn btn-danger text-bold mr-2" onclick="kembali()"
                                         data-dismiss="modal"><span class="p-3">Batal</span></button>
                                     <input type="hidden" value="<?php echo $row->id ?>" name="id">
-                                    <button onclick="bisa()" type="submit" class="btn btn-success text-bold "><span
+                                    <button  type="submit" class="btn btn-success text-bold "><span
                                             class="p-3">Update</span></button>
                                 </div>
 
@@ -59,14 +59,35 @@
     </div>
 
     <?php $this->load->view('style/js')?>
+    <!-- sweetalert success add -->
+    <?php if ($this->session->flashdata('yes')): ?>
     <script>
-    function bisa() {
-        swal.fire({
-            icon: 'success',
-            title: 'Your work has been saved',
-            showConfirmButton: false,
-        })
-    }
+    swal.fire({
+        title: "<?php echo $this->session->flashdata('yes')?>",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 2000,
+    });
+    </script>
+    <?php if (isset($_SESSION['yes'])) {
+            unset($_SESSION['yes']);
+        }
+    endif; ?>
+    <!-- sweetalert error -->
+    <?php if ($this->session->flashdata('salah')): ?>
+    <script>
+    swal.fire({
+        title: "<?php echo $this->session->flashdata('salah')?>",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2000,
+    });
+    </script>
+    <?php if (isset($_SESSION['salah'])) {
+            unset($_SESSION['salah']);
+        }
+    endif; ?>
+    <script>
 
     function kembali() {
         window.history.go(-1);

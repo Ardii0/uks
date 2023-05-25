@@ -54,6 +54,7 @@
                                                 <option>Pil</option>
                                                 <option>Kapsul</option>
                                                 <option>Kaplet</option>
+                                                <option>Cair</option>
                                                 <option>Sirup</option>
                                                 <option hidden selected>
                                                     <?php echo $row->satuan ?></option>
@@ -63,15 +64,17 @@
                                     <div class="form-group col-sm-12">
                                         <label class="col-sm-2 control-label">Expired Obat</label>
                                         <div class="col-sm-12">
-                                            <input type="date" value="<?php echo $row->expired ?>" name="expired_obat"
-                                                class="form-control" required placeholder="Masukan Expired Obat"><br>
+                                            <input type="date"
+                                                value="<?php echo strftime('%Y-%m-%d', strtotime($row->expired)); ?>"
+                                                name="expired_obat" class="form-control" required
+                                                placeholder="Masukan Expired Obat"><br>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-12 d-flex justify-content-between">
                                     <button type="button" class="btn btn-danger text-bold mr-2" onclick="kembali()"
                                         data-dismiss="modal"><span class="p-3">Batal</span></button>
-                                    <button onclick="bisa()" type="submit" class="btn btn-success text-bold "><span
+                                    <button type="submit" class="btn btn-success text-bold "><span
                                             class="p-3">Update</span></button>
                                 </div>
                             </form>
@@ -86,16 +89,35 @@
     </div>
 
     <?php $this->load->view('style/js')?>
+    <!-- sweetalert success add -->
+    <?php if ($this->session->flashdata('yes')): ?>
     <script>
-    function bisa() {
-        swal.fire({
-            icon: 'success',
-            title: 'Your work has been saved',
-            showConfirmButton: false,
-            timer: 3000,
-        })
-    }
-
+    swal.fire({
+        title: "<?php echo $this->session->flashdata('yes')?>",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 2000,
+    });
+    </script>
+    <?php if (isset($_SESSION['yes'])) {
+            unset($_SESSION['yes']);
+        }
+    endif; ?>
+    <!-- sweetalert error -->
+    <?php if ($this->session->flashdata('salah')): ?>
+    <script>
+    swal.fire({
+        title: "<?php echo $this->session->flashdata('salah')?>",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2000,
+    });
+    </script>
+    <?php if (isset($_SESSION['salah'])) {
+            unset($_SESSION['salah']);
+        }
+    endif; ?>
+    <script>
     function kembali() {
         window.history.go(-1);
     }

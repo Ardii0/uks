@@ -97,12 +97,12 @@ class Daftar_Obat extends CI_Controller {
         $logged=$this->Main_model->update_data(array('id'=>$this->input->post('id')), $data, 'daftar_obat');
         if($logged)
         {
-            $this->session->set_flashdata('sukses', 'berhasil');
+            $this->session->set_flashdata('yes', 'berhasil');
             redirect(base_url('Daftar_Obat/daftar_obat'));
         }
         else
         {
-            $this->session->set_flashdata('error', 'gagal..');
+            $this->session->set_flashdata('salah', 'gagal..');
             redirect(base_url('Daftar_Obat/edit_daftar_obat/'.$this->input->post('id')));
         }
     }
