@@ -91,6 +91,7 @@ class Daftar_Obat extends CI_Controller {
         $data =  [
             'nama_obat' => $this->input->post('nama_obat'),
             'stocks' => $this->input->post('stocks_obat'),
+            'satuan' => $this->input->post('satuan'),
             'expired' => $this->input->post('expired_obat')
         ];
         $logged=$this->Main_model->update_data(array('id'=>$this->input->post('id')), $data, 'daftar_obat');
