@@ -27,7 +27,7 @@
                     <div class="row" >
                         <div class="col-4">
                             <div class="card-body">
-                                <img style="width: 100%" src="<?php echo base_url('uploads/pojok_baca/buku') . "/" . $buku['foto']; ?>">
+                                <img style="width: 100%" src="<?php echo base_url('uploads/Pojok_Baca/buku') . "/" . $buku['foto']; ?>">
                             </div>
                         </div>
                         <div class="col-8">

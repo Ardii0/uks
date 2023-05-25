@@ -36,7 +36,9 @@
                             <div class="col-12">
                                 <div class="card-body text-center mx-auto">
                                     <?php if($struktur !=  null) :?>
+                                        <div id="card-text not_found" class="text-center mx-auto p-3">
                                         <img src="<?php echo base_url('uploads/Program_Kerja_UKS/struktur') . "/" . end($struktur)->foto; ?>">
+                                        </div>
                                         <?php else :?>
                                         <div id="not_found" class="text-center mx-auto p-3">
                                             <img src="https://cdn.iconscout.com/icon/free/png-256/free-data-not-found-1965034-1662569.png"

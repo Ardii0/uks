@@ -50,6 +50,49 @@ class Program_Klik extends CI_Controller {
          }
      }
 
+     public function detail($id)
+    {
+        $this->load->model('Main_model');
+        $where = ['id' => $id];
+        $data['program'] = $this->Main_model->getwhere($where,'program')->row_array();
+        $this->load->view('Program_Klik/detail', $data);
+    }
+
+    public function edit_program($id)
+    {
+        $this->load->model('Main_model');
+        $where = ['id' => $id];
+        $data['program'] = $this->Main_model->getwhere($where,'program_klik')->row_array();
+        $this->load->view('Program_Klik/edit', $data);
+    }
+
+    public function aksi_edit_program($id)
+    {
+        $where = array('id' => $id);
+        $data = array
+        (
+           'guru_id' => $this->input->post('guru_id'),
+           'siswa_id' => $this->input->post('siswa_id'),
+           'karyawan_id' => $this->input->post('karyawan_id'),
+            'create_date' => date("Y-m-d H:i:s"),
+            'keluhan' => $this->input->post('keluhan'),
+            'saran' => $this->input->post('saran'),
+            'pasien_status' => $this->input->post('pasien_status'),
+            'tahun_bulan' => date("Y-m"),
+        );
+        $valid = $this->Main_model->update_data($where, $data, 'program_klik');
+        if($valid)
+        {
+            $this->session->set_flashdata('sukses', 'Berhasil Mengubah');
+            redirect(base_url('Program_Klik/'));
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'gagal..');
+            redirect(base_url('Program_Klik/'.$id));
+        }
+    }
+
      public function cetak_program_klik($id)
      {
             $where = ['id' => $id];

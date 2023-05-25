@@ -92,7 +92,7 @@
                                                         <input type="file" name="foto" onchange="readURL(this);" />
                                                     </div>
                                                     <div>
-                                                    <img src="<?php $img = $buku['foto'] == null ? "" : base_url('uploads/pojok_baca/buku') . "/" . $buku['foto'];
+                                                    <img src="<?php $img = $buku['foto'] == null ? "" : base_url('uploads/Pojok_Baca/buku') . "/" . $buku['foto'];
                                                         echo $img ?>" style="width: 110px; hight:200px">
                                                         <!-- <img id="blah" style="width: 110px; hight:200px" class="mt-3" /> -->
                                                     </div>

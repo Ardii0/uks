@@ -78,15 +78,18 @@
                                                         <?php echo $data->saran ?>
                                                     </td>
                                                     <td class="text-center">
-                                                    <a href="<?php echo base_url('Program_Klik/cetak_program_klik/'.$data->id.'/pdf')?>"
-                                                        class="btn btn-primary btn-sm" target="_blank">
-                                                        <i class="fas fa-print"></i>
-                                                    </a>
-                                                        <!-- <a href="<?php echo base_url('/export_pasien_to_excel'); ?>">
-                                                            <button type="button" class="btn btn-success mr-1"
-                                                                style="width: 150px"><i
-                                                                    class="fa fa-download pr-2"></i>Export</button>
-                                                        </a> -->
+                                                        <a href="<?php echo base_url('Program_Klik/detail/' . $data->id) ?>"
+                                                            class="btn btn-success btn-sm">
+                                                            <i class="fas fa-search-plus"></i>
+                                                        </a>
+                                                            <button class="btn btn-warning btn-sm" type="button"
+                                                                    data-toggle="modal"
+                                                                    data-target="#modal<?php echo $data->id ?>">
+                                                                    <i class="fa fa-edit"></i>
+                                                                </button>
+                                                        <button class='btn btn-danger btn-sm' onclick="hapus_periksa(<?php echo $data->id ?>)">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>
@@ -204,7 +207,117 @@
                         </form>
                     </div>
                 </div>
-        </div>
+        
+        <!-- Modal Edit Program Klik -->
+        <?php foreach ($periksa as $data): ?>
+                <div class="modal fade" id="modal<?php echo $data->id ?>" tabindex="-1" role="dialog"
+                    aria-labelledby="Modal" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <form action="<?php echo base_url('Program_Klik/aksi_edit_program') ?>"
+                            enctype="multipart/form-data" method="post">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Form Edit Program Klik</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body pb-1">
+                                    <div class="box">
+                                        <!-- /.box-header -->
+                                        <div class="box-body">
+                                            <div class="form-group col-sm-12">
+                                                <label class="control-label">Status Pasien</label>
+                                                <div class="">
+                                                    <select class="form-control form-select px-2 py-1" id="option"
+                                                        onchange="selectStatus()" name="pasien_status">
+                                                        <option value="Pilih" style="display: none;">
+                                                            Pilih Status
+                                                        </option>
+                                                        <option value="Guru">
+                                                            Guru
+                                                        </option>
+                                                        <option value="Siswa">
+                                                            Siswa
+                                                        </option>
+                                                        <option value="Karyawan">
+                                                            Karyawan
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-sm-12">
+                                                <label class="control-label">Nama Pasien</label>
+                                                <div class="" id="disabled">
+                                                    <select class="form-control select2" disabled>
+                                                        <option selected>
+                                                            Pilih Pasien
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div id="guru" style="display: none;">
+                                                    <select class="form-control select2" name="guru_id">
+                                                        <option style="display: none;" selected>
+                                                            <?php echo JoinOne('program_klik', 'guru', 'guru_id', 'id', 'program_klik.id', $data->id, 'nama_guru'); ?>
+                                                        </option>
+                                                        <?php foreach ($guru as $guru): ?>
+                                                            <option value="<?php echo $guru->id ?>">
+                                                                <?php echo $guru->nama_guru ?>
+                                                            </option>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                </div>
+                                                <div id="siswa" style="display: none;">
+                                                    <select class="form-control select2" name="siswa_id">
+                                                        <option style="display: none;" selected>
+                                                            <?php echo JoinOne('program_klik', 'siswa', 'siswa_id', 'id', 'program_klik.id', $data->id, 'nama_siswa');?>
+                                                        </option>
+                                                        <?php foreach ($siswa as $siswa): ?>
+                                                            <option value="<?php echo $siswa->id ?>">
+                                                                <?php echo $siswa->nama_siswa ?>
+                                                            </option>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                </div>
+                                                <div id="karyawan" style="display: none;">
+                                                    <select class="form-control select2" name="karyawan_id">
+                                                        <option selected>
+                                                        <?php echo JoinOne('program_klik', 'karyawan', 'karyawan_id', 'id', 'program_klik.id', $data->id, 'nama_karyawan'); ?>
+                                                        </option>
+                                                        <?php foreach ($karyawan as $karyawan): ?>
+                                                            <option value="<?php echo $karyawan->id ?>">
+                                                                <?php echo $karyawan->nama_karyawan ?>
+                                                            </option>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-sm-12">
+                                                <label class="control-label" value="<?php echo $data->keluhan ?>">Keluhan Pasien</label>
+                                                <div class="">
+                                                    <textarea name="keluhan" class="form-control" required></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-sm-12">
+                                                <label class="control-label" value="<?php echo $data->saran ?>">Saran Untuk Pasien</label>
+                                                <div class="">
+                                                    <textarea name="saran" class="form-control" required></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer d-flex justify-content-between">
+                                    <button type="button" class="btn btn-danger text-bold w-25"
+                                        data-dismiss="modal">Batal</button>
+                                    <button type="submit" class="btn btn-success text-bold w-25">Simpan</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <?php endforeach;?>
+            </div>
         </section>
     </div>
     </div>
@@ -225,10 +338,27 @@
     endif; ?>
     <script>
         function hapus_periksa(id) {
-            var yes = confirm('Yakin Di Hapus?');
-            if (yes == true) {
-                window.location.href = "<?php echo base_url('Periksa/hapus_periksa/') ?>" + id;
-            }
+            swal.fire({
+                title: 'Yakin untuk menghapus data ini?',
+                text: "Data ini akan terhapus permanen",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'Batal',
+                confirmButtonText: ' Ya hapus!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "<?php echo base_url('Program_Klik/hapus_program_klik/') ?>" + id;
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil Dihapus',
+                        showConfirmButton: false,
+                        timer: 5000
+                    })
+
+                }
+            });
         }
     </script>
 </body>

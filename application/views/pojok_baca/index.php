@@ -58,7 +58,7 @@
                                                         <?php echo $id ?>
                                                     </td>
                                                     <td><img style="width: 70px; height:100px; "
-                                                            src="<?php echo base_url('uploads/pojok_baca/buku') . "/" . $data->foto; ?>">
+                                                            src="<?php echo base_url('uploads/Pojok_Baca/buku') . "/" . $data->foto; ?>">
                                                     </td>
                                                     <td>
                                                         <?php echo $data->judul_buku ?>
