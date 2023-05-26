@@ -28,15 +28,12 @@
                                     </div>
                                     <div class="mt-4">
                                         <h4><?php echo $datas->nama_guru ?></h4>
-                                        <hr class="mt-2">
-                                        <hr class="mt-2">
-                                        <p class="text-muted font-size-sm mb-2"><?php echo $datas->alamat ?></p>
-                                        <hr class="mt-0 mb-4">
+                                        <hr style="margin-top: 116px; margin-bottom:px">
                                     </div>
                                     <a class="btn btn-warning text-white text-bold w-100 mt-1 d-flex align-items-center justify-content-center"
                                         style="height: 47px"
-                                        href="<?php echo base_url('data/edit_guru/' . $datas->id)?>">Edit
-                                        Data guru</a>
+                                        href="<?php echo base_url('data/edit_guru/' . $datas->id)?>">
+                                        Edit Data guru</a>
                                 </div>
                             </div>
                         </div>
@@ -56,21 +53,21 @@
                                     <hr>
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            <h6 class="mb-0">Nama Orang Tua/Wali</h6>
+                                            <h6 class="mb-0">Alamat</h6>
                                         </div>
                                         <div class="col-sm-1 text-secondary">:</div>
                                         <div class="col-sm-7 text-secondary">
-                                            <?php echo $datas->nama_wali ?>
+                                            <?php echo $datas->alamat ?>
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            <h6 class="mb-0">No. Telepon Orang Tua/Wali</h6>
+                                            <h6 class="mb-0">No. Telepon</h6>
                                         </div>
                                         <div class="col-sm-1 text-secondary">:</div>
                                         <div class="col-sm-7 text-secondary">
-                                            <?php echo $datas->no_telepon_wali ?>
+                                            <?php echo $datas->no_telepon ?>
                                         </div>
                                     </div>
                                     <hr>
