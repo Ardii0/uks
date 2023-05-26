@@ -119,23 +119,31 @@ INSERT INTO `diagnosa` (`id`, `create_date`, `update_date`, `nama`) VALUES
 --
 
 CREATE TABLE `guru` (
-  `id` bigint NOT NULL,
-  `nama_guru` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `id` bigint(20) NOT NULL,
+  `foto` text DEFAULT NULL,
+  `nama_guru` varchar(255) DEFAULT NULL,
+  `alamat` varchar(255) DEFAULT NULL,
   `tanggal_lahir` date DEFAULT NULL,
-  `tempat_lahir` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `alamat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `total_periksa` int DEFAULT NULL
+  `tempat_lahir` varchar(255) DEFAULT NULL,
+  `total_periksa` int(11) DEFAULT NULL,
+  `TB` int(11) DEFAULT NULL,
+  `BB` int(11) DEFAULT NULL,
+  `riwayat_penyakit` varchar(255) DEFAULT NULL,
+  `gol_darah` varchar(255) DEFAULT NULL,
+  `no_telepon` varchar(255) DEFAULT NULL,
+  `alergi` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `guru`
 --
 
-INSERT INTO `guru` (`id`, `nama_guru`, `tanggal_lahir`, `tempat_lahir`, `alamat`, `total_periksa`) VALUES
-(1, 'Dwi Sasmita', '1986-04-06', 'Semarang', 'Mangkang', 1),
-(3, 'Dwi Arianto', '1987-02-02', 'Magelang', 'Mijen', 1);
+INSERT INTO `guru` (`id`, `foto`, `nama_guru`, `alamat`, `tanggal_lahir`, `tempat_lahir`, `total_periksa`, `TB`, `BB`, `riwayat_penyakit`, `gol_darah`, `no_telepon`, `alergi`) VALUES
+(1, NULL, 'Solikin', 'Jl. Kali Pancur', '1978-06-15', 'Semarang', NULL, 178, 75, 'mag', 'b', '089', 'usus ayamm'),
+(2, NULL, 'Dwi Nur', 'Jl. Senopati', '2023-05-11', 'Demak', NULL, 167, 69, 'Asam Lambung', 'AB', '089', 'air'),
+(3, NULL, 'Saeful', 'Jl. Kali Pancur', '2023-05-17', 'Semarang', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
--- --------------------------------------------------------
+----------------------------------------------------------
 
 --
 -- Table structure for table `inventaris`
@@ -165,21 +173,29 @@ INSERT INTO `inventaris` (`id`, `nama_barang`, `tgl_barang_masuk`, `pendanaan`, 
 --
 
 CREATE TABLE `karyawan` (
-  `id` bigint NOT NULL,
-  `alamat` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `nama_karyawan` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `id` bigint(20) NOT NULL,
+  `foto` text DEFAULT NULL,
+  `nama_karyawan` varchar(255) DEFAULT NULL,
+  `alamat` varchar(255) DEFAULT NULL,
   `tanggal_lahir` date DEFAULT NULL,
-  `tempat_lahir` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `total_periksa` int DEFAULT NULL
+  `tempat_lahir` varchar(255) DEFAULT NULL,
+  `total_periksa` int(11) DEFAULT NULL,
+  `TB` int(11) DEFAULT NULL,
+  `BB` int(11) DEFAULT NULL,
+  `riwayat_penyakit` varchar(255) DEFAULT NULL,
+  `gol_darah` varchar(255) DEFAULT NULL,
+  `no_telepon` varchar(255) DEFAULT NULL,
+  `alergi` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `karyawan`
 --
 
-INSERT INTO `karyawan` (`id`, `alamat`, `nama_karyawan`, `tanggal_lahir`, `tempat_lahir`, `total_periksa`) VALUES
-(1, 'Tugurejo', 'Ridho Roma', '2023-04-11', 'Semarang', 3),
-(2, 'Tegal', 'Surtiono', '2023-02-02', 'Semarang', 1);
+
+INSERT INTO `karyawan` (`id`, `foto`, `nama_karyawan`, `alamat`, `tanggal_lahir`, `tempat_lahir`, `total_periksa`, `TB`, `BB`, `riwayat_penyakit`, `gol_darah`, `no_telepon`, `alergi`) VALUES
+(1, NULL, 'Sutar', 'Jl. Kali Pancur', '1982-01-04', 'Kendal', NULL, 174, 79, 'mag', '', '', 'usus ayam'),
+(2, NULL, 'Karmo', 'Jl. Senopati', '1980-07-10', 'Demak', NULL, 169, 74, '-', 'a', '08999999', '-');
 
 -- --------------------------------------------------------
 
