@@ -64,7 +64,7 @@
                         <div class="row clearfix">
                             <div class="col-lg-4">
                                 <label class="d-block">Penyakit Pasien</label>
-                                <select name="diagnosa_id" class="form-control select2">
+                                <select name="diagnosa_id" class="form-control select2" required>
                                     <option value="">Pilih Penyakit</option>
                                     <?php foreach($diagnosa as $diagnosa):?>
                                     <option value="<?php echo $diagnosa->id; ?>"><?php echo $diagnosa->nama; ?></option>
@@ -73,7 +73,7 @@
                             </div>
                             <div class="col-lg-4">
                                 <label class="d-block">Penanganan Pertama</label>
-                                <select name="penanganan_pertama_id" class="form-control select2">
+                                <select name="penanganan_pertama_id" class="form-control select2" required>
                                     <option value="">Pilih Penanganan</option>
                                     <?php foreach($penanganan as $penanganan):?>
                                     <option value="<?php echo $penanganan->id; ?>">
@@ -83,7 +83,7 @@
                             </div>
                             <div class="col-lg-4">
                                 <label class="d-block">Obat</label>
-                                <select name="daftar_obat_id" class="form-control select2">
+                                <select name="daftar_obat_id" class="form-control select2" required>
                                     <option value="">Pilih Obat</option>
                                     <?php foreach($daftar as $daftar):?>
                                     <option value="<?php echo $daftar->id; ?>"><?php echo $daftar->nama_obat; ?>
@@ -95,7 +95,7 @@
                         <div class="row clearfix mt-2">
                             <div class="col-lg-4">
                                 <label class="d-block">Tindakan</label>
-                                <select name="tindakan_id" class="form-control select2">
+                                <select name="tindakan_id" class="form-control select2" required>
                                     <option value="">Pilih Tindakan</option>
                                     <?php foreach($tindakan as $tindakan):?>
                                     <option value="<?php echo $tindakan->id; ?>"><?php echo $tindakan->nama; ?></option>
@@ -106,16 +106,16 @@
                                 <div class="row">
                                     <div class="col-lg-5">
                                         <label class="d-block">Tensi Systolic</label>
-                                        <input type="text" name="tensi_systolic" class="form-control"
-                                            autocomplete="off">
+                                        <input type="number" name="tensi_systolic" class="form-control"
+                                            autocomplete="off" required>
                                     </div>
                                     <div class="mt-auto" style="padding: 0;">
                                         /
                                     </div>
                                     <div class="col-lg-5">
                                         <label class="d-block">Tensi Diastolic</label>
-                                        <input type="text" name="tensi_diastolic" class="form-control"
-                                            autocomplete="off">
+                                        <input type="number" name="tensi_diastolic" class="form-control"
+                                            autocomplete="off" required>
                                     </div>
                                     <div class="col-lg-1 mt-auto" style="padding: 0;">
                                         mmHG
@@ -124,7 +124,7 @@
                             </div>
                             <div class="col-lg-3">
                                 <label class="d-block">Catatan</label>
-                                <input type="text" name="catatan" class="form-control" autocomplete="off">
+                                <input type="text" name="catatan" class="form-control" autocomplete="off" required>
                             </div>
                             <div class="col-lg-1 pt-2">
                                 <button type="submit" class="btn btn-success mt-4" type="submit">Tambah</button>
