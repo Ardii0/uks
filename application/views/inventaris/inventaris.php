@@ -19,7 +19,8 @@
                     <div class="row px-3 py-2">
                         <div class="col-sm-12">
                             <div class="box">
-                                <div class="header p-1 text-light rounded-top d-flex justify-content-between" style="background-color:#4ADE80">
+                                <div class="header p-1 text-light rounded-top d-flex justify-content-between"
+                                    style="background-color:#4ADE80">
                                     <div class="p-2 d-flex align-items-center gap-3">
                                         <div style="font-size: 1.5rem">Daftar Inventaris UKS</div>
                                     </div>
@@ -74,7 +75,7 @@
                 </section>
             </div>
         </div>
- </div>
+    </div>
     <div class="modal fade" id="index1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -96,7 +97,7 @@
                                         <input type="text" name="nama_barang" class="form-control" required=""
                                             placeholder="Masukan Nama Barang"><br>
                                     </div>
-                                </div>  
+                                </div>
                                 <div class="form-group">
                                     <label class="control-label">Pendanaan</label>
                                     <div class="">
@@ -123,9 +124,9 @@
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-between">
-                    <button type="button"  class="btn btn-danger text-bold w-25" onclick="kembali()"
-                                data-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-success text-bold w-25">Simpan</button>
+                        <button type="button" class="btn btn-danger text-bold w-25" onclick="kembali()"
+                            data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-success text-bold w-25">Simpan</button>
                     </div>
                 </div>
             </form>
@@ -135,15 +136,15 @@
     <?php $this->load->view('style/js')?>
 </body>
 <?php if ($this->session->flashdata('bisa')): ?>
-        <script>
-            swal.fire({
-                title: "<?php echo $this->session->flashdata('bisa')?>",
-                icon: "success",
-                showConfirmButton: false,
-                timer: 3000,
-            });
-        </script>
-        <?php if (isset($_SESSION['bisa'])) {
+<script>
+swal.fire({
+    title: "<?php echo $this->session->flashdata('bisa')?>",
+    icon: "success",
+    showConfirmButton: false,
+    timer: 1250,
+});
+</script>
+<?php if (isset($_SESSION['bisa'])) {
             unset($_SESSION['bisa']);
         }
     endif; ?>
@@ -160,14 +161,14 @@ function hapus(id) {
         confirmButtonText: ' Ya hapus!'
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = "<?php echo base_url('inventaris/hapus_invent/')?>" + id;
             Swal.fire({
                 icon: 'success',
                 title: 'Berhasil Dihapus',
                 showConfirmButton: false,
-                timer: 3000
-            })
-
+                timer: 1250,
+            }).then(function() {
+                window.location.href = "<?php echo base_url('inventaris/hapus_invent/')?>" + id;
+            });
         }
     });
 
