@@ -78,7 +78,7 @@ CREATE TABLE `daftar_obat` (
   `update_date` datetime DEFAULT NULL,
   `stocks` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `satuan` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `expired` datetime DEFAULT NULL,
+  `expired` date DEFAULT NULL,
   `nama_obat` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -87,9 +87,9 @@ CREATE TABLE `daftar_obat` (
 --
 
 INSERT INTO `daftar_obat` (`id`, `create_date`, `update_date`, `stocks`, `satuan`, `expired`, `nama_obat`) VALUES
-(1, '2023-04-11 15:40:10', '2023-04-11 15:40:10', '100', 'Tablet', '2023-04-11 07:00:00', 'Panadol'),
-(2, '0000-00-00 00:00:00', NULL, '4', 'Sirup', '2023-05-27 11:36:00', 'OBH Combi'),
-(3, '0000-00-00 00:00:00', NULL, '4', 'Sirup', '2023-05-13 15:23:00', 'Bronchitin');
+(1, '2023-04-11 15:40:10', '2023-04-11 15:40:10', '100', 'Tablet', '2023-04-11', 'Panadol'),
+(2, '0000-00-00 00:00:00', NULL, '4', 'Sirup', '2023-05-27', 'OBH Combi'),
+(3, '0000-00-00 00:00:00', NULL, '4', 'Sirup', '2023-05-13', 'Bronchitin');
 
 -- --------------------------------------------------------
 
