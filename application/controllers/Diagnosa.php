@@ -21,21 +21,6 @@ class Diagnosa extends CI_Controller {
         $this->load->view('diagnosa/diagnosa', $data);
     }
 
-    public function diagnosa()
-    {
-        $data = [
-            'judul' => 'admin',
-            'page' => 'admin',
-            'menu' => 'diagnosa',
-            'submenu'=>'',
-            'menu_submenu_admin'=>'',
-            'menu_admin' => 'admin',
-            'submenu_admin'=>'diagnosa'
-        ];
-        $data['diagnosa'] = $this->Main_model->get('diagnosa')->result();
-        $this->load->view('diagnosa/diagnosa', $data);
-    }
-
 
     public function aksi_tambah_diagnosa()
     {
@@ -43,7 +28,7 @@ class Diagnosa extends CI_Controller {
         $nama_diagnosa = $this->Main_model->total('nama', $nama, 'diagnosa');
         if ($nama_diagnosa !== 0) { 
             $this->session->set_flashdata('salah', 'Maaf Nama Diagnosa Penyakit Sudah Tersedia');
-                redirect(base_url('Diagnosa/diagnosa'));
+                redirect(base_url('Diagnosa'));
         } else { 
             $data = array
             (
@@ -52,11 +37,11 @@ class Diagnosa extends CI_Controller {
             $masuk=$this->Main_model->insert_data($data, 'diagnosa');
             if ($masuk) {
                 $this->session->set_flashdata('yes', 'Berhasil Menambahkan');
-                redirect(base_url('Diagnosa/diagnosa'));
+                redirect(base_url('Diagnosa'));
             }else
             {
                 $this->session->set_flashdata('error', 'gagal..');
-                redirect(base_url('Diagnosa/diagnosa'));
+                redirect(base_url('Diagnosa'));
             }
          }
     }
@@ -86,7 +71,7 @@ class Diagnosa extends CI_Controller {
         if($logged)
         {
             $this->session->set_flashdata('yes', 'Berhasil');
-                redirect(base_url('Diagnosa/diagnosa'));
+                redirect(base_url('Diagnosa'));
         }
         else
         {
@@ -101,12 +86,12 @@ class Diagnosa extends CI_Controller {
         if($hapus)
         {
             $this->session->set_flashdata('sukses', 'Berhasil..');
-            redirect(base_url('Diagnosa/diagnosa'));
+            redirect(base_url('Diagnosa'));
         }
         else
         {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Diagnosa/diagnosa'));
+            redirect(base_url('Diagnosa'));
         }
 
     }

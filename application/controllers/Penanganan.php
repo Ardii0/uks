@@ -23,22 +23,6 @@ class Penanganan extends CI_Controller {
         $this->load->view('penanganan/penanganan', $data);
     }
 
-    
-    public function penanganan_pertama()
-    {
-        $data = [
-            'judul' => 'admin',
-            'page' => 'admin',
-            'menu' => 'penanganan_pertama',
-            'submenu'=>'',
-            'menu_submenu_admin'=>'',
-            'menu_admin' => 'penangan   an_pertama',
-            'submenu_admin'=> 'penanganan_pertama'
-        ];
-        
-        $data['penanganan'] = $this->Main_model->get('penanganan_pertama')->result();
-        $this->load->view('penanganan/penanganan', $data);
-    }
 
     public function aksi_tambah_penanganan()
     {
@@ -46,7 +30,7 @@ class Penanganan extends CI_Controller {
         $nama_penanganan = $this->Main_model->total('nama_penanganan', $nama, 'penanganan_pertama');
         if ($nama_penanganan !== 0) { 
             $this->session->set_flashdata('salah', 'Maaf Nama Penanganan Sudah Tersedia');
-                redirect(base_url('Penanganan/penanganan_pertama'));
+                redirect(base_url('Penanganan'));
         }else { 
             $data = array
             (
@@ -55,38 +39,14 @@ class Penanganan extends CI_Controller {
             $masuk=$this->Main_model->insert_data($data, 'penanganan_pertama');
             if($masuk) {
                 $this->session->set_flashdata('yes', 'Berhasil Menambahkan');
-                redirect(base_url('Penanganan/penanganan_pertama'));
+                redirect(base_url('Penanganan'));
             }else
             {
                 $this->session->set_flashdata('error', 'gagal..');
-                redirect(base_url('Penanganan/penanganan_pertama'));
+                redirect(base_url('Penanganan'));
             }
          }
 
-    }
-
-    public function aksi_tambah_diagnosa()
-    {
-        $nama = $this->input->post('name_penyakit');
-        $nama_diagnosa = $this->Main_model->total('nama', $nama, 'diagnosa');
-        if ($nama_diagnosa !== 0) { 
-            $this->session->set_flashdata('salah', 'Maaf Nama Diagnosa Penyakit Sudah Tersedia');
-                redirect(base_url('Diagnosa/diagnosa'));
-        } else { 
-            $data = array
-            (
-                'nama' => $this->input->post('name_penyakit'),
-            );
-            $masuk=$this->Main_model->insert_data($data, 'diagnosa');
-            if ($masuk) {
-                $this->session->set_flashdata('yes', 'Berhasil Menambahkan');
-                redirect(base_url('Diagnosa/diagnosa'));
-            }else
-            {
-                $this->session->set_flashdata('error', 'gagal..');
-                redirect(base_url('Diagnosa/diagnosa'));
-            }
-         }
     }
 
     // Change data
@@ -112,7 +72,7 @@ class Penanganan extends CI_Controller {
         if($logged)
         {
             $this->session->set_flashdata('yes', 'berhasil');
-            redirect(base_url('Penanganan/penanganan_pertama'));
+            redirect(base_url('Penanganan'));
         }
         else
         {
@@ -127,12 +87,12 @@ class Penanganan extends CI_Controller {
         if($hapus)
         {
             $this->session->set_flashdata('sukses', 'Berhasil..');
-            redirect(base_url('Penanganan/penanganan_pertama/'));
+            redirect(base_url('Penanganan'));
         }
         else
         {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Penanganan/penanganan_pertama/'));
+            redirect(base_url('Penanganan'));
         }
     }
 

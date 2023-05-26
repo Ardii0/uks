@@ -23,22 +23,6 @@ class Tindakan extends CI_Controller {
         $this->load->view('tindakan/tindakan', $data);
     }
 
-    
-    public function tindakan()
-    {
-        $data = [
-            'judul' => 'admin',
-            'page' => 'admin',
-            'menu' => 'tindakan',
-            'submenu'=>'',
-            'menu_submenu_admin'=>'',
-            'menu_admin' => 'tindakan',
-            'submenu_admin'=> 'tindakan'
-        ];
-        
-        $data['tindakan'] = $this->Main_model->get('tindakan')->result();
-        $this->load->view('tindakan/tindakan', $data);
-    }
 
     public function aksi_tambah_tindakan()
     {
@@ -46,7 +30,7 @@ class Tindakan extends CI_Controller {
         $nama_tindakan = $this->Main_model->total('nama', $nama, 'tindakan');
         if ($nama_tindakan !== 0) { 
             $this->session->set_flashdata('salah', 'Maaf Nama Penanganan Sudah Tersedia');
-                redirect(base_url('Tindakan/tindakan'));
+                redirect(base_url('Tindakan'));
         }else { 
             $data = array
             (
@@ -55,11 +39,11 @@ class Tindakan extends CI_Controller {
             $masuk=$this->Main_model->insert_data($data, 'tindakan');
             if($masuk){
                 $this->session->set_flashdata('yes', 'Berhasil Menambahkan');
-                redirect(base_url('Tindakan/tindakan'));
+                redirect(base_url('Tindakan'));
             }else
             {
                 $this->session->set_flashdata('error', 'gagal..');
-                redirect(base_url('Tindakan/tindakan'));
+                redirect(base_url('Tindakan'));
             }
          }
 
@@ -88,7 +72,7 @@ class Tindakan extends CI_Controller {
         if($logged)
         {
             $this->session->set_flashdata('yes', 'berhasil');
-            redirect(base_url('Tindakan/tindakan'));
+            redirect(base_url('Tindakan'));
         }
         else
         {
@@ -103,12 +87,12 @@ class Tindakan extends CI_Controller {
         if($hapus)
         {
             $this->session->set_flashdata('sukses', 'Berhasil..');
-            redirect(base_url('Tindakan/tindakan'));
+            redirect(base_url('Tindakan'));
         }
         else
         {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Tindakan/tindakan'));
+            redirect(base_url('Tindakan'));
         }
 
     }

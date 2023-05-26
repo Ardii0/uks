@@ -149,12 +149,14 @@ function hapus(id) {
         confirmButtonText: ' Ya hapus!'
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = "<?php echo base_url('tindakan/hapus_tindakan/')?>" + id;
+           
             Swal.fire({
                 icon: 'success',
                 title: 'Berhasil Dihapus',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 1250
+            }).then(function(){
+                window.location.href = "<?php echo base_url('tindakan/hapus_tindakan/')?>" + id;
             })
 
         }

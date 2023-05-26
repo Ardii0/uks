@@ -99,7 +99,7 @@
                                 <div class="form-group col-sm-12 mb-0">
                                     <label class="control-label">Stocks Obat</label>
                                     <div class="">
-                                        <input type="text" name="stocks_obat" class="form-control" required
+                                        <input type="number" name="stocks_obat" class="form-control" required
                                             placeholder="Masukan Stocks Obat"><br>
                                     </div>
                                 </div>
@@ -185,12 +185,14 @@ function hapus(id) {
         confirmButtonText: ' Ya hapus!'
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = "<?php echo base_url('daftar_Obat/hapus_daftar_obat/')?>" + id;
+           
             Swal.fire({
                 icon: 'success',
                 title: 'Berhasil Dihapus',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 1250
+            }).then(function(){
+                window.location.href = "<?php echo base_url('daftar_Obat/hapus_daftar_obat/')?>" + id;
             })
 
         }
