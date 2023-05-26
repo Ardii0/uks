@@ -8,6 +8,16 @@
     <?php $this->load->view('style/head') ?>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <style>
+        select:invalid + .select2-container > span.selection > span.select2-selection {
+            border-color: #dc3545;   
+        }
+
+        select:invalid + .select2-container--focus > span.selection > span.select2-selection {
+            border-color: #dc3545;
+            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+        }
+    </style>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed" data-panel-auto-height-mode="height">
@@ -24,7 +34,7 @@
                         <div class="p-2 d-flex align-items-center gap-3">
                             <div style="font-size: 1.5rem">Filter Rekap Data</div>
                         </div>
-                        <div class="p-2 d-flex align-items-center gap-3"> 
+                        <div class="p-2 d-flex align-items-center gap-3">
                             <div class="grid gap-3">
                                 <button class="btn btn-info" data-toggle="modal"
                                     data-target="#modal_filter_tanggal"><i class="fas fa-filter"></i>&nbsp;
@@ -45,12 +55,12 @@
                                 <h4>
                                     <?= '(' . $awal_tanggal . ') - (' . $akhir_tanggal . ')' ?>
                                 </h4>
-                                <form action="<?php echo base_url('Periksa/export_pasien_to_excel') ?>"
+                                <form action="<?php echo base_url('periksa/export_pasien_to_excel') ?>"
                                 enctype="multipart/form-data" method="post">
-                                <input type="hidden" id="awal_tanggal" name="awal_tanggal" value="<?= $awal_tanggal?>">
-                                <input type="hidden" id="akhir_tanggal" name="akhir_tanggal" value="<?= $akhir_tanggal?>">
-                                <button type="submit" class="btn btn-primary px-5 rounded">Download Rekap Data Pasien
-                                </button>
+                                    <input type="hidden" id="awal_tanggal" name="awal_tanggal" value="<?= $awal_tanggal?>">
+                                    <input type="hidden" id="akhir_tanggal" name="akhir_tanggal" value="<?= $akhir_tanggal?>">
+                                    <button type="submit" class="btn btn-primary px-5 rounded">Download Rekap Data Pasien
+                                    </button>
                                 </form>
                             </div>
                         <?php endif; ?>
@@ -124,22 +134,19 @@
                                                 </td>
                                                 <td class="text-center">
                                                     <?php if ($ditangani > 0): ?>
-                                                        <a href="<?php echo base_url('periksa/status/' . $data->id); ?>"
-                                                            class="trash " data-id="1">
-                                                            <button class="btn btn-success btn-sm" type="button"
-                                                                data-toggle="modal">
-                                                                Selesai
-                                                            </button>
+                                                        <a href="<?php echo base_url('periksa/status/'.$data->id); ?>"
+                                                           class="btn btn-success btn-sm">
+                                                            Selesai
                                                         </a>
                                                     <?php elseif ($ditangani == 0): ?>
-                                                        <a href="<?php echo base_url('periksa/status/' . $data->id); ?>"
-                                                            class="trash " data-id="1">
-                                                            <button class="btn btn-danger btn-sm" type="button"
-                                                                data-toggle="modal">
-                                                                Tangani
-                                                            </button>
+                                                        <a href="<?php echo base_url('periksa/status/'.$data->id); ?>"
+                                                           class="btn btn-danger btn-sm">
+                                                            Tangani
                                                         </a>
                                                     <?php endif; ?>
+                                                    <button onclick="hapus(<?php echo $data->id ?>)" class="btn btn-danger btn-sm">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -149,11 +156,12 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- Modal Tambah Periksa-->
                 <div class="modal fade" id="modal_tambah_periksa" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <form action="<?php echo base_url('Periksa/aksi_tambah_periksa') ?>"
+                        <form action="<?php echo base_url('periksa/aksi_tambah_periksa') ?>"
                             enctype="multipart/form-data" method="post">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -170,8 +178,8 @@
                                                 <label class="control-label">Status Pasien</label>
                                                 <div class="">
                                                     <select class="form-control form-select px-2 py-1" id="option"
-                                                        onchange="selectStatus()" name="pasien_status">
-                                                        <option value="Pilih" style="display: none;">
+                                                        onchange="selectStatus()" name="pasien_status" required="">
+                                                        <option value="" style="display: none;">
                                                             Pilih Status
                                                         </option>
                                                         <option value="Guru">
@@ -189,15 +197,15 @@
                                             <div class="form-group col-sm-12">
                                                 <label class="control-label">Nama Pasien</label>
                                                 <div class="" id="disabled">
-                                                    <select class="form-control select2" disabled>
-                                                            <option selected>
+                                                    <select class="form-control select2" disabled required="">
+                                                            <option value="" selected>
                                                                 Pilih Pasien
                                                             </option>
                                                     </select>
                                                 </div>
                                                 <div id="guru" style="display: none;">
-                                                    <select class="form-control select2" name="guru_id">
-                                                        <option style="display: none;" selected disabled>
+                                                    <select class="form-control select2" name="guru_id" data-native-menu="false" data-inline="true" data-mini="true">
+                                                        <option value="" style="display: none;" selected disabled>
                                                             Pilih Pasien
                                                         </option>
                                                         <?php foreach($guru as $guru): ?>
@@ -209,7 +217,7 @@
                                                 </div>
                                                 <div id="siswa" style="display: none;">
                                                     <select class="form-control select2" name="siswa_id">
-                                                        <option style="display: none;" selected disabled>
+                                                        <option value="" style="display: none;" selected disabled>
                                                             Pilih Pasien
                                                         </option>
                                                         <?php foreach($siswa as $siswa): ?>
@@ -221,7 +229,7 @@
                                                 </div>
                                                 <div id="karyawan" style="display: none;">
                                                     <select class="form-control select2" name="karyawan_id">
-                                                        <option style="display: none;" selected disabled>
+                                                        <option value="" style="display: none;" selected disabled>
                                                             Pilih Pasien
                                                         </option>
                                                         <?php foreach($karyawan as $karyawan): ?>
@@ -254,7 +262,7 @@
                 <div class="modal fade" id="modal_filter_tanggal" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <form action="<?php echo base_url('Periksa/aksi_filter_tanggal') ?>"
+                        <form action="<?php echo base_url('periksa/aksi_filter_tanggal') ?>"
                             enctype="multipart/form-data" method="post">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -299,25 +307,43 @@
     </div>
     <?php $this->load->view('style/js') ?>
     <script src="<?php echo base_url('builder/dist/js/status.js'); ?>"></script>
-    <?php if ($this->session->flashdata('bisa')): ?>
+    <?php if ($this->session->flashdata('success')): ?>
         <script>
             swal.fire({
-                title: "<?php echo $this->session->flashdata('bisa')?>",
+                title: "<?php echo $this->session->flashdata('success')?>",
                 icon: "success",
                 showConfirmButton: false,
-                timer: 1500,
+                timer: 1250,
             });
         </script>
-        <?php if (isset($_SESSION['bisa'])) {
-            unset($_SESSION['bisa']);
+        <?php if (isset($_SESSION['success'])) {
+            unset($_SESSION['success']);
         }
     endif; ?>
     <script>
-        function hapus_periksa(id) {
-            var yes = confirm('Yakin Di Hapus?');
-            if (yes == true) {
-                window.location.href = "<?php echo base_url('Periksa/hapus_periksa/') ?>" + id;
-            }
+        function hapus(id) {
+            swal.fire({
+                title: 'Yakin untuk menghapus data ini?',
+                text: "Data ini akan terhapus permanen",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'Batal',
+                confirmButtonText: 'Ya Hapus'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Data Berhasil Dihapus',
+                        showConfirmButton: false,
+                        timer: 1250,
+                        
+                    }).then(function() {
+                        window.location.href = "<?php echo base_url('periksa/delete_periksa/')?>" + id;
+                    });
+                }
+            });
         }
     </script>
 </body>

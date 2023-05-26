@@ -22,17 +22,17 @@ class Pojok_Baca extends CI_Controller
     {
         $this->load->model('Main_model');
         $data['buku'] = $this->Main_model->get('buku')->result();
-        $this->load->view('Pojok_Baca/index', $data);
+        $this->load->view('pojok_baca/index', $data);
     }
     public function tambah_buku()
     {
-        $this->load->view('Pojok_Baca/add');
+        $this->load->view('pojok_baca/add');
     }
 
     public function upload_img_buku($value)
     {
         $kode = round(microtime(true) * 1000);
-        $config['upload_path'] = './uploads/Pojok_Baca/buku/';
+        $config['upload_path'] = './uploads/pojok_baca/buku/';
         $config['allowed_types'] = 'jpg|png|jpeg';
         $config['max_size'] = '100000';
         $config['file_name'] = $kode;
@@ -51,7 +51,7 @@ class Pojok_Baca extends CI_Controller
         if ($foto[0] == false) {
             //$this->upload->display_errors();
             $this->session->set_flashdata('error', 'gagal upload gambar.');
-            redirect(base_url('Pojok_Baca/add'));
+            redirect(base_url('pojok_baca/add'));
         } else {
             $data = array
             (
@@ -62,7 +62,7 @@ class Pojok_Baca extends CI_Controller
                 'tahun_terbit' => $this->input->post('tahun_terbit'),
                 'keterangan' => $this->input->post('keterangan'),
                 'sumber' => $this->input->post('sumber'),
-                'created_at' => $this->input->post('tgl_masuk'),
+                'tgl_masuk' => $this->input->post('tgl_masuk'),
             );
             $masuk = $this->Main_model->insert_data($data, 'buku');
             if ($masuk) {
@@ -80,7 +80,7 @@ class Pojok_Baca extends CI_Controller
         $this->load->model('Main_model');
         $where = ['id_buku' => $id];
         $data['buku'] = $this->Main_model->getwhere($where,'buku')->row_array();
-        $this->load->view('Pojok_Baca/detail', $data);
+        $this->load->view('pojok_baca/detail', $data);
     }
 
     public function edit_buku($id)
@@ -88,7 +88,7 @@ class Pojok_Baca extends CI_Controller
         $this->load->model('Main_model');
         $where = ['id_buku' => $id];
         $data['buku'] = $this->Main_model->getwhere($where,'buku')->row_array();
-        $this->load->view('Pojok_Baca/edit', $data);
+        $this->load->view('pojok_baca/edit', $data);
     }
 
     public function aksi_edit_buku($id)
@@ -105,7 +105,7 @@ class Pojok_Baca extends CI_Controller
                 'tahun_terbit' => $this->input->post('tahun_terbit'),
                 'keterangan' => $this->input->post('keterangan'),
                 'sumber' => $this->input->post('sumber'),
-                'created_at' => $this->input->post('tgl_masuk'),
+                'tgl_masuk' => $this->input->post('tgl_masuk'),
             );
         } else {
             $data = array
@@ -117,28 +117,28 @@ class Pojok_Baca extends CI_Controller
                 'tahun_terbit' => $this->input->post('tahun_terbit'),
                 'keterangan' => $this->input->post('keterangan'),
                 'sumber' => $this->input->post('sumber'),
-                'created_at' => $this->input->post('tgl_masuk'),
+                'tgl_masuk' => $this->input->post('tgl_masuk'),
             );
             if ($_id->foto != '') {
-                unlink('./uploads/Pojok_Baca/buku/'.$_id->foto);
+                unlink('./uploads/pojok_baca/buku/'.$_id->foto);
             }
         }
         $valid = $this->Main_model->update_data($where, $data, 'buku');
         if($valid)
         {
             $this->session->set_flashdata('sukses', 'Berhasil Mengubah');
-            redirect(base_url('Pojok_Baca/'));
+            redirect(base_url('pojok_baca/'));
         }
         else
         {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Pojok_Baca/'.$id));
+            redirect(base_url('pojok_baca/'.$id));
         }
     }
     public function hapus_buku($id)
     {
         $foto = tampil_cover_byid($id);
-        $path = './uploads/Pojok_Baca/buku/'.$foto;
+        $path = './uploads/pojok_baca/buku/'.$foto;
         unlink($path); 
         $hapus=$this->Main_model->delete_data( ['id_buku'=>$id], 'buku');
         if ($hapus) {

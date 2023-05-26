@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <title>Data Siswa</title>
     <?php $this->load->view('style/head')?>
 </head>
+
 <body class="hold-transition sidebar-mini layout-fixed" data-panel-auto-height-mode="height">
     <div class="wrapper">
         <?php $this->load->view('style/navbar')?>
@@ -24,8 +26,8 @@
                                     </div>
                                     <div class="d-flex">
                                         <div class="p-2 d-flex align-items-center gap-3">
-                                        <div class="grid gap-3">
-                                                <a href="<?php echo base_url('Data/export_siswa'); ?>">
+                                            <div class="grid gap-3">
+                                                <a href="<?php echo base_url('data/export_siswa'); ?>">
                                                     <button type="button" class="btn btn-success"><i
                                                             class="fa fa-download pr-2"></i>Download Data Siswa</button>
                                                 </a>
@@ -40,8 +42,8 @@
                                         </div>
                                         <div class="p-2 d-flex align-items-center gap-3">
                                             <div class="grid gap-3">
-                                                <button data-toggle="modal" data-target="#index1" class="btn btn-info"><i
-                                                        class="fas fa-plus"></i>&nbsp;
+                                                <button data-toggle="modal" data-target="#index1"
+                                                    class="btn btn-info"><i class="fas fa-plus"></i>&nbsp;
                                                     Tambah</button>
                                             </div>
                                         </div>
@@ -70,20 +72,20 @@
                                                     <?php echo indonesian_date_time($datas->tanggal_lahir);?></td>
                                                 <td><?php echo $datas->alamat?></td>
                                                 <td>
-                                                <form action="<?php echo base_url('Data/export_periksa_siswa') ?>"
-                                                enctype="multipart/form-data" method="post">
-                                                <input type="hidden" id="id" name="id" value="<?= $datas->id?>">
-                                                <button type="submit" class="btn btn-primary btn-sm">
-                                                <i class="fa fa-download"></i>
-                                                </button>
-                                                    <a href="<?php echo base_url('data/detail_siswa/' . $datas->id)?>"
-                                                        class="btn btn-warning btn-sm" type="button">
-                                                        <i class="fa fa-eye"></i>
-                                                    </a>
-                                                    <button onclick="hapus(<?php echo $datas->id ?>)"
-                                                        class="btn btn-danger btn-sm" type="button">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
+                                                    <form action="<?php echo base_url('data/export_periksa_siswa') ?>"
+                                                        enctype="multipart/form-data" method="post">
+                                                        <input type="hidden" id="id" name="id" value="<?= $datas->id?>">
+                                                        <button type="submit" class="btn btn-primary btn-sm">
+                                                            <i class="fa fa-download"></i>
+                                                        </button>
+                                                        <a href="<?php echo base_url('data/detail_siswa/' . $datas->id)?>"
+                                                            class="btn btn-warning btn-sm" type="button">
+                                                            <i class="fa fa-eye"></i>
+                                                        </a>
+                                                        <button onclick="hapus(<?php echo $datas->id ?>)"
+                                                            class="btn btn-danger btn-sm" type="button">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -99,50 +101,51 @@
             </div>
         </div>
 
-        <div class="modal fade" id="index2" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <form action="<?php echo base_url('data/import_excel2/') ?>" enctype="multipart/form-data" method="post">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Upload Data Siswa</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="box-body">
-                            <p>Download template excel untuk mengisi data siswa yang akan diupload.</p>
-                            <a href="<?php echo base_url('assets/siswa-format.xlsx') ?>" class="btn btn-success">
-                                <i class="fa fa-download"></i> Download Template
-                            </a>
-                            <br>
-                            <hr>
-                            <div>
-                                <label class="mr-3">
-                                    Upload
-                                </label>
-                            </div>
-                            <div>
-                                <input type="file" name="fileExcel">
-                            </div>
-                            <p class="mt-1">Type File Upload .*xls</p>
+        <div class="modal fade" id="index2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <form action="<?php echo base_url('data/import_excel2/') ?>" enctype="multipart/form-data"
+                    method="post">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Upload Data Siswa</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                    </div>
-                    <div class="modal-footer d-flex justify-content-between">
-                    <button type="button"  class="btn btn-danger text-bold w-25" onclick="kembali()"
+                        <div class="modal-body">
+                            <div class="box-body">
+                                <p>Download template excel untuk mengisi data siswa yang akan diupload.</p>
+                                <a href="<?php echo base_url('assets/siswa-format.xlsx') ?>" class="btn btn-success">
+                                    <i class="fa fa-download"></i> Download Template
+                                </a>
+                                <br>
+                                <hr>
+                                <div>
+                                    <label class="mr-3">
+                                        Upload
+                                    </label>
+                                </div>
+                                <div>
+                                    <input type="file" name="fileExcel">
+                                </div>
+                                <p class="mt-1">Type File Upload .*xls</p>
+                            </div>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-between">
+                            <button type="button" class="btn btn-danger text-bold w-25" onclick="kembali()"
                                 data-dismiss="modal">Batal</button>
                             <button type="submit" class="btn btn-success text-bold w-25">Simpan</button>
+                        </div>
                     </div>
-                </div>
+            </div>
+            </form>
         </div>
-        </form>
-    </div>
 
         <div class="modal fade" id="index1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <form action="<?php echo base_url('data/aksi_tambah_siswa')?>" enctype="multipart/form-data"
+                <form action="<?php echo base_url('Data/aksi_tambah_siswa')?>" enctype="multipart/form-data"
                     method="post">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -197,7 +200,7 @@
                             </div>
                         </div>
                         <div class="modal-footer d-flex justify-content-between">
-                            <button type="button"  class="btn btn-danger text-bold w-25" onclick="kembali()"
+                            <button type="button" class="btn btn-danger text-bold w-25" onclick="kembali()"
                                 data-dismiss="modal">Batal</button>
                             <button type="submit" class="btn btn-success text-bold w-25">Simpan</button>
                         </div>
@@ -215,7 +218,7 @@ swal.fire({
     title: "<?php echo $this->session->flashdata('bisa')?>",
     icon: "success",
     showConfirmButton: false,
-    timer: 2000,
+    timer: 1500,
 });
 </script>
 <?php if (isset($_SESSION['bisa'])) {
@@ -224,29 +227,29 @@ swal.fire({
     endif; ?>
 <script>
 function hapus(id) {
-    swal.fire({
-        title: 'Yakin untuk menghapus data ini?',
-        text: "Data ini akan terhapus permanen",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        cancelButtonText: 'Batal',
-        confirmButtonText: ' Ya hapus!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = "<?php echo base_url('data/hapus_siswa/')?>" + id;
-            Swal.fire({
-                icon: 'success',
-                title: 'Berhasil Dihapus',
-                showConfirmButton: false,
-                timer: 1500
-            })
+        swal.fire({
+            title: 'Yakin untuk menghapus data ini?',
+            text: "Data ini akan terhapus permanen",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Ya Hapus'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil Dihapus',
+                    showConfirmButton: false,
+                    timer: 1500,
 
-        }
-    });
-
-}
+                }).then(function() {
+                    window.location.href = "<?php echo base_url('data/hapus_siswa/')?>" + id;
+                });
+            }
+        });
+    }
 </script>
 
 </html>

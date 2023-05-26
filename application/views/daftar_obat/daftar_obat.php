@@ -43,6 +43,7 @@
                                                     <th class="text-center" scope="col">NAMA OBAT</th>
                                                     <th class="text-center" scope="col">STOCK</th>
                                                     <th class="text-center" scope="col">SATUAN</th>
+                                                    <th class="text-center" scope="col">EXPIRED</th>
                                                     <th class="text-center" scope="col">AKSI</th>
                                                 </tr>
                                             </thead>
@@ -53,8 +54,9 @@
                                                     <td class="text-center"><?php echo $data->nama_obat?></td>
                                                     <td class="text-center"><?php echo $data->stocks?></td>
                                                     <td class="text-center"><?php echo $data->satuan?></td>
+                                                    <td class="text-center"><?php echo indonesian_date_time($data->expired)?></td>
                                                     <td class="text-center">
-                                                        <a href="<?php echo base_url('Daftar_Obat/edit_daftar_obat/' . $data->id) ?>"
+                                                        <a href="<?php echo base_url('daftar_obat/edit_daftar_obat/' . $data->id) ?>"
                                                             class="btn btn-warning btn-sm">
                                                             <i class="fa fa-edit"></i> </a>
                                                         <button onclick="hapus(<?php echo $data->id ?>)"
@@ -76,7 +78,7 @@
             <div class="modal fade" id="modal_tambah_daftar_obat" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <form action="<?php echo base_url('Daftar_Obat/aksi_tambah_daftar_obat') ?>"
+                    <form action="<?php echo base_url('daftar_Obat/aksi_tambah_daftar_obat') ?>"
                         enctype="multipart/form-data" method="post">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -110,6 +112,7 @@
                                             <option> Tablet</option>
                                             <option> Pil</option>
                                             <option> Kapsul</option>
+                                            <option> Cair</option>
                                             <option> Kaplet</option>
                                             <option> Sirup</option>
                                             <option disabled selected>Masukan Satuan Obat </option>
@@ -146,7 +149,7 @@
         title: "<?php echo $this->session->flashdata('yes')?>",
         icon: "success",
         showConfirmButton: false,
-        timer: 5000,
+        timer: 2000,
     });
     </script>
     <?php if (isset($_SESSION['yes'])) {
@@ -160,7 +163,7 @@
         title: "<?php echo $this->session->flashdata('salah')?>",
         icon: "error",
         showConfirmButton: false,
-        timer: 1000,
+        timer: 200,
     });
     </script>
     <?php if (isset($_SESSION['salah'])) {
@@ -182,7 +185,7 @@ function hapus(id) {
         confirmButtonText: ' Ya hapus!'
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = "<?php echo base_url('Daftar_Obat/hapus_daftar_obat/')?>" + id;
+            window.location.href = "<?php echo base_url('daftar_Obat/hapus_daftar_obat/')?>" + id;
             Swal.fire({
                 icon: 'success',
                 title: 'Berhasil Dihapus',

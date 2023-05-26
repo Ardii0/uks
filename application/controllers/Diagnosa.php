@@ -85,12 +85,12 @@ class Diagnosa extends CI_Controller {
         $logged=$this->Main_model->update_data(array('id'=>$this->input->post('id')), $data, 'diagnosa');
         if($logged)
         {
-            $this->session->set_flashdata('sukses', 'berhasil');
-            redirect(base_url('Diagnosa/diagnosa'));
+            $this->session->set_flashdata('yes', 'Berhasil');
+                redirect(base_url('Diagnosa/diagnosa'));
         }
         else
         {
-            $this->session->set_flashdata('error', 'gagal..');
+            $this->session->set_flashdata('no', 'gagal..');
             redirect(base_url('diagnosa/edit_diagnosa'.$this->input->post('id')));
         }
     }

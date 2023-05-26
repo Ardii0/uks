@@ -341,7 +341,7 @@
                     </div>
                     <div class="card-body">
                         <?php if ( $this->session->userdata('bulan') === null ) : ?>
-                        <form action="<?php echo base_url('Admin/pilih_bulan') ?>" method="POST">
+                        <form action="<?php echo base_url('admin/pilih_bulan') ?>" method="POST">
                             <select id="sel_id" name="bulan" onchange="this.form.submit();"
                                 class="form-control select2">
                                 <option value="">Pilih Bulan</option>
@@ -387,7 +387,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="<?php echo base_url('Admin/pilih_bulan') ?>" method="POST">
+                        <form action="<?php echo base_url('admin/pilih_bulan') ?>" method="POST">
                             <select id="sel_id" name="bulan" onchange="this.form.submit();"
                                 class="form-control select2">
                                 <option value="">Pilih Bulan</option>

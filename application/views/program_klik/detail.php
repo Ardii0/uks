@@ -17,60 +17,68 @@
         <div class="content-wrapper py-3">
             <section class="content">
                 <div class="container-fluid mb-4">
-                <div class="header p-1 text-light rounded-top d-flex justify-content-between"
+                    <div class="header p-1 text-light rounded-top d-flex justify-content-between"
                         style="background-color:#4ADE80">
                         <div class="p-2 d-flex align-items-center gap-3">
                             <div style="font-size: 1.5rem">Detail Program Klik</div>
                         </div>
                     </div>
                     <div class="bg-light shadow">
-                    <div class="row" >
-                        <div class="col-8">
-                            <div class="card-body">
-                                <div class="row mb-2">
-                                    <div class="col-2 font-weight-bold">Judul Buku </div>
-                                    <div>:</div>
-                                    <div class="col"><?php echo $program['judul_buku'] ?></div>                                 
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col-2 font-weight-bold">Penulis </div>
-                                    <div>:</div>
-                                    <div class="col"><?php echo $program['penulis_buku'] ?></div>                                 
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col-2 font-weight-bold">Penerbit </div>
-                                    <div>:</div>
-                                    <div class="col"><?php echo $program['penerbit_buku'] ?></div>                                 
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col-2 font-weight-bold">Tahun Terbit</div>
-                                    <div>:</div>
-                                    <div class="col"><?php echo $program['tahun_terbit'] ?></div>                                 
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col-2 font-weight-bold">Sumber</div>
-                                    <div>:</div>
-                                    <div class="col"><?php echo $program['sumber'] ?></div>                                 
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col-2 font-weight-bold">Tanggal Masuk</div>
-                                    <div>:</div>
-                                    <div class="col"><?php echo indonesian_date_time($program['created_at']) ?></div>                                 
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col-2 font-weight-bold">Keterangan</div>
-                                    <div>:</div>
-                                    <div class="col"><?php echo $program['keterangan'] ?></div>                                 
-                                </div>
-                                <div class="row mb-2">
-                                <a href="<?php echo base_url('Program_Klik/cetak_program_klik/'.$program['id'].'/pdf')?>"
-                                    class="btn btn-primary btn-sm" target="_blank">
-                                    <i class="fas fa-print"></i>
-                                </a>
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="card-body">
+                                    <div class="row mb-2">
+                                        <div class="col-2 font-weight-bold">Nama Pasien</div>
+                                        <div>:</div>
+                                        <div class="col">
+                                            <?php if (!empty($program['siswa_id'])) {
+                                                echo JoinOne('program_klik', 'siswa', 'siswa_id', 'id', 'program_klik.id', $program['id'], 'nama_siswa');
+                                            } else if (!empty($program['guru_id'])) {
+                                                echo JoinOne('program_klik', 'guru', 'guru_id', 'id', 'program_klik.id', $program['id'], 'nama_guru');
+                                            } else if (!empty($program['karyawan_id'])) {
+                                                echo JoinOne('program_klik', 'karyawan', 'karyawan_id', 'id', 'program_klik.id', $program['id'], 'nama_karyawan');
+                                            } ?>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-2 font-weight-bold">Pasien Status</div>
+                                        <div>:</div>
+                                        <div class="col">
+                                            <?php echo $program['pasien_status'] ?>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-2 font-weight-bold">Tanggal </div>
+                                        <div>:</div>
+                                        <div class="col">
+                                            <?php echo $program['create_date'] ?>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-2 font-weight-bold">Keluhan</div>
+                                        <div>:</div>
+                                        <div class="col">
+                                            <?php echo $program['keluhan'] ?>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-2 font-weight-bold">Saran</div>
+                                        <div>:</div>
+                                        <div class="col">
+                                            <?php echo $program['saran'] ?>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-2 font-weight-bold">
+                                            <a href="<?php echo base_url('program_klik/cetak_program_klik/' . $program['id'] . '/pdf') ?>"
+                                                class="btn btn-primary btn-sm" target="_blank">
+                                                <i class="fas fa-print"></i>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     </div>
                 </div>
             </section>
@@ -81,30 +89,6 @@
         <script>
             function kembali() {
                 window.history.go(-1);
-            }
-
-            function hapus(id) {
-                var yes = confirm('Yakin Di Hapus?');
-                if (yes == true) {
-                    window.location.href = "<?php echo base_url('Perpustakaan/delete_detail_index_buku/') ?>" + id;
-                }
-            }
-
-            function convertHTMLtoPDF(id) {
-                const {
-                    jsPDF
-                } = window.jspdf;
-
-                var doc = new jsPDF('l', 'mm', [1500, 1300]);
-                var pdfjs = document.querySelector('#cetak');
-
-                doc.html(pdfjs, {
-                    callback: function (doc) {
-                        doc.save("barcode" + id + ".pdf");
-                    },
-                    x: 12,
-                    y: 12
-                });
             }
         </script>
 

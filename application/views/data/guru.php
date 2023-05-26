@@ -27,7 +27,7 @@
                                     <div class="d-flex">
                                         <div class="p-2 d-flex align-items-center gap-3">
                                             <div class="grid gap-3">
-                                                <a href="<?php echo base_url('Data/export_guru'); ?>">
+                                                <a href="<?php echo base_url('data/export_guru'); ?>">
                                                     <button type="button" class="btn btn-success"><i
                                                             class="fa fa-download pr-2"></i>Download Data Guru</button>
                                                 </a>
@@ -70,20 +70,20 @@
                                                     <?php echo indonesian_date_time($datas->tanggal_lahir);?></td>
                                                 <td><?php echo $datas->alamat?></td>
                                                 <td>
-                                                <form action="<?php echo base_url('Data/export_periksa_guru') ?>"
-                                                enctype="multipart/form-data" method="post">
-                                                <input type="hidden" id="id" name="id" value="<?= $datas->id?>">
-                                                <button type="submit" class="btn btn-primary btn-sm">
-                                                <i class="fa fa-download"></i>
-                                                </button>
-                                                <a href="<?php echo base_url('data/detail_guru/' . $datas->id)?>"
-                                                        class="btn btn-warning btn-sm" type="button">
-                                                        <i class="fa fa-eye"></i>
-                                                    </a>
-                                                    <button onclick="hapus(<?php echo $datas->id ?>)"
-                                                        class="btn btn-danger btn-sm" type="button">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
+                                                    <form action="<?php echo base_url('data/export_periksa_guru') ?>"
+                                                        enctype="multipart/form-data" method="post">
+                                                        <input type="hidden" id="id" name="id" value="<?= $datas->id?>">
+                                                        <button type="submit" class="btn btn-primary btn-sm">
+                                                            <i class="fa fa-download"></i>
+                                                        </button>
+                                                        <a href="<?php echo base_url('data/detail_guru/' . $datas->id)?>"
+                                                            class="btn btn-warning btn-sm" type="button">
+                                                            <i class="fa fa-eye"></i>
+                                                        </a>
+                                                        <button onclick="hapus(<?php echo $datas->id ?>)"
+                                                            class="btn btn-danger btn-sm" type="button">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -102,7 +102,7 @@
     <div class="modal fade" id="index1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form action="<?php echo base_url('data/aksi_tambah_guru')?>" enctype="multipart/form-data" method="post">
+            <form action="<?php echo base_url('Data/aksi_tambah_guru')?>" enctype="multipart/form-data" method="post">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Tambah Data Guru</h5>
@@ -149,8 +149,8 @@
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-between">
-                    <button type="button" class="btn btn-danger text-bold w-25" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-success text-bold w-25">Simpan</button>
+                        <button type="button" class="btn btn-danger text-bold w-25" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-success text-bold w-25">Simpan</button>
                     </div>
                 </div>
             </form>
@@ -203,38 +203,39 @@ swal.fire({
     title: "<?php echo $this->session->flashdata('bisa')?>",
     icon: "success",
     showConfirmButton: false,
-    timer: 3000,
+    timer: 1500,
 });
 </script>
 <?php if (isset($_SESSION['bisa'])) {
             unset($_SESSION['bisa']);
         }
     endif; ?>
+
 <script>
 function hapus(id) {
-    swal.fire({
-        title: 'Yakin untuk menghapus data ini?',
-        text: "Data ini akan terhapus permanen",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        cancelButtonText: 'Batal',
-        confirmButtonText: ' Ya hapus!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = "<?php echo base_url('data/hapus_guru/')?>" + id;
-            Swal.fire({
-                icon: 'success',
-                title: 'Berhasil Dihapus',
-                showConfirmButton: false,
-                timer: 1500
-            })
+        swal.fire({
+            title: 'Yakin untuk menghapus data ini?',
+            text: "Data ini akan terhapus permanen",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Ya Hapus'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil Dihapus',
+                    showConfirmButton: false,
+                    timer: 1500,
 
-        }
-    });
-
-}
+                }).then(function() {
+                    window.location.href = "<?php echo base_url('data/hapus_guru/')?>" + id;
+                });
+            }
+        });
+    }
 </script>
 
 </html>

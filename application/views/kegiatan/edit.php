@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
     <?php $this->load->view('style/head')?>
     <link rel="stylesheet" href="<?php echo base_url('builder/dist/css/kegiatan_uks.css'); ?>">
 </head>
+
 <body class="hold-transition sidebar-mini layout-fixed" data-panel-auto-height-mode="height">
     <div class="wrapper">
         <?php $this->load->view('style/navbar')?>
@@ -22,13 +24,14 @@
                     </div>
                 </div>
                 <section class="content bg-white p-3 rounded">
-                    <form action="<?php echo base_url('Kegiatan/update/'.$kegiatan['id']) ?>" enctype="multipart/form-data" method="post">
+                    <form action="<?php echo base_url('kegiatan/update/'.$kegiatan['id']) ?>"
+                        enctype="multipart/form-data" method="post">
                         <div class="box-body">
                             <div class="form-group col-sm-12 mb-0">
                                 <label class="control-label">Nama Kegiatan</label>
                                 <div class="">
                                     <input type="text" value="<?php echo $kegiatan['nama_kegiatan']; ?>"
-                                        name="nama_kegiatan" class="form-control" placeholder="Masukan Nama Kegiatan"><br>
+                                        name="nama_kegiatan" class="form-control" placeholder="Masukan Nama Kegiatan" required><br>
                                 </div>
                             </div>
                             <div class="form-group col-sm-12 mb-0">
@@ -36,7 +39,7 @@
                                 <div class="">
                                     <div class="custom-file mb-3">
                                         <input type="file" class="custom-file-input" id="customFile" name="foto">
-                                        <label class="custom-file-label" for="customFile"><?php echo $kegiatan['foto']; ?></label>
+                                        <label class="custom-file-label" for="customFile" required><?php echo $kegiatan['foto']; ?></label>
                                     </div>
                                 </div>
                             </div>
@@ -44,28 +47,29 @@
                                 <label class="control-label">Tanggal Mulai Kegiatan</label>
                                 <div class="">
                                     <input type="datetime-local" value="<?php echo $kegiatan['tanggal_mulai']; ?>"
-                                        name="tanggal_mulai" class="form-control"><br>
+                                        name="tanggal_mulai" class="form-control" required><br>
                                 </div>
                             </div>
                             <div class="form-group col-sm-12 mb-0">
                                 <label class="control-label">Tanggal Akhir Kegiatan</label>
                                 <div class="">
                                     <input type="datetime-local" value="<?php echo $kegiatan['tanggal_akhir']; ?>"
-                                        name="tanggal_akhir" class="form-control"><br>
+                                        name="tanggal_akhir" class="form-control" required><br>
                                 </div>
                             </div>
                             <div class="form-group col-sm-12 mb-0">
                                 <label class="control-label">Deskripsi Kegiatan</label>
                                 <div class="">
-                                    <textarea type="text" name="deskripsi" class="form-control" placeholder="Masukan Deskripsi Kegiatan"><?php echo $kegiatan['deskripsi']; ?></textarea><br>
+                                    <textarea type="text" name="deskripsi" class="form-control" placeholder="Masukan Deskripsi Kegiatan" required><?php echo $kegiatan['deskripsi']; ?></textarea><br>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group col-sm-12 d-flex justify-content-between">
-                        <a href="<?php echo base_url('Kegiatan/')?>" class="btn btn-danger text-bold mr-2"><span class="p-3">Batal</span></a>
-                        <button type="submit" class="btn btn-success text-bold"><span class="p-3">Update</span></button>
-                    </div>
-
+                            <a href="<?php echo base_url('kegiatan/')?>" class="btn btn-danger text-bold mr-2"><span
+                                    class="p-3">Batal</span></a>
+                            <button type="submit" class="btn btn-success text-bold"><span
+                                    class="p-3">Update</span></button>
+                        </div>
                     </form>
                 </section>
             </div>
@@ -74,10 +78,11 @@
 
     <?php $this->load->view('style/js')?>
     <script>
-        $(".custom-file-input").on("change", function() {
+    $(".custom-file-input").on("change", function() {
         var fileName = $(this).val().split("\\").pop();
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-        });
+    });
     </script>
 </body>
+
 </html>

@@ -47,7 +47,7 @@
                                                 <th class="text-center" scope="row"><?php echo $id?></th>
                                                 <td class="text-center"><?php echo $data->nama?></td>
                                                 <td class="text-center">
-                                                    <a href="<?php echo base_url('Diagnosa/edit_diagnosa/' . $data->id) ?>"
+                                                    <a href="<?php echo base_url('diagnosa/edit_diagnosa/' . $data->id) ?>"
                                                         class="btn btn-warning btn-sm">
                                                         <i class="fa fa-edit"></i> </a>
                                                     <button onclick="hapus(<?php echo $data->id ?>)"
@@ -68,7 +68,7 @@
             <div class="modal fade" id="modal_tambah_diagnosa" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <form action="<?php echo base_url('Diagnosa/aksi_tambah_diagnosa') ?>" enctype="multipart/form-data"
+                    <form action="<?php echo base_url('diagnosa/aksi_tambah_diagnosa') ?>" enctype="multipart/form-data"
                         method="post">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -108,7 +108,7 @@
         title: "<?php echo $this->session->flashdata('yes')?>",
         icon: "success",
         showConfirmButton: false,
-        timer: 5000,
+        timer: 2000,
     });
     </script>
     <?php if (isset($_SESSION['yes'])) {
@@ -122,7 +122,7 @@
         title: "<?php echo $this->session->flashdata('salah')?>",
         icon: "error",
         showConfirmButton: false,
-        timer: 1000,
+        timer: 2000,
     });
     </script>
     <?php if (isset($_SESSION['salah'])) {
@@ -143,7 +143,7 @@
             confirmButtonText: ' Ya hapus!'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = "<?php echo base_url('Diagnosa/hapus_diagnosa/')?>" + id;
+                window.location.href = "<?php echo base_url('diagnosa/hapus_diagnosa/')?>" + id;
                 Swal.fire({
                     icon: 'success',
                     title: 'Berhasil Dihapus',

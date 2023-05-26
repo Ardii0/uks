@@ -37,7 +37,7 @@
                                 <div class="card-body text-center mx-auto">
                                     <?php if($struktur !=  null) :?>
                                         <div id="card-text not_found" class="text-center mx-auto p-3">
-                                        <img src="<?php echo base_url('uploads/Program_Kerja_UKS/struktur') . "/" . end($struktur)->foto; ?>">
+                                        <img src="<?php echo base_url('uploads/program_kerja_uks/struktur') . "/" . end($struktur)->foto; ?>">
                                         </div>
                                         <?php else :?>
                                         <div id="not_found" class="text-center mx-auto p-3">
@@ -56,7 +56,7 @@
                 <div class="modal fade" id="modal_tambah_struktur" tabindex="-1" role="dialog" aria-labelledby="Modal"
                     aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <form action="<?php echo base_url('Program_Kerja_UKS/aksi_tambah_struktur') ?>"
+                        <form action="<?php echo base_url('program_kerja_uks/aksi_tambah_struktur') ?>"
                             enctype="multipart/form-data" method="post">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -90,15 +90,15 @@
     </div>
     <?php $this->load->view('style/js') ?>
     <?php if ($this->session->flashdata('sukses')): ?>
-        <script>
-            swal.fire({
-                title: "<?php echo $this->session->flashdata('sukses') ?>",
-                icon: "success",
-                showConfirmButton: false,
-                timer: 5000,
-            });
-        </script>
-        <?php if (isset($_SESSION['sukses'])) {
+    <script>
+    swal.fire({
+        title: "<?php echo $this->session->flashdata('sukses') ?>",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 5000,
+    });
+    </script>
+    <?php if (isset($_SESSION['sukses'])) {
             unset($_SESSION['sukses']);
         }
     endif; ?>

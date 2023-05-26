@@ -125,11 +125,10 @@
                                                     onclick="kembali()" data-dismiss="modal"><span
                                                         class="p-3">Batal</span></button>
                                                 <input type="hidden" value="<?php echo $datas->id ?>" name="id">
-                                                <button onclick="bisa()" type="submit"
+                                                <button type="submit"
                                                     class="btn btn-success text-bold"><span
                                                         class="p-3">Update</span></button>
                                             </div>
-
                                         </form>
                                     </section>
                                     <?php endforeach;?>
@@ -147,14 +146,6 @@
 </body>
 
 <script>
-function bisa() {
-    swal.fire({
-        icon: 'success',
-        title: 'Your work has been saved',
-        showConfirmButton: false,
-    })
-}
-
 function kembali() {
     window.history.go(-1);
 }

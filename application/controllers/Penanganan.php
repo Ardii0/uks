@@ -111,12 +111,12 @@ class Penanganan extends CI_Controller {
         $logged=$this->Main_model->update_data(array('id'=>$this->input->post('id')), $data, 'penanganan_pertama');
         if($logged)
         {
-            $this->session->set_flashdata('sukses', 'berhasil');
+            $this->session->set_flashdata('yes', 'berhasil');
             redirect(base_url('Penanganan/penanganan_pertama'));
         }
         else
         {
-            $this->session->set_flashdata('error', 'gagal..');
+            $this->session->set_flashdata('no', 'gagal..');
             redirect(base_url('Penanganan/edit_penanganan/'.$this->input->post('id')));
         }
     }

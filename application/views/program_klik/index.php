@@ -52,12 +52,12 @@
                                             <?php $id = 0;
                                             foreach ($periksa as $data):
                                                 $id++; ?>
-                                                <tr>
-                                                    <td>
-                                                        <?php echo $id ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php if (!empty($data->siswa_id)) {
+                                            <tr>
+                                                <td>
+                                                    <?php echo $id ?>
+                                                </td>
+                                                <td>
+                                                    <?php if (!empty($data->siswa_id)) {
                                                             echo JoinOne('program_klik', 'siswa', 'siswa_id', 'id', 'program_klik.id', $data->id, 'nama_siswa');
                                                         } else if (!empty($data->guru_id)) {
                                                             echo JoinOne('program_klik', 'guru', 'guru_id', 'id', 'program_klik.id', $data->id, 'nama_guru');
@@ -78,13 +78,13 @@
                                                         <?php echo $data->saran ?>
                                                     </td>
                                                     <td class="text-center">
-                                                        <a href="<?php echo base_url('Program_Klik/detail/' . $data->id) ?>"
+                                                        <a href="<?php echo base_url('program_klik/detail/' . $data->id) ?>"
                                                             class="btn btn-success btn-sm">
                                                             <i class="fas fa-search-plus"></i>
                                                         </a>
                                                             <button class="btn btn-warning btn-sm" type="button"
                                                                     data-toggle="modal"
-                                                                    data-target="#modal<?php echo $data->id ?>">
+                                                                    data-target="#modals">
                                                                     <i class="fa fa-edit"></i>
                                                                 </button>
                                                         <button class='btn btn-danger btn-sm' onclick="hapus_periksa(<?php echo $data->id ?>)">
@@ -104,7 +104,7 @@
                 <div class="modal fade" id="modal_tambah_program_klik" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <form action="<?php echo base_url('Program_Klik/aksi_tambah_program_klik') ?>"
+                        <form action="<?php echo base_url('program_klik/aksi_tambah_program_klik') ?>"
                             enctype="multipart/form-data" method="post">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -115,7 +115,6 @@
                                 </div>
                                 <div class="modal-body pb-1">
                                     <div class="box">
-                                        <!-- /.box-header -->
                                         <div class="box-body">
                                             <div class="form-group col-sm-12">
                                                 <label class="control-label">Status Pasien</label>
@@ -152,9 +151,9 @@
                                                             Pilih Pasien
                                                         </option>
                                                         <?php foreach ($guru as $guru): ?>
-                                                            <option value="<?php echo $guru->id ?>">
-                                                                <?php echo $guru->nama_guru ?>
-                                                            </option>
+                                                        <option value="<?php echo $guru->id ?>">
+                                                            <?php echo $guru->nama_guru ?>
+                                                        </option>
                                                         <?php endforeach; ?>
                                                     </select>
                                                 </div>
@@ -164,9 +163,9 @@
                                                             Pilih Pasien
                                                         </option>
                                                         <?php foreach ($siswa as $siswa): ?>
-                                                            <option value="<?php echo $siswa->id ?>">
-                                                                <?php echo $siswa->nama_siswa ?>
-                                                            </option>
+                                                        <option value="<?php echo $siswa->id ?>">
+                                                            <?php echo $siswa->nama_siswa ?>
+                                                        </option>
                                                         <?php endforeach; ?>
                                                     </select>
                                                 </div>
@@ -176,9 +175,9 @@
                                                             Pilih Pasien
                                                         </option>
                                                         <?php foreach ($karyawan as $karyawan): ?>
-                                                            <option value="<?php echo $karyawan->id ?>">
-                                                                <?php echo $karyawan->nama_karyawan ?>
-                                                            </option>
+                                                        <option value="<?php echo $karyawan->id ?>">
+                                                            <?php echo $karyawan->nama_karyawan ?>
+                                                        </option>
                                                         <?php endforeach; ?>
                                                     </select>
                                                 </div>
@@ -208,12 +207,12 @@
                     </div>
                 </div>
         
-        <!-- Modal Edit Program Klik -->
-        <?php foreach ($periksa as $data): ?>
-                <div class="modal fade" id="modal<?php echo $data->id ?>" tabindex="-1" role="dialog"
+                <!-- Modal Edit Program Klik -->
+                <?php foreach ($periksa as $data): ?>
+                <div class="modal fade" id="modals" tabindex="-1" role="dialog"
                     aria-labelledby="Modal" aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <form action="<?php echo base_url('Program_Klik/aksi_edit_program') ?>"
+                        <form action="<?php echo base_url('program_klik/aksi_tambah_program_klik') ?>"
                             enctype="multipart/form-data" method="post">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -229,8 +228,8 @@
                                             <div class="form-group col-sm-12">
                                                 <label class="control-label">Status Pasien</label>
                                                 <div class="">
-                                                    <select class="form-control form-select px-2 py-1" id="option"
-                                                        onchange="selectStatus()" name="pasien_status">
+                                                    <select class="form-control form-select px-2 py-1" id="edits"
+                                                        onchange="selectStatus2()" name="pasien_status">
                                                         <option value="Pilih" style="display: none;">
                                                             Pilih Status
                                                         </option>
@@ -248,60 +247,64 @@
                                             </div>
                                             <div class="form-group col-sm-12">
                                                 <label class="control-label">Nama Pasien</label>
-                                                <div class="" id="disabled">
+                                                <div class="" id="disableds">
                                                     <select class="form-control select2" disabled>
                                                         <option selected>
                                                             Pilih Pasien
                                                         </option>
                                                     </select>
                                                 </div>
-                                                <div id="guru" style="display: none;">
+                                                <div id="gurus" style="display: none;">
                                                     <select class="form-control select2" name="guru_id">
-                                                        <option style="display: none;" selected>
-                                                            <?php echo JoinOne('program_klik', 'guru', 'guru_id', 'id', 'program_klik.id', $data->id, 'nama_guru'); ?>
+                                                        <option style="display: none;" selected disabled>
+                                                            Pilih Pasien
                                                         </option>
                                                         <?php foreach ($guru as $guru): ?>
-                                                            <option value="<?php echo $guru->id ?>">
-                                                                <?php echo $guru->nama_guru ?>
-                                                            </option>
+                                                        <option value="<?php echo $guru->id ?>">
+                                                            <?php echo $guru->nama_guru ?>
+                                                        </option>
                                                         <?php endforeach; ?>
                                                     </select>
                                                 </div>
-                                                <div id="siswa" style="display: none;">
+                                                <div id="siswas" style="display: none;">
                                                     <select class="form-control select2" name="siswa_id">
-                                                        <option style="display: none;" selected>
-                                                            <?php echo JoinOne('program_klik', 'siswa', 'siswa_id', 'id', 'program_klik.id', $data->id, 'nama_siswa');?>
+                                                        <option style="display: none;" selected disabled>
+                                                            Pilih Pasien
                                                         </option>
                                                         <?php foreach ($siswa as $siswa): ?>
-                                                            <option value="<?php echo $siswa->id ?>">
-                                                                <?php echo $siswa->nama_siswa ?>
-                                                            </option>
+                                                        <option value="<?php echo $siswa->id ?>">
+                                                            <?php echo $siswa->nama_siswa ?>
+                                                        </option>
                                                         <?php endforeach; ?>
                                                     </select>
                                                 </div>
-                                                <div id="karyawan" style="display: none;">
+                                                <div id="karyawans" style="display: none;">
                                                     <select class="form-control select2" name="karyawan_id">
-                                                        <option selected>
-                                                        <?php echo JoinOne('program_klik', 'karyawan', 'karyawan_id', 'id', 'program_klik.id', $data->id, 'nama_karyawan'); ?>
+                                                        <option style="display: none;" selected disabled>
+                                                            Pilih Pasien
                                                         </option>
                                                         <?php foreach ($karyawan as $karyawan): ?>
-                                                            <option value="<?php echo $karyawan->id ?>">
-                                                                <?php echo $karyawan->nama_karyawan ?>
-                                                            </option>
+                                                        <option value="<?php echo $karyawan->id ?>">
+                                                            <?php echo $karyawan->nama_karyawan ?>
+                                                        </option>
                                                         <?php endforeach; ?>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="form-group col-sm-12">
-                                                <label class="control-label" value="<?php echo $data->keluhan ?>">Keluhan Pasien</label>
+                                                <label class="control-label">Keluhan Pasien</label>
                                                 <div class="">
-                                                    <textarea name="keluhan" class="form-control" required></textarea>
+                                                    <textarea name="keluhan" class="form-control" required>
+                                                        <?php echo $data->keluhan?>
+                                                    </textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group col-sm-12">
-                                                <label class="control-label" value="<?php echo $data->saran ?>">Saran Untuk Pasien</label>
+                                                <label class="control-label">Saran Untuk Pasien</label>
                                                 <div class="">
-                                                    <textarea name="saran" class="form-control" required></textarea>
+                                                    <textarea name="saran" class="form-control" required>
+                                                        <?php echo $data->saran?>
+                                                    </textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -316,7 +319,7 @@
                         </form>
                     </div>
                 </div>
-                <?php endforeach;?>
+                <?php endforeach?>
             </div>
         </section>
     </div>
@@ -324,19 +327,20 @@
     <?php $this->load->view('style/js') ?>
     <script src="<?php echo base_url('builder/dist/js/status.js'); ?>"></script>
     <?php if ($this->session->flashdata('sukses')): ?>
-        <script>
-            swal.fire({
-                title: "<?php echo $this->session->flashdata('sukses') ?>",
-                icon: "success",
-                showConfirmButton: false,
-                timer: 5000,
-            });
-        </script>
-        <?php if (isset($_SESSION['sukses'])) {
+    <script>
+    swal.fire({
+        title: "<?php echo $this->session->flashdata('sukses') ?>",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 5000,
+    });
+    </script>
+    <?php if (isset($_SESSION['sukses'])) {
             unset($_SESSION['sukses']);
         }
     endif; ?>
     <script>
+<<<<<<< HEAD
         function hapus_periksa(id) {
             swal.fire({
                 title: 'Yakin untuk menghapus data ini?',
@@ -349,7 +353,7 @@
                 confirmButtonText: ' Ya hapus!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "<?php echo base_url('Program_Klik/hapus_program_klik/') ?>" + id;
+                    window.location.href = "<?php echo base_url('program_klik/hapus_program_klik/') ?>" + id;
                     Swal.fire({
                         icon: 'success',
                         title: 'Berhasil Dihapus',
@@ -359,7 +363,14 @@
 
                 }
             });
+=======
+    function hapus_periksa(id) {
+        var yes = confirm('Yakin Di Hapus?');
+        if (yes == true) {
+            window.location.href = "<?php echo base_url('periksa/hapus_periksa/') ?>" + id;
+>>>>>>> 5b0ee5e86cba6d00d3113118823f5a8e7f6fd5bd
         }
+    }
     </script>
 </body>
 

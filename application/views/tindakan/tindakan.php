@@ -50,7 +50,7 @@
                                                     <th class="text-center" scope="row"><?php echo $id?></th>
                                                     <td class="text-center"><?php echo $data->nama?></td>
                                                     <td class="text-center">
-                                                        <a href="<?php echo base_url('Tindakan/edit_tindakan/' . $data->id) ?>"
+                                                        <a href="<?php echo base_url('tindakan/edit_tindakan/' . $data->id) ?>"
                                                             class="btn btn-warning btn-sm">
                                                             <i class="fa fa-edit"></i> </a>
                                                         <button onclick="hapus(<?php echo $data->id ?>)"
@@ -72,7 +72,7 @@
             <div class="modal fade" id="modal_tambah_tindakan" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <form action="<?php echo base_url('Tindakan/aksi_tambah_tindakan') ?>" enctype="multipart/form-data"
+                    <form action="<?php echo base_url('tindakan/aksi_tambah_tindakan') ?>" enctype="multipart/form-data"
                         method="post">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -149,7 +149,7 @@ function hapus(id) {
         confirmButtonText: ' Ya hapus!'
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = "<?php echo base_url('Tindakan/hapus_tindakan/')?>" + id;
+            window.location.href = "<?php echo base_url('tindakan/hapus_tindakan/')?>" + id;
             Swal.fire({
                 icon: 'success',
                 title: 'Berhasil Dihapus',

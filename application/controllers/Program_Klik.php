@@ -54,16 +54,8 @@ class Program_Klik extends CI_Controller {
     {
         $this->load->model('Main_model');
         $where = ['id' => $id];
-        $data['program'] = $this->Main_model->getwhere($where,'program')->row_array();
-        $this->load->view('Program_Klik/detail', $data);
-    }
-
-    public function edit_program($id)
-    {
-        $this->load->model('Main_model');
-        $where = ['id' => $id];
         $data['program'] = $this->Main_model->getwhere($where,'program_klik')->row_array();
-        $this->load->view('Program_Klik/edit', $data);
+        $this->load->view('program_klik/detail', $data);
     }
 
     public function aksi_edit_program($id)
@@ -84,12 +76,12 @@ class Program_Klik extends CI_Controller {
         if($valid)
         {
             $this->session->set_flashdata('sukses', 'Berhasil Mengubah');
-            redirect(base_url('Program_Klik/'));
+            redirect(base_url('program_klik/'));
         }
         else
         {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Program_Klik/'.$id));
+            redirect(base_url('program_klik/'.$id));
         }
     }
 

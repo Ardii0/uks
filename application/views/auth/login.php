@@ -306,7 +306,7 @@
                                 class="d-inline-block align-text-top me-3">
                         </h5>
                         <h3>Login</h3>
-                        <form action="<?php echo base_url('Login/aksi_login')?>" method="post">
+                        <form action="<?php echo base_url('login/aksi_login')?>" method="post">
                             <p>
                                 <input type="text" name="username" placeholder="Username" required>
                             </p>

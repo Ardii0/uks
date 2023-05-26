@@ -30,7 +30,7 @@
                                 <div class="box-body shadow px-3 py-1 mb-5 bg-white rounded">
                                     <?php foreach ($daf_guru as $datas): ?>
                                     <section class="content bg-white p-2 rounded">
-                                        <form action="<?php echo base_url('data/ubah_guru') ?>"
+                                        <form action="<?php echo base_url('Data/ubah_guru') ?>"
                                             enctype="multipart/form-data" method="post">
                                             <div class="box-body">
                                                 <div class="row">
@@ -120,11 +120,10 @@
                                                     onclick="kembali()" data-dismiss="modal"><span
                                                         class="p-3">Batal</span></button>
                                                 <input type="hidden" value="<?php echo $datas->id ?>" name="id">
-                                                <button onclick="bisa()" type="submit"
+                                                <button type="submit"
                                                     class="btn btn-success text-bold"><span
                                                         class="p-3">Update</span></button>
                                             </div>
-
                                         </form>
                                     </section>
                                     <?php endforeach;?>
@@ -139,19 +138,6 @@
     </div>
     <?php $this->load->view('style/js')?>
 </body>
-<?php if ($this->session->flashdata('bisa')): ?>
-        <script>
-            swal.fire({
-                title: "<?php echo $this->session->flashdata('bisa')?>",
-                icon: "success",
-                showConfirmButton: false,
-                timer: 3500,
-            });
-        </script>
-        <?php if (isset($_SESSION['bisa'])) {
-            unset($_SESSION['bisa']);
-        }
-    endif; ?>
 <script>
 function kembali() {
     window.history.go(-1);

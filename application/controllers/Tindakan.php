@@ -87,12 +87,12 @@ class Tindakan extends CI_Controller {
         $logged=$this->Main_model->update_data(array('id'=>$this->input->post('id')), $data, 'tindakan');
         if($logged)
         {
-            $this->session->set_flashdata('sukses', 'berhasil');
+            $this->session->set_flashdata('yes', 'berhasil');
             redirect(base_url('Tindakan/tindakan'));
         }
         else
         {
-            $this->session->set_flashdata('error', 'gagal..');
+            $this->session->set_flashdata('no', 'gagal..');
             redirect(base_url('Tindakan/edit_tindakan/'.$this->input->post('id')));
         }
     }
