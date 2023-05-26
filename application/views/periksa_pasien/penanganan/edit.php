@@ -105,16 +105,16 @@
                                 <div class="row">
                                     <div class="col-lg-5">
                                         <label class="d-block">Tensi Systolic</label>
-                                        <input type="text" value="<?php echo $periksa['tensi_systolic']; ?>"
-                                            name="tensi_systolic" class="form-control" autocomplete="off">
+                                        <input type="number" value="<?php echo $periksa['tensi_systolic']; ?>"
+                                            name="tensi_systolic" class="form-control" autocomplete="off" required>
                                     </div>
                                     <div class="mt-auto" style="padding: 0;">
                                         /
                                     </div>
                                     <div class="col-lg-5">
                                         <label class="d-block">Tensi Diastolic</label>
-                                        <input type="text" value="<?php echo $periksa['tensi_diastolic']; ?>"
-                                            name="tensi_diastolic" class="form-control" autocomplete="off">
+                                        <input type="number" value="<?php echo $periksa['tensi_diastolic']; ?>"
+                                            name="tensi_diastolic" class="form-control" autocomplete="off" required>
                                     </div>
                                     <div class="col-lg-1 mt-auto" style="padding: 0;">
                                         mmHG
@@ -124,7 +124,7 @@
                             <div class="col-lg-3">
                                 <label class="d-block">Catatan</label>
                                 <input type="text" value="<?php echo $periksa['catatan']; ?>" name="catatan"
-                                    class="form-control" autocomplete="off">
+                                    class="form-control" autocomplete="off" required>
                             </div>
                             <div class="col-lg-1 pt-2">
                                 <button type="submit" class="btn btn-success mt-4" type="submit">Simpan</button>
