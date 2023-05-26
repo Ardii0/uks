@@ -29,6 +29,7 @@
                             <div class="card-body">
                                 <img style="width: 100%" src="<?php echo base_url('uploads/pojok_baca/buku') . "/" . $buku['foto']; ?>">
                             </div>
+                            </div>
                             <div class="col-8">
                                 <div class="card-body">
                                     <div class="row mb-2">
@@ -68,7 +69,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
                     </div>
                 </div>
             </section>

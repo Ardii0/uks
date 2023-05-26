@@ -26,7 +26,7 @@
 
                     <div class="bg-light shadow">
                         <section class="content bg-white p-3 rounded">
-                            <form action="<?php echo base_url('pojok_baca/aksi_edit_buku/'.$buku['id_buku']) ?>"
+                            <form action="<?php echo base_url('pojok_baca/aksi_edit_buku/' . $buku['id_buku']) ?>"
                                 enctype="multipart/form-data" method="post">
                                 <div class="box-body">
                                     <div class="form-group">
@@ -70,8 +70,9 @@
                                         <div class="col form-group">
                                             <label class="control-label">Keterangan</label>
                                             <div class="">
-                                                <input type="text" name="keterangan" class="form-control"
-                                                    value="<?php echo $buku['keterangan'] ?>" required><br>
+                                                <textarea name="keterangan" class="form-control"
+                                                    placeholder="Masukan Keterangan"
+                                                    required><?php echo $buku['keterangan'] ?></textarea>
                                             </div>
                                         </div>
                                         <div class="col form-group">
@@ -89,15 +90,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                            <div class="row">
-                                            <div class="col form-group">
-                                                    <label class="control-label">Cover</label>
-                                                    <div class="mt-1">
-                                                        <input type="file" name="foto" onchange="readURL(this);" />
-                                                    </div>
-                                                    <div>
-                                                    <img src="<?php $img = $buku['foto'] == null ? "" : base_url('uploads/pojok_baca/buku') . "/" . $buku['foto'];
-                                                        echo $img ?>" style="width: 110px; hight:200px">
+                                    <div class="row">
+                                        <div class="col form-group">
+                                            <label class="control-label">Cover</label>
+                                            <div class="mt-1">
+                                                <input type="file" name="foto" onchange="readURL(this);" />
+                                            </div>
+                                            <div>
+                                                <img src="<?php $img = $buku['foto'] == null ? "" : base_url('uploads/pojok_baca/buku') . "/" . $buku['foto'];
+                                                echo $img ?>" style="width: 110px; hight:200px">
                                                 <!-- <img id="blah" style="width: 110px; hight:200px" class="mt-3" /> -->
                                             </div>
                                         </div>
@@ -121,22 +122,22 @@
         <?php $this->load->view('style/js') ?>
 
         <script>
-        function kembali() {
-            window.history.go(-1);
-        }
-
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function(e) {
-                    $('#blah').attr('src', e.target.result);
-                }
-
-                reader.readAsDataURL(input.files[0]);
+            function kembali() {
+                window.history.go(-1);
             }
-        }
-        $('#remove').removeAttr('required');
+
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#blah').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+            $('#remove').removeAttr('required');
         </script>
 
 </body>

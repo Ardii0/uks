@@ -70,8 +70,8 @@
                                         <div class="col form-group">
                                             <label class="control-label">Keterangan</label>
                                             <div class="">
-                                                <input type="text" name="keterangan" class="form-control"
-                                                    placeholder="Masukan Keterangan" required><br>
+                                                <textarea name="keterangan" class="form-control"
+                                                    placeholder="Masukan Keterangan" required></textarea>
                                             </div>
                                         </div>
                                         <div class="col form-group">

@@ -143,10 +143,10 @@ class Pojok_Baca extends CI_Controller
         $hapus=$this->Main_model->delete_data( ['id_buku'=>$id], 'buku');
         if ($hapus) {
             $this->session->set_flashdata('sukses hapus', 'berhasil');
-            redirect(base_url('Pojok_baca/'));
+            redirect(base_url('pojok_baca/'));
         } else {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Pojok_baca/123'));
+            redirect(base_url('pojok_baca/123'));
         }
     }
 }

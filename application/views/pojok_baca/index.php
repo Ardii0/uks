@@ -124,14 +124,14 @@
             confirmButtonText: ' Ya hapus!'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = "<?php echo base_url('pojok_baca/hapus_buku/') ?>" + id;
                 Swal.fire({
                     icon: 'success',
                     title: 'Berhasil Dihapus',
                     showConfirmButton: false,
                     timer: 2000
-                })
-
+                }).then(function () {
+                    window.location.href = "<?php echo base_url('pojok_baca/hapus_buku/') ?>" + id;
+                });
             }
         });
     }
