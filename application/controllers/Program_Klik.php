@@ -21,17 +21,17 @@ class Program_Klik extends CI_Controller
     public function index()
     {
         $this->load->model('Main_model');
-        $data['periksa'] = $this->Main_model->get('program_klik')->result();
+        $data['periksa'] = $this->Main_model->get('Program_Klik')->result();
         $data['guru'] = $this->Main_model->get('guru')->result();
         $data['guru2'] = $this->Main_model->get('guru')->result();
         $data['siswa'] = $this->Main_model->get('siswa')->result();
         $data['siswa2'] = $this->Main_model->get('siswa')->result();
         $data['karyawan'] = $this->Main_model->get('karyawan')->result();
         $data['karyawan2'] = $this->Main_model->get('karyawan')->result();
-        $this->load->view('program_klik/index', $data);
+        $this->load->view('Program_Klik/index', $data);
     }
 
-    public function aksi_tambah_program_klik()
+    public function aksi_tambah_Program_Klik()
     {
         $data = array
         (
@@ -44,13 +44,13 @@ class Program_Klik extends CI_Controller
             'pasien_status' => $this->input->post('pasien_status'),
             'tahun_bulan' => date("Y-m"),
         );
-        $masuk = $this->Main_model->insert_data($data, 'program_klik');
+        $masuk = $this->Main_model->insert_data($data, 'Program_Klik');
         if ($masuk) {
             $this->session->set_flashdata('sukses', 'Berhasil Menambahkan');
-            redirect(base_url('program_klik/'));
+            redirect(base_url('Program_Klik/'));
         } else {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('program_klik/123'));
+            redirect(base_url('Program_Klik/123'));
         }
     }
 
@@ -58,8 +58,8 @@ class Program_Klik extends CI_Controller
     {
         $this->load->model('Main_model');
         $where = ['id' => $id];
-        $data['program'] = $this->Main_model->getwhere($where, 'program_klik')->row_array();
-        $this->load->view('program_klik/detail', $data);
+        $data['program'] = $this->Main_model->getwhere($where, 'Program_Klik')->row_array();
+        $this->load->view('Program_Klik/detail', $data);
     }
 
     public function aksi_edit_program()
@@ -76,23 +76,23 @@ class Program_Klik extends CI_Controller
             'pasien_status' => $this->input->post('pasien_status'),
             'tahun_bulan' => date("Y-m"),
         );
-        $valid = $this->Main_model->update_data($where, $data, 'program_klik');
+        $valid = $this->Main_model->update_data($where, $data, 'Program_Klik');
         if ($valid) {
             $this->session->set_flashdata('sukses', 'Berhasil Mengubah');
-            redirect(base_url('program_klik/'));
+            redirect(base_url('Program_Klik/'));
         } else {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('program_klik/' . $where));
+            redirect(base_url('Program_Klik/' . $where));
         }
     }
 
-    public function cetak_program_klik($id)
+    public function cetak_Program_Klik($id)
     {
         $where = ['id' => $id];
-        $data['program'] = $this->Main_model->getwhere($where, 'program_klik')->row_array();
+        $data['program'] = $this->Main_model->getwhere($where, 'Program_Klik')->row_array();
         if ($this->uri->segment(4) == "pdf") {
             $this->load->library('pdf');
-            $this->pdf->load_view('program_klik/cetak_program_klik', $data);
+            $this->pdf->load_view('Program_Klik/cetak_Program_Klik', $data);
             $this->pdf->render();
             $this->pdf->stream(" Surat Rujukan " . $id . ".pdf", array("Attachment" => false));
         } else {
@@ -102,15 +102,15 @@ class Program_Klik extends CI_Controller
     }
 
 
-    public function hapus_program_klik($id)
+    public function hapus_Program_Klik($id)
     {
-        $hapus = $this->Main_model->delete_data(['id' => $id], 'program_klik');
+        $hapus = $this->Main_model->delete_data(['id' => $id], 'Program_Klik');
         if ($hapus) {
             $this->session->set_flashdata('sukses hapus', 'berhasil');
-            redirect(base_url('program_klik/'));
+            redirect(base_url('Program_Klik/'));
         } else {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('program_klik/123'));
+            redirect(base_url('Program_Klik/123'));
         }
     }
 }

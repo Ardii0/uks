@@ -26,7 +26,7 @@
                         </div>
                         <div class="p-2 d-flex align-items-center gap-3">
                             <div class="grid gap-3">
-                                <button data-toggle="modal" data-target="#modal_tambah_program_klik"
+                                <button data-toggle="modal" data-target="#modal_tambah_Program_Klik"
                                     class="btn btn-info"><i class="fas fa-plus"></i>&nbsp;
                                     Tambah</button>
                             </div>
@@ -56,11 +56,11 @@
                                                     </td>
                                                     <td>
                                                         <?php if (!empty($data->siswa_id)) {
-                                                            echo JoinOne('program_klik', 'siswa', 'siswa_id', 'id', 'program_klik.id', $data->id, 'nama_siswa');
+                                                            echo JoinOne('Program_Klik', 'siswa', 'siswa_id', 'id', 'Program_Klik.id', $data->id, 'nama_siswa');
                                                         } else if (!empty($data->guru_id)) {
-                                                            echo JoinOne('program_klik', 'guru', 'guru_id', 'id', 'program_klik.id', $data->id, 'nama_guru');
+                                                            echo JoinOne('Program_Klik', 'guru', 'guru_id', 'id', 'Program_Klik.id', $data->id, 'nama_guru');
                                                         } else if (!empty($data->karyawan_id)) {
-                                                            echo JoinOne('program_klik', 'karyawan', 'karyawan_id', 'id', 'program_klik.id', $data->id, 'nama_karyawan');
+                                                            echo JoinOne('Program_Klik', 'karyawan', 'karyawan_id', 'id', 'Program_Klik.id', $data->id, 'nama_karyawan');
                                                         } ?>
                                                     </td>
                                                     <td>
@@ -70,7 +70,7 @@
                                                         <?php echo $data->create_date ?>
                                                     </td>
                                                     <td class="text-center">
-                                                        <a href="<?php echo base_url('program_klik/detail/' . $data->id) ?>"
+                                                        <a href="<?php echo base_url('Program_Klik/detail/' . $data->id) ?>"
                                                             class="btn btn-success btn-sm">
                                                             <i class="fas fa-search-plus"></i>
                                                         </a>
@@ -93,10 +93,10 @@
                     </div>
                 </div>
                 <!-- Modal Tambah Program Klik-->
-                <div class="modal fade" id="modal_tambah_program_klik" tabindex="-1" role="dialog"
+                <div class="modal fade" id="modal_tambah_Program_Klik" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <form action="<?php echo base_url('program_klik/aksi_tambah_program_klik') ?>"
+                        <form action="<?php echo base_url('Program_Klik/aksi_tambah_Program_Klik') ?>"
                             enctype="multipart/form-data" method="post">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -204,7 +204,7 @@
                     <div class="modal fade" id="modal<?php echo $data->id ?>" tabindex="-1" role="dialog"
                         aria-labelledby="Modal" aria-hidden="true">
                         <div class="modal-dialog" role="document">
-                            <form action="<?php echo base_url('program_klik/aksi_edit_program') ?>"
+                            <form action="<?php echo base_url('Program_Klik/aksi_edit_program') ?>"
                                 enctype="multipart/form-data" method="post">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -256,11 +256,11 @@
                                                                 echo "value='$data->karyawan_id'";
                                                             } ?> selected>
                                                                 <?php if (!empty($data->siswa_id)) {
-                                                                    echo JoinOne('program_klik', 'siswa', 'siswa_id', 'id', 'program_klik.id', $data->id, 'nama_siswa');
+                                                                    echo JoinOne('Program_Klik', 'siswa', 'siswa_id', 'id', 'Program_Klik.id', $data->id, 'nama_siswa');
                                                                 } else if (!empty($data->guru_id)) {
-                                                                    echo JoinOne('program_klik', 'guru', 'guru_id', 'id', 'program_klik.id', $data->id, 'nama_guru');
+                                                                    echo JoinOne('Program_Klik', 'guru', 'guru_id', 'id', 'Program_Klik.id', $data->id, 'nama_guru');
                                                                 } else if (!empty($data->karyawan_id)) {
-                                                                    echo JoinOne('program_klik', 'karyawan', 'karyawan_id', 'id', 'program_klik.id', $data->id, 'nama_karyawan');
+                                                                    echo JoinOne('Program_Klik', 'karyawan', 'karyawan_id', 'id', 'Program_Klik.id', $data->id, 'nama_karyawan');
                                                                 } ?>
                                                             </option>
                                                         </select>
@@ -332,7 +332,7 @@
                         timer: 1500,
 
                     }).then(function () {
-                        window.location.href = "<?php echo base_url('program_klik/hapus_program_klik/') ?>" + id;
+                        window.location.href = "<?php echo base_url('Program_Klik/hapus_Program_Klik/') ?>" + id;
                     });
                 }
             });

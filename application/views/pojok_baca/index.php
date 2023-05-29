@@ -25,7 +25,7 @@
                         </div>
                         <div class="p-2 d-flex align-items-center gap-3">
                             <div class="grid gap-3">
-                                <a href="<?php echo base_url('pojok_baca/tambah_buku') ?>">
+                                <a href="<?php echo base_url('Pojok_Baca/tambah_buku') ?>">
                                     <button class="btn btn-info"><i class="fas fa-plus"></i>&nbsp;
                                         Tambah</button>
                                 </a>
@@ -58,7 +58,7 @@
                                                         <?php echo $id ?>
                                                     </td>
                                                     <td><img style="width: 70px; height:100px; "
-                                                            src="<?php echo base_url('uploads/pojok_baca/buku') . "/" . $data->foto; ?>">
+                                                            src="<?php echo base_url('uploads/Pojok_Baca/buku') . "/" . $data->foto; ?>">
                                                     </td>
                                                     <td>
                                                         <?php echo $data->judul_buku ?>
@@ -73,11 +73,11 @@
                                                         <?php echo $data->tahun_terbit ?>
                                                     </td>
                                                     <td class="text-center">
-                                                        <a href="<?php echo base_url('pojok_baca/detail/' . $data->id_buku) ?>"
+                                                        <a href="<?php echo base_url('Pojok_Baca/detail/' . $data->id_buku) ?>"
                                                             class="btn btn-success btn-sm">
                                                             <i class="fas fa-search-plus"></i>
                                                         </a>
-                                                        <a href="<?php echo base_url('pojok_baca/edit_buku/' . $data->id_buku) ?>"
+                                                        <a href="<?php echo base_url('Pojok_Baca/edit_buku/' . $data->id_buku) ?>"
                                                             class="btn btn-warning btn-sm">
                                                             <i class="fa fa-edit"></i></a>
                                                         <button class='btn btn-danger btn-sm'
@@ -130,7 +130,7 @@
                     showConfirmButton: false,
                     timer: 2000
                 }).then(function () {
-                    window.location.href = "<?php echo base_url('pojok_baca/hapus_buku/') ?>" + id;
+                    window.location.href = "<?php echo base_url('Pojok_Baca/hapus_buku/') ?>" + id;
                 });
             }
         });

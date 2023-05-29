@@ -22,17 +22,17 @@ class Pojok_Baca extends CI_Controller
     {
         $this->load->model('Main_model');
         $data['buku'] = $this->Main_model->get('buku')->result();
-        $this->load->view('pojok_baca/index', $data);
+        $this->load->view('Pojok_Baca/index', $data);
     }
     public function tambah_buku()
     {
-        $this->load->view('pojok_baca/add');
+        $this->load->view('Pojok_Baca/add');
     }
 
     public function upload_img_buku($value)
     {
         $kode = round(microtime(true) * 1000);
-        $config['upload_path'] = './uploads/pojok_baca/buku/';
+        $config['upload_path'] = './uploads/Pojok_Baca/buku/';
         $config['allowed_types'] = 'jpg|png|jpeg';
         $config['max_size'] = '100000';
         $config['file_name'] = $kode;
@@ -51,7 +51,7 @@ class Pojok_Baca extends CI_Controller
         if ($foto[0] == false) {
             //$this->upload->display_errors();
             $this->session->set_flashdata('error', 'gagal upload gambar.');
-            redirect(base_url('pojok_baca/add'));
+            redirect(base_url('Pojok_Baca/add'));
         } else {
             $data = array
             (
@@ -80,7 +80,7 @@ class Pojok_Baca extends CI_Controller
         $this->load->model('Main_model');
         $where = ['id_buku' => $id];
         $data['buku'] = $this->Main_model->getwhere($where,'buku')->row_array();
-        $this->load->view('pojok_baca/detail', $data);
+        $this->load->view('Pojok_Baca/detail', $data);
     }
 
     public function edit_buku($id)
@@ -88,7 +88,7 @@ class Pojok_Baca extends CI_Controller
         $this->load->model('Main_model');
         $where = ['id_buku' => $id];
         $data['buku'] = $this->Main_model->getwhere($where,'buku')->row_array();
-        $this->load->view('pojok_baca/edit', $data);
+        $this->load->view('Pojok_Baca/edit', $data);
     }
 
     public function aksi_edit_buku($id)
@@ -120,33 +120,33 @@ class Pojok_Baca extends CI_Controller
                 'tgl_masuk' => $this->input->post('tgl_masuk'),
             );
             if ($_id->foto != '') {
-                unlink('./uploads/pojok_baca/buku/'.$_id->foto);
+                unlink('./uploads/Pojok_Baca/buku/'.$_id->foto);
             }
         }
         $valid = $this->Main_model->update_data($where, $data, 'buku');
         if($valid)
         {
             $this->session->set_flashdata('sukses', 'Berhasil Mengubah');
-            redirect(base_url('pojok_baca/'));
+            redirect(base_url('Pojok_Baca/'));
         }
         else
         {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('pojok_baca/'.$id));
+            redirect(base_url('Pojok_Baca/'.$id));
         }
     }
     public function hapus_buku($id)
     {
         $foto = tampil_cover_byid($id);
-        $path = './uploads/pojok_baca/buku/'.$foto;
+        $path = './uploads/Pojok_Baca/buku/'.$foto;
         unlink($path); 
         $hapus=$this->Main_model->delete_data( ['id_buku'=>$id], 'buku');
         if ($hapus) {
             $this->session->set_flashdata('sukses hapus', 'berhasil');
-            redirect(base_url('pojok_baca/'));
+            redirect(base_url('Pojok_Baca/'));
         } else {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('pojok_baca/123'));
+            redirect(base_url('Pojok_Baca/123'));
         }
     }
 }

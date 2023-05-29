@@ -26,7 +26,7 @@
 
                     <div class="bg-light shadow">
                         <section class="content bg-white p-3 rounded">
-                            <form action="<?php echo base_url('pojok_baca/aksi_tambah_buku') ?>"
+                            <form action="<?php echo base_url('Pojok_Baca/aksi_tambah_buku') ?>"
                                 enctype="multipart/form-data" method="post">
                                 <div class="box-body">
                                     <div class="form-group">

@@ -26,7 +26,7 @@
 
                     <div class="bg-light shadow">
                         <section class="content bg-white p-3 rounded">
-                            <form action="<?php echo base_url('pojok_baca/aksi_edit_buku/' . $buku['id_buku']) ?>"
+                            <form action="<?php echo base_url('Pojok_Baca/aksi_edit_buku/' . $buku['id_buku']) ?>"
                                 enctype="multipart/form-data" method="post">
                                 <div class="box-body">
                                     <div class="form-group">
@@ -97,7 +97,7 @@
                                                 <input type="file" name="foto" onchange="readURL(this);" />
                                             </div>
                                             <div>
-                                                <img src="<?php $img = $buku['foto'] == null ? "" : base_url('uploads/pojok_baca/buku') . "/" . $buku['foto'];
+                                                <img src="<?php $img = $buku['foto'] == null ? "" : base_url('uploads/Pojok_Baca/buku') . "/" . $buku['foto'];
                                                 echo $img ?>" style="width: 110px; hight:200px">
                                                 <!-- <img id="blah" style="width: 110px; hight:200px" class="mt-3" /> -->
                                             </div>

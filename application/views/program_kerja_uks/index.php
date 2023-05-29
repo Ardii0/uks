@@ -56,7 +56,7 @@
                                                         <?php echo $id ?>
                                                     </td>
                                                     <td><img style="width: 70px; height:100px; "
-                                                            src="<?php echo base_url('uploads/program_kerja_uks/foto') . "/" . $data->foto; ?>">
+                                                            src="<?php echo base_url('uploads/Program_Kerja_UKS/foto') . "/" . $data->foto; ?>">
                                                     </td>
                                                     <td>
                                                         <?php echo $data->nama_program ?>
@@ -90,7 +90,7 @@
                 <div class="modal fade" id="modal_tambah_program_kerja" tabindex="-1" role="dialog"
                     aria-labelledby="Modal" aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <form action="<?php echo base_url('program_kerja_uks/aksi_tambah_program') ?>"
+                        <form action="<?php echo base_url('Program_Kerja_UKS/aksi_tambah_program') ?>"
                             enctype="multipart/form-data" method="post">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -148,7 +148,7 @@
                     <div class="modal fade" id="modal<?php echo $data->id ?>" tabindex="-1" role="dialog"
                         aria-labelledby="Modal" aria-hidden="true">
                         <div class="modal-dialog" role="document">
-                            <form action="<?php echo base_url('program_kerja_uks/aksi_edit_program') ?>"
+                            <form action="<?php echo base_url('Program_Kerja_UKS/aksi_edit_program') ?>"
                                 enctype="multipart/form-data" method="post">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -173,7 +173,7 @@
                                                     onchange="readURL(this);">
                                                 <label class="custom-file-label" for="customFile">Pilih File</label>
                                             </div>
-                                            <img src="<?php $img = $data->foto == null ? "" : base_url('uploads/program_kerja_uks/foto') . "/" . $data->foto;
+                                            <img src="<?php $img = $data->foto == null ? "" : base_url('uploads/Program_Kerja_UKS/foto') . "/" . $data->foto;
                                             echo $img ?>" style="width: 110px; hight:200px">
                                             <div>
                                                 <img id="blah" style="width: 110px; hight:200px" class="mt-3" />
@@ -246,7 +246,7 @@
                         showConfirmButton: false,
                         timer: 5000
                     }).then(function () {
-                        window.location.href = "<?php echo base_url('program_kerja_uks/hapus_program/') ?>" + id;
+                        window.location.href = "<?php echo base_url('Program_Kerja_UKS/hapus_program/') ?>" + id;
                     });
                 }
             });
