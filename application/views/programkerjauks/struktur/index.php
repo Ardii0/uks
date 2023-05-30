@@ -37,7 +37,7 @@
                                 <div class="card-body text-center mx-auto">
                                     <?php if($struktur !=  null) :?>
                                         <div id="card-text not_found" class="text-center mx-auto p-3">
-                                        <img src="<?php echo base_url('uploads/Program_Kerja_UKS/struktur') . "/" . end($struktur)->foto; ?>">
+                                        <img src="<?php echo base_url('uploads/programkerjauks/struktur') . "/" . end($struktur)->foto; ?>">
                                         </div>
                                         <?php else :?>
                                         <div id="not_found" class="text-center mx-auto p-3">
@@ -56,7 +56,7 @@
                 <div class="modal fade" id="modal_tambah_struktur" tabindex="-1" role="dialog" aria-labelledby="Modal"
                     aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <form action="<?php echo base_url('Program_Kerja_UKS/aksi_tambah_struktur') ?>"
+                        <form action="<?php echo base_url('programkerjauks/aksi_tambah_struktur') ?>"
                             enctype="multipart/form-data" method="post">
                             <div class="modal-content">
                                 <div class="modal-header">

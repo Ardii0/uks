@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Program_Kerja_UKS extends CI_Controller
+class Programkerjauks extends CI_Controller
 {
 
     public function __construct()
@@ -22,13 +22,13 @@ class Program_Kerja_UKS extends CI_Controller
     {
         $this->load->model('Main_model');
         $data['struktur'] = $this->Main_model->get('struktur')->result();
-        $this->load->view('Program_Kerja_UKS/struktur/index',$data);
+        $this->load->view('programkerjauks/struktur/index',$data);
     }
 
     public function upload_img_struktur($value)
     {
         $kode = round(microtime(true) * 1000);
-        $config['upload_path'] = './uploads/Program_Kerja_UKS/struktur/';
+        $config['upload_path'] = './uploads/programkerjauks/struktur/';
         $config['allowed_types'] = 'jpg|png|jpeg';
         $config['max_size'] = '100000';
         $config['file_name'] = $kode;
@@ -47,7 +47,7 @@ class Program_Kerja_UKS extends CI_Controller
         if ($foto[0] == false) {
             //$this->upload->display_errors();
             $this->session->set_flashdata('error', 'gagal upload gambar.');
-            redirect(base_url('Program_Kerja_UKS/add'));
+            redirect(base_url('programkerjauks/add'));
         } else {
             $data = array
             (
@@ -57,10 +57,10 @@ class Program_Kerja_UKS extends CI_Controller
             $masuk = $this->Main_model->insert_data($data, 'struktur');
             if ($masuk) {
                 $this->session->set_flashdata('sukses', 'Berhasil Menambahkan');
-                redirect(base_url('Program_Kerja_UKS/struktur'));
+                redirect(base_url('programkerjauks/struktur'));
             } else {
                 $this->session->set_flashdata('error', 'gagal..');
-                redirect(base_url('Program_Kerja_UKS/123'));
+                redirect(base_url('programkerjauks/123'));
             }
         }
     }
@@ -70,13 +70,13 @@ class Program_Kerja_UKS extends CI_Controller
     {
         $this->load->model('Main_model');
         $data['program'] = $this->Main_model->get('program_kerja')->result();
-        $this->load->view('Program_Kerja_UKS/index', $data);
+        $this->load->view('programkerjauks/index', $data);
     }
  
     public function upload_img_program($value)
     {
         $kode = round(microtime(true) * 1000);
-        $config['upload_path'] = './uploads/Program_Kerja_UKS/foto/';
+        $config['upload_path'] = './uploads/programkerjauks/foto/';
         $config['allowed_types'] = 'jpg|png|jpeg';
         $config['max_size'] = '100000';
         $config['file_name'] = $kode;
@@ -95,7 +95,7 @@ class Program_Kerja_UKS extends CI_Controller
         if ($foto[0] == false) {
             //$this->upload->display_errors();
             $this->session->set_flashdata('error', 'gagal upload gambar.');
-            redirect(base_url('Program_Kerja_UKS/add'));
+            redirect(base_url('programkerjauks/add'));
         } else {
             $data = array
             (
@@ -107,10 +107,10 @@ class Program_Kerja_UKS extends CI_Controller
             $masuk = $this->Main_model->insert_data($data, 'program_kerja');
             if ($masuk) {
                 $this->session->set_flashdata('sukses', 'Berhasil Menambahkan');
-                redirect(base_url('Program_Kerja_UKS/'));
+                redirect(base_url('programkerjauks/'));
             } else {
                 $this->session->set_flashdata('error', 'gagal..');
-                redirect(base_url('Program_Kerja_UKS/123'));
+                redirect(base_url('programkerjauks/123'));
             }
         }
     }
@@ -136,19 +136,19 @@ class Program_Kerja_UKS extends CI_Controller
                 'deskripsi' => $this->input->post('deskripsi')
             );
             if ($_id->foto != '') {
-                unlink('./uploads/Program_Kerja_UKS/buku/'.$_id->foto);
+                unlink('./uploads/programkerjauks/buku/'.$_id->foto);
             }
         }
         $valid = $this->Main_model->update_data($where, $data, 'program_kerja');
         if($valid)
         {
             $this->session->set_flashdata('sukses', 'Berhasil Mengubah');
-            redirect(base_url('Program_Kerja_UKS/'));
+            redirect(base_url('programkerjauks/'));
         }
         else
         {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Program_Kerja_UKS/'.$where));
+            redirect(base_url('programkerjauks/'.$where));
         }
     }
 
@@ -156,15 +156,15 @@ class Program_Kerja_UKS extends CI_Controller
     public function hapus_program($id)
     {
         $foto = tampil_foto_byid($id);
-        $path = './uploads/Program_Kerja_UKS/foto/'.$foto;
+        $path = './uploads/programkerjauks/foto/'.$foto;
         unlink($path); 
         $hapus=$this->Main_model->delete_data( ['id'=>$id], 'program_kerja');
         if ($hapus) {
             $this->session->set_flashdata('sukses hapus', 'berhasil');
-            redirect(base_url('Program_Kerja_UKS/'));
+            redirect(base_url('programkerjauks/'));
         } else {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Program_Kerja_UKS/123'));
+            redirect(base_url('programkerjauks/123'));
         }
     }
 }

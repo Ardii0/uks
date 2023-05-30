@@ -150,7 +150,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('Pojok_Baca/') ;?>" class="nav-link">
+                                <a href="<?php echo base_url('pojokbaca/') ;?>" class="nav-link">
                                     <i class="nav-icon fas fa-book"></i>
                                     <p>
                                         Pojok Baca
@@ -158,7 +158,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo base_url('Program_Klik/') ;?>" class="nav-link">
+                                <a href="<?php echo base_url('programklik/') ;?>" class="nav-link">
                                     <i class="nav-icon fas fa-sitemap"></i>
                                     <p>
                                         Program Klik
@@ -175,13 +175,13 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="<?php echo base_url('Program_Kerja_UKS/struktur')?>" class="nav-link">
+                                        <a href="<?php echo base_url('programkerjauks/struktur')?>" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Struktur Organisasi</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="<?php echo base_url('Program_Kerja_UKS/')?>" class="nav-link">
+                                        <a href="<?php echo base_url('programkerjauks/')?>" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Program Kerja</p>
                                         </a>
