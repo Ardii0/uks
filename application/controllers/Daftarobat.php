@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Daftar_Obat extends CI_Controller {
+class Daftarobat extends CI_Controller {
 
     public function __construct()
     {
@@ -20,7 +20,7 @@ class Daftar_Obat extends CI_Controller {
     {
         
         $data['obat'] = $this->Main_model->get('daftar_obat')->result();    
-        $this->load->view('daftar_obat/daftar_obat', $data);
+        $this->load->view('daftarobat/daftar_obat', $data);
     }
 
     public function aksi_tambah_daftar_obat()
@@ -29,7 +29,7 @@ class Daftar_Obat extends CI_Controller {
         $nama_obat = $this->Main_model->total('nama_obat', $nama, 'daftar_obat');
         if ($nama_obat !== 0) { 
             $this->session->set_flashdata('salah', 'Maaf Nama Obat Sudah Tersedia');
-                redirect(base_url('Daftar_Obat/daftar_obat'));
+                redirect(base_url('daftarobat/'));
         }else { 
             $data = array
         (
@@ -41,11 +41,11 @@ class Daftar_Obat extends CI_Controller {
         $masuk=$this->Main_model->insert_data($data, 'daftar_obat');
         if($masuk){
                 $this->session->set_flashdata('yes', 'Berhasil Menambahkan');
-                redirect(base_url('Daftar_Obat'));
+                redirect(base_url('daftarobat/'));
             }else
             {
                 $this->session->set_flashdata('error', 'gagal..');
-                redirect(base_url('Daftar_Obat'));
+                redirect(base_url('daftarobat/'));
             }
          }
 
@@ -62,7 +62,7 @@ class Daftar_Obat extends CI_Controller {
         ];
         $getwhere=['id'=>$id_obat];
         $data['obat']=$this->Main_model->getwhere($getwhere, 'daftar_obat')->result();
-        $this->load->view('daftar_obat/edit_daftar_obat', $data);
+        $this->load->view('daftarobat/edit_daftar_obat', $data);
     }
 
     public function update_daftar_obat()
@@ -77,12 +77,12 @@ class Daftar_Obat extends CI_Controller {
         if($logged)
         {
             $this->session->set_flashdata('yes', 'berhasil');
-            redirect(base_url('Daftar_Obat'));
+            redirect(base_url('daftarobat/'));
         }
         else
         {
             $this->session->set_flashdata('salah', 'gagal..');
-            redirect(base_url('Daftar_Obat/edit_daftar_obat/'.$this->input->post('id')));
+            redirect(base_url('daftarobat/edit_daftar_obat/'.$this->input->post('id')));
         }
     }
     
@@ -92,12 +92,12 @@ class Daftar_Obat extends CI_Controller {
         if($hapus)
         {
             $this->session->set_flashdata('sukses', 'Berhasil..');
-            redirect(base_url('Daftar_Obat'));
+            redirect(base_url('daftarobat/'));
         }
         else
         {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('Daftar_Obat'));
+            redirect(base_url('daftarobat/'));
         }
 
     }

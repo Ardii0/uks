@@ -27,7 +27,7 @@
                         <?php foreach ($obat as $row): ?>
 
                         <section class="content bg-white p-3 rounded">
-                            <form action="<?php echo base_url('daftar_obat/update_daftar_obat') ?>" method="post">
+                            <form action="<?php echo base_url('daftarobat/update_daftar_obat') ?>" method="post">
                                 <input type="hidden" value="<?php echo $row->id ?>" name="id">
                                 <div class="box-body row">
                                     <div class="form-group col-sm-12">

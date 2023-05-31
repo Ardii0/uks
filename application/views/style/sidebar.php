@@ -124,7 +124,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="<?php echo base_url('daftar_obat/') ;?>" class="nav-link">
+                                        <a href="<?php echo base_url('daftarobat/') ;?>" class="nav-link">
                                             <i class="nav-icon fas fa-capsules"></i>
                                             <p>
                                                 Daftar Obat P3K

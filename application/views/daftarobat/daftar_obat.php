@@ -56,7 +56,7 @@
                                                     <td class="text-center"><?php echo $data->satuan?></td>
                                                     <td class="text-center"><?php echo indonesian_date_time($data->expired)?></td>
                                                     <td class="text-center">
-                                                        <a href="<?php echo base_url('daftar_obat/edit_daftar_obat/' . $data->id) ?>"
+                                                        <a href="<?php echo base_url('daftarobat/edit_daftar_obat/' . $data->id) ?>"
                                                             class="btn btn-warning btn-sm">
                                                             <i class="fa fa-edit"></i> </a>
                                                         <button onclick="hapus(<?php echo $data->id ?>)"
@@ -78,7 +78,7 @@
             <div class="modal fade" id="modal_tambah_daftar_obat" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <form action="<?php echo base_url('daftar_Obat/aksi_tambah_daftar_obat') ?>"
+                    <form action="<?php echo base_url('daftarobat/aksi_tambah_daftar_obat') ?>"
                         enctype="multipart/form-data" method="post">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -192,7 +192,7 @@ function hapus(id) {
                 showConfirmButton: false,
                 timer: 1250
             }).then(function(){
-                window.location.href = "<?php echo base_url('daftar_Obat/hapus_daftar_obat/')?>" + id;
+                window.location.href = "<?php echo base_url('daftarobat/hapus_daftar_obat/')?>" + id;
             })
 
         }
