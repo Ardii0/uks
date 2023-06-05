@@ -208,17 +208,32 @@
         </div>
     </div>
     <?php $this->load->view('style/js') ?>
-    <?php if ($this->session->flashdata('sukses')): ?>
-        <script>
-            swal.fire({
-                title: "<?php echo $this->session->flashdata('sukses') ?>",
-                icon: "success",
-                showConfirmButton: false,
-                timer: 5000,
-            });
-        </script>
-        <?php if (isset($_SESSION['sukses'])) {
+     <!-- sweetalert success add -->
+     <?php if ($this->session->flashdata('sukses')): ?>
+    <script>
+    swal.fire({
+        title: "<?php echo $this->session->flashdata('sukses')?>",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 2000,
+    });
+    </script>
+    <?php if (isset($_SESSION['sukses'])) {
             unset($_SESSION['sukses']);
+        }
+    endif; ?>
+    <!-- sweetalert error -->
+    <?php if ($this->session->flashdata('error')): ?>
+    <script>
+    swal.fire({
+        title: "<?php echo $this->session->flashdata('error')?>",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 200,
+    });
+    </script>
+    <?php if (isset($_SESSION['error'])) {
+            unset($_SESSION['error']);
         }
     endif; ?>
     <script>
@@ -240,15 +255,17 @@
                 confirmButtonText: ' Ya hapus!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Berhasil Dihapus',
-                        showConfirmButton: false,
-                        timer: 5000
-                    }).then(function () {
-                        window.location.href = "<?php echo base_url('programkerjauks/hapus_program/') ?>" + id;
-                    });
-                }
+           
+           Swal.fire({
+               icon: 'success',
+               title: 'Berhasil Dihapus',
+               showConfirmButton: false,
+               timer: 1250
+           }).then(function(){
+               window.location.href = "<?php echo base_url('programkerjauks/hapus_program/') ?>" + id;
+           })
+
+       }
             });
         }
 

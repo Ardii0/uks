@@ -27,7 +27,7 @@
                                     <div class="d-flex">
                                         <div class="p-2 d-flex align-items-center gap-3">
                                             <div class="grid gap-3">
-                                                <a href="<?php echo base_url('data/export_siswa'); ?>">
+                                                <a href="<?php echo base_url('datasiswa/export_siswa'); ?>">
                                                     <button type="button" class="btn btn-success"><i
                                                             class="fa fa-download pr-2"></i>Download Data Siswa</button>
                                                 </a>
@@ -72,13 +72,13 @@
                                                     <?php echo indonesian_date_time($datas->tanggal_lahir);?></td>
                                                 <td><?php echo $datas->alamat?></td>
                                                 <td>
-                                                    <form action="<?php echo base_url('data/export_periksa_siswa') ?>"
+                                                    <form action="<?php echo base_url('datasiswa/export_periksa_siswa') ?>"
                                                         enctype="multipart/form-data" method="post">
                                                         <input type="hidden" id="id" name="id" value="<?= $datas->id?>">
                                                         <button type="submit" class="btn btn-primary btn-sm">
                                                             <i class="fa fa-download"></i>
                                                         </button>
-                                                        <a href="<?php echo base_url('data/detail_siswa/' . $datas->id)?>"
+                                                        <a href="<?php echo base_url('datasiswa/detail_siswa/' . $datas->id)?>"
                                                             class="btn btn-warning btn-sm" type="button">
                                                             <i class="fa fa-eye"></i>
                                                         </a>
@@ -104,7 +104,7 @@
         <div class="modal fade" id="index2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <form action="<?php echo base_url('data/import_excel2/') ?>" enctype="multipart/form-data"
+                <form action="<?php echo base_url('datasiswa/import_excel2/') ?>" enctype="multipart/form-data"
                     method="post">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -145,7 +145,7 @@
         <div class="modal fade" id="index1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <form action="<?php echo base_url('Data/aksi_tambah_siswa')?>" enctype="multipart/form-data"
+                <form action="<?php echo base_url('datasiswa/aksi_tambah_siswa')?>" enctype="multipart/form-data"
                     method="post">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -245,7 +245,7 @@ function hapus(id) {
                     timer: 1500,
 
                 }).then(function() {
-                    window.location.href = "<?php echo base_url('data/hapus_siswa/')?>" + id;
+                    window.location.href = "<?php echo base_url('datasiswa/hapus_siswa/')?>" + id;
                 });
             }
         });

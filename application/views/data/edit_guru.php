@@ -30,7 +30,7 @@
                                 <div class="box-body shadow px-3 py-1 mb-5 bg-white rounded">
                                     <?php foreach ($daf_guru as $datas): ?>
                                     <section class="content bg-white p-2 rounded">
-                                        <form action="<?php echo base_url('Data/ubah_guru') ?>"
+                                        <form action="<?php echo base_url('dataguru/ubah_guru') ?>"
                                             enctype="multipart/form-data" method="post">
                                             <div class="box-body">
                                                 <div class="row">
@@ -73,7 +73,7 @@
                                                 <div class="form-group col-6">
                                                     <label class="control-label">No. Telepon Orang Tua/Wali</label>
                                                     <input type="number" value="<?php echo $datas->no_telepon ?>"
-                                                        name="no_telepon" class="form-control" required=""
+                                                        name="no_telepon_wali" class="form-control" required=""
                                                         placeholder="Masukan No Telepon">
                                                 </div>
                                             </div>

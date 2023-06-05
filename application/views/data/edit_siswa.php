@@ -30,7 +30,7 @@
                                 <div class="box-body shadow px-3 py-1 mb-5 bg-white rounded">
                                     <?php foreach ($daf_siswa as $datas): ?>
                                     <section class="content bg-white p-2 rounded">
-                                        <form action="<?php echo base_url('data/ubah_siswa') ?>"
+                                        <form action="<?php echo base_url('datasiswa/ubah_siswa') ?>"
                                             enctype="multipart/form-data" method="post">
                                             <div class="box-body">
                                                 <div class="row">

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Siswa</title>
+    <title>Data Karyawan</title>
     <?php $this->load->view('style/head')?>
 </head>
 
@@ -27,7 +27,7 @@
                                     <div class="d-flex">
                                         <div class="p-2 d-flex align-items-center gap-3">
                                             <div class="grid gap-3">
-                                                <a href="<?php echo base_url('data/export_karyawan'); ?>">
+                                                <a href="<?php echo base_url('datakaryawan/export_karyawan'); ?>">
                                                     <button type="button" class="btn btn-success"><i
                                                             class="fa fa-download pr-2"></i>Download Data
                                                         Karyawan</button>
@@ -72,13 +72,13 @@
                                                 <td><?php echo $datas->alamat?></td>
                                                 <td>
                                                     <form
-                                                        action="<?php echo base_url('data/export_periksa_karyawan') ?>"
+                                                        action="<?php echo base_url('datakaryawan/export_periksa_karyawan') ?>"
                                                         enctype="multipart/form-data" method="post">
                                                         <input type="hidden" id="id" name="id" value="<?= $datas->id?>">
                                                         <button type="submit" class="btn btn-primary btn-sm">
                                                             <i class="fa fa-download"></i>
                                                         </button>
-                                                        <a href="<?php echo base_url('data/detail_karyawan/' . $datas->id)?>"
+                                                        <a href="<?php echo base_url('datakaryawan/detail_karyawan/' . $datas->id)?>"
                                                             class="btn btn-warning btn-sm" type="button">
                                                             <i class="fa fa-eye"></i>
                                                         </a>
@@ -104,7 +104,7 @@
         <div class="modal fade" id="index1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <form action="<?php echo base_url('Data/aksi_tambah_karyawan')?>" enctype="multipart/form-data"
+                <form action="<?php echo base_url('datakaryawan/aksi_tambah_karyawan')?>" enctype="multipart/form-data"
                     method="post">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -163,7 +163,7 @@
         <div class="modal fade" id="index2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <form action="<?php echo base_url('data/import_excel3/') ?>" enctype="multipart/form-data"
+                <form action="<?php echo base_url('datakaryawan/import_excel3/') ?>" enctype="multipart/form-data"
                     method="post">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -238,7 +238,7 @@ function hapus(id) {
                     timer: 1500,
 
                 }).then(function() {
-                    window.location.href = "<?php echo base_url('data/hapus_karyawan/')?>" + id;
+                    window.location.href = "<?php echo base_url('datakaryawan/hapus_karyawan/')?>" + id;
                 });
             }
         });

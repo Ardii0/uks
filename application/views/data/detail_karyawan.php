@@ -32,7 +32,7 @@
                                     </div>
                                     <a class="btn btn-warning text-white text-bold w-100 mt-1 d-flex align-items-center justify-content-center"
                                         style="height: 47px"
-                                        href="<?php echo base_url('data/edit_karyawan/' . $datas->id)?>">
+                                        href="<?php echo base_url('datakaryawan/edit_karyawan/' . $datas->id)?>">
                                         Edit Data Karyawan</a>
                                 </div>
                             </div>

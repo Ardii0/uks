@@ -40,7 +40,7 @@
                                     </div>
                                     <a class="btn btn-warning text-white text-bold w-100 mt-1 d-flex align-items-center justify-content-center"
                                         style="height: 47px"
-                                        href="<?php echo base_url('data/edit_siswa/' . $datas->id)?>">Edit
+                                        href="<?php echo base_url('datasiswa/edit_siswa/' . $datas->id)?>">Edit
                                         Data Siswa</a>
                                 </div>
                             </div>

@@ -71,19 +71,19 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="<?php echo base_url('data/daf_guru')?>" class="nav-link">
+                                        <a href="<?php echo base_url('dataguru/')?>" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Daftar Guru</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="<?php echo base_url('data/daf_siswa')?>" class="nav-link">
+                                        <a href="<?php echo base_url('datasiswa/')?>" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Daftar Siswa</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="<?php echo base_url('data/daf_karyawan')?>" class="nav-link">
+                                        <a href="<?php echo base_url('datakaryawan')?>" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Daftar Karyawan</p>
                                         </a>

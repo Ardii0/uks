@@ -305,7 +305,7 @@
                 title: "<?php echo $this->session->flashdata('sukses') ?>",
                 icon: "success",
                 showConfirmButton: false,
-                timer: 5000,
+                timer: 2000,
             });
         </script>
         <?php if (isset($_SESSION['sukses'])) {
