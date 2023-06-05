@@ -199,6 +199,18 @@ foreach ($result->result() as $c) {
 $stmt= $c->catatan;
 return $stmt;
 }
+
+}
+
+function tampil_daftar_obat($id)
+{
+ $ci =& get_instance();
+ $ci->load->database();
+ $result = $ci->db->where('daftar_obat_id',$id)->get('penanganan_periksa');
+  foreach ($result->result() as $c) {
+  $stmt= $c->daftar_obat_id;
+  return $stmt;
+  }
 }
 
 ?>

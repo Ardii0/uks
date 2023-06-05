@@ -54,14 +54,23 @@
                                                     <td class="text-center"><?php echo $data->nama_obat?></td>
                                                     <td class="text-center"><?php echo $data->stocks?></td>
                                                     <td class="text-center"><?php echo $data->satuan?></td>
-                                                    <td class="text-center"><?php echo indonesian_date_time($data->expired)?></td>
                                                     <td class="text-center">
-                                                        <a href="<?php echo base_url('daftarobat/edit_daftar_obat/' . $data->id) ?>"
+                                                        <?php echo indonesian_date_time($data->expired)?></td>
+                                                    <td class="text-center">
+                                                        <a href="<?php echo base_url('daftar_obat/edit_daftar_obat/' . $data->id) ?>"
                                                             class="btn btn-warning btn-sm">
                                                             <i class="fa fa-edit"></i> </a>
+
+                                                        <?php if ( tampil_daftar_obat($data->id) === null ) : ?>
                                                         <button onclick="hapus(<?php echo $data->id ?>)"
                                                             class="btn btn-danger btn-sm">
                                                             <i class="fa fa-trash"></i> </button>
+                                                        <?php else : ?>
+                                                        <!-- <button onclick="hapus(<?php echo $data->id ?>)"
+                                                            class="btn btn-danger btn-sm">
+                                                            <i class="fa fa-trash"></i> </button> -->
+                                                        <?php endif; ?>
+
                                                     </td>
                                                 </tr>
                                                 <?php endforeach;?>
@@ -149,7 +158,7 @@
         title: "<?php echo $this->session->flashdata('yes')?>",
         icon: "success",
         showConfirmButton: false,
-        timer: 2000,
+        timer: 1250,
     });
     </script>
     <?php if (isset($_SESSION['yes'])) {
@@ -163,7 +172,7 @@
         title: "<?php echo $this->session->flashdata('salah')?>",
         icon: "error",
         showConfirmButton: false,
-        timer: 200,
+        timer: 1250,
     });
     </script>
     <?php if (isset($_SESSION['salah'])) {
@@ -185,13 +194,13 @@ function hapus(id) {
         confirmButtonText: ' Ya hapus!'
     }).then((result) => {
         if (result.isConfirmed) {
-           
+
             Swal.fire({
                 icon: 'success',
                 title: 'Berhasil Dihapus',
                 showConfirmButton: false,
                 timer: 1250
-            }).then(function(){
+            }).then(function() {
                 window.location.href = "<?php echo base_url('daftarobat/hapus_daftar_obat/')?>" + id;
             })
 

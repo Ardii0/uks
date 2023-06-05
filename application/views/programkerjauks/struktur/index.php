@@ -36,16 +36,17 @@
                             <div class="col-12">
                                 <div class="card-body text-center mx-auto">
                                     <?php if($struktur !=  null) :?>
-                                        <div id="card-text not_found" class="text-center mx-auto p-3">
-                                        <img src="<?php echo base_url('uploads/programkerjauks/struktur') . "/" . end($struktur)->foto; ?>">
-                                        </div>
-                                        <?php else :?>
-                                        <div id="not_found" class="text-center mx-auto p-3">
-                                            <img src="https://cdn.iconscout.com/icon/free/png-256/free-data-not-found-1965034-1662569.png"
-                                                alt="">
-                                            <h4>Tambahkan Foto Struktur terlebih dahulu</h4>
-                                        </div>
-                                    <?php endif;?>  
+                                    <div id="card-text not_found" class="text-center mx-auto p-3">
+                                        <img src="<?php echo base_url('uploads/programkerjauks/struktur') . "/" . end($struktur)->foto; ?>"
+                                            style="width: 1200px;">
+                                    </div>
+                                    <?php else :?>
+                                    <div id="not_found" class="text-center mx-auto p-3">
+                                        <img src="https://cdn.iconscout.com/icon/free/png-256/free-data-not-found-1965034-1662569.png"
+                                            alt="">
+                                        <h4>Tambahkan Foto Struktur terlebih dahulu</h4>
+                                    </div>
+                                    <?php endif;?>
                                 </div>
                             </div>
                         </div>
@@ -95,7 +96,7 @@
         title: "<?php echo $this->session->flashdata('sukses') ?>",
         icon: "success",
         showConfirmButton: false,
-        timer: 5000,
+        timer: 1250,
     });
     </script>
     <?php if (isset($_SESSION['sukses'])) {
