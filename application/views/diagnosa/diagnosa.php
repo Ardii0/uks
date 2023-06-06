@@ -50,9 +50,16 @@
                                                     <a href="<?php echo base_url('diagnosa/edit_diagnosa/' . $data->id) ?>"
                                                         class="btn btn-warning btn-sm">
                                                         <i class="fa fa-edit"></i> </a>
+
+                                                    <?php if ( tampil_diagnosa($data->id) === null ) : ?>
                                                     <button onclick="hapus(<?php echo $data->id ?>)"
                                                         class="btn btn-danger btn-sm">
                                                         <i class="fa fa-trash"></i> </button>
+                                                    <?php else : ?>
+                                                    <!-- <button onclick="hapus(<?php echo $data->id ?>)"
+                                                        class="btn btn-danger btn-sm">
+                                                        <i class="fa fa-trash"></i> </button> -->
+                                                    <?php endif; ?>
                                                 </td>
                                             </tr>
                                             <?php endforeach;?>

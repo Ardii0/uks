@@ -213,4 +213,37 @@ function tampil_daftar_obat($id)
   }
 }
 
+function tampil_diagnosa($id)
+{
+ $ci =& get_instance();
+ $ci->load->database();
+ $result = $ci->db->where('diagnosa_id',$id)->get('penanganan_periksa');
+  foreach ($result->result() as $c) {
+  $stmt= $c->diagnosa_id;
+  return $stmt;
+  }
+}
+
+function tampil_penanganan_pertama($id)
+{
+ $ci =& get_instance();
+ $ci->load->database();
+ $result = $ci->db->where('penanganan_pertama_id',$id)->get('penanganan_periksa');
+  foreach ($result->result() as $c) {
+  $stmt= $c->penanganan_pertama_id;
+  return $stmt;
+  }
+}
+
+function tampil_tindakan($id)
+{
+ $ci =& get_instance();
+ $ci->load->database();
+ $result = $ci->db->where('tindakan_id',$id)->get('penanganan_periksa');
+  foreach ($result->result() as $c) {
+  $stmt= $c->tindakan_id;
+  return $stmt;
+  }
+}
+
 ?>

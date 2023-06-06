@@ -53,9 +53,16 @@
                                                         <a href="<?php echo base_url('penanganan/edit_penanganan/' . $data->id) ?>"
                                                             class="btn btn-warning btn-sm">
                                                             <i class="fa fa-edit"></i> </a>
+
+                                                        <?php if ( tampil_penanganan_pertama($data->id) === null ) : ?>
                                                         <button onclick="hapus(<?php echo $data->id ?>)"
                                                             class="btn btn-danger btn-sm">
-                                                            <i class="fa fa-trash"></i>
+                                                            <i class="fa fa-trash"></i> </button>
+                                                        <?php else : ?>
+                                                        <!-- <button onclick="hapus(<?php echo $data->id ?>)"
+                                                            class="btn btn-danger btn-sm">
+                                                            <i class="fa fa-trash"></i> -->
+                                                        <?php endif; ?>
                                                         </button>
                                                     </td>
                                                 </tr>
@@ -148,7 +155,7 @@
             confirmButtonText: ' Ya hapus!'
         }).then((result) => {
             if (result.isConfirmed) {
-                
+
                 Swal.fire({
                     icon: 'success',
                     title: 'Berhasil Dihapus',

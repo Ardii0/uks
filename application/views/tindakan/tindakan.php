@@ -53,9 +53,16 @@
                                                         <a href="<?php echo base_url('tindakan/edit_tindakan/' . $data->id) ?>"
                                                             class="btn btn-warning btn-sm">
                                                             <i class="fa fa-edit"></i> </a>
+
+                                                        <?php if ( tampil_tindakan($data->id) === null ) : ?>
                                                         <button onclick="hapus(<?php echo $data->id ?>)"
                                                             class="btn btn-danger btn-sm">
                                                             <i class="fa fa-trash"></i> </button>
+                                                        <?php else : ?>
+                                                        <!-- <button onclick="hapus(<?php echo $data->id ?>)"
+                                                            class="btn btn-danger btn-sm">
+                                                            <i class="fa fa-trash"></i> </button> -->
+                                                        <?php endif; ?>
                                                     </td>
                                                 </tr>
                                                 <?php endforeach;?>
@@ -149,13 +156,13 @@ function hapus(id) {
         confirmButtonText: ' Ya hapus!'
     }).then((result) => {
         if (result.isConfirmed) {
-           
+
             Swal.fire({
                 icon: 'success',
                 title: 'Berhasil Dihapus',
                 showConfirmButton: false,
                 timer: 1250
-            }).then(function(){
+            }).then(function() {
                 window.location.href = "<?php echo base_url('tindakan/hapus_tindakan/')?>" + id;
             })
 

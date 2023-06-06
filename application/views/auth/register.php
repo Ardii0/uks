@@ -313,8 +313,8 @@
                             <p style="display: flex">
                                 <input type="password" name="password" placeholder="Password" id="myPass">
                                 <span id="showPass">
-                                    <i class="fa fa-eye-slash" aria-hidden="true"></i>
-                                    <i class="fa fa-eye" aria-hidden="true" style="display:none;"></i>
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                    <i class="fa fa-eye-slash" aria-hidden="true" style="display:none;"></i>
                                 </span>
                             </p>
                             <p>
