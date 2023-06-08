@@ -38,18 +38,19 @@
                                                         <label class="control-label">Nama</label>
                                                         <input type="text" value="<?php echo $datas->nama_siswa ?>"
                                                             name="nama_siswa" class="form-control"
-                                                            placeholder="Masukan Nama">
+                                                            placeholder="Masukan Nama" required="">
                                                     </div>
                                                     <div class="form-group col-sm-4">
                                                         <label class="control-label">Kelas</label>
                                                         <input type="text" value="<?php echo $datas->kelas ?>"
-                                                            name="kelas" class="form-control">
+                                                            name="kelas" class="form-control"
+                                                            placeholder="Masukan Kelas" required="">
                                                     </div>
                                                     <div class="form-group col-sm-4">
                                                         <label class="control-label">Tempat Lahir</label>
                                                         <input type="text" value="<?php echo $datas->tempat_lahir ?>"
                                                             name="tempat_lahir" class="form-control"
-                                                            placeholder="Masukan Tempat Lahir">
+                                                            placeholder="Masukan Tempat Lahir" required="">
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -57,7 +58,7 @@
                                                         <label class="control-label">Foto Profil</label>
                                                         <div class="custom-file mb-3">
                                                             <input type="file" class="custom-file-input" id="customFile"
-                                                                name="foto">
+                                                                required="" name="foto">
                                                             <label class="custom-file-label"
                                                                 for="customFile"><?php echo $datas->foto ?></label>
                                                         </div>
@@ -65,7 +66,7 @@
                                                     <div class="form-group col-sm-6">
                                                         <label class="control-label">Tanggal Lahir</label>
                                                         <input type="date" value="<?php echo $datas->tanggal_lahir ?>"
-                                                            name="tanggal_lahir" class="form-control">
+                                                            name="tanggal_lahir" class="form-control" required="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -73,37 +74,40 @@
                                                 <div class="form-group col-sm-4">
                                                     <label class="control-label">Alamat</label>
                                                     <input type="text" value="<?php echo $datas->alamat ?>"
-                                                        name="alamat" class="form-control" placeholder="Masukan Alamat">
+                                                        name="alamat" class="form-control" placeholder="Masukan Alamat"
+                                                        required="">
                                                 </div>
                                                 <div class="form-group col-sm-4">
                                                     <label class="control-label">Nama Orang Tua/Wali</label>
                                                     <input type="text" value="<?php echo $datas->nama_wali ?>"
                                                         name="nama_wali" class="form-control"
-                                                        placeholder="Masukan Nama Orang Tua/Wali">
+                                                        placeholder="Masukan Nama Orang Tua/Wali" required="">
                                                 </div>
                                                 <div class="form-group col-sm-4">
                                                     <label class="control-label">No. Telepon Orang Tua/Wali</label>
                                                     <input type="number" value="<?php echo $datas->no_telepon_wali ?>"
                                                         name="no_telepon_wali" class="form-control"
-                                                        placeholder="Masukan No. Telepon Wali">
+                                                        placeholder="Masukan No. Telepon Wali" required="">
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="form-group col-sm-4">
                                                     <label class="control-label">Tinggi Badan (TB)</label>
                                                     <input type="number" value="<?php echo $datas->TB ?>" name="TB"
-                                                        class="form-control" placeholder="Masukan Tinggi Badan (*cm)">
+                                                        class="form-control" placeholder="Masukan Tinggi Badan (*cm)"
+                                                        required="">
                                                 </div>
                                                 <div class="form-group col-sm-4">
                                                     <label class="control-label">Berat Badan (BB)</label>
                                                     <input type="number" value="<?php echo $datas->BB ?>" name="BB"
-                                                        class="form-control" placeholder="Masukan Tinggi Badan (*kg)">
+                                                        class="form-control" placeholder="Masukan Tinggi Badan (*kg)"
+                                                        required="">
                                                 </div>
                                                 <div class="form-group col-sm-4">
                                                     <label class="control-label">Gol Darah</label>
                                                     <input type="text" value="<?php echo $datas->gol_darah ?>"
                                                         name="gol_darah" class="form-control"
-                                                        placeholder="Masukan Golongan Darah">
+                                                        placeholder="Masukan Golongan Darah" required="">
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -112,12 +116,13 @@
                                                     <label class="control-label">Riwayat Penyakit</label>
                                                     <input type="text" value="<?php echo $datas->riwayat_penyakit ?>"
                                                         name="riwayat_penyakit" class="form-control"
-                                                        placeholder="Masukan Riwayat Penyakit">
+                                                        placeholder="Masukan Riwayat Penyakit" required="">
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                                     <label class="control-label">Alergi</label>
                                                     <input type="text" value="<?php echo $datas->alergi ?>"
-                                                        name="alergi" class="form-control" placeholder="Masukan Alergi">
+                                                        name="alergi" class="form-control" placeholder="Masukan Alergi"
+                                                        required="">
                                                 </div>
                                             </div>
                                             <div class="form-group col-sm-12 d-flex justify-content-between">
@@ -125,8 +130,7 @@
                                                     onclick="kembali()" data-dismiss="modal"><span
                                                         class="p-3">Batal</span></button>
                                                 <input type="hidden" value="<?php echo $datas->id ?>" name="id">
-                                                <button type="submit"
-                                                    class="btn btn-success text-bold"><span
+                                                <button type="submit" class="btn btn-success text-bold"><span
                                                         class="p-3">Update</span></button>
                                             </div>
                                         </form>

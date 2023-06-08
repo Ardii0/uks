@@ -51,10 +51,10 @@
                                                     <div class="form-group col-sm-6 mb-0">
                                                         <label class="control-label">Foto Profil</label>
                                                         <div class="custom-file mb-3">
-                                                            <input type="file" class="custom-file-input" id="customFile" required=""
-                                                                name="foto">
-                                                            <label class="custom-file-label" for="customFile">Pilih
-                                                                File</label>
+                                                            <input type="file" class="custom-file-input" id="customFile"
+                                                                required="" name="foto">
+                                                            <label class="custom-file-label"
+                                                                for="customFile"><?php echo $datas->foto ?></label>
                                                         </div>
                                                     </div>
                                                     <div class="form-group col-sm-6">
@@ -68,25 +68,28 @@
                                                 <div class="form-group col-6">
                                                     <label class="control-label">Alamat</label>
                                                     <input type="text" value="<?php echo $datas->alamat ?>"
-                                                        name="alamat" class="form-control" placeholder="Masukan Alamat" required="">
+                                                        name="alamat" class="form-control" placeholder="Masukan Alamat"
+                                                        required="">
                                                 </div>
                                                 <div class="form-group col-6">
                                                     <label class="control-label">No. Telepon Orang Tua/Wali</label>
                                                     <input type="number" value="<?php echo $datas->no_telepon ?>"
-                                                        name="no_telepon_wali" class="form-control" required=""
+                                                        name="no_telepon" class="form-control" required=""
                                                         placeholder="Masukan No Telepon">
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="form-group col-sm-4">
                                                     <label class="control-label">Tinggi Badan (TB)</label>
-                                                    <input type="number" value="<?php echo $datas->TB ?>" name="TB" required=""
-                                                        class="form-control" placeholder="Masukan Tinggi Badan (*cm)">
+                                                    <input type="number" value="<?php echo $datas->TB ?>" name="TB"
+                                                        required="" class="form-control"
+                                                        placeholder="Masukan Tinggi Badan (*cm)">
                                                 </div>
                                                 <div class="form-group col-sm-4">
                                                     <label class="control-label">Berat Badan (BB)</label>
-                                                    <input type="number" value="<?php echo $datas->BB ?>" name="BB" required=""
-                                                        class="form-control" placeholder="Masukan Tinggi Badan (*kg)">
+                                                    <input type="number" value="<?php echo $datas->BB ?>" name="BB"
+                                                        required="" class="form-control"
+                                                        placeholder="Masukan Tinggi Badan (*kg)">
                                                 </div>
                                                 <div class="form-group col-sm-4">
                                                     <label class="control-label">Gol Darah</label>
@@ -106,7 +109,8 @@
                                                 <div class="form-group col-sm-6">
                                                     <label class="control-label">Alergi</label>
                                                     <input type="text" value="<?php echo $datas->alergi ?>"
-                                                        name="alergi" class="form-control" required="" placeholder="Masukan Alergi">
+                                                        name="alergi" class="form-control" required=""
+                                                        placeholder="Masukan Alergi">
                                                 </div>
                                             </div>
                                             <div class="form-group col-sm-12 d-flex justify-content-between">
@@ -114,8 +118,7 @@
                                                     onclick="kembali()" data-dismiss="modal"><span
                                                         class="p-3">Batal</span></button>
                                                 <input type="hidden" value="<?php echo $datas->id ?>" name="id">
-                                                <button type="submit"
-                                                    class="btn btn-success text-bold"><span
+                                                <button type="submit" class="btn btn-success text-bold"><span
                                                         class="p-3">Update</span></button>
                                             </div>
                                         </form>

@@ -202,6 +202,43 @@ return $stmt;
 
 }
 
+// Data
+
+function tampil_siswa($id)
+{
+ $ci =& get_instance();
+ $ci->load->database();
+ $result = $ci->db->where('siswa_id',$id)->get('periksa');
+  foreach ($result->result() as $c) {
+  $stmt= $c->siswa_id;
+  return $stmt;
+  }
+}
+
+function tampil_guru($id)
+{
+ $ci =& get_instance();
+ $ci->load->database();
+ $result = $ci->db->where('guru_id',$id)->get('periksa');
+  foreach ($result->result() as $c) {
+  $stmt= $c->guru_id;
+  return $stmt;
+  }
+}
+
+function tampil_karyawan($id)
+{
+ $ci =& get_instance();
+ $ci->load->database();
+ $result = $ci->db->where('karyawan_id',$id)->get('periksa');
+  foreach ($result->result() as $c) {
+  $stmt= $c->karyawan_id;
+  return $stmt;
+  }
+}
+
+// Data Uks
+
 function tampil_daftar_obat($id)
 {
  $ci =& get_instance();

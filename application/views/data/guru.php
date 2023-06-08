@@ -70,7 +70,8 @@
                                                     <?php echo indonesian_date_time($datas->tanggal_lahir);?></td>
                                                 <td><?php echo $datas->alamat?></td>
                                                 <td>
-                                                    <form action="<?php echo base_url('dataguru/export_periksa_guru') ?>"
+                                                    <form
+                                                        action="<?php echo base_url('dataguru/export_periksa_guru') ?>"
                                                         enctype="multipart/form-data" method="post">
                                                         <input type="hidden" id="id" name="id" value="<?= $datas->id?>">
                                                         <button type="submit" class="btn btn-primary btn-sm">
@@ -80,10 +81,16 @@
                                                             class="btn btn-warning btn-sm" type="button">
                                                             <i class="fa fa-eye"></i>
                                                         </a>
+                                                        <?php if ( tampil_guru($datas->id) === null ) : ?>
                                                         <button onclick="hapus(<?php echo $datas->id ?>)"
+                                                            class="btn btn-danger btn-sm">
+                                                            <i class="fa fa-trash"></i> </button>
+                                                        <?php else : ?>
+                                                        <!-- <button onclick="hapus(<?php echo $datas->id ?>)"
                                                             class="btn btn-danger btn-sm" type="button">
                                                             <i class="fa fa-trash"></i>
-                                                        </button>
+                                                        </button> -->
+                                                        <?php endif; ?>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -102,7 +109,8 @@
     <div class="modal fade" id="index1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form action="<?php echo base_url('Dataguru/aksi_tambah_guru')?>" enctype="multipart/form-data" method="post">
+            <form action="<?php echo base_url('Dataguru/aksi_tambah_guru')?>" enctype="multipart/form-data"
+                method="post">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Tambah Data Guru</h5>
@@ -213,29 +221,29 @@ swal.fire({
 
 <script>
 function hapus(id) {
-        swal.fire({
-            title: 'Yakin untuk menghapus data ini?',
-            text: "Data ini akan terhapus permanen",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            cancelButtonText: 'Batal',
-            confirmButtonText: 'Ya Hapus'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Berhasil Dihapus',
-                    showConfirmButton: false,
-                    timer: 1500,
+    swal.fire({
+        title: 'Yakin untuk menghapus data ini?',
+        text: "Data ini akan terhapus permanen",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Batal',
+        confirmButtonText: 'Ya Hapus'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil Dihapus',
+                showConfirmButton: false,
+                timer: 1500,
 
-                }).then(function() {
-                    window.location.href = "<?php echo base_url('dataguru/hapus_guru/')?>" + id;
-                });
-            }
-        });
-    }
+            }).then(function() {
+                window.location.href = "<?php echo base_url('dataguru/hapus_guru/')?>" + id;
+            });
+        }
+    });
+}
 </script>
 
 </html>
