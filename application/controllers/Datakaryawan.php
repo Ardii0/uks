@@ -199,35 +199,51 @@ class Datakaryawan extends CI_Controller {
         }
     }
 
-    public function export_karyawan()
-    {
-        // load excel library
-        $this->load->library('excel');
-        $listInfo = $this->Main_model->export_karyawan();
-        $objPHPExcel = new PHPExcel();
-        $objPHPExcel->setActiveSheetIndex(0);
-        // set Header
-        $objPHPExcel->getActiveSheet()->SetCellValue('A1', 'Nama Karyawan'); 
-        $objPHPExcel->getActiveSheet()->SetCellValue('B1', 'Tempat Lahir');   
-        $objPHPExcel->getActiveSheet()->SetCellValue('C1', 'Tanggal Lahir');  
-        $objPHPExcel->getActiveSheet()->SetCellValue('D1', 'Alamat');
-        // set Row
-        $rowCount = 2;
-        foreach ($listInfo as $list) {
-            $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, $list->nama_karyawan);
-            $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $list->tempat_lahir);
-            $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, $list->tanggal_lahir);
-            $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $list->alamat);
-            $rowCount++;
-        }
-        $filename = "data-karyawan.csv";
-        header('Content-Type: application/vnd.ms-excel'); 
-        header('Content-Disposition: attachment;filename="'.$filename.'"');
-        header('Cache-Control: max-age=0'); 
-        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'CSV');  
-        $objWriter->save('php://output'); 
-    }
+    public function export_karyawan(){
+        // Load plugin PHPExcel nya
+        include APPPATH.'third_party/PHPExcell.php';
+        
+        // Panggil class PHPExcel nya
+        $csv = new PHPExcel();
+        // Settingan awal fil excel
+        
+        // Buat header tabel nya pada baris ke 1
 
+        $csv->setActiveSheetIndex(0)->setCellValue("A1", "NO"); 
+        $csv->setActiveSheetIndex(0)->SetCellValue('B1', 'Nama Karyawan'); 
+        $csv->setActiveSheetIndex(0)->SetCellValue('C1', 'Tempat Lahir');   
+        $csv->setActiveSheetIndex(0)->SetCellValue('D1', 'Tanggal Lahir');  
+        $csv->setActiveSheetIndex(0)->SetCellValue('E1', 'Alamat');
+
+        // Panggil function view yang ada di SiswaModel untuk menampilkan semua data siswanya
+        $export_karyawan = $this->Main_model->export_karyawan();
+        $no = 1; // Untuk penomoran tabel, di awal set dengan 1
+        $numrow = 2; // Set baris pertama untuk isi tabel adalah baris ke 2
+        foreach($export_karyawan as $data){ // Lakukan looping pada variabel siswa
+
+            $csv->setActiveSheetIndex(0)->setCellValue('A'.$numrow, $no);
+            $csv->setActiveSheetIndex(0)->SetCellValue('B' . $numrow, $data->nama_karyawan);
+            $csv->setActiveSheetIndex(0)->SetCellValue('C' . $numrow, $data->tempat_lahir);
+            $csv->setActiveSheetIndex(0)->SetCellValue('D' . $numrow, $data->tanggal_lahir);
+            $csv->setActiveSheetIndex(0)->SetCellValue('E' . $numrow, $data->alamat);
+          
+          $no++; // Tambah 1 setiap kali looping
+          $numrow++; // Tambah 1 setiap kali looping
+        }
+        // Set orientasi kertas jadi LANDSCAPE
+        $csv->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+        // Set judul file excel nya
+        $csv->getActiveSheet(0)->setTitle("Data Karyawan");
+        $csv->setActiveSheetIndex(0);
+        // Proses file excel
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename="Data Karyawan.xlsx"'); // Set nama file excel nya
+        header('Cache-Control: max-age=0');
+    //    $write = new PHPExcel_Writer_CSV($csv); kene kesalahane
+        $write = PHPExcel_IOFactory::createWriter($csv, 'Excel2007');
+        $write->save('php://output');
+    }
+    
     public function export_periksa_karyawan()
     {
         // load excel library
