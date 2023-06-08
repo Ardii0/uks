@@ -85,7 +85,7 @@ class Periksa extends CI_Controller {
         $this->load->view('periksa_pasien/index', $data);
     }
 
-    public function export_pasien_to_excel()
+    public function v()
     {
         // load excel library
         $this->load->library('excel');
@@ -128,6 +128,63 @@ class Periksa extends CI_Controller {
         header('Cache-Control: max-age=0'); 
         $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'CSV');  
         $objWriter->save('php://output'); 
+    }
+
+    public function export_pasien_to_excel(){
+        // Load plugin PHPExcel nya
+        include APPPATH.'third_party/PHPExcell.php';
+        
+        $awal_tanggal = $this->input->post('awal_tanggal');
+        $akhir_tanggal = $this->input->post('akhir_tanggal');
+        $listInfo = $this->filter_tanggal($awal_tanggal, $akhir_tanggal)->result();
+        // Panggil class PHPExcel nya
+        $csv = new PHPExcel();
+        // Settingan awal fil excel
+        
+        // Buat header tabel nya pada baris ke 1
+        $csv->setActiveSheetIndex(0)->setCellValue("A1", "NO"); 
+        $csv->setActiveSheetIndex(0)->setCellValue("B1", "Nama Pasien"); 
+        $csv->setActiveSheetIndex(0)->setCellValue('C1', "Status Pasien"); 
+        $csv->setActiveSheetIndex(0)->setCellValue('D1', "Keluhan"); 
+        $csv->setActiveSheetIndex(0)->setCellValue('E1', "Tanggal");
+        $csv->setActiveSheetIndex(0)->setCellValue('F2', "Status");
+        // Panggil function view yang ada di SiswaModel untuk menampilkan semua data siswanya
+        $export_guru = $this->Main_model->export_guru();
+        $no = 1; // Untuk penomoran tabel, di awal set dengan 1
+        $numrow = 2; // Set baris pertama untuk isi tabel adalah baris ke 2
+        foreach($listInfo as $list){ // Lakukan looping pada variabel siswa
+          $csv->setActiveSheetIndex(0)->setCellValue('A'.$numrow, $no);
+          if(!empty($list->siswa_id)) {
+            $csv->setActiveSheet()->SetCellValue('B' . $numrow, JoinOne('periksa', 'siswa', 'siswa_id', 'id','periksa.id',$list->id, 'nama_siswa'));
+        } else if(!empty($list->guru_id)) {
+            $csv->setActiveSheet()->SetCellValue('B' . $numrow, JoinOne('periksa', 'guru', 'guru_id', 'id','periksa.id',$list->id, 'nama_guru'));
+        } else if(!empty($list->karyawan_id)) {
+            $csv->setActiveSheet()->SetCellValue('B' . $numrow, JoinOne('periksa', 'karyawan', 'karyawan_id', 'id','periksa.id',$list->id, 'nama_karyawan'));
+        } 
+          $csv->setActiveSheetIndex(0)->setCellValue('C'.$numrow, $list->pasien_status);
+          $csv->setActiveSheetIndex(0)->setCellValue('D'.$numrow, $list->keluhan);
+          $csv->setActiveSheetIndex(0)->setCellValue('E'.$numrow, $list->create_date);
+          $ditangani = $this->db->get_where('penanganan_periksa', array('periksa_id' => $list->id))->num_rows();
+            if ($ditangani > 0) {
+                $objPHPExcel->setActiveSheet()->SetCellValue('F' . $numrow, "Sudah Ditangani ");
+            } else {
+                $objPHPExcel->setActiveSheet()->SetCellValue('F' . $numrow, "Belum Ditangani");
+            }
+          $no++; // Tambah 1 setiap kali looping
+          $numrow++; // Tambah 1 setiap kali looping
+        }
+        // Set orientasi kertas jadi LANDSCAPE
+        $csv->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+        // Set judul file excel nya
+        $csv->getActiveSheet(0)->setTitle("Pasien");
+        $csv->setActiveSheetIndex(0);
+        // Proses file excel
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename="Pasien.xlsx"'); // Set nama file excel nya
+        header('Cache-Control: max-age=0');
+    //    $write = new PHPExcel_Writer_CSV($csv); kene kesalahane
+        $write = PHPExcel_IOFactory::createWriter($csv, 'Excel2007');
+        $write->save('php://output');
     }
 
     public function export_pasien_to_excels()
