@@ -72,28 +72,24 @@
                                                     <?php echo indonesian_date_time($datas->tanggal_lahir);?></td>
                                                 <td><?php echo $datas->alamat?></td>
                                                 <td>
-                                                    <form
-                                                        action="<?php echo base_url('datasiswa/export_periksa_siswa') ?>"
-                                                        enctype="multipart/form-data" method="post">
-                                                        <input type="hidden" id="id" name="id" value="<?= $datas->id?>">
-                                                        <button type="submit" class="btn btn-primary btn-sm">
+                                                    <input type="hidden" id="id" name="id" value="<?= $datas->id?>">
+                                                    <a href="<?php echo base_url('datasiswa/export_periksa_siswa') ?>">
+                                                        <button class="btn btn-primary btn-sm">
                                                             <i class="fa fa-download"></i>
                                                         </button>
-                                                        <a href="<?php echo base_url('datasiswa/detail_siswa/' . $datas->id)?>"
-                                                            class="btn btn-warning btn-sm" type="button">
-                                                            <i class="fa fa-eye"></i>
-                                                        </a>
-                                                        <?php if ( tampil_siswa($datas->id) === null ) : ?>
-                                                        <button onclick="hapus(<?php echo $datas->id ?>)"
-                                                            class="btn btn-danger btn-sm">
-                                                            <i class="fa fa-trash"></i> </button>
-                                                        <?php else : ?>
-                                                        <!-- <button onclick="hapus(<?php echo $datas->id ?>)"
-                                                            class="btn btn-danger btn-sm" type="button">
-                                                            <i class="fa fa-trash"></i>
-                                                        </button> -->
-                                                        <?php endif; ?>
-                                                    </form>
+                                                    </a>
+
+                                                    <a href="<?php echo base_url('datasiswa/detail_siswa/' . $datas->id)?>"
+                                                        class="btn btn-warning btn-sm" type="button">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a>
+
+                                                    <?php if ( tampil_siswa($datas->id) === null ) : ?>
+                                                    <button onclick="hapus(<?php echo $datas->id ?>)"
+                                                        class="btn btn-danger btn-sm">
+                                                        <i class="fa fa-trash"></i> </button>
+                                                    <?php else : ?>
+                                                    <?php endif; ?>
                                                 </td>
                                             </tr>
                                             <?php endforeach;?>

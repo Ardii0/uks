@@ -74,8 +74,8 @@
                                                 <div class="form-group col-sm-6">
                                                     <label class="control-label">No. Telepon</label>
                                                     <input type="number" value="<?php echo $datas->no_telepon ?>"
-                                                        name="no_telepon_wali" class="form-control" required=""
-                                                        placeholder="Masukan No. Telepon Wali">
+                                                        name="no_telepon" class="form-control" required=""
+                                                        placeholder="Masukan No. Telepon">
                                                 </div>
                                             </div>
                                             <div class="row">
