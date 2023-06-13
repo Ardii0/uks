@@ -57,7 +57,7 @@
                                                     <td class="text-center">
                                                         <?php echo indonesian_date_time($data->expired)?></td>
                                                     <td class="text-center">
-                                                        <a href="<?php echo base_url('daftar_obat/edit_daftar_obat/' . $data->id) ?>"
+                                                        <a href="<?php echo base_url('daftarobat/edit_daftar_obat/' . $data->id) ?>"
                                                             class="btn btn-warning btn-sm">
                                                             <i class="fa fa-edit"></i> </a>
 
