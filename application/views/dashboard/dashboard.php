@@ -22,10 +22,12 @@
         data.addColumn('string', 'Bulan');
         data.addColumn('number', 'Guru');
         data.addColumn('number', 'Siswa');
-        data.addColumn('number', 'Karyawan');
+        // data.addColumn('number', 'Karyawan');
         data.addRows([
             <?php foreach ($graph_data as $row) : ?>['<?= $row['bulan'] ?>', <?= $row['guru'] ?>,
-                <?= $row['siswa'] ?>, <?= $row['karyawan'] ?>],
+                <?= $row['siswa'] ?>
+                
+            ],
             <?php endforeach; ?>
         ]);
 
@@ -43,7 +45,7 @@
                     color: '#4ADE80'
                 }
             },
-            title: 'Grafik Jumlah Guru, Siswa, dan Karyawan',
+            title: 'Grafik Jumlah Guru dan, Siswa',
             legend: {
                 position: 'top'
             },
@@ -80,10 +82,10 @@
         data.addColumn('string', 'Tanggal');
         data.addColumn('number', 'Guru');
         data.addColumn('number', 'Siswa');
-        data.addColumn('number', 'Karyawan');
+        // data.addColumn('number', 'Karyawan');
         data.addRows([
             <?php foreach ($graph_data_hari as $row) : ?>['<?= $row['hari'] ?>', <?= $row['guru'] ?>,
-                <?= $row['siswa'] ?>, <?= $row['karyawan'] ?>],
+                <?= $row['siswa'] ?>],
             <?php endforeach; ?>
         ]);
 
@@ -101,7 +103,7 @@
                     color: '#4ADE80'
                 }
             },
-            title: 'Grafik Jumlah Guru, Siswa, dan Karyawan',
+            title: 'Grafik Jumlah Guru dan Siswa',
             legend: {
                 position: 'top'
             },
@@ -218,23 +220,9 @@
                         </h5>
                     </marquee>
                 </div>
-                <!-- <div>
-                    <div>
-                        <?php foreach ($graph_data as $row) : ?>['<?= $row['bulan'] ?>', <?= $row['guru'] ?>,
-                        <?= $row['siswa'] ?>, <?= $row['karyawan'] ?>],
-                        <?php endforeach; ?>
-                    </div>
-                    <br>
-                    <div>
-                        <?php foreach ($graph_data_hari as $row) : ?>['<?= $row['hari'] ?>', <?= $row['guru'] ?>,
-                        <?= $row['siswa'] ?>, <?= $row['karyawan'] ?>],
-                        <?php endforeach; ?>
-                    </div>
-                    <br>
-                    <?php echo $this->session->userdata('bulan') ?>
-                </div> -->
+                
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <div class="card shadow">
                             <div class="card-body text-center">
                                 <div class="icon">
@@ -252,7 +240,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <div class="card shadow">
                             <div class="card-body text-center">
                                 <div class="icon">
@@ -268,7 +256,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-4">
+                    <!-- <div class="col-4">
                         <div class="card shadow">
                             <div class="card-body text-center">
                                 <div class="icon">
@@ -283,7 +271,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="row">
                     <div class="col-12">
@@ -311,9 +299,10 @@
                                                 echo tampil_siswa_byid($row->siswa_id);
                                                 } else if(!empty($row->guru_id)) {
                                                     echo tampil_guru_byid($row->guru_id);
-                                                } else if(!empty($row->karyawan_id)) {
-                                                    echo tampil_karyawan_byid($row->karyawan_id);
                                                 }
+                                                //  else if(!empty($row->karyawan_id)) {
+                                                //     echo tampil_karyawan_byid($row->karyawan_id);
+                                                // }
                                                 ?>
                                             </td>
                                             <td><?php echo $row->pasien_status?></td>

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Programklik extends CI_Controller
+class User extends CI_Controller
 {
 
     public function __construct()
@@ -12,36 +12,36 @@ class Programklik extends CI_Controller
         // $this->load->library('excel');
         $this->load->library('form_validation');
         $this->load->library('session');
-        if ($this->session->userdata('is_login') != TRUE) {
+        if ($this->session->userdata('is_login') != FALSE) {
             redirect(base_url('Login'));
         }
     }
 
     //Program Klik
-    public function index()
+    public function programklik()
     {
-        $this->load->model('Main_model');
-        $data['periksa'] = $this->Main_model->get('program_klik')->result();
-        $this->load->view('programklik/index', $data);
+        // $this->load->model('Main_model');
+        // $data['periksa'] = $this->Main_model->get('program_klik')->result();
+        $this->load->view('user/tambah_programklik');
     }
 
-    public function aksi_tambah_programklik()
+    public function aksi_add_programklik()
     {
         $data = array
         (
-            'create_date' => date("Y-m-d H:i:s"),
             'nama_siswa' => $this->input->post('nama_siswa'),
             'kelas' => $this->input->post('kelas'),
             'keluhan' => $this->input->post('keluhan'),
+            'create_date' => date("Y-m-d H:i:s"),
             'tahun_bulan' => date("Y-m"),
         );
         $masuk = $this->Main_model->insert_data($data, 'program_klik');
         if ($masuk) {
-            $this->session->set_flashdata('sukses', 'Berhasil Menambahkan');
-            redirect(base_url('programklik/'));
+            $this->session->set_flashdata('berhasil', 'Terima Kasih Atas Pengaduan Anda, akan Segera Kami Tindak Lanjut ');
+            redirect(base_url('user/programklik'));
         } else {
-            $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('programklik/123'));
+            $this->session->set_flashdata('gagal', 'gagal..');
+            redirect(base_url('user/123'));
         }
     }
 
@@ -50,7 +50,7 @@ class Programklik extends CI_Controller
         $this->load->model('Main_model');
         $where = ['id' => $id];
         $data['program'] = $this->Main_model->getwhere($where, 'program_klik')->row_array();
-        $this->load->view('programklik/detail', $data);
+        $this->load->view('user/detail', $data);
     }
 
     public function aksi_edit_program()
@@ -58,20 +58,19 @@ class Programklik extends CI_Controller
         $where = array('id' => $this->input->post('id'));
         $data = array
         (
-           
-            'create_date' => date("Y-m-d H:i:s"),
             'nama_siswa' => $this->input->post('nama_siswa'),
             'kelas' => $this->input->post('kelas'),
             'keluhan' => $this->input->post('keluhan'),
+            'create_date' => date("Y-m-d H:i:s"),
             'tahun_bulan' => date("Y-m"),
         );
         $valid = $this->Main_model->update_data($where, $data, 'program_klik');
         if ($valid) {
             $this->session->set_flashdata('sukses', 'Berhasil Mengubah');
-            redirect(base_url('programklik/'));
+            redirect(base_url('user/'));
         } else {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('programklik/' . $where));
+            redirect(base_url('user/' . $where));
         }
     }
 
@@ -81,7 +80,7 @@ class Programklik extends CI_Controller
         $data['program'] = $this->Main_model->getwhere($where, 'program_klik')->row_array();
         if ($this->uri->segment(4) == "pdf") {
             $this->load->library('pdf');
-            $this->pdf->load_view('programklik/cetak_programklik', $data);
+            $this->pdf->load_view('user/cetak_programklik', $data);
             $this->pdf->render();
             $this->pdf->stream(" Surat Rujukan " . $id . ".pdf", array("Attachment" => false));
         } else {
@@ -96,10 +95,10 @@ class Programklik extends CI_Controller
         $hapus = $this->Main_model->delete_data(['id' => $id], 'program_klik');
         if ($hapus) {
             $this->session->set_flashdata('sukses hapus', 'berhasil');
-            redirect(base_url('programklik/'));
+            redirect(base_url('user/'));
         } else {
             $this->session->set_flashdata('error', 'gagal..');
-            redirect(base_url('programklik/123'));
+            redirect(base_url('user/123'));
         }
     }
 }

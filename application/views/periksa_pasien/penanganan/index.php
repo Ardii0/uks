@@ -19,7 +19,7 @@
                 <?php 
                     $nama_guru = JoinOne('periksa', 'guru', 'guru_id', 'id','periksa.id',$periksa['id'], 'nama_guru');
                     $nama_siswa = JoinOne('periksa', 'siswa', 'siswa_id', 'id','periksa.id',$periksa['id'], 'nama_siswa');
-                    $nama_karyawan = JoinOne('periksa', 'karyawan', 'karyawan_id', 'id','periksa.id',$periksa['id'], 'nama_karyawan');
+                    // $nama_karyawan = JoinOne('periksa', 'karyawan', 'karyawan_id', 'id','periksa.id',$periksa['id'], 'nama_karyawan');
                 ?>
                 <div class="badge">
                     <p>
@@ -29,9 +29,11 @@
                                 echo $nama_guru;
                             } else if(!empty($periksa['siswa_id'])) {
                                 echo $nama_siswa;
-                            } else if(!empty($periksa['karyawan_id'])) {
-                                echo $nama_karyawan;
-                            } ?>
+                            }
+                            //  else if(!empty($periksa['karyawan_id'])) {
+                            //     echo $nama_karyawan;
+                            // }
+                             ?>
                         </strong>
                     </p>
                 </div>
@@ -45,9 +47,11 @@
                                         echo $nama_guru;
                                     } else if(!empty($periksa['siswa_id'])) {
                                         echo $nama_siswa;
-                                    } else if(!empty($periksa['karyawan_id'])) {
-                                        echo $nama_karyawan;
-                                    } ?>" class="form-control" disabled>
+                                    } 
+                                    // else if(!empty($periksa['karyawan_id'])) {
+                                    //     echo $nama_karyawan;
+                                    // } 
+                                    ?>" class="form-control" disabled>
                             </div>
                             <div class="col-lg-6">
                                 <label class="d-block">Status Pasien</label>

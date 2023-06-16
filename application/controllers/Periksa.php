@@ -25,7 +25,7 @@ class Periksa extends CI_Controller {
         $data['pasien_status'] = $this->Main_model->get('pasien_status')->result();
         $data['guru'] = $this->Main_model->get('guru')->result();
         $data['siswa'] = $this->Main_model->get('siswa')->result();
-        $data['karyawan'] = $this->Main_model->get('karyawan')->result();
+        // $data['karyawan'] = $this->Main_model->get('karyawan')->result();
         $this->load->view('periksa_pasien/index', $data);
     }
 
@@ -35,7 +35,7 @@ class Periksa extends CI_Controller {
         (
             'guru_id' => $this->input->post('guru_id'),
             'siswa_id' => $this->input->post('siswa_id'),
-            'karyawan_id' => $this->input->post('karyawan_id'),
+            // 'karyawan_id' => $this->input->post('karyawan_id'),
             'pasien_status' => $this->input->post('pasien_status'),
             'keluhan' => $this->input->post('keluhan'),
             'tahun_bulan' => date("Y-m"),
@@ -48,10 +48,11 @@ class Periksa extends CI_Controller {
         } else if ($this->input->post('pasien_status') === 'Siswa') {
             $wheresiswa = array('id' => $this->input->post('siswa_id'));
             $this->Main_model->set_data($wheresiswa, $total, 'siswa');
-        } else if ($this->input->post('pasien_status') === 'Karyawan') {
-            $wherekaryawan = array('id' => $this->input->post('karyawan_id'));
-            $this->Main_model->set_data($wherekaryawan, $total, 'karyawan');
-        };
+        }
+        //  else if ($this->input->post('pasien_status') === 'Karyawan') {
+        //     $wherekaryawan = array('id' => $this->input->post('karyawan_id'));
+        //     $this->Main_model->set_data($wherekaryawan, $total, 'karyawan');
+        // };
         $masuk = $this->Main_model->insert_data($data,'periksa');
         if ($masuk) {
             $this->session->set_flashdata('success', 'Berhasil Menambahkan');
@@ -81,53 +82,8 @@ class Periksa extends CI_Controller {
         $data['pasien_status'] = $this->Main_model->get('pasien_status')->result();
         $data['guru'] = $this->Main_model->get('guru')->result();
         $data['siswa'] = $this->Main_model->get('siswa')->result();
-        $data['karyawan'] = $this->Main_model->get('karyawan')->result();
+        // $data['karyawan'] = $this->Main_model->get('karyawan')->result();
         $this->load->view('periksa_pasien/index', $data);
-    }
-
-    public function v()
-    {
-        // load excel library
-        $this->load->library('excel');
-        $awal_tanggal = $this->input->post('awal_tanggal');
-        $akhir_tanggal = $this->input->post('akhir_tanggal');
-        $listInfo = $this->filter_tanggal($awal_tanggal, $akhir_tanggal)->result();
-        $objPHPExcel = new PHPExcel();
-        $objPHPExcel->setActiveSheetIndex(0);
-        // set Header
-        $objPHPExcel->getActiveSheet()->SetCellValue('A1', 'Nama Pasien');   
-        $objPHPExcel->getActiveSheet()->SetCellValue('B1', 'Status Pasien');   
-        $objPHPExcel->getActiveSheet()->SetCellValue('C1', 'Keluhan');   
-        $objPHPExcel->getActiveSheet()->SetCellValue('D1', 'Tanggal');   
-        $objPHPExcel->getActiveSheet()->SetCellValue('E1', 'Status');
-        // set Row
-        $rowCount = 2;
-        foreach ($listInfo as $list) {
-            if(!empty($list->siswa_id)) {
-                $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, JoinOne('periksa', 'siswa', 'siswa_id', 'id','periksa.id',$list->id, 'nama_siswa'));
-            } else if(!empty($list->guru_id)) {
-                $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, JoinOne('periksa', 'guru', 'guru_id', 'id','periksa.id',$list->id, 'nama_guru'));
-            } else if(!empty($list->karyawan_id)) {
-                $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, JoinOne('periksa', 'karyawan', 'karyawan_id', 'id','periksa.id',$list->id, 'nama_karyawan'));
-            } 
-            $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $list->pasien_status);
-            $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, $list->keluhan);
-            $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $list->create_date);
-
-            $ditangani = $this->db->get_where('penanganan_periksa', array('periksa_id' => $list->id))->num_rows();
-            if ($ditangani > 0) {
-                $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, "Sudah Ditangani ");
-            } else {
-                $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, "Belum Ditangani");
-            }
-            $rowCount++;
-        }
-        $filename = "rekap data periksa ($awal_tanggal) - ($akhir_tanggal) .csv";
-        header('Content-Type: application/vnd.ms-excel'); 
-        header('Content-Disposition: attachment;filename="'.$filename.'"');
-        header('Cache-Control: max-age=0'); 
-        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'CSV');  
-        $objWriter->save('php://output'); 
     }
 
     public function export_pasien_to_excel(){
@@ -158,9 +114,10 @@ class Periksa extends CI_Controller {
             $csv->setActiveSheet()->SetCellValue('B' . $numrow, JoinOne('periksa', 'siswa', 'siswa_id', 'id','periksa.id',$list->id, 'nama_siswa'));
         } else if(!empty($list->guru_id)) {
             $csv->setActiveSheet()->SetCellValue('B' . $numrow, JoinOne('periksa', 'guru', 'guru_id', 'id','periksa.id',$list->id, 'nama_guru'));
-        } else if(!empty($list->karyawan_id)) {
-            $csv->setActiveSheet()->SetCellValue('B' . $numrow, JoinOne('periksa', 'karyawan', 'karyawan_id', 'id','periksa.id',$list->id, 'nama_karyawan'));
-        } 
+        }
+        //  else if(!empty($list->karyawan_id)) {
+        //     $csv->setActiveSheet()->SetCellValue('B' . $numrow, JoinOne('periksa', 'karyawan', 'karyawan_id', 'id','periksa.id',$list->id, 'nama_karyawan'));
+        // } 
           $csv->setActiveSheetIndex(0)->setCellValue('C'.$numrow, $list->pasien_status);
           $csv->setActiveSheetIndex(0)->setCellValue('D'.$numrow, $list->keluhan);
           $csv->setActiveSheetIndex(0)->setCellValue('E'.$numrow, $list->create_date);
@@ -209,9 +166,10 @@ class Periksa extends CI_Controller {
                 $csv->getActiveSheet()->SetCellValue('A' . $rowCount, JoinOne('periksa', 'siswa', 'siswa_id', 'id','periksa.id',$list->id, 'nama_siswa'));
             } else if(!empty($list->guru_id)) {
                 $csv->getActiveSheet()->SetCellValue('A' . $rowCount, JoinOne('periksa', 'guru', 'guru_id', 'id','periksa.id',$list->id, 'nama_guru'));
-            } else if(!empty($list->karyawan_id)) {
-                $csv->getActiveSheet()->SetCellValue('A' . $rowCount, JoinOne('periksa', 'karyawan', 'karyawan_id', 'id','periksa.id',$list->id, 'nama_karyawan'));
-            } 
+            }
+            //  else if(!empty($list->karyawan_id)) {
+            //     $csv->getActiveSheet()->SetCellValue('A' . $rowCount, JoinOne('periksa', 'karyawan', 'karyawan_id', 'id','periksa.id',$list->id, 'nama_karyawan'));
+            // } 
             $csv->getActiveSheet()->SetCellValue('B' . $rowCount, $list->pasien_status);
             $csv->getActiveSheet()->SetCellValue('C' . $rowCount, $list->keluhan);
             $csv->getActiveSheet()->SetCellValue('D' . $rowCount, $list->create_date);

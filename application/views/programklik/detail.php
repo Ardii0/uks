@@ -28,25 +28,20 @@
                             <div class="col-8">
                                 <div class="card-body">
                                     <div class="row mb-2">
-                                        <div class="col-2 font-weight-bold">Nama Pasien</div>
+                                        <div class="col-2 font-weight-bold">Nama Siswa</div>
                                         <div>:</div>
                                         <div class="col">
-                                            <?php if (!empty($program['siswa_id'])) {
-                                                echo JoinOne('program_klik', 'siswa', 'siswa_id', 'id', 'program_klik.id', $program['id'], 'nama_siswa');
-                                            } else if (!empty($program['guru_id'])) {
-                                                echo JoinOne('program_klik', 'guru', 'guru_id', 'id', 'program_klik.id', $program['id'], 'nama_guru');
-                                            } else if (!empty($program['karyawan_id'])) {
-                                                echo JoinOne('program_klik', 'karyawan', 'karyawan_id', 'id', 'program_klik.id', $program['id'], 'nama_karyawan');
-                                            } ?>
+                                        <?php echo $program['nama_siswa'] ?>
                                         </div>
                                     </div>
                                     <div class="row mb-2">
-                                        <div class="col-2 font-weight-bold">Pasien Status</div>
+                                        <div class="col-2 font-weight-bold">Kelas</div>
                                         <div>:</div>
                                         <div class="col">
-                                            <?php echo $program['pasien_status'] ?>
+                                        <?php echo $program['kelas'] ?>
                                         </div>
                                     </div>
+                                    
                                     <div class="row mb-2">
                                         <div class="col-2 font-weight-bold">Tanggal </div>
                                         <div>:</div>
@@ -61,13 +56,7 @@
                                             <?php echo $program['keluhan'] ?>
                                         </div>
                                     </div>
-                                    <div class="row mb-2">
-                                        <div class="col-2 font-weight-bold">Saran</div>
-                                        <div>:</div>
-                                        <div class="col">
-                                            <?php echo $program['saran'] ?>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="row mb-2">
                                         <div class="col-2 font-weight-bold">
                                             <a href="<?php echo base_url('programklik/cetak_programklik/' . $program['id'] . '/pdf') ?>"

@@ -20,7 +20,7 @@ class Admin extends CI_Controller {
     {
         $data['guru']=$this->Main_model->total('pasien_status', 'Guru', 'periksa');
         $data['siswa']=$this->Main_model->total('pasien_status', 'Siswa', 'periksa');
-        $data['karyawan']=$this->Main_model->total('pasien_status', 'Karyawan', 'periksa');
+        // $data['karyawan']=$this->Main_model->total('pasien_status', 'Karyawan', 'periksa');
         for ($i = 1; $i <= 12; $i++) {
             $date = sprintf(date('Y') . "-%02d", $i);
             $graph_data[$i]['bulan'] = date("F", strtotime($date));

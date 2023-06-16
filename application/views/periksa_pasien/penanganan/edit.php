@@ -19,7 +19,7 @@
                 <?php 
                     $nama_guru = JoinTwo('penanganan_periksa', 'periksa', 'periksa_id', 'id', 'guru', 'guru_id', 'penanganan_periksa.id', $periksa['id'], 'nama_guru');
                     $nama_siswa = JoinTwo('penanganan_periksa', 'periksa', 'periksa_id', 'id', 'siswa', 'siswa_id', 'penanganan_periksa.id', $periksa['id'], 'nama_siswa');
-                    $nama_karyawan = JoinTwo('penanganan_periksa', 'periksa', 'periksa_id', 'id', 'karyawan', 'karyawan_id', 'penanganan_periksa.id', $periksa['id'], 'nama_karyawan');
+                    // $nama_karyawan = JoinTwo('penanganan_periksa', 'periksa', 'periksa_id', 'id', 'karyawan', 'karyawan_id', 'penanganan_periksa.id', $periksa['id'], 'nama_karyawan');
                     $statuspasien = JoinOne('penanganan_periksa', 'periksa', 'periksa_id', 'id', 'penanganan_periksa.id', $periksa['id'], 'pasien_status');
                     $keluhan = JoinOne('penanganan_periksa', 'periksa', 'periksa_id', 'id', 'penanganan_periksa.id', $periksa['id'], 'keluhan');
                 ?>
@@ -27,7 +27,7 @@
                     <p>
                         Periksa Pasien:
                         <strong>
-                            <?php echo $nama_guru; echo $nama_siswa; echo $nama_karyawan; ?>
+                            <?php echo $nama_guru; echo $nama_siswa; ?>
                         </strong>
                     </p>
                 </div>
@@ -38,7 +38,9 @@
                             <div class="col-lg-6">
                                 <label class="d-block">Nama Pasien</label>
                                 <input type="text"
-                                    value="<?php echo $nama_guru; echo $nama_siswa; echo $nama_karyawan; ?>"
+                                    value="<?php echo $nama_guru; echo $nama_siswa;
+                                    //  echo $nama_karyawan;
+                                      ?>"
                                     class="form-control" disabled>
                             </div>
                             <div class="col-lg-6">

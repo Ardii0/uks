@@ -40,8 +40,8 @@
                                         <thead>
                                             <tr>
                                                 <th style="width: 5%;">No</th>
-                                                <th>Nama Pasien</th>
-                                                <th>Status Pasien</th>
+                                                <th>Nama Siswa</th>
+                                                <th>Kelas</th>
                                                 <th>Tanggal / Jam</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -50,40 +50,34 @@
                                             <?php $id = 0;
                                             foreach ($periksa as $data):
                                                 $id++; ?>
-                                                <tr>
-                                                    <td>
-                                                        <?php echo $id ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php if (!empty($data->siswa_id)) {
-                                                            echo JoinOne('program_klik', 'siswa', 'siswa_id', 'id', 'program_klik.id', $data->id, 'nama_siswa');
-                                                        } else if (!empty($data->guru_id)) {
-                                                            echo JoinOne('program_klik', 'guru', 'guru_id', 'id', 'program_klik.id', $data->id, 'nama_guru');
-                                                        } else if (!empty($data->karyawan_id)) {
-                                                            echo JoinOne('program_klik', 'karyawan', 'karyawan_id', 'id', 'program_klik.id', $data->id, 'nama_karyawan');
-                                                        } ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $data->pasien_status ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $data->create_date ?>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <a href="<?php echo base_url('programklik/detail/' . $data->id) ?>"
-                                                            class="btn btn-success btn-sm">
-                                                            <i class="fas fa-search-plus"></i>
-                                                        </a>
-                                                        <button class="btn btn-warning btn-sm" type="button"
-                                                            data-toggle="modal" data-target="#modal<?php echo $data->id ?>">
-                                                            <i class="fa fa-edit"></i>
-                                                        </button>
-                                                        <button class='btn btn-danger btn-sm'
-                                                            onclick="hapus_periksa(<?php echo $data->id ?>)">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
+                                            <tr>
+                                                <td>
+                                                    <?php echo $id ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $data->nama_siswa ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $data->kelas ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $data->create_date ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="<?php echo base_url('programklik/detail/' . $data->id) ?>"
+                                                        class="btn btn-success btn-sm">
+                                                        <i class="fas fa-search-plus"></i>
+                                                    </a>
+                                                    <button class="btn btn-warning btn-sm" type="button"
+                                                        data-toggle="modal" data-target="#modal<?php echo $data->id ?>">
+                                                        <i class="fa fa-edit"></i>
+                                                    </button>
+                                                    <button class='btn btn-danger btn-sm'
+                                                        onclick="hapus_periksa(<?php echo $data->id ?>)">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
                                             <?php endforeach; ?>
                                         </tbody>
                                     </table>
@@ -109,83 +103,27 @@
                                     <div class="box">
                                         <div class="box-body">
                                             <div class="form-group col-sm-12">
-                                                <label class="control-label">Status Pasien</label>
+                                                <label class="control-label">Nama Siswa</label>
                                                 <div class="">
-                                                    <select class="form-control form-select px-2 py-1" id="option"
-                                                        onchange="selectStatus()" name="pasien_status">
-                                                        <option value="Pilih" style="display: none;">
-                                                            Pilih Status
-                                                        </option>
-                                                        <option value="Guru">
-                                                            Guru
-                                                        </option>
-                                                        <option value="Siswa">
-                                                            Siswa
-                                                        </option>
-                                                        <option value="Karyawan">
-                                                            Karyawan
-                                                        </option>
-                                                    </select>
+                                                    <input type="text" name="nama_siswa" class="form-control"
+                                                        required="" placeholder="Masukan Nama Siswa"><br>
                                                 </div>
                                             </div>
                                             <div class="form-group col-sm-12">
-                                                <label class="control-label">Nama Pasien</label>
-                                                <div class="" id="disabled">
-                                                    <select class="form-control select2" disabled>
-                                                        <option selected>
-                                                            Pilih Pasien
-                                                        </option>
-                                                    </select>
-                                                </div>
-                                                <div id="guru" style="display: none;">
-                                                    <select class="form-control select2" name="guru_id">
-                                                        <option style="display: none;" selected disabled>
-                                                            Pilih Pasien
-                                                        </option>
-                                                        <?php foreach ($guru as $guru): ?>
-                                                            <option value="<?php echo $guru->id ?>">
-                                                                <?php echo $guru->nama_guru ?>
-                                                            </option>
-                                                        <?php endforeach; ?>
-                                                    </select>
-                                                </div>
-                                                <div id="siswa" style="display: none;">
-                                                    <select class="form-control select2" name="siswa_id">
-                                                        <option style="display: none;" selected disabled>
-                                                            Pilih Pasien
-                                                        </option>
-                                                        <?php foreach ($siswa as $siswa): ?>
-                                                            <option value="<?php echo $siswa->id ?>">
-                                                                <?php echo $siswa->nama_siswa ?>
-                                                            </option>
-                                                        <?php endforeach; ?>
-                                                    </select>
-                                                </div>
-                                                <div id="karyawan" style="display: none;">
-                                                    <select class="form-control select2" name="karyawan_id">
-                                                        <option style="display: none;" selected disabled>
-                                                            Pilih Pasien
-                                                        </option>
-                                                        <?php foreach ($karyawan as $karyawan): ?>
-                                                            <option value="<?php echo $karyawan->id ?>">
-                                                                <?php echo $karyawan->nama_karyawan ?>
-                                                            </option>
-                                                        <?php endforeach; ?>
-                                                    </select>
+                                                <label class="control-label">Kelas</label>
+                                                <div class="">
+                                                    <input type="text" name="kelas" class="form-control"
+                                                        required="" placeholder="Masukan Kelas Siswa"><br>
                                                 </div>
                                             </div>
                                             <div class="form-group col-sm-12">
-                                                <label class="control-label">Keluhan Pasien</label>
+                                                <label class="control-label">Keluhan </label>
                                                 <div class="">
-                                                    <textarea name="keluhan" class="form-control" placeholder="Masukkan Keluhan Pasien" required></textarea>
+                                                    <input name="keluhan" class="form-control"
+                                                        placeholder="Masukkan Keluhan Siswa" required>
                                                 </div>
                                             </div>
-                                            <div class="form-group col-sm-12">
-                                                <label class="control-label">Saran Untuk Pasien</label>
-                                                <div class="">
-                                                    <textarea name="saran" class="form-control" placeholder="Masukkan Saran Pasien" required></textarea>
-                                                </div>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -201,97 +139,58 @@
 
                 <!-- Modal Edit Program Klik -->
                 <?php foreach ($periksa as $data): ?>
-                    <div class="modal fade" id="modal<?php echo $data->id ?>" tabindex="-1" role="dialog"
-                        aria-labelledby="Modal" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <form action="<?php echo base_url('programklik/aksi_edit_program') ?>"
-                                enctype="multipart/form-data" method="post">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Form Edit Program Klik</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body pb-1">
-                                        <div class="box">
-                                            <!-- /.box-header -->
-                                            <div class="box-body">
-                                                <input type="hidden" name="id" value="<?php echo $data->id ?>">
-                                                <div class="form-group col-sm-12">
-                                                    <label class="control-label">Status Pasien</label>
-                                                    <div class="">
-                                                        <input type="hidden" name="pasien_status" class="form-control"
-                                                            value="<?php echo $data->pasien_status ?>">
-                                                        <select class="form-control form-select px-2 py-1" id="edits"
-                                                            disabled="true">
-                                                            <option value="<?php echo $data->pasien_status ?>" selected>
-                                                                <?php echo $data->pasien_status ?>
-                                                            </option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group col-sm-12">
-                                                    <label class="control-label">Nama Pasien</label>
-                                                    <div class="">
-                                                        <input type="hidden" <?php if (!empty($data->siswa_id)) {
-                                                            echo "name='siswa_id' value='$data->siswa_id'";
-                                                        } else if (!empty($data->guru_id)) {
-                                                            echo "name='guru_id' value='$data->guru_id'";
-                                                        } else if (!empty($data->karyawan_id)) {
-                                                            echo "name='karyawan_id' value='$data->karyawan_id'";
-                                                        } ?> class="form-control">
-                                                        <select class="form-control select2" <?php if (!empty($data->siswa_id)) {
-                                                            echo "name='siswa_id'";
-                                                        } else if (!empty($data->guru_id)) {
-                                                            echo "name='guru_id'";
-                                                        } else if (!empty($data->karyawan_id)) {
-                                                            echo "name='karyawan_id'";
-                                                        } ?>disabled="true">
-                                                            <option <?php if (!empty($data->siswa_id)) {
-                                                                echo "value='$data->siswa_id'";
-                                                            } else if (!empty($data->guru_id)) {
-                                                                echo "value='$data->guru_id'";
-                                                            } else if (!empty($data->karyawan_id)) {
-                                                                echo "value='$data->karyawan_id'";
-                                                            } ?> selected>
-                                                                <?php if (!empty($data->siswa_id)) {
-                                                                    echo JoinOne('program_klik', 'siswa', 'siswa_id', 'id', 'program_klik.id', $data->id, 'nama_siswa');
-                                                                } else if (!empty($data->guru_id)) {
-                                                                    echo JoinOne('program_klik', 'guru', 'guru_id', 'id', 'program_klik.id', $data->id, 'nama_guru');
-                                                                } else if (!empty($data->karyawan_id)) {
-                                                                    echo JoinOne('program_klik', 'karyawan', 'karyawan_id', 'id', 'program_klik.id', $data->id, 'nama_karyawan');
-                                                                } ?>
-                                                            </option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group col-sm-12">
-                                                    <label class="control-label">Keluhan Pasien</label>
-                                                    <div class="">
-                                                        <textarea name="keluhan" class="form-control"
-                                                            required><?php echo $data->keluhan ?></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group col-sm-12">
-                                                    <label class="control-label">Saran Untuk Pasien</label>
-                                                    <div class="">
-                                                        <textarea name="saran" class="form-control"
-                                                            required><?php echo $data->saran ?></textarea>
-                                                    </div>
+                <div class="modal fade" id="modal<?php echo $data->id ?>" tabindex="-1" role="dialog"
+                    aria-labelledby="Modal" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <form action="<?php echo base_url('programklik/aksi_edit_program') ?>"
+                            enctype="multipart/form-data" method="post">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Form Edit Program Klik</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body pb-1">
+                                    <div class="box">
+                                        <!-- /.box-header -->
+                                        <div class="box-body">
+                                            <input type="hidden" name="id" value="<?php echo $data->id ?>">
+                                            <div class="form-group col-sm-12">
+                                                <label class="control-label">Nama Siswa</label>
+                                                <div class="">
+                                                    <input type="text" name="nama_siswa" class="form-control"
+                                                        value="<?php echo $data->nama_siswa ?>">
+                                                    
                                                 </div>
                                             </div>
+                                            <div class="form-group col-sm-12">
+                                                <label class="control-label">Kelas </label>
+                                                <div class="">
+                                                    <input type="text" name="kelas" value="<?php echo $data->kelas ?>" class="form-control"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-sm-12">
+                                                <label class="control-label">Keluhan </label>
+                                                <div class="">
+                                                    <input type="text" name="keluhan" value="<?php echo $data->keluhan ?>" class="form-control"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            
                                         </div>
                                     </div>
-                                    <div class="modal-footer d-flex justify-content-between">
-                                        <button type="button" class="btn btn-danger text-bold w-25"
-                                            data-dismiss="modal">Batal</button>
-                                        <button type="submit" class="btn btn-success text-bold w-25">Simpan</button>
-                                    </div>
                                 </div>
-                            </form>
-                        </div>
+                                <div class="modal-footer d-flex justify-content-between">
+                                    <button type="button" class="btn btn-danger text-bold w-25"
+                                        data-dismiss="modal">Batal</button>
+                                    <button type="submit" class="btn btn-success text-bold w-25">Simpan</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
+                </div>
                 <?php endforeach ?>
         </div>
         </section>
@@ -300,43 +199,44 @@
     <?php $this->load->view('style/js') ?>
     <script src="<?php echo base_url('builder/dist/js/status.js'); ?>"></script>
     <?php if ($this->session->flashdata('sukses')): ?>
-        <script>
-            swal.fire({
-                title: "<?php echo $this->session->flashdata('sukses') ?>",
-                icon: "success",
-                showConfirmButton: false,
-                timer: 2000,
-            });
-        </script>
-        <?php if (isset($_SESSION['sukses'])) {
+    <script>
+    swal.fire({
+        title: "<?php echo $this->session->flashdata('sukses') ?>",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 2000,
+    });
+    </script>
+    <?php if (isset($_SESSION['sukses'])) {
             unset($_SESSION['sukses']);
         }
     endif; ?>
     <script>
-        function hapus_periksa(id) {
-            swal.fire({
-                title: 'Yakin untuk menghapus data ini?',
-                text: "Data ini akan terhapus permanen",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                cancelButtonText: 'Batal',
-                confirmButtonText: ' Ya hapus!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Berhasil Dihapus',
-                        showConfirmButton: false,
-                        timer: 1500,
+    function hapus_periksa(id) {
+        swal.fire({
+            title: 'Yakin untuk menghapus data ini?',
+            text: "Data ini akan terhapus permanen",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Batal',
+            confirmButtonText: ' Ya hapus!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil Dihapus',
+                    showConfirmButton: false,
+                    timer: 1500,
 
-                    }).then(function () {
-                        window.location.href = "<?php echo base_url('programklik/hapus_programklik/') ?>" + id;
-                    });
-                }
-            });
-        }
+                }).then(function() {
+                    window.location.href = "<?php echo base_url('programklik/hapus_programklik/') ?>" +
+                        id;
+                });
+            }
+        });
+    }
     </script>
 </body>
 

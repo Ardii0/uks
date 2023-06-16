@@ -111,25 +111,14 @@
 			<td>Nama</td>
 			<td>:</td>
 			<td>
-				<?php if (!empty( $program["siswa_id"])) {
-					echo JoinOne('program_klik', 'siswa', 'siswa_id', 'id', 'program_klik.id', $program["id"], 'nama_siswa');
-				} else if (!empty( $program["guru_id"])) {
-					echo JoinOne('program_klik', 'guru', 'guru_id', 'id', 'program_klik.id', $program["id"], 'nama_guru');
-				} else if (!empty( $program["karyawan_id"])) {
-					echo JoinOne('program_klik', 'karyawan', 'karyawan_id', 'id', 'program_klik.id', $program["id"], 'nama_karyawan');
-				} ?>
+			<?php echo $program["nama_siswa"] ?>
 			</td>
 		</tr>
 		<tr>
 			<td>Kelas</td>
 			<td>:</td>
 			<td>
-				<?php if (!empty( $program["siswa_id"])) {
-					echo tampil_kelas_byid($program["siswa_id"]);
-				} else {
-					echo "-";
-				}
-				?>
+			<?php echo $program["kelas"] ?>
 			</td>
 		</tr>
 		<tr>
@@ -139,13 +128,7 @@
 				<?php echo $program["keluhan"] ?>
 			</td>
 		</tr>
-		<tr>
-			<td>Saran</td>
-			<td>:</td>
-			<td>
-				<?php echo $program["saran"] ?>
-			</td>
-		</tr>
+		
 	</table>
 	<hr>
 	<br>

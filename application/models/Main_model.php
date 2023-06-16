@@ -168,12 +168,12 @@ class Main_model extends CI_Model
             }
         }
 
-        public function import_karyawan($data){
-            $insert = $this->db->insert_batch('karyawan', $data);
-            if($insert){
-                return true;
-            }
-        }
+        // public function import_karyawan($data){
+        //     $insert = $this->db->insert_batch('karyawan', $data);
+        //     if($insert){
+        //         return true;
+        //     }
+        // }
           
         public function export_guru() {
             $this->db->from('guru');
@@ -187,11 +187,11 @@ class Main_model extends CI_Model
             return $query->result();
         
         }
-        public function export_karyawan() {
-            $this->db->from('karyawan');
-            $query = $this->db->get();
-            return $query->result();
-        }
+        // public function export_karyawan() {
+        //     $this->db->from('karyawan');
+        //     $query = $this->db->get();
+        //     return $query->result();
+        // }
 
         public function by_id($tabel, $id)
         {

@@ -157,16 +157,16 @@
         return $stmt;
         }
     }
-    function tampil_karyawan_byid($id)
-        {
-        $ci =& get_instance();
-        $ci->load->database();
-        $result = $ci->db->where('id',$id)->get('karyawan');
-        foreach ($result->result() as $c) {
-        $stmt= $c->nama_karyawan;
-        return $stmt;
-        }
-    }
+    // function tampil_karyawan_byid($id)
+    //     {
+    //     $ci =& get_instance();
+    //     $ci->load->database();
+    //     $result = $ci->db->where('id',$id)->get('karyawan');
+    //     foreach ($result->result() as $c) {
+    //     $stmt= $c->nama_karyawan;
+    //     return $stmt;
+    //     }
+    // }
 
     function tampil_tensi1_byid($id)
     {
@@ -226,16 +226,16 @@ function tampil_guru($id)
   }
 }
 
-function tampil_karyawan($id)
-{
- $ci =& get_instance();
- $ci->load->database();
- $result = $ci->db->where('karyawan_id',$id)->get('periksa');
-  foreach ($result->result() as $c) {
-  $stmt= $c->karyawan_id;
-  return $stmt;
-  }
-}
+// function tampil_karyawan($id)
+// {
+//  $ci =& get_instance();
+//  $ci->load->database();
+//  $result = $ci->db->where('karyawan_id',$id)->get('periksa');
+//   foreach ($result->result() as $c) {
+//   $stmt= $c->karyawan_id;
+//   return $stmt;
+//   }
+// }
 
 // Data Uks
 

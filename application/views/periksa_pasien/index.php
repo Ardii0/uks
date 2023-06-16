@@ -111,9 +111,11 @@
                                                             echo JoinOne('periksa', 'siswa', 'siswa_id', 'id','periksa.id',$data->id, 'nama_siswa');
                                                         } else if(!empty($data->guru_id)) {
                                                             echo JoinOne('periksa', 'guru', 'guru_id', 'id','periksa.id',$data->id, 'nama_guru');
-                                                        } else if(!empty($data->karyawan_id)) {
-                                                            echo JoinOne('periksa', 'karyawan', 'karyawan_id', 'id','periksa.id',$data->id, 'nama_karyawan');
-                                                        } ?>
+                                                        } 
+                                                        // else if(!empty($data->karyawan_id)) {
+                                                        //     echo JoinOne('periksa', 'karyawan', 'karyawan_id', 'id','periksa.id',$data->id, 'nama_karyawan');
+                                                        // } 
+                                                        ?>
                                                 </td>
                                                 <td>
                                                     <?php echo $data->pasien_status ?>
@@ -170,84 +172,84 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <div class="modal-body pb-1">
-                                    <div class="box">
-                                        <!-- /.box-header -->
-                                        <div class="box-body">
-                                            <div class="form-group col-sm-12">
-                                                <label class="control-label">Status Pasien</label>
-                                                <div class="">
-                                                    <select class="form-control form-select px-2 py-1" id="option"
-                                                        onchange="selectStatus()" name="pasien_status" required="">
-                                                        <option value="" style="display: none;">
-                                                            Pilih Status
-                                                        </option>
-                                                        <option value="Guru">
-                                                            Guru
-                                                        </option>
-                                                        <option value="Siswa">
-                                                            Siswa
-                                                        </option>
-                                                        <option value="Karyawan">
-                                                            Karyawan
-                                                        </option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-sm-12">
-                                                <label class="control-label">Nama Pasien</label>
-                                                <div class="" id="disabled">
-                                                    <select class="form-control select2" disabled required="">
-                                                            <option value="" selected>
-                                                                Pilih Pasien
-                                                            </option>
-                                                    </select>
-                                                </div>
-                                                <div id="guru" style="display: none;">
-                                                    <select class="form-control select2" name="guru_id" data-native-menu="false" data-inline="true" data-mini="true">
-                                                        <option value="" style="display: none;" selected disabled>
-                                                            Pilih Pasien
-                                                        </option>
-                                                        <?php foreach($guru as $guru): ?>
-                                                            <option value="<?php echo $guru->id ?>">
-                                                                <?php echo $guru->nama_guru ?>
-                                                            </option>
-                                                        <?php endforeach; ?>
-                                                    </select>
-                                                </div>
-                                                <div id="siswa" style="display: none;">
-                                                    <select class="form-control select2" name="siswa_id">
-                                                        <option value="" style="display: none;" selected disabled>
-                                                            Pilih Pasien
-                                                        </option>
-                                                        <?php foreach($siswa as $siswa): ?>
-                                                            <option value="<?php echo $siswa->id ?>">
-                                                                <?php echo $siswa->nama_siswa ?>
-                                                            </option>
-                                                        <?php endforeach; ?>
-                                                    </select>
-                                                </div>
-                                                <div id="karyawan" style="display: none;">
-                                                    <select class="form-control select2" name="karyawan_id">
-                                                        <option value="" style="display: none;" selected disabled>
-                                                            Pilih Pasien
-                                                        </option>
-                                                        <?php foreach($karyawan as $karyawan): ?>
-                                                            <option value="<?php echo $karyawan->id ?>">
-                                                                <?php echo $karyawan->nama_karyawan ?>
-                                                            </option>
-                                                        <?php endforeach; ?>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-sm-12">
-                                                <label class="control-label">Keluhan Pasien</label>
-                                                <div class="">
-                                                    <textarea name="keluhan" class="form-control" required></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="modal-body pb-1"> 
+                                    <div class="box"> 
+                                        <!-- /.box-header --> 
+                                        <div class="box-body"> 
+                                            <div class="form-group col-sm-12"> 
+                                                <label class="control-label">Status Pasien</label> 
+                                                <div class=""> 
+                                                    <select class="form-control form-select px-2 py-1" id="option" 
+                                                        onchange="selectStatus()" name="pasien_status" required=""> 
+                                                        <option value="" style="display: none;"> 
+                                                            Pilih Status 
+                                                        </option> 
+                                                        <option value="Guru"> 
+                                                            Guru 
+                                                        </option> 
+                                                        <option value="Siswa"> 
+                                                            Siswa 
+                                                        </option> 
+                                                        <!-- <option value="Karyawan"> 
+                                                            Karyawan 
+                                                        </option>  -->
+                                                    </select> 
+                                                </div> 
+                                            </div> 
+                                            <div class="form-group col-sm-12"> 
+                                                <label class="control-label">Nama Pasien</label> 
+                                                <div class="" id="disabled"> 
+                                                    <select class="form-control select2" disabled required=""> 
+                                                            <option value="" selected> 
+                                                                Pilih Pasien 
+                                                            </option> 
+                                                    </select> 
+                                                </div> 
+                                                <div id="guru" style="display: none;"> 
+                                                    <select class="form-control select2" name="guru_id" data-native-menu="false" data-inline="true" data-mini="true"> 
+                                                        <option value="" style="display: none;" selected disabled> 
+                                                            Pilih Pasien 
+                                                        </option> 
+                                                        <?php foreach($guru as $guru): ?> 
+                                                            <option value="<?php echo $guru->id ?>"> 
+                                                                <?php echo $guru->nama_guru ?> 
+                                                            </option> 
+                                                        <?php endforeach; ?> 
+                                                    </select> 
+                                                </div> 
+                                                <div id="siswa" style="display: none;"> 
+                                                    <select class="form-control select2" name="siswa_id"> 
+                                                        <option value="" style="display: none;" selected disabled> 
+                                                            Pilih Pasien 
+                                                        </option> 
+                                                        <?php foreach($siswa as $siswa): ?> 
+                                                            <option value="<?php echo $siswa->id ?>"> 
+                                                                <?php echo $siswa->nama_siswa ?> 
+                                                            </option> 
+                                                        <?php endforeach; ?> 
+                                                    </select> 
+                                                </div> 
+                                                <div id="karyawan" style="display: none;"> 
+                                                    <select class="form-control select2" name="karyawan_id"> 
+                                                        <option value="" style="display: none;" selected disabled> 
+                                                            Pilih Pasien 
+                                                        </option> 
+                                                        <?php foreach($karyawan as $karyawan): ?> 
+                                                            <option value="<?php echo $karyawan->id ?>"> 
+                                                                <?php echo $karyawan->nama_karyawan ?> 
+                                                            </option> 
+                                                        <?php endforeach; ?> 
+                                                    </select> 
+                                                </div> 
+                                            </div> 
+                                            <div class="form-group col-sm-12"> 
+                                                <label class="control-label">Keluhan Pasien</label> 
+                                                <div class=""> 
+                                                    <textarea name="keluhan" class="form-control" required></textarea> 
+                                                </div> 
+                                            </div> 
+                                        </div> 
+                                    </div> 
                                 </div>
                                 <div class="modal-footer d-flex justify-content-between">
                                     <button type="button" class="btn btn-danger text-bold w-25" data-dismiss="modal">Batal</button>
